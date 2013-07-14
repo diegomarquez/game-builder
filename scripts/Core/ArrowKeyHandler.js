@@ -167,6 +167,8 @@ $(function() {
 
   };
 
+  ArrowKeyHandler.init();
+
   window.ArrowKeyHandler = ArrowKeyHandler;
 
   window.addEventListener('keyup', function(event) {
@@ -235,5 +237,4 @@ $(function() {
       event.preventDefault();
     }
   }
-
 });

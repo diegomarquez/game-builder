@@ -1,11 +1,3 @@
-var TopLevel = {
-	canvas: null,
-	context: null,
-	game: null,
-	container: null
-};
-window.TopLevel = TopLevel;
-
 //TODO: Do some kind of setup to have all dependacies loaded asynchronosly, or something like like that.
 //TODO: Something to set what methods need to be called when the game is paused for whatever reason
 
@@ -49,14 +41,15 @@ window.TopLevel = TopLevel;
 
 $(function() {
 	//This is the main creation function, the game officially starts when this is called.
-	var creation = function() {
-		TopLevel.canvas = document.getElementById("game");
-		TopLevel.context = TopLevel.canvas.getContext("2d");
-		TopLevel.container = new ObjectsContainer(TopLevel.context).setDefaultLayer(2);
+	GameSetUp.create(document.getElementById("main"), document.getElementById("game"), function() {
 
-		ArrowKeyHandler.init();
-	}
+	});
 
-	TopLevel.game = new GameSetUp(creation);
-	TopLevel.game.setUp();
+	//GameSetUp.addComponent(onPauseAction, onResumeAction);
+	//Keyboard
+	//Mouse
+	//Sound
+	//Tweens
+
+	GameSetUp.start();
 });
