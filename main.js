@@ -7,6 +7,7 @@ var TopLevel = {
 window.TopLevel = TopLevel;
 
 //TODO: Do some kind of setup to have all dependacies loaded asynchronosly, or something like like that.
+//TODO: Something to set what methods need to be called when the game is paused for whatever reason
 
 //TODO: Simplify GameObject, 
 	//extend Delegate.
