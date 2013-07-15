@@ -1,9 +1,13 @@
 game-framework
 ==============
 
-Some files I decided to extract from a previous javascript project, it's kind of like a framework to make simple games. This readme will be updated in the future with more useful information. 
+These are some files I decided to extract from a previous javascript project, It's kind of like a framework to make simple games, things like Asteroids or Galaga.
 
-This is the game I put together using the previous version of this set of files:
+First thing on the TODO list:
+	Make RequireJS modules out of the main files. 
+	This should let me handle dependancies in a clean way and keep things out of the global scope.
+
+This is the game I put together using the previous encarnation of this set of files:
 
 http://www.treintipollo.com/tirador/index.html
 ==============

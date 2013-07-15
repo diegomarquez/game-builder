@@ -39,17 +39,10 @@
 //That could reduce method calls greatly, since a lot of GameObjects don't use update at all.
 //Same could be done with draw
 
-$(function() {
-	//This is the main creation function, the game officially starts when this is called.
-	GameSetUp.create(document.getElementById("main"), document.getElementById("game"), function() {
-
-	});
-
-	//GameSetUp.addComponent(onPauseAction, onResumeAction);
-	//Keyboard
-	//Mouse
-	//Sound
-	//Tweens
-
-	GameSetUp.start();
+require(['domReady!', './scripts/timerFactory'], function(doc, timerFactory){
+ 	
+ 	timerFactory.getTimeOut(2000, 1, this, function(){
+ 		console.log("BLABLABLA");
+ 	}, true).start();
+ 	
 });

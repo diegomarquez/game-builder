@@ -47,9 +47,8 @@ $(function() {
 	}
 
 	gameSetup.start = function() {
-		TopLevel.context = TopLevel.canvas.getContext("2d");
-		TopLevel.container = new ObjectsContainer(TopLevel.context).setDefaultLayer(2);
-
+		this.context = this.canvas.getContext("2d");
+		
 		var frameRequest, mainLoop;
 
 		var self = this;
@@ -57,6 +56,8 @@ $(function() {
 		var mainGameCreation = FuntionUtils.bindScope(self, function() {
 			this.initialized = true;
 			this.mainGameSetUp();
+
+			//this.container = new ObjectsContainer(this.context).setDefaultLayer(2);
 		});
 
 		//Setting up the onBlur and onFocus events.
@@ -67,10 +68,10 @@ $(function() {
 				self.blur = false;
 				self.focus = true;
 
+				//Aca van los callbacks para pausar todos los componenetes
+
 				// TimeOutFactory.pauseAllTimeOuts();
-
 				// ArrowKeyHandler.pause();
-
 				// SoundPlayer.pauseAll();
 
 				if (!self.manualSoftPause) {
@@ -93,10 +94,10 @@ $(function() {
 					self.blur = true;
 					self.focus = false;
 
+					//Aca van los callbacks para re activar todos los componenetes
+
 					// TimeOutFactory.resumeAllTimeOuts();
-
 					// ArrowKeyHandler.resume();
-
 					// SoundPlayer.resumeAll();
 
 					if (!self.wasInSoftPause) {
@@ -121,9 +122,8 @@ $(function() {
 				self.lastUpdate = now;
 
 				if (dt < 30) {
-					TopLevel.container.update(dt / 1000, self.manualSoftPause);
-
-					TopLevel.container.draw();
+					self.container.update(dt / 1000, self.manualSoftPause);
+					self.container.draw();
 				}
 
 				frameRequest = window.requestAnimationFrame(mainLoop);
@@ -152,34 +152,33 @@ $(function() {
 		}
 	}
 
-	gameSetup.start();
+	gameSetup.softPause = function() {
+		this.manualSoftPause = true;
+		this.wasInSoftPause = true;
+		this.dispatchUIEvent('blur');
+	};
+
+	gameSetup.softResume = function() {
+		this.manualSoftPause = false;
+		this.dispatchUIEvent('focus');
+	};
+
+	gameSetup.hardPause = function() {
+		this.manualHardPause = true;
+		this.dispatchUIEvent('blur');
+	};
+
+	gameSetup.hardResume = function() {
+		this.manualHardPause = false;
+		this.dispatchUIEvent('focus');
+	};
+
+	gameSetup.dispatchUIEvent = function(event) {
+		var evt = document.createEvent("UIEvents");
+		evt.initUIEvent(event, true, true, window, 1);
+		window.dispatchEvent(evt);
+	};
 
 	window.GameSetUp = gameSetup;
 });
 
-// GameSetUp.prototype.softPause = function() {
-// 	this.manualSoftPause = true;
-// 	this.wasInSoftPause = true;
-// 	this.dispatchUIEvent('blur');
-// }
-
-// GameSetUp.prototype.softResume = function() {
-// 	this.manualSoftPause = false;
-// 	this.dispatchUIEvent('focus');
-// }
-
-// GameSetUp.prototype.hardPause = function() {
-// 	this.manualHardPause = true;
-// 	this.dispatchUIEvent('blur');
-// }
-
-// GameSetUp.prototype.hardResume = function() {
-// 	this.manualHardPause = false;
-// 	this.dispatchUIEvent('focus');
-// }
-
-// GameSetUp.prototype.dispatchUIEvent = function(event) {
-// 	var evt = document.createEvent("UIEvents");
-// 	evt.initUIEvent(event, true, true, window, 1);
-// 	window.dispatchEvent(evt);
-// }
