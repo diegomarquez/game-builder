@@ -40,9 +40,7 @@
 //Same could be done with draw
 
 require(['domReady!', './scripts/timerFactory'], function(doc, timerFactory){
- 	
- 	timerFactory.getTimeOut(2000, 1, this, function(){
+ 	timerFactory.getConfiguredTimeOut(5000, 1, this, function(){
  		console.log("BLABLABLA");
  	}, true).start();
- 	
 });
