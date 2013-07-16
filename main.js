@@ -2,22 +2,22 @@
 //TODO: Something to set what methods need to be called when the game is paused for whatever reason
 
 //TODO: Simplify GameObject, 
-	//extend Delegate.
-	//Polish delegate
+//extend Delegate.
+//Polish delegate
 
 //TODO: Nestable GameObjects 
-	//follow the tranformation of their respective parents
-	//A nested gameObject is drawn in the same layer as it's parent and top of it
-	//Implement event bubbling
+//follow the tranformation of their respective parents
+//A nested gameObject is drawn in the same layer as it's parent and top of it
+//Implement event bubbling
 
 //TODO: GameObject Components
 
 //TODO: Be able to configure hitArea.
-	//Multiple hit areas for a single GameObject
-	//Hit area should follow the tranformation of it's owner.
+//Multiple hit areas for a single GameObject
+//Hit area should follow the tranformation of it's owner.
 
 //TODO: Get a better "inherit" method.
-	//One that supports _super properly.
+//One that supports _super properly.
 
 //TODO:Single Utility Object, so that the global scope has less litter.
 
@@ -30,17 +30,24 @@
 
 //TODO: Optimizations
 //TODO: Optimize drawing method.
-	//Cache procedural drawing in memory. Then draw that image in place each frame, instead of redrawing proceduraly each frame.
-	//This will not be possible where procedural animations take place. Like the eye of the Boss or its tentacles. But things like Rockets and particles could be cached.
+//Cache procedural drawing in memory. Then draw that image in place each frame, instead of redrawing proceduraly each frame.
+//This will not be possible where procedural animations take place. Like the eye of the Boss or its tentacles. But things like Rockets and particles could be cached.
 //TODO: Reduce memory Footprint.
-	//Reduce object pool sizes.
+//Reduce object pool sizes.
 
 //TODO: //I Could setup the GameObjects in a way in which I can specify if they need an update or not. 
 //That could reduce method calls greatly, since a lot of GameObjects don't use update at all.
 //Same could be done with draw
 
-require(['domReady!', './scripts/timerFactory'], function(doc, timerFactory){
- 	timerFactory.getConfiguredTimeOut(5000, 1, this, function(){
- 		console.log("BLABLABLA");
- 	}, true).start();
+require.config({
+	paths: {
+		"timerFactory" : "scripts/timerFactory",
+		"keyboard" : "scripts/keyboard",
+	}
+});
+
+require(['domReady!', 'timerFactory', 'keyboard'], function(doc, timerFactory, keyboard) {
+	
+	console.log(keyboard);
+
 });
