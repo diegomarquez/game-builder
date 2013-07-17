@@ -42,13 +42,3 @@ Delegate.prototype.execute = function(name, args) {
 	}
 }
 
-Object.make = function make (proto) {
-    var o = Object.create(proto);
-    var args = [].slice.call(arguments, 1);
-    args.forEach(function (obj) {
-        Object.getOwnPropertyNames(obj).forEach(function (key) {
-            o[key] = obj[key];
-        });
-    });
-    return o;
-}

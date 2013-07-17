@@ -376,3 +376,14 @@ DrawUtils.quadraticPolygon = function(context, x, y, points, fillColor, strokeCo
 	if(fillColor) context.fill();
 	if(strokeColor) context.stroke();
 }
+
+Object.make = function make (proto) {
+    var o = Object.create(proto);
+    var args = [].slice.call(arguments, 1);
+    args.forEach(function (obj) {
+        Object.getOwnPropertyNames(obj).forEach(function (key) {
+            o[key] = obj[key];
+        });
+    });
+    return o;
+}

@@ -1,5 +1,9 @@
-//TODO: Do some kind of setup to have all dependacies loaded asynchronosly, or something like like that.
-//TODO: Something to set what methods need to be called when the game is paused for whatever reason
+
+//TODO: Convert all the important things to modules
+//TODO: Bootstrap file to load all the base modules the framework is going to use.
+
+//TODO: Game Module
+	//TODO: Something to set what methods need to be called when the game is paused for whatever reason
 
 //TODO: Simplify GameObject, 
 //extend Delegate.
@@ -13,8 +17,9 @@
 //TODO: GameObject Components
 
 //TODO: Be able to configure hitArea.
-//Multiple hit areas for a single GameObject
-//Hit area should follow the tranformation of it's owner.
+	//Stop using the cumbersome GameObjectUtils file
+	//Multiple hit areas for a single GameObject
+	//Hit area should follow the tranformation of it's owner.
 
 //TODO: Get a better "inherit" method.
 //One that supports _super properly.
@@ -47,7 +52,6 @@ require.config({
 });
 
 require(['domReady!', 'timerFactory', 'keyboard'], function(doc, timerFactory, keyboard) {
-	
-	console.log(keyboard);
+
 
 });
