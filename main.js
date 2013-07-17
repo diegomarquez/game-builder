@@ -45,15 +45,16 @@
 //Same could be done with draw
 
 //TODO: Add a brief description of each module in their respective files
+//TODO: Create some testing scenarios for all of the modules. Those will serve as demos aswell
 
 require.config({
 	paths: {
 		"timerFactory" : "scripts/timerFactory",
 		"keyboard" : "scripts/keyboard",
+		"soundPlayer" : "scripts/soundPlayer",
 	}
 });
 
-require(['domReady!', 'timerFactory', 'keyboard'], function(doc, timerFactory, keyboard) {
-
-
+require(['domReady!', 'timerFactory', 'soundPlayer'], function(doc, timerFactory, sound) {
+	
 });
