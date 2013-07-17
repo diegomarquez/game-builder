@@ -51,52 +51,40 @@ define(function() {
 		this._pause = false;
 	};
 
-	Keyboard.prototype.addKeyUpCallback = function(key, callback) {
+	Keyboard.prototype.addUpCallback = function(key, callback) {
 		if (!this.keyUpListeners.hasOwnProperty(key)) {
 			this.keyUpListeners[key] = [];
 		}
 
 		this.keyUpListeners[key].push(callback);
 
-		return {
-			key: key,
-			type: "Up",
-			callback: callback
-		};
+		return { key: key, type: "Up", callback: callback };
 	};
 
-	Keyboard.prototype.removeKeyUpCallback = function(key, callback) {
-		if (this.keyUpListeners.hasOwnProperty(key)) {
-			this.keyUpListeners[key].splice(this.keyUpListeners[key].indexOf(callback), 1);
+	Keyboard.prototype.removeUpCallback = function(callbackObject) {
+		if (this.keyUpListeners.hasOwnProperty(callbackObject.key)) {
+			this.keyUpListeners[callbackObject.key].splice(this.keyUpListeners[callbackObject.key].indexOf(callbackObject.callback), 1);
 		}
 	};
 
-	Keyboard.prototype.addKeyDownTimeOutCallback = function(key, callback, delay) {
+	Keyboard.prototype.addDownTimeOutCallback = function(key, callback, delay) {
 		if (!this.keyDownTimeOutListeners.hasOwnProperty(key)) {
 			this.keyDownTimeOutListeners[key] = [];
 		}
 
-		this.keyDownTimeOutListeners[key].push({
-			callback: callback,
-			delay: delay,
-			id: -1
-		});
+		this.keyDownTimeOutListeners[key].push({ callback: callback, delay: delay, id: -1 });
 
-		return {
-			key: key,
-			type: "DownTimeOut",
-			callback: callback
-		};
+		return { key: key, type: "DownTimeOut", callback: callback };
 	};
 
-	Keyboard.prototype.removeKeyDownTimeOutCallback = function(key, callback) {
-		if (this.keyDownTimeOutListeners.hasOwnProperty(key)) {
-			for (var i = this.keyDownTimeOutListeners[key].length - 1; i >= 0; i--) {
-				var c = this.keyDownTimeOutListeners[key][i].callback;
+	Keyboard.prototype.removeDownTimeOutCallback = function(callbackObject) {
+		if (this.keyDownTimeOutListeners.hasOwnProperty(callbackObject.key)) {
+			for (var i = this.keyDownTimeOutListeners[callbackObject.key].length - 1; i >= 0; i--) {
+				var c = this.keyDownTimeOutListeners[callbackObject.key][i].callback;
 
-				if (c === callback) {
-					clearTimeout(this.keyDownTimeOutListeners[key][i].id);
-					this.keyDownTimeOutListeners[key].splice(i, 1);
+				if (c === callbackObject.callback) {
+					clearTimeout(this.keyDownTimeOutListeners[callbackObject.key][i].id);
+					this.keyDownTimeOutListeners[callbackObject.key].splice(i, 1);
 				}
 			}
 		}
@@ -107,11 +95,11 @@ define(function() {
 			var c = callbacks[i];
 
 			if (c.type == "DownTimeOut") {
-				this.addKeyDownTimeOutCallback(c.key, c.callback, c.delay);
+				this.addDownTimeOutCallback(c.key, c.callback, c.delay);
 			}
 
 			if (c.type == "Up") {
-				this.addKeyUpCallback(c.key, c.callback);
+				this.addUpCallback(c.key, c.callback);
 			}
 		}
 	};
@@ -121,11 +109,11 @@ define(function() {
 			var c = callbacks[i];
 
 			if (c.type == "DownTimeOut") {
-				this.removeKeyDownTimeOutCallback(c.key, c.callback);
+				this.removeDownTimeOutCallback(c.key, c.callback);
 			}
 
 			if (c.type == "Up") {
-				this.removeKeyUpCallback(c.key, c.callback);
+				this.removeUpCallback(c.key, c.callback);
 			}
 		}
 
