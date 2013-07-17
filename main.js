@@ -1,6 +1,6 @@
-
 //TODO: Convert all the important things to modules
 //TODO: Bootstrap file to load all the base modules the framework is going to use.
+	//Should be able to configure the some basic properties like dimentions of the canvas to be used
 
 //TODO: Game Module
 	//TODO: Something to set what methods need to be called when the game is paused for whatever reason
@@ -43,6 +43,8 @@
 //TODO: //I Could setup the GameObjects in a way in which I can specify if they need an update or not. 
 //That could reduce method calls greatly, since a lot of GameObjects don't use update at all.
 //Same could be done with draw
+
+//TODO: Add a brief description of each module in their respective files
 
 require.config({
 	paths: {
