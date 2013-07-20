@@ -6,9 +6,13 @@ define(["class"], function() {
 			this.list = null;
 		},
 
-		on: function(name, scope, callback, removeOnExecute) {
+		on: function(name, scope, callback, removeOnExecute, inmediate) {
 			if (!this.callbackList[name]) {
 				this.callbackList[name] = [];
+			}
+
+			if(inmediate){
+				callback();
 			}
 
 			this.callbackList[name].push({

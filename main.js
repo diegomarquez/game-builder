@@ -46,11 +46,15 @@
 require(['domReady!', 'game'], function(doc, game) {
 
 	game.on("pause", this, function() {
-		console.log("Pause");
+		// TimeOutFactory.pauseAllTimeOuts();
+		// ArrowKeyHandler.pause();
+		// SoundPlayer.pauseAll();
 	});
 
 	game.on("resume", this, function() {
-		console.log("Resume");
+		// TimeOutFactory.resumeAllTimeOuts();
+		// ArrowKeyHandler.resume();
+		// SoundPlayer.resumeAll();
 	});
 
 	game.create(document.getElementById('main'), document.getElementById('game'), function() {
@@ -58,15 +62,3 @@ require(['domReady!', 'game'], function(doc, game) {
 	});
 
 });
-
-//Aca van los callbacks para pausar todos los componenetes
-
-// TimeOutFactory.pauseAllTimeOuts();
-// ArrowKeyHandler.pause();
-// SoundPlayer.pauseAll();
-
-//Aca van los callbacks para re activar todos los componenetes
-
-// TimeOutFactory.resumeAllTimeOuts();
-// ArrowKeyHandler.resume();
-// SoundPlayer.resumeAll();
