@@ -45,15 +45,29 @@
 //TODO: Add a brief description of each module in their respective files
 //TODO: Create some testing scenarios for all of the modules. Those will serve as demos aswell
 
-require.config({
-	paths: {
-		"timerFactory": "scripts/timerFactory",
-		"keyboard": "scripts/keyboard",
-		"soundPlayer": "scripts/soundPlayer",
-	}
+require(['domReady!', 'game'], function(doc, game) {
+
+	game.on("pause", function() {
+		console.log("Pause");
+	});
+
+	game.on("resume", function() {
+		console.log("Resume");
+	});
+
+	game.create(document.getElementById('main'), document.getElementById('game'), function() {
+		console.log("Create");
+	});
 });
 
-require(['domReady!', 'timerFactory', 'soundPlayer'], function(doc, timerFactory, sound) {
-	console.log("MAIN")
-	console.log(sound);
-});
+//Aca van los callbacks para pausar todos los componenetes
+
+// TimeOutFactory.pauseAllTimeOuts();
+// ArrowKeyHandler.pause();
+// SoundPlayer.pauseAll();
+
+//Aca van los callbacks para re activar todos los componenetes
+
+// TimeOutFactory.resumeAllTimeOuts();
+// ArrowKeyHandler.resume();
+// SoundPlayer.resumeAll();

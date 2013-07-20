@@ -12,7 +12,6 @@ define(function() {
 
 		if (fillColor) context.fill();
 		if (strokeColor) context.stroke();
-
 	}
 
 	DrawUtils.prototype.rectangle = function(context, x, y, width, height, fillColor, strokeColor, lineWidth) {
@@ -26,7 +25,6 @@ define(function() {
 
 		if (fillColor) context.fill();
 		if (strokeColor) context.stroke();
-
 	}
 
 	DrawUtils.prototype.triangle = function(context, centerX, centerY, x1, y1, x2, y2, x3, y3, fillColor, strokeColor, lineWidth, scale) {
@@ -60,7 +58,6 @@ define(function() {
 
 		if (fillColor) context.fill();
 		if (strokeColor) context.stroke();
-
 	}
 
 	DrawUtils.prototype.quadraticTriangle = function(context, centerX, centerY, x1, y1, ax1, ay1, x2, y2, ax2, ay2, x3, y3, ax3, ay3, fillColor, strokeColor, lineWidth, scale) {
