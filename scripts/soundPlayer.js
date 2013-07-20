@@ -1,13 +1,13 @@
-define(['./timerFactory'], function(timerFactory) {
+define(['timerFactory'], function(timerFactory) {
 	var SoundPlayer = function() {
-		audioTags: {},
+		this.audioTags = {};
 
-		audioAssetPaths: {},
+		this.audioAssetPaths = {};
 
-		pooledChannels: [],
-		activeChannels: [],
+		this.pooledChannels = [];
+		this.activeChannels = [];
 
-		currentTime: new Date(),
+		this.currentTime = new Date();
 	};
 
 	var setUpChannel = function(id, onMetadata) {

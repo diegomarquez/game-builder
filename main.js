@@ -1,10 +1,10 @@
 //TODO: Convert all the important things to modules
-	//Utility package
+//Utility package
 //TODO: Bootstrap file to load all the modules the framework is going to use.
-	//Should be able to configure some basic properties like dimentions of the canvas to be used
+//Should be able to configure some basic properties like dimentions of the canvas to be used
 
 //TODO: Game Module
-	//TODO: Something to set what methods need to be called when the game is paused for whatever reason
+//TODO: Something to set what methods need to be called when the game is paused for whatever reason
 
 //TODO: Simplify GameObject, 
 //extend Delegate.
@@ -15,12 +15,12 @@
 //Implement event bubbling
 
 //TODO: GameObject Components
-	//Should be able to be executed during all the states a gameObject can assume
+//Should be able to be executed during all the states a gameObject can assume
 
 //TODO: Be able to configure hitArea.
-	//Stop using the cumbersome GameObjectUtils file
-	//Multiple hit areas for a single GameObject
-	//Hit area should follow the tranformation of it's owner.
+//Stop using the cumbersome GameObjectUtils file
+//Multiple hit areas for a single GameObject
+//Hit area should follow the tranformation of it's owner.
 
 //TODO: Get a better "inherit" method. (John Resig + http://theboywhocriedwoolf.com/js-nodegarden-particlewall/)
 
@@ -47,12 +47,13 @@
 
 require.config({
 	paths: {
-		"timerFactory" : "scripts/timerFactory",
-		"keyboard" : "scripts/keyboard",
-		"soundPlayer" : "scripts/soundPlayer",
+		"timerFactory": "scripts/timerFactory",
+		"keyboard": "scripts/keyboard",
+		"soundPlayer": "scripts/soundPlayer",
 	}
 });
 
 require(['domReady!', 'timerFactory', 'soundPlayer'], function(doc, timerFactory, sound) {
-	
+	console.log("MAIN")
+	console.log(sound);
 });
