@@ -1,10 +1,8 @@
 //TODO: Convert all the important things to modules
 //Utility package
-//TODO: Bootstrap file to load all the modules the framework is going to use.
-//Should be able to configure some basic properties like dimentions of the canvas to be used
-
-//TODO: Game Module
-//TODO: Something to set what methods need to be called when the game is paused for whatever reason
+//TODO: Bootstrap file
+	//Configure RequireJS
+	//Load all the core files
 
 //TODO: Simplify GameObject, 
 //extend Delegate.
@@ -47,17 +45,18 @@
 
 require(['domReady!', 'game'], function(doc, game) {
 
-	game.on("pause", function() {
+	game.on("pause", this, function() {
 		console.log("Pause");
 	});
 
-	game.on("resume", function() {
+	game.on("resume", this, function() {
 		console.log("Resume");
 	});
 
 	game.create(document.getElementById('main'), document.getElementById('game'), function() {
 		console.log("Create");
 	});
+
 });
 
 //Aca van los callbacks para pausar todos los componenetes

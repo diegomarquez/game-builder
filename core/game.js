@@ -2,6 +2,8 @@ define(["delegate"], function(Delegate) {
 
 	var Game = Delegate.extend({
 		init: function() {
+			this._super();
+
 			this.focus = true;
 			this.blur = true;
 			this.initialized = false;
@@ -60,10 +62,7 @@ define(["delegate"], function(Delegate) {
 				self.mainGameSetUp();
 
 				//this.container = new ObjectsContainer(this.context).setDefaultLayer(2);
-			});
-
-			pauseCallbacks
-			resumeCallbacks
+			};
 
 			var onBlur = function(event) {
 				if (self.blur) {
@@ -77,6 +76,7 @@ define(["delegate"], function(Delegate) {
 					}
 				}
 			}
+			window.addEventListener("blur", onBlur);
 
 			var onFocus = function(event) {
 				//A pause made manually can only be undone manually
@@ -103,9 +103,7 @@ define(["delegate"], function(Delegate) {
 					}
 				}
 			}
-
-			$(window).on("blur", onBlur);
-			$(window).on("focus", onFocus);
+			window.addEventListener("focus", onFocus);
 
 			if (document.hasFocus()) {
 				mainGameCreation();
@@ -117,10 +115,8 @@ define(["delegate"], function(Delegate) {
 					dt = now - self.lastUpdate;
 					self.lastUpdate = now;
 
-					//if (dt < 30) {
 					//	self.container.update(dt / 1000, self.manualSoftPause);
 					//	self.container.draw();
-					//}
 
 					frameRequest = window.requestAnimationFrame(mainLoop);
 				}

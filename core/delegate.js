@@ -1,7 +1,8 @@
-define(["class"]function() {
+define(["class"], function() {
+	
 	var Delegate = Class.extend({
 		init: function() {
-			this.callbackList = null;
+			this.callbackList = {};
 			this.list = null;
 		},
 
@@ -44,7 +45,7 @@ define(["class"]function() {
 			}
 		},
 
-		execute: function(args) {
+		execute: function(name, args) {
 			this.list = this.callbackList[name];
 
 			if (!this.list) return;
