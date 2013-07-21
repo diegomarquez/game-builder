@@ -1,4 +1,4 @@
-define(["delegate"], function(Delegate) {
+define(["delegate", "canvas_wrapper"], function(Delegate, CanvasWrapper) {
 
 	var Game = Delegate.extend({
 		init: function() {
@@ -28,7 +28,7 @@ define(["delegate"], function(Delegate) {
 		create: function(mainContainer, canvas) {
 			this.mainContainer = mainContainer;
 			this.canvas = canvas;
-			this.context = this.canvas.getContext("2d");
+			this.context = new CanvasWrapper(this.canvas.getContext("2d"));
 
 			var resize = function(container, canvas) {
 				var scale = {

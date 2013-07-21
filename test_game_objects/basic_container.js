@@ -10,10 +10,6 @@ define(["game_object_container", "draw"], function(GameObjectContainer, draw){
 
 		update: function(delta) {
 			this._super();
-
-			this.rotation += 0.3;
-
-			//this.scaleX = 3;
 		},
 
 		draw: function(context) {

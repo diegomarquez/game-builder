@@ -1,11 +1,8 @@
-
-
-//A nested gameObject is drawn in the same layer as it's parent and top of it
+//Make a module out of ObjectsContiner.js
+	//A nested gameObject is drawn in the same layer as it's parent and top of it
 
 //Implement event bubbling
 // game_object_container -> collidable_object -> game_object
-
-//Get screen position of a child
 
 //TODO: Bootstrap file
 	//Configure RequireJS
@@ -60,7 +57,7 @@ require(['domReady!', 'game', 'test_game_objects/basic_game_object', 'test_game_
 	//go.transformAndDraw(game.context);
 	
 	co.x = 100;
-	co.y = 100;
+	co.y = 200;
 
 	co.add(go);
 
@@ -93,8 +90,5 @@ require(['domReady!', 'game', 'test_game_objects/basic_game_object', 'test_game_
 
 	game.create(document.getElementById('main'), document.getElementById('game'), function() {
 		console.log("Create");
-		
-
-
 	});
 });

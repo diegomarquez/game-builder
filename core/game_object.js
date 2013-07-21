@@ -4,6 +4,8 @@ define(["delegate"], function(Delegate) {
 		init: function() {
 			this._super();
 
+			this.transformed_pos;
+
 			this.parent = null;
 
 			this.x = 0;
@@ -39,6 +41,7 @@ define(["delegate"], function(Delegate) {
 		transformAndDraw: function(context) {
 			if (this.doTranslation) {
 				context.translate(this.x, this.y);
+				this.transformed_pos = context.getCoords(0, 0);
 			}
 
 			if ((this.rotation != 0 && this.doRotation) || ((this.scaleX != 1 || this.scaleY != 1) && this.doScaling)) {
