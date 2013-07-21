@@ -127,7 +127,6 @@ ObjectsContainer.prototype.add = function(name, args) {
 	var initCall = configuration.initCall;
 	var hardArguments = configuration.hardArguments;
 
-
 	//Create drawing layer if it doesn't exist
 	if (this.mainObjects[layer] == null) {
 		this.mainObjects[layer] = [];

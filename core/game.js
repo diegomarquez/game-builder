@@ -24,34 +24,32 @@ define(["delegate"], function(Delegate) {
 			this.mainGameSetUp = onSetupComplete;
 			this.context = this.canvas.getContext("2d");
 
-			window.addEventListener('load', function() {
-				window.addEventListener('resize', function() {
-					resize(mainContainer, canvas);
-				}, false);
+			var resize = function(container, canvas) {
+				var scale = {
+					x: 1,
+					y: 1
+				};
 
-				resize(mainContainer, canvas);
+				scale.x = (window.innerWidth - 5) / canvas.width;
+				scale.y = (window.innerHeight - 5) / canvas.height;
 
-				function resize(container, canvas) {
-					var scale = {
-						x: 1,
-						y: 1
-					};
-
-					scale.x = (window.innerWidth - 5) / canvas.width;
-					scale.y = (window.innerHeight - 5) / canvas.height;
-
-					if (scale.x < scale.y) {
-						scale = scale.x + ', ' + scale.x;
-					} else {
-						scale = scale.y + ', ' + scale.y;
-					}
-
-					container.style.webkitTransform = 'scale(' + scale + ')';
-					container.style.mozTransform = 'scale(' + scale + ')';
-					container.style.msTransform = 'scale(' + scale + ')';
-					container.style.oTransform = 'scale(' + scale + ')';
+				if (scale.x < scale.y) {
+					scale = scale.x + ', ' + scale.x;
+				} else {
+					scale = scale.y + ', ' + scale.y;
 				}
-			}, false);
+
+				container.style.webkitTransform = 'scale(' + scale + ')';
+				container.style.mozTransform = 'scale(' + scale + ')';
+				container.style.msTransform = 'scale(' + scale + ')';
+				container.style.oTransform = 'scale(' + scale + ')';
+			};
+
+			// resize(mainContainer, canvas);
+
+			// window.addEventListener('resize', function() {
+			// 	resize(mainContainer, canvas);
+			// }, false);
 
 			var frameRequest, mainLoop;
 

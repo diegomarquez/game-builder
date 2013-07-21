@@ -1,16 +1,21 @@
-//TODO: Convert all the important things to modules
-//Utility package
+//TODO: Nestable GameObjects 
+//follow the tranformation of their respective parents
+	//translation
+	//rotation
+		//apply parent
+		//apply own
+	//scale
+		//apply parent
+		//apply own
+		
+//A nested gameObject is drawn in the same layer as it's parent and top of it
+//Implement event bubbling
+// game_object_container -> collidable_object -> game_object
+
 //TODO: Bootstrap file
 	//Configure RequireJS
 	//Load all the core files
 
-//TODO: Simplify GameObject, 
-//extend Delegate.
-
-//TODO: Nestable GameObjects 
-//follow the tranformation of their respective parents
-//A nested gameObject is drawn in the same layer as it's parent and top of it
-//Implement event bubbling
 
 //TODO: GameObject Components
 //Should be able to be executed during all the states a gameObject can assume
@@ -43,22 +48,46 @@
 //TODO: Add a brief description of each module in their respective files
 //TODO: Create some testing scenarios for all of the modules. Those will serve as demos aswell
 
-require(['domReady!', 'game'], function(doc, game) {
+require(['domReady!', 'game', 'test_game_objects/basic_game_object', 'test_game_objects/basic_container'], function(doc, game, test, test_container) {
 
 	game.on("pause", this, function() {
 		// TimeOutFactory.pauseAllTimeOuts();
 		// ArrowKeyHandler.pause();
 		// SoundPlayer.pauseAll();
+		console.log("Pause");
 	});
 
 	game.on("resume", this, function() {
 		// TimeOutFactory.resumeAllTimeOuts();
 		// ArrowKeyHandler.resume();
 		// SoundPlayer.resumeAll();
+
+		console.log("Resume");
 	});
 
 	game.create(document.getElementById('main'), document.getElementById('game'), function() {
 		console.log("Create");
-	});
+		
+		var go = new test();
+		var co = new test_container();
 
+		//console.log(go);
+
+		//console.log(go instanceof Class)
+		//console.log(go instanceof Delegate)
+		//console.log(go instanceof GameObject)
+
+		go.x = 50;
+		go.y = 50;
+
+		//go.transformAndDraw(game.context);
+		
+		co.x = 200;
+		co.y = 200;
+
+		co.add(go);
+
+		co.transformAndDraw(game.context);
+
+	});
 });
