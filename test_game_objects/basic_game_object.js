@@ -3,6 +3,15 @@ define(["game_object", "draw"], function(GameObject, draw){
 	var Basic = GameObject.extend({
 		init: function() {
 			this._super();
+
+			this.centerX = 10;
+			this.centerY = 10;
+		},
+
+		update: function(delta) {
+			this.rotation += 2;
+
+			//this.scaleX = 2;
 		},
 
 		draw: function(context) {

@@ -16,12 +16,18 @@ define(["delegate"], function(Delegate) {
 			this.mainContainer = null;
 			this.canvas = null;
 			this.context = null;
+
+			this.delta = null;
+			this.isPaused = null;
 		},
 
-		create: function(mainContainer, canvas, onSetupComplete) {
+		//this.container = new ObjectsContainer(this.context).setDefaultLayer(2);
+		//	self.container.update(dt / 1000, self.manualSoftPause);
+		//	self.container.draw();
+
+		create: function(mainContainer, canvas) {
 			this.mainContainer = mainContainer;
 			this.canvas = canvas;
-			this.mainGameSetUp = onSetupComplete;
 			this.context = this.canvas.getContext("2d");
 
 			var resize = function(container, canvas) {
@@ -45,11 +51,11 @@ define(["delegate"], function(Delegate) {
 				container.style.oTransform = 'scale(' + scale + ')';
 			};
 
-			// resize(mainContainer, canvas);
+			resize(mainContainer, canvas);
 
-			// window.addEventListener('resize', function() {
-			// 	resize(mainContainer, canvas);
-			// }, false);
+			window.addEventListener('resize', function() {
+				resize(mainContainer, canvas);
+			}, false);
 
 			var frameRequest, mainLoop;
 
@@ -57,9 +63,7 @@ define(["delegate"], function(Delegate) {
 
 			var mainGameCreation = function() {
 				self.initialized = true;
-				self.mainGameSetUp();
-
-				//this.container = new ObjectsContainer(this.context).setDefaultLayer(2);
+				self.execute("init");
 			};
 
 			var onBlur = function(event) {
@@ -106,15 +110,17 @@ define(["delegate"], function(Delegate) {
 			if (document.hasFocus()) {
 				mainGameCreation();
 
-				var now, dt;
+				var now;
 
 				mainLoop = function() {
 					now = Date.now();
-					dt = now - self.lastUpdate;
+
+					this.delta = (now - self.lastUpdate) / 1000;
+					this.isPaused = self.manualSoftPause;
+
 					self.lastUpdate = now;
 
-					//	self.container.update(dt / 1000, self.manualSoftPause);
-					//	self.container.draw();
+					self.execute("update");
 
 					frameRequest = window.requestAnimationFrame(mainLoop);
 				}

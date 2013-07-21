@@ -1,16 +1,11 @@
-//TODO: Nestable GameObjects 
-//follow the tranformation of their respective parents
-	//translation
-	//rotation
-		//apply parent
-		//apply own
-	//scale
-		//apply parent
-		//apply own
-		
+
+
 //A nested gameObject is drawn in the same layer as it's parent and top of it
+
 //Implement event bubbling
 // game_object_container -> collidable_object -> game_object
+
+//Get screen position of a child
 
 //TODO: Bootstrap file
 	//Configure RequireJS
@@ -49,6 +44,25 @@
 //TODO: Create some testing scenarios for all of the modules. Those will serve as demos aswell
 
 require(['domReady!', 'game', 'test_game_objects/basic_game_object', 'test_game_objects/basic_container'], function(doc, game, test, test_container) {
+		
+	var go = new test();
+	var co = new test_container();
+
+	//console.log(go);
+
+	//console.log(go instanceof Class)
+	//console.log(go instanceof Delegate)
+	//console.log(go instanceof GameObject)
+
+	go.x = 50;
+	go.y = 50;
+
+	//go.transformAndDraw(game.context);
+	
+	co.x = 100;
+	co.y = 100;
+
+	co.add(go);
 
 	game.on("pause", this, function() {
 		// TimeOutFactory.pauseAllTimeOuts();
@@ -65,29 +79,22 @@ require(['domReady!', 'game', 'test_game_objects/basic_game_object', 'test_game_
 		console.log("Resume");
 	});
 
+	game.on("init", this, function() {
+		console.log("Init");
+	});
+
+	game.on("update", this, function() {		
+		game.context.setTransform(1, 0, 0, 1, 0, 0);
+		game.context.clearRect(0, 0, game.canvas.width, game.canvas.height);
+
+		co.update(game.delta);
+		co.transformAndDraw(game.context);
+	});
+
 	game.create(document.getElementById('main'), document.getElementById('game'), function() {
 		console.log("Create");
 		
-		var go = new test();
-		var co = new test_container();
 
-		//console.log(go);
-
-		//console.log(go instanceof Class)
-		//console.log(go instanceof Delegate)
-		//console.log(go instanceof GameObject)
-
-		go.x = 50;
-		go.y = 50;
-
-		//go.transformAndDraw(game.context);
-		
-		co.x = 200;
-		co.y = 200;
-
-		co.add(go);
-
-		co.transformAndDraw(game.context);
 
 	});
 });

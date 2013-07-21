@@ -36,13 +36,19 @@ define(["game_object"], function(GameObject){
 		},
 
 		transformAndDraw: function(context) {
+			context.save();
+
 			this._super(context);
 
 			if(!this.childs) return;
 
 			for(var i=0; i<this.childs.length; i++){
+				context.save();
 				this.childs[i].transformAndDraw(context);
+				context.restore();
 			}
+
+			context.restore();
 		},
 		
 		destroy: function() {
