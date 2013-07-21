@@ -1,17 +1,20 @@
 //Make a module out of ObjectsContiner.js
-//main_container should be able to handle stray game_objects that are added to it.
-//It is much less usefull than adding game_objects to a container though.
+	//TODO: Redo the collision handling, it shouuld be decoupled from the main_container update loop
+
+	//TODO: Be able to configure hitArea.
+		//Stop using the cumbersome GameObjectUtils file
+		//Multiple hit areas for a single GameObject
+		//Hit area should follow the tranformation of it's owner.
 
 //Implement event bubbling
+
+//Implement a very simple object to save to and load from the user's computer.
+	//TODO: Basic data types.
+	//TODO: Maybe JSON strings.
 
 //TODO: Bootstrap file
 //Configure RequireJS
 //Load all the core files
-
-//TODO: Be able to configure hitArea.
-//Stop using the cumbersome GameObjectUtils file
-//Multiple hit areas for a single GameObject
-//Hit area should follow the tranformation of it's owner.
 
 //TODO: Hacer que el add del ObjectContainer te devuelva el objeto que va a usar, con todo configurado menos la inicializacion. 
 //De ahi puedo llamar directamente al init de ese objeto con los parametros que yo quiera, sin andar creado arrays intermedios.
