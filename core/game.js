@@ -21,10 +21,6 @@ define(["delegate", "canvas_wrapper"], function(Delegate, CanvasWrapper) {
 			this.isPaused = null;
 		},
 
-		//this.container = new ObjectsContainer(this.context).setDefaultLayer(2);
-		//	self.container.update(dt / 1000, self.manualSoftPause);
-		//	self.container.draw();
-
 		create: function(mainContainer, canvas) {
 			this.mainContainer = mainContainer;
 			this.canvas = canvas;

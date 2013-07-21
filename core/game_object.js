@@ -18,11 +18,12 @@ define(["delegate"], function(Delegate) {
 			this.alpha = 1;
 
 			this.alive = true;
-			//this.typeId;
-			//this.collisionId;
-			//this.poolId;
-			//this.checkingCollisions;
+			this.typeId;
+			this.poolId;
 			this.activeOnSoftPause;
+
+			// this.collisionId;
+			// this.checkingCollisions;
 
 			this.doTranslation = true;
 			this.doRotation = true;
@@ -39,6 +40,10 @@ define(["delegate"], function(Delegate) {
 		// getCollider: function() {},
 
 		transformAndDraw: function(context) {
+			if(!this.parent) {
+				context.save();
+			}
+
 			if (this.doTranslation) {
 				context.translate(this.x, this.y);
 				this.transformed_pos = context.getCoords(0, 0);
@@ -61,11 +66,20 @@ define(["delegate"], function(Delegate) {
 			context.globalAlpha *= this.alpha;
 			
 			this.draw(context);
+
+			if(!this.parent) {
+				context.restore();
+			}
+		},
+
+		clear: function() {
+			this.execute('recycle', this);
+			this.destroy();
 		}
 	});
 
-	//GameObject.CIRCLE_COLLIDER = 1;
-	//GameObject.POLYGON_COLLIDER = 2;
+	GameObject.CIRCLE_COLLIDER = 0;
+	GameObject.POLYGON_COLLIDER = 1;
 
 	return GameObject;
 });

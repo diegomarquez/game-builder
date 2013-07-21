@@ -1,23 +1,17 @@
 //Make a module out of ObjectsContiner.js
-	//A nested gameObject is drawn in the same layer as it's parent and top of it
+//main_container should be able to handle stray game_objects that are added to it.
+//It is much less usefull than adding game_objects to a container though.
 
 //Implement event bubbling
-// game_object_container -> collidable_object -> game_object
 
 //TODO: Bootstrap file
-	//Configure RequireJS
-	//Load all the core files
-
-
-//TODO: GameObject Components
-//Should be able to be executed during all the states a gameObject can assume
+//Configure RequireJS
+//Load all the core files
 
 //TODO: Be able to configure hitArea.
 //Stop using the cumbersome GameObjectUtils file
 //Multiple hit areas for a single GameObject
 //Hit area should follow the tranformation of it's owner.
-
-//TODO: Get a better "inherit" method. (John Resig + http://theboywhocriedwoolf.com/js-nodegarden-particlewall/)
 
 //TODO: Hacer que el add del ObjectContainer te devuelva el objeto que va a usar, con todo configurado menos la inicializacion. 
 //De ahi puedo llamar directamente al init de ese objeto con los parametros que yo quiera, sin andar creado arrays intermedios.
@@ -33,62 +27,60 @@
 //TODO: Reduce memory Footprint.
 //Reduce object pool sizes.
 
-//TODO: //I Could setup the GameObjects in a way in which I can specify if they need an update or not. 
-//That could reduce method calls greatly, since a lot of GameObjects don't use update at all.
-//Same could be done with draw
-
-//TODO: Add a brief description of each module in their respective files
+//TODO: Make a Sublime extension to generate all the boilerplater code, associated with an Object file
+//TODO: Add a description for each Submodule
 //TODO: Create some testing scenarios for all of the modules. Those will serve as demos aswell
 
-require(['domReady!', 'game', 'test_game_objects/basic_game_object', 'test_game_objects/basic_container'], function(doc, game, test, test_container) {
-		
-	var go = new test();
-	var co = new test_container();
+//this.container = new ObjectsContainer(this.context).setDefaultLayer(2);
+//	self.container.update(dt / 1000, self.manualSoftPause);
+//	self.container.draw();
 
-	//console.log(go);
+require(
+	[
+		'domReady!',
+		'game',
+		'test_game_objects/basic_game_object',
+		'test_game_objects/basic_container',
+		'main_container',
+		'keyboard'
+	],
 
-	//console.log(go instanceof Class)
-	//console.log(go instanceof Delegate)
-	//console.log(go instanceof GameObject)
+	function(doc, game, test, test_container, main_container, keyboard) {
 
-	go.x = 50;
-	go.y = 50;
+		main_container.setDefaultLayer(2);
 
-	//go.transformAndDraw(game.context);
-	
-	co.x = 100;
-	co.y = 200;
+		game.on("init", this, function() {
+			console.log("Init");
 
-	co.add(go);
+			main_container.createTypePool("Base", test, 10);
 
-	game.on("pause", this, function() {
-		// TimeOutFactory.pauseAllTimeOuts();
-		// ArrowKeyHandler.pause();
-		// SoundPlayer.pauseAll();
-		console.log("Pause");
-	});
+			main_container.createTypeConfiguration("Base_1", "Base");
+		});
 
-	game.on("resume", this, function() {
-		// TimeOutFactory.resumeAllTimeOuts();
-		// ArrowKeyHandler.resume();
-		// SoundPlayer.resumeAll();
+		game.on("pause", this, function() {
+			// TimeOutFactory.pauseAllTimeOuts();
+			// ArrowKeyHandler.pause();
+			// SoundPlayer.pauseAll();
+			console.log("Pause");
+		});
 
-		console.log("Resume");
-	});
+		game.on("resume", this, function() {
+			// TimeOutFactory.resumeAllTimeOuts();
+			// ArrowKeyHandler.resume();
+			// SoundPlayer.resumeAll();
 
-	game.on("init", this, function() {
-		console.log("Init");
-	});
+			console.log("Resume");
+		});
 
-	game.on("update", this, function() {		
-		game.context.setTransform(1, 0, 0, 1, 0, 0);
-		game.context.clearRect(0, 0, game.canvas.width, game.canvas.height);
+		game.on("update", this, function() {
+			main_container.update(game.delta, game.isPaused);
+			main_container.draw(game.context);
+		});
 
-		co.update(game.delta);
-		co.transformAndDraw(game.context);
-	});
+		keyboard.addUpCallback(keyboard.A, function() {
+			var bla = main_container.add("Base_1", [(Math.random() * 200) + 20, (Math.random() * 200) + 20, Math.random() * 3]);
+		});
 
-	game.create(document.getElementById('main'), document.getElementById('game'), function() {
-		console.log("Create");
-	});
-});
+		game.create(document.getElementById('main'), document.getElementById('game'));
+	}
+);
