@@ -5,11 +5,12 @@ define(["game_object", "draw"], function(GameObject, draw){
 			this._super();
 		},
 
-		reset: function(x, y, rSpeed){
+		reset: function(x, y, rSpeed, color){
 			this.x = x;
 			this.y = y;
 
 			this.rSpeed = rSpeed;
+			this.color = color;
 
 			this.centerX = 10;
 			this.centerY = 10;
@@ -20,7 +21,7 @@ define(["game_object", "draw"], function(GameObject, draw){
 		},
 
 		draw: function(context) {
-			draw.rectangle(context, 0, 0, 20, 20, null, "#ffffff", 1);
+			draw.rectangle(context, 0, 0, 20, 20, null, this.color, 1);
 		}
 	});
 

@@ -1,10 +1,10 @@
 //Make a module out of ObjectsContiner.js
 	//TODO: Redo the collision handling, it shouuld be decoupled from the main_container update loop
-
 	//TODO: Be able to configure hitArea.
-		//Stop using the cumbersome GameObjectUtils file
-		//Multiple hit areas for a single GameObject
-		//Hit area should follow the tranformation of it's owner.
+	//TODO: Stop using the cumbersome GameObjectUtils file
+	//TODO: Multiple hit areas for a single GameObject
+	//TODO: Hit area should follow the tranformation of it's owner.
+		//Position
 
 //Implement event bubbling
 
@@ -13,30 +13,22 @@
 	//TODO: Maybe JSON strings.
 
 //TODO: Bootstrap file
-//Configure RequireJS
-//Load all the core files
-
-//TODO: Hacer que el add del ObjectContainer te devuelva el objeto que va a usar, con todo configurado menos la inicializacion. 
-//De ahi puedo llamar directamente al init de ese objeto con los parametros que yo quiera, sin andar creado arrays intermedios.
+	//Configure RequireJS
+	//Load all the core files
 
 //TODO: TimeoutFactory tiene que poder destruir las referencias que devuelve de su metodo 'get'
-//Probablemente hay que pasarle entre los parametros el nombre de la variable donde estoy guardando el timer.
-//Con ese nombre y el scope puede hacer percha esa referencia.
+		//Probablemente hay que pasarle entre los parametros el nombre de la variable donde estoy guardando el timer.
+		//Con ese nombre y el scope puede hacer percha esa referencia.
 
 //TODO: Optimizations
 //TODO: Optimize drawing method.
-//Cache procedural drawing in memory. Then draw that image in place each frame, instead of redrawing proceduraly each frame.
-//This will not be possible where procedural animations take place. Like the eye of the Boss or its tentacles. But things like Rockets and particles could be cached.
+	//Cache procedural drawing in memory. Then draw that image in place each frame, instead of redrawing proceduraly each frame.
+	//This will not be possible where procedural animations take place. Like the eye of the Boss or its tentacles. But things like Rockets and particles could be cached.
 //TODO: Reduce memory Footprint.
-//Reduce object pool sizes.
 
-//TODO: Make a Sublime extension to generate all the boilerplater code, associated with an Object file
-//TODO: Add a description for each Submodule
+//TODO: Make a Sublime extension to generate all the boilerplater code, associated with a game_object file
+//TODO: Add a description for each module
 //TODO: Create some testing scenarios for all of the modules. Those will serve as demos aswell
-
-//this.container = new ObjectsContainer(this.context).setDefaultLayer(2);
-//	self.container.update(dt / 1000, self.manualSoftPause);
-//	self.container.draw();
 
 require(
 	[
@@ -81,7 +73,10 @@ require(
 		});
 
 		keyboard.addUpCallback(keyboard.A, function() {
-			var bla = main_container.add("Base_1", [(Math.random() * 200) + 20, (Math.random() * 200) + 20, Math.random() * 3]);
+			var bla = main_container.add("Base_1", [
+				(Math.random() * 200) + 20, (Math.random() * 200) + 20,
+				Math.random() * 3, "#" + (Math.random().toString(16) + '000000').slice(2, 8)
+			]);
 		});
 
 		game.create(document.getElementById('main'), document.getElementById('game'));
