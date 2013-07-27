@@ -6,6 +6,8 @@ These are some files I decided to extract from a previous javascript project, It
 First thing on the TODO list:
 	Make RequireJS modules out of the main files. 
 	This should let me handle dependancies in a clean way and keep things out of the global scope.
+	
+Status: Broken. This thing can not be used for anything useful and there is no documentation anyway. So it it pretty useless
 
 This is the game I put together using the previous encarnation of this set of files:
 
