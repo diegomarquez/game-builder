@@ -1,44 +1,32 @@
-//TODO: Implementar transformacion de los game_objects
-	//Afanarme solo lo indispensable de EaselJS.
-		//Afanar de Matrix2D.js
-		//Agregar un objeto matrix a game_object
-			//Las propiedades que manejan la transformacion en 2D de un objeto pasarian a ser setters y getters del objeto matrix que esta por debajo
-		//Ver como se tienen que comportar los metodos de dibujado y update para aplicar correctamente las matrices
-			//Ver como lo hacen DisplayObject.js y Container.js en EaselJS
-
-
 //TODO: Plugins
-
 	//Collision
-		//TODO: Redo the collision handling, it should be decoupled from the main_container update loop
+		//TODO: Objeto collidable, que contenga la logica de como colisionar, con quien colisionar y todo eso.
+			//main_container ejecuta un evento donde va todo lo que queres hacer con un objeto despues del update
+			//Dicho objeto esta ultra acoplado con la implementacion de deteccion de colision, pero no con main_container
 		//TODO: Be able to configure hitArea.
-		//TODO: Stop using the cumbersome GameObjectUtils file
 		//TODO: Multiple hit areas for a single GameObject
 		//TODO: Hit area should follow the tranformation of it's owner.
-			//Position
+			//TODO: Usar el metodo transformPoint para manejar la posicion de los vertices de un poligono.
 
 	//Auto-resize
 
-//TODO: game_objects with a parent should not be updated or drawn in the main container
-
-
-//TODO: Ready made, empty files
-	//Pool creation
-	//Configuration creation
+//TODO: Boilerplate
+	//TODO: Bootstrap file
+		//Configure RequireJS
+		//Load all the core files
+	//TODO: Ready made, empty files.
+		//Pool creation
+		//Configuration creation
 
 //Implement event bubbling
-
-//Implement a very simple object to save to and load from the user's computer.
-	//TODO: Basic data types.
-	//TODO: Maybe JSON strings.
-
-//TODO: Bootstrap file
-	//Configure RequireJS
-	//Load all the core files
 
 //TODO: TimeoutFactory tiene que poder destruir las referencias que devuelve de su metodo 'get'
 		//Probablemente hay que pasarle entre los parametros el nombre de la variable donde estoy guardando el timer.
 		//Con ese nombre y el scope puede hacer percha esa referencia.
+
+//Implement a very simple object to save to and load from the user's computer.
+	//TODO: Basic data types.
+	//TODO: Maybe JSON strings.
 
 //TODO: Optimizations
 //TODO: Optimize drawing method.
@@ -57,10 +45,11 @@ require(
 		'test_game_objects/basic_game_object',
 		'test_game_objects/basic_container',
 		'main_container',
-		'keyboard'
+		'keyboard',
+		'draw'
 	],
 
-	function(doc, game, test, test_container, main_container, keyboard) {
+	function(doc, game, test, test_container, main_container, keyboard, draw) {
 
 		main_container.setDefaultLayer(2);
 
@@ -69,7 +58,10 @@ require(
 
 			main_container.createTypePool("Base", test, 10);
 
+			main_container.createTypePool("Container", test_container, 1);
+
 			main_container.createTypeConfiguration("Base_1", "Base");
+			main_container.createTypeConfiguration("Container_1", "Container");
 		});
 
 		game.on("pause", this, function() {
@@ -83,21 +75,62 @@ require(
 			// TimeOutFactory.resumeAllTimeOuts();
 			// ArrowKeyHandler.resume();
 			// SoundPlayer.resumeAll();
-
 			console.log("Resume");
 		});
 
 		game.on("update", this, function() {
 			main_container.update(game.delta, game.isPaused);
 			main_container.draw(game.context);
+
+			if(go) {
+				draw.rectangle(game.context, go.getTransform().x, go.getTransform().y, 1, 1, null, '#00ff00', 1);
+			}
 		});
 
 		keyboard.addUpCallback(keyboard.A, function() {
 			var bla = main_container.add("Base_1", [
-				(Math.random() * 200) + 20, (Math.random() * 200) + 20,
+				(Math.random() * 200) + 20, 
+				(Math.random() * 200) + 20,
 				Math.random() * 3, "#" + (Math.random().toString(16) + '000000').slice(2, 8)
 			]);
 		});
+
+		keyboard.addUpCallback(keyboard.S, function() {
+			main_container.add("Base_1", [100, 100,
+				Math.random() * 3, "#" + (Math.random().toString(16) + '000000').slice(2, 8)
+			]);
+
+			main_container.add("Base_1", [200, 200,
+				Math.random() * 3, "#" + (Math.random().toString(16) + '000000').slice(2, 8)
+			]);
+
+			main_container.add("Base_1", [300, 300,
+				Math.random() * 3, "#" + (Math.random().toString(16) + '000000').slice(2, 8)
+			]);
+
+			main_container.add("Base_1", [300, 100,
+				Math.random() * 3, "#" + (Math.random().toString(16) + '000000').slice(2, 8)
+			]);
+
+			main_container.add("Base_1", [100, 300,
+				Math.random() * 3, "#" + (Math.random().toString(16) + '000000').slice(2, 8)
+			]);
+		});
+
+		var go;
+
+		keyboard.addUpCallback(keyboard.D, function() {
+			var c = main_container.add("Container_1");
+
+			go = main_container.add("Base_1", [50, 50, 2, "#ffff00"]);
+
+			c.x = 100;
+			c.y = 100;
+
+			c.add(go);
+		});
+
+		
 
 		game.create(document.getElementById('main'), document.getElementById('game'));
 	}

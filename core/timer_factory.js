@@ -3,23 +3,8 @@ define(function() {
 		this.scopeTimeOuts = {};
 	};
 
-	TimerFactory.prototype.getTimeOut = function() {
+	TimerFactory.prototype.get = function() {
 		return new Timer();
-	};
-
-	TimerFactory.prototype.getConfiguredTimeOut = function(delay, repeatCount, scope, callback, removeOnComplete, onComplete) {
-		var timer = new Timer();
-		
-		timer.Delay(delay).
-			  RepeateCount(repeatCount).
-			  Scope(scope).
-			  Callback(callback).
-			  RemoveOnComplete(removeOnComplete).
-			  Complete(onComplete);
-
-		this.addToScopeHash(scope, timer);
-		
-		return timer;
 	};
 
 	TimerFactory.prototype.addToScopeHash = function(scope, timer) {
@@ -102,6 +87,17 @@ define(function() {
 		this.isRunning = false;
 		this.isPaused = false;
 	};
+
+	Timer.prototype.configure = function(delay, repeatCount, scope, callback, removeOnComplete, onComplete) {
+		this.Delay(delay);
+		this.RepeateCount(repeatCount);
+		this.Scope(scope);
+		this.Callback(callback);
+		this.RemoveOnComplete(removeOnComplete);
+		this.Complete(onComplete);
+
+		return this;
+	}	
 
 	Timer.prototype.start = function(resumeTime) {
 		if (this.isRunning || this.isPaused) {

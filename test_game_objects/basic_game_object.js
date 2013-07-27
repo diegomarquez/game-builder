@@ -11,9 +11,6 @@ define(["game_object", "draw"], function(GameObject, draw){
 
 			this.rSpeed = rSpeed;
 			this.color = color;
-
-			this.centerX = 10;
-			this.centerY = 10;
 		},
 
 		update: function(delta) {
@@ -21,7 +18,7 @@ define(["game_object", "draw"], function(GameObject, draw){
 		},
 
 		draw: function(context) {
-			draw.rectangle(context, 0, 0, 20, 20, null, this.color, 1);
+			draw.rectangle(context, -10, -10, 20, 20, null, this.color, 1);
 		}
 	});
 

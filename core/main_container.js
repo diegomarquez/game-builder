@@ -146,11 +146,9 @@ define(function() {
 
 					if (object.alive) {
 
-						if (updateConfiguredOnly && !object.activeOnSoftPause) 
-							continue;
+						if (updateConfiguredOnly && !object.activeOnSoftPause) continue;
 
-						if (object.parent) 
-							continue;
+						if (object.parent) continue;
 
 						object.update(delta);
 
@@ -170,7 +168,7 @@ define(function() {
 
 	MainContainer.prototype.draw = function(context) {
 		context.setTransform(1, 0, 0, 1, 0, 0);
-		context.clearRect(0, 0, context.canvas.canvas.width, context.canvas.canvas.height);
+		context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 
 		for (var i = this.mainObjects.length - 1; i >= 0; i--) {
 			var a = this.mainObjects[i];
@@ -179,11 +177,10 @@ define(function() {
 				for (var j = 0; j < a.length; j++) {
 					var object = a[j];
 
-					if (object.parent) 
-						continue;
+					if (object.parent) continue;
 
 					if (object.alive) {
-						object.transformAndDraw(context);
+						object.transformAndDraw(context, true);
 					}
 				}
 			}

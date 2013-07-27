@@ -12,6 +12,10 @@ define(["game_object"], function(GameObject){
 
 			if(!this.childs) this.childs = [];
 
+			if(child.parent) {
+				child.parent.remove(child);
+			}
+
 			child.parent = this;
 
 			this.childs.push(child);	
@@ -24,7 +28,7 @@ define(["game_object"], function(GameObject){
 
 			if(!this.childs) return;
 
-			this.childs.splice(this.childs.indexOf(child), 1);
+			this.childs.splice(this.childs.indexOf(child), 1); 
 		},
 
 		update: function(delta) {
@@ -37,14 +41,14 @@ define(["game_object"], function(GameObject){
 
 		transformAndDraw: function(context) {
 			context.save();
-
-			this._super(context);
+			
+			this._super(context, false);
 
 			if(!this.childs) return;
 
 			for(var i=0; i<this.childs.length; i++){
 				context.save();
-				this.childs[i].transformAndDraw(context);
+				this.childs[i].transformAndDraw(context, false);
 				context.restore();
 			}
 
