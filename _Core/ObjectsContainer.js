@@ -53,54 +53,54 @@ ObjectsContainer.prototype.update = function(delta, updateConfiguredOnly) {
 
 					object.update(delta);
 
-					// if (!object.checkingCollisions) continue;
+					if (!object.checkingCollisions) continue;
 
-					// this.collisionId = object.getCollisionId();
+					this.collisionId = object.getCollisionId();
 
-					// this.collisionList = this.collisionLists[this.collisionId];
+					this.collisionList = this.collisionLists[this.collisionId];
 
-					// if (this.collisionList != null) {
+					if (this.collisionList != null) {
 
-					// 	for (k = 0; k < this.collisionList.length; k++) {
-					// 		this.collisionOpponent = this.collisionList[k];
+						for (k = 0; k < this.collisionList.length; k++) {
+							this.collisionOpponent = this.collisionList[k];
 
-					// 		if (this.collisionOpponent.alive && this.collisionOpponent.checkingCollisions) {
+							if (this.collisionOpponent.alive && this.collisionOpponent.checkingCollisions) {
 
-					// 			if (this.areColliding(object, this.collisionOpponent)) {
-					// 				if (!object.checkingCollisions) { break };
+								if (this.areColliding(object, this.collisionOpponent)) {
+									if (!object.checkingCollisions) { break };
 
-					// 				object.onCollide(this.collisionOpponent);
+									object.onCollide(this.collisionOpponent);
 									
-					// 				if (object.onCollideDelegate != null) {
-					// 					object.executeOnCollideCallbacks(this.collisionOpponent);
-					// 				}
+									if (object.onCollideDelegate != null) {
+										object.executeOnCollideCallbacks(this.collisionOpponent);
+									}
 
-					// 				if (!object.checkingCollisions) { break; }
+									if (!object.checkingCollisions) { break; }
 
-					// 				this.collisionOpponent.onCollide(object);
+									this.collisionOpponent.onCollide(object);
 									
-					// 				if (this.collisionOpponent.onCollideDelegate != null) {
-					// 					this.collisionOpponent.executeOnCollideCallbacks(object);
-					// 				}
-					// 			}
-					// 		}
-					// 	}
-					// }
+									if (this.collisionOpponent.onCollideDelegate != null) {
+										this.collisionOpponent.executeOnCollideCallbacks(object);
+									}
+								}
+							}
+						}
+					}
 
 				} else {
-					// if (object.checkingCollisions) {
-					// 	this.collisionId = object.getCollisionId();
+					if (object.checkingCollisions) {
+						this.collisionId = object.getCollisionId();
 
-					// 	var indexes = this.toCollideCache[this.collisionId];
+						var indexes = this.toCollideCache[this.collisionId];
 
-					// 	if (indexes != null && indexes.length > 0) {
-					// 		for (m = indexes.length - 1; m >= 0; m--) {
-					// 			this.collisionLists[indexes[m]].splice(this.collisionLists[indexes[m]].indexOf(object), 1);
-					// 		}
-					// 	}
-					// }
+						if (indexes != null && indexes.length > 0) {
+							for (m = indexes.length - 1; m >= 0; m--) {
+								this.collisionLists[indexes[m]].splice(this.collisionLists[indexes[m]].indexOf(object), 1);
+							}
+						}
+					}
 
-					object.clear();
+					object.clearGameObject();
 
 					this.objectPools[object.poolId].push(object);
 
@@ -109,6 +109,11 @@ ObjectsContainer.prototype.update = function(delta, updateConfiguredOnly) {
 				}
 			}
 		}
+	}
+
+	if(this.removeAllArguments){
+		debugger;
+		this.removeAll.apply(this, this.removeAllArguments);
 	}
 }
 
@@ -160,10 +165,13 @@ ObjectsContainer.prototype.add = function(name, args) {
 	pooledObject.scaleY = 1;
 
 	//Removing any callbacks from previous encarnations of this GameObject
-	//pooledObject.removeAllCallbacks();
+	pooledObject.removeAllCallbacks();
+
+	//Sets all callbacks registered with the configuration object
+	configuration.setCallbacks(pooledObject);
 
 	//Initialize it with given arguments. Arguments are passes as a single object or a list depending on configuration. Look up APPLY and CALL
-	pooledObject.reset[initCall](pooledObject, args);
+	pooledObject.init[initCall](pooledObject, args);
 
 	//Nasty logic to add an object to the corresponding collision checking lists
 	if (pooledObject.checkingCollisions) {
@@ -179,6 +187,10 @@ ObjectsContainer.prototype.add = function(name, args) {
 	}
 
 	return pooledObject;
+}
+
+ObjectsContainer.prototype.requestRemoveAll = function(rmAll, propName, propValue) {
+	this.removeAllArguments = [ rmAll, propName, propValue ];
 }
 
 ObjectsContainer.prototype.removeAll = function(rmAll, propName, propValue) {
@@ -279,6 +291,8 @@ ObjectsContainer.prototype.createTypePool = function(alias, type, amount) {
 	for (var i = 0; i < amount; i++) {
 		var o = new type();
 
+		o.afterCreate();
+
 		o.poolId = alias;
 		this.objectPools[alias].push(o);
 	}
@@ -304,6 +318,7 @@ ObjectsContainer.prototype.createTypeConfiguration = function(typeAlias, type) {
 		hardArguments: null,
 		doNotDestroy: false,
 		activeOnSoftPause: false,
+		callbacks: null,
 
 		collisionId: function(cType) {
 			this.collisionType = cType;
@@ -332,6 +347,25 @@ ObjectsContainer.prototype.createTypeConfiguration = function(typeAlias, type) {
 		activeSoftPause: function() {
 			this.activeOnSoftPause = true;
 			return this;
+		},
+		addCallback: function(name, scope, callback) {
+			if(!this.callbacks){
+				this.callbacks = [];
+			}
+
+			this.callbacks.push({name:name, scope:scope, callback:callback});
+
+			return this;
+
+		},
+		setCallbacks: function(object) {
+			if(!object || !this.callbacks) return;
+
+			for(var i=0; i<this.callbacks.length; i++) {
+				var co = this.callbacks[i];
+
+				object.addCallback(co.name, co.scope, co.callback, false, true);
+			}
 		}
 	};
 

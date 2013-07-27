@@ -1,10 +1,30 @@
-//Make a module out of ObjectsContiner.js
-	//TODO: Redo the collision handling, it shouuld be decoupled from the main_container update loop
-	//TODO: Be able to configure hitArea.
-	//TODO: Stop using the cumbersome GameObjectUtils file
-	//TODO: Multiple hit areas for a single GameObject
-	//TODO: Hit area should follow the tranformation of it's owner.
-		//Position
+//TODO: Implementar transformacion de los game_objects
+	//Afanarme solo lo indispensable de EaselJS.
+		//Afanar de Matrix2D.js
+		//Agregar un objeto matrix a game_object
+			//Las propiedades que manejan la transformacion en 2D de un objeto pasarian a ser setters y getters del objeto matrix que esta por debajo
+		//Ver como se tienen que comportar los metodos de dibujado y update para aplicar correctamente las matrices
+			//Ver como lo hacen DisplayObject.js y Container.js en EaselJS
+
+
+//TODO: Plugins
+
+	//Collision
+		//TODO: Redo the collision handling, it should be decoupled from the main_container update loop
+		//TODO: Be able to configure hitArea.
+		//TODO: Stop using the cumbersome GameObjectUtils file
+		//TODO: Multiple hit areas for a single GameObject
+		//TODO: Hit area should follow the tranformation of it's owner.
+			//Position
+
+	//Auto-resize
+
+//TODO: game_objects with a parent should not be updated or drawn in the main container
+
+
+//TODO: Ready made, empty files
+	//Pool creation
+	//Configuration creation
 
 //Implement event bubbling
 

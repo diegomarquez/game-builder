@@ -46,6 +46,8 @@ define(["delegate"], function(Delegate) {
 
 			if (this.doTranslation) {
 				context.translate(this.x, this.y);
+
+				//Esto es malisimo, tengo que saber cual es la posicion de mis objetos antes de dibujarlos.
 				this.transformed_pos = context.getCoords(0, 0);
 			}
 

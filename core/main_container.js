@@ -97,16 +97,16 @@ define(function() {
 		var pooledObject = this.objectPools[configuration.type].pop();
 
 		pooledObject.typeId = name;
-		
+
 		//This id will be used for collision detection groups
 		//pooledObject.collisionId = collisionType;
-		
+
 		//This sets if the object will check for collisions or not
 		//pooledObject.checkingCollisions = (collisionType != "");
-		
+
 		//This sets if the object should keep updating during a soft pause.
 		pooledObject.activeOnSoftPause = configuration.activeOnSoftPause;
-		
+
 		//Add it to its rendering layer. To the end or the beggining of the list, depending of the configuration
 		this.mainObjects[configuration.layerIndex][configuration.mode](pooledObject);
 
@@ -146,7 +146,11 @@ define(function() {
 
 					if (object.alive) {
 
-						if (updateConfiguredOnly && !object.activeOnSoftPause) continue;
+						if (updateConfiguredOnly && !object.activeOnSoftPause) 
+							continue;
+
+						if (object.parent) 
+							continue;
 
 						object.update(delta);
 
@@ -158,7 +162,6 @@ define(function() {
 
 						a.splice(j, 1);
 						object = null;
-
 					}
 				}
 			}
@@ -175,6 +178,9 @@ define(function() {
 			if (a != null) {
 				for (var j = 0; j < a.length; j++) {
 					var object = a[j];
+
+					if (object.parent) 
+						continue;
 
 					if (object.alive) {
 						object.transformAndDraw(context);
