@@ -1,14 +1,32 @@
-//TODO: Plugins
-	//Collision
-		//TODO: Objeto collidable, que contenga la logica de como colisionar, con quien colisionar y todo eso.
-			//main_container ejecuta un evento donde va todo lo que queres hacer con un objeto despues del update
-			//Dicho objeto esta ultra acoplado con la implementacion de deteccion de colision, pero no con main_container
+//game_object
+	//component A
+	//component B
+	//component C
+
+//Update de game_object, updatea todos los componentes
+//Las configuraciones de game_objects indican que componentes van a usar
+	//component.js
+		//init
+		//update
+		//destroy
+	//Crear pool de componentes
+
+//TODO: Component: Collision
+		//TODO: Object that will hold the collision pair configurations and later will be used by the colliders to ask with who they need to collide
 		//TODO: Be able to configure hitArea.
-		//TODO: Multiple hit areas for a single GameObject
+		//TODO: Multiple hit areas for a single GameObject. Set a name so that a specific onCollide method can be added dynamically to a game_object on creation
 		//TODO: Hit area should follow the tranformation of it's owner.
 			//TODO: Usar el metodo transformPoint para manejar la posicion de los vertices de un poligono.
 
-	//Auto-resize
+//TODO: Update main TODO in README.md
+
+//Implement event bubbling
+
+//TODO: Component: Auto-resize
+
+//TODO: TimeoutFactory tiene que poder destruir las referencias que devuelve de su metodo 'get'
+		//Probablemente hay que pasarle entre los parametros el nombre de la variable donde estoy guardando el timer.
+		//Con ese nombre y el scope puede hacer percha esa referencia.
 
 //TODO: Boilerplate
 	//TODO: Bootstrap file
@@ -18,21 +36,16 @@
 		//Pool creation
 		//Configuration creation
 
-//Implement event bubbling
-
-//TODO: TimeoutFactory tiene que poder destruir las referencias que devuelve de su metodo 'get'
-		//Probablemente hay que pasarle entre los parametros el nombre de la variable donde estoy guardando el timer.
-		//Con ese nombre y el scope puede hacer percha esa referencia.
-
 //Implement a very simple object to save to and load from the user's computer.
 	//TODO: Basic data types.
 	//TODO: Maybe JSON strings.
 
+//TODO: Decouple drawing from game_object
+
 //TODO: Optimizations
 //TODO: Optimize drawing method.
 	//Cache procedural drawing in memory. Then draw that image in place each frame, instead of redrawing proceduraly each frame.
-	//This will not be possible where procedural animations take place. Like the eye of the Boss or its tentacles. But things like Rockets and particles could be cached.
-//TODO: Reduce memory Footprint.
+	//This will not be possible where procedural animations take place.
 
 //TODO: Make a Sublime extension to generate all the boilerplater code, associated with a game_object file
 //TODO: Add a description for each module
@@ -81,10 +94,6 @@ require(
 		game.on("update", this, function() {
 			main_container.update(game.delta, game.isPaused);
 			main_container.draw(game.context);
-
-			if(go) {
-				draw.rectangle(game.context, go.getTransform().x, go.getTransform().y, 1, 1, null, '#00ff00', 1);
-			}
 		});
 
 		keyboard.addUpCallback(keyboard.A, function() {
@@ -117,17 +126,21 @@ require(
 			]);
 		});
 
-		var go;
+		var c;
 
 		keyboard.addUpCallback(keyboard.D, function() {
-			var c = main_container.add("Container_1");
+			
+			var c1 = main_container.add("Container_1");
 
-			go = main_container.add("Base_1", [50, 50, 2, "#ffff00"]);
+			if(c1) {
+				var go = main_container.add("Base_1", [50, 50, 2, "#ffff00"]);
+				
+				c = c1;
+				c.add(go);
+			}
 
-			c.x = 100;
-			c.y = 100;
-
-			c.add(go);
+			c.x = (Math.random() * 200) + 20;
+			c.y = (Math.random() * 200) + 20;
 		});
 
 		
