@@ -118,16 +118,6 @@ define(function() {
 			}
 		}
 
-		//This settings ensure a GameObject is ready to be reused.
-		pooledObject.alive = true;
-		pooledObject.rotation = 0;
-		pooledObject.scaleX = 1;
-		pooledObject.scaleY = 1;
-		pooledObject.alpha = 1;
-
-		//Removing any callbacks from previous encarnations of this GameObject
-		pooledObject.softCleanUp();
-
 		//Initialize it with given arguments. Arguments are passes as a single object or a list depending on configuration. Look up APPLY and CALL
 		pooledObject.reset[configuration.initCall](pooledObject, args);
 
@@ -152,6 +142,12 @@ define(function() {
 
 						object.update(delta);
 
+						if(!object.components) continue;
+
+						for(var i=0; i<object.components.length; i++){
+							object.components.update();
+						}
+						
 					} else {
 
 						object.clear();

@@ -6,6 +6,8 @@ define(["game_object", "draw"], function(GameObject, draw){
 		},
 
 		reset: function(x, y, rSpeed, color){
+			this._super();
+
 			this.x = x;
 			this.y = y;
 

@@ -7,6 +7,8 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 			this.parent = null;
 			this.matrix = new Matrix();
 
+			this.components;
+
 			this.x = 0;
 			this.y = 0;
 			this.centerX = 0;
@@ -21,23 +23,51 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 			this.typeId;
 			this.poolId;
 			this.activeOnSoftPause;
-
-			// this.collisionId;
-			// this.checkingCollisions;
-
-			this.doTranslation = true;
-			this.doRotation = true;
-			this.doScaling = true;
 		},
 
-		reset: function() {},
+		reset: function() {
+			this.alive = true;
+			this.rotation = 0;
+			this.scaleX = 1;
+			this.scaleY = 1;
+			this.alpha = 1;
+		},
+		
 		update: function(delta) {},
 		draw: function(context) {},
 		destroy: function() {},
 
-		// onCollide: function(other) {},
-		// getColliderType: function() {},
-		// getCollider: function() {},
+		addComponent: function(component) {
+			if(!this.components) {
+				this.components = [];
+			}
+
+			if(component.parent) {
+				component.parent.removeComponent(component);
+			}
+
+			this.components.push(component);
+			component.onAdded(this);
+		},
+
+		removeComponent: function(component) {
+			if(!this.components) return;
+
+				var index = this.components.indexOf(component);
+
+				if(index != -1){
+					this.components.splice(, 1);
+					component.onRemoved();
+				}
+		},
+
+		removeAllComponents: function() {
+			if(!this.components) return;
+
+			while(this.components.length) {
+				this.components.pop().destroy();	
+			}			
+		},
 
 		transformAndDraw: function(context, saveContext) {
 			if(saveContext){
@@ -59,6 +89,9 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 
 		clear: function() {
 			this.execute('recycle', this);
+
+			this.removeAllComponents();
+
 			this.destroy();
 		},
 
@@ -103,9 +136,6 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 			return m.decompose(r);
 		}
 	});
-
-	GameObject.CIRCLE_COLLIDER = 0;
-	GameObject.POLYGON_COLLIDER = 1;
 
 	return GameObject;
 });

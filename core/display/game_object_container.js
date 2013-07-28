@@ -34,8 +34,18 @@ define(["game_object"], function(GameObject){
 		update: function(delta) {
 			if(!this.childs) return;
 
+			var child = null
+
 			for(var i=0; i<this.childs.length; i++){
-				this.childs[i].update(delta);
+				child = this.childs[i];
+
+				child.update(delta);
+
+				if(!child.components)  continue;
+
+				for(var i=0; i<child.components.length; i++) {
+					child.components.update();
+				}	
 			}
 		},
 
@@ -44,8 +54,11 @@ define(["game_object"], function(GameObject){
 			
 			this._super(context, false);
 
-			if(!this.childs) return;
-
+			if(!this.childs) {
+				context.restore();
+				return;
+			} 
+				
 			for(var i=0; i<this.childs.length; i++){
 				context.save();
 				this.childs[i].transformAndDraw(context, false);

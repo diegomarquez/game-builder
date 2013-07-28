@@ -1,14 +1,4 @@
-//game_object
-	//component A
-	//component B
-	//component C
-
-//Update de game_object, updatea todos los componentes
 //Las configuraciones de game_objects indican que componentes van a usar
-	//component.js
-		//init
-		//update
-		//destroy
 	//Crear pool de componentes
 
 //TODO: Component: Collision
@@ -17,6 +7,19 @@
 		//TODO: Multiple hit areas for a single GameObject. Set a name so that a specific onCollide method can be added dynamically to a game_object on creation
 		//TODO: Hit area should follow the tranformation of it's owner.
 			//TODO: Usar el metodo transformPoint para manejar la posicion de los vertices de un poligono.
+		
+		//TODO: Some old code from game_object, might be usefull to remember it
+			// this.collisionId;
+			// this.checkingCollisions;
+
+			// onCollide: function(other) {},
+			// getColliderType: function() {},
+			// getCollider: function() {},
+
+			//GameObject.CIRCLE_COLLIDER = 0;
+			//GameObject.POLYGON_COLLIDER = 1;
+
+		//TODO: Sacar la clase Vector2D de sat.js y hacer un modulo separado en la carpeta math
 
 //TODO: Update main TODO in README.md
 
@@ -35,6 +38,8 @@
 	//TODO: Ready made, empty files.
 		//Pool creation
 		//Configuration creation
+
+//TODO: State machine that handles a closed object as a state with a start, update and finish
 
 //Implement a very simple object to save to and load from the user's computer.
 	//TODO: Basic data types.
