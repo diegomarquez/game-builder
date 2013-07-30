@@ -1,5 +1,10 @@
-//Las configuraciones de game_objects indican que componentes van a usar
-	//Crear pool de componentes
+//Usar un game_object container a menara de raiz
+
+//main_container tiene que pasar a ser solamente un factory de game_objects con sus componentes y game_objects ya anidados
+
+//sacar la inicializacion de un game_object fuera de las tareas del factory.
+
+//Un game_object no inicializado no se dibuja si se updatea.
 
 //TODO: Component: Collision
 		//TODO: Object that will hold the collision pair configurations and later will be used by the colliders to ask with who they need to collide
@@ -19,7 +24,13 @@
 			//GameObject.CIRCLE_COLLIDER = 0;
 			//GameObject.POLYGON_COLLIDER = 1;
 
-		//TODO: Sacar la clase Vector2D de sat.js y hacer un modulo separado en la carpeta math
+			//var collisionType = configuration.collisionType;
+
+			//This id will be used for collision detection groups
+			//pooledObject.collisionId = collisionType;
+
+			//This sets if the object will check for collisions or not
+			//pooledObject.checkingCollisions = (collisionType != "");
 
 //TODO: Update main TODO in README.md
 
@@ -62,12 +73,13 @@ require(
 		'game',
 		'test_game_objects/basic_game_object',
 		'test_game_objects/basic_container',
+		'test_components/test_component',
 		'main_container',
 		'keyboard',
 		'draw'
 	],
 
-	function(doc, game, test, test_container, main_container, keyboard, draw) {
+	function(doc, game, test, test_container, test_component, main_container, keyboard, draw) {
 
 		main_container.setDefaultLayer(2);
 
@@ -75,11 +87,15 @@ require(
 			console.log("Init");
 
 			main_container.createTypePool("Base", test, 10);
-
 			main_container.createTypePool("Container", test_container, 1);
 
-			main_container.createTypeConfiguration("Base_1", "Base");
-			main_container.createTypeConfiguration("Container_1", "Container");
+			main_container.createComponentPool("Component", test_component, 1);
+
+			main_container.createComponentConfiguration("Component_1", 'Component', {rotationSpeed:3})
+
+			main_container.createObjectConfiguration("Base_1", "Base");
+			main_container.createObjectConfiguration("Base_2", "Base").addComponent("Component_1");
+			main_container.createObjectConfiguration("Container_1", "Container");
 		});
 
 		game.on("pause", this, function() {
@@ -146,6 +162,10 @@ require(
 
 			c.x = (Math.random() * 200) + 20;
 			c.y = (Math.random() * 200) + 20;
+		});
+
+		keyboard.addUpCallback(keyboard.Z, function() {
+			main_container.add("Base_2", [150, 150, 0, "#ffffff"]);
 		});
 
 		

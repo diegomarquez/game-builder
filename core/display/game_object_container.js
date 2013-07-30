@@ -43,8 +43,8 @@ define(["game_object"], function(GameObject){
 
 				if(!child.components)  continue;
 
-				for(var i=0; i<child.components.length; i++) {
-					child.components.update();
+				for(var k=0; k<child.components.length; k++) {
+					child[k].components.update();
 				}	
 			}
 		},

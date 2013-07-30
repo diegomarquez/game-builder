@@ -3,7 +3,10 @@ define(function() {
 		this.mainObjects = [];
 
 		this.objectPools = {};
+		this.componentsPool = {};
+
 		this.configurations = {};
+		this.componentConfigurations = {};
 
 		return this;
 	};
@@ -13,9 +16,9 @@ define(function() {
 	MainContainer.CALL = "call";
 	MainContainer.APPLY = "apply";
 
-	MainContainer.prototype.createTypePool = function(alias, type, amount) {
-		if (this.objectPools[alias] == null) {
-			this.objectPools[alias] = [];
+	var createPool = function(pool, alias, type, amount) {
+		if (pool[alias] == null) {
+			pool[alias] = [];
 		}
 
 		for (var i = 0; i < amount; i++) {
@@ -23,8 +26,16 @@ define(function() {
 
 			o.poolId = alias;
 
-			this.objectPools[alias].push(o);
+			pool[alias].push(o);
 		}
+	};
+
+	MainContainer.prototype.createTypePool = function(alias, type, amount) {
+		createPool(this.objectPools, alias, type, amount);
+	};
+
+	MainContainer.prototype.createComponentPool = function(alias, type, amount) {
+		createPool(this.componentsPool, alias, type, amount);
 	};
 
 	MainContainer.prototype.setDefaultLayer = function(layerIndex) {
@@ -32,21 +43,17 @@ define(function() {
 		return this;
 	};
 
-	MainContainer.prototype.createTypeConfiguration = function(typeAlias, type) {
+	MainContainer.prototype.createObjectConfiguration = function(typeAlias, type) {
 		var configuration = {
 			type: type,
 			layerIndex: this.defaultLayer,
-			collisionType: "",
 			mode: "push",
 			initCall: "apply",
 			hardArguments: null,
 			doNotDestroy: false,
 			activeOnSoftPause: false,
+			components: null,
 
-			collisionId: function(cType) {
-				this.collisionType = cType;
-				return this;
-			},
 			addMode: function(aMode) {
 				this.mode = aMode;
 				return this;
@@ -70,6 +77,15 @@ define(function() {
 			activeSoftPause: function() {
 				this.activeOnSoftPause = true;
 				return this;
+			},
+			addComponent: function(componentId) {
+				if(!this.components) {
+					this.components = [];
+				}
+
+				this.components.push(componentId);
+
+				return this;
 			}
 		};
 
@@ -78,10 +94,15 @@ define(function() {
 		return configuration;
 	};
 
+	MainContainer.prototype.createComponentConfiguration = function(componentAlias, componentId, componentArguments) {
+		this.componentConfigurations[componentAlias] = {
+			componentId: componentId,
+			args: componentArguments
+		};
+	};
+
 	MainContainer.prototype.add = function(name, args) {
 		var configuration = this.configurations[name];
-
-		//var collisionType = configuration.collisionType;
 
 		//Create drawing layer if it doesn't exist
 		if (this.mainObjects[configuration.layerIndex] == null) {
@@ -90,19 +111,21 @@ define(function() {
 
 		//Do nothing if there is no object available in the pool I am looking in
 		if (this.objectPools[configuration.type].length <= 0) {
-			return null;
+			throw new Error('Game Object with type:' + configuration.type + ' is not available, can not create Game Object');
 		}
 
 		//Get one object from the pool
 		var pooledObject = this.objectPools[configuration.type].pop();
 
+		//Putting back all the components back in the pool
+		if(pooledObject.components) {
+			while(pooledObject.components.length) {
+				var component = pooledObject.components.pop();
+				this.componentsPool[component.poolId].push(component);
+			}
+		}
+
 		pooledObject.typeId = name;
-
-		//This id will be used for collision detection groups
-		//pooledObject.collisionId = collisionType;
-
-		//This sets if the object will check for collisions or not
-		//pooledObject.checkingCollisions = (collisionType != "");
 
 		//This sets if the object should keep updating during a soft pause.
 		pooledObject.activeOnSoftPause = configuration.activeOnSoftPause;
@@ -120,6 +143,27 @@ define(function() {
 
 		//Initialize it with given arguments. Arguments are passes as a single object or a list depending on configuration. Look up APPLY and CALL
 		pooledObject.reset[configuration.initCall](pooledObject, args);
+
+		//Adding all the components configured for this object type	
+		for(var i=0; i<configuration.components.length; i++) {
+			var componentConfiguration = this.componentConfigurations[configuration.components[i]];
+
+			var component = this.componentsPool[componentConfiguration.componentId].pop();
+
+			//If any of the components can not be fetched, abort the creation of the whole game_object
+			if(!component) {
+				throw new Error('Component with id:' + componentConfiguration.componentId + ' is not available, can not create Game Object');
+			}
+
+			//Configures the component as stated by the configuration object
+			if (componentConfiguration.args) {
+				for (var ha in componentConfiguration.args) {
+					component[ha] = componentConfiguration.args[ha];
+				}
+			}
+
+			pooledObject.addComponent(component);
+		}
 
 		return pooledObject;
 	};
@@ -140,12 +184,14 @@ define(function() {
 
 						if (object.parent) continue;
 
+						debugger;
+
 						object.update(delta);
 
 						if(!object.components) continue;
 
-						for(var i=0; i<object.components.length; i++){
-							object.components.update();
+						for(var k=0; k<object.components.length; k++){
+							object.components[k].update();
 						}
 						
 					} else {

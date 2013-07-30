@@ -1,16 +1,13 @@
-define(["class"], function(Class) {
+define(["class"], function() {
 
 	var Component = Class.extend({
 		init: function() {
-			this.parentGameObject = null;
+			this.poolId = null;
+			this.parent = null;
 		},
 
 		onAdded: function(parent) {
-			this.parentGameObject = parent;
-		},
-
-		onRemoved: function() {
-			this.parentGameObject = null	
+			this.parent = parent;
 		},
 
 		update: function() {},

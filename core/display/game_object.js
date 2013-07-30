@@ -32,17 +32,17 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 			this.scaleY = 1;
 			this.alpha = 1;
 		},
-		
+
 		update: function(delta) {},
 		draw: function(context) {},
 		destroy: function() {},
 
 		addComponent: function(component) {
-			if(!this.components) {
+			if (!this.components) {
 				this.components = [];
 			}
 
-			if(component.parent) {
+			if (component.parent) {
 				component.parent.removeComponent(component);
 			}
 
@@ -50,39 +50,20 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 			component.onAdded(this);
 		},
 
-		removeComponent: function(component) {
-			if(!this.components) return;
-
-				var index = this.components.indexOf(component);
-
-				if(index != -1){
-					this.components.splice(, 1);
-					component.onRemoved();
-				}
-		},
-
-		removeAllComponents: function() {
-			if(!this.components) return;
-
-			while(this.components.length) {
-				this.components.pop().destroy();	
-			}			
-		},
-
 		transformAndDraw: function(context, saveContext) {
-			if(saveContext){
+			if (saveContext) {
 				context.save();
 			}
 
 			this.matrix.identity().appendTransform(this.x, this.y, this.scaleX, this.scaleY, this.rotation, this.centerX, this.centerY);
-		
-			context.transform(this.matrix.a,  this.matrix.b, this.matrix.c, this.matrix.d, this.matrix.tx, this.matrix.ty);
+
+			context.transform(this.matrix.a, this.matrix.b, this.matrix.c, this.matrix.d, this.matrix.tx, this.matrix.ty);
 
 			context.globalAlpha *= this.alpha;
 
 			this.draw(context);
 
-			if(saveContext){
+			if (saveContext) {
 				context.restore();
 			}
 		},
@@ -90,9 +71,13 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 		clear: function() {
 			this.execute('recycle', this);
 
-			this.removeAllComponents();
-
 			this.destroy();
+
+			if (!this.components) return;
+
+			for(var i=0; i<this.components.length; i++) {
+				this.components[i].destroy();
+			}
 		},
 
 		resetTransform: function(x, y, scaleX, scaleY, rotation, centerX, centerY) {
@@ -106,28 +91,27 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 		},
 
 		setTransform: function(x, y, scaleX, scaleY, rotation, centerX, centerY) {
-			if(x) this.x = x;
-			if(y) this.y = y;
+			if (x) this.x = x;
+			if (y) this.y = y;
 
-			if(scaleX) this.scaleX = scaleX;
-			if(scaleY) this.scaleY = scaleY;
+			if (scaleX) this.scaleX = scaleX;
+			if (scaleY) this.scaleY = scaleY;
 
-			if(rotation) this.rotation = rotation;
-			
-			if(centerX) this.centerX = centerX;
-			if(centerY) this.centerY = centerY;
+			if (rotation) this.rotation = rotation;
+
+			if (centerX) this.centerX = centerX;
+			if (centerY) this.centerY = centerY;
 		},
 
 		getTransform: function(m, r) {
-			if(m) {
+			if (m) {
 				m.identity();
-			}
-			else {
+			} else {
 				m = new Matrix().identity();
 			}
 
 			var go = this;
-			
+
 			while (go != null) {
 				m.prependTransform(go.x, go.y, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY);
 				go = go.parent;
