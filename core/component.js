@@ -4,10 +4,25 @@ define(["class"], function() {
 		init: function() {
 			this.poolId = null;
 			this.parent = null;
+			this.returnToFactory = false;
 		},
 
-		onAdded: function(parent) {
+		configure: function(args) {
+			if (args) {
+				for (var ha in args) {
+					component[ha] = args[ha];
+				}
+			}
+		},
+
+		onAdded: function(parent, returnToFactoryOnRemove) {
 			this.parent = parent;
+			this.returnToFactory = returnToFactoryOnRemove;
+		},
+
+		onRemoved: function() {
+			this.parent = null;
+			this.returnToFactory = false;
 		},
 
 		update: function() {},

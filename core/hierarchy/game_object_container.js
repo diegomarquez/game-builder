@@ -78,6 +78,19 @@ define(["game_object"], function(GameObject){
 			this.childs.length = 0;
 			this.childs = null;
 		}
+
+		clear: function() {
+			if(!this.childs) return;
+
+			for(var i=0; i<this.childs.length; i++){
+				this.childs[i].clear();
+			}
+
+			this.childs.length = 0;
+			this.childs = null;
+
+			this._super();
+		}
 	});
 
 	return GameObjectContainer;

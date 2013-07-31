@@ -1,10 +1,7 @@
-//Usar un game_object container a menara de raiz
+//main_container tiene que pasar a ser solamente un factory de game_objects
+	//pre anidados
 
-//main_container tiene que pasar a ser solamente un factory de game_objects con sus componentes y game_objects ya anidados
-
-//sacar la inicializacion de un game_object fuera de las tareas del factory.
-
-//Un game_object no inicializado no se dibuja si se updatea.
+//Redo de little tests in this file so they work with the new root system
 
 //TODO: Component: Collision
 		//TODO: Object that will hold the collision pair configurations and later will be used by the colliders to ask with who they need to collide
@@ -167,8 +164,6 @@ require(
 		keyboard.addUpCallback(keyboard.Z, function() {
 			main_container.add("Base_2", [150, 150, 0, "#ffffff"]);
 		});
-
-		
 
 		game.create(document.getElementById('main'), document.getElementById('game'));
 	}

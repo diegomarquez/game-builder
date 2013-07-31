@@ -1,4 +1,4 @@
-define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
+define(["delegate", "matrix_3x3", "factory"], function(Delegate, Matrix, Factory) {
 
 	var GameObject = Delegate.extend({
 		init: function() {
@@ -19,10 +19,11 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 
 			this.alpha = 1;
 
-			this.alive = true;
+			this.alive;
 			this.typeId;
 			this.poolId;
-			this.activeOnSoftPause;
+
+			this.returnToPool = false;
 		},
 
 		reset: function() {
@@ -37,7 +38,15 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 		draw: function(context) {},
 		destroy: function() {},
 
-		addComponent: function(component) {
+		configure: function(args) {
+			if (args) {
+				for (var ha in args) {
+					this[ha] = args[ha];
+				}
+			}
+		},
+
+		addComponent: function(component, returnToFactoryOnRemove) {
 			if (!this.components) {
 				this.components = [];
 			}
@@ -47,7 +56,35 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 			}
 
 			this.components.push(component);
-			component.onAdded(this);
+			component.onAdded(this, returnToFactoryOnRemove);
+		},
+
+		removeComponent: function(component) {
+			if (!this.components) return;
+
+			var index = this.components.indexOf(component);
+
+			if (index != -1) {
+				if(component.returnToFactory) {
+					Factory.returnComponentToPool(component);
+				}
+
+				this.components.splice(index, 1);
+				component.onRemoved();
+
+				component = null;
+			}
+		},
+
+		removeAllComponents: function() {
+			if (!this.components) return;
+
+			while (this.components.length) {
+				var c = this.components.pop();
+				removeComponent(c);
+				c.destroy();
+				c = null;
+			}
 		},
 
 		transformAndDraw: function(context, saveContext) {
@@ -75,9 +112,15 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 
 			if (!this.components) return;
 
-			for(var i=0; i<this.components.length; i++) {
+			for (var i = 0; i < this.components.length; i++) {
 				this.components[i].destroy();
 			}
+
+			if(this.returnToPool) {
+				Factory.returnGameObjectToPool(this);
+			}
+
+			this.alive = false;
 		},
 
 		resetTransform: function(x, y, scaleX, scaleY, rotation, centerX, centerY) {
