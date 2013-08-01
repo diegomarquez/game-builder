@@ -3,9 +3,17 @@ define(["game_object"], function(GameObject){
 	var GameObjectContainer = GameObject.extend({
 		init: function() {
 			this._super();
-
-			this.childs = null;
 		},
+
+		start: function() {
+			this_super();
+
+			if(!this.childs) return;
+
+			for(var i=0; i<this.childs.length; i++){
+				this.childs[i].start();
+			}
+		}
 
 		add: function(child) {
 			if(!child) return;

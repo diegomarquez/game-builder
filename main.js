@@ -1,7 +1,4 @@
-//main_container tiene que pasar a ser solamente un factory de game_objects
-	//pre anidados
-
-//Redo de little tests in this file so they work with the new root system
+//Redo the little tests in this file so they work with the new root system
 
 //TODO: Component: Collision
 		//TODO: Object that will hold the collision pair configurations and later will be used by the colliders to ask with who they need to collide
@@ -33,11 +30,13 @@
 
 //Implement event bubbling
 
-//TODO: Component: Auto-resize
+//TODO: Component of game.js: Auto-resize
 
 //TODO: TimeoutFactory tiene que poder destruir las referencias que devuelve de su metodo 'get'
 		//Probablemente hay que pasarle entre los parametros el nombre de la variable donde estoy guardando el timer.
 		//Con ese nombre y el scope puede hacer percha esa referencia.
+
+//TODO: Put all the things related to RequireJS in a proper folder
 
 //TODO: Boilerplate
 	//TODO: Bootstrap file

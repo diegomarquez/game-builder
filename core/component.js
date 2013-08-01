@@ -25,6 +25,7 @@ define(["class"], function() {
 			this.returnToFactory = false;
 		},
 
+		start: function() {},
 		update: function() {},
 		destroy: function() {}
 	});

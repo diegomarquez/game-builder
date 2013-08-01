@@ -27,11 +27,20 @@ define(["delegate", "matrix_3x3", "factory"], function(Delegate, Matrix, Factory
 		},
 
 		reset: function() {
-			this.alive = true;
 			this.rotation = 0;
 			this.scaleX = 1;
 			this.scaleY = 1;
 			this.alpha = 1;
+		},
+
+		start: function() {
+			this.alive = true;
+
+			if (!this.components) return;
+
+			for (var i = 0; i < this.components.length; i++) {
+				this.components[i].start();
+			}
 		},
 
 		update: function(delta) {},

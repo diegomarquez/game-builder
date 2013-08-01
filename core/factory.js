@@ -29,29 +29,25 @@ define(function(){
 		if(!gameObject.poolId) return;
 
 		this.objectPools[gameObject.poolId].push(gameObject);
-	}
+	};
 
 	Factory.prototype.createGameObjectConfiguration = function(typeAlias, type) {
 		var configuration = {
 			type: type,
 			hardArguments: null,
-			components: null,
+			childs: [],
+			components: [],
 
-			init: function(iCall) {
-				this.initCall = iCall;
-				return this;
-			},
 			args: function(args) {
 				this.hardArguments = args;
 				return this;
 			},
+			addChild: function(childId) {
+				this.childs.push(childId);
+				return this;
+			},
 			addComponent: function(componentId) {
-				if(!this.components) {
-					this.components = [];
-				}
-
 				this.components.push(componentId);
-
 				return this;
 			}
 		};
@@ -90,6 +86,9 @@ define(function(){
 		//Get one object from the pool
 		var pooledObject = this.objectPools[configuration.type].pop();
 
+		//Reset some internal properties of the game_object before actually using it.
+		pooledObject.reset();
+
 		//Putting back all the components of the previous form of this game_object back into their respective pools
 		pooledObject.removeAllComponents();		
 
@@ -120,9 +119,23 @@ define(function(){
 			pooledObject.addComponent(component, true);
 		}
 
+		//Adding nested childs configured for this object
+		for(var i=0; i<configuration.childs.length; i++) {
+			var childId = configuration.childs[i];
+
+			if (this.objectPools[childId].length <= 0) {
+				throw new Error('Game Object with type: ' + childId + ' is not available to be added as child of ' + configuration.type);
+			}
+
+			if(!pooledObject.addChild) {
+				throw new Error('Game Object with type: ' + configuration.type + ' is not a container, can not add childs to it');	
+			}
+
+			pooledObject.addChild(this.get(childId));
+		}
+
 		return pooledObject;
 	};
 
 	return new Factory();
 });
-
