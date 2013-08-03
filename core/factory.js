@@ -75,7 +75,7 @@ define(function(){
 	}
 
 	//This method only return an instance. It is up to the user to call the reset method with arguments.
-	Factory.prototype.get = function(name, args) {
+	Factory.prototype.get = function(name) {
 		var configuration = this.configurations[name];
 
 		//Do nothing if there is no object available in the pool I am looking in
@@ -87,10 +87,7 @@ define(function(){
 		var pooledObject = this.objectPools[configuration.type].pop();
 
 		//Reset some internal properties of the game_object before actually using it.
-		pooledObject.reset();
-
-		//Putting back all the components of the previous form of this game_object back into their respective pools
-		pooledObject.removeAllComponents();		
+		pooledObject.reset();		
 
 		//This sets unchanging arguments (hard), specified on the configuration object.
 		pooledObject.configure(configuration.hardArguments);
@@ -98,15 +95,12 @@ define(function(){
 		//Set it's name
 		pooledObject.typeId = name;
 
-		//This tells a game_object it should put itself back into it's respective pool when it is destroyed
-		pooledObject.returnToPool = true;
-
 		//Adding all the components configured for this object type	
 		for(var i=0; i<configuration.components.length; i++) {
 			var componentConfiguration = this.componentConfigurations[configuration.components[i]];
 
 			//If any of the components can not be fetched, abort the creation of the whole game_object
-			if(!this.componentsPool[componentConfiguration.componentId].length <= 0) {
+			if(this.componentsPool[componentConfiguration.componentId].length <= 0) {
 				throw new Error('Component with id: ' + componentConfiguration.componentId + ' is not available, can not create Game Object with id: ' + configuration.type);
 			}
 
@@ -116,26 +110,48 @@ define(function(){
 			component.configure(componentConfiguration.args);
 
 			//This component will return to it's respective pool when destroyed
-			pooledObject.addComponent(component, true);
+			pooledObject.addComponent(component);
 		}
 
 		//Adding nested childs configured for this object
 		for(var i=0; i<configuration.childs.length; i++) {
 			var childId = configuration.childs[i];
 
-			if (this.objectPools[childId].length <= 0) {
-				throw new Error('Game Object with type: ' + childId + ' is not available to be added as child of ' + configuration.type);
-			}
-
-			if(!pooledObject.addChild) {
+			if(!pooledObject.add) {
 				throw new Error('Game Object with type: ' + configuration.type + ' is not a container, can not add childs to it');	
 			}
 
-			pooledObject.addChild(this.get(childId));
+			pooledObject.add(this.get(childId));
 		}
 
 		return pooledObject;
 	};
+
+	Factory.prototype.toString = function() {
+		
+		var totalGameObjectCount = 0;
+		for(var k in this.objectPools) {
+			totalGameObjectCount += this.objectPools[k].length
+		}
+
+		var totalComponentCount = 0;
+		for(var k in this.componentsPool) {
+			totalComponentCount += this.componentsPool[k].length
+		}
+
+		var r = {
+			object: this.objectPools,
+			component: this.componentsPool,
+
+			objectTypeCount: Object.keys(this.objectPools).length,
+			componentTypeCount: Object.keys(this.componentsPool).length,
+
+			totalGameObjectCount: totalGameObjectCount,
+			totalComponentCount: totalComponentCount
+		}
+
+		return JSON.stringify(r, null, 2);	
+	}
 
 	return new Factory();
 });

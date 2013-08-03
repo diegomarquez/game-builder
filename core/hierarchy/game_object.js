@@ -22,8 +22,6 @@ define(["delegate", "matrix_3x3", "factory"], function(Delegate, Matrix, Factory
 			this.alive;
 			this.typeId;
 			this.poolId;
-
-			this.returnToPool = false;
 		},
 
 		reset: function() {
@@ -48,14 +46,16 @@ define(["delegate", "matrix_3x3", "factory"], function(Delegate, Matrix, Factory
 		destroy: function() {},
 
 		configure: function(args) {
-			if (args) {
-				for (var ha in args) {
-					this[ha] = args[ha];
-				}
+			if (!args) return;
+
+			for (var ha in args) {
+				this[ha] = args[ha];
 			}
+
+			this.args = args;
 		},
 
-		addComponent: function(component, returnToFactoryOnRemove) {
+		addComponent: function(component) {
 			if (!this.components) {
 				this.components = [];
 			}
@@ -65,7 +65,7 @@ define(["delegate", "matrix_3x3", "factory"], function(Delegate, Matrix, Factory
 			}
 
 			this.components.push(component);
-			component.onAdded(this, returnToFactoryOnRemove);
+			component.onAdded(this);
 		},
 
 		removeComponent: function(component) {
@@ -74,13 +74,9 @@ define(["delegate", "matrix_3x3", "factory"], function(Delegate, Matrix, Factory
 			var index = this.components.indexOf(component);
 
 			if (index != -1) {
-				if(component.returnToFactory) {
-					Factory.returnComponentToPool(component);
-				}
-
+				Factory.returnComponentToPool(component);
 				this.components.splice(index, 1);
 				component.onRemoved();
-
 				component = null;
 			}
 		},
@@ -90,17 +86,16 @@ define(["delegate", "matrix_3x3", "factory"], function(Delegate, Matrix, Factory
 
 			while (this.components.length) {
 				var c = this.components.pop();
-				removeComponent(c);
+				c.onRemoved();
 				c.destroy();
-				c = null;
+
+				Factory.returnComponentToPool(c);
 			}
+
+			c = null;
 		},
 
-		transformAndDraw: function(context, saveContext) {
-			if (saveContext) {
-				context.save();
-			}
-
+		transformAndDraw: function(context) {
 			this.matrix.identity().appendTransform(this.x, this.y, this.scaleX, this.scaleY, this.rotation, this.centerX, this.centerY);
 
 			context.transform(this.matrix.a, this.matrix.b, this.matrix.c, this.matrix.d, this.matrix.tx, this.matrix.ty);
@@ -108,10 +103,6 @@ define(["delegate", "matrix_3x3", "factory"], function(Delegate, Matrix, Factory
 			context.globalAlpha *= this.alpha;
 
 			this.draw(context);
-
-			if (saveContext) {
-				context.restore();
-			}
 		},
 
 		clear: function() {
@@ -119,17 +110,13 @@ define(["delegate", "matrix_3x3", "factory"], function(Delegate, Matrix, Factory
 
 			this.destroy();
 
-			if (!this.components) return;
-
-			for (var i = 0; i < this.components.length; i++) {
-				this.components[i].destroy();
-			}
-
-			if(this.returnToPool) {
-				Factory.returnGameObjectToPool(this);
-			}
+			Factory.returnGameObjectToPool(this);
 
 			this.alive = false;
+
+			if (!this.components) return;
+
+			this.removeAllComponents();
 		},
 
 		resetTransform: function(x, y, scaleX, scaleY, rotation, centerX, centerY) {

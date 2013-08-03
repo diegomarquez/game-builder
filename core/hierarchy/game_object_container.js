@@ -6,14 +6,14 @@ define(["game_object"], function(GameObject){
 		},
 
 		start: function() {
-			this_super();
+			this._super();
 
 			if(!this.childs) return;
 
 			for(var i=0; i<this.childs.length; i++){
 				this.childs[i].start();
 			}
-		}
+		},
 
 		add: function(child) {
 			if(!child) return;
@@ -26,7 +26,9 @@ define(["game_object"], function(GameObject){
 
 			child.parent = this;
 
-			this.childs.push(child);	
+			this.childs.push(child);
+
+			return child;	
 		},
 
 		remove: function(child) {
@@ -47,6 +49,8 @@ define(["game_object"], function(GameObject){
 			for(var i=0; i<this.childs.length; i++){
 				child = this.childs[i];
 
+				if(!child.alive) continue;
+
 				child.update(delta);
 
 				if(!child.components)  continue;
@@ -60,16 +64,22 @@ define(["game_object"], function(GameObject){
 		transformAndDraw: function(context) {
 			context.save();
 			
-			this._super(context, false);
+			this._super(context);
 
 			if(!this.childs) {
 				context.restore();
 				return;
 			} 
 				
+			var child = null;
+
 			for(var i=0; i<this.childs.length; i++){
+				child = this.childs[i];
+
+				if(!child.alive) continue;
+
 				context.save();
-				this.childs[i].transformAndDraw(context, false);
+				child.transformAndDraw(context);
 				context.restore();
 			}
 
@@ -85,7 +95,7 @@ define(["game_object"], function(GameObject){
 
 			this.childs.length = 0;
 			this.childs = null;
-		}
+		},
 
 		clear: function() {
 			if(!this.childs) return;

@@ -5,14 +5,13 @@ define(["game_object", "draw"], function(GameObject, draw){
 			this._super();
 		},
 
-		reset: function(x, y, rSpeed, color){
+		start: function(x, y, rSpeed, color){
 			this._super();
 
-			this.x = x;
-			this.y = y;
-
-			this.rSpeed = rSpeed;
-			this.color = color;
+			this.x 		= x 	 || this.args.x;
+			this.y 		= y 	 || this.args.y;
+			this.rSpeed = rSpeed || this.args.rSpeed;
+			this.color  = color  || this.args.color;
 		},
 
 		update: function(delta) {

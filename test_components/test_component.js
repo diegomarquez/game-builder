@@ -4,6 +4,12 @@ define(['component'], function(Component){
 			this._super();
 		},
 
+		start: function() {
+			this.startPos = false;
+			this.lastX;
+			this.lastY;
+		},
+
 		onAdded: function(parent) {
 			this._super(parent);
 		},
@@ -13,7 +19,18 @@ define(['component'], function(Component){
 		},
 
 		update: function() {
-			this.parent.rotation += this.rotationSpeed;
+			if(this.startPos){
+				this.parent.x = this.lastX;
+				this.parent.y = this.lastY;
+			}else {
+				this.lastX = this.parent.x;
+				this.lastY = this.parent.y;
+
+				this.parent.x += Math.random() * this.rotationSpeed;
+				this.parent.y += Math.random() * this.rotationSpeed;
+			}
+
+			this.startPos = !this.startPos;
 		}
 	});
 

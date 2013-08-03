@@ -5,9 +5,15 @@ define(["game_object_container", "draw"], function(GameObjectContainer, draw){
 			this._super();
 		},
 
+		start: function(x, y) {
+			this._super();
+			
+			this.x = x;
+			this.y = y;
+		},
+
 		update: function(delta) {
 			this._super();
-
 			this.rotation++;
 		},
 

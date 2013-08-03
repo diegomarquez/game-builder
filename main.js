@@ -1,4 +1,13 @@
-//Redo the little tests in this file so they work with the new root system
+//Setup to use root.js (DONE!)
+
+//Have predefined layers (game_object_containers) as childs of root
+	//Back
+	//Middle
+	//Front
+	//Hud
+	//Popup
+
+//A layer to add things to may be supplied on the factory configuration, default is middle.
 
 //TODO: Component: Collision
 		//TODO: Object that will hold the collision pair configurations and later will be used by the colliders to ask with who they need to collide
@@ -25,6 +34,8 @@
 
 			//This sets if the object will check for collisions or not
 			//pooledObject.checkingCollisions = (collisionType != "");
+
+//TODO: Add dynamic creation of game_objects. With a posibility to save them a pool after they have been used.
 
 //TODO: Update main TODO in README.md
 
@@ -70,28 +81,29 @@ require(
 		'test_game_objects/basic_game_object',
 		'test_game_objects/basic_container',
 		'test_components/test_component',
-		'main_container',
+		'factory',
+		'root',
 		'keyboard',
 		'draw'
 	],
 
-	function(doc, game, test, test_container, test_component, main_container, keyboard, draw) {
-
-		main_container.setDefaultLayer(2);
+	function(doc, game, test, test_container, test_component, factory, root, keyboard, draw) {
 
 		game.on("init", this, function() {
 			console.log("Init");
 
-			main_container.createTypePool("Base", test, 10);
-			main_container.createTypePool("Container", test_container, 1);
+			factory.createGameObjectPool("Base", test, 10);
+			factory.createGameObjectPool("Container", test_container, 1);
 
-			main_container.createComponentPool("Component", test_component, 1);
+			factory.createComponentPool("Component", test_component, 5);
+			factory.createComponentConfiguration("Component_1", 'Component', {rotationSpeed:3})
+			factory.createComponentConfiguration("Component_2", 'Component', {rotationSpeed:10})
 
-			main_container.createComponentConfiguration("Component_1", 'Component', {rotationSpeed:3})
+			factory.createGameObjectConfiguration("Base_1", "Base").args({x:50, y:50, rSpeed:3, color:'#00ff00'});
+			factory.createGameObjectConfiguration("Base_2", "Base").addComponent("Component_1");
 
-			main_container.createObjectConfiguration("Base_1", "Base");
-			main_container.createObjectConfiguration("Base_2", "Base").addComponent("Component_1");
-			main_container.createObjectConfiguration("Container_1", "Container");
+			factory.createGameObjectConfiguration("Container_1", "Container").addComponent("Component_2").addChild("Base_1");
+			factory.createGameObjectConfiguration("Container_2", "Container");
 		});
 
 		game.on("pause", this, function() {
@@ -109,59 +121,77 @@ require(
 		});
 
 		game.on("update", this, function() {
-			main_container.update(game.delta, game.isPaused);
-			main_container.draw(game.context);
+			root.update(game.delta, game.isPaused);
+			root.transformAndDraw(game.context);
+
+			if(keyboard.isDown(keyboard.GAME_LEFT)) {
+				root.x--
+			}
+			if(keyboard.isDown(keyboard.GAME_RIGHT)) {
+				root.x++
+			}
+			if(keyboard.isDown(keyboard.GAME_UP)) {
+				root.y--
+			}
+			if(keyboard.isDown(keyboard.GAME_DOWN)) {
+				root.y++
+			}
 		});
 
+		keyboard.addUpCallback(keyboard.C, function() {
+			root.clear();
+
+			console.log(factory.toString());
+		});		
+
 		keyboard.addUpCallback(keyboard.A, function() {
-			var bla = main_container.add("Base_1", [
-				(Math.random() * 200) + 20, 
-				(Math.random() * 200) + 20,
-				Math.random() * 3, "#" + (Math.random().toString(16) + '000000').slice(2, 8)
-			]);
+			var x = (Math.random() * game.canvas.width);
+			var y = (Math.random() * game.canvas.height);
+
+			var rSpeed = Math.random() * 3;
+			var color = "#" + (Math.random().toString(16) + '000000').slice(2, 8);
+
+			root.add(factory.get("Base_1")).start(x, y, rSpeed, color);
 		});
 
 		keyboard.addUpCallback(keyboard.S, function() {
-			main_container.add("Base_1", [100, 100,
-				Math.random() * 3, "#" + (Math.random().toString(16) + '000000').slice(2, 8)
-			]);
+			var x = (Math.random() * game.canvas.width);
+			var y = (Math.random() * game.canvas.height);
 
-			main_container.add("Base_1", [200, 200,
-				Math.random() * 3, "#" + (Math.random().toString(16) + '000000').slice(2, 8)
-			]);
+			var rSpeed = Math.random() * 3;
+			var color = "#" + (Math.random().toString(16) + '000000').slice(2, 8);
 
-			main_container.add("Base_1", [300, 300,
-				Math.random() * 3, "#" + (Math.random().toString(16) + '000000').slice(2, 8)
-			]);
+			root.add(factory.get("Base_2")).start(x, y, rSpeed, color);
+		});
 
-			main_container.add("Base_1", [300, 100,
-				Math.random() * 3, "#" + (Math.random().toString(16) + '000000').slice(2, 8)
-			]);
+		keyboard.addUpCallback(keyboard.D, function() {
+			var x = (Math.random() * game.canvas.width);
+			var y = (Math.random() * game.canvas.height);
 
-			main_container.add("Base_1", [100, 300,
-				Math.random() * 3, "#" + (Math.random().toString(16) + '000000').slice(2, 8)
-			]);
+			root.add(factory.get("Container_1")).start(x, y);
 		});
 
 		var c;
 
-		keyboard.addUpCallback(keyboard.D, function() {
-			
-			var c1 = main_container.add("Container_1");
+		keyboard.addUpCallback(keyboard.Z, function() {
+			var x = (Math.random() * game.canvas.width);
+			var y = (Math.random() * game.canvas.height);
 
-			if(c1) {
-				var go = main_container.add("Base_1", [50, 50, 2, "#ffff00"]);
-				
-				c = c1;
-				c.add(go);
-			}
+			c = factory.get("Container_2");
 
-			c.x = (Math.random() * 200) + 20;
-			c.y = (Math.random() * 200) + 20;
+			root.add(c).start(x, y);
 		});
 
-		keyboard.addUpCallback(keyboard.Z, function() {
-			main_container.add("Base_2", [150, 150, 0, "#ffffff"]);
+		keyboard.addUpCallback(keyboard.X, function() {
+			var x = 100;
+			var y = 100;
+
+			var rSpeed = Math.random() * 3;
+			var color = "#" + (Math.random().toString(16) + '000000').slice(2, 8);
+
+			var child = factory.get("Base_1");
+			child.start(x, y, rSpeed, color);
+			c.add(child)
 		});
 
 		game.create(document.getElementById('main'), document.getElementById('game'));
