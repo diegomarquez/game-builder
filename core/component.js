@@ -1,6 +1,6 @@
-define(["class"], function() {
+define(["delegate"], function(Delegate) {
 
-	var Component = Class.extend({
+	var Component = Delegate.extend({
 		init: function() {
 			this.poolId = null;
 			this.parent = null;
@@ -24,7 +24,10 @@ define(["class"], function() {
 
 		start: function() {},
 		update: function() {},
-		destroy: function() {}
+
+		destroy: function() {
+			this.execute('recycle', this);
+		}
 	});
 
 	return Component;

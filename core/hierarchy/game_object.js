@@ -1,4 +1,4 @@
-define(["delegate", "matrix_3x3", "factory"], function(Delegate, Matrix, Factory) {
+define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 
 	var GameObject = Delegate.extend({
 		init: function() {
@@ -19,9 +19,11 @@ define(["delegate", "matrix_3x3", "factory"], function(Delegate, Matrix, Factory
 
 			this.alpha = 1;
 
-			this.alive;
-			this.typeId;
-			this.poolId;
+			this.canUpdate = false;
+			this.canDraw = false;
+
+			this.typeId = null;
+			this.poolId = null;
 		},
 
 		reset: function() {
@@ -32,7 +34,10 @@ define(["delegate", "matrix_3x3", "factory"], function(Delegate, Matrix, Factory
 		},
 
 		start: function() {
-			this.alive = true;
+			this.canUpdate = true;
+			this.canDraw = true;
+
+			this.execute('started', this);
 
 			if (!this.components) return;
 
@@ -81,27 +86,10 @@ define(["delegate", "matrix_3x3", "factory"], function(Delegate, Matrix, Factory
 			}
 		},
 
-		removeAllComponents: function() {
-			if (!this.components) return;
-
-			while (this.components.length) {
-				var c = this.components.pop();
-				c.onRemoved();
-				c.destroy();
-
-				Factory.returnComponentToPool(c);
-			}
-
-			c = null;
-		},
-
 		transformAndDraw: function(context) {
 			this.matrix.identity().appendTransform(this.x, this.y, this.scaleX, this.scaleY, this.rotation, this.centerX, this.centerY);
-
 			context.transform(this.matrix.a, this.matrix.b, this.matrix.c, this.matrix.d, this.matrix.tx, this.matrix.ty);
-
 			context.globalAlpha *= this.alpha;
-
 			this.draw(context);
 		},
 
@@ -110,13 +98,21 @@ define(["delegate", "matrix_3x3", "factory"], function(Delegate, Matrix, Factory
 
 			this.destroy();
 
-			Factory.returnGameObjectToPool(this);
+			this.canUpdate = false;
+			this.canDraw = false;
 
-			this.alive = false;
+			this.parent = null;
 
+			//Removing all components
 			if (!this.components) return;
 
-			this.removeAllComponents();
+			while (this.components.length) {
+				var c = this.components.pop();
+				c.onRemoved();
+				c.destroy();
+			}
+
+			c = null;
 		},
 
 		resetTransform: function(x, y, scaleX, scaleY, rotation, centerX, centerY) {

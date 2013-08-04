@@ -19,7 +19,7 @@ define(["game_object", "draw"], function(GameObject, draw){
 		},
 
 		draw: function(context) {
-			draw.rectangle(context, -10, -10, 20, 20, null, this.color, 1);
+			draw.rectangle(context, -10, -10, 20, 20, this.color, this.color, 1);
 		}
 	});
 

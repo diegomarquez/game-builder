@@ -49,14 +49,14 @@ define(["game_object"], function(GameObject){
 			for(var i=0; i<this.childs.length; i++){
 				child = this.childs[i];
 
-				if(!child.alive) continue;
+				if(!child.canUpdate) continue;
 
 				child.update(delta);
 
 				if(!child.components)  continue;
 
 				for(var k=0; k<child.components.length; k++) {
-					child[k].components.update();
+					child.components[k].update();
 				}	
 			}
 		},
@@ -76,7 +76,7 @@ define(["game_object"], function(GameObject){
 			for(var i=0; i<this.childs.length; i++){
 				child = this.childs[i];
 
-				if(!child.alive) continue;
+				if(!child.canDraw) continue;
 
 				context.save();
 				child.transformAndDraw(context);
@@ -98,14 +98,14 @@ define(["game_object"], function(GameObject){
 		},
 
 		clear: function() {
-			if(!this.childs) return;
+			if(this.childs) {				
+				while(this.childs.length) {
+					this.childs.pop().clear();
+				}
 
-			for(var i=0; i<this.childs.length; i++){
-				this.childs[i].clear();
+				this.childs.length = 0;
+				this.childs = null;
 			}
-
-			this.childs.length = 0;
-			this.childs = null;
 
 			this._super();
 		}

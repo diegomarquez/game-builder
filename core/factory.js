@@ -109,6 +109,10 @@ define(function(){
 			//Configures the component as stated by the configuration object
 			component.configure(componentConfiguration.args);
 
+			component.on('recycle', this, function(c) {
+				this.returnComponentToPool(c);
+			}, true);
+
 			//This component will return to it's respective pool when destroyed
 			pooledObject.addComponent(component);
 		}
@@ -124,11 +128,14 @@ define(function(){
 			pooledObject.add(this.get(childId));
 		}
 
+		pooledObject.on('recycle', this, function(go) {
+			this.returnGameObjectToPool(go);
+		}, true);
+
 		return pooledObject;
 	};
 
-	Factory.prototype.toString = function() {
-		
+	Factory.prototype.toString = function() {		
 		var totalGameObjectCount = 0;
 		for(var k in this.objectPools) {
 			totalGameObjectCount += this.objectPools[k].length
@@ -140,9 +147,6 @@ define(function(){
 		}
 
 		var r = {
-			object: this.objectPools,
-			component: this.componentsPool,
-
 			objectTypeCount: Object.keys(this.objectPools).length,
 			componentTypeCount: Object.keys(this.componentsPool).length,
 
