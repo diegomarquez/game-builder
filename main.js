@@ -1,28 +1,23 @@
+//TODO: Hacer componentes de colision concretos
+		//Circle
+		//Polygon
+//TODO: refactor sat.js
+
 //TODO: Component: Collision
-//TODO: Object that will hold the collision pair configurations and later will be used by the colliders to ask with who they need to collide
-//TODO: Be able to configure hitArea.
-//TODO: Multiple hit areas for a single GameObject. Set a name so that a specific onCollide method can be added dynamically to a game_object on creation
-//TODO: Hit area should follow the tranformation of it's owner.
-//TODO: Usar el metodo transformPoint para manejar la posicion de los vertices de un poligono.
+	//TODO: Be able to configure hitArea.
+	//TODO: Multiple hit areas for a single GameObject. Set a name so that a specific onCollide method can be added dynamically to a game_object on creation
+	//TODO: Hit area should follow the tranformation of it's owner.
+	//TODO: Usar el metodo transformPoint para manejar la posicion de los vertices de un poligono.
 
-//TODO: Some old code from game_object, might be usefull to remember it
-// this.collisionId;
-// this.checkingCollisions;
+//TODO: Test collision detection
+	//Positioning
+	//Rotation of polygonal areas
+	//Transformation according to parent.
+	//Draw hitarea
 
-// onCollide: function(other) {},
-// getColliderType: function() {},
-// getCollider: function() {},
-
-//GameObject.CIRCLE_COLLIDER = 0;
-//GameObject.POLYGON_COLLIDER = 1;
-
-//var collisionType = configuration.collisionType;
-
-//This id will be used for collision detection groups
-//pooledObject.collisionId = collisionType;
-
-//This sets if the object will check for collisions or not
-//pooledObject.checkingCollisions = (collisionType != "");
+//TODO: Component: Renderer
+		//Drawing API renderer. Contains the commands to draw something. Can be cached.
+		//Bitmap rendering. Draws an image.
 
 //TODO: Update main TODO in README.md
 
@@ -34,20 +29,10 @@
 //Probablemente hay que pasarle entre los parametros el nombre de la variable donde estoy guardando el timer.
 //Con ese nombre y el scope puede hacer percha esa referencia.
 
-//TODO: Put all the things related to RequireJS in a proper folder
-
 //TODO: Boilerplate
-//TODO: Ready made, empty files.
-//Pool creation
-//Configuration creation
+	//TODO: Default main.js
 
 //TODO: State machine that handles a closed object as a state with a start, update and finish
-
-//Implement a very simple object to save to and load from the user's computer.
-//TODO: Basic data types.
-//TODO: Maybe JSON strings.
-
-//TODO: Decouple drawing from game_object
 
 //TODO: Optimizations
 //TODO: Optimize drawing method.
@@ -57,6 +42,10 @@
 //TODO: Make a Sublime extension to generate all the boilerplater code, associated with a game_object file
 //TODO: Add a description for each module
 //TODO: Create some testing scenarios for all of the modules. Those will serve as demos aswell
+
+//Implement a very simple object to save to and load from the user's computer.
+	//TODO: Basic data types.
+	//TODO: Maybe JSON strings.
 
 define(['game',
 		'test_game_objects/basic_game_object',

@@ -42,12 +42,12 @@ define(function(){
 				this.hardArguments = args;
 				return this;
 			},
-			addChild: function(childId) {
-				this.childs.push(childId);
+			addChild: function(childId, args) {
+				this.childs.push({childId:childId, args:args});
 				return this;
 			},
-			addComponent: function(componentId) {
-				this.components.push(componentId);
+			addComponent: function(componentId, args) {
+				this.components.push({componentId:componentId, args:args});
 				return this;
 			}
 		};
@@ -75,7 +75,7 @@ define(function(){
 	}
 
 	//This method only return an instance. It is up to the user to call the reset method with arguments.
-	Factory.prototype.get = function(name) {
+	Factory.prototype.get = function(name, args) {
 		var configuration = this.configurations[name];
 
 		//Do nothing if there is no object available in the pool I am looking in
@@ -90,14 +90,19 @@ define(function(){
 		pooledObject.reset();		
 
 		//This sets unchanging arguments (hard), specified on the configuration object.
-		pooledObject.configure(configuration.hardArguments);
+		//If available the specific configuration object overrides the generic one.
+		if(args) {
+			pooledObject.configure(args);
+		}else{
+			pooledObject.configure(configuration.hardArguments);
+		}
 
 		//Set it's name
 		pooledObject.typeId = name;
 
 		//Adding all the components configured for this object type	
 		for(var i=0; i<configuration.components.length; i++) {
-			var componentConfiguration = this.componentConfigurations[configuration.components[i]];
+			var componentConfiguration = this.componentConfigurations[configuration.components[i].componentId];
 
 			//If any of the components can not be fetched, abort the creation of the whole game_object
 			if(this.componentsPool[componentConfiguration.componentId].length <= 0) {
@@ -106,8 +111,13 @@ define(function(){
 
 			var component = this.componentsPool[componentConfiguration.componentId].pop();
 
-			//Configures the component as stated by the configuration object
-			component.configure(componentConfiguration.args);
+			//Configures the component as stated by the configuration object.
+			//If available the specific configuration object overrides the generic one.
+			if(configuration.components[i].args) {
+				component.configure(configuration.components[i].args);
+			}else{
+				component.configure(componentConfiguration.args);
+			}
 
 			component.on('recycle', this, function(c) {
 				this.returnComponentToPool(c);
@@ -119,13 +129,13 @@ define(function(){
 
 		//Adding nested childs configured for this object
 		for(var i=0; i<configuration.childs.length; i++) {
-			var childId = configuration.childs[i];
+			var childId = configuration.childs[i].childId;
 
 			if(!pooledObject.add) {
 				throw new Error('Game Object with type: ' + configuration.type + ' is not a container, can not add childs to it');	
 			}
 
-			pooledObject.add(this.get(childId));
+			pooledObject.add( this.get(childId, configuration.childs[i].args));
 		}
 
 		pooledObject.on('recycle', this, function(go) {

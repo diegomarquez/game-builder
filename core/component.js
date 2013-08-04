@@ -12,6 +12,8 @@ define(["delegate"], function(Delegate) {
 			for (var ha in args) {
 				this[ha] = args[ha];
 			}
+
+			this.args = args;
 		},
 
 		onAdded: function(parent) {
@@ -23,6 +25,7 @@ define(["delegate"], function(Delegate) {
 		},
 
 		start: function() {},
+		
 		update: function() {},
 
 		destroy: function() {
