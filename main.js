@@ -1,8 +1,7 @@
 //TODO: Test collision detection
-	//Positioning
-	//Rotation of polygonal areas
-	//Transformation according to parent.
-	//TODO: Usar el metodo transformPoint para manejar la posicion de los vertices de un poligono.
+	//Translation, rotation and scaling according to parent matrix
+		//Circle
+		//Polygon
 	//Draw hitarea
 
 //TODO: Test specific configuration
