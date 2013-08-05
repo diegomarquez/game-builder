@@ -37,35 +37,31 @@ define(['sat'], function(SAT) {
 	};
 
 	CollisionResolver.prototype.areColliding = function(first, second) {
-		var firstColliderType = first.colliderType;
-		var secondColliderType = second.colliderType;
-
-		var first = first.getCollider();
-		var second = second.getCollider();
-
-		if (first == null || second == null) {
+		if (first.collider == null || second.collider == null) {
 			return false;
 		}
 
-		//TODO: Revisar esto
-		if (firstColliderType == secondColliderType) {
-			if (firstColliderType == GameObject.CIRCLE_COLLIDER) {
-				return SAT.testCircleCircle(first, second);
+		if (first.colliderType == second.colliderType) {
+			if (first.colliderType == CollisionResolver.CIRCLE_COLLIDER) {
+				return SAT.testCircleCircle(first.collider, second.collider);
 			}
-			if (firstColliderType == GameObject.POLYGON_COLLIDER) {
-				return SAT.testPolygonPolygon(first, second);
+			if (first.colliderType == CollisionResolver.POLYGON_COLLIDER) {
+				return SAT.testPolygonPolygon(first.collider, second.collider);
 			}
 		} else {
-			if (firstColliderType == GameObject.CIRCLE_COLLIDER) {
-				return SAT.testPolygonCircle(second, first);
+			if (first.colliderType == CollisionResolver.CIRCLE_COLLIDER) {
+				return SAT.testPolygonCircle(second.collider, first.collider);
 			}
-			if (firstColliderType == GameObject.POLYGON_COLLIDER) {
-				return SAT.testPolygonCircle(first, second);
+			if (first.colliderType == CollisionResolver.POLYGON_COLLIDER) {
+				return SAT.testPolygonCircle(first.collider, second.collider);
 			}
 		}
 
 		return false;
 	}
+
+	CollisionResolver.CIRCLE_COLLIDER  = 0;
+	CollisionResolver.POLYGON_COLLIDER = 1;
 
 	return new CollisionResolver();
 });

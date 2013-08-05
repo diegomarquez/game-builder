@@ -1,19 +1,16 @@
-//TODO: Hacer componentes de colision concretos
-		//Circle
-		//Polygon
-//TODO: refactor sat.js
-
-//TODO: Component: Collision
-	//TODO: Be able to configure hitArea.
-	//TODO: Multiple hit areas for a single GameObject. Set a name so that a specific onCollide method can be added dynamically to a game_object on creation
-	//TODO: Hit area should follow the tranformation of it's owner.
-	//TODO: Usar el metodo transformPoint para manejar la posicion de los vertices de un poligono.
-
 //TODO: Test collision detection
 	//Positioning
 	//Rotation of polygonal areas
 	//Transformation according to parent.
+	//TODO: Usar el metodo transformPoint para manejar la posicion de los vertices de un poligono.
 	//Draw hitarea
+
+//TODO: Test specific configuration
+
+//TODO: Component: Collision
+	//TODO: Be able to configure hitArea.
+	//TODO: Multiple hit areas for a single GameObject. Set a name so that a specific onCollide method can be added dynamically to a game_object on creation
+	
 
 //TODO: Component: Renderer
 		//Drawing API renderer. Contains the commands to draw something. Can be cached.

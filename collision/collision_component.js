@@ -4,24 +4,13 @@ define(['component', 'collision_resolver'], function(Component, CollisionResolve
 	var collisionOpponent = null;
 
 	var CollisionComponent = Component.extend({
-		init: function() {
-			this._super();
-
-			this.collisionId = '';
-			this.colliderType = null;
-			this.checkingCollisions = true;
-		}
 
 		start: function() {
-			this.collisionId = this.args.id;
+			this.collisionId = this.id;
 			this.checkingCollisions = true;
 
 			CollisionResolver.addToCollisionList(this);
 		},
-
-		getColliderType: function() {},
-
-		getCollider: function() {},
 
 		update: function() {
 			collisionList = CollisionResolver.collisionLists[this.getCollisionId()];
@@ -58,6 +47,7 @@ define(['component', 'collision_resolver'], function(Component, CollisionResolve
 
 			this.collisionId = '';
 			this.checkingCollisions = false;
+
 			CollisionResolver.removeFromCollisionList(this);
 		}
 	});

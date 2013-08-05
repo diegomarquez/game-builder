@@ -1,247 +1,26 @@
-/** @preserve @author Jim Riecken - released under the MIT License. */
-/**
-* A simple library for determining intersections of circles and
-* polygons using the Separating Axis Theorem.
-*/
-/*jshint shadow:true, sub:true, forin:true, noarg:true, noempty:true,
-eqeqeq:true, bitwise:true, strict:true, undef:true,
-curly:true, browser:true */
-var SAT = window['SAT'] = {};
-(function(SAT) {
-  "use strict";
+define(['vector2D'], function(Vector) {
+
+  var T_VECTORS = [];
+  for (var i = 0; i < 10; i++) {
+    T_VECTORS.push(new Vector());
+  }
   
-  /**
-* Represents a vector in two dimensions.
-*
-* @param {?number=} x The x position.
-* @param {?number=} y The y position.
-* @constructor
-*/
-  var Vector = function(x, y) {
-    this['x'] = this.x = x || 0;
-    this['y'] = this.y = y || 0;
-  };
-  SAT['Vector'] = Vector;
-  SAT['V'] = Vector;
-  /**
-* Copy the values of another Vector into this one.
-*
-* @param {Vector} other The other Vector.
-* @return {Vector} This for chaining.
-*/
-  Vector.prototype.copy = function(other) {
-    this.x = other.x;
-    this.y = other.y;
-    return this;
-  };
-  Vector.prototype['copy'] = Vector.prototype.copy;
-    
-  /**
-* Rotate this vector by 90 degrees
-*
-* @return {Vector} This for chaining.
-*/
-  Vector.prototype.perp = function() {
-    var x = this.x;
-    this.x = this.y;
-    this.y = -x;
-    return this;
-  };
-  Vector.prototype['perp'] = Vector.prototype.perp;
-    
-  /**
-* Reverse this vector.
-*
-* @return {Vector} This for chaining.
-*/
-  Vector.prototype.reverse = function() {
-    this.x = -this.x;
-    this.y = -this.y;
-    return this;
-  };
-  Vector.prototype['reverse'] = Vector.prototype.reverse;
-  
-  /**
-* Normalize (make unit length) this vector.
-*
-* @return {Vector} This for chaining.
-*/
-  Vector.prototype.normalize = function() {
-    var d = this.len();
-    if(d > 0) {
-      this.x = this.x / d;
-      this.y = this.y / d;
-    }
-    return this;
-  };
-  Vector.prototype['normalize'] = Vector.prototype.normalize;
-  
-  /**
-* Add another vector to this one.
-*
-* @param {Vector} other The other Vector.
-* @return {Vector} This for chaining.
-*/
-  Vector.prototype.add = function(other) {
-    this.x += other.x;
-    this.y += other.y;
-    return this;
-  };
-  Vector.prototype['add'] = Vector.prototype.add;
-  
-  /**
-* Subtract another vector from this one.
-*
-* @param {Vector} other The other Vector.
-* @return {Vector} This for chaiing.
-*/
-  Vector.prototype.sub = function(other) {
-    this.x -= other.x;
-    this.y -= other.y;
-    return this;
-  };
-  Vector.prototype['sub'] = Vector.prototype.sub;
-  
-  /**
-* Scale this vector.
-*
-* @param {number} x The scaling factor in the x direction.
-* @param {?number=} y The scaling factor in the y direction. If this
-* is not specified, the x scaling factor will be used.
-* @return {Vector} This for chaining.
-*/
-  Vector.prototype.scale = function(x,y) {
-    this.x *= x;
-    this.y *= y || x;
-    return this;
-  };
-  Vector.prototype['scale'] = Vector.prototype.scale;
-  
-  /**
-* Project this vector on to another vector.
-*
-* @param {Vector} other The vector to project onto.
-* @return {Vector} This for chaining.
-*/
-  Vector.prototype.project = function(other) {
-    var amt = this.dot(other) / other.len2();
-    this.x = amt * other.x;
-    this.y = amt * other.y;
-    return this;
-  };
-  Vector.prototype['project'] = Vector.prototype.project;
-  
-  /**
-* Project this vector onto a vector of unit length.
-*
-* @param {Vector} other The unit vector to project onto.
-* @return {Vector} This for chaining.
-*/
-  Vector.prototype.projectN = function(other) {
-    var amt = this.dot(other);
-    this.x = amt * other.x;
-    this.y = amt * other.y;
-    return this;
-  };
-  Vector.prototype['projectN'] = Vector.prototype.projectN;
-  
-  /**
-* Reflect this vector on an arbitrary axis.
-*
-* @param {Vector} axis The vector representing the axis.
-* @return {Vector} This for chaining.
-*/
-  Vector.prototype.reflect = function(axis) {
-    var x = this.x;
-    var y = this.y;
-    this.project(axis).scale(2);
-    this.x -= x;
-    this.y -= y;
-    return this;
-  };
-  Vector.prototype['reflect'] = Vector.prototype.reflect;
-  
-  /**
-* Reflect this vector on an arbitrary axis (represented by a unit vector)
-*
-* @param {Vector} axis The unit vector representing the axis.
-* @return {Vector} This for chaining.
-*/
-  Vector.prototype.reflectN = function(axis) {
-    var x = this.x;
-    var y = this.y;
-    this.projectN(axis).scale(2);
-    this.x -= x;
-    this.y -= y;
-    return this;
-  };
-  Vector.prototype['relectN'] = Vector.prototype.reflectN;
-  
-  /**
-* Get the dot product of this vector against another.
-*
-* @param {Vector} other The vector to dot this one against.
-* @return {number} The dot product.
-*/
-  Vector.prototype.dot = function(other) {
-    return this.x * other.x + this.y * other.y;
-  };
-  Vector.prototype['dot'] = Vector.prototype.dot;
-  
-  /**
-* Get the length^2 of this vector.
-*
-* @return {number} The length^2 of this vector.
-*/
-  Vector.prototype.len2 = function() {
-    return this.dot(this);
-  };
-  Vector.prototype['len2'] = Vector.prototype.len2;
-  
-  /**
-* Get the length of this vector.
-*
-* @return {number} The length of this vector.
-*/
-  Vector.prototype.len = function() {
-    return Math.sqrt(this.len2());
-  };
-  Vector.prototype['len'] = Vector.prototype.len;
-  
-  /**
-* A circle.
-*
-* @param {Vector=} pos A vector representing the position of the center of the circle
-* @param {?number=} r The radius of the circle
-* @constructor
-*/
+  var T_ARRAYS = [];
+  for (var i = 0; i < 5; i++) {
+    T_ARRAYS.push([]);
+  }
+
   var Circle = function(pos, r) {
     this['pos'] = this.pos = pos || new Vector();
     this['r'] = this.r = r || 0;
   };
-  SAT['Circle'] = Circle;
-  
-  /**
-* A *convex* clockwise polygon.
-*
-* @param {Vector=} pos A vector representing the origin of the polygon. (all other
-* points are relative to this one)
-* @param {Array.<Vector>=} points An array of vectors representing the points in the polygon,
-* in clockwise order.
-* @constructor
-*/
+
   var Polygon = function(pos, points) {
     this['pos'] = this.pos = pos || new Vector();
     this['points'] = this.points = points || [];
     this.recalc();
   };
-  SAT['Polygon'] = Polygon;
-  
-  /**
-* Recalculate the edges and normals of the polygon. This
-* MUST be called if the points array is modified at all and
-* the edges or normals are to be accessed.
-*/
+
   Polygon.prototype.recalc = function() {
     var points = this.points;
     var len = points.length;
@@ -256,63 +35,7 @@ var SAT = window['SAT'] = {};
       this.normals.push(n);
     }
   };
-  Polygon.prototype['recalc'] = Polygon.prototype.recalc;
-  
-  /**
-* An axis-aligned box, with width and height.
-*
-* @param {Vector=} pos A vector representing the top-left of the box.
-* @param {?number=} w The width of the box.
-* @param {?number=} h The height of the box.
-* @constructor
-*/
-  var Box = function(pos, w, h) {
-    this['pos'] = this.pos = pos || new Vector();
-    this['w'] = this.w = w || 0;
-    this['h'] = this.h = h || 0;
-  };
-  SAT['Box'] = Box;
 
-  /**
-* Create a polygon that is the same as this box.
-*
-* @return {Polygon} A new Polygon that represents this box.
-*/
-  Box.prototype.toPolygon = function() {
-    var pos = this.pos;
-    var w = this.w;
-    var h = this.h;
-    return new Polygon(new Vector(pos.x, pos.y), [
-     new Vector(), new Vector(w, 0),
-     new Vector(w,h), new Vector(0,h)
-    ]);
-  };
-  Box.prototype['toPolygon'] = Box.prototype.toPolygon;
-  
-  /**
-* Pool of Vectors used in calculations.
-*
-* @type {Array.<Vector>}
-*/
-  var T_VECTORS = [];
-  for (var i = 0; i < 10; i++) { T_VECTORS.push(new Vector()); }
-  /**
-* Pool of Arrays used in calculations.
-*
-* @type {Array.<Array.<*>>}
-*/
-  var T_ARRAYS = [];
-  for (var i = 0; i < 5; i++) { T_ARRAYS.push([]); }
-
-  /**
-* An object representing the result of an intersection. Contain information about:
-* - The two objects participating in the intersection
-* - The vector representing the minimum change necessary to extract the first object
-* from the second one.
-* - Whether the first object is entirely inside the second, or vice versa.
-*
-* @constructor
-*/
   var Response = function() {
     this['a'] = this.a = null;
     this['b'] = this.b = null;
@@ -320,62 +43,32 @@ var SAT = window['SAT'] = {};
     this['overlapV'] = this.overlapV = new Vector(); // Subtract this from a's position to extract it from b
     this.clear();
   };
-  SAT['Response'] = Response;
-
-  /**
-* Set some values of the response back to their defaults. Call this between tests if
-* you are going to reuse a single Response object for multiple intersection tests (recommented)
-*
-* @return {Response} This for chaining
-*/
+  
   Response.prototype.clear = function() {
     this['aInB'] = this.aInB = true; // Is a fully inside b?
     this['bInA'] = this.bInA = true; // Is b fully inside a?
     this['overlap'] = this.overlap = Number.MAX_VALUE; // Amount of overlap (magnitude of overlapV). Can be 0 (if a and b are touching)
     return this;
   };
-  Response.prototype['clear'] = Response.prototype.clear;
-  
-  /**
-* Flattens the specified array of points onto a unit vector axis,
-* resulting in a one dimensional range of the minimum and
-* maximum value on that axis.
-*
-* @param {Array.<Vector>} points The points to flatten.
-* @param {Vector} normal The unit vector axis to flatten on.
-* @param {Array.<number>} result An array. After calling this function,
-* result[0] will be the minimum value,
-* result[1] will be the maximum value.
-*/
+
   var flattenPointsOn = function(points, normal, result) {
     var min = Number.MAX_VALUE;
     var max = -Number.MAX_VALUE;
     var len = points.length;
-    for (var i = 0; i < len; i++ ) {
+    for (var i = 0; i < len; i++) {
       // Get the magnitude of the projection of the point onto the normal
       var dot = points[i].dot(normal);
-      if (dot < min) { min = dot; }
-      if (dot > max) { max = dot; }
+      if (dot < min) {
+        min = dot;
+      }
+      if (dot > max) {
+        max = dot;
+      }
     }
-    result[0] = min; result[1] = max;
+    result[0] = min;
+    result[1] = max;
   };
-  
-  /**
-* Check whether two convex clockwise polygons are separated by the specified
-* axis (must be a unit vector).
-*
-* @param {Vector} aPos The position of the first polygon.
-* @param {Vector} bPos The position of the second polygon.
-* @param {Array.<Vector>} aPoints The points in the first polygon.
-* @param {Array.<Vector>} bPoints The points in the second polygon.
-* @param {Vector} axis The axis (unit sized) to test against. The points of both polygons
-* will be projected onto this axis.
-* @param {Response=} response A Response object (optional) which will be populated
-* if the axis is not a separating axis.
-* @return {boolean} true if it is a separating axis, false otherwise. If false,
-* and a response is passed in, information about how much overlap and
-* the direction of the overlap will be populated.
-*/
+
   var isSeparatingAxis = function(aPos, bPos, aPoints, bPoints, axis, response) {
     var rangeA = T_ARRAYS.pop();
     var rangeB = T_ARRAYS.pop();
@@ -405,20 +98,20 @@ var SAT = window['SAT'] = {};
         if (rangeA[1] < rangeB[1]) {
           overlap = rangeA[1] - rangeB[0];
           response.bInA = false;
-        // B is fully inside A. Pick the shortest way out.
+          // B is fully inside A. Pick the shortest way out.
         } else {
           var option1 = rangeA[1] - rangeB[0];
           var option2 = rangeB[1] - rangeA[0];
           overlap = option1 < option2 ? option1 : -option2;
         }
-      // B starts further left than A
+        // B starts further left than A
       } else {
         response.bInA = false;
         // B ends before A ends. We have to push A out of B
         if (rangeA[1] > rangeB[1]) {
           overlap = rangeA[0] - rangeB[1];
           response.aInB = false;
-        // A is fully inside B. Pick the shortest way out.
+          // A is fully inside B. Pick the shortest way out.
         } else {
           var option1 = rangeA[1] - rangeB[0];
           var option2 = rangeB[1] - rangeA[0];
@@ -440,50 +133,23 @@ var SAT = window['SAT'] = {};
     T_ARRAYS.push(rangeB);
     return false;
   };
-  
-  /**
-* Calculates which Vornoi region a point is on a line segment.
-* It is assumed that both the line and the point are relative to (0, 0)
-*
-* | (0) |
-* (-1) [0]--------------[1] (1)
-* | (0) |
-*
-* @param {Vector} line The line segment.
-* @param {Vector} point The point.
-* @return {number} LEFT_VORNOI_REGION (-1) if it is the left region,
-* MIDDLE_VORNOI_REGION (0) if it is the middle region,
-* RIGHT_VORNOI_REGION (1) if it is the right region.
-*/
+
+  var LEFT_VORNOI_REGION = -1;
+  var MIDDLE_VORNOI_REGION = 0;
+  var RIGHT_VORNOI_REGION = 1;
+
   var vornoiRegion = function(line, point) {
     var len2 = line.len2();
     var dp = point.dot(line);
-    if (dp < 0) { return LEFT_VORNOI_REGION; }
-    else if (dp > len2) { return RIGHT_VORNOI_REGION; }
-    else { return MIDDLE_VORNOI_REGION; }
+    if (dp < 0) {
+      return LEFT_VORNOI_REGION;
+    } else if (dp > len2) {
+      return RIGHT_VORNOI_REGION;
+    } else {
+      return MIDDLE_VORNOI_REGION;
+    }
   };
-  /**
-* @const
-*/
-  var LEFT_VORNOI_REGION = -1;
-  /**
-* @const
-*/
-  var MIDDLE_VORNOI_REGION = 0;
-  /**
-* @const
-*/
-  var RIGHT_VORNOI_REGION = 1;
-  
-  /**
-* Check if two circles intersect.
-*
-* @param {Circle} a The first circle.
-* @param {Circle} b The second circle.
-* @param {Response=} response Response object (optional) that will be populated if
-* the circles intersect.
-* @return {boolean} true if the circles intersect, false if they don't.
-*/
+
   var testCircleCircle = function(a, b, response) {
     var differenceV = T_VECTORS.pop().copy(b.pos).sub(a.pos);
     var totalRadius = a.r + b.r;
@@ -508,17 +174,7 @@ var SAT = window['SAT'] = {};
     T_VECTORS.push(differenceV);
     return true;
   };
-  SAT['testCircleCircle'] = testCircleCircle;
-  
-  /**
-* Check if a polygon and a circle intersect.
-*
-* @param {Polygon} polygon The polygon.
-* @param {Circle} circle The circle.
-* @param {Response=} response Response object (optional) that will be populated if
-* they interset.
-* @return {boolean} true if they intersect, false if they don't.
-*/
+
   var testPolygonCircle = function(polygon, circle, response) {
     var circlePos = T_VECTORS.pop().copy(circle.pos).sub(polygon.pos);
     var radius = circle.r;
@@ -527,26 +183,26 @@ var SAT = window['SAT'] = {};
     var len = points.length;
     var edge = T_VECTORS.pop();
     var point = T_VECTORS.pop();
-    
+
     // For each edge in the polygon
     for (var i = 0; i < len; i++) {
       var next = i === len - 1 ? 0 : i + 1;
       var prev = i === 0 ? len - 1 : i - 1;
       var overlap = 0;
       var overlapN = null;
-      
+
       // Get the edge
       edge.copy(polygon.edges[i]);
       // Calculate the center of the cirble relative to the starting point of the edge
       point.copy(circlePos).sub(points[i]);
-      
+
       // If the distance between the center of the circle and the point
       // is bigger than the radius, the polygon is definitely not fully in
       // the circle.
       if (response && point.len2() > radius2) {
         response.aInB = false;
       }
-      
+
       // Calculate which Vornoi region the center of the circle is in.
       var region = vornoiRegion(edge, point);
       if (region === LEFT_VORNOI_REGION) {
@@ -595,7 +251,7 @@ var SAT = window['SAT'] = {};
             overlap = radius - dist;
           }
         }
-      // MIDDLE_VORNOI_REGION
+        // MIDDLE_VORNOI_REGION
       } else {
         // Need to check if the circle is intersecting the edge,
         // Change the edge into its "edge normal".
@@ -621,7 +277,7 @@ var SAT = window['SAT'] = {};
           }
         }
       }
-      
+
       // If this is the smallest overlap we've seen, keep it.
       // (overlapN may be null if the circle was in the wrong Vornoi region)
       if (overlapN && response && Math.abs(overlap) < Math.abs(response.overlap)) {
@@ -629,7 +285,7 @@ var SAT = window['SAT'] = {};
         response.overlapN.copy(overlapN);
       }
     }
-    
+
     // Calculate the final overlap vector - based on the smallest overlap.
     if (response) {
       response.a = polygon;
@@ -641,20 +297,8 @@ var SAT = window['SAT'] = {};
     T_VECTORS.push(point);
     return true;
   };
-  SAT['testPolygonCircle'] = testPolygonCircle;
   
-  /**
-* Check if a circle and a polygon intersect.
-*
-* NOTE: This runs slightly slower than polygonCircle as it just
-* runs polygonCircle and reverses everything at the end.
-*
-* @param {Circle} circle The circle.
-* @param {Polygon} polygon The polygon.
-* @param {Response=} response Response object (optional) that will be populated if
-* they interset.
-* @return {boolean} true if they intersect, false if they don't.
-*/
+
   var testCirclePolygon = function(circle, polygon, response) {
     var result = testPolygonCircle(polygon, circle, response);
     if (result && response) {
@@ -670,34 +314,27 @@ var SAT = window['SAT'] = {};
     }
     return result;
   };
-  SAT['testCirclePolygon'] = testCirclePolygon;
-  
-  /**
-* Checks whether two convex, clockwise polygons intersect.
-*
-* @param {Polygon} a The first polygon.
-* @param {Polygon} b The second polygon.
-* @param {Response=} response Response object (optional) that will be populated if
-* they interset.
-* @return {boolean} true if they intersect, false if they don't.
-*/
+
   var testPolygonPolygon = function(a, b, response) {
     var aPoints = a.points;
     var aLen = aPoints.length;
     var bPoints = b.points;
     var bLen = bPoints.length;
+    
     // If any of the edge normals of A is a separating axis, no intersection.
     for (var i = 0; i < aLen; i++) {
       if (isSeparatingAxis(a.pos, b.pos, aPoints, bPoints, a.normals[i], response)) {
         return false;
       }
     }
+    
     // If any of the edge normals of B is a separating axis, no intersection.
-    for (var i = 0;i < bLen; i++) {
+    for (var i = 0; i < bLen; i++) {
       if (isSeparatingAxis(a.pos, b.pos, aPoints, bPoints, b.normals[i], response)) {
         return false;
       }
     }
+
     // Since none of the edge normals of A or B are a separating axis, there is an intersection
     // and we've already calculated the smallest overlap (in isSeparatingAxis). Calculate the
     // final overlap vector.
@@ -706,7 +343,20 @@ var SAT = window['SAT'] = {};
       response.b = b;
       response.overlapV.copy(response.overlapN).scale(response.overlap);
     }
+
     return true;
   };
+
+  var SAT = {}
+
+  SAT['Circle']   = Circle;
+  SAT['Polygon']  = Polygon;
+  SAT['Response'] = Response;
+
+  SAT['testCircleCircle']   = testCircleCircle;
+  SAT['testPolygonCircle']  = testPolygonCircle;
+  SAT['testCirclePolygon']  = testCirclePolygon;
   SAT['testPolygonPolygon'] = testPolygonPolygon;
-}(SAT));
+
+  return SAT;
+});
