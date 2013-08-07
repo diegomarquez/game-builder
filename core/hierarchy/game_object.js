@@ -37,7 +37,7 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 			this.canUpdate = true;
 			this.canDraw = true;
 
-			this.execute('started', this);
+			this.execute('start', this);
 
 			if (!this.components) return;
 

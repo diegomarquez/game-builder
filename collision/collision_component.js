@@ -13,7 +13,7 @@ define(['component', 'collision/collision_resolver'], function(Component, Collis
 		},
 
 		update: function() {
-			collisionList = CollisionResolver.collisionLists[this.getCollisionId()];
+			collisionList = CollisionResolver.collisionLists[this.collisionId];
 
 			if (collisionList != null) {
 				for (k = 0; k < collisionList.length; k++) {

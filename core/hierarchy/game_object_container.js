@@ -56,7 +56,9 @@ define(["game_object"], function(GameObject){
 				if(!child.components)  continue;
 
 				for(var k=0; k<child.components.length; k++) {
-					child.components[k].update();
+					if(child.components[k].update) {
+						child.components[k].update();
+					}
 				}	
 			}
 		},
@@ -80,7 +82,18 @@ define(["game_object"], function(GameObject){
 
 				context.save();
 				child.transformAndDraw(context);
-				context.restore();
+
+				if(!child.components){ 
+					context.restore();
+				}else{
+					for(var k=0; k<child.components.length; k++) {
+						if(child.components[k].draw) {
+							child.components[k].draw(context);
+						}
+					}
+
+					context.restore();
+				}
 			}
 
 			context.restore();

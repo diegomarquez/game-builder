@@ -1,4 +1,13 @@
-define(['collision_component', 'collision/sat', 'vector_2D'], function(CollisionComponent, SAT, Vector2D){
+define(
+	[
+	 'collision/collision_component', 
+	 'collision/sat', 
+	 'collision/collision_resolver', 
+	 'vector_2D', 
+	 'draw'],
+
+	function(CollisionComponent, SAT, CollisionResolver, Vector2D, draw){
+	
 	var Component = CollisionComponent.extend({
 
 		start: function() {
@@ -13,7 +22,11 @@ define(['collision_component', 'collision/sat', 'vector_2D'], function(Collision
 			this.collider.pos.y = this.parent.y + this.parent.centerY;
 
 			this._super();
-		}
+		},
+
+		draw: function(context) {
+			draw.circle(context, 0, 0, this.radius, null, '#ffffff', 1);
+		} 
 
 	});
 

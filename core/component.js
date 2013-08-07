@@ -2,6 +2,8 @@ define(["delegate"], function(Delegate) {
 
 	var Component = Delegate.extend({
 		init: function() {
+			this._super();
+
 			this.poolId = null;
 			this.parent = null;
 		},
@@ -27,6 +29,8 @@ define(["delegate"], function(Delegate) {
 		start: function() {},
 		
 		update: function() {},
+
+		draw: function(context) {},
 
 		destroy: function() {
 			this.execute('recycle', this);

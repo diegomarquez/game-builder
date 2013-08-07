@@ -3,8 +3,10 @@
 		//Circle
 		//Polygon
 	//Draw hitarea
+		//Polygon
 
 //TODO: Test specific configuration
+	//Component
 
 //TODO: Component: Collision
 	//TODO: Be able to configure hitArea.
@@ -44,15 +46,14 @@
 
 define(['game',
 		'collision/collision_resolver',
+		'collision/circle_collider',
 		'test_game_objects/basic_game_object',
-		'test_game_objects/basic_container',
-		'test_components/test_component',
 		'factory',
 		'layers',
 		'keyboard'
 	],
 
-	function(game, collision_resolver, test, test_container, test_component, factory, layers, keyboard) {
+	function(game, collision_resolver, circle_collider, test, factory, layers, keyboard) {
 
 		var main = function(){};
 
@@ -61,27 +62,24 @@ define(['game',
 				console.log("Init");
 
 				factory.createGameObjectPool("Base", test, 10);
-				factory.createGameObjectPool("Container", test_container, 1);
 
-				//factory.createComponentPool("Component", test_component, 5);
+				factory.createComponentPool("Collider", circle_collider, 5);
 				
-				// factory.createComponentConfiguration("Component_1", 'Component', {
-				// 	rotationSpeed: 3
-				// });
-				// factory.createComponentConfiguration("Component_2", 'Component', {
-				// 	rotationSpeed: 10
-				// });
+				factory.createComponentConfiguration("Collider_1", 'Collider');
 
 				factory.createGameObjectConfiguration("Base_1", "Base").args({
 					x: 50,
 					y: 50,
 					rSpeed: 3,
 					color: '#00ff00'
-				});
-				
-				// factory.createGameObjectConfiguration("Base_2", "Base").addComponent("Component_1");
-				// factory.createGameObjectConfiguration("Container_1", "Container").addComponent("Component_2").addChild("Base_1");
-				// factory.createGameObjectConfiguration("Container_2", "Container");
+				}).addComponent('Collider_1', {radius:20});
+
+				factory.createGameObjectConfiguration("Base_2", "Base").args({
+					x: 100,
+					y: 100,
+					rSpeed: 3,
+					color: '#ff0000'
+				}).addComponent('Collider_1', {radius:10});
 			});
 
 			game.on("pause", this, function() {
@@ -101,7 +99,9 @@ define(['game',
 			});
 
 			keyboard.addUpCallback(keyboard.A, function() {
-			
+				layers.get('Back').add(factory.get('Base_1')).start();
+
+				layers.get('Back').add(factory.get('Base_2')).start();
 			});
 
 			keyboard.addUpCallback(keyboard.S, function() {
