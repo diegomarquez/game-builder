@@ -10,10 +10,9 @@
 	//TODO: Be able to configure hitArea.
 	//TODO: Multiple hit areas for a single GameObject. Set a name so that a specific onCollide method can be added dynamically to a game_object on creation
 	
-
 //TODO: Component: Renderer
-		//Drawing API renderer. Contains the commands to draw something. Can be cached.
-		//Bitmap rendering. Draws an image.
+	//Drawing API renderer. Contains the commands to draw something. Can be cached.
+	//Bitmap rendering. Draws an image.
 
 //TODO: Update main TODO in README.md
 
