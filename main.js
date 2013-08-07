@@ -43,6 +43,7 @@
 	//TODO: Maybe JSON strings.
 
 define(['game',
+		'collision/collision_resolver',
 		'test_game_objects/basic_game_object',
 		'test_game_objects/basic_container',
 		'test_components/test_component',
@@ -51,7 +52,7 @@ define(['game',
 		'keyboard'
 	],
 
-	function(game, test, test_container, test_component, factory, layers, keyboard) {
+	function(game, collision_resolver, test, test_container, test_component, factory, layers, keyboard) {
 
 		var main = function(){};
 
@@ -62,14 +63,15 @@ define(['game',
 				factory.createGameObjectPool("Base", test, 10);
 				factory.createGameObjectPool("Container", test_container, 1);
 
-				factory.createComponentPool("Component", test_component, 5);
+				//factory.createComponentPool("Component", test_component, 5);
 				
-				factory.createComponentConfiguration("Component_1", 'Component', {
-					rotationSpeed: 3
-				});
-				factory.createComponentConfiguration("Component_2", 'Component', {
-					rotationSpeed: 10
-				});
+				// factory.createComponentConfiguration("Component_1", 'Component', {
+				// 	rotationSpeed: 3
+				// });
+				// factory.createComponentConfiguration("Component_2", 'Component', {
+				// 	rotationSpeed: 10
+				// });
+
 				factory.createGameObjectConfiguration("Base_1", "Base").args({
 					x: 50,
 					y: 50,
@@ -77,9 +79,9 @@ define(['game',
 					color: '#00ff00'
 				});
 				
-				factory.createGameObjectConfiguration("Base_2", "Base").addComponent("Component_1");
-				factory.createGameObjectConfiguration("Container_1", "Container").addComponent("Component_2").addChild("Base_1");
-				factory.createGameObjectConfiguration("Container_2", "Container");
+				// factory.createGameObjectConfiguration("Base_2", "Base").addComponent("Component_1");
+				// factory.createGameObjectConfiguration("Container_1", "Container").addComponent("Component_2").addChild("Base_1");
+				// factory.createGameObjectConfiguration("Container_2", "Container");
 			});
 
 			game.on("pause", this, function() {
@@ -91,76 +93,28 @@ define(['game',
 			});
 
 			game.on("update", this, function() {
-				// if (keyboard.isDown(keyboard.GAME_LEFT)) {
-				// 	root.x--
-				// }
-				// if (keyboard.isDown(keyboard.GAME_RIGHT)) {
-				// 	root.x++
-				// }
-				// if (keyboard.isDown(keyboard.GAME_UP)) {
-				// 	root.y--
-				// }
-				// if (keyboard.isDown(keyboard.GAME_DOWN)) {
-				// 	root.y++
-				// }
+				
 			});
 
 			keyboard.addUpCallback(keyboard.C, function() {
-				layers.clear('Back');
-				layers.clear('Middle');
-
-				console.log(factory.toString());
+			
 			});
 
 			keyboard.addUpCallback(keyboard.A, function() {
-				var x = (Math.random() * game.canvas.width);
-				var y = (Math.random() * game.canvas.height);
-
-				var rSpeed = Math.random() * 3;
-				var color = "#" + (Math.random().toString(16) + '000000').slice(2, 8);
-
-				layers.get('Back').add(factory.get("Base_1")).start(x, y, rSpeed, color);
+			
 			});
 
 			keyboard.addUpCallback(keyboard.S, function() {
-				var x = (Math.random() * game.canvas.width);
-				var y = (Math.random() * game.canvas.height);
-
-				var rSpeed = Math.random() * 3;
-				var color = "#" + (Math.random().toString(16) + '000000').slice(2, 8);
-
-				layers.get('Middle').add(factory.get("Base_1")).start(x, y, rSpeed, color);
+		
 			});
 
 			keyboard.addUpCallback(keyboard.D, function() {
-				// var x = (Math.random() * game.canvas.width);
-				// var y = (Math.random() * game.canvas.height);
 
-				//root.add(factory.get("Container_1")).start(x, y);
 			});
-
-			//var c;
 
 			keyboard.addUpCallback(keyboard.Z, function() {
-				// var x = (Math.random() * game.canvas.width);
-				// var y = (Math.random() * game.canvas.height);
-
-				// c = factory.get("Container_2");
-
-				//root.add(c).start(x, y);
+				
 			});
-
-			// keyboard.addUpCallback(keyboard.X, function() {
-			// 	var x = 100;
-			// 	var y = 100;
-
-			// 	var rSpeed = Math.random() * 3;
-			// 	var color = "#" + (Math.random().toString(16) + '000000').slice(2, 8);
-
-			// 	var child = factory.get("Base_1");
-			// 	child.start(x, y, rSpeed, color);
-			// 	c.add(child)
-			// });
 		}
 
 		return new main()

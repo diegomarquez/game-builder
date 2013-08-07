@@ -1,4 +1,4 @@
-define(['collision_component', 'sat', 'vector2D'], function(CollisionComponent, SAT, Vector2D){
+define(['collision_component', 'collision/sat', 'vector_2D'], function(CollisionComponent, SAT, Vector2D){
 
 	var Component = CollisionComponent.extend({
 		start: function() {

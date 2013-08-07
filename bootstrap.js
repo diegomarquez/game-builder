@@ -11,6 +11,7 @@ requirejs.config({
 		"sound_player": "core/sound_player",
 		"state_machine": "core/state_machine",
 		"timer_factory": "core/timer_factory",
+		"draw": "core/draw",
 
 		"matrix_3x3": "core/math/matrix_3x3",
 		"vector_2D": "core/math/vector_2D",
@@ -22,8 +23,6 @@ requirejs.config({
 		
 		"factory": "core/factory",
 		"layers": "core/layers",
-
-		"draw": "utils/draw",
 
 		"domReady": "requireJS/domReady"		
 	}
