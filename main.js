@@ -61,6 +61,8 @@ define(['game',
 			game.on("init", this, function() {
 				console.log("Init");
 
+				collision_resolver.addCollisionPair('Green', 'Red');
+
 				factory.createGameObjectPool("Base", test, 10);
 
 				factory.createComponentPool("Collider", circle_collider, 5);
@@ -72,14 +74,14 @@ define(['game',
 					y: 50,
 					rSpeed: 3,
 					color: '#00ff00'
-				}).addComponent('Collider_1', {radius:20});
+				}).addComponent('Collider_1', {id:'Green', radius:20});
 
 				factory.createGameObjectConfiguration("Base_2", "Base").args({
 					x: 100,
 					y: 100,
 					rSpeed: 3,
 					color: '#ff0000'
-				}).addComponent('Collider_1', {radius:10});
+				}).addComponent('Collider_1', {id:'Red', radius:10});
 			});
 
 			game.on("pause", this, function() {
@@ -91,16 +93,36 @@ define(['game',
 			});
 
 			game.on("update", this, function() {
-				
+				if(!b1) return;
+
+				if(keyboard.isDown(keyboard.GAME_RIGHT)) {
+					b1.x++;
+				}
+
+				if(keyboard.isDown(keyboard.GAME_LEFT)) {
+					b1.x--;	
+				}
+
+				if(keyboard.isDown(keyboard.GAME_UP)) {
+					b1.y--;
+				}
+
+				if(keyboard.isDown(keyboard.GAME_DOWN)) {
+					b1.y++;
+				}
 			});
 
 			keyboard.addUpCallback(keyboard.C, function() {
 			
 			});
 
-			keyboard.addUpCallback(keyboard.A, function() {
-				layers.get('Back').add(factory.get('Base_1')).start();
+			var b1;
 
+			keyboard.addUpCallback(keyboard.A, function() {
+				b1 = layers.get('Back').add(factory.get('Base_1'));
+				b1.start();				
+
+				//layers.get('Back').add(factory.get('Base_1')).start();
 				layers.get('Back').add(factory.get('Base_2')).start();
 			});
 

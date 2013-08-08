@@ -42,17 +42,17 @@ define(['collision/sat'], function(SAT) {
 		}
 
 		if (first.colliderType == second.colliderType) {
-			if (first.colliderType == CollisionResolver.CIRCLE_COLLIDER) {
+			if (first.colliderType == this.CIRCLE_COLLIDER) {
 				return SAT.testCircleCircle(first.collider, second.collider);
 			}
-			if (first.colliderType == CollisionResolver.POLYGON_COLLIDER) {
+			if (first.colliderType == this.POLYGON_COLLIDER) {
 				return SAT.testPolygonPolygon(first.collider, second.collider);
 			}
 		} else {
-			if (first.colliderType == CollisionResolver.CIRCLE_COLLIDER) {
+			if (first.colliderType == this.CIRCLE_COLLIDER) {
 				return SAT.testPolygonCircle(second.collider, first.collider);
 			}
-			if (first.colliderType == CollisionResolver.POLYGON_COLLIDER) {
+			if (first.colliderType == this.POLYGON_COLLIDER) {
 				return SAT.testPolygonCircle(first.collider, second.collider);
 			}
 		}
@@ -60,8 +60,8 @@ define(['collision/sat'], function(SAT) {
 		return false;
 	}
 
-	CollisionResolver.CIRCLE_COLLIDER  = 0;
-	CollisionResolver.POLYGON_COLLIDER = 1;
+	CollisionResolver.prototype.CIRCLE_COLLIDER  = 0;
+	CollisionResolver.prototype.POLYGON_COLLIDER = 1;
 
 	return new CollisionResolver();
 });

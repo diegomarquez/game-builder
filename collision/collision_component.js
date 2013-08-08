@@ -10,6 +10,9 @@ define(['component', 'collision/collision_resolver'], function(Component, Collis
 			this.checkingCollisions = true;
 
 			CollisionResolver.addToCollisionList(this);
+
+			if(!this.parent.onCollide)
+				throw new Error("GameObject with typeId: " + this.parent.typeId + ", needs to define an onCollide method, yo.");
 		},
 
 		update: function() {
@@ -23,20 +26,14 @@ define(['component', 'collision/collision_resolver'], function(Component, Collis
 
 					if (CollisionResolver.areColliding(this, collisionOpponent)) {
 						if (!this.checkingCollisions) break;
-
-						if(!this.parent.onCollide)
-							throw new Error("GameObject with typeId: " + this.parent.typeId + ", has collider component but does not define an onCollide method, yo.");
-						
+		
 						this.parent.onCollide(collisionOpponent.parent);
-						this.parent.execute('collide', collisionOpponent.parent)
+						this.parent.execute('collide', collisionOpponent.parent);
 
 						if (!this.checkingCollisions) break;
 
-						if(!collisionOpponent.parent.onCollide)
-							throw new Error("GameObject with typeId: " + collisionOpponent.parent.typeId + ", has collider component but does not define an onCollide method, yo.");
-
 						collisionOpponent.parent.onCollide(this.parent);
-						collisionOpponent.parent.execute('collide', this.parent)
+						collisionOpponent.parent.execute('collide', this.parent);
 					}
 				}
 			}
