@@ -1,9 +1,17 @@
 //TODO: Test collision detection
+	//Basic detection, same coordinate space
+		//Fixed Polygon
+		//Transformed Polygon
 	//Translation, rotation and scaling according to parent matrix
-		//Circle
-		//Polygon
+		//Fixed Polygon (Only translation)
+		//Transformed Polygon
 	//Draw hitarea
-		//Polygon
+		//Fixed Polygon
+		//Transformed Polygon
+
+//TODO: Test collision posibilities
+	//Circle Vs. Polygon
+	//Polygon Vs. Polygon
 
 //TODO: Test specific configuration
 	//Component
@@ -21,6 +29,8 @@
 //Implement event bubbling
 
 //TODO: Component of game.js: Auto-resize
+
+//TODO: Figure out something cool to better handle arguments sent to the start method of a game_object
 
 //TODO: TimeoutFactory tiene que poder destruir las referencias que devuelve de su metodo 'get'
 //Probablemente hay que pasarle entre los parametros el nombre de la variable donde estoy guardando el timer.
@@ -48,12 +58,12 @@ define(['game',
 		'collision/collision_resolver',
 		'collision/circle_collider',
 		'test_game_objects/basic_game_object',
+		'test_game_objects/basic_container',
 		'factory',
 		'layers',
-		'keyboard'
-	],
+		'keyboard'],
 
-	function(game, collision_resolver, circle_collider, test, factory, layers, keyboard) {
+	function(game, collision_resolver, circle_collider, test, container, factory, layers, keyboard) {
 
 		var main = function(){};
 
@@ -64,6 +74,7 @@ define(['game',
 				collision_resolver.addCollisionPair('Green', 'Red');
 
 				factory.createGameObjectPool("Base", test, 10);
+				factory.createGameObjectPool("Container", container, 1);
 
 				factory.createComponentPool("Collider", circle_collider, 5);
 				
@@ -77,11 +88,17 @@ define(['game',
 				}).addComponent('Collider_1', {id:'Green', radius:20});
 
 				factory.createGameObjectConfiguration("Base_2", "Base").args({
-					x: 100,
-					y: 100,
+					x: 300,
+					y: 300,
 					rSpeed: 3,
 					color: '#ff0000'
 				}).addComponent('Collider_1', {id:'Red', radius:10});
+
+				factory.createGameObjectConfiguration("Container_1", "Container").args({
+					x: 100,
+					y: 100
+				}).addChild("Base_1");
+
 			});
 
 			game.on("pause", this, function() {
@@ -91,6 +108,8 @@ define(['game',
 			game.on("resume", this, function() {
 				console.log("Resume");
 			});
+
+			var p = {}
 
 			game.on("update", this, function() {
 				if(!b1) return;
@@ -119,7 +138,8 @@ define(['game',
 			var b1;
 
 			keyboard.addUpCallback(keyboard.A, function() {
-				b1 = layers.get('Back').add(factory.get('Base_1'));
+				//b1 = layers.get('Back').add(factory.get('Base_1'));
+				b1 = layers.get('Back').add(factory.get('Container_1'));
 				b1.start();				
 
 				//layers.get('Back').add(factory.get('Base_1')).start();

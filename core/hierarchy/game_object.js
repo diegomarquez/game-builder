@@ -1,5 +1,9 @@
 define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 
+	//This is used as a helper in getTransform
+	//Declared here in an act of ultimate evil, AKA, premature optimization.
+	var go;
+
 	var GameObject = Delegate.extend({
 		init: function() {
 			this._super();
@@ -138,21 +142,21 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 			if (centerY) this.centerY = centerY;
 		},
 
-		getTransform: function(m, r) {
+		getTransform: function(r, m) {
 			if (m) {
 				m.identity();
 			} else {
 				m = new Matrix().identity();
 			}
 
-			var go = this;
+			go = this;
 
 			while (go != null) {
 				m.prependTransform(go.x, go.y, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY);
 				go = go.parent;
 			}
 
-			return m.decompose(r);
+			m.decompose(r);
 		}
 	});
 

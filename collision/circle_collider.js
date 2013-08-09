@@ -6,6 +6,9 @@ define(
 	 'draw'],
 
 	function(CollisionComponent, SAT, CollisionResolver, Vector2D, draw){
+
+	var p = {};
+	var m = null;
 	
 	var Component = CollisionComponent.extend({
 
@@ -17,8 +20,10 @@ define(
 		},
 		
 		update: function() {
-			this.collider.pos.x = this.parent.x;
-			this.collider.pos.y = this.parent.y;
+			this.parent.getTransform(p, m);
+
+			this.collider.pos.x = p.x;
+			this.collider.pos.y = p.y;
 
 			this._super();
 		},

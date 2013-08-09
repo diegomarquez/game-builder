@@ -8,8 +8,8 @@ define(["game_object_container", "draw"], function(GameObjectContainer, draw){
 		start: function(x, y) {
 			this._super();
 			
-			this.x = x;
-			this.y = y;
+			this.x = x || this.args.x;
+			this.y = y || this.args.y;
 		},
 
 		update: function(delta) {

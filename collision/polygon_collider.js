@@ -10,10 +10,14 @@ define(['collision/collision_component', 'collision/sat', 'collision/collision_r
 
 		update: function() {
 			//TODO: Esto no va a funcionar
-			this.collider.pos.x = this.parent.x + this.parent.centerX;
-			this.collider.pos.y = this.parent.y + this.parent.centerY;
+			this.collider.pos.x = this.parent.x;
+			this.collider.pos.y = this.parent.y;
 
 			this._super();
+		},
+
+		draw: function(context) {
+			
 		}
 	});
 });
