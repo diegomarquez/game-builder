@@ -142,6 +142,23 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 			if (centerY) this.centerY = centerY;
 		},
 
+		getMatrix: function(m) {
+			if (m) {
+				m.identity();
+			} else {
+				m = new Matrix().identity();
+			}
+
+			go = this;
+
+			while (go != null) {
+				m.prependTransform(go.x, go.y, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY);
+				go = go.parent;
+			}
+
+			return m;
+		},
+
 		getTransform: function(r, m) {
 			if (m) {
 				m.identity();

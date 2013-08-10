@@ -1,20 +1,15 @@
 //TODO: Test collision detection
 	//Basic detection, same coordinate space
 		//Fixed Polygon
-		//Transformed Polygon
 	//Translation, rotation and scaling according to parent matrix
 		//Fixed Polygon (Only translation)
-		//Transformed Polygon
 	//Draw hitarea
 		//Fixed Polygon
-		//Transformed Polygon
 
 //TODO: Test collision posibilities
-	//Circle Vs. Polygon
 	//Polygon Vs. Polygon
 
-//TODO: Test specific configuration
-	//Component
+//TODO: Polygon object with fixed vertex count and less expensive recalc method
 
 //TODO: Component: Collision
 	//TODO: Be able to configure hitArea.
@@ -26,11 +21,17 @@
 
 //TODO: Update main TODO in README.md
 
+//=======================================//
+//=======================================//
+//=======================================//
+
 //Implement event bubbling
 
 //TODO: Component of game.js: Auto-resize
 
 //TODO: Figure out something cool to better handle arguments sent to the start method of a game_object
+
+//TODO: factory.js should be able to create objects dynamically and add them to the pool when done with them
 
 //TODO: TimeoutFactory tiene que poder destruir las referencias que devuelve de su metodo 'get'
 //Probablemente hay que pasarle entre los parametros el nombre de la variable donde estoy guardando el timer.
@@ -57,13 +58,14 @@
 define(['game',
 		'collision/collision_resolver',
 		'collision/circle_collider',
+		'collision/polygon_collider',
 		'test_game_objects/basic_game_object',
 		'test_game_objects/basic_container',
 		'factory',
 		'layers',
 		'keyboard'],
 
-	function(game, collision_resolver, circle_collider, test, container, factory, layers, keyboard) {
+	function(game, collision_resolver, circle_collider, polygon_collider, test, container, factory, layers, keyboard) {
 
 		var main = function(){};
 
@@ -76,16 +78,18 @@ define(['game',
 				factory.createGameObjectPool("Base", test, 10);
 				factory.createGameObjectPool("Container", container, 1);
 
-				factory.createComponentPool("Collider", circle_collider, 5);
+				factory.createComponentPool("Collider_Circle", circle_collider, 5);
+				factory.createComponentPool("Collider_Polygon", polygon_collider, 5);
 				
-				factory.createComponentConfiguration("Collider_1", 'Collider');
+				factory.createComponentConfiguration("Collider_1", 'Collider_Circle');
+				factory.createComponentConfiguration("Collider_2", 'Collider_Polygon');
 
 				factory.createGameObjectConfiguration("Base_1", "Base").args({
 					x: 50,
 					y: 50,
 					rSpeed: 3,
 					color: '#00ff00'
-				}).addComponent('Collider_1', {id:'Green', radius:20});
+				}).addComponent('Collider_1', {id:'Green', radius:5});
 
 				factory.createGameObjectConfiguration("Base_2", "Base").args({
 					x: 300,
@@ -93,6 +97,19 @@ define(['game',
 					rSpeed: 3,
 					color: '#ff0000'
 				}).addComponent('Collider_1', {id:'Red', radius:10});
+
+				factory.createGameObjectConfiguration("Base_3", "Base").args({
+					x: 200,
+					y: 200,
+					rSpeed: 1,
+					color: '#ff00ff',
+					scaleX: 2
+				}).addComponent('Collider_2', {id:'Red', points:[
+					{x:-10, y:-10},
+					{x:10, y:-10},
+					{x:10, y:10},
+					{x:-10, y:10}
+				]});
 
 				factory.createGameObjectConfiguration("Container_1", "Container").args({
 					x: 100,
@@ -143,11 +160,11 @@ define(['game',
 				b1.start();				
 
 				//layers.get('Back').add(factory.get('Base_1')).start();
-				layers.get('Back').add(factory.get('Base_2')).start();
+				//layers.get('Back').add(factory.get('Base_2')).start();
 			});
 
 			keyboard.addUpCallback(keyboard.S, function() {
-		
+				layers.get('Back').add(factory.get('Base_3')).start();
 			});
 
 			keyboard.addUpCallback(keyboard.D, function() {

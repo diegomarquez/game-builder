@@ -1,23 +1,48 @@
-define(['collision/collision_component', 'collision/sat', 'collision/collision_resolver', 'vector_2D'], function(CollisionComponent, SAT, CollisionResolver, Vector2D){
+define(
+	[
+		'collision/collision_component',
+		'collision/sat',
+		'collision/collision_resolver',
+		'vector_2D',
+		'draw'
+	],
 
-	var Component = CollisionComponent.extend({
-		start: function() {
-			this._super();
+	function(CollisionComponent, SAT, CollisionResolver, Vector2D, draw) {
 
-			this.collider = new SAT.Polygon(new Vector2D(0,0), this.points);
-			this.colliderType = CollisionResolver.POLYGON_COLLIDER;
-		},
+		var p = {};
+		var m = null;
 
-		update: function() {
-			//TODO: Esto no va a funcionar
-			this.collider.pos.x = this.parent.x;
-			this.collider.pos.y = this.parent.y;
+		var Component = CollisionComponent.extend({
+			start: function() {
+				this._super();
 
-			this._super();
-		},
+				this.pointCount = this.points.length;
+				this.pointsCopy = JSON.parse(JSON.stringify(this.points));
 
-		draw: function(context) {
-			
-		}
-	});
-});
+				this.collider = new SAT.Polygon(new Vector2D(0, 0), this.points);
+				this.colliderType = CollisionResolver.POLYGON_COLLIDER;
+			},
+
+			update: function() {
+				m = this.parent.getMatrix(m);
+
+				for(var i=0; i<this.pointCount; i++) {
+					p = m.transformPoint(this.pointsCopy[i].x, this.pointsCopy[i].y, p);
+
+					this.collider.points[i].x = p.x;
+					this.collider.points[i].y = p.y;	
+				}
+
+				this.collider.recalc();
+
+				this._super();
+			},
+
+			draw: function(context) {
+				draw.polygon(context, 0, 0, this.pointsCopy, null, "#ffffff", 1);
+			}
+		});
+
+		return Component;
+	}
+);
