@@ -6,6 +6,7 @@ define(["delegate"], function(Delegate) {
 
 			this.poolId = null;
 			this.parent = null;
+			this.renderer = null;
 		},
 
 		configure: function(args) {
@@ -29,8 +30,6 @@ define(["delegate"], function(Delegate) {
 		start: function() {},
 		
 		update: function() {},
-
-		draw: function(context) {},
 
 		destroy: function() {
 			this.execute('recycle', this);

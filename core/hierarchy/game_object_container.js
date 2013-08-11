@@ -87,8 +87,8 @@ define(["game_object"], function(GameObject){
 					context.restore();
 				}else{
 					for(var k=0; k<child.components.length; k++) {
-						if(child.components[k].draw) {
-							child.components[k].draw(context);
+						if(child.components[k].renderer) {
+							child.components[k].renderer.render(context);
 						}
 					}
 

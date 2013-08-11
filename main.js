@@ -1,20 +1,31 @@
-//TODO: Component: Collision
-	//TODO: Be able to configure hitArea.
-	//TODO: Multiple hit areas for a single GameObject. Set a name so that a specific onCollide method can be added dynamically to a game_object on creation
-	
 //TODO: Renderer
 	//Can be attached to anything. game_object and component
-		//Drawing API renderer. Contains the commands to draw something. Can be cached.
+		//Drawing API renderer. Contains the commands to draw something, lines, circles, etc. Can be cached.
 		//Bitmap rendering. Draws an image.
 	//Be able to turn off renderer through configuration
+	//Replace draw methods for renderer calls
+		//game_object (DONE!)
+		//component (DONE!)
+	//Create renderers for the concrete testing classes.
+	//Add those renderer to the object configuraions
 
 //TODO: Update main TODO in README.md
+
+//TODO: Divide the concerns of factory.js
+	//Different pool modules for the different types of objects
+		//game_object
+		//component
+		//renderer
+	//Hub object which pulls data from all the pools to put an object together
+		//game_object_assembler.js
 
 //=======================================//
 //=======================================//
 //=======================================//
 
 //Implement event bubbling
+
+//Figure out correct usage of centerX and centerY of game_object
 
 //TODO: Component of game.js: Auto-resize
 
@@ -28,6 +39,7 @@
 
 //TODO: Boilerplate
 	//TODO: Default main.js
+	//TODO: Hook up project specific main.js with framework's bootstrap.js
 
 //TODO: State machine that handles a closed object as a state with a start, update and finish
 
@@ -64,8 +76,6 @@ define(['game',
 			game.on("init", this, function() {
 				console.log("Init");
 
-				collision_resolver.addCollisionPair('Green', 'Red');
-
 				factory.createGameObjectPool("Base", test, 10);
 				factory.createGameObjectPool("Container", container, 1);
 
@@ -73,23 +83,23 @@ define(['game',
 				factory.createComponentPool("Collider_Polygon", polygon_collider, 5);
 				factory.createComponentPool("Collider_Fixed_Polygon", fixed_polygon_collider, 5);
 
-				factory.createComponentConfiguration("Collider_1", 'Collider_Circle');
-				factory.createComponentConfiguration("Collider_2", 'Collider_Polygon');
-				factory.createComponentConfiguration("Collider_3", 'Collider_Fixed_Polygon');
+				factory.createComponentConfiguration("Collider_1", 'Collider_Circle').setRenderer();
+				factory.createComponentConfiguration("Collider_2", 'Collider_Polygon').setRenderer();
+				factory.createComponentConfiguration("Collider_3", 'Collider_Fixed_Polygon').setRenderer();
 
 				factory.createGameObjectConfiguration("Base_1", "Base").args({
 					x: 50,
 					y: 50,
 					rSpeed: 3,
 					color: '#00ff00'
-				}).addComponent('Collider_1', {id:'Green', radius:5});
+				}).addComponent('Collider_1', {id:'Green', radius:5}).setRenderer();
 
 				factory.createGameObjectConfiguration("Base_2", "Base").args({
 					x: 300,
 					y: 300,
 					rSpeed: 3,
 					color: '#ff0000'
-				}).addComponent('Collider_1', {id:'Red', radius:10});
+				}).addComponent('Collider_1', {id:'Red', radius:10}).setRenderer();
 
 				factory.createGameObjectConfiguration("Base_3", "Base").args({
 					x: 200,
@@ -102,7 +112,7 @@ define(['game',
 					new vector_2D(10, -10),
 					new vector_2D(10, 10),
 					new vector_2D(-10, 10)
-				]});
+				]}).setRenderer();
 
 				factory.createGameObjectConfiguration("Base_4", "Base").args({
 					x: 50,
@@ -114,13 +124,14 @@ define(['game',
 					new vector_2D(10, -10),
 					new vector_2D(10, 10),
 					new vector_2D(-10, 10)
-				]});
+				]}).setRenderer();
 
 				factory.createGameObjectConfiguration("Container_1", "Container").args({
 					x: 100,
 					y: 100
-				}).addChild("Base_1");
+				}).addChild("Base_1").setRenderer();
 
+				collision_resolver.addCollisionPair('Green', 'Red');
 			});
 
 			game.on("pause", this, function() {

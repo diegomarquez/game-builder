@@ -11,7 +11,8 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 			this.parent = null;
 			this.matrix = new Matrix();
 
-			this.components;
+			this.components = null;
+			this.renderer = null;
 
 			this.x = 0;
 			this.y = 0;
@@ -51,7 +52,6 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 		},
 
 		update: function(delta) {},
-		draw: function(context) {},
 		destroy: function() {},
 
 		configure: function(args) {
@@ -94,7 +94,9 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 			this.matrix.identity().appendTransform(this.x, this.y, this.scaleX, this.scaleY, this.rotation, this.centerX, this.centerY);
 			context.transform(this.matrix.a, this.matrix.b, this.matrix.c, this.matrix.d, this.matrix.tx, this.matrix.ty);
 			context.globalAlpha *= this.alpha;
-			this.draw(context);
+
+			if(this.renderer) 
+				this.renderer.render(context)
 		},
 
 		clear: function() {

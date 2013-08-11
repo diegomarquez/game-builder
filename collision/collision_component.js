@@ -27,12 +27,16 @@ define(['component', 'collision/collision_resolver'], function(Component, Collis
 					if (CollisionResolver.areColliding(this, collisionOpponent)) {
 						if (!this.checkingCollisions) break;
 		
-						this.parent.onCollide(collisionOpponent.parent);
+						if(this.parent.onCollide)
+							this.parent.onCollide(collisionOpponent.parent);
+						
 						this.parent.execute('collide', collisionOpponent.parent);
 
 						if (!this.checkingCollisions) break;
 
-						collisionOpponent.parent.onCollide(this.parent);
+						if(collisionOpponent.parent.onCollide)
+							collisionOpponent.parent.onCollide(this.parent);
+						
 						collisionOpponent.parent.execute('collide', this.parent);
 					}
 				}
