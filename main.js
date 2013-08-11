@@ -1,23 +1,14 @@
-//TODO: Test collision detection
-	//Basic detection, same coordinate space
-		//Fixed Polygon
-	//Translation, rotation and scaling according to parent matrix
-		//Fixed Polygon (Only translation)
-	//Draw hitarea
-		//Fixed Polygon
-
-//TODO: Test collision posibilities
-	//Polygon Vs. Polygon
-
 //TODO: Polygon object with fixed vertex count and less expensive recalc method
 
 //TODO: Component: Collision
 	//TODO: Be able to configure hitArea.
 	//TODO: Multiple hit areas for a single GameObject. Set a name so that a specific onCollide method can be added dynamically to a game_object on creation
 	
-//TODO: Component: Renderer
-	//Drawing API renderer. Contains the commands to draw something. Can be cached.
-	//Bitmap rendering. Draws an image.
+//TODO: Renderer
+	//Can be attached to anything. game_object and component
+		//Drawing API renderer. Contains the commands to draw something. Can be cached.
+		//Bitmap rendering. Draws an image.
+	//Be able to turn off renderer through configuration
 
 //TODO: Update main TODO in README.md
 
@@ -59,13 +50,15 @@ define(['game',
 		'collision/collision_resolver',
 		'collision/circle_collider',
 		'collision/polygon_collider',
+		'collision/fixed_polygon_collider',
 		'test_game_objects/basic_game_object',
 		'test_game_objects/basic_container',
 		'factory',
 		'layers',
-		'keyboard'],
+		'keyboard',
+		'vector_2D'],
 
-	function(game, collision_resolver, circle_collider, polygon_collider, test, container, factory, layers, keyboard) {
+	function(game, collision_resolver, circle_collider, polygon_collider, fixed_polygon_collider, test, container, factory, layers, keyboard, vector_2D) {
 
 		var main = function(){};
 
@@ -80,9 +73,11 @@ define(['game',
 
 				factory.createComponentPool("Collider_Circle", circle_collider, 5);
 				factory.createComponentPool("Collider_Polygon", polygon_collider, 5);
-				
+				factory.createComponentPool("Collider_Fixed_Polygon", fixed_polygon_collider, 5);
+
 				factory.createComponentConfiguration("Collider_1", 'Collider_Circle');
 				factory.createComponentConfiguration("Collider_2", 'Collider_Polygon');
+				factory.createComponentConfiguration("Collider_3", 'Collider_Fixed_Polygon');
 
 				factory.createGameObjectConfiguration("Base_1", "Base").args({
 					x: 50,
@@ -105,10 +100,22 @@ define(['game',
 					color: '#ff00ff',
 					scaleX: 2
 				}).addComponent('Collider_2', {id:'Red', points:[
-					{x:-10, y:-10},
-					{x:10, y:-10},
-					{x:10, y:10},
-					{x:-10, y:10}
+					new vector_2D(-10, -10),
+					new vector_2D(10, -10),
+					new vector_2D(10, 10),
+					new vector_2D(-10, 10)
+				]});
+
+				factory.createGameObjectConfiguration("Base_4", "Base").args({
+					x: 50,
+					y: 50,
+					rSpeed: 1,
+					color: '#ff00ff'
+				}).addComponent('Collider_3', {id:'Green', points:[
+					new vector_2D(-10, -10),
+					new vector_2D(10, -10),
+					new vector_2D(10, 10),
+					new vector_2D(-10, 10)
 				]});
 
 				factory.createGameObjectConfiguration("Container_1", "Container").args({
@@ -156,7 +163,8 @@ define(['game',
 
 			keyboard.addUpCallback(keyboard.A, function() {
 				//b1 = layers.get('Back').add(factory.get('Base_1'));
-				b1 = layers.get('Back').add(factory.get('Container_1'));
+				//b1 = layers.get('Back').add(factory.get('Container_1'));
+				b1 = layers.get('Back').add(factory.get('Base_4'));
 				b1.start();				
 
 				//layers.get('Back').add(factory.get('Base_1')).start();
