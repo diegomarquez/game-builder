@@ -19,7 +19,7 @@ define(
 				this.pointCount = this.points.length;
 				this.pointsCopy = JSON.parse(JSON.stringify(this.points));
 
-				this.collider = new SAT.Polygon(new Vector2D(0, 0), this.points);
+				this.collider = new SAT.FixedSizePolygon(new Vector2D(0, 0), this.points);
 				this.colliderType = CollisionResolver.POLYGON_COLLIDER;
 			},
 

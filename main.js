@@ -1,5 +1,3 @@
-//TODO: Polygon object with fixed vertex count and less expensive recalc method
-
 //TODO: Component: Collision
 	//TODO: Be able to configure hitArea.
 	//TODO: Multiple hit areas for a single GameObject. Set a name so that a specific onCollide method can be added dynamically to a game_object on creation

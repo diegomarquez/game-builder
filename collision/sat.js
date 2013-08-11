@@ -36,6 +36,30 @@ define(['vector_2D'], function(Vector) {
     }
   };
 
+  var FixedSizePolygon = function(pos, points) {
+    this['pos'] = this.pos = pos || new Vector();
+    this['points'] = this.points = points || [];
+    
+    this.edges = [];
+    this.normals = [];
+
+    for(var i=0; i<this.points.length; i++) {
+      this.edges.push(new Vector());
+      this.normals.push(new Vector());
+    }
+
+    this.recalc();
+  };
+
+  FixedSizePolygon.prototype.recalc = function() {    
+    for (var i = 0; i < this.points.length; i++) {
+      var p = i < this.points.length - 1 ? this.points[i + 1] : this.points[0];
+
+      this.edges[i].copy(p).sub(this.points[i]);
+      this.normals[i].copy(this.edges[i]).perp().normalize();
+    }
+  };
+
   var Response = function() {
     this['a'] = this.a = null;
     this['b'] = this.b = null;
@@ -349,9 +373,10 @@ define(['vector_2D'], function(Vector) {
 
   var SAT = {}
 
-  SAT['Circle']   = Circle;
-  SAT['Polygon']  = Polygon;
-  SAT['Response'] = Response;
+  SAT['Circle']           = Circle;
+  SAT['Polygon']          = Polygon;
+  SAT['FixedSizePolygon'] = FixedSizePolygon;
+  SAT['Response']         = Response;
 
   SAT['testCircleCircle']   = testCircleCircle;
   SAT['testPolygonCircle']  = testPolygonCircle;
