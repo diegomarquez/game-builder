@@ -21,7 +21,11 @@ requirejs.config({
 		"game_object": "core/hierarchy/game_object",
 		"game_object_container": "core/hierarchy/game_object_container",
 		
-		"factory": "core/factory",
+		"pool": "core/pools/pool",
+		"game_object_pool": "core/pools/game_object_pool",
+		"component_pool": "core/pools/component_pool",
+		"assembler": "core/assembler",
+
 		"layers": "core/layers",
 
 		"domReady": "requireJS/domReady"		
