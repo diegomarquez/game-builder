@@ -6,7 +6,6 @@ define(["delegate"], function(Delegate) {
 
 			this.poolId = null;
 			this.parent = null;
-			this.renderer = null;
 		},
 
 		configure: function(args) {

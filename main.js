@@ -1,4 +1,5 @@
 //TODO: Renderer
+	//Is a subclass of component
 	//Can be attached to anything. game_object and component
 		//Drawing API renderer. Contains the commands to draw something, lines, circles, etc. Can be cached.
 		//Bitmap rendering. Draws an image.
@@ -18,6 +19,8 @@
 		//renderer
 	//Hub object which pulls data from all the pools to put an object together
 		//game_object_assembler.js
+
+//TODO: Do something to not call update or draw methods of components that do nothing in them.
 
 //=======================================//
 //=======================================//

@@ -1,8 +1,6 @@
-define(['class'], function(){
-	var Renderer = Class.extend({
-		init: function() {},
-		start: function(args) {},
-		render: function(context) {}
+define(["component"], function(Component) {
+	var Renderer = Component.extend({
+		update: function(context) {}
 	});
 
 	return Renderer;
