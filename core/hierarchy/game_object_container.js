@@ -82,18 +82,7 @@ define(["game_object"], function(GameObject){
 
 				context.save();
 				child.transformAndDraw(context);
-
-				if(!child.components){ 
-					context.restore();
-				}else{
-					for(var k=0; k<child.components.length; k++) {
-						if(child.components[k].renderer) {
-							child.components[k].renderer.render(context);
-						}
-					}
-
-					context.restore();
-				}
+				context.restore();
 			}
 
 			context.restore();
