@@ -12,16 +12,6 @@
 
 //TODO: Update main TODO in README.md
 
-//TODO: Divide the concerns of factory.js
-	//Different pool modules for the different types of objects
-		//game_object
-		//component
-		//renderer
-	//Hub object which pulls data from all the pools to put an object together
-		//game_object_assembler.js
-
-//TODO: Do something to not call update or draw methods of components that do nothing in them.
-
 //=======================================//
 //=======================================//
 //=======================================//
