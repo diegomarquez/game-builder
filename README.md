@@ -6,13 +6,12 @@ These are some files I decided to extract from a previous javascript project. It
 
 ###### Current TODO List:
 
-* Create a component to handle basic collision detection between game_objects
 * Create a component to handle rendering of a game_object
-* Setup a system to configure what components an instance of a game_object should have
 
-#### Status: Broken. 
+#### Status: Broken and On Hold.
 
 * This thing can not be used for anything useful and there is no documentation anyway. So it is still in a pretty useless state.
+* I am currently not working on this till I can concentrate on it properly.
 
 [This is the game][tirador] I put together using the previous encarnation of this set of files.
 
