@@ -54,9 +54,17 @@ define(['game_object_pool', 'component_pool'], function(GameObjectPool, Componen
 			pooledObject.add(this.assemble(childId, configuration.childs[i].args));
 		}
 
-		//Adding renderer to the game_object
-		//pooledObject.renderer = this.renderersPool[configuration.renderer.id];
-		//pooledObject.renderer.start(configuration.renderer.args);
+
+		//TODO: Revisar toda esta vaina
+		var rendererConfiguration = ComponentPool.getConfiguration(configuration.renderer.id);
+
+		pooledObject.renderer = ComponentPool.getPooledObject(rendererConfiguration.componentId);
+
+		if (rendererConfiguration.componentArgs) {
+			pooledObject.renderer.configure(rendererConfiguration.componentArgs);
+		} else {
+			pooledObject.renderer.configure(componentConfiguration.args);
+		}
 
 		pooledObject.on('recycle', this, function(go) {
 			GameObjectPool.returnToPool(go);
