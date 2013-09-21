@@ -1,5 +1,4 @@
 define(['class'], function() {
-
 	var Pool = Class.extend({
 		init: function() {
 			this.pools = {};
@@ -52,5 +51,5 @@ define(['class'], function() {
 		}
 	});
 
-	return new Pool();
+	return Pool;
 });

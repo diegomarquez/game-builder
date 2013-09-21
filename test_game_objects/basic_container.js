@@ -1,4 +1,4 @@
-define(["game_object_container", "draw"], function(GameObjectContainer, draw){
+define(["game_object_container"], function(GameObjectContainer){
 
 	var Container = GameObjectContainer.extend({
 		init: function() {
@@ -15,10 +15,6 @@ define(["game_object_container", "draw"], function(GameObjectContainer, draw){
 		update: function(delta) {
 			this._super();
 			this.rotation++;
-		},
-
-		draw: function(context) {
-			draw.rectangle(context, -10, -10, 20, 20, null, "#ff0000", 1);
 		}
 	});
 

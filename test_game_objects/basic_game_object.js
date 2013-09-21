@@ -18,10 +18,6 @@ define(["game_object", "draw"], function(GameObject, draw){
 			this.rotation += this.rSpeed;
 		},
 
-		draw: function(context) {
-			draw.rectangle(context, -10, -10, 20, 20, this.color, this.color, 1);
-		},
-
 		onCollide: function(other) {
 			console.log("BLABLABLABLABL")
 		}

@@ -95,8 +95,19 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 			context.transform(this.matrix.a, this.matrix.b, this.matrix.c, this.matrix.d, this.matrix.tx, this.matrix.ty);
 			context.globalAlpha *= this.alpha;
 
-			if(this.renderer) 
-				this.renderer.render(context)
+			if(this.renderer) {
+				this.renderer.draw(context);
+			}
+
+			if(this.debug) {
+				if (!this.components) return;
+
+				for(var i=0; i<this.components.length; i++){
+					if(this.components[i].draw) {
+						this.components[i].draw(context)
+					}
+				}
+			}
 		},
 
 		clear: function() {
@@ -109,7 +120,6 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 
 			this.parent = null;
 
-			//Removing all components
 			if (!this.components) return;
 
 			while (this.components.length) {

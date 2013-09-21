@@ -1,21 +1,9 @@
 define(['component'], function(Component){
 	var Component = Component.extend({
-		init: function() {
-			this._super();
-		},
-
 		start: function() {
 			this.startPos = false;
 			this.lastX;
 			this.lastY;
-		},
-
-		onAdded: function(parent) {
-			this._super(parent);
-		},
-
-		onRemoved: function() {
-			this._super();
 		},
 
 		update: function() {

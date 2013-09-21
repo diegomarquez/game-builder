@@ -1,5 +1,4 @@
 define(['pool'], function(Pool) {
-
 	var ComponentPool = Pool.extend({
 		createConfiguration: function(alias, type) {
 			var configuration = {
@@ -15,7 +14,7 @@ define(['pool'], function(Pool) {
 			this.configurations[alias] = configuration;
 
 			return configuration;
-		};
+		},
 
 		getConfiguration: function(alias) {
 			var configuration = this.configurations[alias];
@@ -25,7 +24,7 @@ define(['pool'], function(Pool) {
 			}
 
 			return configuration;
-		};
+		}
 	});
 
 	return new ComponentPool();

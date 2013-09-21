@@ -1,5 +1,4 @@
 define(['pool'], function(Pool) {
-
 	var GameObjectPool = Pool.extend({
 		createConfiguration: function(alias, type) {
 			var configuration = {

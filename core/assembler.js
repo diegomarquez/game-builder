@@ -2,7 +2,7 @@ define(['game_object_pool', 'component_pool'], function(GameObjectPool, Componen
 	var Assembler = function() {};
 
 	//This method only return an instance. It is up to the user to call the start method with arguments.
-	Assembler.prototype.assemble = function(name, args) {
+	Assembler.prototype.get = function(name, args) {
 		var configuration = GameObjectPool.getConfiguration(name);
 
 		//Get one object from the pool
@@ -29,12 +29,13 @@ define(['game_object_pool', 'component_pool'], function(GameObjectPool, Componen
 
 			//Configures the component as stated by the configuration object.
 			//If available the specific configuration object overrides the generic one.
-			if (configuration.components[i].componentArgs) {
-				component.configure(configuration.components[i].componentArgs);
+			if (configuration.components[i].args) {
+				component.configure(configuration.components[i].args);
 			} else {
-				component.configure(componentConfiguration.args);
+				component.configure(componentConfiguration.componentArgs);
 			}
 
+			//When this object is 'recycled' it returns to it's respective pool
 			component.on('recycle', this, function(c) {
 				ComponentPool.returnToPool(c);
 			}, true);
@@ -51,21 +52,31 @@ define(['game_object_pool', 'component_pool'], function(GameObjectPool, Componen
 				throw new Error('Game Object with type: ' + configuration.type + ' is not a container, can not add childs to it');
 			}
 
-			pooledObject.add(this.assemble(childId, configuration.childs[i].args));
+			pooledObject.add(this.get(childId, configuration.childs[i].args));
 		}
 
-
-		//TODO: Revisar toda esta vaina
+		//Adding renderer
 		var rendererConfiguration = ComponentPool.getConfiguration(configuration.renderer.id);
 
-		pooledObject.renderer = ComponentPool.getPooledObject(rendererConfiguration.componentId);
+		//No renderer on this Game Object? Do nothing.
+		if(rendererConfiguration) {
+			pooledObject.renderer = ComponentPool.getPooledObject(rendererConfiguration.componentId);
 
-		if (rendererConfiguration.componentArgs) {
-			pooledObject.renderer.configure(rendererConfiguration.componentArgs);
-		} else {
-			pooledObject.renderer.configure(componentConfiguration.args);
+			//Configures the renderer as stated by the configuration object.
+			//If available the specific configuration object overrides the generic one.
+			if (configuration.renderer.args) {
+			 	pooledObject.renderer.configure(configuration.renderer.args);
+			} else {
+			 	pooledObject.renderer.configure(rendererConfiguration.componentArgs);
+			}
+
+			//When this object is 'recycled' it returns to it's respective pool
+			pooledObject.renderer.on('recycle', this, function(c) {
+				ComponentPool.returnToPool(c);
+			}, true);		
 		}
 
+		//When this object is 'recycled' it returns to it's respective pool
 		pooledObject.on('recycle', this, function(go) {
 			GameObjectPool.returnToPool(go);
 		}, true);

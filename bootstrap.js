@@ -2,6 +2,7 @@ requirejs.config({
 	paths: {
 		"delegate": "core/delegate",
 		"component": "core/component",
+		"renderer": "core/render/renderer",
 		"class": "core/class",
 		
 		"game": "core/game",
