@@ -20,10 +20,6 @@
 //Probablemente hay que pasarle entre los parametros el nombre de la variable donde estoy guardando el timer.
 //Con ese nombre y el scope puede hacer percha esa referencia.
 
-
-
-
-
 //TODO: Optimizations
 //TODO: Optimize drawing method.
 //Cache procedural drawing in memory. Then draw that image in place each frame, instead of redrawing proceduraly each frame.
