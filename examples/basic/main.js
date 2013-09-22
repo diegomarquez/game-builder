@@ -1,5 +1,3 @@
-//Implement event bubbling
-
 //TODO: Component of game.js: Auto-resize
 
 //TODO: State machine that handles a closed object as a state with a start, update and finish

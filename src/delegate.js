@@ -1,9 +1,11 @@
 define(["class"], function() {
 
 	var Delegate = Class.extend({
-		init: function() {
+		init: function(bubbling) {
 			this.callbackList = {};
 			this.list = null;
+
+			this.bubbling = bubbling || false;
 		},
 
 		on: function(name, scope, callback, removeOnExecute, inmediate, keepOnCleanUp) {
@@ -77,6 +79,10 @@ define(["class"], function() {
 				if (!callbackObject) continue;
 
 				callbackObject.callback.call(callbackObject.scope, args);
+
+				if(this.bubbling && callbackObject.scope.parent) {
+					callbackObject.scope.parent.execute(name, args)
+				}
 
 				if (callbackObject.removeOnExecute) {
 					this.list[i] = null;
