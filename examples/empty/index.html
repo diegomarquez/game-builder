@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Simple Game Framework</title>
+</head>
+<body>
+	<!-- main and game divs need to be here for this whole contraption to work -->
+	<div id="main">
+		<canvas id="game" width="450" height="700">
+			Sorry, your web browser does not support Canvas content.
+		</canvas>		
+	</div>
+
+	<!-- data-main = path to bootstrap.js relative to this file -->
+	<!-- src = path to require.js relative to this file -->
+	<!-- main-path = path to main.js relative to the location of bootstrap.js -->
+
+	<script id="main-script-tag" 
+			data-main="../../src/bootstrap" 
+			src="../../src/requireJS/require.js"
+			main-path="../empty/basic/main" ></script>
+</body>
+</html>
