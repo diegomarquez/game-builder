@@ -6,8 +6,17 @@ These are some files I decided to extract from a previous javascript project. It
 
 ###### Current TODO List:
 
-* Simple event bubbling
-* Write some example code
+* Write some example code. Should have examples for each individual aspect of the framework
+** Collision
+** Components
+** Game Object Hierarchy
+** Input
+** Sound
+** Timers
+** State Machine
+** Renderer Components
+** Delegates
+
 * Components for game.js. The user should be able to enhance the behaviour of the main update loop.
 
 #### Status: Not usable.
