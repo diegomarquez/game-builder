@@ -1,21 +1,4 @@
-//TODO: Renderer
-	//Can be attached to a game_object (DONE!)
-		//Drawing API renderer. 
-			//Contains the commands to draw something, lines, circles, etc. (DONE) 
-		//Bitmap rendering. Draws an image.
-
-
-//TODO: Update main TODO in README.md
-
-//TODO: Refactor folder structure, again
-
-//=======================================//
-//=======================================//
-//=======================================//
-
 //Implement event bubbling
-
-//Figure out correct usage of centerX and centerY of game_object
 
 //TODO: Component of game.js: Auto-resize
 
@@ -26,18 +9,25 @@
 		//index.html
 		//CSS files
 
+//TODO: Examples folder, each one contains a main.js, an index.js, Css files and specific game_objects and or components
+
+//TODO: State machine that handles a closed object as a state with a start, update and finish
+
+//TODO: Renderer
+	//Bitmap rendering. Draws an image.
+
 //TODO: TimeoutFactory tiene que poder destruir las referencias que devuelve de su metodo 'get'
 //Probablemente hay que pasarle entre los parametros el nombre de la variable donde estoy guardando el timer.
 //Con ese nombre y el scope puede hacer percha esa referencia.
 
-//TODO: State machine that handles a closed object as a state with a start, update and finish
+
+
+
 
 //TODO: Optimizations
 //TODO: Optimize drawing method.
 //Cache procedural drawing in memory. Then draw that image in place each frame, instead of redrawing proceduraly each frame.
 //This will not be possible where procedural animations take place.
-
-//TODO: Create some testing scenarios for all of the modules. Those will serve as demos aswell
 
 //Implement a very simple object to save to and load from the user's computer.
 	//TODO: Basic data types.

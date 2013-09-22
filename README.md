@@ -6,12 +6,13 @@ These are some files I decided to extract from a previous javascript project. It
 
 ###### Current TODO List:
 
-* Create a component to handle rendering of a game_object
+* Simple event bubbling
+* Write some example code
+* Components for game.js. The user should be able to enhance the behaviour of the main update loop.
 
-#### Status: Broken and On Hold.
+#### Status: Broken.
 
 * This thing can not be used for anything useful and there is no documentation anyway. So it is still in a pretty useless state.
-* I am currently not working on this till I can concentrate on it properly.
 
 [This is the game][tirador] I put together using the previous encarnation of this set of files.
 
