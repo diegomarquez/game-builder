@@ -20,30 +20,44 @@ requirejs.config({
 		"layers": "hierarchy/layers",
 		"game_object": "hierarchy/game_object",
 		"game_object_container": "hierarchy/game_object_container",
-		
+
 		"pool": "pools/pool",
 		"game_object_pool": "pools/game_object_pool",
 		"component_pool": "pools/component_pool",
 		"assembler": "pools/assembler",
 
-		"domReady": "requireJS/domReady"		
+		"domReady": "requireJS/domReady"
 	}
 });
 
-require(['domReady!', 'game', 'root', 'layers', 'main'], function(doc, game, root, layers, main) {
-	main.start();
+require(['domReady!',
+		'game',
+		'root',
+		'layers',
+		'assembler',
+		'game_object_pool',
+		'component_pool'
+	],
 
-	game.on("update", this, function() {
-		root.update(game.delta, game.isPaused);
-		root.transformAndDraw(game.context);
+	function(doc, game, root, layers, assembler, game_object_pool, component_pool) {
+
+		var mainPath = document.getElementById('main-script-tag').getAttribute('main-path')
+
+		require([mainPath], function(main) {
+			main.start(game, assembler, game_object_pool, component_pool, layers);
+
+			game.on("update", this, function() {
+				root.update(game.delta, game.isPaused);
+				root.transformAndDraw(game.context);
+			});
+
+			layers.add("Back");
+			layers.add("Middle");
+			layers.add("Front");
+			layers.add("Text");
+			layers.add("Hud");
+			layers.add("Popup");
+
+			game.create(document.getElementById('main'), document.getElementById('game'));
+		});
 	});
-
-	layers.add("Back");
-	layers.add("Middle");
-	layers.add("Front");
-	layers.add("Text");
-	layers.add("Hud");
-	layers.add("Popup");
-
-	game.create(document.getElementById('main'), document.getElementById('game'));
-});

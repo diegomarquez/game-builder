@@ -2,15 +2,6 @@
 
 //TODO: Component of game.js: Auto-resize
 
-//TODO: Boilerplate
-	//TODO: Default main.js
-	//TODO: Each project should have its own
-		//main.js
-		//index.html
-		//CSS files
-
-//TODO: Examples folder, each one contains a main.js, an index.js, Css files and specific game_objects and or components
-
 //TODO: State machine that handles a closed object as a state with a start, update and finish
 
 //TODO: Renderer
@@ -29,26 +20,25 @@
 	//TODO: Basic data types.
 	//TODO: Maybe JSON strings.
 
-define(['game',
+define(['require',
 		'collision/collision_resolver',
 		'collision/circle_collider',
 		'collision/polygon_collider',
 		'collision/fixed_polygon_collider',
-		'test_game_objects/basic_game_object',
-		'test_game_objects/basic_container',
-		'test_components/box_renderer',
-		'assembler',
-		'game_object_pool',
-		'component_pool',
-		'layers',
 		'keyboard',
-		'vector_2D'],
+		'vector_2D',
+		'./concrete_game_objects/basic_game_object',
+		'./concrete_game_objects/basic_container',
+		'./concrete_components/box_renderer'],
 
-	function(game, collision_resolver, circle_collider, polygon_collider, fixed_polygon_collider, test, container, box_renderer, assembler, game_object_pool, component_pool, layers, keyboard, vector_2D) {
-
+	function(require, collision_resolver, circle_collider, polygon_collider, fixed_polygon_collider, keyboard, vector_2D) {
 		var main = function(){};
 
-		main.prototype.start = function() {
+		test = require('./concrete_game_objects/basic_game_object');
+		container = require('./concrete_game_objects/basic_container'); 
+		box_renderer = require('./concrete_components/box_renderer');
+
+		main.prototype.start = function(game, assembler, game_object_pool, component_pool, layers) {
 			game.on("init", this, function() {
 				console.log("Init");
 
