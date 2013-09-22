@@ -10,9 +10,10 @@ These are some files I decided to extract from a previous javascript project. It
 * Write some example code
 * Components for game.js. The user should be able to enhance the behaviour of the main update loop.
 
-#### Status: Broken.
+#### Status: Not usable.
 
-* This thing can not be used for anything useful and there is no documentation anyway. So it is still in a pretty useless state.
+* Right now you could use this to do something, if you could take a look inside my mind that is. 
+* No documentation and no examples means it is still useless.
 
 [This is the game][tirador] I put together using the previous encarnation of this set of files.
 
