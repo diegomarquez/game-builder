@@ -2,8 +2,8 @@
 	//Can be attached to a game_object (DONE!)
 		//Drawing API renderer. 
 			//Contains the commands to draw something, lines, circles, etc. (DONE) 
-			//Can be cached.
 		//Bitmap rendering. Draws an image.
+
 
 //TODO: Update main TODO in README.md
 
@@ -19,15 +19,16 @@
 
 //TODO: Component of game.js: Auto-resize
 
-//TODO: assembler.js should be able to create objects dynamically and add them to the pool when done with them
+//TODO: Boilerplate
+	//TODO: Default main.js
+	//TODO: Each project should have its own
+		//main.js
+		//index.html
+		//CSS files
 
 //TODO: TimeoutFactory tiene que poder destruir las referencias que devuelve de su metodo 'get'
 //Probablemente hay que pasarle entre los parametros el nombre de la variable donde estoy guardando el timer.
 //Con ese nombre y el scope puede hacer percha esa referencia.
-
-//TODO: Boilerplate
-	//TODO: Default main.js
-	//TODO: Hook up project specific main.js with framework's bootstrap.js
 
 //TODO: State machine that handles a closed object as a state with a start, update and finish
 
@@ -36,8 +37,6 @@
 //Cache procedural drawing in memory. Then draw that image in place each frame, instead of redrawing proceduraly each frame.
 //This will not be possible where procedural animations take place.
 
-//TODO: Make a Sublime extension to generate all the boilerplater code, associated with a game_object file
-//TODO: Add a description for each module
 //TODO: Create some testing scenarios for all of the modules. Those will serve as demos aswell
 
 //Implement a very simple object to save to and load from the user's computer.

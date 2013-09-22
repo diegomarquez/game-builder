@@ -1,33 +1,30 @@
 requirejs.config({
 	paths: {
-		"delegate": "core/delegate",
-		"component": "core/component",
-		"renderer": "core/render/renderer",
-		"class": "core/class",
+		"delegate": "delegate",
+		"class": "class",
+		"game": "game",
+		"keyboard": "input/keyboard",
+		"sound_player": "sound_player",
+		"state_machine": "state_machine",
+		"timer_factory": "timer_factory",
+		"draw": "draw",
+
+		"matrix_3x3": "math/matrix_3x3",
+		"vector_2D": "math/vector_2D",
+
+		"component": "components/component",
+		"renderer": "components/rendering/renderer",
+
+		"root": "hierarchy/root",
+		"layer": "hierarchy/layer",
+		"layers": "hierarchy/layers",
+		"game_object": "hierarchy/game_object",
+		"game_object_container": "hierarchy/game_object_container",
 		
-		"game": "core/game",
-
-		"keyboard": "core/input/keyboard",
-
-		"sound_player": "core/sound_player",
-		"state_machine": "core/state_machine",
-		"timer_factory": "core/timer_factory",
-		"draw": "core/draw",
-
-		"matrix_3x3": "core/math/matrix_3x3",
-		"vector_2D": "core/math/vector_2D",
-
-		"root": "core/hierarchy/root",
-		"layer": "core/hierarchy/layer",
-		"game_object": "core/hierarchy/game_object",
-		"game_object_container": "core/hierarchy/game_object_container",
-		
-		"pool": "core/pools/pool",
-		"game_object_pool": "core/pools/game_object_pool",
-		"component_pool": "core/pools/component_pool",
-		"assembler": "core/assembler",
-
-		"layers": "core/layers",
+		"pool": "pools/pool",
+		"game_object_pool": "pools/game_object_pool",
+		"component_pool": "pools/component_pool",
+		"assembler": "pools/assembler",
 
 		"domReady": "requireJS/domReady"		
 	}
