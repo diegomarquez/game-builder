@@ -1,3 +1,5 @@
+//TODO: Start working on the examples
+
 //TODO: State machine that handles a closed object as a state with a start, update and finish
 
 //TODO: Renderer
