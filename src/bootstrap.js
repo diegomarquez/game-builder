@@ -2,13 +2,15 @@ requirejs.config({
 	paths: {
 		"delegate": "delegate",
 		"class": "class",
-		"game": "game",
-		"keyboard": "input/keyboard",
 		"sound_player": "sound_player",
 		"state_machine": "state_machine",
 		"timer_factory": "timer_factory",
 		"draw": "draw",
 
+		"game": "game_canvas/canvas_wrapper",
+		
+		"keyboard": "input/keyboard",
+		
 		"matrix_3x3": "math/matrix_3x3",
 		"vector_2D": "math/vector_2D",
 

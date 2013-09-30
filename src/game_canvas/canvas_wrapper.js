@@ -19,6 +19,23 @@ define(["delegate"], function(Delegate) {
 
 			this.delta = null;
 			this.isPaused = null;
+
+			this.extensions = {
+				"create": [],
+				"update": [],
+				"pause": [],
+				"resume": [],
+			}
+		},
+
+		execute_extensions: function(place) {
+			for(var i=0; i<this.extensions[place].length; i++){
+				this.extensions[place][i].execute();
+			}
+		},
+
+		add_extension: function(place, extension) {
+			this.extensions[place].push(extension);
 		},
 
 		create: function(mainContainer, canvas) {
@@ -26,35 +43,9 @@ define(["delegate"], function(Delegate) {
 			this.canvas = canvas;
 			this.context = this.canvas.getContext("2d");
 
-			var resize = function(container, canvas) {
-				var scale = {
-					x: 1,
-					y: 1
-				};
-
-				scale.x = (window.innerWidth - 5) / canvas.width;
-				scale.y = (window.innerHeight - 5) / canvas.height;
-
-				if (scale.x < scale.y) {
-					scale = scale.x + ', ' + scale.x;
-				} else {
-					scale = scale.y + ', ' + scale.y;
-				}
-
-				container.style.webkitTransform = 'scale(' + scale + ')';
-				container.style.mozTransform = 'scale(' + scale + ')';
-				container.style.msTransform = 'scale(' + scale + ')';
-				container.style.oTransform = 'scale(' + scale + ')';
-			};
-
-			resize(mainContainer, canvas);
-
-			window.addEventListener('resize', function() {
-				resize(mainContainer, canvas);
-			}, false);
+			this.execute_extensions("create");
 
 			var frameRequest, mainLoop;
-
 			var self = this;
 
 			var mainGameCreation = function() {
@@ -67,6 +58,7 @@ define(["delegate"], function(Delegate) {
 					self.blur = false;
 					self.focus = true;
 
+					self.execute_extensions("pause");	
 					self.execute("pause");
 
 					if (!self.manualSoftPause) {
@@ -90,6 +82,7 @@ define(["delegate"], function(Delegate) {
 						self.blur = true;
 						self.focus = false;
 
+						self.execute_extensions("resume");
 						self.execute("resume");
 
 						if (!self.wasInSoftPause) {
@@ -116,6 +109,7 @@ define(["delegate"], function(Delegate) {
 
 					self.lastUpdate = now;
 
+					self.execute_extensions("update");
 					self.execute("update");
 
 					frameRequest = window.requestAnimationFrame(mainLoop);

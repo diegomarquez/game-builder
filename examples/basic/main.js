@@ -1,5 +1,3 @@
-//TODO: Component of game.js: Auto-resize
-
 //TODO: State machine that handles a closed object as a state with a start, update and finish
 
 //TODO: Renderer
@@ -14,10 +12,6 @@
 //Cache procedural drawing in memory. Then draw that image in place each frame, instead of redrawing proceduraly each frame.
 //This will not be possible where procedural animations take place.
 
-//Implement a very simple object to save to and load from the user's computer.
-	//TODO: Basic data types.
-	//TODO: Maybe JSON strings.
-
 define(['require',
 		'collision/collision_resolver',
 		'collision/circle_collider',
@@ -25,11 +19,12 @@ define(['require',
 		'collision/fixed_polygon_collider',
 		'keyboard',
 		'vector_2D',
+		'game_canvas/extensions/scale_keeping_aspect_ratio',
 		'./concrete_game_objects/basic_game_object',
 		'./concrete_game_objects/basic_container',
 		'./concrete_components/box_renderer'],
 
-	function(require, collision_resolver, circle_collider, polygon_collider, fixed_polygon_collider, keyboard, vector_2D) {
+	function(require, collision_resolver, circle_collider, polygon_collider, fixed_polygon_collider, keyboard, vector_2D, aspect_ratio_extension) {
 		var main = function(){};
 
 		test = require('./concrete_game_objects/basic_game_object');
@@ -37,6 +32,8 @@ define(['require',
 		box_renderer = require('./concrete_components/box_renderer');
 
 		main.prototype.start = function(game, assembler, game_object_pool, component_pool, layers) {
+			game.add_extension('create', new aspect_ratio_extension())
+
 			game.on("init", this, function() {
 				console.log("Init");
 
