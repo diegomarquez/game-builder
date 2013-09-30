@@ -18,6 +18,7 @@ These are some files I decided to extract from a previous javascript project. It
   - [ ] State Machine
   - [ ] Renderer Components
   - [ ] Delegates
+  - [ ] Canvas Wrapper extensions
 
 - Components for game.js. The user should be able to enhance the behaviour of the main update loop.
 
