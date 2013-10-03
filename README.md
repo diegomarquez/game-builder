@@ -19,6 +19,7 @@ These are some files I decided to extract from a previous javascript project. It
         + Collision
         + Rendering
     * Input
+        + Demo: Dynamic nesting of childs in containers
     * Sound
     * Timers
     * State Machine
@@ -34,6 +35,7 @@ These are some files I decided to extract from a previous javascript project. It
         + Through assembler.get
         + Through game_object.start
     * Text
+        + Use this in all the examples to explain what is going on Screen
 
 - Write a README.md for each example
 

@@ -17,17 +17,20 @@ define(['require',
 			game.on("init", this, function() {
 				//Create the renderer components pool
 				component_pool.createPool("Box_Renderer", box_renderer, 1);
-				//Create an instance configuration for the components in the pool
+				//Create a configuration for the components in the pool
+				//When a component with with ID 'Red_Renderer' is created, it will take this arguments
 				component_pool.createConfiguration("Red_Renderer", 'Box_Renderer').args({color:'#FF0000'});
 				
 				//Create game_object pool
 				game_object_pool.createPool("Base", basic_game_object, 1);
-				//Create an instance configuration for the game_objects in the pool
+				//Create a configuration for the game_objects in the pool
+				//When a game_object with with ID 'Base_1' is created, it will take this arguments
+				//NOTICE: The ID being sent in through setRenderer()
 				game_object_pool.createConfiguration("Base_1", "Base")
 					.args({x: game.canvas.width/2, y:game.canvas.height/2, rotation_speed: 3})
 					.setRenderer('Red_Renderer');
 
-				//Get a game_object already setup. Notice the ID used to get it. 
+				//Get a game_object already setup. NOTICE: the ID used to get it. 
 				//The assembler module is your friend, and as such you will see it regularly.
 				var go = assembler.get('Base_1');
 
@@ -40,7 +43,7 @@ define(['require',
 		}
 
 		//Conveniantly enough, if a requireJS module returns an instance, it's as good as a singleton.
-		//In the case of this main.js file and all the others you will find, that is exactly what we need.
+		//In the case of this main.js file and all the others you will find across different eamples, that is exactly what we need.
 		return new main();
 	}
 );
