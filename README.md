@@ -9,40 +9,40 @@ These are some files I decided to extract from a previous javascript project. It
 ###### Current TODO List:
 
 - Write some example code. Should have examples for each individual aspect of the framework
-  - Game Object Hierarchy
-    - Basic 
-    - Nesting
-      - Containers
-      - Layers
-  - Components
-    - Misc Logic
-    - Collision
-    - Rendering
-  - Input
-  - Sound
-  - Timers
-  - State Machine
-  - Delegates
-    - Overview on all the callbacks available to game_object
-    - Overview on all the callbacks available to canvas_wrapper
-    - Overview on all the callbacks available to component
-  - Canvas Wrapper 
-    - Pause & Resume
-    - Extensions
-  - Different ways to send in arguments to a game_object
-    - Configuration Type
-    - Through assembler.get
-    - Through game_object.start
-  - Text
+    * Game Object Hierarchy
+        + Basic ( Done )
+        + Nesting
+            - Containers
+            - Layers
+    * Components
+        + Misc Logic
+        + Collision
+        + Rendering
+    * Input
+    * Sound
+    * Timers
+    * State Machine
+    * Delegates
+        + Overview on all the callbacks available to game_object
+        + Overview on all the callbacks available to canvas_wrapper
+        + Overview on all the callbacks available to component
+    * Canvas Wrapper 
+        + Pause & Resume
+        + Extensions
+    * Different ways to send in arguments to a game_object
+        + Configuration Type
+        + Through assembler.get
+        + Through game_object.start
+    * Text
 
 - Write a README.md for each example
 
 -----------------------------------
 
-#### Status: Not usable.
+#### Status: Not usable. Working on example code.
 
 * Right now you could use this to do something, if you could take a look inside my mind that is. 
-* No documentation and no examples means it is still useless.
+* Examples are in the making.
 
 -----------------------------------
 
