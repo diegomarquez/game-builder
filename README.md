@@ -9,18 +9,33 @@ These are some files I decided to extract from a previous javascript project. It
 ###### Current TODO List:
 
 - Write some example code. Should have examples for each individual aspect of the framework
-  - [ ] Collision
-  - [ ] Components
-  - [ ] Game Object Hierarchy
-  - [ ] Input
-  - [ ] Sound
-  - [ ] Timers
-  - [ ] State Machine
-  - [ ] Renderer Components
-  - [ ] Delegates
-  - [ ] Canvas Wrapper extensions
+  - Game Object Hierarchy
+    - Basic 
+    - Nesting
+      - Containers
+      - Layers
+  - Components
+    - Misc Logic
+    - Collision
+    - Rendering
+  - Input
+  - Sound
+  - Timers
+  - State Machine
+  - Delegates
+    - Overview on all the callbacks available to game_object
+    - Overview on all the callbacks available to canvas_wrapper
+    - Overview on all the callbacks available to component
+  - Canvas Wrapper 
+    - Pause & Resume
+    - Extensions
+  - Different ways to send in arguments to a game_object
+    - Configuration Type
+    - Through assembler.get
+    - Through game_object.start
+  - Text
 
-- Components for game.js. The user should be able to enhance the behaviour of the main update loop.
+- Write a README.md for each example
 
 -----------------------------------
 

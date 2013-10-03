@@ -32,14 +32,7 @@ requirejs.config({
 	}
 });
 
-require(['domReady!',
-		'game',
-		'root',
-		'layers',
-		'assembler',
-		'game_object_pool',
-		'component_pool'
-	],
+require(['domReady!', 'game', 'root', 'layers', 'assembler', 'game_object_pool', 'component_pool'],
 
 	function(doc, game, root, layers, assembler, game_object_pool, component_pool) {
 
