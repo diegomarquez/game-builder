@@ -12,7 +12,7 @@ These are some files I decided to extract from a previous javascript project. It
     * Game Object Hierarchy
         + Basic ( Done )
         + Nesting
-            - Containers
+            - Containers ( Done )
             - Layers
     * Components
         + Misc Logic
