@@ -11,15 +11,16 @@ These are some files I decided to extract from a previous javascript project. It
 - Write some example code. Should have examples for each individual aspect of the framework
     * Game Object Hierarchy
         + Basic ( Done )
-        + Nesting
+        + Nesting ( Done )
             - Containers ( Done )
-            - Layers
+            - Layers ( Done )
     * Components
         + Misc Logic
         + Collision
         + Rendering
     * Input
         + Demo: Dynamic nesting of childs in containers
+        + Pausing/Resuming
     * Sound
     * Timers
     * State Machine
