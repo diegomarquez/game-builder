@@ -7,6 +7,13 @@ requirejs.config({
 		"timer_factory": "timer_factory",
 		"draw": "draw",
 
+		"circle": "collision/circle_collider",
+		"polygon": "collision/polygon_collider",
+		"f_polygon": "collision/fixed_polygon_collider",
+		"collision_resolver": "collision/collision_resolver",
+		"collision_component": "collision/collision_component",
+		"sat": "collision/sat",
+
 		"game": "game_canvas/canvas_wrapper",
 		
 		"keyboard": "input/keyboard",
@@ -36,7 +43,7 @@ require(['domReady!', 'game', 'root', 'layers', 'assembler', 'game_object_pool',
 
 	function(doc, game, root, layers, assembler, game_object_pool, component_pool) {
 
-		var mainPath = document.getElementById('main-script-tag').getAttribute('main-path')
+		var mainPath = document.querySelectorAll('script[data-main]')[0].getAttribute('main-path')
 
 		require([mainPath], function(main) {
 			main.start(game, assembler, game_object_pool, component_pool, layers);

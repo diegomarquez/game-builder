@@ -1,4 +1,4 @@
-define(['collision/sat'], function(SAT) {
+define(['sat'], function(SAT) {
 	var CollisionResolver = function() {
 		this.collisionLists = {};
 		this.toCollideCache = {};

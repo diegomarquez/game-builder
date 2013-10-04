@@ -17,6 +17,9 @@ These are some files I decided to extract from a previous javascript project. It
     * Components
         + Misc Logic
         + Collision
+            + Circle
+            + Polygon
+            + Fixed Polygon
         + Rendering
     * Input
         + Demo: Dynamic nesting of childs in containers

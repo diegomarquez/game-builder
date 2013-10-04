@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="main.css" />
 </head>
 <body>
-	<!-- main and game divs need to be here for this whole contraption to work. 
+	<!-- #main and #game divs need to be here for this whole contraption to work. 
 		Asides from those, any other amount of tags can be added -->
 	<div id="main">
 		<canvas id="game" width="400" height="300">
@@ -14,13 +14,18 @@
 		</canvas>		
 	</div>
 
-	<!-- data-main = path to bootstrap.js relative to this file -->
-	<!-- src = path to require.js relative to this file -->
-	<!-- main-path = path to main.js relative to the location of bootstrap.js -->
+	<!-- data-main = Path to bootstrap.js relative to this file. -->
+	
+	<!-- src = Path to require.js relative to this file. 
+			   Folder must contain domReady.js module. -->
+	
+	<!-- main-path = Path to the folder containing your app main entry point. 
+					 Relative to the location of bootstrap.js -->
 
-	<script id="main-script-tag" 
-			data-main="../../src/bootstrap" 
-			src="../../src/requireJS/require.js"
-			main-path="../examples/game_object_creation/main" ></script>
+	<script  
+		data-main="../../src/bootstrap" 
+		src="../../src/requireJS/require.js"
+		main-path="../examples/game_object_creation/main">
+	</script>
 </body>
 </html>

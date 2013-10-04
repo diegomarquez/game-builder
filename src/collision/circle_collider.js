@@ -1,10 +1,4 @@
-define(
-	['collision/collision_component', 
-	 'collision/sat', 
-	 'collision/collision_resolver', 
-	 'vector_2D', 
-	 'draw'],
-
+define(['collision_component', 'sat', 'collision_resolver', 'vector_2D', 'draw'],
 	function(CollisionComponent, SAT, CollisionResolver, Vector2D, draw){
 
 	var p = {};
