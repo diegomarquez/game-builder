@@ -23,6 +23,7 @@ requirejs.config({
 
 		"component": "components/component",
 		"renderer": "components/rendering/renderer",
+		"bitmap_renderer": "components/rendering/bitmap_renderer",
 
 		"root": "hierarchy/root",
 		"layer": "hierarchy/layer",
@@ -39,7 +40,7 @@ requirejs.config({
 	}
 });
 
-gamejs = {}
+gjs = {}
 
 require(['domReady!', 'game', 'root', 'layers', 'assembler', 'game_object_pool', 'component_pool'],
 
@@ -48,11 +49,11 @@ require(['domReady!', 'game', 'root', 'layers', 'assembler', 'game_object_pool',
 		var mainPath = document.querySelectorAll('script[data-main]')[0].getAttribute('main-path')
 
 		//Main dependecies, all together in a global variable for easy access.
-		gamejs['game']      = game;
-		gamejs['layers']    = layers;
-		gamejs['assembler'] = assembler;
-		gamejs['go_pool']   = game_object_pool
-		gamejs['co_pool']   = component_pool;
+		gjs['game']      = game;
+		gjs['layers']    = layers;
+		gjs['assembler'] = assembler;
+		gjs['go_pool']   = game_object_pool
+		gjs['co_pool']   = component_pool;
 
 		require([mainPath], function(main) {
 			main.start();

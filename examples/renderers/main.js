@@ -4,21 +4,14 @@ define(function(require) {
 		main.prototype.start = function() {
 			gjs.game.on("init", this, function() {
 				
-				//This example demonstrates the use of components.
-				//These are reusable modules that can be attached to different kinds of game_objects. 
+				//Here we will be taking a look mainly at a renderer to draw images.
+				//Something a bit more interesting than the squares thus far.
 
-				//A game object can has as many components as you like.
-				//The order of execution will be in the order they were added.
-
-				//This example will be using a rather useless component.
-				//It will make the associated game_object twitch like crazy, according to
-				//a number we pass in when configuring it.
-				
-				basic_game_object = require('../resources/basic_game_object'); 
-				box_renderer = require('../resources/box_renderer');		
+				var basic_game_object = require('../resources/basic_game_object'); 
+				var box_renderer = require('../resources/box_renderer');		
 
 				//The cleverly named component we will be using in this example
-				component = require('../resources/component_1');
+				var component = require('../resources/component_1');
 
 				//Nothing new in this part of the setup
 				gjs.co_pool.createPool("Box_Renderer", box_renderer, 3);

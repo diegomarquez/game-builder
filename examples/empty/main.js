@@ -3,7 +3,7 @@ define(function() {
 
 		main.prototype.start = function() {
 			//When this is called we are good to go!
-			gamejs.game.on("init", this, function() {
+			gjs.game.on("init", this, function() {
 				console.log("Hi!")
 			});
 		}
