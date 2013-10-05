@@ -6,6 +6,7 @@ requirejs.config({
 		"state_machine": "state_machine",
 		"timer_factory": "timer_factory",
 		"draw": "draw",
+		"util": "util",
 
 		"circle": "collision/circle_collider",
 		"polygon": "collision/polygon_collider",
@@ -54,7 +55,7 @@ require(['domReady!', 'game', 'root', 'layers', 'assembler', 'game_object_pool',
 		gjs['assembler'] = assembler;
 		gjs['go_pool']   = game_object_pool
 		gjs['co_pool']   = component_pool;
-		gjs['canvas']   = game.canvas;
+		gjs['canvas']    = document.getElementById('game');
 
 		require([mainPath], function(main) {
 			main.start();

@@ -51,7 +51,13 @@ These are some files I decided to extract from a previous javascript project. It
 - Have a common folder with all the game_objects and components used in all the examples.
     * Having them duplicated in every example is getting retarded.
 
-- Load game_object and container as dependancies of bootstrap.js and add them to the global scope
+- Spike Canvas caching.
+    * Cache static drawings
+    * Cache Images
+
+- Handle Adding and removing of renderer in a similar fashion to other components
+
+- Method to merge objects
 
 -----------------------------------
 

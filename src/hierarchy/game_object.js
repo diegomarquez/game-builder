@@ -42,13 +42,17 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 			this.canUpdate = true;
 			this.canDraw = true;
 
-			this.execute('start', this);
-
-			if (!this.components) return;
-
-			for (var i = 0; i < this.components.length; i++) {
-				this.components[i].start();
+			if(this.renderer) {
+				this.renderer.start();
 			}
+
+			if (this.components) {
+				for (var i = 0; i < this.components.length; i++) {
+					this.components[i].start();
+				}
+			}
+
+			this.execute('start', this);
 		},
 
 		update: function(delta) {},

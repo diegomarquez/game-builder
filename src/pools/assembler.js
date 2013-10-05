@@ -1,4 +1,4 @@
-define(['game_object_pool', 'component_pool'], function(GameObjectPool, ComponentPool) {
+define(['game_object_pool', 'component_pool', 'util'], function(GameObjectPool, ComponentPool, Util) {
 	var Assembler = function() {};
 
 	//This method only return an instance. It is up to the user to call the start method with arguments.
@@ -11,13 +11,8 @@ define(['game_object_pool', 'component_pool'], function(GameObjectPool, Componen
 		//Reset some internal properties of the game_object before actually using it.
 		pooledObject.reset();
 
-		//This sets unchanging arguments (hard), specified on the configuration object.
-		//If available the specific configuration object overrides the generic one.
-		if (args) {
-			pooledObject.configure(args);
-		} else {
-			pooledObject.configure(configuration.hardArguments);
-		}
+		//Merge arguments from configuration the the ones specific to this call
+		pooledObject.configure( Util.shallow_merge(configuration.hardArguments, args) );
 
 		//Set it's name
 		pooledObject.typeId = name;
@@ -27,13 +22,8 @@ define(['game_object_pool', 'component_pool'], function(GameObjectPool, Componen
 			var componentConfiguration = ComponentPool.getConfiguration(configuration.components[i].componentId);
 			var component = ComponentPool.getPooledObject(componentConfiguration.componentId);
 
-			//Configures the component as stated by the configuration object.
-			//If available the specific configuration object overrides the generic one.
-			if (configuration.components[i].args) {
-				component.configure(configuration.components[i].args);
-			} else {
-				component.configure(componentConfiguration.componentArgs);
-			}
+			//Merge arguments from type configuration with the ones in the specific component, if any
+			component.configure( Util.shallow_merge(componentConfiguration.componentArgs, configuration.components[i].args) );
 
 			//When this object is 'recycled' it returns to it's respective pool
 			component.on('recycle', this, function(c) {
@@ -61,14 +51,10 @@ define(['game_object_pool', 'component_pool'], function(GameObjectPool, Componen
 		//No renderer on this Game Object? Do nothing.
 		if(rendererConfiguration) {
 			pooledObject.renderer = ComponentPool.getPooledObject(rendererConfiguration.componentId);
+			pooledObject.renderer.parent = pooledObject;
 
-			//Configures the renderer as stated by the configuration object.
-			//If available the specific configuration object overrides the generic one.
-			if (configuration.renderer.args) {
-			 	pooledObject.renderer.configure(configuration.renderer.args);
-			} else {
-			 	pooledObject.renderer.configure(rendererConfiguration.componentArgs);
-			}
+			//Merge arguments from type configuration with the ones in the specific component, if any
+			pooledObject.renderer.configure( Util.shallow_merge(rendererConfiguration.componentArgs, configuration.renderer.args) );
 
 			//When this object is 'recycled' it returns to it's respective pool
 			pooledObject.renderer.on('recycle', this, function(c) {

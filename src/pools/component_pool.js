@@ -17,7 +17,6 @@ define(['pool'], function(Pool) {
 		},
 
 		getConfiguration: function(alias) {
-			debugger;
 			var configuration = this.configurations[alias];
 
 			if (this.pools[configuration.componentId].length <= 0) {
