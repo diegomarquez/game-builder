@@ -39,14 +39,23 @@ requirejs.config({
 	}
 });
 
+gamejs = {}
+
 require(['domReady!', 'game', 'root', 'layers', 'assembler', 'game_object_pool', 'component_pool'],
 
 	function(doc, game, root, layers, assembler, game_object_pool, component_pool) {
 
 		var mainPath = document.querySelectorAll('script[data-main]')[0].getAttribute('main-path')
 
+		//Main dependecies, all together in a global variable for easy access.
+		gamejs['game']      = game;
+		gamejs['layers']    = layers;
+		gamejs['assembler'] = assembler;
+		gamejs['go_pool']   = game_object_pool
+		gamejs['co_pool']   = component_pool;
+
 		require([mainPath], function(main) {
-			main.start(game, assembler, game_object_pool, component_pool, layers);
+			main.start();
 
 			game.on("update", this, function() {
 				root.update(game.delta, game.isPaused);

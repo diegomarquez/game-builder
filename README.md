@@ -16,13 +16,14 @@ These are some files I decided to extract from a previous javascript project. It
             - Layers ( Done )
     * Components
         + Misc Logic
-        + Collision
+        + Rendering
+    * Input
+        + Demo: Collision
             + Circle
             + Polygon
             + Fixed Polygon
-        + Rendering
-    * Input
-        + Demo: Dynamic nesting of childs in containers
+        + Demo: Dynamic add and remove of childs in containers
+        + Demo: Dynamic add and remove of components
         + Pausing/Resuming
     * Sound
     * Timers
@@ -38,6 +39,8 @@ These are some files I decided to extract from a previous javascript project. It
         + Configuration Type
         + Through assembler.get
         + Through game_object.start
+    * Layer Manager
+        + Other features
     * Text
         + Use this in all the examples to explain what is going on Screen
 
