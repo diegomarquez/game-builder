@@ -54,6 +54,7 @@ require(['domReady!', 'game', 'root', 'layers', 'assembler', 'game_object_pool',
 		gjs['assembler'] = assembler;
 		gjs['go_pool']   = game_object_pool
 		gjs['co_pool']   = component_pool;
+		gjs['canvas']   = game.canvas;
 
 		require([mainPath], function(main) {
 			main.start();
