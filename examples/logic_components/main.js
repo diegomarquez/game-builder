@@ -14,19 +14,19 @@ define(function(require) {
 				//It will make the associated game_object twitch like crazy, according to
 				//a number we pass in when configuring it.
 				
-				basic_game_object = require('./concrete_game_objects/basic_game_object'); 
-				box_renderer = require('./concrete_components/box_renderer');		
+				basic_game_object = require('../resources/basic_game_object'); 
+				box_renderer = require('../resources/box_renderer');		
 
 				//The cleverly named component we will be using in this example
-				component = require('./concrete_components/component_1');
+				component = require('../resources/component_1');
 
 				//Nothing new in this part of the setup
 				gamejs.co_pool.createPool("Box_Renderer", box_renderer, 3);
 				gamejs.co_pool.createPool("Component", component, 3);
 
-				gamejs.co_pool.createConfiguration("Red_Renderer", 'Box_Renderer').args({color:'#FF0000'});
-				gamejs.co_pool.createConfiguration("Green_Renderer", 'Box_Renderer').args({color:'#00FF00'});
-				gamejs.co_pool.createConfiguration("Blue_Renderer", 'Box_Renderer').args({color:'#0000FF'});
+				gamejs.co_pool.createConfiguration("Red_Renderer", 'Box_Renderer').args({color:  '#FF0000', offsetX: -10, offsetY: -10, width: 20, height: 20});
+				gamejs.co_pool.createConfiguration("Green_Renderer", 'Box_Renderer').args({color:'#00FF00', offsetX: -10, offsetY: -10, width: 20, height: 20});
+				gamejs.co_pool.createConfiguration("Blue_Renderer", 'Box_Renderer').args({color: '#0000FF', offsetX: -10, offsetY: -10, width: 20, height: 20});
 
 				//Creating the different configurations for the same type of component
 				gamejs.co_pool.createConfiguration("Component_1", 'Component').args({amount:2});

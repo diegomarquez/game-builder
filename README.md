@@ -14,9 +14,11 @@ These are some files I decided to extract from a previous javascript project. It
         + Nesting ( Done )
             - Containers ( Done )
             - Layers ( Done )
-    * Components
-        + Misc Logic
-        + Rendering
+    * Components ( DONE )
+        + Misc Logic ( Done )
+    * Renderers
+        + Image Renderer
+        + Drawing Renderer
     * Input
         + Demo: Collision
             + Circle
@@ -45,6 +47,11 @@ These are some files I decided to extract from a previous javascript project. It
         + Use this in all the examples to explain what is going on Screen
 
 - Write a README.md for each example
+
+- Have a common folder with all the game_objects and components used in all the examples.
+    * Having them duplicated in every example is getting retarded.
+
+- Load game_object and container as dependancies of bootstrap.js and add them to the global scope
 
 -----------------------------------
 

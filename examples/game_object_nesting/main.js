@@ -12,17 +12,17 @@ define(function(require) {
 
 				//Childs will follow translation, rotation, scaling and opacity of the parent. 
 				
-				container = require('./concrete_game_objects/basic_container');
+				container = require('../resources/basic_container');
 
-				basic_game_object = require('./concrete_game_objects/basic_game_object'); 
-				box_renderer = require('./concrete_components/box_renderer');		
+				basic_game_object = require('../resources/basic_game_object'); 
+				box_renderer = require('../resources/box_renderer');		
 
 				gamejs.co_pool.createPool("Box_Renderer", box_renderer, 4);
 
-				gamejs.co_pool.createConfiguration("Red_Renderer", 'Box_Renderer').args({color:'#FF0000'});
-				gamejs.co_pool.createConfiguration("Green_Renderer", 'Box_Renderer').args({color:'#00FF00'});
-				gamejs.co_pool.createConfiguration("Blue_Renderer", 'Box_Renderer').args({color:'#0000FF'});
-				gamejs.co_pool.createConfiguration("White_Renderer", 'Box_Renderer').args({color:'#FFFFFF'});
+				gamejs.co_pool.createConfiguration("Red_Renderer", 'Box_Renderer').args({color:  '#FF0000', offsetX: -10, offsetY: -10, width: 20, height: 20});
+				gamejs.co_pool.createConfiguration("Green_Renderer", 'Box_Renderer').args({color:'#00FF00', offsetX: -10, offsetY: -10, width: 20, height: 20});
+				gamejs.co_pool.createConfiguration("Blue_Renderer", 'Box_Renderer').args({color: '#0000FF', offsetX: -10, offsetY: -10, width: 20, height: 20});
+				gamejs.co_pool.createConfiguration("White_Renderer", 'Box_Renderer').args({color:'#FFFFFF', offsetX: -10, offsetY: -10, width: 20, height: 20});
 
 				gamejs.go_pool.createPool("Base", basic_game_object, 3);
 				gamejs.go_pool.createPool("Container", container, 1);

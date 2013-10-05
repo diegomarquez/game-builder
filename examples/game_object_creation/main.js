@@ -3,18 +3,30 @@ define(function(require) {
 
 		main.prototype.start = function() {
 			//Loading dependacies through a relative path
-			basic_game_object = require('./concrete_game_objects/basic_game_object'); 
-			box_renderer      = require('./concrete_components/box_renderer');
+			basic_game_object = require('../resources/basic_game_object'); 
+			box_renderer      = require('../resources/box_renderer');
 
 			//When this is called we are good to go!
 			gamejs.game.on("init", this, function() {
-				//Create the renderer components pool
+				//Create the renderer components pool.
+				//An Id, Class and amount are specified
 				gamejs.co_pool.createPool("Box_Renderer", box_renderer, 1);
+				
 				//Create a configuration for the components in the pool
 				//When a component with with ID 'Red_Renderer' is created, it will take this arguments
-				gamejs.co_pool.createConfiguration("Red_Renderer", 'Box_Renderer').args({color:'#FF0000'});
-				
+				//This particular render will draw a box with the specified parameters
+				gamejs.co_pool.createConfiguration("Red_Renderer", 'Box_Renderer')
+					.args({	
+							color:'#FF0000',
+							offsetX: -50,
+							offsetY: -50,
+							width: 100,
+							height: 100,
+						  });
+
 				//Create game_object pool
+				//An Id, Class and amount are specified
+				
 				gamejs.go_pool.createPool("Base", basic_game_object, 1);
 				//Create a configuration for the game_objects in the pool
 				//When a game_object with with ID 'Base_1' is created, it will take this arguments
@@ -24,8 +36,10 @@ define(function(require) {
 					.setRenderer('Red_Renderer');
 
 				//Get a game_object already setup. NOTICE: the ID used to get it. 
-				//The assembler module is your friend, and as such you will see it regularly.
 				var go = gamejs.assembler.get('Base_1');
+				//The assembler module takes care of building a game_object as specified previously.
+				//It will take a pooled game_object add to it all the components that are configured for it to use
+				//and finally it will setup the initial values of all those things.
 
 				//Adding the game_object to a layer
 				gamejs.layers.get('Middle').add(go);

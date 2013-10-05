@@ -8,15 +8,15 @@ define(function(require) {
 				//In reality it is just a fancy name for the containers of the previous example.
 				//The difference being that these are dedicated to help in organizing what gets drawn and when.
 				
-				basic_game_object = require('./concrete_game_objects/basic_game_object'); 
-				box_renderer = require('./concrete_components/box_renderer');		
+				basic_game_object = require('../resources/basic_game_object'); 
+				box_renderer = require('../resources/box_renderer');		
 
 				//Nothing new in this part of the setup
 				gamejs.co_pool.createPool("Box_Renderer", box_renderer, 3);
 
-				gamejs.co_pool.createConfiguration("Red_Renderer", 'Box_Renderer').args({color:'#FF0000'});
-				gamejs.co_pool.createConfiguration("Green_Renderer", 'Box_Renderer').args({color:'#00FF00'});
-				gamejs.co_pool.createConfiguration("Blue_Renderer", 'Box_Renderer').args({color:'#0000FF'});
+				gamejs.co_pool.createConfiguration("Red_Renderer", 'Box_Renderer').args({color:  '#FF0000', offsetX: -50, offsetY: -50, width: 100, height: 100});
+				gamejs.co_pool.createConfiguration("Green_Renderer", 'Box_Renderer').args({color:'#00FF00', offsetX: -50, offsetY: -50, width: 100, height: 100});
+				gamejs.co_pool.createConfiguration("Blue_Renderer", 'Box_Renderer').args({color: '#0000FF', offsetX: -50, offsetY: -50, width: 100, height: 100});
 
 				gamejs.go_pool.createPool("Base", basic_game_object, 3);
 
