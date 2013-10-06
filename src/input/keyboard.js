@@ -1,179 +1,76 @@
-define(function() {
-	var Keyboard = function() {
-		this.keyUpListeners = {};
-		this.keyDownTimeOutListeners = {};
+define(function(require) {
 
-		this._pressed = {};
-		this._pause = false;
+	var Delegate = require('delegate');
 
-		this.LEFT = 37;
-		this.UP = 38;
-		this.RIGHT = 39;
-		this.DOWN = 40;
+	var pressed = {};
 
-		this.CTRL = 17;
-		this.ALT = 18;
-		this.ESC = 27;
-		this.SPACE = 32;
+	var Keyboard = Delegate.extend({
+		init: function() {
+			this._super();
 
-		this.A = 65;
-		this.S = 83;
-		this.D = 68;
-		this.Z = 90;
-		this.X = 88;
-		this.C = 67;
+			this.LEFT = 37;
+			this.UP = 38;
+			this.RIGHT = 39;
+			this.DOWN = 40;
 
-		this.P = 80;
-		this.O = 79;
-		this.I = 73;
+			this.CTRL = 17;
+			this.ALT = 18;
+			this.ESC = 27;
+			this.SPACE = 32;
 
-		this.NUM_0 = 48;
-		this.NUM_1 = 49;
-		this.NUM_2 = 50;
-		this.NUM_3 = 51;
-		this.NUM_4 = 52;
-		this.NUM_5 = 53;
+			this.A = 65;
+			this.S = 83;
+			this.D = 68;
+			this.Z = 90;
+			this.X = 88;
+			this.C = 67;
 
-		this.GAME_LEFT = this.LEFT;
-		this.GAME_RIGHT = this.RIGHT;
-		this.GAME_UP = this.UP;
-		this.GAME_DOWN = this.DOWN;
-		this.GAME_BUTTON_1 = this.A;
-		this.GAME_BUTTON_2 = this.S;
-		this.GAME_BUTTON_PAUSE = this.P;
-	};
+			this.P = 80;
+			this.O = 79;
+			this.I = 73;
 
-	Keyboard.prototype.pause = function() {
-		this._pause = true;
-	};
+			this.NUM_0 = 48;
+			this.NUM_1 = 49;
+			this.NUM_2 = 50;
+			this.NUM_3 = 51;
+			this.NUM_4 = 52;
+			this.NUM_5 = 53;
 
-	Keyboard.prototype.resume = function() {
-		this._pause = false;
-	};
+			this.GAME_LEFT = this.LEFT;
+			this.GAME_RIGHT = this.RIGHT;
+			this.GAME_UP = this.UP;
+			this.GAME_DOWN = this.DOWN;
+			this.GAME_BUTTON_1 = this.A;
+			this.GAME_BUTTON_2 = this.S;
+			this.GAME_BUTTON_PAUSE = this.P;
+		},
 
-	Keyboard.prototype.addUpCallback = function(key, callback) {
-		if (!this.keyUpListeners.hasOwnProperty(key)) {
-			this.keyUpListeners[key] = [];
+		onKeyDown: function(keyCode, scope, callback) {
+			this.on('keydown' + keyCode.toString(), scope, callback, false, false, false);
+		},
+
+		onKeyUp: function(keyCode, scope, callback) {
+			this.on('keyup' + keyCode.toString(), scope, callback, false, false, false);
+		},
+
+		isKeyDown: function(keyCode) {
+			return pressed[keyCode];	
 		}
-
-		this.keyUpListeners[key].push(callback);
-
-		return { key: key, type: "Up", callback: callback };
-	};
-
-	Keyboard.prototype.removeUpCallback = function(callbackObject) {
-		if (this.keyUpListeners.hasOwnProperty(callbackObject.key)) {
-			this.keyUpListeners[callbackObject.key].splice(this.keyUpListeners[callbackObject.key].indexOf(callbackObject.callback), 1);
-		}
-	};
-
-	Keyboard.prototype.addDownTimeOutCallback = function(key, callback, delay) {
-		if (!this.keyDownTimeOutListeners.hasOwnProperty(key)) {
-			this.keyDownTimeOutListeners[key] = [];
-		}
-
-		this.keyDownTimeOutListeners[key].push({ callback: callback, delay: delay, id: -1 });
-
-		return { key: key, type: "DownTimeOut", callback: callback };
-	};
-
-	Keyboard.prototype.removeDownTimeOutCallback = function(callbackObject) {
-		if (this.keyDownTimeOutListeners.hasOwnProperty(callbackObject.key)) {
-			for (var i = this.keyDownTimeOutListeners[callbackObject.key].length - 1; i >= 0; i--) {
-				var c = this.keyDownTimeOutListeners[callbackObject.key][i].callback;
-
-				if (c === callbackObject.callback) {
-					clearTimeout(this.keyDownTimeOutListeners[callbackObject.key][i].id);
-					this.keyDownTimeOutListeners[callbackObject.key].splice(i, 1);
-				}
-			}
-		}
-	};
-
-	Keyboard.prototype.addCallbacks = function(callbacks) {
-		for (var i = 0; i < callbacks.length; i++) {
-			var c = callbacks[i];
-
-			if (c.type == "DownTimeOut") {
-				this.addDownTimeOutCallback(c.key, c.callback, c.delay);
-			}
-
-			if (c.type == "Up") {
-				this.addUpCallback(c.key, c.callback);
-			}
-		}
-	};
-
-	Keyboard.prototype.removeCallbacks = function(callbacks) {
-		for (var i = 0; i < callbacks.length; i++) {
-			var c = callbacks[i];
-
-			if (c.type == "DownTimeOut") {
-				this.removeDownTimeOutCallback(c.key, c.callback);
-			}
-
-			if (c.type == "Up") {
-				this.removeUpCallback(c.key, c.callback);
-			}
-		}
-
-		callbacks.length = 0;
-	};
-
-	Keyboard.prototype.isDown = function(keyCode) {
-		return this._pressed[keyCode];
-	};
-
-	Keyboard.prototype.onKeydown = function(event) {
-		var key = event.keyCode;
-
-		this._pressed[key] = true;
-
-		if (this.keyDownTimeOutListeners.hasOwnProperty(key)) {
-			for (var i = this.keyDownTimeOutListeners[key].length - 1; i >= 0; i--) {
-				if (this.keyDownTimeOutListeners[key][i].id == -1) {
-					this.keyDownTimeOutListeners[key][i].id = setTimeout(this.keyDownTimeOutListeners[key][i].callback, this.keyDownTimeOutListeners[key][i].delay);
-				}
-			}
-		}
-	};
-
-	Keyboard.prototype.onKeyup = function(event) {
-		var key = event.keyCode;
-
-		if (this.keyUpListeners.hasOwnProperty(key)) {
-			for (var i = this.keyUpListeners[key].length - 1; i >= 0; i--) {
-				this.keyUpListeners[key][i]();
-			}
-		}
-
-		if (this.keyDownTimeOutListeners.hasOwnProperty(key)) {
-			for (var i = this.keyDownTimeOutListeners[key].length - 1; i >= 0; i--) {
-				clearTimeout(this.keyDownTimeOutListeners[key][i].id);
-				this.keyDownTimeOutListeners[key][i].id = -1;
-			}
-		}
-
-		delete this._pressed[key];
-	};
+	});
 
 	var keyboard = new Keyboard();
 
 	window.addEventListener('keyup', function(event) {
+		delete pressed[event.keyCode];
 
-		if (event.keyCode == keyboard.GAME_BUTTON_PAUSE) {
-			keyboard.onKeyup(event);
-			return;
-		}
-
-		if (keyboard._pause) return;
-
-		keyboard.onKeyup(event);
+		keyboard.execute('keyup' + event.keyCode.toString(), event);
 	}, false);
 
-	window.addEventListener('keydown', function(event) {
-		if (keyboard._pause) return;
-		keyboard.onKeydown(event);
+	window.addEventListener('keydown', function(event){
+		if(pressed[event.keyCode]) return;
+
+		pressed[event.keyCode] = true;
+		keyboard.execute('keydown' + event.keyCode.toString(), event);
 	}, false);
 
 	document.onkeydown = function(event) {

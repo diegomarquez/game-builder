@@ -124,6 +124,10 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 
 			this.parent = null;
 
+			if(this.renderer) {
+				this.renderer.destroy();
+			}
+
 			if (!this.components) return;
 
 			while (this.components.length) {

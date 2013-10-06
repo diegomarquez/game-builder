@@ -22,10 +22,7 @@ These are some files I decided to extract from a previous javascript project. It
         + Circle ( Done )
         + Polygon ( Done )
         + Fixed Polygon ( Done )
-    * Input
-        + Demo: Dynamic add and remove of childs in containers
-        + Demo: Dynamic add and remove of components
-        + Pausing/Resuming
+    * Input ( DONE )
     * Sound
     * Timers
     * State Machine
@@ -33,36 +30,44 @@ These are some files I decided to extract from a previous javascript project. It
         + Overview on all the callbacks available to game_object
         + Overview on all the callbacks available to canvas_wrapper
         + Overview on all the callbacks available to component
-        + Bubbleing
+        + Overview on all the callbacks available to collider_component
+        + Bubbling
     * Canvas Wrapper 
-        + Pause & Resume
         + Extensions
     * Different ways to send in arguments to a game_object
         + Configuration Type
         + Through assembler.get
-        + Through game_object.start
+        + Through game_object.start ( This will be no more, doesn't make sense )
     * Layer Manager
         + Other features
+    * Demos requiring more than one module
+        + Demo: Dynamic add and remove of childs in containers
+        + Demo: Dynamic add and remove of components
+        + Pausing/Resuming
+        + Reclaiming of game_objects    
     * Text
         + Use this in all the examples to explain what is going on Screen
 
 - Write a README.md for each example
 
-- Have a common folder with all the game_objects and components used in all the examples.
-    * Having them duplicated in every example is getting retarded.
+- Explain main components in the main README.md
 
 - Spike Performance Boost
     - Back Buffer (Another canvas in memory)
         - Stress example
             - Current rendering Vs. Back buffer rendering
-    - Canvas caching.
+    - Canvas caching
         * Cache static drawings (Drawing Renderer, NEW)
         * Cache Images (Bitmap renderer)
 
+- Remove canvas_wrapper pause in favour of the layer manager pause
 
 - Handle Adding and removing of renderer in a similar fashion to other components
 
-- Clean up of pools. Bundles.
+- Organization, Recycling and Destruction
+    * Cleanup of pools. 
+    * Bundles of creation pool setups
+    * Reclaimer. This guy will be used to get the specified game_objects back into their pools for re-use.
 
 -----------------------------------
 

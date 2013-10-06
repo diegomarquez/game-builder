@@ -19,5 +19,17 @@ define(function() {
 		}
 	}	
 
+	Utils.prototype.bind = function(func, scope, args) {
+		return function() {
+			func.apply(scope, args);
+		}
+	}
+
+	Utils.prototype.rand_f     = function (min, max) { return Math.random() * (max - min) + min; }
+	Utils.prototype.rand_i     = function (min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+	Utils.prototype.rand_pair  = function (value1, value2) { return Math.random() >= 0.5 ? value1 : value2; }
+	Utils.prototype.rand_b     = function () { return Math.random() >= 0.5 }
+	Utils.prototype.rand_color = function () { return '#'+Math.floor(Math.random()*16777215).toString(16); }
+
 	return new Utils()
 });
