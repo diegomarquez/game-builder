@@ -3,6 +3,12 @@ define(["game_object"], function(GameObject){
 	var Basic = GameObject.extend({
 		update: function(delta) {
 			this.rotation += this.rotation_speed;
+		},
+
+		//This method needs to be defined if a game_object has a collider component attached
+		//Might change in the future, haven't figured out what is the best way to do this yet
+		onCollide: function(other) {
+			console.log(this.typeId + " Collided with " + other.typeId)
 		}
 	});
 

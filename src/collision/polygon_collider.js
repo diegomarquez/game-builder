@@ -31,7 +31,9 @@ define(['collision_component', 'sat', 'collision_resolver', 'vector_2D', 'draw']
 			},
 
 			draw: function(context) {
-				draw.polygon(context, 0, 0, this.pointsCopy, null, "#ffffff", 1);
+				draw.polygon(context, 0, 0, this.pointsCopy, null, this.debugColor, 2);
+
+				this._super();
 			}
 		});
 

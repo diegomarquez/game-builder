@@ -10,7 +10,7 @@ requirejs.config({
 
 		"circle": "collision/circle_collider",
 		"polygon": "collision/polygon_collider",
-		"f_polygon": "collision/fixed_polygon_collider",
+		"fixed_polygon": "collision/fixed_polygon_collider",
 		"collision_resolver": "collision/collision_resolver",
 		"collision_component": "collision/collision_component",
 		"sat": "collision/sat",

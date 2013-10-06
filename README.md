@@ -17,13 +17,12 @@ These are some files I decided to extract from a previous javascript project. It
     * Components ( DONE )
         + Misc Logic ( Done )
     * Renderers
-        + Image Renderer
-        + Drawing Renderer
+        + Image Renderer ( Done )
+    * Collision 
+        + Circle ( Done )
+        + Polygon ( Done )
+        + Fixed Polygon ( Done )
     * Input
-        + Demo: Collision
-            + Circle
-            + Polygon
-            + Fixed Polygon
         + Demo: Dynamic add and remove of childs in containers
         + Demo: Dynamic add and remove of components
         + Pausing/Resuming
@@ -34,6 +33,7 @@ These are some files I decided to extract from a previous javascript project. It
         + Overview on all the callbacks available to game_object
         + Overview on all the callbacks available to canvas_wrapper
         + Overview on all the callbacks available to component
+        + Bubbleing
     * Canvas Wrapper 
         + Pause & Resume
         + Extensions
@@ -51,13 +51,18 @@ These are some files I decided to extract from a previous javascript project. It
 - Have a common folder with all the game_objects and components used in all the examples.
     * Having them duplicated in every example is getting retarded.
 
-- Spike Canvas caching.
-    * Cache static drawings
-    * Cache Images
+- Spike Performance Boost
+    - Back Buffer (Another canvas in memory)
+        - Stress example
+            - Current rendering Vs. Back buffer rendering
+    - Canvas caching.
+        * Cache static drawings (Drawing Renderer, NEW)
+        * Cache Images (Bitmap renderer)
+
 
 - Handle Adding and removing of renderer in a similar fashion to other components
 
-- Method to merge objects
+- Clean up of pools. Bundles.
 
 -----------------------------------
 

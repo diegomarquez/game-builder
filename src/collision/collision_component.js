@@ -4,8 +4,9 @@ define(['component', 'collision_resolver'], function(Component, CollisionResolve
 	var collisionOpponent = null;
 
 	var CollisionComponent = Component.extend({
-
 		start: function() {
+			this.debugColor = "#FFFFFF";
+
 			this.collisionId = this.id;
 			this.checkingCollisions = true;
 
@@ -18,6 +19,8 @@ define(['component', 'collision_resolver'], function(Component, CollisionResolve
 		update: function() {
 			collisionList = CollisionResolver.collisionLists[this.collisionId];
 
+			debugger;
+
 			if (collisionList != null) {
 				for (k = 0; k < collisionList.length; k++) {
 					collisionOpponent = collisionList[k];
@@ -27,20 +30,26 @@ define(['component', 'collision_resolver'], function(Component, CollisionResolve
 					if (CollisionResolver.areColliding(this, collisionOpponent)) {
 						if (!this.checkingCollisions) break;
 		
-						if(this.parent.onCollide)
-							this.parent.onCollide(collisionOpponent.parent);
-						
+						this.onCollide(collisionOpponent)
+						this.parent.onCollide(collisionOpponent.parent);
 						this.parent.execute('collide', collisionOpponent.parent);
 
 						if (!this.checkingCollisions) break;
 
-						if(collisionOpponent.parent.onCollide)
-							collisionOpponent.parent.onCollide(this.parent);
-						
+						collisionOpponent.onCollide(this);
+						collisionOpponent.parent.onCollide(this.parent);
 						collisionOpponent.parent.execute('collide', this.parent);
 					}
 				}
 			}
+		},
+
+		onCollide: function(other) {
+			this.debugColor = "#FF0000";
+		},
+
+		draw: function() {
+			this.debugColor = "#FFFFFF";
 		},
 
 		destroy: function() {
