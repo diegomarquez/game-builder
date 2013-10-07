@@ -66,7 +66,7 @@ These are some files I decided to extract from a previous javascript project. It
 
 - Organization, Recycling and Destruction
     * Cleanup of pools. 
-    * Bundles of creation pool setups
+    * Bundles of pool setups
     * Reclaimer. This guy will be used to get the specified game_objects back into their pools for re-use.
 
 -----------------------------------
