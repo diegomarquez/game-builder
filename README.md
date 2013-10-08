@@ -23,7 +23,6 @@ These are some files I decided to extract from a previous javascript project. It
         + Polygon ( Done )
         + Fixed Polygon ( Done )
     * Input ( DONE )
-    * Sound
     * Timers
     * State Machine
     * Delegates
@@ -47,8 +46,12 @@ These are some files I decided to extract from a previous javascript project. It
         + Reclaiming of game_objects    
     * Text
         + Use this in all the examples to explain what is going on Screen
+    * Sound
 
 - Write a README.md for each example
+- Use HTML to add some on screen explanation of what is going on.
+- Add additional debug drawing to game_object
+    * global transformed position
 
 - Explain main components in the main README.md
 
