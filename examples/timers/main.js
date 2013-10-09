@@ -4,25 +4,14 @@ define(function(require) {
 	main.prototype.start = function() {
 		gjs.game.on("init", this, function() {
 
-			//This example will deal with the keyboard module. 
-			//I believe that is pretty self explanatory. 
-			var keyboard = require('keyboard');
-			var util = require('util');
+			//This example will deal with the timer_factory module.
+			//This module exists because Javascript's setTimeout and setInterval methods work,
+			//but they are a bit lacking in functionality.
 
-			//Some notes, the keyboard module will setup some listeners to override standard browser behaviour.
-			//You probably do not want the window to scroll when you press the arrow keys.
-
-			//There are a bunch of defined constants, you can find them in the framework's folder in keyboard.js 
-			//It's not all of them, but if you need more than 20 keys for a game... I don't know... maybe you are doing it wrong.
-
-			//For reasons (I don't want to do it), only the callback for the A key makes something appear on the canvas.
-			//If you want to see the rest of the messages, you can do so on your browser's console. 
-			//By 'your browser' I mean Chrome.
-
-			//If you try to create for game_objects than the amount specified when creating the pool,
-			//an error will be thrown, but that escapes the scope of this example.
-			//Other examples will deal with recycling game_objects. If you want to continue pressing 'A'
-			//to create more boxes, refresh the example. Yeah... pretty crud, I know.
+			//The timer factory gives you a type of object which uses setTimeout under the hood,
+			//and gives you convenience methods such as pause/resume and the ability to pause/resume or stop
+			//all timers in your application with one method call. That last feature can be very helpful. 
+			var timer_factory = require('timer_factory');
 
 			//As usual this guys are here so we can see something
 			var basic_game_object = require('../resources/basic_game_object');

@@ -1,216 +1,207 @@
-define(function() {
+define(function(require) {
 	var TimerFactory = function() {
-		this.scopeTimeOuts = {};
+		this.timeOuts = [];
 	};
 
-	TimerFactory.prototype.get = function() {
-		return new Timer();
+	TimerFactory.prototype.get = function(owner, name, propertyName) {
+		var timeout = new Timer(owner, name, propertyName);
+		this.timeOuts.push(timeout);
+		return timeout;
 	};
 
-	TimerFactory.prototype.addToScopeHash = function(scope, timer) {
-		if (!this.scopeTimeOuts[scope] && scope) {
-			this.scopeTimeOuts[scope] = [];
-		}
+	var applyChangeToSomeTimers = function(state, identifier, identifierValue) {
+		this.forEach(function(element, index, array) {
+			if (element[identifier] === identifierValue) {
+				element[state]();
+			}
+		});
+	}
 
-		if(this.scopeTimeOuts[scope]) {
-			this.scopeTimeOuts[scope].push(timer);
+	var applyChangeToAllTimers = function(state) {
+		this.forEach(function(element, index, array) {
+			element[state]();
+		});
+	}
+
+	var getChangeObject = function(state) {
+		var self = this;
+
+		return {
+			wich: function(identifier, identifierValue) {
+				applyChangeToSomeTimers.call(self.timeOuts, state, identifier, identifierValue);
+			},
+			now: function() {
+				applyChangeToSomeTimers.call(self.timeOuts, state);
+			}
 		}
 	}
 
-	TimerFactory.prototype.removeFromScopeHash = function(scope, timer) {
-		this.scopeTimeOuts[scope].splice(this.scopeTimeOuts[scope].indexOf(timer), 1);
-	}
-
-	TimerFactory.prototype.stopAllTimeOuts = function() {
-		for (var k in this.scopeTimeOuts) {
-			for (var i = 0; i < this.scopeTimeOuts[k].length; i++) {
-				this.scopeTimeOuts[k][i].stop();
-			}
-		}
+	TimerFactory.prototype.stopAll = function() {
+		return getChangeObject.call(this, 'stop');
 	};
-
-	TimerFactory.prototype.pauseAllTimeOuts = function() {
-		for (var k in this.scopeTimeOuts) {
-			for (var i = 0; i < this.scopeTimeOuts[k].length; i++) {
-				this.scopeTimeOuts[k][i].pause();
-			}
-		}
+	TimerFactory.prototype.pauseAll = function() {
+		return getChangeObject.call(this, 'pause');
 	};
-
-	TimerFactory.prototype.resumeAllTimeOuts = function() {
-		for (var k in this.scopeTimeOuts) {
-			for (var i = 0; i < this.scopeTimeOuts[k].length; i++) {
-				this.scopeTimeOuts[k][i].resume();
-			}
-		}
+	TimerFactory.prototype.resumeAll = function() {
+		return getChangeObject.call(this, 'resume');
 	};
-
-	TimerFactory.prototype.removeAllTimeOuts = function() {
-		for (var k in this.scopeTimeOuts) {
-			for (var i = this.scopeTimeOuts[k].length - 1; i >= 0; i--) {
-				this.scopeTimeOuts[k][i].remove();
-			}
-		}
-	};
-
-	TimerFactory.prototype.stopAllTimeOutsWithScope = function() {
-		for (var i = 0; i < this.scopeTimeOuts[scope].length; i++) {
-			if (this.scopeTimeOuts[scope][i].scope === scope) {
-				this.scopeTimeOuts[scope][i].stop();
-			}
-		}
-	};
-
-	TimerFactory.prototype.removeAllTimeOutsWithScope = function() {
-		for (var i = this.scopeTimeOuts[scope].length - 1; i >= 0; i--) {
-			if (this.scopeTimeOuts[scope][i].scope === scope) {
-				this.scopeTimeOuts[scope][i].remove();
-			}
-		}
+	TimerFactory.prototype.removeAll = function() {
+		return getChangeObject.call(this, 'remove');
 	};
 
 	var timerFactory = new TimerFactory();
 
-	var Timer = function() {
-		this._delay = 1000;
-		this.initDelay = this._delay;
+	Delegate = require('delegate')
 
-		this.repeateCount = 1;
-		this.initRepeatCount = this.repeateCount;
+	var Timer = Delegate.extend({
+		init: function(owner, name, propertyName) {
+			if (!owner) {
+				throw new Error('Timer must have an owner, if unsure just send in "this"')
+			}
+			if (!name) {
+				throw new Error('Timer must have an name to identify it later')
+			}
 
-		this.removeOnComplete = true;
+			this.owner = owner;
+			this.name = name;
+			this.propertyName = propertyName;
 
-		this.repeates = 0;
-		this.id = -1;
-		this.startTime = -1;
-		this.pauseTime = -1;
-		this.isRunning = false;
-		this.isPaused = false;
-	};
+			this._delay = 1000;
+			this.initDelay = this._delay;
 
-	Timer.prototype.configure = function(delay, repeatCount, scope, callback, removeOnComplete, onComplete) {
-		this.Delay(delay);
-		this.RepeateCount(repeatCount);
-		this.Scope(scope);
-		this.Callback(callback);
-		this.RemoveOnComplete(removeOnComplete);
-		this.Complete(onComplete);
+			this.repeateCount = 1;
+			this.initRepeatCount = this.repeateCount;
 
-		return this;
-	}	
+			this.removeOnComplete = true;
 
-	Timer.prototype.start = function(resumeTime) {
-		if (this.isRunning || this.isPaused) {
-			return;
-		}
+			this.repeates = 0;
+			this.id = -1;
+			this.startTime = -1;
+			this.pauseTime = -1;
+			this.isRunning = false;
+			this.isPaused = false;
+		},
 
-		this.startTime = Date.now();
+		configure: function(options) {
+			options['delay'] = options['delay'] || this._delay;
+			options['repeatCount'] = options['repeatCount'] || this.repeateCount;
+			options['removeOnComplete'] = options['removeOnComplete'] || this.removeOnComplete;
 
-		this.isRunning = true;
-		this.isPaused = false;
+			this.Delay(options['delay']);
+			this.RepeateCount(options['repeatCount']);
+			this.RemoveOnComplete(options['removeOnComplete']);
 
-		var actualDelay = resumeTime ? resumeTime : this.initDelay;
+			return this;
+		},
 
-		var to = this;
-
-		this.id = setTimeout(function() {
-			if (to.isRunning && !to.isPaused) {
-				if (to.callback) {
-					to.callback.call(to.scope, to.repeates);
-					to.repeates++;
-				}
-			} else {
+		start: function(resumeTime) {
+			if (this.isRunning || this.isPaused) {
 				return;
 			}
 
-			if (to.repeateCount < 0) {
-				to.isRunning = false;
-				to._delay = to.initDelay;
-				to.start();
-			} else {
-				to.repeateCount--;
+			this.startTime = Date.now();
 
-				if (to.repeateCount > 0) {
+			this.isRunning = true;
+			this.isPaused = false;
+
+			var actualDelay = resumeTime ? resumeTime : this.initDelay;
+
+			var to = this;
+
+			this.id = setTimeout(function() {
+				if (to.isRunning && !to.isPaused) {
+					to.execute("repeate", to.repeates)
+					to.repeates++;
+				} else {
+					return;
+				}
+
+				if (to.repeateCount < 0) {
 					to.isRunning = false;
 					to._delay = to.initDelay;
 					to.start();
 				} else {
-					to.stop();
+					to.repeateCount--;
 
-					if (to.onComplete) {
-						to.onComplete.call(to.scope);
-					}
-					if (to.removeOnComplete) {
-						to.remove();
+					if (to.repeateCount > 0) {
+						to.isRunning = false;
+						to._delay = to.initDelay;
+						to.start();
+					} else {
+						to.stop();
+
+						to.execute("complete")
+
+						if (to.removeOnComplete) {
+							to.remove();
+						}
 					}
 				}
+			}, actualDelay);
+		},
+
+		stop: function() {
+			clearTimeout(this.id);
+
+			this.isRunning = false;
+			this.isPaused = false;
+			this.repeateCount = this.initRepeatCount;
+			this._delay = this.initDelay;
+			this.repeates = 0;
+		},
+
+		reset: function(withCallback) {
+			if (withCallback)
+				this.callback.call(this.scope);
+
+			this.stop();
+			this.start();
+		},
+
+		pause: function() {
+			if (!this.isRunning) {
+				return;
 			}
 
-		}, actualDelay);
+			clearTimeout(this.id);
+			this.pauseTime = Date.now();
+			this.isRunning = false;
+			this.isPaused = true;
+		},
 
-		return this;
-	};
+		resume: function() {
+			if (!this.isRunning && !this.isPaused) {
+				return;
+			}
 
-	Timer.prototype.stop = function(resumeTime) {
-		clearTimeout(this.id);
+			this.isPaused = false;
+			this._delay -= (this.pauseTime - this.startTime);
+			this.start(this._delay);
+		},
 
-		this.isRunning = false;
-		this.isPaused = false;
-		this.repeateCount = this.initRepeatCount;
-		this._delay = this.initDelay;
-		this.repeates = 0;
-	};
+		remove: function() {
+			this.stop();
+			index = timerFactory.timeOuts.indexOf(this);
+			timerFactory.timeOuts.splice(index, 1);	
+		},
 
-	Timer.prototype.reset = function(withCallback) {
-		if (withCallback)
-			this.callback.call(this.scope);
+		Delay: function(d) {
+			this._delay = d;
+			this.initDelay = d;
+			return this;
+		},
 
-		this.stop();
-		this.start();
-	};
+		RepeateCount: function(r) {
+			this.repeateCount = r;
+			this.initRepeatCount = r;
+			return this;
+		},
 
-	Timer.prototype.pause = function() {
-		if (!this.isRunning) {
-			return;
+		RemoveOnComplete: function(r) {
+			this.removeOnComplete = r;
+			return this;
 		}
-
-		clearTimeout(this.id);
-		this.pauseTime = Date.now();
-		this.isRunning = false;
-		this.isPaused = true;
-	};
-
-	Timer.prototype.resume = function() {
-		if (!this.isRunning && !this.isPaused) {
-			return;
-		}
-
-		this.isPaused = false;
-		this._delay -= (this.pauseTime - this.startTime);
-		this.start(this._delay);
-	};
-
-	Timer.prototype.remove = function() {
-		this.stop();
-		timerFactory.scopeTimeOuts[this.scope].splice(timerFactory.scopeTimeOuts[this.scope].indexOf(this), 1);
-	}
-
-	Timer.prototype.Delay = function(d) { this._delay = d; this.initDelay = d; return this; };
-	Timer.prototype.RepeateCount = function(r) { this.repeateCount = r; this.initRepeatCount = r; return this; };
-	Timer.prototype.Callback = function(c) { this.callback = c; return this; };
-	Timer.prototype.Complete = function(c) { this.onComplete = c; return this; };
-	Timer.prototype.RemoveOnComplete = function(r) { this.removeOnComplete = r; return this; };
-	
-	Timer.prototype.Scope = function(s) { 
-		if(this.scope) {
-			timerFactory.removeFromScopeHash(this.scope, this)
-		}
-		
-		timerFactory.addToScopeHash(s, this);
-		this.scope = s; 
-
-		return this; 
-	};
+	});
 
 	Object.defineProperty(Timer.prototype, "delay", {
 		get: function() {
