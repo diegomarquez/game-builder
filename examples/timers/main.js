@@ -9,55 +9,79 @@ define(function(require) {
 			//but they are a bit lacking in functionality.
 
 			//The timer factory gives you a type of object which uses setTimeout under the hood,
-			//and gives you convenience methods such as pause/resume and the ability to pause/resume or stop
-			//all timers in your application with one method call. That last feature can be very helpful. 
+			//it has convenience methods such as pause/resume and a couple of callbacks 
+
+			//The factory in turn keeps track of all timers created and will let you pause,resume or stop
+			//all timers in your application with one method call.
 			var timer_factory = require('timer_factory');
 
-			//As usual this guys are here so we can see something
-			var basic_game_object = require('../resources/basic_game_object');
-			var box_renderer = require('../resources/box_renderer');
+			//Will be using this module to control the creation, start, pause and stop timers
+			var keyboard = require('keyboard');
 
-			gjs.go_pool.createPool("Base", basic_game_object, 20);
-			gjs.co_pool.createPool("Box_Renderer", box_renderer, 20);
+			//This creates a timer object, it has 3 arguments
+				//1) It becomes part of the scope 'this' (or any other scope passed), 
+				//2) It belongs to the group 'timer_1'
+				//3) And can be accessed in the scope specified in 1) through the name 'my_timer' 
+			timer_factory.get(this, 'timer_1', 'my_timer_1');
+			timer_factory.get(this, 'timer_1', 'my_timer_2');
+			timer_factory.get(this, 'timer_2', 'my_timer_3');
 
-			gjs.co_pool.createConfiguration("Small_box", 'Box_Renderer').args({offsetX: -10, offsetY: -10, width: 20, height: 20});
+			//Configure the timer
+			this.my_timer_1.configure({ delay: 3000 });
+			this.my_timer_2.configure({ delay: 2000, repeatCount:2, removeOnComplete:false});
+			this.my_timer_3.configure({ delay: 7000, repeatCount:1, removeOnComplete:false});
 
-			gjs.go_pool.createConfiguration("Base_2", "Base")
-				.args({x: 200, y: 200, rotation_speed: 2})
-				.setRenderer('Small_box');
+			//Bring up your javascript console to view when stuff gets printed.
+			//It's pretty lame, but the example goes off scope otherwise.
 
-			//Key Down Events
+			//The most basic timer, after running once, it is destroyed never to be seen again.
+			//Being destroyed means it is removed from the factory cache, and removed from the owner.
+			//Trying to access it again after it is complete would just break things.
 			keyboard.onKeyDown(keyboard.A, this, function() { 
-				var x = util.rand_f(20, gjs.canvas.width-20);
-				var y = util.rand_f(20, gjs.canvas.height-20);
+				//Start the timer
+				console.log('my_timer_1 started');
+				console.log('Total timer amount in factory: ' + timer_factory.timeOuts.length);
 
-				var go = gjs.assembler.get('Base_2',{x:x, y:y});
-
-				//In this case I know that the renderer I am using has a 'color' property.
-				//If you write your own renderer this might not be available.
-				go.renderer.color = util.rand_color(); 
-
-				gjs.layers.get('Middle').add(go).start();
-				console.log("A was pressed"); 
+				this.my_timer_1.start();
+				//This callback will be called when the repeate count reaches 0
+				//The scope of this callback is the one specified when creating the timer with timer_factory.get
+				this.my_timer_1.on('completeAndRemove', function() {
+					console.log('my_timer_1 completed and destroyed');
+					console.log('Total timer amount in factory: ' + timer_factory.timeOuts.length)
+				});
 			});
-			
+	
+			//This timer will not be destroyed when it completes.
+			//That means it can be restarted and it's properties changed.
+			//In this case it is re-used as a one shot timer.			
 			keyboard.onKeyDown(keyboard.S, this, function() { 
-				console.log("S was pressed") 
+				console.log('my_timer_2 started')
+				console.log('Total timer amount in factory: ' + timer_factory.timeOuts.length);
+
+				this.my_timer_2.start();
+
+				this.my_timer_2.on('repeate', function(repeatCount){
+					console.log('my_timer_2 repeat count: ' + repeatCount);
+				});
+
+				this.my_timer_2.on('complete', function() {
+					console.log('my_timer_2 completed');
+					console.log('Total timer amount in factory: ' + timer_factory.timeOuts.length);
+
+					//Re configure
+					this.my_timer_2.configure({ delay: 5000, repeatCount:1, removeOnComplete:true});
+					this.my_timer_2.start();
+				});
+
+				this.my_timer_2.on('completeAndRemove', function() {
+					console.log('my_timer_2 completed and destroyed');
+					console.log('Total timer amount in factory: ' + timer_factory.timeOuts.length)
+				});
 			});
-			
-			keyboard.onKeyDown(keyboard.D, this, function() { console.log("D was pressed") });
 
-			//Key Up Events
-			keyboard.onKeyUp(keyboard.A, this, function() { console.log("A was released") });
-			keyboard.onKeyUp(keyboard.S, this, function() { console.log("S was released") });
-			keyboard.onKeyUp(keyboard.D, this, function() { console.log("D was released") });
-
-			gjs.game.on("update", this, function() {
-				//Wether a key is down or not
-				if(keyboard.isKeyDown(keyboard.A)){ console.log('A is down') }
-				if(keyboard.isKeyDown(keyboard.S)){ console.log('S is down') }
-				if(keyboard.isKeyDown(keyboard.D)){ console.log('D is down') }
-			})
+			keyboard.onKeyDown(keyboard.D, this, function() { 
+	
+			});
 		});
 	}
 

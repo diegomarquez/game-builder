@@ -8,16 +8,16 @@ define(function() {
 		this.shallow_copy(second, result);
 
 		return result;
-	}
+	};
 
 	Utils.prototype.shallow_copy = function(from, to) {
-		from = from || {}
-		to   = to || {}
+		from = from || {};
+		to   = to || {};
 
 		for(var k in from) {
-			to[k] = from[k]			
+			to[k] = from[k];
 		}
-	}	
+	};	
 
 	Utils.prototype.bind = function(func, scope, args) {
 		return function() {
@@ -25,11 +25,11 @@ define(function() {
 		}
 	}
 
-	Utils.prototype.rand_f     = function (min, max) { return Math.random() * (max - min) + min; }
-	Utils.prototype.rand_i     = function (min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
-	Utils.prototype.rand_pair  = function (value1, value2) { return Math.random() >= 0.5 ? value1 : value2; }
-	Utils.prototype.rand_b     = function () { return Math.random() >= 0.5 }
-	Utils.prototype.rand_color = function () { return '#'+Math.floor(Math.random()*16777215).toString(16); }
+	Utils.prototype.rand_f     = function (min, max) { return Math.random() * (max - min) + min; };
+	Utils.prototype.rand_i     = function (min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; };
+	Utils.prototype.rand_pair  = function (value1, value2) { return Math.random() >= 0.5 ? value1 : value2; };
+	Utils.prototype.rand_b     = function () { return Math.random() >= 0.5 };
+	Utils.prototype.rand_color = function () { return '#'+Math.floor(Math.random()*16777215).toString(16); };
 
-	return new Utils()
+	return new Utils();
 });

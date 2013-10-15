@@ -4,9 +4,13 @@ define(function(require) {
 	};
 
 	TimerFactory.prototype.get = function(owner, name, propertyName) {
-		var timeout = new Timer(owner, name, propertyName);
-		this.timeOuts.push(timeout);
-		return timeout;
+		if(owner.hasOwnProperty(propertyName)) {
+			throw new Error('This owner is already using this property, assigning it again with a timer will might cause your app to go ape shit.')	
+		}else{
+			var timeout = new Timer(owner, name, propertyName);
+			this.timeOuts.push(timeout);
+			owner[propertyName] = timeout;	
+		}
 	};
 
 	var applyChangeToSomeTimers = function(state, identifier, identifierValue) {
@@ -36,18 +40,10 @@ define(function(require) {
 		}
 	}
 
-	TimerFactory.prototype.stopAll = function() {
-		return getChangeObject.call(this, 'stop');
-	};
-	TimerFactory.prototype.pauseAll = function() {
-		return getChangeObject.call(this, 'pause');
-	};
-	TimerFactory.prototype.resumeAll = function() {
-		return getChangeObject.call(this, 'resume');
-	};
-	TimerFactory.prototype.removeAll = function() {
-		return getChangeObject.call(this, 'remove');
-	};
+	TimerFactory.prototype.stopAll = function() { return getChangeObject.call(this, 'stop'); }
+	TimerFactory.prototype.pauseAll = function() { return getChangeObject.call(this, 'pause'); }
+	TimerFactory.prototype.resumeAll = function() { return getChangeObject.call(this, 'resume'); }
+	TimerFactory.prototype.removeAll = function() { return getChangeObject.call(this, 'remove'); }
 
 	var timerFactory = new TimerFactory();
 
@@ -55,12 +51,11 @@ define(function(require) {
 
 	var Timer = Delegate.extend({
 		init: function(owner, name, propertyName) {
-			if (!owner) {
-				throw new Error('Timer must have an owner, if unsure just send in "this"')
-			}
-			if (!name) {
-				throw new Error('Timer must have an name to identify it later')
-			}
+			this._super();
+
+			if (!owner) { throw new Error('Timer must have an owner, if unsure just send in "this"') }
+			if (!name) { throw new Error('Timer must have an name to identify it later') }
+			if (!propertyName) { throw new Error('Timer must have a propertyName to be refered with from its owners scope') }
 
 			this.owner = owner;
 			this.name = name;
@@ -82,16 +77,18 @@ define(function(require) {
 			this.isPaused = false;
 		},
 
+		on: function(name, callback) {
+			this._super(name, this.owner, callback, false, false, false);
+		},
+
 		configure: function(options) {
-			options['delay'] = options['delay'] || this._delay;
-			options['repeatCount'] = options['repeatCount'] || this.repeateCount;
-			options['removeOnComplete'] = options['removeOnComplete'] || this.removeOnComplete;
+			if (!options.hasOwnProperty('delay')) { options['delay'] = this._delay;	}
+			if (!options.hasOwnProperty('repeatCount')) { options['repeatCount'] = this.repeateCount;	}
+			if (!options.hasOwnProperty('removeOnComplete')) { options['removeOnComplete'] = this.removeOnComplete;	}
 
 			this.Delay(options['delay']);
 			this.RepeateCount(options['repeatCount']);
 			this.RemoveOnComplete(options['removeOnComplete']);
-
-			return this;
 		},
 
 		start: function(resumeTime) {
@@ -130,10 +127,11 @@ define(function(require) {
 					} else {
 						to.stop();
 
-						to.execute("complete")
-
 						if (to.removeOnComplete) {
 							to.remove();
+							to.execute("completeAndRemove")
+						}else {
+							to.execute("complete")
 						}
 					}
 				}
@@ -181,27 +179,45 @@ define(function(require) {
 
 		remove: function() {
 			this.stop();
+
+			//Removing it from the factory cache
 			index = timerFactory.timeOuts.indexOf(this);
 			timerFactory.timeOuts.splice(index, 1);	
+			
+			//Removing it from owner
+			this.owner[this.propertyName] = null;
+			this.owner = null;
 		},
 
 		Delay: function(d) {
+			canModify()
+
 			this._delay = d;
 			this.initDelay = d;
 			return this;
 		},
 
 		RepeateCount: function(r) {
+			canModify()
+
 			this.repeateCount = r;
 			this.initRepeatCount = r;
 			return this;
 		},
 
 		RemoveOnComplete: function(r) {
+			canModify()
+
 			this.removeOnComplete = r;
 			return this;
 		}
 	});
+
+	var canModify = function() {
+		if (this.isRunning || this.isPaused) { 
+			throw new Error("Can's modify timer while it is running")
+		}		
+	}
 
 	Object.defineProperty(Timer.prototype, "delay", {
 		get: function() {
