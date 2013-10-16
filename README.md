@@ -24,8 +24,8 @@ These are some files I decided to extract from a previous javascript project. It
         + Fixed Polygon ( Done )
     * Input ( DONE )
     * Timers
-        + Method to deatroy all callbacks of a timer when it is removed and destroyed
-        + Utility method to perform that object destruction
+        + Method to destroy all callbacks of a timer when it is removed and destroyed ( DONE )
+        + Utility method to perform that object destruction ( DONE )
     * State Machine
     * Delegates
         + Overview on all the callbacks available to game_object
@@ -35,9 +35,9 @@ These are some files I decided to extract from a previous javascript project. It
         + Bubbling
     * Canvas Wrapper 
         + Extensions
-            - Canvas resize extension
-            - TimerFactory extension
-            - Keyboard extension
+            - TimerFactory extension, pause and resume all timeout when pausing the game
+            - Keyboard extension, block keyboard keys when pausing the game
+            - Canvas resize extension, that
     * Different ways to send in arguments to a game_object
         + Configuration Type
         + Through assembler.get

@@ -19,6 +19,28 @@ define(function() {
 		}
 	};	
 
+	Utils.prototype.destroyObject = function(o, nullSelf) {
+		for(var propName in o) {
+			if(o.hasOwnProperty(propName)){
+				delete o[propName];
+			}
+		}
+
+		if(nullSelf) {
+			o = null;
+		}
+	};
+
+	Utils.prototype.destroyArray = function(a, nullSelf) {
+		for(var i=0; i<a.length; i++) {
+			a[i] = null;
+		}
+
+		if(nullSelf) {
+			a = null;
+		}
+	};
+
 	Utils.prototype.bind = function(func, scope, args) {
 		return function() {
 			func.apply(scope, args);

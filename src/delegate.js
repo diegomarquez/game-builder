@@ -1,4 +1,6 @@
-define(["class"], function() {
+define(["require", "class"], function(require) {
+
+	Utils = require("util");
 
 	var Delegate = Class.extend({
 		init: function(bubbling) {
@@ -55,7 +57,7 @@ define(["class"], function() {
 				for (var i = this.list.length - 1; i >= 0; i--) {
 					var callbackObject = this.list[i];
 
-					if (scope === callbackObject.scope && callback === callbackObject.callback && !callbackObject.keep) {
+					if (!callbackObject.keep) {
 						this.list[i] = null;
 					}
 				}
@@ -66,6 +68,10 @@ define(["class"], function() {
 			for (var k in this.callbackList) {
 				this.removeAll(k);
 			}
+		},
+
+		destroy: function() {
+			Utils.destroyObject(this);
 		},
 
 		execute: function(name, args) {

@@ -1,4 +1,6 @@
 define(function(require) {
+	Delegate = require('delegate')
+
 	var TimerFactory = function() {
 		this.timeOuts = [];
 	};
@@ -31,7 +33,7 @@ define(function(require) {
 		var self = this;
 
 		return {
-			wich: function(identifier, identifierValue) {
+			which: function(identifier, identifierValue) {
 				applyChangeToSomeTimers.call(self.timeOuts, state, identifier, identifierValue);
 			},
 			now: function() {
@@ -40,14 +42,14 @@ define(function(require) {
 		}
 	}
 
+	TimerFactory.prototype.startAll = function() { return getChangeObject.call(this, 'start'); }
+	TimerFactory.prototype.resetAll = function() { return getChangeObject.call(this, 'reset'); }
 	TimerFactory.prototype.stopAll = function() { return getChangeObject.call(this, 'stop'); }
 	TimerFactory.prototype.pauseAll = function() { return getChangeObject.call(this, 'pause'); }
 	TimerFactory.prototype.resumeAll = function() { return getChangeObject.call(this, 'resume'); }
 	TimerFactory.prototype.removeAll = function() { return getChangeObject.call(this, 'remove'); }
 
 	var timerFactory = new TimerFactory();
-
-	Delegate = require('delegate')
 
 	var Timer = Delegate.extend({
 		init: function(owner, name, propertyName) {
@@ -77,8 +79,8 @@ define(function(require) {
 			this.isPaused = false;
 		},
 
-		on: function(name, callback) {
-			this._super(name, this.owner, callback, false, false, false);
+		on: function(name, callback, removeOnComplete) {
+			this._super(name, this.owner, callback, removeOnComplete, false, false);
 		},
 
 		configure: function(options) {
@@ -127,11 +129,10 @@ define(function(require) {
 					} else {
 						to.stop();
 
+						to.execute("complete");
+
 						if (to.removeOnComplete) {
 							to.remove();
-							to.execute("completeAndRemove")
-						}else {
-							to.execute("complete")
 						}
 					}
 				}
@@ -146,6 +147,8 @@ define(function(require) {
 			this.repeateCount = this.initRepeatCount;
 			this._delay = this.initDelay;
 			this.repeates = 0;
+
+			to.execute("stop");
 		},
 
 		reset: function(withCallback) {
@@ -154,6 +157,8 @@ define(function(require) {
 
 			this.stop();
 			this.start();
+
+			to.execute("reset");
 		},
 
 		pause: function() {
@@ -165,6 +170,8 @@ define(function(require) {
 			this.pauseTime = Date.now();
 			this.isRunning = false;
 			this.isPaused = true;
+
+			to.execute("pause");
 		},
 
 		resume: function() {
@@ -175,18 +182,24 @@ define(function(require) {
 			this.isPaused = false;
 			this._delay -= (this.pauseTime - this.startTime);
 			this.start(this._delay);
+
+			to.execute("resume");
 		},
 
 		remove: function() {
 			this.stop();
 
-			//Removing it from the factory cache
-			index = timerFactory.timeOuts.indexOf(this);
-			timerFactory.timeOuts.splice(index, 1);	
-			
 			//Removing it from owner
 			this.owner[this.propertyName] = null;
 			this.owner = null;
+
+			//Removing it from the factory cache
+			index = timerFactory.timeOuts.indexOf(this);
+			timerFactory.timeOuts.splice(index, 1);
+
+			to.execute("remove");
+
+			this.destroy();
 		},
 
 		Delay: function(d) {
@@ -215,7 +228,7 @@ define(function(require) {
 
 	var canModify = function() {
 		if (this.isRunning || this.isPaused) { 
-			throw new Error("Can's modify timer while it is running")
+			throw new Error("Can't modify timer while it is running")
 		}		
 	}
 
