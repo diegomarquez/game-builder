@@ -1,51 +1,90 @@
-define(function(require) {
-	var StateMachine = function(scope) {
-		this.states = [];
-		this.scope = scope;
-		this.currentStateId = -1;
-	
-		this.isBlocked = false;
-	};
+define(["require", "class"], function(require) {
 
-	StateMachine.prototype.add = function(state) {
-		var state = { init: state.init, update: state.update, complete: state.complete };
-		return this.states.push(state) - 1;
-	}
-
-	StateMachine.prototype.set = function(stateId, newStateInitArgs, lastStateCompleteArgs) {
-		if (this.isBlocked || this.states == null) { return; }
-
-		if (this.currentStateId != -1 && this.states[this.currentStateId].complete) {
-			this.states[this.currentStateId].complete.call(this.scope, lastStateCompleteArgs);
+	var setState = function(stateId, newStateInitArgs, lastStateCompleteArgs) {
+		if (this.currentStateId != -1) {
+			this.states[this.currentStateId].complete(lastStateCompleteArgs);
 		}
 
 		this.currentStateId = stateId;
 
-		if (this.states[this.currentStateId].init) {
-			this.states[this.currentStateId].init.call(this.scope, newStateInitArgs);
+		this.states[this.currentStateId].init(newStateInitArgs);
+	};
+
+	var StateMachine = Class.extend({
+		init: function() {
+			this.states = [];
+			this.currentStateId = -1;
+		},
+
+		add: function(state) {
+			var s = { init: state.init, update: state.update, complete: state.complete };
+			return this.states.push(s) - 1;
+		},
+
+		get: function(stateId) { return this.states[stateId]; },
+		block: function() { this.isBlocked = true; },
+		unblock: function() { this.isBlocked = false; },
+
+		update: function() {
+			this.states[this.currentStateId].update(arguments);
+		},
+
+		destroy: function() {
+			for (var i=0; i<this.states.length; i++) {
+				this.states[i].destroy();
+			}
+
+			this.states.length = 0;
+			this.states = null;
 		}
-	}
+	});
 
-	StateMachine.prototype.get = function(stateId) { return this.states[stateId]; }
-	StateMachine.prototype.block = function() { this.isBlocked = true; }
-	StateMachine.prototype.unblock = function() { this.isBlocked = false; }
+	var LooseStateMachine = StateMachine.extend({
+		init: function() {
+			this._super();
+		},
 
-	StateMachine.prototype.update = function() {
-		if (this.states[this.currentStateId].update) {
-			this.states[this.currentStateId].update.call(this.scope, arguments);
-		}
-	}
+		add: function(state) {
+			state.on('change', this, function(args) { this.set(args.stateId, args.newStateInitArgs, args.lastStateCompleteArgs) });
+			return this._super(state);
+		},
 
-	StateMachine.prototype.destroy = function() {
-		for (var i=0; i<this.states.length; i++) {
-			this.states[i].destroy();
-		}
+		set: function(stateId, newStateInitArgs, lastStateCompleteArgs) {
+			if (this.isBlocked || this.states == null) { return; }
 
-		this.states.length = 0;
-		this.states = null;
-		this.scope = null;
-		this.currentStateId = -1;
-	}
+			setState.call(this, stateId, newStateInitArgs, lastStateCompleteArgs);
+		}		
+	});
+
+	var FixedStateMachine = StateMachine.extend({
+		init: function() {
+			this._super();
+		},
+
+		add: function(state) {
+			state.on('next', this, function(args) { this.next(args.newStateInitArgs, args.lastStateCompleteArgs) });
+			state.on('previous', this, function(args) { this.previous(args.newStateInitArgs, args.lastStateCompleteArgs) });
+			return this._super(state);
+		},
+
+		next: function(newStateInitArgs, lastStateCompleteArgs) {
+			if (this.currentStateId < this.states.length-1) {
+				if (this.isBlocked || this.states == null) { return; }
+
+				this.currentStateId++;	
+				setState.call(this, this.currentStateId, newStateInitArgs, lastStateCompleteArgs);
+			}	
+		},
+
+		previous: function(newStateInitArgs, lastStateCompleteArgs) {
+			if (this.currentStateId > 0) {
+				if (this.isBlocked || this.states == null) { return; }
+
+				this.currentStateId--;
+				setState.call(this, this.currentStateId, newStateInitArgs, lastStateCompleteArgs);	
+			}
+		}		
+	});
 
 	Delegate = require('delegate')
 
@@ -55,23 +94,26 @@ define(function(require) {
 			this.scope = scope;
 		},
 
-		addStart: function(callback) { this.on('start', this.scope, callback); }
-		addUpdate: function(callback) { this.on('update', this.scope, callback); }
-		addDestroy: function(callback) { this.on('complete', this.scope, callback); }
+		addStartAction: function(callback) { this.on('start', this.scope, callback); }
+		addUpdateAction: function(callback) { this.on('update', this.scope, callback); }
+		addCompleteAction: function(callback) { this.on('complete', this.scope, callback); }
 
-		removeStart: function(callback) { this.remove('start', this.scope, callback); }
-		removeUpdate: function(callback) { this.remove('update', this.scope, callback); }
-		removeDestroy: function(callback) { this.remove('complete', this.scope, callback); }
+		removeStartAction: function(callback) { this.remove('start', this.scope, callback); }
+		removeUpdateAction: function(callback) { this.remove('update', this.scope, callback); }
+		removeCompleteAction: function(callback) { this.remove('complete', this.scope, callback); }
 
 		start: function(args) { this.execute('start', args); },
 		update: function(args) { this.execute('update', args); },
 		complete: function(args) { this.execute('complete', args); }
+		
 		destroy: function() { this.destroy(); }
 	});
 
 
 	var StateMachineFactory = {
-		createStateMachine: function(scope) { return new StateMachine(scope); }
+		createLooseStateMachine: function() { return new LooseStateMachine(); }
+		createFixedStateMachine: function() { return new FixedStateMachine(); }
+		
 		createState: function(scope) { return new State(scope); }
 	};
 
