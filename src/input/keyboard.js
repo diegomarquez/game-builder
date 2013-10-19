@@ -50,6 +50,14 @@ define(function(require) {
 			this.on('keyup' + keyCode.toString(), scope, callback, false, false, false);
 		},
 
+		removeKeyDown: function(keyCode, scope, callback) {
+			this.remove('keydown' + keyCode.toString(), scope, callback);
+		},
+
+		removeKeyUp: function(keyCode, scope, callback) {
+			this.remove('keyup' + keyCode.toString(), scope, callback);
+		},
+
 		isKeyDown: function(keyCode) {
 			return pressed[keyCode];	
 		}

@@ -14,6 +14,19 @@ define(["require", "class"], function(require) {
 
 	var getStateId = function(stateIdOrName) {
 		return this.stateIds[stateIdOrName.toString()]
+	};
+
+	var canNotMoveToNewState = function(state) {
+		var changingStateId = getStateId.call(this, state.name)
+		if (this.currentStateId != changingStateId) {
+			return true;
+		}
+		
+		if (this.isBlocked || this.states == null) { 
+			return true; 
+		}
+
+		return false;
 	}
 
 	var StateMachine = Class.extend({
@@ -32,7 +45,6 @@ define(["require", "class"], function(require) {
 		add: function(state) {
 			var stateIndex = this.states.push(state) - 1
 		
-			state.owner = this;
 			this.stateIds[state.name] = stateIndex;
 			this.stateIds[stateIndex.toString()] = stateIndex;
 		},
@@ -65,8 +77,7 @@ define(["require", "class"], function(require) {
 
 		add: function(state) {
 			state.on('change', this, function(args) { 
-				var changingStateId = getStateId.call(this, state.name)
-				if (this.currentStateId != changingStateId) return;
+				if (canNotMoveToNewState.call(this, state)) { return; }
 
 				setState.call(this, getStateId.call(this, args.next), args.nextInitArgs, args.lastCompleteArgs); 
 			});
@@ -81,27 +92,25 @@ define(["require", "class"], function(require) {
 		},
 
 		add: function(state) {
-			state.on('next', this, function(args) { this.next(args.newStateInitArgs, args.lastStateCompleteArgs) });
-			state.on('previous', this, function(args) { this.previous(args.newStateInitArgs, args.lastStateCompleteArgs) });
+			state.on('next', this, function(args) { 
+				if (canNotMoveToNewState.call(this, state)) { return }
+
+				if (this.currentStateId < this.states.length) { this.currentStateId++; }			
+				if (this.currentStateId == this.states.length) { this.currentStateId = 0; }
+
+				setState.call(this, this.currentStateId, args.nextInitArgs, args.lastCompleteArgs);
+			});
+
+			state.on('previous', this, function(args) { 
+				if (canNotMoveToNewState.call(this, state)) { return }
+
+				if (this.currentStateId >= 0) { this.currentStateId--; }			
+				if (this.currentStateId < 0) { this.currentStateId = this.states.length-1; }
+
+				setState.call(this, this.currentStateId, args.nextInitArgs, args.lastCompleteArgs);	
+			});
+
 			return this._super(state);
-		},
-
-		next: function(newStateInitArgs, lastStateCompleteArgs) {
-			if (this.currentStateId < this.states.length-1) {
-				if (this.isBlocked || this.states == null) { return; }
-
-				this.currentStateId++;	
-				setState.call(this, this.currentStateId, newStateInitArgs, lastStateCompleteArgs);
-			}	
-		},
-
-		previous: function(newStateInitArgs, lastStateCompleteArgs) {
-			if (this.currentStateId > 0) {
-				if (this.isBlocked || this.states == null) { return; }
-
-				this.currentStateId--;
-				setState.call(this, this.currentStateId, newStateInitArgs, lastStateCompleteArgs);	
-			}
 		}		
 	});
 
@@ -110,7 +119,6 @@ define(["require", "class"], function(require) {
 			this._super(); 
 			this.scope = scope;
 			this.name = name;
-			this.owner = null;
 		},
 
 		addStartAction: function(callback) { this.on('start', this.scope, callback); },

@@ -27,7 +27,7 @@ These are some files I decided to extract from a previous javascript project. It
         + Method to destroy all callbacks of a timer when it is removed and destroyed ( DONE )
         + Utility method to perform that object destruction ( DONE )
     * State Machine
-        + Loose State Machine. Any state can go to any state. 
+        + Loose State Machine. Any state can go to any state. ( DONE )
         + Strict state machine. Configurable chain of states. Forking positions.
     * Delegates
         + Overview on all the callbacks available to game_object
