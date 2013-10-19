@@ -3,7 +3,7 @@ requirejs.config({
 		"delegate": "delegate",
 		"class": "class",
 		"sound_player": "sound_player",
-		"state_machine": "state_machine",
+		"state_machine_factory": "state_machine",
 		"timer_factory": "timer_factory",
 		"draw": "draw",
 		"util": "util",

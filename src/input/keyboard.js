@@ -1,10 +1,7 @@
 define(function(require) {
-
-	var Delegate = require('delegate');
-
 	var pressed = {};
 
-	var Keyboard = Delegate.extend({
+	var Keyboard = require('delegate').extend({
 		init: function() {
 			this._super();
 

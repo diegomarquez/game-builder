@@ -1,27 +1,46 @@
 define(["require", "class"], function(require) {
 
 	var setState = function(stateId, newStateInitArgs, lastStateCompleteArgs) {
+		if (this.isBlocked || this.states == null) { return; }
+
 		if (this.currentStateId != -1) {
 			this.states[this.currentStateId].complete(lastStateCompleteArgs);
 		}
 
 		this.currentStateId = stateId;
 
-		this.states[this.currentStateId].init(newStateInitArgs);
+		this.states[this.currentStateId].start(newStateInitArgs);
 	};
+
+	var getStateId = function(stateIdOrName) {
+		return this.stateIds[stateIdOrName.toString()]
+	}
 
 	var StateMachine = Class.extend({
 		init: function() {
+			this.stateIds = {}
 			this.states = [];
 			this.currentStateId = -1;
+			this.block();
+		},
+
+		start: function(args) {
+			this.unblock();
+			setState.call(this, 0, args, null);
 		},
 
 		add: function(state) {
-			var s = { init: state.init, update: state.update, complete: state.complete };
-			return this.states.push(s) - 1;
+			var stateIndex = this.states.push(state) - 1
+		
+			state.owner = this;
+			this.stateIds[state.name] = stateIndex;
+			this.stateIds[stateIndex.toString()] = stateIndex;
 		},
 
-		get: function(stateId) { return this.states[stateId]; },
+		get: function(stateIdOrName) { 
+			return this.states[getStateId.call(this, stateIdOrName)]; 
+		},
+
 		block: function() { this.isBlocked = true; },
 		unblock: function() { this.isBlocked = false; },
 
@@ -45,14 +64,14 @@ define(["require", "class"], function(require) {
 		},
 
 		add: function(state) {
-			state.on('change', this, function(args) { this.set(args.stateId, args.newStateInitArgs, args.lastStateCompleteArgs) });
-			return this._super(state);
-		},
+			state.on('change', this, function(args) { 
+				var changingStateId = getStateId.call(this, state.name)
+				if (this.currentStateId != changingStateId) return;
 
-		set: function(stateId, newStateInitArgs, lastStateCompleteArgs) {
-			if (this.isBlocked || this.states == null) { return; }
+				setState.call(this, getStateId.call(this, args.next), args.nextInitArgs, args.lastCompleteArgs); 
+			});
 
-			setState.call(this, stateId, newStateInitArgs, lastStateCompleteArgs);
+			this._super(state);
 		}		
 	});
 
@@ -86,35 +105,33 @@ define(["require", "class"], function(require) {
 		}		
 	});
 
-	Delegate = require('delegate')
-
-	var State = Delegate.extend({
-		init: function(scope) { 
+	var State = require('delegate').extend({
+		init: function(scope, name) { 
 			this._super(); 
 			this.scope = scope;
+			this.name = name;
+			this.owner = null;
 		},
 
-		addStartAction: function(callback) { this.on('start', this.scope, callback); }
-		addUpdateAction: function(callback) { this.on('update', this.scope, callback); }
-		addCompleteAction: function(callback) { this.on('complete', this.scope, callback); }
+		addStartAction: function(callback) { this.on('start', this.scope, callback); },
+		addUpdateAction: function(callback) { this.on('update', this.scope, callback); },
+		addCompleteAction: function(callback) { this.on('complete', this.scope, callback); },
 
-		removeStartAction: function(callback) { this.remove('start', this.scope, callback); }
-		removeUpdateAction: function(callback) { this.remove('update', this.scope, callback); }
-		removeCompleteAction: function(callback) { this.remove('complete', this.scope, callback); }
+		removeStartAction: function(callback) { this.remove('start', this.scope, callback); },
+		removeUpdateAction: function(callback) { this.remove('update', this.scope, callback); },
+		removeCompleteAction: function(callback) { this.remove('complete', this.scope, callback); },
 
 		start: function(args) { this.execute('start', args); },
 		update: function(args) { this.execute('update', args); },
-		complete: function(args) { this.execute('complete', args); }
-		
-		destroy: function() { this.destroy(); }
+		complete: function(args) { this.execute('complete', args); },
 	});
 
 
 	var StateMachineFactory = {
-		createLooseStateMachine: function() { return new LooseStateMachine(); }
-		createFixedStateMachine: function() { return new FixedStateMachine(); }
+		createLooseStateMachine: function() { return new LooseStateMachine(); },
+		createFixedStateMachine: function() { return new FixedStateMachine(); },
 		
-		createState: function(scope) { return new State(scope); }
+		createState: function(scope, name) { return new State(scope, name); }
 	};
 
 	return StateMachineFactory;
