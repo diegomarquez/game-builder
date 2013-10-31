@@ -43,11 +43,11 @@ define(function(require) {
 		},
 
 		onKeyDown: function(keyCode, scope, callback) {
-			this.on('keydown' + keyCode.toString(), scope, callback, false, false, false);
+			this.on('keydown' + keyCode.toString(), scope, callback);
 		},
 
 		onKeyUp: function(keyCode, scope, callback) {
-			this.on('keyup' + keyCode.toString(), scope, callback, false, false, false);
+			this.on('keyup' + keyCode.toString(), scope, callback);
 		},
 
 		removeKeyDown: function(keyCode, scope, callback) {
