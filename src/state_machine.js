@@ -1,16 +1,16 @@
 define(["require", "class"], function(require) {
 
-	var setState = function(stateId, newStateInitArgs, lastStateCompleteArgs) {
+	var executeStateAction = function(stateId, action, args) {
 		if (this.isBlocked || this.states == null) { return; }
 
-		if (this.currentStateId != -1) {
-			this.states[this.currentStateId].complete(lastStateCompleteArgs);
+		try {
+			this.states[stateId][action](args);	
+		} catch(e) {
+			throw new Error("Error setting new state: " + e.message);
 		}
 
 		this.currentStateId = stateId;
-
-		this.states[this.currentStateId].start(newStateInitArgs);
-	};
+	}
 
 	var getStateId = function(stateIdOrName) {
 		return this.stateIds[stateIdOrName.toString()]
@@ -39,7 +39,7 @@ define(["require", "class"], function(require) {
 
 		start: function(args) {
 			this.unblock();
-			setState.call(this, 0, args, null);
+			executeStateAction.call(this, 0, 'start', args);
 		},
 
 		add: function(state) {
@@ -77,9 +77,12 @@ define(["require", "class"], function(require) {
 
 		add: function(state) {
 			state.on('change', this, function(args) { 
-				if (canNotMoveToNewState.call(this, state)) { return; }
+				if (canNotMoveToNewState.call(this, state)) { 
+					return; 
+				} 
 
-				setState.call(this, getStateId.call(this, args.next), args.nextInitArgs, args.lastCompleteArgs); 
+				executeStateAction.call(this, this.currentStateId, 'complete', args.lastCompleteArgs);
+				executeStateAction.call(this, getStateId.call(this, args.next), 'start', args.nextInitArgs);
 			});
 
 			this._super(state);
@@ -93,21 +96,29 @@ define(["require", "class"], function(require) {
 
 		add: function(state) {
 			state.on('next', this, function(args) { 
-				if (canNotMoveToNewState.call(this, state)) { return }
+				if (canNotMoveToNewState.call(this, state)) { 
+					return; 
+				}
+
+				executeStateAction.call(this, this.currentStateId, 'complete', args.lastCompleteArgs);
 
 				if (this.currentStateId < this.states.length) { this.currentStateId++; }			
 				if (this.currentStateId == this.states.length) { this.currentStateId = 0; }
 
-				setState.call(this, this.currentStateId, args.nextInitArgs, args.lastCompleteArgs);
+				executeStateAction.call(this, this.currentStateId, 'start', args.nextInitArgs);
 			});
 
 			state.on('previous', this, function(args) { 
-				if (canNotMoveToNewState.call(this, state)) { return }
+				if (canNotMoveToNewState.call(this, state)) { 
+					return; 
+				}
+
+				executeStateAction.call(this, this.currentStateId, 'complete', args.lastCompleteArgs);
 
 				if (this.currentStateId >= 0) { this.currentStateId--; }			
 				if (this.currentStateId < 0) { this.currentStateId = this.states.length-1; }
 
-				setState.call(this, this.currentStateId, args.nextInitArgs, args.lastCompleteArgs);	
+				executeStateAction.call(this, this.currentStateId, 'start', args.nextInitArgs);
 			});
 
 			return this._super(state);

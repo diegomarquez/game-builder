@@ -31,12 +31,10 @@ define(function(require) {
 			//will generate the state.
 
 			//The point is that if you forget to type those () you would be adding a function
-			//to the state machine, instead of an actual state. 
+			//to the state machine, instead of an actual state. It doesn't work that way.
 			fixedStateMachine.add(state_1('state_1_name'));
 			fixedStateMachine.add(state_2('state_2_name'));
 			fixedStateMachine.add(state_3('state_3_name'));
-
-			//TODO: Start method should make sure every state calls it's complete methods
 
 			//Don't forget to start the state machine if you don't none of this nonesense will work.
 			fixedStateMachine.start('State machine was started!');

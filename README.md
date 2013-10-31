@@ -28,7 +28,8 @@ These are some files I decided to extract from a previous javascript project. It
         + Utility method to perform that object destruction ( DONE )
     * State Machine
         + Loose State Machine. Any state can go to any state. ( DONE )
-        + Strict state machine. Configurable chain of states. Forking positions.
+        + Strict state machine. Configurable chain of states. ( DONE )
+        + Sub state machine state. Special state which contains a state machine. Used for branching paths
     * Delegates
         + Overview on all the callbacks available to game_object
         + Overview on all the callbacks available to canvas_wrapper

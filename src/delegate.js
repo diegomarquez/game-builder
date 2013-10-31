@@ -2,6 +2,16 @@ define(["require", "class"], function(require) {
 
 	Utils = require("util");
 
+	var removeAllNulls = function(list) {
+		for (var i = list.length - 1; i >= 0; i--) {
+			var callbackObject = list[i];
+
+			if (!callbackObject) {
+				list.splice(i, 1);
+			}
+		}
+	}
+
 	var Delegate = Class.extend({
 		init: function(bubbling) {
 			this.callbackList = {};
@@ -36,15 +46,18 @@ define(["require", "class"], function(require) {
 				var callbackObject = this.list[i];
 
 				if (scope === callbackObject.scope && callback === callbackObject.callback) {
-					this.list[i] = null;
+					this.list.splice(i, 1);
 				}
 			}
 		},
 
 		removeAll: function(name) {
-			if (this.callbackList[name]) {
-				this.callbackList[name].lenght = 0;
-				this.callbackList[name] = null;
+			var list = this.callbackList[name];
+
+			if (list) {
+				list.splice(0, list.lenght);
+				list.lenght = 0;
+				list = null;
 			}
 		},
 
@@ -58,7 +71,7 @@ define(["require", "class"], function(require) {
 					var callbackObject = this.list[i];
 
 					if (!callbackObject.keep) {
-						this.list[i] = null;
+						this.list.splice(i, 1);
 					}
 				}
 			}
@@ -94,6 +107,8 @@ define(["require", "class"], function(require) {
 					this.list[i] = null;
 				}
 			}
+
+			removeAllNulls(this.list);
 		}
 	});
 
