@@ -31,8 +31,6 @@ These are some files I decided to extract from a previous javascript project. It
         + Strict state machine. Configurable chain of states. ( DONE )
     * Canvas Wrapper 
         + Extensions
-            - TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
-            - Keyboard extension, block keyboard keys when pausing the game ( No Demo )
             - Canvas resize extension, that
     * Layer Manager
         + Other features
@@ -60,6 +58,9 @@ These are some files I decided to extract from a previous javascript project. It
         * Cache static drawings (Drawing Renderer, NEW)
         * Cache Images (Bitmap renderer)
 - Remove canvas_wrapper pause in favour of the layer manager pause
+    - Change pause and resume extension events accordingly
+    - TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
+    - Keyboard extension, block keyboard keys when pausing the game ( No Demo )
 - Handle Adding and removing of renderer in a similar fashion to other components
 - Sub state machine state. Special state which contains a state machine. Used for branching paths
 - Organization, Recycling and Destruction

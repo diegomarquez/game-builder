@@ -16,7 +16,8 @@ requirejs.config({
 		"sat": "collision/sat",
 
 		"game": "game_canvas/canvas_wrapper",
-		
+		"scale_aspect_ratio_extension": "game_canvas/extensions/scale_keeping_aspect_ratio",
+
 		"keyboard": "input/keyboard",
 		
 		"matrix_3x3": "math/matrix_3x3",

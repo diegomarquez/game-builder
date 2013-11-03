@@ -14,10 +14,21 @@ define(["game", "class"], function(Game) {
 				}
 
 				container.style.webkitTransform = 'scale(' + scale + ')';
-				container.style.mozTransform = 'scale(' + scale + ')';
-				container.style.msTransform = 'scale(' + scale + ')';
-				container.style.oTransform = 'scale(' + scale + ')';
+				container.style.mozTransform    = 'scale(' + scale + ')';
+				container.style.msTransform     = 'scale(' + scale + ')';
+				container.style.oTransform      = 'scale(' + scale + ')';
 			};
+
+    		Game.mainContainer.style.top  		= '50%';
+    		Game.mainContainer.style.left 		= '50%';
+			Game.mainContainer.style.marginLeft = '-' + Game.canvas.width/2 + 'px';
+			Game.mainContainer.style.marginTop  = '-' + Game.canvas.height/2 + 'px';
+			Game.mainContainer.style.position   = 'fixed';
+
+			Game.canvas.style.paddingLeft  = 0;
+    		Game.canvas.style.paddingRight = 0;
+    		Game.canvas.style.marginLeft   = 'auto';
+    		Game.canvas.style.marginRight  = 'auto';
 
 			resize(Game.mainContainer, Game.canvas);
 
