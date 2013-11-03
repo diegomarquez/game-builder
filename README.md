@@ -9,29 +9,6 @@ These are some files I decided to extract from a previous javascript project. It
 ###### Current TODO List:
 
 - Write some example code. Should have examples for each individual aspect of the framework
-    * Game Object Hierarchy
-        + Basic ( Done )
-        + Nesting ( Done )
-            - Containers ( Done )
-            - Layers ( Done )
-    * Components ( DONE )
-        + Misc Logic ( Done )
-    * Renderers
-        + Image Renderer ( Done )
-    * Collision 
-        + Circle ( Done )
-        + Polygon ( Done )
-        + Fixed Polygon ( Done )
-    * Input ( DONE )
-    * Timers ( DONE )
-        + Method to destroy all callbacks of a timer when it is removed and destroyed ( DONE )
-        + Utility method to perform that object destruction ( DONE )
-    * State Machine
-        + Loose State Machine. Any state can go to any state. ( DONE )
-        + Strict state machine. Configurable chain of states. ( DONE )
-    * Canvas Wrapper 
-        + Extensions
-            - Canvas resize extension, that
     * Layer Manager
         + Other features
     * Demos requiring more than one module
