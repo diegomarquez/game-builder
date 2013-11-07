@@ -70,8 +70,7 @@ define(function(require) {
 			gjs.layers.get('Middle').add(gjs.assembler.get('Base_2')).start();
 			gjs.layers.get('Back').add(gjs.assembler.get('Base_1')).start();
 
-			//What follows are some examples of what you can do with
-			//gjs.layers object
+			//What follows are some examples of what you can do with the gjs.layers object
 			var keyboard = require('keyboard');
 
 			//These are used to add back the stuff to the layers if you

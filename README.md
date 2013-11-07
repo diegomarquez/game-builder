@@ -9,13 +9,8 @@ These are some files I decided to extract from a previous javascript project. It
 ###### Current TODO List:
 
 - Write some example code. Should have examples for each individual aspect of the framework
-    * Pausing/Resuming
-        + Mark individual layers in their current state.
-        + A single paused layer should not be resumed when the whole game gains focus.
     * Reclaiming of game_objects    
-        + Reclaimer. This guy will be used to get the specified game_objects back into their pools for re-use
-    * Text
-        + Use this in all the examples to explain what is going on Screen
+        + Reclaimer. Used to get the specified game_objects back into their pools for re-use
     * Sound
 
 - Organization, Recycling and Destruction
@@ -36,12 +31,11 @@ These are some files I decided to extract from a previous javascript project. It
     - Canvas caching
         * Cache static drawings (Drawing Renderer, NEW)
         * Cache Images (Bitmap renderer)
-- Remove canvas_wrapper pause in favour of the layer manager pause
-    - Change pause and resume extension events accordingly
-    - TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
-    - Keyboard extension, block keyboard keys when pausing the game ( No Demo )
+- TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
+- Keyboard extension, block keyboard keys when pausing the game ( No Demo )
 - Handle Adding and removing of renderer in a similar fashion to other components
 - Sub state machine state. Special state which contains a state machine. Used for branching paths
+- Text
 
 -----------------------------------
 

@@ -3,11 +3,16 @@ define(['class'], function() {
 		init: function() {
 			this.pools = {};
 			this.configurations = {};
+			this.active = {};
 		},
 
 		createPool: function(alias, type, amount) {
 			if (this.pools[alias] == null) {
 				this.pools[alias] = [];
+			}
+
+			if (this.active[alias] == null) {
+				this.active[alias] = [];
 			}
 
 			for (var i = 0; i < amount; i++) {
@@ -19,9 +24,18 @@ define(['class'], function() {
 			}
 		},
 
+		getActiveObjects: function(alias) {
+			return this.active[alias];
+		},
+
+		getAllActiveObjects: function() {
+			return this.active;
+		},
+
 		returnToPool: function(o) {
 			if (!o.poolId) return;
 			this.pools[o.poolId].push(o);
+			this.active[o.poolId].splice(this.active[o.poolId].indexOf(o), 1);
 		},
 
 		createConfiguration: function(alias, type) {
@@ -33,7 +47,9 @@ define(['class'], function() {
 		},
 
 		getPooledObject: function(type) {
-			return this.pools[type].pop();
+			var o = this.pools[type].pop()
+			this.active[type].push(o);
+			return o;
 		},
 
 		toString: function() {
