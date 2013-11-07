@@ -58,11 +58,58 @@ require(['domReady!', 'game', 'root', 'layers', 'assembler', 'game_object_pool',
 		gjs['co_pool']   = component_pool;
 		gjs['canvas']    = document.getElementById('game');
 
+		//Pause and resume logic uses things of canvas wrapper and things of the layer managers
+		//That is why the code is in this file, to act as a connection point.
+
+		var paused = false;
+
+		var pause = function() {
+			if (!paused) {
+				game.execute_extensions("pause");	
+				game.execute("pause");
+
+				for (var k in layers.layers) { 
+					layers.layers[k].drawAlreadyStopped = !layers.layers[k].canDraw;
+					layers.layers[k].updateAlreadyStopped = !layers.layers[k].canUpdate;
+				}
+
+				layers.all('stop', 'update');
+
+				paused = true;
+			}
+		};
+
+		var resume = function() {
+			if (paused) {
+				game.execute_extensions("resume");
+				game.execute("resume");
+
+				layers.all('resume', 'update');
+
+				for (var k in layers.layers) { 
+					if (layers.layers[k].drawAlreadyStopped) {
+						layers.stop_draw(k);			
+					} 
+					if (layers.layers[k].updateAlreadyStopped) {
+						layers.stop_update(k);
+					}
+
+					layers.layers[k].drawAlreadyStopped = false;
+					layers.layers[k].updateAlreadyStopped = false;
+				}
+
+				paused = false;
+			}
+		};
+ 
+		game.pause  = pause;
+		game.resume = resume;
+
 		require([mainPath], function(main) {
 			main.start();
 
 			game.on("update", this, function() {
-				root.update(game.delta, game.isPaused);
+				root.update(game.delta);
 				root.transformAndDraw(game.context);
 			});
 

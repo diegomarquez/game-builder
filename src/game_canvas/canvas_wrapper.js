@@ -9,22 +9,17 @@ define(["delegate"], function(Delegate) {
 			this.initialized = false;
 			this.lastUpdate = Date.now();
 
-			this.manualHardPause = false;
-			this.manualSoftPause = false;
-			this.wasInSoftPause = false;
-
 			this.mainContainer = null;
 			this.canvas = null;
 			this.context = null;
 
 			this.delta = null;
-			this.isPaused = null;
 
 			this.extensions = {
 				"create": [],
 				"update": [],
 				"pause": [],
-				"resume": [],
+				"resume": []
 			}
 		},
 
@@ -38,14 +33,14 @@ define(["delegate"], function(Delegate) {
 			this.extensions[place].push(extension);
 		},
 
-		create: function(mainContainer, canvas) {
+		create: function(mainContainer, canvas, layers) {
 			this.mainContainer = mainContainer;
 			this.canvas = canvas;
 			this.context = this.canvas.getContext("2d");
 
 			this.execute_extensions("create");
 
-			var frameRequest, mainLoop;
+			var mainLoop;
 			var self = this;
 
 			var mainGameCreation = function() {
@@ -58,23 +53,15 @@ define(["delegate"], function(Delegate) {
 					self.blur = false;
 					self.focus = true;
 
-					self.execute_extensions("pause");	
-					self.execute("pause");
-
-					if (!self.manualSoftPause) {
-						window.cancelAnimationFrame(frameRequest);
-					}
+					self.pause();
 				}
-			}
+			};
+
 			window.addEventListener("blur", onBlur);
 
 			var onFocus = function(event) {
-				//A pause made manually can only be undone manually
-				if (self.manualHardPause || self.manualSoftPause) {
-					return;
-				}
-
-				//In the case the game is not already created when the document gains focus for the first time, it is created here.
+				//In the case the game is not already created when the document gains focus 
+				//for the first time, it is created here.
 				if (!self.initialized) {
 					mainGameCreation();
 				} else {
@@ -82,15 +69,7 @@ define(["delegate"], function(Delegate) {
 						self.blur = true;
 						self.focus = false;
 
-						self.execute_extensions("resume");
-						self.execute("resume");
-
-						if (!self.wasInSoftPause) {
-							frameRequest = window.requestAnimationFrame(mainLoop);
-						} else {
-							self.wasInSoftPause = true;
-						}
-
+						self.resume();
 					}
 				}
 			}
@@ -103,16 +82,13 @@ define(["delegate"], function(Delegate) {
 
 				mainLoop = function() {
 					now = Date.now();
-
 					this.delta = (now - self.lastUpdate) / 1000;
-					this.isPaused = self.manualSoftPause;
-
 					self.lastUpdate = now;
 
 					self.execute_extensions("update");
 					self.execute("update");
 
-					frameRequest = window.requestAnimationFrame(mainLoop);
+					window.requestAnimationFrame(mainLoop);
 				}
 
 				var vendors = ['ms', 'moz', 'webkit', 'o'];
@@ -134,37 +110,9 @@ define(["delegate"], function(Delegate) {
 					};
 				}
 
-				frameRequest = window.requestAnimationFrame(mainLoop);
+				window.requestAnimationFrame(mainLoop);
 			}
-		},
-
-		softPause: function() {
-			this.manualSoftPause = true;
-			this.wasInSoftPause = true;
-			this.dispatchUIEvent('blur');
-		},
-
-		softResume: function() {
-			this.manualSoftPause = false;
-			this.dispatchUIEvent('focus');
-		},
-
-		hardPause: function() {
-			this.manualHardPause = true;
-			this.dispatchUIEvent('blur');
-		},
-
-		hardResume: function() {
-			this.manualHardPause = false;
-			this.dispatchUIEvent('focus');
-		},
-
-		dispatchUIEvent: function(event) {
-			var evt = document.createEvent("UIEvents");
-			evt.initUIEvent(event, true, true, window, 1);
-			window.dispatchEvent(evt);
 		}
-
 	});
 
 	return new Game();

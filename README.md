@@ -9,16 +9,18 @@ These are some files I decided to extract from a previous javascript project. It
 ###### Current TODO List:
 
 - Write some example code. Should have examples for each individual aspect of the framework
-    * Layer Manager
-        + Other features
-    * Demos requiring more than one module
-        + Demo: Dynamic add and remove of childs in containers
-        + Demo: Dynamic add and remove of components
-        + Pausing/Resuming
-        + Reclaiming of game_objects    
+    * Pausing/Resuming
+        + Mark individual layers in their current state.
+        + A single paused layer should not be resumed when the whole game gains focus.
+    * Reclaiming of game_objects    
+        + Reclaimer. This guy will be used to get the specified game_objects back into their pools for re-use
     * Text
         + Use this in all the examples to explain what is going on Screen
     * Sound
+
+- Organization, Recycling and Destruction
+    * Cleanup of pools
+    * Bundles of pool setups
 
 - Write a README.md for each example
     * Delegates
@@ -40,10 +42,6 @@ These are some files I decided to extract from a previous javascript project. It
     - Keyboard extension, block keyboard keys when pausing the game ( No Demo )
 - Handle Adding and removing of renderer in a similar fashion to other components
 - Sub state machine state. Special state which contains a state machine. Used for branching paths
-- Organization, Recycling and Destruction
-    * Cleanup of pools
-    * Bundles of pool setups
-    * Reclaimer. This guy will be used to get the specified game_objects back into their pools for re-use
 
 -----------------------------------
 

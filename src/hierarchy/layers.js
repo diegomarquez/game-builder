@@ -32,19 +32,18 @@ define(["root", "layer"], function(root, Layer) {
 	};
 
 	LayerContainer.prototype.stop = function(name) { 
-		this.layers[name].canUpdate = this.layers[name].canDraw = false; 
+		this.stop_update(name);
+		this.stop_draw(name);		
 	};
 
 	LayerContainer.prototype.resume = function(name) { 
-		this.layers[name].canUpdate = this.layers[name].canDraw = true; 
+		this.resume_update(name);
+		this.resume_draw(name);		
 	};
 
 	LayerContainer.prototype.stop_draw = function(name) { this.layers[name].canDraw = false; };
-
 	LayerContainer.prototype.resume_draw = function(name) { this.layers[name].canDraw = true; };
-
 	LayerContainer.prototype.stop_update = function(name) { this.layers[name].canUpdate = false; };
-
 	LayerContainer.prototype.resume_update = function(name) { this.layers[name].canUpdate = true; };
 
 	LayerContainer.prototype.all = function(action, method) { 
@@ -53,6 +52,14 @@ define(["root", "layer"], function(root, Layer) {
 		for (var k in this.layers) { 
 			this[action](k); 
 		} 
+	};
+
+	LayerContainer.prototype.pause_all = function() { 
+		
+	};
+
+	LayerContainer.prototype.resume_all = function() { 
+		
 	};
 
 	return new LayerContainer();
