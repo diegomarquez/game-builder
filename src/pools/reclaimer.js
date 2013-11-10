@@ -1,4 +1,4 @@
-define(['game_object_pool'], function(GameObjectPool) {
+define(['game_object_pool', 'component_pool'], function(GameObjectPool, ComponentPool) {
 	var Reclaimer = function() {};
 
 	Reclaimer.prototype.claim = function(go, id) {
@@ -72,6 +72,12 @@ define(['game_object_pool'], function(GameObjectPool) {
 		for (var i=0; i<only.length; i++) {
 			this['claim' + capitalizedMode](only[i]);
 		}
+	};
+
+	Reclaimer.prototype.clearAllPools = function() {
+		this.claimAll();
+		GameObjectPool.clear();
+		ComponentPool.clear();
 	};
 
 	return new Reclaimer();

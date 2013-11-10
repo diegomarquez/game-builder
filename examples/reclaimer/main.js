@@ -91,6 +91,20 @@ define(function(require) {
 			keyboard.onKeyDown(keyboard.C, this, function() {
 				reclaimer.claimAllBut('configuration', ['Base_2']);
 			});
+
+			keyboard.onKeyDown(keyboard.P, this, function() {
+				reclaimer.clearAllPools();
+			});
+
+			keyboard.onKeyDown(keyboard.O, this, function() {
+				console.log('Game Object Pool');
+				console.log( gjs.go_pool.toString() );
+			});
+
+			keyboard.onKeyDown(keyboard.I, this, function() {
+				console.log('Component Pool');
+				console.log( gjs.co_pool.toString() );
+			});
 		});
 	}
 

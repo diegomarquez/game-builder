@@ -1,4 +1,7 @@
-define(['class'], function() {
+define(["require", "class"], function(require) {
+
+	Utils = require("util");
+
 	var Pool = Class.extend({
 		init: function() {
 			this.pools = {};
@@ -50,6 +53,26 @@ define(['class'], function() {
 			var o = this.pools[type].pop()
 			this.active[type].push(o);
 			return o;
+		},
+
+		clear: function() {
+			var k;
+
+			for(k in this.pools) {
+				var pool = this.pools[k]
+
+				while (pool.length > 0){
+					Utils.destroyObject(pool.pop());
+				}
+			}
+
+			for(k in this.configurations) {
+				Utils.destroyObject(this.configurations[k]);
+			}
+
+			this.pools = {};
+			this.configurations = {};
+			this.active = {};	
 		},
 
 		toString: function() {
