@@ -38,16 +38,25 @@ requirejs.config({
 		"component_pool": "pools/component_pool",
 		"assembler": "pools/assembler",
 		"reclaimer": "pools/reclaimer",
+		"bundle": "pools/bundle"
 
 		"domReady": "requireJS/domReady"
 	}
 });
 
-gjs = {}
+gjs = { deps:[
+		 'domReady!', 
+		 'game', 
+		 'root', 
+		 'layers', 
+		 'assembler', 
+		 'reclaimer', 
+		 'game_object_pool', 
+		 'component_pool']
+	  }
 
-require(['domReady!', 'game', 'root', 'layers', 'assembler', 'game_object_pool', 'component_pool'],
-
-	function(doc, game, root, layers, assembler, game_object_pool, component_pool) {
+require(gjs.deps,
+	function(doc, game, root, layers, assembler, reclaimer, game_object_pool, component_pool) {
 
 		var mainPath = document.querySelectorAll('script[data-main]')[0].getAttribute('main-path')
 
@@ -55,6 +64,7 @@ require(['domReady!', 'game', 'root', 'layers', 'assembler', 'game_object_pool',
 		gjs['game']      = game;
 		gjs['layers']    = layers;
 		gjs['assembler'] = assembler;
+		gjs['reclaimer'] = reclaimer;
 		gjs['go_pool']   = game_object_pool
 		gjs['co_pool']   = component_pool;
 		gjs['canvas']    = document.getElementById('game');

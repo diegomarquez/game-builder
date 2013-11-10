@@ -18,6 +18,7 @@ These are some files I decided to extract from a previous javascript project. It
         + Overview on all the callbacks available to canvas_wrapper
         + Overview on all the callbacks available to component
         + Overview on all the callbacks available to collider_component
+- Make Sublime package to generate code
 - Use HTML to add some on screen explanation of what is going on
 - Add additional debug drawing to game_object
     * global transformed position
