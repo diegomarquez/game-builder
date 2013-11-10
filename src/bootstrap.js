@@ -37,6 +37,7 @@ requirejs.config({
 		"game_object_pool": "pools/game_object_pool",
 		"component_pool": "pools/component_pool",
 		"assembler": "pools/assembler",
+		"reclaimer": "pools/reclaimer",
 
 		"domReady": "requireJS/domReady"
 	}

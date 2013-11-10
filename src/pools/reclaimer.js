@@ -1,40 +1,76 @@
 define(['game_object_pool'], function(GameObjectPool) {
 	var Reclaimer = function() {};
 
-	//This method only return an instance. It is up to the user to call the start method with arguments.
-	Assembler.prototype.claim = function(name) {
-		var activeGameObjects = GameObjectPool.getActiveObjects(name);
+	Reclaimer.prototype.claim = function(go, id) {
+		if(!id) {
+			throw new Error('Reclaimer: ' + 'id argument is: ' + id);
+		}
 
-		for (var i=activeGameObjects.length; i>=0; i--) {
-			activeGameObjects[i].clear();
+		if(go.typeId == id || go.poolId == id) {
+			if (go.parent) {
+				go.parent.remove(go);
+			}
+
+			go.clear();
+		}
+	}
+
+	Reclaimer.prototype.claimType = function(typeName) {
+		var activeGameObjects = GameObjectPool.getActiveObjects(typeName);
+
+		for (var i=activeGameObjects.length-1; i>=0; i--) {
+			this.claim(activeGameObjects[i], typeName);
 		}
 	};
 
-	Assembler.prototype.claimAll = function() {
-		var allActiveGameObjects = GameObjectPool.getAllActiveObjects();
+	Reclaimer.prototype.claimConfiguration = function(configurationName) {
+		var configuration = GameObjectPool.getConfigurationObject(configurationName);
+		var activeGameObjects = GameObjectPool.getActiveObjects(configuration.type);
 
-		for (var k in allActiveGameObjects) {
-			this.claim(k);
+		for (var i=activeGameObjects.length-1; i>=0; i--) {		
+			this.claim(activeGameObjects[i], configurationName);
 		}
 	};
 
-	Assembler.prototype.claimAllBut = function(doNotClaim) {
+	Reclaimer.prototype.claimAll = function() {
 		var allActiveGameObjects = GameObjectPool.getAllActiveObjects();
 
 		for (var k in allActiveGameObjects) {
-			if (doNotClaim.indexOf(k) != -1) {
-				this.claim(k);
+			this.claimType(k);
+		}
+	};
+
+	Reclaimer.prototype.claimAllBut = function(mode, doNotClaim) {
+		var allActiveGameObjects = GameObjectPool.getAllActiveObjects();
+
+		capitalizedMode = mode.charAt(0).toUpperCase() + mode.slice(1);
+
+		for (var k in allActiveGameObjects) {
+			var activeCollection = allActiveGameObjects[k];
+
+			for (var i=0; i<activeCollection.length; i++) {
+				var go = activeCollection[i];
+
+				if(capitalizedMode == 'Configuration') {
+					if (doNotClaim.indexOf(go.typeId) == -1) {
+						this.claim(go, go.typeId);
+					}
+				}
+
+				if(capitalizedMode == 'Type') {
+					if (doNotClaim.indexOf(go.poolId) == -1) {
+						this.claim(go, go.poolId);
+					}
+				}
 			}
 		}
 	};
 
-	Assembler.prototype.claimOnly = function(only) {
-		var allActiveGameObjects = GameObjectPool.getAllActiveObjects();
+	Reclaimer.prototype.claimOnly = function(mode, only) {
+		capitalizedMode = mode.charAt(0).toUpperCase() + mode.slice(1);
 
-		for (var k in allActiveGameObjects) {
-			if (only.indexOf(k) == -1) {
-				this.claim(k);
-			}
+		for (var i=0; i<only.length; i++) {
+			this['claim' + capitalizedMode](only[i]);
 		}
 	};
 

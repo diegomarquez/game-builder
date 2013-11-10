@@ -41,13 +41,21 @@ define(['pool'], function(Pool) {
 		},
 
 		getConfiguration: function(alias) {
-			var configuration = this.configurations[alias];
+			var configuration = this.getConfigurationObject(alias);
 
 			if (this.pools[configuration.type].length <= 0) {
 				throw new Error('Game Object with type: ' + configuration.type + ' is not available');
 			}
 
 			return configuration;
+		},
+
+		getConfigurationObject: function(alias) {
+			if(!alias) {
+				throw new Error('Game Object Pool: ' + 'alias argument is: ' + alias);
+			}
+
+			return this.configurations[alias];
 		}
 	});
 
