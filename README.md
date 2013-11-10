@@ -8,9 +8,6 @@ These are some files I decided to extract from a previous javascript project. It
 
 ###### Current TODO List:
 
-- Write some example code. Should have examples for each individual aspect of the framework
-    * Sound
-
 - Organization, Recycling and Destruction
     * Cleanup of pools
         - Handled by reclaimer.js ?
@@ -39,10 +36,7 @@ These are some files I decided to extract from a previous javascript project. It
 
 -----------------------------------
 
-#### Status: Not usable. Working on example code.
-
-* Right now you could use this to do something, if you could take a look inside my mind that is. 
-* Examples are in the making.
+#### Status: v1 of examples is complete. Working on v2, which should me them a little less verbose. 
 
 -----------------------------------
 
