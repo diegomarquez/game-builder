@@ -13,7 +13,9 @@ These are some files I decided to extract from a previous javascript project. It
 
 - Organization, Recycling and Destruction
     * Cleanup of pools
-    * Bundles of pool setups
+        - Handled by reclaimer.js ?
+    * Bundles of pool setups 
+        - After doing this refactor all examples to use bundles
 
 - Write a README.md for each example
     * Delegates

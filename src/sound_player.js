@@ -1,4 +1,6 @@
-define(['timerFactory'], function(timerFactory) {
+define(['timer_factory'], function(timerFactory) {
+	var isLoading = false;
+
 	var SoundPlayer = function() {
 		this.audioTags = {};
 
@@ -23,6 +25,8 @@ define(['timerFactory'], function(timerFactory) {
 
 		var channel = this.pooledChannels.pop();
 
+		this.activeChannels.push(channel);
+
 		var onMD = function() {
 			this.removeEventListener('loadedmetadata', onMD);
 			onMetadata(this);
@@ -35,15 +39,13 @@ define(['timerFactory'], function(timerFactory) {
 		channel.time = audio.duration;
 
 		channel.load();
-
-		this.activeChannels.push(channel);
 	}
 
 	SoundPlayer.prototype.createChannels = function(amount) {
 		for (var i = 0; i < amount; i++) {
 			var channel = new Audio();
 
-			channel.timer = timerFactory.getTimeOut();
+			timerFactory.get(channel, 'sound_' + i, 'timer');
 
 			this.pooledChannels.push(channel);
 		}
@@ -54,9 +56,21 @@ define(['timerFactory'], function(timerFactory) {
 	};
 
 	SoundPlayer.prototype.loadAll = function(onComplete) {
+		if (isLoading) {
+			throw new Error('Sound Player: Still loading resources. Wait till everything is complete, before loading more.')
+			return;
+		}
+
+		isLoading = true;
+
 		var soundAssetCount = Object.keys(this.audioAssetPaths).length;
 
 		for (var id in this.audioAssetPaths) {
+			if (this.audioTags[id]) {
+				soundAssetCount--;
+				continue;
+			}
+
 			var audio = document.createElement("audio");
 
 			audio.setAttribute("src", this.audioAssetPaths[id]);
@@ -66,6 +80,8 @@ define(['timerFactory'], function(timerFactory) {
 				soundAssetCount--;
 				if (soundAssetCount <= 0) {
 					onComplete();
+
+					isLoading = false;
 				}
 			});
 
@@ -75,33 +91,47 @@ define(['timerFactory'], function(timerFactory) {
 		}
 	};
 
-	SoundPlayer.prototype.playSingle = function(id) {
+	SoundPlayer.prototype.playSingle = function(id, onComplete) {
+		var self = this;
+
 		setUpChannel.call(this, id, function(channel) {
-			var callback = function() {
+			channel.timer.on('complete', function() {
 				channel.currentTime = 0;
 				channel.pause();
-				this.pooledChannels.push(channel);
-				this.activeChannels.splice(this.activeChannels.indexOf(channel), 1);
-			}
+				
+				self.pooledChannels.push(channel);
+				self.activeChannels.splice(self.activeChannels.indexOf(channel), 1);
 
-			channel.timer.Delay(channel.time * 1000).RepeateCount(1).Scope(this).Callback(callback).reset();
+				if(onComplete) {
+					onComplete(id);
+				}
+			}, true);
+
+			channel.timer
+				.Delay(channel.time * 1000)
+				.RepeateCount(1)
+				.RemoveOnComplete(false)
+				.reset();
 
 			channel.play();
 		});
 	};
 
 	SoundPlayer.prototype.playLoop = function(id) {
-		var channel = setUpChannel.call(this, id, function() {
-			var callback = function() {
+		setUpChannel.call(this, id, function(channel) {
+			channel.timer.on('repeate', function() {
 				channel.currentTime = 0;
 				channel.play();
-			};
+			});
 
-			channel.timer.Delay(channel.time * 1000).RepeateCount(-1).Scope(this).Callback(callback).reset();
+			channel.timer
+				.Delay(channel.time * 1000)
+				.RepeateCount(-1)
+				.RemoveOnComplete(false)
+				.reset();
 
 			channel.play();
 		});
-
 	};
 
 	var pauseChannel = function(channel) {
@@ -130,6 +160,8 @@ define(['timerFactory'], function(timerFactory) {
 		channel.pause();
 		channel.timer.stop();
 		channel.id = 'none';
+
+		channel.timer.hardCleanUp();
 
 		this.pooledChannels.push(channel);
 		this.activeChannels.splice(index, 1);

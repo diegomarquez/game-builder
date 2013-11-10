@@ -5,9 +5,8 @@ define(function(require) {
 		gjs.game.on("init", this, function() {
 
 			//This example uses the reclaimer objects to reclaim all game_objects of a certain type.
-			//Usefull to for clearing the scene of all objects or just a set of them. 
+			//Usefull for clearing the scene of all objects or just a set of them. 
 			var reclaimer = require('reclaimer');
-
 			var keyboard = require('keyboard');
 
 			basic_game_object = require('../resources/basic_game_object');

@@ -18,13 +18,19 @@ define(["require", "class"], function(require) {
 			this.list = null;
 		},
 
-		on: function(name, scope, callback, removeOnExecute, inmediate, keepOnCleanUp) {
+		on: function(name, scope, callback, removeOnExecute, inmediate, keepOnCleanUp, single) {
 			if (!this.callbackList[name]) {
 				this.callbackList[name] = [];
 			}
 
 			if (inmediate) {
 				callback();
+			}
+
+			if (single) {
+				if (this.callbackList[name].length == 1) {
+					return;
+				}				
 			}
 
 			this.callbackList[name].push({

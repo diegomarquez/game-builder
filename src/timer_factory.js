@@ -7,7 +7,7 @@ define(function(require) {
 
 	TimerFactory.prototype.get = function(owner, name, propertyName) {
 		if(owner.hasOwnProperty(propertyName)) {
-			throw new Error('This owner is already using this property, assigning it again with a timer will might cause your app to go ape shit.')	
+			throw new Error('This owner is already using this property, assigning it again with a timer might cause your program to go ape shit.')	
 		}else{
 			var timeout = new Timer(owner, name, propertyName);
 			this.timeOuts.push(timeout);
@@ -79,8 +79,8 @@ define(function(require) {
 			this.isPaused = false;
 		},
 
-		on: function(name, callback, removeOnComplete) {
-			this._super(name, this.owner, callback, removeOnComplete, false, false);
+		on: function(name, callback, removeOnComplete, single) {
+			this._super(name, this.owner, callback, removeOnComplete, false, false, single);
 		},
 
 		configure: function(options) {
@@ -116,6 +116,7 @@ define(function(require) {
 				}
 
 				if (to.repeateCount < 0) {
+					//This is the looping condition
 					to.isRunning = false;
 					to._delay = to.initDelay;
 					to.start();
@@ -128,7 +129,6 @@ define(function(require) {
 						to.start();
 					} else {
 						to.stop();
-
 						to.execute("complete");
 
 						if (to.removeOnComplete) {
@@ -148,7 +148,7 @@ define(function(require) {
 			this._delay = this.initDelay;
 			this.repeates = 0;
 
-			to.execute("stop");
+			this.execute("stop");
 		},
 
 		reset: function(withCallback) {
@@ -158,7 +158,7 @@ define(function(require) {
 			this.stop();
 			this.start();
 
-			to.execute("reset");
+			this.execute("reset");
 		},
 
 		pause: function() {
@@ -171,7 +171,7 @@ define(function(require) {
 			this.isRunning = false;
 			this.isPaused = true;
 
-			to.execute("pause");
+			this.execute("pause");
 		},
 
 		resume: function() {
@@ -183,7 +183,7 @@ define(function(require) {
 			this._delay -= (this.pauseTime - this.startTime);
 			this.start(this._delay);
 
-			to.execute("resume");
+			this.execute("resume");
 		},
 
 		remove: function() {
@@ -197,7 +197,7 @@ define(function(require) {
 			index = timerFactory.timeOuts.indexOf(this);
 			timerFactory.timeOuts.splice(index, 1);
 
-			to.execute("remove");
+			this.execute("remove");
 
 			this.destroy();
 		},
