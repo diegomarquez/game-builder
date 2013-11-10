@@ -8,6 +8,11 @@ define(function(require) {
 
 			//When this is called we are good to go!
 			gjs.game.on("init", this, function() {
+
+				var bundle = require('../resources/basic_bundle.js');
+
+				bundle.create();
+
 				//Create the renderer components pool.
 				//An Id, Class and amount are specified
 				gjs.co_pool.createPool("Box_Renderer", box_renderer, 1);

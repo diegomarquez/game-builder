@@ -42,11 +42,11 @@ define(["require", "class"], function(require) {
 		},
 
 		createConfiguration: function(alias, type) {
-			throw new Error('This method should be overriden');
+			throw new Error('Pool: This method should be overriden');
 		},
 
 		getConfiguration: function(name) {
-			throw new Error('This method should be overriden');
+			throw new Error('Pool: This method should be overriden');
 		},
 
 		getPooledObject: function(type) {

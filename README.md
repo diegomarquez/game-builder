@@ -31,6 +31,7 @@ These are some files I decided to extract from a previous javascript project. It
 - Handle Adding and removing of renderer in a similar fashion to other components
 - Sub state machine state. Special state which contains a state machine. Used for branching paths
 - Text
+- When creating the component pools, infer the amounts from the configurations on the game object pool
 
 -----------------------------------
 
