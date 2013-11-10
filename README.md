@@ -9,8 +9,6 @@ These are some files I decided to extract from a previous javascript project. It
 ###### Current TODO List:
 
 - Write some example code. Should have examples for each individual aspect of the framework
-    * Reclaiming of game_objects    
-        + Reclaimer. Used to get the specified game_objects back into their pools for re-use
     * Sound
 
 - Organization, Recycling and Destruction
