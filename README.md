@@ -36,7 +36,7 @@ These are some files I decided to extract from a previous javascript project. It
 
 -----------------------------------
 
-#### Status: v1 of examples is complete. Working on v2, which should me them a little less verbose. 
+#### Status: v1 of examples is complete. v2, should be a little less verbose. 
 
 -----------------------------------
 
