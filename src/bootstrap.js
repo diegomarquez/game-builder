@@ -38,7 +38,7 @@ requirejs.config({
 		"component_pool": "pools/component_pool",
 		"assembler": "pools/assembler",
 		"reclaimer": "pools/reclaimer",
-		"bundle": "pools/bundle"
+		"bundle": "pools/bundle",
 
 		"domReady": "requireJS/domReady"
 	}

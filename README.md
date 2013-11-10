@@ -27,8 +27,10 @@ These are some files I decided to extract from a previous javascript project. It
     - Canvas caching
         * Cache static drawings (Drawing Renderer, NEW)
         * Cache Images (Bitmap renderer)
-- TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
-- Keyboard extension, block keyboard keys when pausing the game ( No Demo )
+- Extensions
+    * TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
+    * Keyboard extension, block keyboard keys when pausing the game ( No Demo )
+    * Extension to setup basic layers
 - Handle Adding and removing of renderer in a similar fashion to other components
 - Sub state machine state. Special state which contains a state machine. Used for branching paths
 - Text
