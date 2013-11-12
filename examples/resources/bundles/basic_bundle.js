@@ -8,8 +8,8 @@ define(function(require) {
 	//I just thought it would be a nice thing to have a way of bundling this code
 	//so it is easy to reuse it across examples.
 
-	basic_game_object = require('basic_game_object'); 
-	box_renderer      = require('box_renderer');
+	var basic_game_object = require('basic_game_object'); 
+	var box_renderer      = require('box_renderer');
 
 	var BasicBundle = Bundle.extend({
 		create: function() {

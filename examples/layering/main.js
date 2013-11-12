@@ -1,66 +1,16 @@
+//This example demonstrates the use of layers. 
+//In reality it is just a fancy name for the containers of the previous example.
+//The difference being that these are dedicated to help in organizing what gets drawn and when.
+
+gjs.setModulePath('layering_bundle', '../examples/resources/bundles/layering_bundle');
+
 define(function(require) {
 	var main = function() {};
 
 	main.prototype.start = function() {
 		gjs.game.on("init", this, function() {
-
-			//This example demonstrates the use of layers. 
-			//In reality it is just a fancy name for the containers of the previous example.
-			//The difference being that these are dedicated to help in organizing what gets drawn and when.
-
-			basic_game_object = require('../resources/basic_game_object');
-			box_renderer = require('../resources/box_renderer');
-
-			//Nothing new in this part of the setup
-			gjs.co_pool.createPool("Box_Renderer", box_renderer, 3);
-
-			gjs.co_pool.createConfiguration("Red_Renderer", 'Box_Renderer').args({
-				color: '#FF0000',
-				offsetX: -50,
-				offsetY: -50,
-				width: 100,
-				height: 100
-			});
-			gjs.co_pool.createConfiguration("Green_Renderer", 'Box_Renderer').args({
-				color: '#00FF00',
-				offsetX: -50,
-				offsetY: -50,
-				width: 100,
-				height: 100
-			});
-			gjs.co_pool.createConfiguration("Blue_Renderer", 'Box_Renderer').args({
-				color: '#0000FF',
-				offsetX: -50,
-				offsetY: -50,
-				width: 100,
-				height: 100
-			});
-
-			gjs.go_pool.createPool("Base", basic_game_object, 3);
-
-			gjs.go_pool.createConfiguration("Base_1", "Base")
-				.args({
-					x: gjs.game.canvas.width / 2,
-					y: gjs.game.canvas.height / 2,
-					rotation_speed: 2
-				})
-				.setRenderer('Red_Renderer');
-
-			gjs.go_pool.createConfiguration("Base_2", "Base")
-				.args({
-					x: gjs.game.canvas.width / 2,
-					y: gjs.game.canvas.height / 2,
-					rotation_speed: 1
-				})
-				.setRenderer('Green_Renderer');
-
-			gjs.go_pool.createConfiguration("Base_3", "Base")
-				.args({
-					x: gjs.game.canvas.width / 2,
-					y: gjs.game.canvas.height / 2,
-					rotation_speed: -0.5
-				})
-				.setRenderer('Blue_Renderer');
+			//This pool setup bundle creates all the things this example will be using
+			require('layering_bundle').create();
 
 			//Here each game_object is added to a different layer
 			//There are 6 layers by default.
@@ -75,6 +25,9 @@ define(function(require) {
 
 			//These are used to add back the stuff to the layers if you
 			//remove them while trying out the example.
+			//Check out the errors that are printed on console when there are no more game objects
+			//available in the pools. These won't break the app by themselves, but if you see them
+			//in your own work, there probably is something fishy going on.
 			keyboard.onKeyDown(keyboard.NUM_1, this, function() {
 				gjs.layers.get('Front').add(gjs.assembler.get('Base_3')).start();
 			});
@@ -87,20 +40,25 @@ define(function(require) {
 				gjs.layers.get('Back').add(gjs.assembler.get('Base_1')).start();
 			});
 
-			//Methods do what they say on the tin
 			keyboard.onKeyDown(keyboard.A, this, function() {
+				//Stop calling update method on game objects on the 'Front' layer
+				//Effectively pausing that layer.
 				gjs.layers.stop_update('Front');
 			});
 
 			keyboard.onKeyDown(keyboard.S, this, function() {
+				//Stop calling draw method on game objects on the 'Front' layer
+				//Effectively making the layer invisible.
 				gjs.layers.stop_draw('Front');
 			});
 
 			keyboard.onKeyDown(keyboard.D, this, function() {
+				//Resume all activity on the 'Front'  layer
 				gjs.layers.resume('Front');
 			});
 
 			keyboard.onKeyDown(keyboard.Z, this, function() {
+				//Clear all layers of game objects
 				gjs.layers.all('clear');
 			});
 
@@ -108,6 +66,7 @@ define(function(require) {
 			//to it later will result in an error. You can try it out, by adding
 			//things to any of the layers after calling this method.
 			keyboard.onKeyDown(keyboard.X, this, function() {
+				//Remove all layers entirely. You will need to add more layers after doing this.
 				gjs.layers.all('remove');
 			});
 

@@ -5,10 +5,10 @@ gjs.setModulePath('basic_container', '../examples/resources/basic_container');
 
 define(function(require) {
 	var Bundle = require('bundle');
-	
-	container = require('basic_container');
-	basic_game_object = require('basic_game_object'); 
-	box_renderer = require('box_renderer');
+
+	var container = require('basic_container');
+	var basic_game_object = require('basic_game_object'); 
+	var box_renderer = require('box_renderer');
 
 	var NestingBundle = Bundle.extend({
 		create: function() {

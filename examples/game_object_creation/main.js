@@ -7,7 +7,7 @@
 
 //On the insides this method calls requirejs.config()
 //Note that this paths are relative to the folder containing bootstrap.js
-gjs.setModulePath('basic_bundle', '../examples/resources/basic_bundle');
+gjs.setModulePath('basic_bundle', '../examples/resources/bundles/basic_bundle');
 
 define(function(require) {
 		var main = function(){};
