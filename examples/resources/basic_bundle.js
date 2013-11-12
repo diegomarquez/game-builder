@@ -8,12 +8,11 @@ define(function(require) {
 	//I just thought it would be a nice thing to have a way of bundling this code
 	//so it is easy to reuse it across examples.
 
+	basic_game_object = require('basic_game_object'); 
+	box_renderer      = require('box_renderer');
+
 	var BasicBundle = Bundle.extend({
 		create: function() {
-			//This dependencies are realive to the src folder
-			basic_game_object = require('basic_game_object'); 
-			box_renderer      = require('box_renderer');
-
 			//Create the renderer components pool.
 			//An Id, Class and amount are specified
 			gjs.go_pool.createPool("Base", basic_game_object, 1);
