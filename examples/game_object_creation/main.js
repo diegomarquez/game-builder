@@ -1,15 +1,23 @@
+//This example is about getting something on the screen.
+//Basic workflow on how to setup pools and create your game objects.
+
+//Set up aliases to the modules specific to this application are set
+//We do this here so that when you need to require a module elsewhere you
+//don't have to type the whole path
+
+//On the insides this method calls requirejs.config()
+//Note that this paths are relative to the folder containing bootstrap.js
+gjs.setModulePath('basic_bundle', '../examples/resources/basic_bundle');
+
 define(function(require) {
 		var main = function(){};
-
-		//This example is about getting soething on the screen.
-		//Basic workflow on how to setup pools and create your game objects
 
 		main.prototype.start = function() {
 			//When this is called we are good to go!
 			gjs.game.on("init", this, function() {
 				//The code in this file takes care of creating all the things this example will use
 				//If you decide to give this framework a try, you will be creating files such as this one.
-				require('../../resources/basic_bundle.js').create();
+				require('basic_bundle').create();
 
 				//The ID "Base_1" is defined in basic_bundle.js
 				var go = gjs.assembler.get('Base_1');

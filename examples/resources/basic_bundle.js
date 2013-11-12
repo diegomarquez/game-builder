@@ -1,3 +1,7 @@
+//Note that this paths are relative to the folder containing bootstrap.js
+gjs.setModulePath('basic_game_object', '../examples/resources/basic_game_object');
+gjs.setModulePath('box_renderer', '../examples/resources/box_renderer');
+
 define(function(require) {
 	var Bundle = require('bundle');
 	//This is a basic pool setup bundle. There is nothing special about this
@@ -7,8 +11,8 @@ define(function(require) {
 	var BasicBundle = Bundle.extend({
 		create: function() {
 			//This dependencies are realive to the src folder
-			basic_game_object = require('../examples/resources/basic_game_object'); 
-			box_renderer      = require('../examples/resources/box_renderer');
+			basic_game_object = require('basic_game_object'); 
+			box_renderer      = require('box_renderer');
 
 			//Create the renderer components pool.
 			//An Id, Class and amount are specified
