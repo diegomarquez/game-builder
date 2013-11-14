@@ -12,6 +12,8 @@ These are some files I decided to extract from a previous javascript project. It
     * Bundles of pool setups 
         - After doing this refactor all examples to use bundles
 
+- Set a src-path property in the main <script>
+
 - Write a README.md for each example
     * Delegates
         + Overview on all the callbacks available to game_object
