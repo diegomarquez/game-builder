@@ -8,6 +8,7 @@ define(function(require) {
 
 		main.prototype.start = function() {
 			gjs.game.on("init", this, function() {
+				//This pool setup bundle creates all the things this example will be using
 				require('rendering_bundle').create();
 
 				gjs.layers.get('Middle').add(gjs.assembler.get('Base_1')).start();
