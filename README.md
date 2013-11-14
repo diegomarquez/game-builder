@@ -23,11 +23,15 @@ These are some files I decided to extract from a previous javascript project. It
 
 - Think about how to handle paths to images
 
-- Make Sublime package to generate code
+- Make Sublime plugin to generate files from templates
+    - Make an empty menu structure.
+    - Add options to create different types of files from templates
+    - Button to automatically generate setModulePath calls where needed
 - Use HTML to add some on screen explanation of what is going on
 - Add additional debug drawing to game_object
     * global transformed position
 - Explain main components in the main README.md
+- Rough explanation of each folder in src in respective README.md files
 - Spike Performance Boost
     - Canvas caching
         * Cache static drawings (Drawing Renderer, NEW)
@@ -36,6 +40,8 @@ These are some files I decided to extract from a previous javascript project. It
     * TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
     * Keyboard extension, block keyboard keys when pausing the game ( No Demo )
     * Extension to setup basic layers
+    * Move pause and resume logic into an extension
+    * Move default layer setup into an extension
 - Handle Adding and removing of renderer in a similar fashion to other components
 - Sub state machine state. Special state which contains a state machine. Used for branching paths
 - Text

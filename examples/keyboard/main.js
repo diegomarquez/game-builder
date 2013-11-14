@@ -19,7 +19,7 @@ define(function(require) {
 			//If you want to see the rest of the messages, you can do so on your browser's console. 
 			//By 'your browser' I mean Chrome.
 
-			//If you try to create for game_objects than the amount specified when creating the pool,
+			//If you try to create more game_objects than the amount specified when creating the pools,
 			//an error will be thrown, but that escapes the scope of this example.
 			//Other examples will deal with recycling game_objects. If you want to continue pressing 'A'
 			//to create more boxes, refresh the example. Yeah... pretty crud, I know.
