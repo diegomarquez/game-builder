@@ -8,11 +8,7 @@ These are some files I decided to extract from a previous javascript project. It
 
 ###### Current TODO List:
 
-- Organization, Recycling and Destruction
-    * Bundles of pool setups 
-        - After doing this refactor all examples to use bundles
-
-- Set a src-path property in the main <script>
+- Power-up setModulePath method
 
 - Write a README.md for each example
     * Delegates
@@ -27,6 +23,8 @@ These are some files I decided to extract from a previous javascript project. It
     - Make an empty menu structure.
     - Add options to create different types of files from templates
     - Button to automatically generate setModulePath calls where needed
+    - Code observer to add and remove setModulePath calls automatically
+
 - Use HTML to add some on screen explanation of what is going on
 - Add additional debug drawing to game_object
     * global transformed position
