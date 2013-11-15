@@ -1,4 +1,7 @@
 gjs = { 
+
+	srcPaths: null,
+
 	deps:
 	[
 	 	'domReady!', 
@@ -57,8 +60,14 @@ gjs = {
 		}	
 	},
 
-	setModulePath: function(alias, path) {
-		this.config.paths[alias] = path; 
+	setModulePath: function(alias) {
+		var paths = [];
+
+		for(var i=0; i<this.srcPaths.length; i++) {
+			paths.push(this.srcPaths[i] + alias)
+		}
+
+		this.config.paths[alias] = paths; 
 		requirejs.config(this.config);
 	}
 }
@@ -68,7 +77,12 @@ requirejs.config(gjs.config);
 require(gjs.deps,
 	function(doc, game, root, layers, assembler, reclaimer, game_object_pool, component_pool) {
 
-		var mainPath = document.querySelectorAll('script[data-main]')[0].getAttribute('main-path')
+		var mainScript = document.querySelectorAll('script[data-main]')[0];
+
+		var mainPath = mainScript.getAttribute('main-path');
+		var srcPath = mainScript.getAttribute('src-path');
+
+		gjs['srcPaths'] = srcPath.split(',');
 
 		//Main dependecies, all together in a global variable for easy access.
 		gjs['game']      = game;

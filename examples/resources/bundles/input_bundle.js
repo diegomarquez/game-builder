@@ -1,6 +1,5 @@
-//Note that this paths are relative to the folder containing bootstrap.js
-gjs.setModulePath('basic_game_object', '../examples/resources/basic_game_object');
-gjs.setModulePath('box_renderer', '../examples/resources/box_renderer');
+gjs.setModulePath('basic_game_object');
+gjs.setModulePath('box_renderer');
 
 define(function(require) {
 	var Bundle = require('bundle');

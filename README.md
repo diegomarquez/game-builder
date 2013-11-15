@@ -24,6 +24,7 @@ These are some files I decided to extract from a previous javascript project. It
     - Add options to create different types of files from templates
     - Button to automatically generate setModulePath calls where needed
     - Code observer to add and remove setModulePath calls automatically
+    - Scan src paths to generate all the sub paths if they exist
 
 - Use HTML to add some on screen explanation of what is going on
 - Add additional debug drawing to game_object

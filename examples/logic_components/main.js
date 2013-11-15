@@ -8,7 +8,7 @@
 //It will make the associated game_object twitch like crazy, according to
 //a number we pass in when configuring it.
 
-gjs.setModulePath('logic_bundle', '../examples/resources/bundles/logic_bundle');
+gjs.setModulePath('logic_bundle');
 
 define(function(require) {
 		var main = function(){};

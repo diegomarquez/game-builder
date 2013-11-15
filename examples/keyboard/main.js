@@ -16,7 +16,7 @@
 //Other examples will deal with recycling game_objects. If you want to continue pressing 'A'
 //to create more boxes, refresh the example. Yeah... pretty crud, I know.
 
-gjs.setModulePath('input_bundle', '../examples/resources/bundles/input_bundle');
+gjs.setModulePath('input_bundle');
 
 define(function(require) {
 	var main = function() {};

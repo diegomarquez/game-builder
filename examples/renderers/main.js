@@ -1,7 +1,7 @@
 //Here we will be taking a look mainly at a renderer to draw images.
 //Something a bit more interesting than the squares thus far.
 
-gjs.setModulePath('rendering_bundle', '../examples/resources/bundles/rendering_bundle');
+gjs.setModulePath('rendering_bundle');
 
 define(function(require) {
 		var main = function(){};

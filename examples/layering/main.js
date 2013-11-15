@@ -2,7 +2,7 @@
 //In reality it is just a fancy name for the containers of the previous example.
 //The difference being that these are dedicated to help in organizing what gets drawn and when.
 
-gjs.setModulePath('layering_bundle', '../examples/resources/bundles/layering_bundle');
+gjs.setModulePath('layering_bundle');
 
 define(function(require) {
 	var main = function() {};

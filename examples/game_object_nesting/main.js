@@ -6,7 +6,7 @@
 
 //Childs will follow translation, rotation, scaling and opacity of the parent.
 
-gjs.setModulePath('nesting_bundle', '../examples/resources/bundles/nesting_bundle');
+gjs.setModulePath('nesting_bundle');
 
 define(function(require) {
 		var main = function(){};

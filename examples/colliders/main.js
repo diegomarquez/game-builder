@@ -12,7 +12,7 @@
 
 //Anyway...
 
-gjs.setModulePath('colliders_bundle', '../examples/resources/bundles/colliders_bundle');
+gjs.setModulePath('colliders_bundle');
 
 define(function(require) {
 		var main = function(){};
