@@ -1,41 +1,33 @@
+//This example will deal with the keyboard module. 
+//I believe that is pretty self explanatory.
+
+//Some notes, the keyboard module will setup some listeners to override standard browser behaviour.
+//You probably do not want the window to scroll when you press the arrow keys.
+
+//There are a bunch of defined constants, you can find them in the framework's folder in keyboard.js 
+//It's not all of them, but if you need more than 20 keys for a game... I don't know... maybe you are doing it wrong.
+
+//For reasons (I don't want to do it), only the callback for the A key makes something appear on the canvas.
+//If you want to see the rest of the messages, you can do so on your browser's console. 
+//By 'your browser' I mean Chrome.
+
+//If you try to create more game_objects than the amount specified when creating the pools,
+//an error will be thrown, but that escapes the scope of this example.
+//Other examples will deal with recycling game_objects. If you want to continue pressing 'A'
+//to create more boxes, refresh the example. Yeah... pretty crud, I know.
+
+gjs.setModulePath('input_bundle', '../examples/resources/bundles/input_bundle');
+
 define(function(require) {
 	var main = function() {};
 
 	main.prototype.start = function() {
 		gjs.game.on("init", this, function() {
-
-			//This example will deal with the keyboard module. 
-			//I believe that is pretty self explanatory. 
+ 
 			var keyboard = require('keyboard');
 			var util = require('util');
 
-			//Some notes, the keyboard module will setup some listeners to override standard browser behaviour.
-			//You probably do not want the window to scroll when you press the arrow keys.
-
-			//There are a bunch of defined constants, you can find them in the framework's folder in keyboard.js 
-			//It's not all of them, but if you need more than 20 keys for a game... I don't know... maybe you are doing it wrong.
-
-			//For reasons (I don't want to do it), only the callback for the A key makes something appear on the canvas.
-			//If you want to see the rest of the messages, you can do so on your browser's console. 
-			//By 'your browser' I mean Chrome.
-
-			//If you try to create more game_objects than the amount specified when creating the pools,
-			//an error will be thrown, but that escapes the scope of this example.
-			//Other examples will deal with recycling game_objects. If you want to continue pressing 'A'
-			//to create more boxes, refresh the example. Yeah... pretty crud, I know.
-
-			//As usual this guys are here so we can see something
-			var basic_game_object = require('../resources/basic_game_object');
-			var box_renderer = require('../resources/box_renderer');
-
-			gjs.go_pool.createPool("Base", basic_game_object, 20);
-			gjs.co_pool.createPool("Box_Renderer", box_renderer, 20);
-
-			gjs.co_pool.createConfiguration("Small_box", 'Box_Renderer').args({offsetX: -10, offsetY: -10, width: 20, height: 20});
-
-			gjs.go_pool.createConfiguration("Base_2", "Base")
-				.args({x: 200, y: 200, rotation_speed: 2})
-				.setRenderer('Small_box');
+			require('input_bundle').create();
 
 			//Key Down Events
 			keyboard.onKeyDown(keyboard.A, this, function() { 
