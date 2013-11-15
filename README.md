@@ -21,7 +21,7 @@ These are some files I decided to extract from a previous javascript project. It
         + Overview on all the callbacks available to component
         + Overview on all the callbacks available to collider_component
 
-- Think about how to handle paths to images
+- Think about how to handle paths to images/sound
 
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.

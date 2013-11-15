@@ -1,18 +1,17 @@
+//This example will be about setting up a state machine 
+//For this example all the code will be on this file.
+//We will see how to split your state code across different files in
+//another example.
+
+//The main reason I use state machines when making games
+//is that they are a neat way to separate related groups of code.
+//You should do the same.
+
 define(function(require) {
 	var main = function() {};
 
 	main.prototype.start = function() {
 		gjs.game.on("init", this, function() {
-
-			//This example will be about setting up a state machine 
-			//For this example all the code will be on this file.
-			//We will see how to split your state code across different files in
-			//another example.
-
-			//The main reason I use state machines when making games
-			//is that they are a neat way to separate related groups of code.
-			//You should do the same.
-
 			//The first thing to do is get a hold to a reference to the state_machine_factory.
 			//This thing will let you instantiate different kinds of state machines and their states.
 			var stateMachineFactory = require('state_machine_factory');

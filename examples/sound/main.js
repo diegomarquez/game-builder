@@ -1,12 +1,11 @@
+//This example is about the sound_player module. it plays sound.
+
 define(function(require) {
 	var main = function() {};
 
 	main.prototype.start = function() {
 		gjs.game.on("init", this, function() {
-
-			//This example is about the sound_player module. it plays sound.
 			var sound_player = require('sound_player');
-
 			var keyboard = require('keyboard');
 
 			//This sets the amount of different channels that can be played at the same time

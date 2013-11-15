@@ -1,20 +1,19 @@
+//This example will deal with the timer_factory module.
+//This module exists because Javascript's setTimeout and setInterval methods work,
+//but they are a bit lacking in functionality.
+
+//The timer factory gives you a type of object which uses setTimeout under the hood,
+//it has convenience methods such as pause/resume and a couple of callbacks 
+
+//The factory in turn keeps track of all timers created and will let you pause,resume or stop
+//all timers in your application with one method call.
+
 define(function(require) {
 	var main = function() {};
 
 	main.prototype.start = function() {
-		gjs.game.on("init", this, function() {
-
-			//This example will deal with the timer_factory module.
-			//This module exists because Javascript's setTimeout and setInterval methods work,
-			//but they are a bit lacking in functionality.
-
-			//The timer factory gives you a type of object which uses setTimeout under the hood,
-			//it has convenience methods such as pause/resume and a couple of callbacks 
-
-			//The factory in turn keeps track of all timers created and will let you pause,resume or stop
-			//all timers in your application with one method call.
+		gjs.game.on("init", this, function() {			
 			var timer_factory = require('timer_factory');
-
 			//Will be using this module to control the creation, start, pause and stop timers
 			var keyboard = require('keyboard');
 

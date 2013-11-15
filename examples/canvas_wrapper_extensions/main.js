@@ -1,19 +1,19 @@
+//This example deals with adding extensions to the behaviour
+//of the main object that wraps the canvas and sets up the update loop.
+//Instead of monkey patching the code that is related to the root states of the game
+//you can decouple that nicely using this sort of extensions.
+
+//This example will concentrate on a single extension which resizes the canvas
+//if the container changes size. 
+//It takes care of keeping original aspect ratio and keeping the canvas in the center of the 
+//container.
+
+//Other extensions will be used in a similar fashion to this one.
+
 define(function(require) {
 	var main = function() {};
 
 	main.prototype.start = function() {
-		//This example deals with adding extensions to the behaviour
-		//of the main object that wraps the canvas and sets up the update loop.
-		//Instead of monkey patching the code that is related to the root states of the game
-		//you can decouple that nicely using this sort of extensions.
-
-		//This example will concentrate on a single extension which resizes the canvas
-		//if the container changes size. 
-		//It takes care of keeping original aspect ratio and keeping the canvas in the center of the 
-		//container.
-
-		//Other extensions will be used in a similar fashion to this one.
-
 		//I recommend going to the the file with the code for this extension if you wish to make your own
 		extension = require('scale_aspect_ratio_extension');
 
