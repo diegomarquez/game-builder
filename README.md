@@ -8,14 +8,14 @@ These are some files I decided to extract from a previous javascript project. It
 
 ###### Current TODO List:
 
-- Power-up setModulePath method
-
 - Write a README.md for each example
     * Delegates
         + Overview on all the callbacks available to game_object
         + Overview on all the callbacks available to canvas_wrapper
         + Overview on all the callbacks available to component
         + Overview on all the callbacks available to collider_component
+
+- Explain main components in the main README.md
 
 - Think about how to handle paths to images/sound
 
@@ -29,7 +29,7 @@ These are some files I decided to extract from a previous javascript project. It
 - Use HTML to add some on screen explanation of what is going on
 - Add additional debug drawing to game_object
     * global transformed position
-- Explain main components in the main README.md
+
 - Rough explanation of each folder in src in respective README.md files
 - Spike Performance Boost
     - Canvas caching
@@ -48,7 +48,7 @@ These are some files I decided to extract from a previous javascript project. It
 
 -----------------------------------
 
-#### Status: v1 of examples is complete. v2, should be a little less verbose. 
+#### Status: v2 of examples is complete. This is starting to look good, but there is still yet documentation to be written about the examples. 
 
 -----------------------------------
 
