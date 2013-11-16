@@ -1,10 +1,6 @@
 //This example is about getting something on the screen.
 //Basic workflow on how to setup pools and create your game objects.
 
-//Set up aliases to the modules specific to this application are set
-//We do this here so that when you need to require a module elsewhere you
-//don't have to type the whole path
-
 gjs.setModulePath('basic_bundle');
 
 define(function(require) {

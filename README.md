@@ -25,6 +25,7 @@ These are some files I decided to extract from a previous javascript project. It
     - Button to automatically generate setModulePath calls where needed
     - Code observer to add and remove setModulePath calls automatically
     - Scan src paths to generate all the sub paths if they exist
+    - Template for an empty project, src folder and res folder
 
 - Use HTML to add some on screen explanation of what is going on
 - Add additional debug drawing to game_object
