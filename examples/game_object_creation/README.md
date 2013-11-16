@@ -44,8 +44,8 @@ like to use in our application.
 **********
 
 ```javascript
-	//The ID "Base_1" is defined in basic_bundle.js
-	var go = gjs.assembler.get('Base_1');
+//The ID "Base_1" is defined in basic_bundle.js
+var go = gjs.assembler.get('Base_1');
 ```
 
 The **assembler** module which can be found in the **gjs global object** takes care of building the type of game object that was specified during the configuration of the pools of objects. By this point
@@ -54,8 +54,8 @@ you should really go take a look at [the bundle file used](../resources/bundles/
 **********
 
 ```javascript
-	//Adding the game_object to a layer. 
-	gjs.layers.get('Middle').add(go);
+//Adding the game_object to a layer. 
+gjs.layers.get('Middle').add(go);
 ```
 
 The **layers** module which can be found in the **gjs global object** is the main container for everything that gets updated and/or rendered. What is going on in this line is that we are asking for the 'Middle' layer and then adding our newly assembled game object into it.
@@ -63,8 +63,8 @@ The **layers** module which can be found in the **gjs global object** is the mai
 **********
 
 ```javascript
-	//Until this method is called, the game_object will do nothing.
-	go.start();
+//Until this method is called, the game_object will do nothing.
+go.start();
 ```
 
 Although the game object has already been added to a layer, it won't do anything until you call the start method. No logic, no rendering no nothing.
