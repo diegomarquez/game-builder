@@ -19,7 +19,7 @@ define(function(require) {
 
 				//The ID "Base_1" is defined in basic_bundle.js
 				var go = gjs.assembler.get('Base_1');
-				//Adding the game_object to a layer. The names of the 
+				//Adding the game_object to a layer. 
 				gjs.layers.get('Middle').add(go);
 				//Until this method is called, the game_object will do nothing.
 				go.start();

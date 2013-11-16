@@ -2,7 +2,9 @@
 
 #### Around here you should be able to find things that will help you understand what is going on.
 
-************
+**********
+**********
+**********
 
 ##### Suggested order is as follows
 
@@ -23,5 +25,7 @@
   4. [sound](./sound)
   5. [timers](./timers)
   3. [reclaimer](./reclaimer)
+
+All the additional code and resources used in all of the examples can be found in the [resources folder](./resources)
   
 
