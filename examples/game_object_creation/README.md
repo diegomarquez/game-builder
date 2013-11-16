@@ -1,6 +1,6 @@
 [example]: http://diegomarquez.github.io/game/examples/game_object_creation/index.html
-[bundles]: (../resources/bundles)
-[basic_bundle]: (../resources/bundles/basic_bundle.js)
+[bundles]: ../resources/bundles
+[basic_bundle]: ../resources/bundles/basic_bundle.js
 
 # Drawing something
 
