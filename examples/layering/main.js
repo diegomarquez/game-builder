@@ -16,9 +16,9 @@ define(function(require) {
 			//There are 6 layers by default.
 			//Back, Middle, Front, Text, Hud, Popup.
 			//For the kind of projects this framework is scoped for, that should be more than enough.
-			gjs.layers.get('Front').add(gjs.assembler.get('Base_3')).start();
-			gjs.layers.get('Middle').add(gjs.assembler.get('Base_2')).start();
-			gjs.layers.get('Back').add(gjs.assembler.get('Base_1')).start();
+			gjs.addToLayer('Front', 'Base_3');
+			gjs.addToLayer('Middle', 'Base_2');
+			gjs.addToLayer('Back', 'Base_1');
 
 			//What follows are some examples of what you can do with the gjs.layers object
 			var keyboard = require('keyboard');
@@ -29,15 +29,15 @@ define(function(require) {
 			//available in the pools. These won't break the app by themselves, but if you see them
 			//in your own work, there probably is something fishy going on.
 			keyboard.onKeyDown(keyboard.NUM_1, this, function() {
-				gjs.layers.get('Front').add(gjs.assembler.get('Base_3')).start();
+				gjs.addToLayer('Front', 'Base_3');
 			});
 
 			keyboard.onKeyDown(keyboard.NUM_2, this, function() {
-				gjs.layers.get('Middle').add(gjs.assembler.get('Base_2')).start();
+				gjs.addToLayer('Middle', 'Base_2');
 			});
 
 			keyboard.onKeyDown(keyboard.NUM_3, this, function() {
-				gjs.layers.get('Back').add(gjs.assembler.get('Base_1')).start();
+				gjs.addToLayer('Back', 'Base_1');
 			});
 
 			keyboard.onKeyDown(keyboard.A, this, function() {

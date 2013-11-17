@@ -54,13 +54,5 @@ define(["root", "layer"], function(root, Layer) {
 		} 
 	};
 
-	LayerContainer.prototype.pause_all = function() { 
-		
-	};
-
-	LayerContainer.prototype.resume_all = function() { 
-		
-	};
-
 	return new LayerContainer();
 });
