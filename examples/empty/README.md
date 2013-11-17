@@ -43,4 +43,4 @@ This is your applications main entry point. It's a requirejs module that execute
 	});	
 ```
 
-The only thing going on in here is a callback attached to the 'init' event of the **gjs global object** **game** property. The **gjs global** has several useful properties which will start to creep up as the examples continue. It is defined in [**bootstrap.js**][bootstrap]
+The only thing going on in here is a callback attached to the 'init' event of the **gjs global** **game** property. The **gjs global** has several useful properties which will start to creep up as the examples continue. It is defined in [**bootstrap.js**][bootstrap]
