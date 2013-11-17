@@ -28,6 +28,16 @@ require('layering_bundle').create();
 
 **********
 
+```javascript
+gjs.addToLayer('Front', 'Base_3');
+gjs.addToLayer('Middle', 'Base_2');
+gjs.addToLayer('Back', 'Base_1');
+```
+
+Here you can see how each game object is added to a different layer
+
+**********
+
 The example shows a bunch of the things you can do with the **layers** object. What follows are all the possibilities.
 
 ```javascript

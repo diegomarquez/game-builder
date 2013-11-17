@@ -15,6 +15,8 @@ These are some files I decided to extract from a previous javascript project. It
         + Overview on all the callbacks available to component
         + Overview on all the callbacks available to collider_component
 
+    * Link to all the modules used in each example. Framework and example files.
+
 - Explain main components in src/README.md
 
 - Think about how to handle paths to images/sound
@@ -46,6 +48,8 @@ These are some files I decided to extract from a previous javascript project. It
 - Sub state machine state. Special state which contains a state machine. Used for branching paths
 - Text
 - When creating the component pools, infer the amounts from the configurations on the game object pool
+
+- Update README.md files 
 
 -----------------------------------
 
