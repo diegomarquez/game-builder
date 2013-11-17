@@ -144,8 +144,6 @@ require(gjs.deps,
 		game.resume = resume;
 
 		require([mainPath], function(main) {
-			main.start();
-
 			game.on("update", this, function() {
 				root.update(game.delta);
 				root.transformAndDraw(game.context);
