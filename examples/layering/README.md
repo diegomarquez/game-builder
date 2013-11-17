@@ -4,9 +4,9 @@
 
 # Use layers to manage drawing order with precision.
 
-#### A layer is basically a game object container like the ones in the previous example.
-#### It is a specialised use case though, since most of the time you won't be moving a layer around.
-#### You could do it though, if you really wanted to.
+#### A layer is basically a game object container like the ones in the previous example. 
+It is a specialised use case though, since most of the time you won't be moving a layer around. 
+You could do it though, if you really wanted to.
 
 #### You can view this [example running][example]
 
