@@ -4,9 +4,7 @@
 
 # Use layers to manage drawing order with precision.
 
-#### A layer is basically a game object container like the ones in the previous example. 
-It is a specialised use case though, since most of the time you won't be moving a layer around. 
-You could do it though, if you really wanted to.
+#### A layer is basically a game object container like the ones in the previous example. It is a specialised use case though, since most of the time you won't be moving a layer around. You could do it though, if you really wanted to.
 
 #### You can view this [example running][example]
 
@@ -47,13 +45,13 @@ gjs.layers.add('Front');
 
 ```javascript
 //Removes a layer with the name 'Front'. All game objects contained in it 
-are sent back to their respective pools.
+//are sent back to their respective pools.
 gjs.layers.clear('Front');
 ```
 
 ```javascript
 //Removes a layer with the name 'Front'. All game objects contained in it 
-are sent back to their respective pools and the seices to exist.
+//are sent back to their respective pools and the seices to exist.
 gjs.layers.remove('Front');
 ```
 
@@ -74,13 +72,13 @@ gjs.layers.resume('Front');
 
 ```javascript
 //Stop calling the update method on game objects on the 'Front' layer. 
-Effectively pausing that layer.
+//Effectively pausing that layer.
 gjs.layers.stop_update('Front');
 ```
 
 ```javascript
 //Stop calling draw method on game objects on the 'Front' layer. 
-Effectively making the layer invisible.
+//Effectively making the layer invisible.
 gjs.layers.stop_draw('Front');
 ```
 
