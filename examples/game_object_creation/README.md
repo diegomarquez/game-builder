@@ -1,6 +1,6 @@
 [example]: http://diegomarquez.github.io/game/examples/game_object_creation/index.html
 [bundles]: ../resources/bundles
-[basic_bundle]: ../resources/bundles/basic_bundle.js
+[bundle]: ../resources/bundles/basic_bundle.js
 
 # Drawing something
 
@@ -37,7 +37,7 @@ like to use in our application.
 
 [The bundle file is here][bundles]. The README.md file in there will have some more information about what is going on inside these type of files.
 
-[The specific bundle file used in this example][basic_bundle]
+[The specific bundle file used in this example][bundle]
 
 *NOTE: Technically you don't need to use this objects, you could just take the code that is in them and slap it in here, but I think it looks nicer this way. You might even want to reuse that code later on.*
 
@@ -49,7 +49,7 @@ var go = gjs.assembler.get('Base_1');
 ```
 
 The **assembler** module which can be found in the **gjs global object** takes care of building the type of game object that was specified during the configuration of the pools of objects. By this point
-you should really go take a look at [the bundle file used](../resources/bundles/basic_bundle.js) if you are interested in understanding what is going on.
+you should really go take a look at [the bundle file used][bundle] if you are interested in understanding what is going on.
 
 **********
 
@@ -68,7 +68,3 @@ go.start();
 ```
 
 Although the game object has already been added to a layer, it won't do anything until you call the start method. No logic, no rendering no nothing.
-
-**********
-**********
-**********

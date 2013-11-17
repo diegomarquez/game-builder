@@ -93,6 +93,10 @@ require(gjs.deps,
 		gjs['co_pool']   = component_pool;
 		gjs['canvas']    = document.getElementById('game');
 
+		gjs['addToLayer'] = function(layerName, goId) {
+			layers.get(layerName).add(gjs.assembler.get(goId)).start();
+		};
+
 		//Pause and resume logic uses things of canvas wrapper and things of the layer manager
 		//That is why the code is in this file, to act as a connection point.
 		var paused = false;

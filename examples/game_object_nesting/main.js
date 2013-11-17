@@ -21,7 +21,7 @@ define(function(require) {
 				//Add it to a display layer, and finally start it. 
 
 				//The ID Continer_1 is defined in nesting_bundle.js
-				gjs.layers.get('Middle').add(gjs.assembler.get('Container_1')).start();				
+				gjs.addToLayer('Middle', 'Container_1');
 			});
 		}
 
