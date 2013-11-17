@@ -36,12 +36,14 @@ gjs.layers.add('Front');
 ```
 
 ```javascript
-//Removes a layer with the name 'Front'. All game objects contained in it, are sent back to their respective pools.
+//Removes a layer with the name 'Front'. All game objects contained in it 
+are sent back to their respective pools.
 gjs.layers.clear('Front');
 ```
 
 ```javascript
-//Removes a layer with the name 'Front'. All game objects contained in it, are sent back to their respective pools and the seices to exist.
+//Removes a layer with the name 'Front'. All game objects contained in it 
+are sent back to their respective pools and the seices to exist.
 gjs.layers.remove('Front');
 ```
 
@@ -61,12 +63,14 @@ gjs.layers.resume('Front');
 ```
 
 ```javascript
-//Stop calling the update method on game objects on the 'Front' layer. Effectively pausing that layer.
+//Stop calling the update method on game objects on the 'Front' layer. 
+Effectively pausing that layer.
 gjs.layers.stop_update('Front');
 ```
 
 ```javascript
-//Stop calling draw method on game objects on the 'Front' layer. Effectively making the layer invisible.
+//Stop calling draw method on game objects on the 'Front' layer. 
+Effectively making the layer invisible.
 gjs.layers.stop_draw('Front');
 ```
 
@@ -92,19 +96,14 @@ gjs.layers.all('clear');
 ************
 
 ```javascript
-//When a layer is removed it is gone for good, trying to add things
-//to it later will result in an error. You can try it out, by adding
-//things to any of the layers after calling this method.
-
-//Remove all layers entirely. You will need to add more layers after doing this.
 gjs.layers.all('remove');
 ```
 
-The all method will apply to all layers. It has two arguments, *'action'* and *'method'* In the case above it calls the remove method for every layer. If you were to call it with other arguments, like so
+The **gjs.layers.all** method will apply to all layers. It has two arguments, *'action'* and *'method' In the case above it calls the remove method for every layer. If you were to call it with other arguments, like so:
 
 ```javascript
 gjs.layers.all('stop', 'update');
 ```
 
-It would call the stop_update method for all th layers.
+It would call the stop_update method for all the layers.
 
