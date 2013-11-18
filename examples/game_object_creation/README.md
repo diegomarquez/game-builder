@@ -7,14 +7,21 @@
 [index]: ./index.html
 [bootstrap]: ../src/bootstrap.js
 
+[layers]: ../../src/hierarchy/layers.js
+[assembler]: ../../src/pools/assembler.js
+
 [game_object]: ../../src/hierarchy/game_object.js
 [renderer]: ../../src/components/rendering/renderer.js
+[game_object_container]: ../../src/hierarchy/game_object_container.js
+
 [basic_game_object]: ../resources/basic_game_object.js
 [box_renderer]: ../resources/box_renderer.js
+[basic_container]: ../resources/basic_container.js
 
 # Drawing something
 
-#### This example is about getting something on the screen. Basic workflow on how to setup pools and create your game objects.
+#### This example is about getting something on the screen. Basic workflow on how to setup pools and create your game objects. Even though it is the first real example it is the thickest because almost everything is new. Most of this stuff will be repeated over and over again in the next examples.
+
 #### You can view this [example running][example]
 
 **********
@@ -23,7 +30,11 @@
 
 ### New things that are happening here
 
-**New Modules used in this example **
+**New Modules used in this example**
+
+[**assembler.js**][assembler]
+
+[**layers.js**][layers]
 
 [**basic_game_object.js**][basic_game_object] => [**game_object.js**][game_object]
 
@@ -65,7 +76,7 @@ This kind of calls create an object who has only one purpose, setup the pools wh
 var go = gjs.assembler.get('Base_1');
 ```
 
-The **assembler** module which can be found in the **gjs global** takes care of building the type of game object that was specified during the configuration of the pools. By this point
+The [**assembler**][assembler] module which can be found in the **gjs global** takes care of building the type of game object that was specified during the configuration of the pools. By this point
 you should really go take a look at [the bundle file used][bundle] if you are interested in understanding what is going on.
 
 **********
@@ -75,7 +86,7 @@ you should really go take a look at [the bundle file used][bundle] if you are in
 gjs.layers.get('Middle').add(go);
 ```
 
-The **layers** module which can be found in the **gjs global** is the main container for everything that gets updated and/or rendered. What is going on in this line is that we are asking for the 'Middle' layer and then adding our newly assembled game object into it.
+The [**layers**][layers] module which can be found in the **gjs global** is the main container for everything that gets updated and/or rendered. What is going on in this line is that we are asking for the 'Middle' layer and then adding our newly assembled game object into it.
 
 **********
 

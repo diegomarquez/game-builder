@@ -2,9 +2,25 @@
 [bundles]: ../resources/bundles
 [bundle]: ../resources/bundles/layering_bundle.js
 
+[css]: ./main.css
+[main]: ./main.js
+[index]: ./index.html
+[bootstrap]: ../src/bootstrap.js
+
+[layers]: ../../src/hierarchy/layers.js
+[assembler]: ../../src/pools/assembler.js
+
+[game_object]: ../../src/hierarchy/game_object.js
+[renderer]: ../../src/components/rendering/renderer.js
+[game_object_container]: ../../src/hierarchy/game_object_container.js
+
+[basic_game_object]: ../resources/basic_game_object.js
+[box_renderer]: ../resources/box_renderer.js
+[basic_container]: ../resources/basic_container.js
+
 # Use layers to manage drawing order with precision.
 
-#### A layer is basically a game object container like the ones in the previous example. It is a specialised use case though, since most of the time you won't be moving a layer around. You could do it though, if you really wanted to.
+#### This example demonstrates the use of layers. In reality it is just a fancy name for the containers of the previous example. The difference being that these are dedicated to help in organizing what gets drawn and when.
 
 #### You can view this [example running][example]
 
@@ -12,9 +28,17 @@
 **********
 **********
 
-##### New things that are happening here
+### New things that are happening here
 
-* main.js
+**New Modules used in this example**
+
+[**layers.js**][layers]
+
+**********
+**********
+**********
+
+[**main.js**][main]
 
 **********
 
@@ -36,7 +60,7 @@ Here you can see how each game object is added to a different layer
 
 **********
 
-The example shows a bunch of the things you can do with the **layers** object. What follows are all the possibilities.
+The example shows a bunch of the things you can do with the [**layers**][layers] object. What follows are all the possibilities.
 
 ```javascript
 //Adds a layer with the name 'Front'.

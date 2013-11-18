@@ -7,6 +7,9 @@
 [index]: ./index.html
 [bootstrap]: ../src/bootstrap.js
 
+[layers]: ../../src/hierarchy/layers.js
+[assembler]: ../../src/pools/assembler.js
+
 [game_object]: ../../src/hierarchy/game_object.js
 [renderer]: ../../src/components/rendering/renderer.js
 [game_object_container]: ../../src/hierarchy/game_object_container.js

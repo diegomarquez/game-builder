@@ -1,21 +1,12 @@
-//This example demonstrates the use of layers. 
-//In reality it is just a fancy name for the containers of the previous example.
-//The difference being that these are dedicated to help in organizing what gets drawn and when.
-
 gjs.setModulePath('layering_bundle');
 
 define(function(require) {
-	var main = function() {};
-
-	main.prototype.start = function() {
+	var main = function() {
 		gjs.game.on("init", this, function() {
 			//This pool setup bundle creates all the things this example will be using
 			require('layering_bundle').create();
 
 			//Here each game_object is added to a different layer
-			//There are 6 layers by default.
-			//Back, Middle, Front, Text, Hud, Popup.
-			//For the kind of projects this framework is scoped for, that should be more than enough.
 			gjs.addToLayer('Front', 'Base_3');
 			gjs.addToLayer('Middle', 'Base_2');
 			gjs.addToLayer('Back', 'Base_1');
@@ -76,7 +67,7 @@ define(function(require) {
 
 			//Maybe in another example.
 		});
-	}
+	};
 
 	return new main()
 });
