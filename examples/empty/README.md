@@ -38,9 +38,9 @@ Go take a look if you are interested.
 This is your applications main entry point. It's a requirejs module that executes a function when loaded. In that function you should put your apps initialization code. In this case the following. 
 
 ```javascript
-	gjs.game.on("init", this, function() {
-		console.log("Hi!")
-	});	
+gjs.game.on("init", this, function() {
+	console.log("Hi!")
+});	
 ```
 
 The only thing going on in here is a callback attached to the 'init' event of the **gjs global** **game** property. The **gjs global** has several useful properties which will start to creep up as the examples continue. It is defined in [**bootstrap.js**][bootstrap]

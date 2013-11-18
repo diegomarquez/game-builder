@@ -1,13 +1,7 @@
-//This example is about getting something on the screen.
-//Basic workflow on how to setup pools and create your game objects.
-
 gjs.setModulePath('basic_bundle');
 
 define(function(require) {
-		var main = function(){};
-
-		main.prototype.start = function() {
-			//When this is called we are good to go!
+		var main = function(){
 			gjs.game.on("init", this, function() {
 				//The code in this file takes care of creating all the things this example will use
 				//If you decide to give this framework a try, you will be creating files such as this one.
@@ -24,11 +18,8 @@ define(function(require) {
 				//Until this method is called, the game_object will do nothing.
 				go.start();
 			});
-		}
+		};
 
-		//Conveniantly enough, if a requireJS module returns an instance, it's as good as a singleton.
-		//In the case of this main.js file,
-		//and all the others you will find across different examples, that is exactly what we need.
 		return new main();
 	}
 );
