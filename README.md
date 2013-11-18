@@ -8,6 +8,9 @@ These are some files I decided to extract from a previous javascript project. It
 
 ###### Current TODO List:
 
+- Make yeoman generator for the Readme files
+    - It should create a file with all the links that the examples could possible use
+
 - Write a README.md for each example
     * Delegates
         + Overview on all the callbacks available to game_object
@@ -21,6 +24,9 @@ These are some files I decided to extract from a previous javascript project. It
 
 - Think about how to handle paths to images/sound
 
+- Make yeoman generator for the different types of files
+    - Have the Sublime plugin use those generators.   
+
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.
     - Add options to create different types of files from templates
@@ -28,6 +34,8 @@ These are some files I decided to extract from a previous javascript project. It
     - Code observer to add and remove setModulePath calls automatically
     - Scan src paths to generate all the sub paths if they exist
     - Template for an empty project, src folder and res folder
+
+- Use Bower to install the requirejs dependency
 
 - Use HTML to add some on screen explanation of what is going on
 - Add additional debug drawing to game_object
