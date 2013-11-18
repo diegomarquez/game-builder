@@ -3,7 +3,7 @@
 [css]: ./main.css
 [main]: ./main.js
 [index]: ./index.html
-[bootstrap]: ../src/bootstrap.js
+[bootstrap]: ../../src/bootstrap.js
 
 # The empty example
 
