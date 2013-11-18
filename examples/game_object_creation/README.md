@@ -31,6 +31,9 @@
 
 **********
 **********
+**********
+
+[**main.js**][main]
 
 ```javascript
 gjs.setModulePath('basic_bundle');

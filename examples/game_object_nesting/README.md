@@ -2,9 +2,22 @@
 [bundles]: ../resources/bundles
 [bundle]: ../resources/bundles/nesting_bundle.js
 
+[css]: ./main.css
+[main]: ./main.js
+[index]: ./index.html
+[bootstrap]: ../src/bootstrap.js
+
+[game_object]: ../../src/hierarchy/game_object.js
+[renderer]: ../../src/components/rendering/renderer.js
+[game_object_container]: ../../src/hierarchy/game_object_container.js
+
+[basic_game_object]: ../resources/basic_game_object.js
+[box_renderer]: ../resources/box_renderer.js
+[basic_container]: ../resources/basic_container.js
+
 # Nest game objects into game object containers 
 
-#### Nested game objects will follow the transformation matrix of their respective parent. Childs of a container will be drawn on top of their respective parent, in the order they where added.
+#### This example will be using a Container. You can add other game_objects as childs to these, and they will follow their parent everywhere using matrix transformations I do not understand. God bless them. The childs of a container are drawn on top of it in the order they were added.
 
 #### You can view this [example running][example]
 
@@ -12,9 +25,17 @@
 **********
 **********
 
-##### New things that are happening here
+### New things that are happening here
 
-* main.js
+**New Modules used in this example **
+
+[**basic_container.js**][basic_container] => [**game_object_container.js**][game_object_container] => [**game_object.js**][game_object]
+
+**********
+**********
+**********
+
+[**main.js**][main]
 
 ```javascript
 require('nesting_bundle').create();  

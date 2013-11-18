@@ -1,13 +1,9 @@
-//Note that this paths are relative to the folder containing bootstrap.js
 gjs.setModulePath('basic_game_object');
 gjs.setModulePath('box_renderer');
 
 define(function(require) {
 	var Bundle = require('bundle');
-	//This is a basic pool setup bundle. There is nothing special about this
-	//I just thought it would be a nice thing to have a way of bundling this code
-	//so it is easy to reuse it across examples.
-
+	
 	var basic_game_object = require('basic_game_object'); 
 	var box_renderer      = require('box_renderer');
 
