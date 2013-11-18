@@ -21,12 +21,13 @@
 **********
 **********
 
-##### New things that are happening here
+### New things that are happening here
 
 **New Modules used in this example **
 
-[**basic_game_object.js**][basic_game_object] -> [**game_object.js**][game_object]
-[**box_renderer.js**][box_renderer] -> [**renderer.js**][renderer]
+[**basic_game_object.js**][basic_game_object] => [**game_object.js**][game_object]
+
+[**box_renderer.js**][box_renderer] => [**renderer.js**][renderer]
 
 **********
 **********
