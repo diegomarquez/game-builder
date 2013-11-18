@@ -17,7 +17,7 @@
 
 # Nest game objects into game object containers 
 
-#### This example will be using a Container. You can add other game_objects as childs to these, and they will follow their parent everywhere using matrix transformations I do not understand. God bless them. The childs of a container are drawn on top of it in the order they were added.
+#### This example will be using a container. You can add other game objects as childs to these, and they will follow their parent everywhere using matrix transformations I do not understand. God bless them. The childs of a container are drawn on top of it in the order they were added.
 
 #### You can view this [example running][example]
 
@@ -27,7 +27,7 @@
 
 ### New things that are happening here
 
-**New Modules used in this example **
+**New Modules used in this example**
 
 [**basic_container.js**][basic_container] => [**game_object_container.js**][game_object_container] => [**game_object.js**][game_object]
 
@@ -49,4 +49,4 @@ require('nesting_bundle').create();
 gjs.addToLayer('Middle', 'Container_1');
 ```
 
-This does the same that the previous example, but instead of calling all the methods involved manually, the short-hand method **addToLayer** of the **gjs global object** is used.
+This does the same that the previous example, but instead of calling all the methods involved manually, the short-hand method **addToLayer** of the **gjs global** is used.
