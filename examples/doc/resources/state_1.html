@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="en"><head><title>resources/state_1</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="resources/state_1"><meta name="groc-project-path" content="resources/state_1.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">resources/state_1.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">state_machine_factory</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;state_machine_factory&quot;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">keyboard</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;keyboard&#39;</span><span class="p">);</span>
+
+  <span class="c1">//Notice how a function is returned when defining a state.</span>
+  <span class="c1">//The function receives the name of the state.</span>
+
+  <span class="c1">//I do it this way because requireJS caches the result of a module definition.</span>
+  <span class="c1">//If I just returned the value of state_machine_factory.createState, the module would</span>
+  <span class="c1">//always return the same state, instead of acting like a factory.</span>
+
+  <span class="c1">//It is possible that you might want to add the same type of state, but not the same instance</span>
+  <span class="c1">//to different state machines, this is how you do it.</span>
+  <span class="k">return</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">state</span> <span class="o">=</span> <span class="nx">state_machine_factory</span><span class="p">.</span><span class="nx">createState</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">onNext</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">state</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;next&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">nextInitArgs</span><span class="o">:</span><span class="s1">&#39;Hello from state 1&#39;</span><span class="p">,</span> <span class="nx">lastCompleteArgs</span><span class="o">:</span><span class="s1">&#39;Good bye state 1&#39;</span><span class="p">});</span>
+    <span class="p">};</span>
+
+    <span class="kd">var</span> <span class="nx">onPrevious</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">state</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;previous&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">nextInitArgs</span><span class="o">:</span><span class="s1">&#39;Hello from state 1&#39;</span><span class="p">,</span> <span class="nx">lastCompleteArgs</span><span class="o">:</span><span class="s1">&#39;Good bye state 1&#39;</span><span class="p">});</span>
+    <span class="p">};</span>
+
+    <span class="kd">var</span> <span class="nx">setupKeyboardCallbacks</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">keyboard</span><span class="p">.</span><span class="nx">onKeyUp</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">A</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="nx">onNext</span><span class="p">);</span>
+      <span class="nx">keyboard</span><span class="p">.</span><span class="nx">onKeyUp</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">D</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="nx">onPrevious</span><span class="p">);</span> 
+    <span class="p">};</span>
+
+    <span class="kd">var</span> <span class="nx">removeKeyboardCallbacks</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">keyboard</span><span class="p">.</span><span class="nx">removeKeyUp</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">A</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="nx">onNext</span><span class="p">);</span>
+      <span class="nx">keyboard</span><span class="p">.</span><span class="nx">removeKeyUp</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">D</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="nx">onPrevious</span><span class="p">);</span> 
+    <span class="p">};</span>
+
+    <span class="c1">//As you can see we are able to add as many </span>
+    <span class="c1">//functions to be executed for either start, complete or update.</span>
+    <span class="c1">//These are execued in the order they were added.</span>
+
+    <span class="c1">//For this particular example we are removing keyboard callbacks as soon as we leave a state</span>
+    <span class="c1">//We don&#39;t want this callbacks to be executed while we are not in this state.</span>
+
+    <span class="nx">state</span><span class="p">.</span><span class="nx">addStartAction</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">){</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Entering State 1&quot;</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">state</span><span class="p">.</span><span class="nx">addStartAction</span><span class="p">(</span><span class="nx">setupKeyboardCallbacks</span><span class="p">);</span>
+
+    <span class="nx">state</span><span class="p">.</span><span class="nx">addCompleteAction</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">){</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Exiting State 1&quot;</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">state</span><span class="p">.</span><span class="nx">addCompleteAction</span><span class="p">(</span><span class="nx">removeKeyboardCallbacks</span><span class="p">);</span> 
+
+    <span class="k">return</span> <span class="nx">state</span><span class="p">;</span>
+  <span class="p">};</span>
+<span class="p">});</span>     </div></div></div></div></body></html>
