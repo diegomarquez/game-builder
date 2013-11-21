@@ -8,19 +8,13 @@ These are some files I decided to extract from a previous javascript project. It
 
 ###### Current TODO List:
 
-- Make yeoman generator for the Readme files
-    - It should create a file with all the links that the examples could possible use
+- Make groc documentation for the whole project
+    - Exclude requireJS from documentation
 
-- Write a README.md for each example
-    * Delegates
-        + Overview on all the callbacks available to game_object
-        + Overview on all the callbacks available to canvas_wrapper
-        + Overview on all the callbacks available to component
-        + Overview on all the callbacks available to collider_component
+- Make an index.html for the gh-pages branch using Tweeter Bootstrap
 
+- Anotate example code to generate documentation
     * Link to all the modules used in each example. Framework and example files.
-
-- Explain main components in src/README.md
 
 - Think about how to handle paths to images/sound
 

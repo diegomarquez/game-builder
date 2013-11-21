@@ -1,6 +1,0 @@
-{
-  "glob": ["**/*.js", "README.md"],
-  "except": ["doc/**"],
-  "index-page-title": "Examples Docs",
-  "github": true
-}  
