@@ -1,0 +1,11 @@
+{
+  "name": "grunt-deploy-task",
+  "version": "0.1.0",
+  "description": "Deploy game-builder to gh-pages",
+  "author": "Diego Enrique Marquez",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-groc": "~0.4.0",
+    "grunt-shell": "~0.6.0"
+  }
+}

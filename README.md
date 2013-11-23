@@ -8,38 +8,24 @@ These are some files I decided to extract from a previous javascript project. It
 
 ###### Current TODO List:
 
-- Make groc documentation for the whole project
-    - Exclude requireJS from documentation
-
-- Make an index.html for the gh-pages branch using Tweeter Bootstrap
-
+- Figure out how to use Bootstrap to make a nice homepage
+- Use Bower to install the requirejs dependency
 - Anotate example code to generate documentation
     * Link to all the modules used in each example. Framework and example files.
-
-- Think about how to handle paths to images/sound
+- Use the Gruntfile to create documentation and deploy to gh-pages
+    - Exclude requireJS from documentation
 
 - Make yeoman generator for the different types of files
-    - Have the Sublime plugin use those generators.   
+    - Have the Sublime plugin use those generators.
 
-- Make Sublime plugin to generate files from templates
-    - Make an empty menu structure.
-    - Add options to create different types of files from templates
-    - Button to automatically generate setModulePath calls where needed
-    - Code observer to add and remove setModulePath calls automatically
-    - Scan src paths to generate all the sub paths if they exist
-    - Template for an empty project, src folder and res folder
-
-- Use Bower to install the requirejs dependency
-
+- Think about how to handle paths to images/sound
 - Use HTML to add some on screen explanation of what is going on
 - Add additional debug drawing to game_object
     * global transformed position
-
-- Rough explanation of each folder in src in respective README.md files
 - Spike Performance Boost
     - Canvas caching
         * Cache static drawings (Drawing Renderer, NEW)
-        * Cache Images (Bitmap renderer)
+        * Cache Images (Bitmap renderer)       
 - Extensions
     * TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
     * Keyboard extension, block keyboard keys when pausing the game ( No Demo )
@@ -52,6 +38,14 @@ These are some files I decided to extract from a previous javascript project. It
 - When creating the component pools, infer the amounts from the configurations on the game object pool
 
 - Update README.md files 
+
+- Make Sublime plugin to generate files from templates
+    - Make an empty menu structure.
+    - Add options to create different types of files from templates
+    - Button to automatically generate setModulePath calls where needed
+    - Code observer to add and remove setModulePath calls automatically
+    - Scan src paths to generate all the sub paths if they exist
+    - Template for an empty project, src folder and res folder
 
 -----------------------------------
 
