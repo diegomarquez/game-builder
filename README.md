@@ -8,15 +8,20 @@ These are some files I decided to extract from a previous javascript project. It
 
 ###### Current TODO List:
 
-- Figure out how to use Bootstrap to make a nice homepage
-- Use Bower to install the requirejs dependency
+- Start using requireJS from the lib folder
+
+- Figure out how to use Bootstrap to make a nice homepage simple homepage
+
 - Anotate example code to generate documentation
-    * Link to all the modules used in each example. Framework and example files.
+
 - Use the Gruntfile to create documentation and deploy to gh-pages
     - Exclude requireJS from documentation
 
-- Make yeoman generator for the different types of files
-    - Have the Sublime plugin use those generators.
+- Make yeoman generator
+    - Scaffold basic project
+        - Get dependencies
+    - Custom bootstrap.js from project source
+    - Different types of files templates
 
 - Think about how to handle paths to images/sound
 - Use HTML to add some on screen explanation of what is going on

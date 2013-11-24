@@ -1,8 +1,27 @@
 {
-  "name": "grunt-deploy-task",
+  "name": "game-builder-tasks",
   "version": "0.1.0",
   "description": "Deploy game-builder to gh-pages",
   "author": "Diego Enrique Marquez",
+
+  "docs": {
+  	"src": ["src, examples"],
+  	"types": [".js", ".md"]
+  },
+
+  "src": {
+  	"local": [ "src", "examples" ],
+  	"remote": {
+  		"require": "cdnjs.cloudflare.com/ajax/libs/require.js/2.1.8/require.min.js",
+  		"domready": "cdnjs.cloudflare.com/ajax/libs/require-domReady/2.0.1/domReady.min.js"
+  	}
+  },
+
+  "repo": {
+  	"master": "git@github.com:diegomarquez/game.git",
+  	"branch": "gh-pages"
+  },
+
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-groc": "~0.4.0",
