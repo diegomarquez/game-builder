@@ -11,9 +11,7 @@
 //Other extensions will be used in a similar fashion to this one.
 
 define(function(require) {
-	var main = function() {};
-
-	main.prototype.start = function() {
+	var main = function() {
 		//I recommend going to the the file with the code for this extension if you wish to make your own
 		extension = require('scale_aspect_ratio_extension');
 
@@ -28,8 +26,9 @@ define(function(require) {
 
 		//This empty init callback is just here to illustrate 
 		//that extensions are set before initialization
-		gjs.game.on("init", this, function() {});
-	}
-
+		gjs.game.on("init", this, function() {
+			console.log('Hi!');
+		});
+	};
 	return new main()
 });

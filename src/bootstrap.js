@@ -4,7 +4,7 @@ gjs = {
 
 	deps:
 	[
-	 	'domReady!', 
+	 	'domready!', 
 	 	'game', 
 	 	'root', 
 	 	'layers', 
@@ -56,7 +56,7 @@ gjs = {
 			"reclaimer": "pools/reclaimer",
 			"bundle": "pools/bundle",
 
-			"domReady": "requireJS/domReady"
+			"domready": "../lib/requirejs-domready/domReady"
 		}	
 	},
 

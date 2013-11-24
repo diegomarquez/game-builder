@@ -19,9 +19,7 @@
 gjs.setModulePath('input_bundle');
 
 define(function(require) {
-	var main = function() {};
-
-	main.prototype.start = function() {
+	var main = function() {
 		gjs.game.on("init", this, function() {
  
 			var keyboard = require('keyboard');
@@ -62,7 +60,7 @@ define(function(require) {
 				if(keyboard.isKeyDown(keyboard.D)){ console.log('D is down') }
 			})
 		});
-	}
+	};
 
 	return new main()
 });

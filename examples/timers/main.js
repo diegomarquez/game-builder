@@ -9,9 +9,7 @@
 //all timers in your application with one method call.
 
 define(function(require) {
-	var main = function() {};
-
-	main.prototype.start = function() {
+	var main = function() {
 		gjs.game.on("init", this, function() {			
 			var timer_factory = require('timer_factory');
 			//Will be using this module to control the creation, start, pause and stop timers
@@ -115,7 +113,7 @@ define(function(require) {
 
 			//Same goes for the other variations of the same methods. 
 		});
-	}
+	};
 
 	return new main()
 });

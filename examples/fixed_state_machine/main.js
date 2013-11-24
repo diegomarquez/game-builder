@@ -5,9 +5,7 @@
 //In this example we will also see how to separate state code in different files.
 
 define(function(require) {
-	var main = function() {};
-
-	main.prototype.start = function() {
+	var main = function() {
 		gjs.game.on("init", this, function() {
 			var stateMachineFactory = require('state_machine_factory');
 
@@ -39,7 +37,7 @@ define(function(require) {
 			//Don't forget to start the state machine if you don't none of this nonesense will work.
 			fixedStateMachine.start('State machine was started!');
 		});
-	}
+	};
 
 	return new main()
 });

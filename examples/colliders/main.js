@@ -15,9 +15,7 @@
 gjs.setModulePath('colliders_bundle');
 
 define(function(require) {
-		var main = function(){};
-
-		main.prototype.start = function() {
+		var main = function(){
 			gjs.game.on("init", this, function() {
 				//This pool setup bundle creates all the things this example will be using
 				require('colliders_bundle').create();
@@ -38,7 +36,7 @@ define(function(require) {
 				gjs.layers.get('Middle').add(gjs.assembler.get('Base_2')).start();		
 				gjs.layers.get('Middle').add(gjs.assembler.get('Base_3')).start();
 			});
-		}
+		};
 
 		return new main()
 	}

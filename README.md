@@ -9,6 +9,7 @@ These are some files I decided to extract from a previous javascript project. It
 ###### Current TODO List:
 
 - Start using requireJS from the lib folder
+    - Fix examples to point at the new location of require.js
 
 - Figure out how to use Bootstrap to make a nice homepage simple homepage
 

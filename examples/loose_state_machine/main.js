@@ -8,9 +8,7 @@
 //You should do the same.
 
 define(function(require) {
-	var main = function() {};
-
-	main.prototype.start = function() {
+	var main = function() {
 		gjs.game.on("init", this, function() {
 			//The first thing to do is get a hold to a reference to the state_machine_factory.
 			//This thing will let you instantiate different kinds of state machines and their states.
@@ -92,7 +90,7 @@ define(function(require) {
 			//Don't forget to start the state machine if you don't none of this nonesense will work.
 			looseStateMachine.start('State machine was started!');
 		});
-	}
+	};
 
 	return new main()
 });

@@ -1,9 +1,7 @@
 //This example is about the sound_player module. it plays sound.
 
 define(function(require) {
-	var main = function() {};
-
-	main.prototype.start = function() {
+	var main = function() {
 		gjs.game.on("init", this, function() {
 			var sound_player = require('sound_player');
 			var keyboard = require('keyboard');
@@ -51,7 +49,7 @@ define(function(require) {
 				});
 			});
 		});
-	}
+	};
 
 	return new main()
 });
