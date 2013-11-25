@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="en"><head><title>examples/reclaimer/main</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="examples/reclaimer/main"><meta name="groc-project-path" content="work/examples/reclaimer/main.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/examples/reclaimer/main.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="c1">//This example uses the reclaimer objects to reclaim all game_objects of a certain type.</span>
+<span class="c1">//Usefull for clearing the scene of all objects or just a set of them.</span>
+
+<span class="nx">gjs</span><span class="p">.</span><span class="nx">setModulePath</span><span class="p">(</span><span class="s1">&#39;layering_bundle&#39;</span><span class="p">);</span>
+
+<span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">main</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">gjs</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;init&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+       
+      <span class="kd">var</span> <span class="nx">reclaimer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;reclaimer&#39;</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">keyboard</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;keyboard&#39;</span><span class="p">);</span>
+
+      <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;layering_bundle&#39;</span><span class="p">).</span><span class="nx">create</span><span class="p">();</span>
+
+      <span class="nx">gjs</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Front&#39;</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="nx">gjs</span><span class="p">.</span><span class="nx">assembler</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Base_3&#39;</span><span class="p">)).</span><span class="nx">start</span><span class="p">();</span>
+      <span class="nx">gjs</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Middle&#39;</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="nx">gjs</span><span class="p">.</span><span class="nx">assembler</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Base_2&#39;</span><span class="p">)).</span><span class="nx">start</span><span class="p">();</span>
+      <span class="nx">gjs</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Back&#39;</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="nx">gjs</span><span class="p">.</span><span class="nx">assembler</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Base_1&#39;</span><span class="p">)).</span><span class="nx">start</span><span class="p">();</span>
+
+      <span class="c1">//These are used to add back the stuff to the layers if you</span>
+      <span class="c1">//remove them while trying out the example.</span>
+      <span class="nx">keyboard</span><span class="p">.</span><span class="nx">onKeyDown</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">A</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">gjs</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Front&#39;</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="nx">gjs</span><span class="p">.</span><span class="nx">assembler</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Base_3&#39;</span><span class="p">)).</span><span class="nx">start</span><span class="p">();</span>
+        <span class="nx">gjs</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Middle&#39;</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="nx">gjs</span><span class="p">.</span><span class="nx">assembler</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Base_2&#39;</span><span class="p">)).</span><span class="nx">start</span><span class="p">();</span>
+        <span class="nx">gjs</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Back&#39;</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="nx">gjs</span><span class="p">.</span><span class="nx">assembler</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Base_1&#39;</span><span class="p">)).</span><span class="nx">start</span><span class="p">();</span>
+      <span class="p">});</span>
+
+      <span class="nx">keyboard</span><span class="p">.</span><span class="nx">onKeyDown</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">S</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">reclaimer</span><span class="p">.</span><span class="nx">claimAll</span><span class="p">();</span>
+      <span class="p">});</span>
+
+      <span class="nx">keyboard</span><span class="p">.</span><span class="nx">onKeyDown</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">Z</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">reclaimer</span><span class="p">.</span><span class="nx">claimOnly</span><span class="p">(</span><span class="s1">&#39;configuration&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Base_2&#39;</span><span class="p">]);</span>
+      <span class="p">});</span>
+
+      <span class="nx">keyboard</span><span class="p">.</span><span class="nx">onKeyDown</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">X</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">reclaimer</span><span class="p">.</span><span class="nx">claimOnly</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Base&#39;</span><span class="p">]);</span>
+      <span class="p">});</span>
+
+      <span class="nx">keyboard</span><span class="p">.</span><span class="nx">onKeyDown</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">C</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">reclaimer</span><span class="p">.</span><span class="nx">claimAllBut</span><span class="p">(</span><span class="s1">&#39;configuration&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Base_2&#39;</span><span class="p">]);</span>
+      <span class="p">});</span>
+
+      <span class="nx">keyboard</span><span class="p">.</span><span class="nx">onKeyDown</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">P</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">reclaimer</span><span class="p">.</span><span class="nx">clearAllPools</span><span class="p">();</span>
+      <span class="p">});</span>
+
+      <span class="nx">keyboard</span><span class="p">.</span><span class="nx">onKeyDown</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">O</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Game Object Pool&#39;</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">gjs</span><span class="p">.</span><span class="nx">go_pool</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="p">);</span>
+      <span class="p">});</span>
+
+      <span class="nx">keyboard</span><span class="p">.</span><span class="nx">onKeyDown</span><span class="p">(</span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">I</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Component Pool&#39;</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">gjs</span><span class="p">.</span><span class="nx">co_pool</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span> <span class="p">);</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+  <span class="p">};</span>
+
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">main</span><span class="p">()</span>
+<span class="p">});</span></div></div></div></div></body></html>

@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Empty Example</title>
+	<!-- For all your styling needs -->
+	<link rel="stylesheet" href="main.css" />
+</head>
+<body>
+	<!-- #main and #game divs need to be here for this whole contraption to work. 
+		Asides from those, any other amount of tags can be added -->
+	<div id="main">
+		<canvas id="game" width="400" height="300">
+			Sorry, your web browser does not support Canvas content.
+		</canvas>		
+	</div>
+
+	<!-- data-main = Path to bootstrap.js relative to this file. -->
+	
+	<!-- src = Path to require.js relative to this file. 
+			   Folder must contain domReady.js module. -->
+	
+	<!-- main-path = Path to the folder containing your app main entry point. 
+					 Relative to the location of bootstrap.js -->
+
+	<!-- src-path = Comman separated list of paths to the folders containing code for your app. 
+					 Relative to the location of bootstrap.js -->
+
+	<script  
+		data-main="../../src/bootstrap" 
+		src="../../lib/requirejs/require.js"
+		main-path="../examples/empty/main"
+		src-path="../examples/resources/,../examples/resources/bundles/">
+	</script>
+</body>
+</html>

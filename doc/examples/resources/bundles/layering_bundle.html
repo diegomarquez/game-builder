@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="en"><head><title>examples/resources/bundles/layering_bundle</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../../"><meta name="groc-document-path" content="examples/resources/bundles/layering_bundle"><meta name="groc-project-path" content="work/examples/resources/bundles/layering_bundle.js"><link rel="stylesheet" type="text/css" media="all" href="../../../assets/style.css"><script type="text/javascript" src="../../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/examples/resources/bundles/layering_bundle.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">gjs</span><span class="p">.</span><span class="nx">setModulePath</span><span class="p">(</span><span class="s1">&#39;basic_game_object&#39;</span><span class="p">);</span>
+<span class="nx">gjs</span><span class="p">.</span><span class="nx">setModulePath</span><span class="p">(</span><span class="s1">&#39;box_renderer&#39;</span><span class="p">);</span>
+
+<span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">Bundle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;bundle&#39;</span><span class="p">);</span>
+  
+  <span class="kd">var</span> <span class="nx">basic_game_object</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;basic_game_object&#39;</span><span class="p">);</span> 
+  <span class="kd">var</span> <span class="nx">box_renderer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;box_renderer&#39;</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">LayeringBundle</span> <span class="o">=</span> <span class="nx">Bundle</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">gjs</span><span class="p">.</span><span class="nx">co_pool</span><span class="p">.</span><span class="nx">createPool</span><span class="p">(</span><span class="s2">&quot;Box_Renderer&quot;</span><span class="p">,</span> <span class="nx">box_renderer</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+
+      <span class="nx">gjs</span><span class="p">.</span><span class="nx">co_pool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Red_Renderer&quot;</span><span class="p">,</span> <span class="s1">&#39;Box_Renderer&#39;</span><span class="p">).</span><span class="nx">args</span><span class="p">({</span>
+        <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span>
+        <span class="nx">offsetX</span><span class="o">:</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span>
+        <span class="nx">offsetY</span><span class="o">:</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="mi">100</span>
+      <span class="p">});</span>
+      <span class="nx">gjs</span><span class="p">.</span><span class="nx">co_pool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Green_Renderer&quot;</span><span class="p">,</span> <span class="s1">&#39;Box_Renderer&#39;</span><span class="p">).</span><span class="nx">args</span><span class="p">({</span>
+        <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#00FF00&#39;</span><span class="p">,</span>
+        <span class="nx">offsetX</span><span class="o">:</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span>
+        <span class="nx">offsetY</span><span class="o">:</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="mi">100</span>
+      <span class="p">});</span>
+      <span class="nx">gjs</span><span class="p">.</span><span class="nx">co_pool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Blue_Renderer&quot;</span><span class="p">,</span> <span class="s1">&#39;Box_Renderer&#39;</span><span class="p">).</span><span class="nx">args</span><span class="p">({</span>
+        <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;#0000FF&#39;</span><span class="p">,</span>
+        <span class="nx">offsetX</span><span class="o">:</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span>
+        <span class="nx">offsetY</span><span class="o">:</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="nx">height</span><span class="o">:</span> <span class="mi">100</span>
+      <span class="p">});</span>
+
+      <span class="nx">gjs</span><span class="p">.</span><span class="nx">go_pool</span><span class="p">.</span><span class="nx">createPool</span><span class="p">(</span><span class="s2">&quot;Base&quot;</span><span class="p">,</span> <span class="nx">basic_game_object</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+
+      <span class="nx">gjs</span><span class="p">.</span><span class="nx">go_pool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Base_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Base&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">args</span><span class="p">({</span>
+          <span class="nx">x</span><span class="o">:</span> <span class="nx">gjs</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="nx">y</span><span class="o">:</span> <span class="nx">gjs</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="nx">rotation_speed</span><span class="o">:</span> <span class="mi">2</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="nx">setRenderer</span><span class="p">(</span><span class="s1">&#39;Red_Renderer&#39;</span><span class="p">);</span>
+
+      <span class="nx">gjs</span><span class="p">.</span><span class="nx">go_pool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Base_2&quot;</span><span class="p">,</span> <span class="s2">&quot;Base&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">args</span><span class="p">({</span>
+          <span class="nx">x</span><span class="o">:</span> <span class="nx">gjs</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="nx">y</span><span class="o">:</span> <span class="nx">gjs</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="nx">rotation_speed</span><span class="o">:</span> <span class="mi">1</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="nx">setRenderer</span><span class="p">(</span><span class="s1">&#39;Green_Renderer&#39;</span><span class="p">);</span>
+
+      <span class="nx">gjs</span><span class="p">.</span><span class="nx">go_pool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Base_3&quot;</span><span class="p">,</span> <span class="s2">&quot;Base&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">args</span><span class="p">({</span>
+          <span class="nx">x</span><span class="o">:</span> <span class="nx">gjs</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="nx">y</span><span class="o">:</span> <span class="nx">gjs</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="nx">rotation_speed</span><span class="o">:</span> <span class="o">-</span><span class="mf">0.5</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="nx">setRenderer</span><span class="p">(</span><span class="s1">&#39;Blue_Renderer&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">LayeringBundle</span><span class="p">();</span>
+<span class="p">});</span>
+
+    
+
+        </div></div></div></div></body></html>

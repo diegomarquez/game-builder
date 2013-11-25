@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="en"><head><title>src/math/matrix_3x3</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/math/matrix_3x3"><meta name="groc-project-path" content="work/src/math/matrix_3x3.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/src/math/matrix_3x3.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">Matrix_3x3</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">tx</span><span class="p">,</span> <span class="nx">ty</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">tx</span><span class="p">,</span> <span class="nx">ty</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">Matrix_3x3</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+
+  <span class="nx">Matrix_3x3</span><span class="p">.</span><span class="nx">DEG_TO_RAD</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">/</span> <span class="mi">180</span><span class="p">;</span>
+
+  <span class="nx">p</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">d</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">tx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="nx">p</span><span class="p">.</span><span class="nx">ty</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="nx">p</span><span class="p">.</span><span class="nx">initialize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">tx</span><span class="p">,</span> <span class="nx">ty</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="nx">b</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">c</span> <span class="o">=</span> <span class="nx">c</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">d</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">d</span> <span class="o">=</span> <span class="nx">d</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tx</span> <span class="o">=</span> <span class="nx">tx</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ty</span> <span class="o">=</span> <span class="nx">ty</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="nx">p</span><span class="p">.</span><span class="nx">prepend</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">tx</span><span class="p">,</span> <span class="nx">ty</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">tx1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">tx</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">a</span> <span class="o">!=</span> <span class="mi">1</span> <span class="o">||</span> <span class="nx">b</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">c</span> <span class="o">!=</span> <span class="mi">0</span> <span class="o">||</span> <span class="nx">d</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">a1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">c</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">a1</span> <span class="o">*</span> <span class="nx">a</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">*</span> <span class="nx">c</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="nx">a1</span> <span class="o">*</span> <span class="nx">b</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">*</span> <span class="nx">d</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">c</span> <span class="o">=</span> <span class="nx">c1</span> <span class="o">*</span> <span class="nx">a</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">d</span> <span class="o">*</span> <span class="nx">c</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">d</span> <span class="o">=</span> <span class="nx">c1</span> <span class="o">*</span> <span class="nx">b</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">d</span> <span class="o">*</span> <span class="nx">d</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tx</span> <span class="o">=</span> <span class="nx">tx1</span> <span class="o">*</span> <span class="nx">a</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">ty</span> <span class="o">*</span> <span class="nx">c</span> <span class="o">+</span> <span class="nx">tx</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ty</span> <span class="o">=</span> <span class="nx">tx1</span> <span class="o">*</span> <span class="nx">b</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">ty</span> <span class="o">*</span> <span class="nx">d</span> <span class="o">+</span> <span class="nx">ty</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="nx">p</span><span class="p">.</span><span class="nx">append</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">tx</span><span class="p">,</span> <span class="nx">ty</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">a1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">b1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">c</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">d1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">d</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">*</span> <span class="nx">a1</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">*</span> <span class="nx">c1</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span> <span class="o">*</span> <span class="nx">b1</span> <span class="o">+</span> <span class="nx">b</span> <span class="o">*</span> <span class="nx">d1</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">c</span> <span class="o">=</span> <span class="nx">c</span> <span class="o">*</span> <span class="nx">a1</span> <span class="o">+</span> <span class="nx">d</span> <span class="o">*</span> <span class="nx">c1</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">d</span> <span class="o">=</span> <span class="nx">c</span> <span class="o">*</span> <span class="nx">b1</span> <span class="o">+</span> <span class="nx">d</span> <span class="o">*</span> <span class="nx">d1</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tx</span> <span class="o">=</span> <span class="nx">tx</span> <span class="o">*</span> <span class="nx">a1</span> <span class="o">+</span> <span class="nx">ty</span> <span class="o">*</span> <span class="nx">c1</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">tx</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ty</span> <span class="o">=</span> <span class="nx">tx</span> <span class="o">*</span> <span class="nx">b1</span> <span class="o">+</span> <span class="nx">ty</span> <span class="o">*</span> <span class="nx">d1</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">ty</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="nx">p</span><span class="p">.</span><span class="nx">prependTransform</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">scaleX</span><span class="p">,</span> <span class="nx">scaleY</span><span class="p">,</span> <span class="nx">rotation</span><span class="p">,</span> <span class="nx">regX</span><span class="p">,</span> <span class="nx">regY</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">rotation</span> <span class="o">%</span> <span class="mi">360</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">rotation</span> <span class="o">*</span> <span class="nx">Matrix_3x3</span><span class="p">.</span><span class="nx">DEG_TO_RAD</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">cos</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">r</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">sin</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">r</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">cos</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="nx">sin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">regX</span> <span class="o">||</span> <span class="nx">regY</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tx</span> <span class="o">-=</span> <span class="nx">regX</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">ty</span> <span class="o">-=</span> <span class="nx">regY</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">prepend</span><span class="p">(</span><span class="nx">cos</span> <span class="o">*</span> <span class="nx">scaleX</span><span class="p">,</span> <span class="nx">sin</span> <span class="o">*</span> <span class="nx">scaleX</span><span class="p">,</span> <span class="o">-</span><span class="nx">sin</span> <span class="o">*</span> <span class="nx">scaleY</span><span class="p">,</span> <span class="nx">cos</span> <span class="o">*</span> <span class="nx">scaleY</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="nx">p</span><span class="p">.</span><span class="nx">appendTransform</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">scaleX</span><span class="p">,</span> <span class="nx">scaleY</span><span class="p">,</span> <span class="nx">rotation</span><span class="p">,</span> <span class="nx">regX</span><span class="p">,</span> <span class="nx">regY</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">rotation</span> <span class="o">%</span> <span class="mi">360</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="nx">rotation</span> <span class="o">*</span> <span class="nx">Matrix_3x3</span><span class="p">.</span><span class="nx">DEG_TO_RAD</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">cos</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">r</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">sin</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">r</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">cos</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="nx">sin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">cos</span> <span class="o">*</span> <span class="nx">scaleX</span><span class="p">,</span> <span class="nx">sin</span> <span class="o">*</span> <span class="nx">scaleX</span><span class="p">,</span> <span class="o">-</span><span class="nx">sin</span> <span class="o">*</span> <span class="nx">scaleY</span><span class="p">,</span> <span class="nx">cos</span> <span class="o">*</span> <span class="nx">scaleY</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">regX</span> <span class="o">||</span> <span class="nx">regY</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tx</span> <span class="o">-=</span> <span class="nx">regX</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">+</span> <span class="nx">regY</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">c</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">ty</span> <span class="o">-=</span> <span class="nx">regX</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">+</span> <span class="nx">regY</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">d</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="nx">p</span><span class="p">.</span><span class="nx">rotate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">angle</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">cos</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">cos</span><span class="p">(</span><span class="nx">angle</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">sin</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sin</span><span class="p">(</span><span class="nx">angle</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">a1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">c1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">c</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">tx1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">tx</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="nx">a1</span> <span class="o">*</span> <span class="nx">cos</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">*</span> <span class="nx">sin</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="nx">a1</span> <span class="o">*</span> <span class="nx">sin</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">*</span> <span class="nx">cos</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">c</span> <span class="o">=</span> <span class="nx">c1</span> <span class="o">*</span> <span class="nx">cos</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">d</span> <span class="o">*</span> <span class="nx">sin</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">d</span> <span class="o">=</span> <span class="nx">c1</span> <span class="o">*</span> <span class="nx">sin</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">d</span> <span class="o">*</span> <span class="nx">cos</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tx</span> <span class="o">=</span> <span class="nx">tx1</span> <span class="o">*</span> <span class="nx">cos</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">ty</span> <span class="o">*</span> <span class="nx">sin</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ty</span> <span class="o">=</span> <span class="nx">tx1</span> <span class="o">*</span> <span class="nx">sin</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">ty</span> <span class="o">*</span> <span class="nx">cos</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="nx">p</span><span class="p">.</span><span class="nx">scale</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">*=</span> <span class="nx">x</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">d</span> <span class="o">*=</span> <span class="nx">y</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">c</span> <span class="o">*=</span> <span class="nx">x</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">*=</span> <span class="nx">y</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tx</span> <span class="o">*=</span> <span class="nx">x</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ty</span> <span class="o">*=</span> <span class="nx">y</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="nx">p</span><span class="p">.</span><span class="nx">translate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">tx</span> <span class="o">+=</span> <span class="nx">x</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">ty</span> <span class="o">+=</span> <span class="nx">y</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="nx">p</span><span class="p">.</span><span class="nx">identity</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">d</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">c</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">tx</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">ty</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="nx">p</span><span class="p">.</span><span class="nx">decompose</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">target</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">target</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="p">}</span>
+  
+    <span class="nx">target</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">tx</span><span class="p">;</span>
+    <span class="nx">target</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">ty</span><span class="p">;</span>
+    
+    <span class="nx">target</span><span class="p">.</span><span class="nx">scaleX</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">);</span>
+    <span class="nx">target</span><span class="p">.</span><span class="nx">scaleY</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">c</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">c</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">d</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">d</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">skewX</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">atan2</span><span class="p">(</span><span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">c</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">d</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">skewY</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">atan2</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">skewX</span> <span class="o">==</span> <span class="nx">skewY</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">target</span><span class="p">.</span><span class="nx">rotation</span> <span class="o">=</span> <span class="nx">skewY</span> <span class="o">/</span> <span class="nx">Matrix_3x3</span><span class="p">.</span><span class="nx">DEG_TO_RAD</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">d</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">target</span><span class="p">.</span><span class="nx">rotation</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">target</span><span class="p">.</span><span class="nx">rotation</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="mi">180</span> <span class="o">:</span> <span class="o">-</span><span class="mi">180</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">target</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="nx">p</span><span class="p">.</span><span class="nx">transformPoint</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">pt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">pt</span> <span class="o">=</span> <span class="nx">pt</span> <span class="o">||</span> <span class="p">{};</span>
+    <span class="nx">pt</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="o">*</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="o">+</span><span class="nx">y</span><span class="o">*</span><span class="k">this</span><span class="p">.</span><span class="nx">c</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">tx</span><span class="p">;</span>
+    <span class="nx">pt</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">x</span><span class="o">*</span><span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="o">+</span><span class="nx">y</span><span class="o">*</span><span class="k">this</span><span class="p">.</span><span class="nx">d</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">ty</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">pt</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="nx">p</span><span class="p">.</span><span class="nx">clone</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">Matrix_3x3</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">a</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">b</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">c</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">d</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">tx</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">ty</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="k">return</span> <span class="nx">Matrix_3x3</span>
+<span class="p">});</span></div></div></div></div></body></html>

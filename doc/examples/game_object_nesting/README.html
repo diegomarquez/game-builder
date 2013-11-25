@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="en"><head><title>examples/game_object_nesting/README</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="examples/game_object_nesting/README"><meta name="groc-project-path" content="work/examples/game_object_nesting/README.md"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/examples/game_object_nesting/README.md</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="nest-game-objects-into-game-object-containers">Nest game objects into game object containers</h1>
+
+<h4 id="this-example-will-be-using-a-container-you-can-add-other-game-objects-as-childs-to-these-and-they-will-follow-their-parent-everywhere-using-matrix-transformations-i-do-not-understand-god-bless-them-the-childs-of-a-container-are-drawn-on-top-of-it-in-the-order-they-were-added">This example will be using a container. You can add other game objects as childs to these, and they will follow their parent everywhere using matrix transformations I do not understand. God bless them. The childs of a container are drawn on top of it in the order they were added.</h4>
+
+<h4 id="youcanviewthisexamplerunningexample">You can view this <a href="http://diegomarquez.github.io/game/examples/game_object_nesting/index.html">example running</a></h4>
+
+<hr />
+
+<hr />
+
+<hr />
+
+<h3 id="new-things-that-are-happening-here">New things that are happening here</h3>
+
+<p><strong>New Modules used in this example</strong></p>
+
+<p><a href="../resources/basic_container.js"><strong>basic<em>container.js</strong></a> => <a href="../../src/hierarchy/game_object_container.js"><strong>game</em>object<em>container.js</strong></a> => <a href="../../src/hierarchy/game_object.js"><strong>game</em>object.js</strong></a></p>
+
+<hr />
+
+<hr />
+
+<hr />
+
+<p><a href="./main.js"><strong>main.js</strong></a></p>
+
+<pre><code class="javascript">require('nesting_bundle').create();  
+</code></pre>
+
+<p><a href="../resources/bundles/nesting_bundle.js">The bundle used in this example</a></p>
+
+<hr />
+
+<pre><code class="javascript">//The ID Continer_1 is defined in nesting_bundle.js
+gjs.addToLayer('Middle', 'Container_1');
+</code></pre>
+
+<p>This does the same that the previous example, but instead of calling all the methods involved manually, the short-hand method <strong>addToLayer</strong> of the <strong>gjs global</strong> is used.</p></div></div></div></div></body></html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="en"><head><title>src/bootstrap</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="src/bootstrap"><meta name="groc-project-path" content="work/src/bootstrap.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/src/bootstrap.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">gjs</span> <span class="o">=</span> <span class="p">{</span> 
+
+  <span class="nx">srcPaths</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+
+  <span class="nx">deps</span><span class="o">:</span>
+  <span class="p">[</span>
+    <span class="s1">&#39;domready!&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;game&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;root&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;layers&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;assembler&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;reclaimer&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;game_object_pool&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;component_pool&#39;</span>
+  <span class="p">],</span>
+
+  <span class="nx">config</span> <span class="o">:</span> <span class="p">{</span>
+    <span class="nx">paths</span><span class="o">:</span> <span class="p">{</span>
+      <span class="s2">&quot;delegate&quot;</span><span class="o">:</span> <span class="s2">&quot;delegate&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;class&quot;</span><span class="o">:</span> <span class="s2">&quot;class&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sound_player&quot;</span><span class="o">:</span> <span class="s2">&quot;sound_player&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;state_machine_factory&quot;</span><span class="o">:</span> <span class="s2">&quot;state_machine&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;timer_factory&quot;</span><span class="o">:</span> <span class="s2">&quot;timer_factory&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;draw&quot;</span><span class="o">:</span> <span class="s2">&quot;draw&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;util&quot;</span><span class="o">:</span> <span class="s2">&quot;util&quot;</span><span class="p">,</span>
+
+      <span class="s2">&quot;circle&quot;</span><span class="o">:</span> <span class="s2">&quot;collision/circle_collider&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;polygon&quot;</span><span class="o">:</span> <span class="s2">&quot;collision/polygon_collider&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;fixed_polygon&quot;</span><span class="o">:</span> <span class="s2">&quot;collision/fixed_polygon_collider&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;collision_resolver&quot;</span><span class="o">:</span> <span class="s2">&quot;collision/collision_resolver&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;collision_component&quot;</span><span class="o">:</span> <span class="s2">&quot;collision/collision_component&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;sat&quot;</span><span class="o">:</span> <span class="s2">&quot;collision/sat&quot;</span><span class="p">,</span>
+
+      <span class="s2">&quot;game&quot;</span><span class="o">:</span> <span class="s2">&quot;game_canvas/canvas_wrapper&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;scale_aspect_ratio_extension&quot;</span><span class="o">:</span> <span class="s2">&quot;game_canvas/extensions/scale_keeping_aspect_ratio&quot;</span><span class="p">,</span>
+
+      <span class="s2">&quot;keyboard&quot;</span><span class="o">:</span> <span class="s2">&quot;input/keyboard&quot;</span><span class="p">,</span>
+      
+      <span class="s2">&quot;matrix_3x3&quot;</span><span class="o">:</span> <span class="s2">&quot;math/matrix_3x3&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;vector_2D&quot;</span><span class="o">:</span> <span class="s2">&quot;math/vector_2D&quot;</span><span class="p">,</span>
+
+      <span class="s2">&quot;component&quot;</span><span class="o">:</span> <span class="s2">&quot;components/component&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;renderer&quot;</span><span class="o">:</span> <span class="s2">&quot;components/rendering/renderer&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;bitmap_renderer&quot;</span><span class="o">:</span> <span class="s2">&quot;components/rendering/bitmap_renderer&quot;</span><span class="p">,</span>
+
+      <span class="s2">&quot;root&quot;</span><span class="o">:</span> <span class="s2">&quot;hierarchy/root&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;layer&quot;</span><span class="o">:</span> <span class="s2">&quot;hierarchy/layer&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;layers&quot;</span><span class="o">:</span> <span class="s2">&quot;hierarchy/layers&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;game_object&quot;</span><span class="o">:</span> <span class="s2">&quot;hierarchy/game_object&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;game_object_container&quot;</span><span class="o">:</span> <span class="s2">&quot;hierarchy/game_object_container&quot;</span><span class="p">,</span>
+
+      <span class="s2">&quot;pool&quot;</span><span class="o">:</span> <span class="s2">&quot;pools/pool&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;game_object_pool&quot;</span><span class="o">:</span> <span class="s2">&quot;pools/game_object_pool&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;component_pool&quot;</span><span class="o">:</span> <span class="s2">&quot;pools/component_pool&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;assembler&quot;</span><span class="o">:</span> <span class="s2">&quot;pools/assembler&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;reclaimer&quot;</span><span class="o">:</span> <span class="s2">&quot;pools/reclaimer&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;bundle&quot;</span><span class="o">:</span> <span class="s2">&quot;pools/bundle&quot;</span><span class="p">,</span>
+
+      <span class="s2">&quot;domready&quot;</span><span class="o">:</span> <span class="s2">&quot;../lib/requirejs-domready/domReady&quot;</span>
+    <span class="p">}</span> 
+  <span class="p">},</span>
+
+  <span class="nx">setModulePath</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">paths</span> <span class="o">=</span> <span class="p">[];</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="nx">srcPaths</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">paths</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">srcPaths</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="nx">alias</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">paths</span><span class="p">[</span><span class="nx">alias</span><span class="p">]</span> <span class="o">=</span> <span class="nx">paths</span><span class="p">;</span> 
+    <span class="nx">requirejs</span><span class="p">.</span><span class="nx">config</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">config</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">requirejs</span><span class="p">.</span><span class="nx">config</span><span class="p">(</span><span class="nx">gjs</span><span class="p">.</span><span class="nx">config</span><span class="p">);</span>
+
+<span class="nx">require</span><span class="p">(</span><span class="nx">gjs</span><span class="p">.</span><span class="nx">deps</span><span class="p">,</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">doc</span><span class="p">,</span> <span class="nx">game</span><span class="p">,</span> <span class="nx">root</span><span class="p">,</span> <span class="nx">layers</span><span class="p">,</span> <span class="nx">assembler</span><span class="p">,</span> <span class="nx">reclaimer</span><span class="p">,</span> <span class="nx">game_object_pool</span><span class="p">,</span> <span class="nx">component_pool</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="kd">var</span> <span class="nx">mainScript</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;script[data-main]&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+
+    <span class="kd">var</span> <span class="nx">mainPath</span> <span class="o">=</span> <span class="nx">mainScript</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;main-path&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">srcPath</span> <span class="o">=</span> <span class="nx">mainScript</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;src-path&#39;</span><span class="p">);</span>
+
+    <span class="nx">gjs</span><span class="p">[</span><span class="s1">&#39;srcPaths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">srcPath</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">);</span>
+
+    <span class="c1">//Main dependecies, all together in a global variable for easy access.</span>
+    <span class="nx">gjs</span><span class="p">[</span><span class="s1">&#39;game&#39;</span><span class="p">]</span>      <span class="o">=</span> <span class="nx">game</span><span class="p">;</span>
+    <span class="nx">gjs</span><span class="p">[</span><span class="s1">&#39;layers&#39;</span><span class="p">]</span>    <span class="o">=</span> <span class="nx">layers</span><span class="p">;</span>
+    <span class="nx">gjs</span><span class="p">[</span><span class="s1">&#39;assembler&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">assembler</span><span class="p">;</span>
+    <span class="nx">gjs</span><span class="p">[</span><span class="s1">&#39;reclaimer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">reclaimer</span><span class="p">;</span>
+    <span class="nx">gjs</span><span class="p">[</span><span class="s1">&#39;go_pool&#39;</span><span class="p">]</span>   <span class="o">=</span> <span class="nx">game_object_pool</span>
+    <span class="nx">gjs</span><span class="p">[</span><span class="s1">&#39;co_pool&#39;</span><span class="p">]</span>   <span class="o">=</span> <span class="nx">component_pool</span><span class="p">;</span>
+    <span class="nx">gjs</span><span class="p">[</span><span class="s1">&#39;canvas&#39;</span><span class="p">]</span>    <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;game&#39;</span><span class="p">);</span>
+
+    <span class="nx">gjs</span><span class="p">[</span><span class="s1">&#39;addToLayer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">layerName</span><span class="p">,</span> <span class="nx">goId</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">layers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">layerName</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="nx">gjs</span><span class="p">.</span><span class="nx">assembler</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">goId</span><span class="p">)).</span><span class="nx">start</span><span class="p">();</span>
+    <span class="p">};</span>
+
+    <span class="c1">//Pause and resume logic uses things of canvas wrapper and things of the layer manager</span>
+    <span class="c1">//That is why the code is in this file, to act as a connection point.</span>
+    <span class="kd">var</span> <span class="nx">paused</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">pause</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">paused</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">game</span><span class="p">.</span><span class="nx">execute_extensions</span><span class="p">(</span><span class="s2">&quot;pause&quot;</span><span class="p">);</span> 
+        <span class="nx">game</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s2">&quot;pause&quot;</span><span class="p">);</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="nx">layers</span><span class="p">.</span><span class="nx">layers</span><span class="p">)</span> <span class="p">{</span> 
+          <span class="nx">layers</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">drawAlreadyStopped</span> <span class="o">=</span> <span class="o">!</span><span class="nx">layers</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">canDraw</span><span class="p">;</span>
+          <span class="nx">layers</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">updateAlreadyStopped</span> <span class="o">=</span> <span class="o">!</span><span class="nx">layers</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">canUpdate</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nx">layers</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;stop&#39;</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">);</span>
+
+        <span class="nx">paused</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="kd">var</span> <span class="nx">resume</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">paused</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">game</span><span class="p">.</span><span class="nx">execute_extensions</span><span class="p">(</span><span class="s2">&quot;resume&quot;</span><span class="p">);</span>
+        <span class="nx">game</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s2">&quot;resume&quot;</span><span class="p">);</span>
+
+        <span class="nx">layers</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;resume&#39;</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">);</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="nx">layers</span><span class="p">.</span><span class="nx">layers</span><span class="p">)</span> <span class="p">{</span> 
+          <span class="k">if</span> <span class="p">(</span><span class="nx">layers</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">drawAlreadyStopped</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">layers</span><span class="p">.</span><span class="nx">stop_draw</span><span class="p">(</span><span class="nx">k</span><span class="p">);</span>      
+          <span class="p">}</span> 
+          <span class="k">if</span> <span class="p">(</span><span class="nx">layers</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">updateAlreadyStopped</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">layers</span><span class="p">.</span><span class="nx">stop_update</span><span class="p">(</span><span class="nx">k</span><span class="p">);</span>
+          <span class="p">}</span>
+
+          <span class="nx">layers</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">drawAlreadyStopped</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+          <span class="nx">layers</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">updateAlreadyStopped</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nx">paused</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+ 
+    <span class="nx">game</span><span class="p">.</span><span class="nx">pause</span>  <span class="o">=</span> <span class="nx">pause</span><span class="p">;</span>
+    <span class="nx">game</span><span class="p">.</span><span class="nx">resume</span> <span class="o">=</span> <span class="nx">resume</span><span class="p">;</span>
+
+    <span class="nx">require</span><span class="p">([</span><span class="nx">mainPath</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">main</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">game</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;update&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">root</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">delta</span><span class="p">);</span>
+        <span class="nx">root</span><span class="p">.</span><span class="nx">transformAndDraw</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">context</span><span class="p">);</span>
+      <span class="p">});</span>
+
+      <span class="nx">layers</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;Back&quot;</span><span class="p">);</span>
+      <span class="nx">layers</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;Middle&quot;</span><span class="p">);</span>
+      <span class="nx">layers</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;Front&quot;</span><span class="p">);</span>
+      <span class="nx">layers</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;Text&quot;</span><span class="p">);</span>
+      <span class="nx">layers</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;Hud&quot;</span><span class="p">);</span>
+      <span class="nx">layers</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;Popup&quot;</span><span class="p">);</span>
+
+      <span class="nx">game</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;main&#39;</span><span class="p">),</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;game&#39;</span><span class="p">));</span>
+    <span class="p">});</span>
+  <span class="p">});</span></div></div></div></div></body></html>

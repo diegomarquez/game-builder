@@ -1,0 +1,109 @@
+<!DOCTYPE html><html lang="en"><head><title>examples/layering/README</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="examples/layering/README"><meta name="groc-project-path" content="work/examples/layering/README.md"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/examples/layering/README.md</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="use-layers-to-manage-drawing-order-with-precision">Use layers to manage drawing order with precision.</h1>
+
+<h4 id="this-example-demonstrates-the-use-of-layers-in-reality-it-is-just-a-fancy-name-for-the-containers-of-the-previous-example-the-difference-being-that-these-are-dedicated-to-help-in-organizing-what-gets-drawn-and-when">This example demonstrates the use of layers. In reality it is just a fancy name for the containers of the previous example. The difference being that these are dedicated to help in organizing what gets drawn and when.</h4>
+
+<h4 id="youcanviewthisexamplerunningexample">You can view this <a href="http://diegomarquez.github.io/game/examples/layering/index.html">example running</a></h4>
+
+<hr />
+
+<hr />
+
+<hr />
+
+<h3 id="new-things-that-are-happening-here">New things that are happening here</h3>
+
+<p><strong>New Modules used in this example</strong></p>
+
+<p><a href="../../src/hierarchy/layers.js"><strong>layers.js</strong></a></p>
+
+<hr />
+
+<hr />
+
+<hr />
+
+<p><a href="./main.js"><strong>main.js</strong></a></p>
+
+<hr />
+
+<pre><code class="javascript">require('layering_bundle').create();  
+</code></pre>
+
+<p><a href="../resources/bundles/layering_bundle.js">The bundle file used in this example</a></p>
+
+<hr />
+
+<pre><code class="javascript">gjs.addToLayer('Front', 'Base_3');
+gjs.addToLayer('Middle', 'Base_2');
+gjs.addToLayer('Back', 'Base_1');
+</code></pre>
+
+<p>Here you can see how each game object is added to a different layer</p>
+
+<hr />
+
+<p>The example shows a bunch of the things you can do with the <a href="../../src/hierarchy/layers.js"><strong>layers</strong></a> object. What follows are all the possibilities.</p>
+
+<pre><code class="javascript">//Adds a layer with the name 'Front'.
+gjs.layers.add('Front');
+</code></pre>
+
+<pre><code class="javascript">//Removes a layer with the name 'Front'. All game objects contained in it 
+//are sent back to their respective pools.
+gjs.layers.clear('Front');
+</code></pre>
+
+<pre><code class="javascript">//Removes a layer with the name 'Front'. All game objects contained in it 
+//are sent back to their respective pools and the seices to exist.
+gjs.layers.remove('Front');
+</code></pre>
+
+<pre><code class="javascript">//Get the layer with name 'Front'. You can then manipulate it like any other game object.
+gjs.layers.get('Front');
+</code></pre>
+
+<pre><code class="javascript">//All game objects in the 'Front' layer will stop update and rendering
+gjs.layers.stop('Front');
+</code></pre>
+
+<pre><code class="javascript">//All game objects in the 'Front' layer will resume update and rendering
+gjs.layers.resume('Front');
+</code></pre>
+
+<pre><code class="javascript">//Stop calling the update method on game objects on the 'Front' layer. 
+//Effectively pausing that layer.
+gjs.layers.stop_update('Front');
+</code></pre>
+
+<pre><code class="javascript">//Stop calling draw method on game objects on the 'Front' layer. 
+//Effectively making the layer invisible.
+gjs.layers.stop_draw('Front');
+</code></pre>
+
+<pre><code class="javascript">//Resume update on all game objects in the 'Front' layer.
+gjs.layers.resume_update('Front');
+</code></pre>
+
+<pre><code class="javascript">//Resume draw on all game objects in the 'Front' layer.
+gjs.layers.resume_draw('Front');
+</code></pre>
+
+<pre><code class="javascript">//Resume all activity on the 'Front'  layer
+gjs.layers.resume('Front');
+</code></pre>
+
+<pre><code class="javascript">//Clear all layers of game objects
+gjs.layers.all('clear');
+</code></pre>
+
+<hr />
+
+<pre><code class="javascript">gjs.layers.all('remove');
+</code></pre>
+
+<p>The <strong>gjs.layers.all</strong> method will apply to all layers. It has two arguments, <em>'action'</em> and *'method' In the case above it calls the remove method for every layer. If you were to call it with other arguments, like so:</p>
+
+<pre><code class="javascript">gjs.layers.all('stop', 'update');
+</code></pre>
+
+<p>It would call the stop_update method for all the layers.</p></div></div></div></div></body></html>
