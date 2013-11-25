@@ -19,7 +19,7 @@ module.exports = function(grunt) {
           command: [
             'cp -rf work/src src/',
             'cp -rf work/examples/ examples/',
-            'cp -rf work/README.md ./REDME.md',
+            'cp -rf work/README.md ./README.md',
           ].join('&&')
         },
 
@@ -32,7 +32,7 @@ module.exports = function(grunt) {
         push: {
           command: [
             'git add .',
-            'git diff --quiet --exit-code --cached || git commit -m "Pushed by grunt on"' + '<%= grunt.template.today("yyyy-mm-dd") %>',
+            'git diff --quiet --exit-code --cached || git commit -m "Pushed by grunt on "' + '<%= grunt.template.today("yyyy-mm-dd") %>',
             'git push -f'
           ].join('&&')
         },
