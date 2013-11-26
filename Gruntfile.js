@@ -19,8 +19,7 @@ module.exports = function(grunt) {
           command: [
             'cp -rf work/src src/',
             'cp -rf work/examples/ examples/',
-            'cp -rf work/lib/ lib/',
-            'cp -rf work/README.md ./README.md',
+            'cp -rf work/lib/ lib/'
           ].join('&&')
         },
 
