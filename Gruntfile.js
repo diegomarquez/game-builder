@@ -19,14 +19,23 @@ module.exports = function(grunt) {
           command: [
             'cp -rf work/src src/',
             'cp -rf work/examples/ examples/',
+            'cp -rf work/lib/ lib/',
             'cp -rf work/README.md ./README.md',
           ].join('&&')
         },
 
         groc: {
           command: function(docs) {
-            return 'groc "work/**/*.js" "work/**/*.md" "work/README.md"'
+            return 'groc "work/**/*.js" "work/**/*.md" "work/README.md" -e "work/lib/**/*.*"'
           }
+        },
+
+        bower: {
+          command: [
+            'cd work/',
+            'bower install',
+            'cd ..',
+          ].join('&&')
         },
 
         push: {
@@ -47,6 +56,7 @@ module.exports = function(grunt) {
     'shell:rm:work',
     'shell:rm:doc',
     'shell:clone',
+    'shell:bower',
     'shell:groc', 
     'shell:cp',
     'shell:rm:work',
