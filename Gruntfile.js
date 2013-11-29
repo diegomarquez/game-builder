@@ -53,6 +53,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('publish', [
     'shell:rm:work',
+    'shell:rm:doc',
+    'shell:rm:lib',
     'shell:clone',
     'shell:bower',
     'shell:groc', 
