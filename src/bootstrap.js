@@ -1,7 +1,5 @@
 gjs = { 
 
-	srcPaths: null,
-
 	deps:
 	[
 	 	'domready!', 
