@@ -75,84 +75,11 @@ requirejs.config(gjs.config);
 require(gjs.deps,
 	function(doc, game, root, layers, assembler, reclaimer, game_object_pool, component_pool) {
 
-		var mainScript = document.querySelectorAll('script[data-main]')[0];
-
-		var mainPath = mainScript.getAttribute('main-path');
-		var srcPath = mainScript.getAttribute('src-path');
-
-		gjs['srcPaths'] = srcPath.split(',');
-
-		//Main dependecies, all together in a global variable for easy access.
-		gjs['game']      = game;
-		gjs['layers']    = layers;
-		gjs['assembler'] = assembler;
-		gjs['reclaimer'] = reclaimer;
-		gjs['go_pool']   = game_object_pool
-		gjs['co_pool']   = component_pool;
-		gjs['canvas']    = document.getElementById('game');
-
-		gjs['addToLayer'] = function(layerName, goId) {
-			layers.get(layerName).add(gjs.assembler.get(goId)).start();
-		};
-
-		//Pause and resume logic uses things of canvas wrapper and things of the layer manager
-		//That is why the code is in this file, to act as a connection point.
-		var paused = false;
-
-		var pause = function() {
-			if (!paused) {
-				game.execute_extensions("pause");	
-				game.execute("pause");
-
-				for (var k in layers.layers) { 
-					layers.layers[k].drawAlreadyStopped = !layers.layers[k].canDraw;
-					layers.layers[k].updateAlreadyStopped = !layers.layers[k].canUpdate;
-				}
-
-				layers.all('stop', 'update');
-
-				paused = true;
-			}
-		};
-
-		var resume = function() {
-			if (paused) {
-				game.execute_extensions("resume");
-				game.execute("resume");
-
-				layers.all('resume', 'update');
-
-				for (var k in layers.layers) { 
-					if (layers.layers[k].drawAlreadyStopped) {
-						layers.stop_draw(k);			
-					} 
-					if (layers.layers[k].updateAlreadyStopped) {
-						layers.stop_update(k);
-					}
-
-					layers.layers[k].drawAlreadyStopped = false;
-					layers.layers[k].updateAlreadyStopped = false;
-				}
-
-				paused = false;
-			}
-		};
- 
-		game.pause  = pause;
-		game.resume = resume;
-
 		require([mainPath], function(main) {
 			game.on("update", this, function() {
 				root.update(game.delta);
 				root.transformAndDraw(game.context);
 			});
-
-			layers.add("Back");
-			layers.add("Middle");
-			layers.add("Front");
-			layers.add("Text");
-			layers.add("Hud");
-			layers.add("Popup");
 
 			game.create(document.getElementById('main'), document.getElementById('game'));
 		});

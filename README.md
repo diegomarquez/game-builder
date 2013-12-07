@@ -8,9 +8,7 @@ These are some files I decided to extract from a previous javascript project. It
 
 ###### Current TODO List:
 
-- Extensions
-    * TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
-    * Keyboard extension, block keyboard keys when pausing the game ( No Demo )
+- Extensions 1
     * Move pause and resume logic into an extension
     * Move default layer setup into an extension
 
@@ -45,6 +43,10 @@ These are some files I decided to extract from a previous javascript project. It
 - Text
 
 - When creating the component pools, infer the amounts from the configurations on the game object pool
+
+- Extensions 2
+    * TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
+    * Keyboard extension, block keyboard keys when pausing the game ( No Demo )
 
 - Figure out how to use r.js
 

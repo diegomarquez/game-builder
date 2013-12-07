@@ -48,12 +48,19 @@ define(["delegate"], function(Delegate) {
 				self.execute("init");
 			};
 
+			var paused = false;
+
 			var onBlur = function(event) {
 				if (self.blur) {
 					self.blur = false;
 					self.focus = true;
 
-					self.pause();
+					if (!paused) {
+						self.execute_extensions("pause");	
+						self.execute("pause");
+
+						paused = true;
+					}
 				}
 			};
 
@@ -69,7 +76,12 @@ define(["delegate"], function(Delegate) {
 						self.blur = true;
 						self.focus = false;
 
-						self.resume();
+						if (paused) {
+							self.execute_extensions("resume");
+							self.execute("resume");
+
+							paused = false;
+						}
 					}
 				}
 			}
