@@ -5,8 +5,6 @@ define(["layers", "class"], function(Layers) {
 			Layers.add("Middle");
 			Layers.add("Front");
 			Layers.add("Text");
-			Layers.add("Hud");
-			Layers.add("Popup");
 		}
 	});
 
