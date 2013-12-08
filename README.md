@@ -8,11 +8,12 @@ These are some files I decided to extract from a previous javascript project. It
 
 ###### Current TODO List:
 
-- Invertir los roles de main.js y bootstrap.js
-    - hacer un ejemplo con el nuevo workflow
+- Move examples into own repository
 
-- El package.json del projecto define 
-    - Paths hacia el codigo especifico del cada projecto. (Default deberia ser suficiente)
+- Remove everything that is not the main source code from this repository
+
+- Redo the gh-pages branch build system to accomodate for the new structure
+    - Rethink the page layout of the website
 
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.
