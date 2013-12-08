@@ -1,21 +1,27 @@
-# Game.js
+# [GAME-BUILDER][game-builder]
 
 ![game][game]
 
 These are some files I decided to extract from a previous javascript project. These should provide all the things a simple arcade game needs. I am talking Asteroids or Galaga simple. 
 
-By itself this repository is kind of useless, as it is nothing more than a collection of requirejs modules. For better results it is better to use it in conjuction with [generator-game-builder](https://github.com/diegomarquez/generator-game-builder), a Yeoman generator that generates the basic setup to start working with this stuff. 
+By itself this repository is kind of useless, as it is nothing more than a collection of requirejs modules. You could try and figure out how to use them, though. 
+
+For better results it is better to use it in conjuction with [generator-game-builder][generator], a [Yeoman][yeoman] generator that generates(dur) the basic setup to start working with this stuff. 
 
 -----------------------------------
 
 ###### Current TODO List:
 
-- Move examples into own repository
+- Examples 2.0
+    Redo them with the generator
+    Move into own repository
 
 - Remove everything that is not the main source code from this repository
 
 - Redo the gh-pages branch build system to accomodate for the new structure
     - Rethink the page layout of the website
+
+- Hacer el empty example con el generator
 
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.
@@ -49,7 +55,10 @@ By itself this repository is kind of useless, as it is nothing more than a colle
 
 - Figure out how to use r.js
 
-#### [This is the prototype game][tirador] which spurred the creation of this repository.
+#### [This is the prototype game][tirador] which spurred the creation of this project.
 
 [game]: http://f.cl.ly/items/3N420I093v3b03051W39/game.png
 [tirador]: http://www.treintipollo.com/tirador/index.html
+[generator]: https://github.com/diegomarquez/generator-game-builder
+[yeoman]: http://yeoman.io/
+[game-builder]: http://diegomarquez.github.io/game-builder
