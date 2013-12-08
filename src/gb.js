@@ -1,6 +1,5 @@
-define(['domready!', 'game', 'root', 'layers', 'assembler', 'reclaimer', 'game_object_pool', 'component_pool'], 
-	function(doc, game, root, layers, assembler, reclaimer, gameObjectPool, componentPool) {
-
+define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game_object_pool', 'component_pool'], 
+	function(game, root, layers, assembler, reclaimer, gameObjectPool, componentPool) {
 		return {
 			game: game,
 			root: root,

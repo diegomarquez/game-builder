@@ -8,19 +8,15 @@ These are some files I decided to extract from a previous javascript project. It
 
 ###### Current TODO List:
 
-- Extensions 1
-    * Move pause and resume logic into an extension
-    * Move default layer setup into an extension
-
 - Invertir los roles de main.js y bootstrap.js
     - hacer un ejemplo con el nuevo workflow
 
 - El package.json del projecto define 
-    -- Paths hacia el codigo especifico del cada projecto. (Default deberia ser suficiente)
+    - Paths hacia el codigo especifico del cada projecto. (Default deberia ser suficiente)
 
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.
-    - Hook yeoman generators
+    - Hook yeoman generators into each option
 
 - Anotate example code to generate documentation
 
