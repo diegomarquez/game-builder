@@ -2,7 +2,9 @@
 
 ![game][game]
 
-These are some files I decided to extract from a previous javascript project. It's kind of like a framework to make simple games, things like Asteroids or Galaga.
+These are some files I decided to extract from a previous javascript project. These should provide all the things a simple arcade game needs. I am talking Asteroids or Galaga simple. 
+
+By itself this repository is kind of useless, as it is nothing more than a collection of requirejs modules. For better results it is better to use it in conjuction with [generator-game-builder](https://github.com/diegomarquez/generator-game-builder), a Yeoman generator that generates the basic setup to start working with this stuff. 
 
 -----------------------------------
 
@@ -47,13 +49,7 @@ These are some files I decided to extract from a previous javascript project. It
 
 - Figure out how to use r.js
 
------------------------------------
-
-#### Status: v2 of examples is complete. This is starting to look good, but there is still yet documentation to be written about the examples. 
-
------------------------------------
-
-#### [This is the game][tirador] I put together using the previous encarnation of this set of files.
+#### [This is the prototype game][tirador] which spurred the creation of this repository.
 
 [game]: http://f.cl.ly/items/3N420I093v3b03051W39/game.png
 [tirador]: http://www.treintipollo.com/tirador/index.html
