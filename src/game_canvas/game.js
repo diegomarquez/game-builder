@@ -86,6 +86,10 @@ define(["delegate"], function(Delegate) {
 					}
 				}
 			}
+
+			this.pause = onBlur;
+			this.resume = onFocus;
+
 			window.addEventListener("focus", onFocus);
 
 			if (document.hasFocus()) {
