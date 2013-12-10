@@ -1,5 +1,9 @@
 define(["layers", "class"], function(Layers) {
-	var GamePauseExtension = Class.extend({
+	var Extension = Class.extend({
+		type: function() {
+			return 'pause';
+		},
+
 		execute: function() {
 			for (var k in Layers.layers) { 
 				Layers.layers[k].drawAlreadyStopped = !Layers.layers[k].canDraw;
@@ -10,5 +14,5 @@ define(["layers", "class"], function(Layers) {
 		}
 	});
 
-	return GamePauseExtension;
+	return Extension;
 });

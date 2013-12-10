@@ -1,5 +1,9 @@
 define(["layers", "class"], function(Layers) {
-	var GameResumeExtension = Class.extend({
+	var Extension = Class.extend({
+		type: function() {
+			return 'resume';
+		},
+
 		execute: function() {
 			Layers.all('resume', 'update');
 
@@ -17,5 +21,5 @@ define(["layers", "class"], function(Layers) {
 		}
 	});
 
-	return GameResumeExtension;
+	return Extension;
 });

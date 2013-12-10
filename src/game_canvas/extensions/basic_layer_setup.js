@@ -1,5 +1,9 @@
 define(["layers", "class"], function(Layers) {
-	var GameInitExtension = Class.extend({
+	var Extension = Class.extend({
+		type: function() {
+			return 'create';
+		},
+
 		execute: function() {
 			Layers.add("Back");
 			Layers.add("Middle");
@@ -8,5 +12,5 @@ define(["layers", "class"], function(Layers) {
 		}
 	});
 
-	return GameInitExtension;
+	return Extension;
 });

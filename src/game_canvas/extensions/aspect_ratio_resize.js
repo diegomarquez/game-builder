@@ -1,5 +1,9 @@
 define(["game", "class"], function(Game) {
-	var GameLoopExtension = Class.extend({
+	var Extension = Class.extend({
+		type: function() {
+			return 'create';
+		},
+
 		execute: function() {
 			var resize = function(container, canvas) {
 				var scale = { x: 1, y: 1};
@@ -38,5 +42,5 @@ define(["game", "class"], function(Game) {
 		}
 	});
 
-	return GameLoopExtension;
+	return Extension;
 });
