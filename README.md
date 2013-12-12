@@ -12,17 +12,17 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### Current TODO List:
 
-- Examples v3
-    -Move into own repository
-    -Redo them with the generator
-    
-- Remove everything that is not the main source code from this repository
-
 - Tag game-builder and set as default option in generator
     - Handle Adding and removing of renderer in a similar fashion to other components
     - When creating the component pools, infer the amounts from the configurations on the game object pool
     - Add additional debug drawing to game_object
         * global transformed position
+
+- Examples v3
+    -Move into own repository
+    -Redo them with the generator
+    
+- Remove everything that is not the main source code from this repository
 
 - Redo the gh-pages branch build system to accomodate for the new structure
     - Rethink the page layout of the website
