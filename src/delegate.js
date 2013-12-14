@@ -1,5 +1,4 @@
-define(["require", "class"], function(require) {
-
+define(function(require) {
 	Utils = require("util");
 
 	var removeAllNulls = function(list) {

@@ -31,7 +31,7 @@ define(["delegate"], function(Delegate) {
 
 		add_extension: function(extensionMoudle) {
 			var ex = new extensionMoudle();
-			this.extensions[ex.type].push(extension);
+			this.extensions[ex.type()].push(ex);
 		},
 
 		create: function(mainContainer, canvas, layers) {
