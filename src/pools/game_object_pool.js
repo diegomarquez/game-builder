@@ -1,5 +1,4 @@
 define(['pool'], function(Pool) {
-
 	var getComponentDescription = function(id, args) {
 		return {
 			componentId: id,
