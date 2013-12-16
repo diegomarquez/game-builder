@@ -1,9 +1,15 @@
-define(['require', 'class'], function(require) {
+define(function(require) {
 	var Bundle = Class.extend({
-		init: function() {},
+		init: function() {
+			var gb = require('gb');
+			
+			this.gameObjectPool = gb.goPool;
+			this.componentPool 	= gb.coPool;
+			this.canvas 		= gb.canvas;
+		},
 
-		create: function() {
-			throw new Error('Bundle: This method should be overriden');
+		create: function(args) {
+			throw new Error('Bundle: This method must be overriden');
 		}
 	});
 
