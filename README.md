@@ -13,28 +13,32 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### Current TODO List:
 
 - Examples v3
-    -Move into own repository
-    -Redo them with the generator
+    - Move into own repository
+    - Redo them with the generator
+    - Create generator templates
     
 - Remove everything that is not the main source code from this repository
 
 - Redo the gh-pages branch build system to accomodate for the new structure
     - Rethink the page layout of the website
 
-- Anotate example code to generate documentation
+- Anotate code to generate documentation
+    - src
+    - examples 
 
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.
     - Hook yeoman generators into each option
 
 - Think about how to handle paths to images/sound
-    Yeoman subgenerator to create a file with name/paths pairs.
-    Pick up urls from another file to create mappings for remote resources.
-    This could eb loaded as a text file when needed, or maybe a module. In any case, should be lightweight. 
+    - Yeoman subgenerator to create a file with name/paths pairs.
+    - Pick up urls from another file to create mappings for remote resources.
+    - This could be loaded as a text file when needed, or maybe a module. In any case, should be lightweight.
+    - The idea is to have something else other than raw strings in the code.
 
 - Extensions 2
-    * TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
-    * Keyboard extension, block keyboard keys when pausing the game ( No Demo )
+    - TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
+    - Keyboard extension, block keyboard keys when pausing the game ( No Demo )
 
 -Examples v4
     - Use HTML to add some on screen explanation of what is going on
@@ -52,7 +56,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Figure out how to use r.js
 
-- Start a simple game
+- Do a simple game and get this over with for fucks sake!
 
 #### [This is the prototype game][tirador] which spurred the creation of this project.
 
