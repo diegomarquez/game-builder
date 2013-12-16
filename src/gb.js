@@ -1,5 +1,8 @@
 define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game_object_pool', 'component_pool'], 
 	function(game, root, layers, assembler, reclaimer, gameObjectPool, componentPool) {
+		componentPool.gameObjectPool = gameObjectPool;
+		gameObjectPool.componentPool = componentPool;
+
 		return {
 			game: game,
 			root: root,
