@@ -13,8 +13,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### Current TODO List:
 
 - Tag game-builder and set as default option in generator
-    - Handle Adding and removing of renderer in a similar fashion to other components
-    - When creating the component pools, infer the amounts from the configurations on the game object pool
     - Add additional debug drawing to game_object
         * global transformed position
 
@@ -45,7 +43,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 -Examples v4
     - Use HTML to add some on screen explanation of what is going on
     - Or anything to make them look prettier.
-    - Some CSS to decorate the sorroundings?
+    - Some CSS to decorate the sorroundings? Maybe a Frame for the canvas.
 
 - Spike Performance Boost
     - Canvas caching
@@ -57,6 +55,8 @@ For better results it is better to use it in conjuction with [generator-game-bui
 - Text
 
 - Figure out how to use r.js
+
+- Start a simple game
 
 #### [This is the prototype game][tirador] which spurred the creation of this project.
 
