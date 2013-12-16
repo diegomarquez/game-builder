@@ -114,7 +114,7 @@ define(function(require) {
 			}
 
 			var r = {
-				name: this.getName();
+				name: this.getName(),
 				objectTypeCount: Object.keys(this.pools).length,
 				total: total,
 			}

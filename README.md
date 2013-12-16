@@ -12,10 +12,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### Current TODO List:
 
-- Tag game-builder and set as default option in generator
-    - Add additional debug drawing to game_object
-        * global transformed position
-
 - Examples v3
     -Move into own repository
     -Redo them with the generator

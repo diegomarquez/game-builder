@@ -1,4 +1,4 @@
-define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
+define(["delegate", "matrix_3x3", "game_object_debug_draw"], function(Delegate, Matrix, DebugDraw) {
 
 	//This is used as a helper in getTransform
 	//Declared here in an act of ultimate evil, AKA, premature optimization.
@@ -125,15 +125,7 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 				this.renderer.draw(context);
 			}
 
-			if(this.debug) {
-				if (!this.components) return;
-
-				for(var i=0; i<this.components.length; i++){
-					if(this.components[i].draw) {
-						this.components[i].draw(context)
-					}
-				}
-			}
+			DebugDraw.call(this, context);
 		},
 
 		clear: function() {
@@ -204,6 +196,8 @@ define(["delegate", "matrix_3x3"], function(Delegate, Matrix) {
 			}
 
 			m.decompose(r);
+
+			return r;
 		}
 	});
 
