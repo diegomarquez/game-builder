@@ -85,11 +85,7 @@ define(["util", "class"], function(util) {
 		},
 
 		destroy: function() {
-<<<<<<< HEAD
 			util.destroyObject(this);
-=======
-			Utils.destroyObject(this);
->>>>>>> 6a4d67d2d1962891819dd60fbbe10782866d7317
 		},
 
 		execute: function(name, args) {
