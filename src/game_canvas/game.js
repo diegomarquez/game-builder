@@ -1,5 +1,4 @@
 define(["delegate"], function(Delegate) {
-
 	var Game = Delegate.extend({
 		init: function() {
 			this._super();
@@ -18,8 +17,8 @@ define(["delegate"], function(Delegate) {
 			this.extensions = {
 				"create": [],
 				"update": [],
-				"pause": [],
-				"resume": []
+				"blur": [],
+				"focus": []
 			}
 		},
 
@@ -49,18 +48,18 @@ define(["delegate"], function(Delegate) {
 				self.execute("init");
 			};
 
-			var paused = false;
+			var blur = false;
 
 			var onBlur = function(event) {
 				if (self.blur) {
 					self.blur = false;
 					self.focus = true;
 
-					if (!paused) {
-						self.execute_extensions("pause");	
-						self.execute("pause");
+					if (!blur) {
+						self.execute_extensions("blur");	
+						self.execute("blur");
 
-						paused = true;
+						blur = true;
 					}
 				}
 			};
@@ -77,18 +76,18 @@ define(["delegate"], function(Delegate) {
 						self.blur = true;
 						self.focus = false;
 
-						if (paused) {
-							self.execute_extensions("resume");
-							self.execute("resume");
+						if (blur) {
+							self.execute_extensions("focus");
+							self.execute("focus");
 
-							paused = false;
+							blur = false;
 						}
 					}
 				}
 			}
 
-			this.pause = onBlur;
-			this.resume = onFocus;
+			this.blur = onBlur;
+			this.focus = onFocus;
 
 			window.addEventListener("focus", onFocus);
 
@@ -130,6 +129,22 @@ define(["delegate"], function(Delegate) {
 				window.requestAnimationFrame(mainLoop);
 			}
 		}
+	});
+
+	Object.defineProperty(Game.prototype, "CREATE", {
+		get: function() { return 'create'; }
+	});
+
+	Object.defineProperty(Game.prototype, "UPDATE", {
+		get: function() { return 'update'; }
+	});
+
+	Object.defineProperty(Game.prototype, "FOCUS", {
+		get: function() { return 'focus'; }
+	});
+
+	Object.defineProperty(Game.prototype, "BLUR", {
+		get: function() { return 'blur'; }
 	});
 
 	return new Game();

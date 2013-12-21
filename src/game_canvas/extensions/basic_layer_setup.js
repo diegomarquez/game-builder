@@ -1,7 +1,7 @@
-define(["layers", "class"], function(Layers) {
+define(["layers", "gb", "class"], function(Layers, Gb) {
 	var Extension = Class.extend({
 		type: function() {
-			return 'create';
+			return Gb.game.CREATE;
 		},
 
 		execute: function() {
