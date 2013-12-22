@@ -19,7 +19,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Redo the gh-pages branch build system to accomodate for the new structure
     - Rethink the page layout of the website
-    - Move page into own repository
+    - Move into own repository
 
 - Anotate code to generate documentation
     - src
@@ -52,6 +52,8 @@ For better results it is better to use it in conjuction with [generator-game-bui
 - Sub state machine state. Special state which contains a state machine. Used for branching paths
 
 - Text
+
+- Premade renderer to draw rectangles, circles lines and triangles.
 
 - Figure out how to use r.js
 
