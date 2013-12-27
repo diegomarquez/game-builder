@@ -14,7 +14,9 @@ define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game_object_pool', 
 			canvas: document.getElementById('game'),
 
 			addToLayer: function(layerName, goId) {
-				this.layers.get(layerName).add(this.assembler.get(goId)).start();	
+				var go = this.layers.get(layerName).add(this.assembler.get(goId));
+				go.start();	
+				return go;
 			}
 		}
 	}
