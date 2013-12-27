@@ -12,7 +12,8 @@ define(["util", "class"], function(util) {
 			if (this.pools[alias] == null) {
 				this.pools[alias] = {
 					objects: [],
-					type: type
+					type: type,
+					maxAmount: amount
 				};
 			}
 
@@ -27,22 +28,10 @@ define(["util", "class"], function(util) {
 		createPooledObject: function(alias) {
 			var pool = this.pools[alias];
 			
-			// Create the object and send it to the pool
 			var o = new pool.type();
 			o.poolId = alias;		
 
 			pool.objects.push(o);
-		},
-
-		addObjectToPool: function(configurationId) {
-			// Loop through all available configurations
-			for(k in this.configurations) {
-				// Find the configuration that matches the one I am trying to create an object for
-				if (k == configurationId) {
-					// Add a pooled object
-					this.createPooledObject( this.configurations[k].typeId() );			
-				}
-			}
 		},
 
 		getPoolSize: function(alias) {
@@ -75,12 +64,18 @@ define(["util", "class"], function(util) {
 			throw new Error('Pool: This method must be overriden');
 		},
 
-		getConfiguration: function(name) {
+		getConfiguration: function(name, nestedCall) {
 			throw new Error('Pool: This method must be overriden');
 		},
 
+		createNewIfNeeded: function(type) {
+			if(!this.pools[type].maxAmount) {
+				this.createPooledObject(type);
+			}
+		},
+
 		getPooledObject: function(type) {
-			var o = this.pools[type].objects.pop()
+			var o = this.pools[type].objects.pop();
 			this.active[type].push(o);
 			return o;
 		},
@@ -89,10 +84,18 @@ define(["util", "class"], function(util) {
 			var k;
 
 			for(k in this.pools) {
-				var pool = this.pools[k].objects
+				var pool = this.pools[k].objects;
 
 				while (pool.length > 0){
 					util.destroyObject(pool.pop());
+				}
+			}
+
+			for(k in this.active) {
+				var active = this.active[k];
+
+				while (active.length > 0){
+					util.destroyObject(active.pop());
 				}
 			}
 
@@ -106,16 +109,23 @@ define(["util", "class"], function(util) {
 		},
 
 		toString: function() {
-			var total = 0;
-			for (var k in this.pools) {
-				total += this.pools[k].objects.length
+			var r = {
+				name: this.getName()
 			}
 
-			var r = {
-				name: this.getName(),
-				objectTypeCount: Object.keys(this.pools).length,
-				total: total,
+			var total = 0;
+
+			for (var k in this.pools) {
+				r[k] = {
+					pooled: this.pools[k].objects.length,
+					active: this.active[k].length,
+					total: this.pools[k].objects.length + this.active[k].length
+				}
+
+				total += r[k].total;
 			}
+
+			r['total'] = total;
 
 			return JSON.stringify(r, null, 2);
 		}

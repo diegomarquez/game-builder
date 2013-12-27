@@ -24,8 +24,6 @@ define(function(require) {
 					return this;
 				},
 				addChild: function(childId, args) {
-					self.addObjectToPool(childId);
-
 					this.childs.push({
 						childId: childId,
 						args: args
@@ -33,29 +31,12 @@ define(function(require) {
 					return this;
 				},
 				addComponent: function(componentId, args) {
-					self.componentPool.addObjectToPool(componentId);
-
 					this.components.push(getComponentDescription(componentId, args));
 					return this;
 				},
 				setRenderer: function(rendererId, args) {
-					self.componentPool.addObjectToPool(rendererId);
-
 					this.renderer = getComponentDescription(rendererId, args);
 					return this;
-				},
-				getComponentIds: function() {
-					var ids = [];
-
-					for(var i=0; i<this.components.length; i++){
-						ids.push(this.components[i].componentId);
-					}
-
-					if(this.renderer) {
-						ids.push(this.renderer.componentId);	
-					}
-
-					return ids;
 				}
 			};
 
@@ -69,7 +50,6 @@ define(function(require) {
 		},
 
 		addInitialObjectsToPool: function(amount, alias) {
-			// If provided the amount of objects to add to the pool.
 			if(!amount) return;
 
 			for (var i = 0; i < amount; i++) {
@@ -77,27 +57,17 @@ define(function(require) {
 			}	
 		},
 
-		getComponentUseCount: function(componentId) {
-			var componentUseCount = 0;
+		getConfiguration: function(alias, nestedCall) {
+			var configuration = this.getConfigurationObject(alias);
+			var pool = this.pools[configuration.type];
 
-			for(k in this.configurations) {
-				var configuration = this.configurations[k];
-				var componentsIds = configuration.getComponentIds();
-
-				for(var j=0; j<componentsIds.length; j++) {
-					if (componentId == componentsIds[j]) {
-						componentUseCount++;
-					}
-				}
+			if(!nestedCall && !pool.maxAmount) {
+				throw new Error('Game Object with type: ' + configuration.type + ' does not have a value for maxAmount. It can not be requested explicitly');
 			}
 
-			return componentUseCount;
-		},
+			this.createNewIfNeeded(configuration.type);
 
-		getConfiguration: function(alias) {
-			var configuration = this.getConfigurationObject(alias);
-
-			if (this.pools[configuration.type].objects.length <= 0) {
+			if (pool.objects.length <= 0) {
 				throw new Error('Game Object with type: ' + configuration.type + ' is not available');
 			}
 
@@ -113,7 +83,5 @@ define(function(require) {
 		}
 	});
 
-	var self = new GameObjectPool();
-
-	return self;
+	return new GameObjectPool();
 });
