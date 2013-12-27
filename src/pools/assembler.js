@@ -23,8 +23,8 @@ define(['game_object_pool', 'component_pool', 'util'], function(GameObjectPool, 
 	}
 
 	//This method only return an instance. It is up to the user to call the start method with arguments.
-	Assembler.prototype.get = function(name, args) {
-		var configuration = GameObjectPool.getConfiguration(name);
+	Assembler.prototype.get = function(name, args, nestedCall) {
+		var configuration = GameObjectPool.getConfiguration(name, nestedCall);
 
 		//Get one object from the pool
 		var pooledObject = GameObjectPool.getPooledObject(configuration.type);
@@ -49,7 +49,7 @@ define(['game_object_pool', 'component_pool', 'util'], function(GameObjectPool, 
 				throw new Error('Game Object with type: ' + configuration.type + ' is not a container, can not add childs to it');
 			}
 
-			pooledObject.add(this.get(childId, configuration.childs[i].args));
+			pooledObject.add(this.get(childId, configuration.childs[i].args, true));
 		}
 
 		//Adding the renderer configured for this object type		
