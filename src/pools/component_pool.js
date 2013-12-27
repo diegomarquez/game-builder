@@ -30,10 +30,12 @@ define(function(require) {
 			var configuration = this.configurations[alias];
 			var pool = this.pools[configuration.componentId];
 
-			this.createNewIfNeeded(configuration.componentId);
-
 			if (pool.objects.length <= 0) {
-				throw new Error('Component with id: ' + configuration.componentId + ' is not available');
+				var ok = this.createNewIfNeeded(configuration.componentId);
+
+				if(!ok) {
+					throw new Error('Component with id: ' + configuration.componentId + ' is not available');
+				}
 			}
 
 			return configuration;

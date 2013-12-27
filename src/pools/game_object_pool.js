@@ -65,10 +65,12 @@ define(function(require) {
 				throw new Error('Game Object with type: ' + configuration.type + ' does not have a value for maxAmount. It can not be requested explicitly');
 			}
 
-			this.createNewIfNeeded(configuration.type);
-
 			if (pool.objects.length <= 0) {
-				throw new Error('Game Object with type: ' + configuration.type + ' is not available');
+				var ok = this.createNewIfNeeded(configuration.type);
+				
+				if(!ok) {
+					throw new Error('Game Object with type: ' + configuration.type + ' is not available');
+				}
 			}
 
 			return configuration;

@@ -71,7 +71,10 @@ define(["util", "class"], function(util) {
 		createNewIfNeeded: function(type) {
 			if(!this.pools[type].maxAmount) {
 				this.createPooledObject(type);
+				return true;
 			}
+
+			return false;
 		},
 
 		getPooledObject: function(type) {
