@@ -72,14 +72,14 @@ define(["delegate", "matrix_3x3", "game_object_debug_draw"], function(Delegate, 
 			if(!renderer) return;
 
 			this.renderer = renderer;
-			renderer.onAdded(this);
+			this.renderer.onAdded(this);
 		},
 
 		removeRenderer: function() {
-			if(!renderer) return;
+			if(!this.renderer) return;
 
-			renderer.onRemoved(this);
-			renderer.destroy();
+			this.renderer.onRemoved(this);
+			this.renderer.destroy();
 			this.renderer = null;
 		},
 
