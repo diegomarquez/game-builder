@@ -27,7 +27,7 @@ define(['collision_component', 'sat', 'collision_resolver', 'vector_2D', 'draw']
 
 			context.save();
 			context.setTransform(1, 0, 0, 1, 0, 0);			
-			context.translate(p.x, p.y)
+			context.translate(p.x, p.y);
 
 			draw.circle(context, 0, 0, this.radius, null, this.debugColor, 2);
 

@@ -1,6 +1,6 @@
 define(["delegate", "matrix_3x3", "game_object_debug_draw"], function(Delegate, Matrix, DebugDraw) {
 
-	//This is used as a helper in getTransform
+	//This is used as a helper in getTransform and getMatrix
 	//Declared here in an act of ultimate evil, AKA, premature optimization.
 	var go;
 
@@ -195,9 +195,7 @@ define(["delegate", "matrix_3x3", "game_object_debug_draw"], function(Delegate, 
 				go = go.parent;
 			}
 
-			m.decompose(r);
-
-			return r;
+			return m.decompose(r);
 		}
 	});
 

@@ -19,8 +19,6 @@ define(['component', 'collision_resolver'], function(Component, CollisionResolve
 		update: function() {
 			collisionList = CollisionResolver.collisionLists[this.collisionId];
 
-			debugger;
-
 			if (collisionList != null) {
 				for (k = 0; k < collisionList.length; k++) {
 					collisionOpponent = collisionList[k];
