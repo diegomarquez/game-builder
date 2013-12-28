@@ -191,6 +191,7 @@ define(function(require) {
 
 			//Removing it from owner
 			this.owner[this.propertyName] = null;
+			delete this.owner[this.propertyName];
 			this.owner = null;
 
 			//Removing it from the factory cache
