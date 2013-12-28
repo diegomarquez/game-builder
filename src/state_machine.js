@@ -1,4 +1,4 @@
-define(["require", "class"], function(require) {
+define(["delegate", "class"], function(Delegate) {
 
 	var executeStateAction = function(stateId, action, args) {
 		if (this.isBlocked || this.states == null) { return; }
@@ -125,7 +125,7 @@ define(["require", "class"], function(require) {
 		}		
 	});
 
-	var State = require('delegate').extend({
+	var State = Delegate.extend({
 		init: function(scope, name) { 
 			this._super(); 
 			this.scope = scope;
