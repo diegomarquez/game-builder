@@ -4,8 +4,6 @@ define(['draw'], function(draw) {
 
 	var debugDraw = function(context) {
 		if(this.debug) {
-			debugger;
-
 			p = this.getTransform(p, m);
 
 			context.save();
