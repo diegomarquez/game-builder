@@ -55,6 +55,8 @@ define(function(require) {
 			for (var i = 0; i < amount; i++) {
 				this.createPooledObject(alias);
 			}	
+
+			this.pools[alias].maxAmount = amount;
 		},
 
 		getConfiguration: function(alias, nestedCall) {

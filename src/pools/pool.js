@@ -12,8 +12,7 @@ define(["util", "class"], function(util) {
 			if (this.pools[alias] == null) {
 				this.pools[alias] = {
 					objects: [],
-					type: type,
-					maxAmount: amount
+					type: type
 				};
 			}
 
