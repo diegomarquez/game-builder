@@ -23,21 +23,21 @@ define(["layers", "gb", "class"], function(Layers, Gb) {
 				container.style.oTransform      = 'scale(' + scale + ')';
 			};
 
-    		Game.mainContainer.style.top  		= '50%';
-    		Game.mainContainer.style.left 		= '50%';
-			Game.mainContainer.style.marginLeft = '-' + Game.canvas.width/2 + 'px';
-			Game.mainContainer.style.marginTop  = '-' + Game.canvas.height/2 + 'px';
-			Game.mainContainer.style.position   = 'fixed';
+    		Gb.game.mainContainer.style.top  		= '50%';
+    		Gb.game.mainContainer.style.left 		= '50%';
+			Gb.game.mainContainer.style.marginLeft = '-' + Gb.game.canvas.width/2 + 'px';
+			Gb.game.mainContainer.style.marginTop  = '-' + Gb.game.canvas.height/2 + 'px';
+			Gb.game.mainContainer.style.position   = 'fixed';
 
-			Game.canvas.style.paddingLeft  = 0;
-    		Game.canvas.style.paddingRight = 0;
-    		Game.canvas.style.marginLeft   = 'auto';
-    		Game.canvas.style.marginRight  = 'auto';
+			Gb.game.canvas.style.paddingLeft  = 0;
+    		Gb.game.canvas.style.paddingRight = 0;
+    		Gb.game.canvas.style.marginLeft   = 'auto';
+    		Gb.game.canvas.style.marginRight  = 'auto';
 
-			resize(Game.mainContainer, Game.canvas);
+			resize(Gb.game.mainContainer, Gb.game.canvas);
 
 			window.addEventListener('resize', function() { 
-				resize(Game.mainContainer, Game.canvas); 
+				resize(Gb.game.mainContainer, Gb.game.canvas); 
 			}, false);			
 		}
 	});
