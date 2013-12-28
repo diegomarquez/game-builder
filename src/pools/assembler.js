@@ -8,18 +8,18 @@ define(['game_object_pool', 'component_pool', 'util'], function(GameObjectPool, 
 		if(!config) return;
 
 		// Getting the requested component from the corresponding pool.
-		var component = ComponentPool.getPooledObject(config.componentId);
+		var componentIntance = ComponentPool.getPooledObject(config.componentId);
 
 		//Merge arguments from type configuration with the ones in the specific component, if any.
-		component.configure( Util.shallow_merge(config.componentArgs, component.args) );
+		componentIntance.configure( Util.shallow_merge(config.componentArgs, component.args) );
 
 		//When a component is 'recycled' it returns to it's respective pool
-		component.on('recycle', this, function(c) {
+		componentIntance.on('recycle', this, function(c) {
 			ComponentPool.returnToPool(c);
 		}, true);
 
 		// Sending the component to whoever is going to use it
-		pooledObject[addMethod](component); 
+		pooledObject[addMethod](componentIntance); 
 	}
 
 	//This method only return an instance. It is up to the user to call the start method with arguments.
