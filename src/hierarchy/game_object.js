@@ -129,9 +129,9 @@ define(["delegate", "matrix_3x3", "game_object_debug_draw"], function(Delegate, 
 		},
 
 		clear: function() {
-			this.execute('recycle', this);
-
 			this.destroy();
+
+			this.execute('recycle', this);
 
 			this.removeRenderer();
 			this.removeComponents();
