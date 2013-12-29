@@ -13,17 +13,17 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### Current TODO List:
 
 - Examples v3
-    - Move into own repository
-    - Redo them with the generator
-    - Create generator templates
+    - Delete old example code
 
+- Anotate code to generate documentation
+    - examples
+    - src
+     
 - Redo the gh-pages branch build system to accomodate for the new structure
     - Rethink the page layout of the website
     - Move into own repository
 
-- Anotate code to generate documentation
-    - src
-    - examples 
+- Tag Game-Builder, again.
 
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.
