@@ -20,15 +20,23 @@ define(["delegate"], function(Delegate) {
 
 		onAdded: function(parent) {
 			this.parent = parent;
+			this.execute('added', this);
+			this.added(parent);
 		},
 
 		onRemoved: function() {
+			this.removed(parent);
+			this.execute('removed', this);
 			this.parent = null;
 		},
 
+		added: function(parent) {},
+		
+		removed: function(parent) {},
+
 		start: function() {},
 		
-		update: function() {},
+		update: function(delta) {},
 
 		destroy: function() {
 			this.execute('recycle', this);
