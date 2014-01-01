@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="en"><head><title>README</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="README"><meta name="groc-project-path" content="work/game-builder/README.md"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/README.md</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="gamebuildergamebuilder"><a href="http://diegomarquez.github.io/game-builder">GAME-BUILDER</a></h1>
+
+<p><img src="http://f.cl.ly/items/3N420I093v3b03051W39/game.png" alt="game" title="" /></p>
+
+<p>These are some files I decided to extract from a previous javascript project. These should provide all the things a simple arcade game needs. I am talking Asteroids or Galaga simple. </p>
+
+<p>By itself this repository is kind of useless, as it is nothing more than a collection of requirejs modules. You could try and figure out how to use them, though. </p>
+
+<p>For better results it is better to use it in conjuction with <a href="https://github.com/diegomarquez/generator-game-builder">generator-game-builder</a>, a <a href="http://yeoman.io/">Yeoman</a> generator that generates(dur) the basic setup to start working with this stuff. </p>
+
+<hr />
+
+<h6 id="todo-list">TODO List:</h6>
+
+<ul>
+<li><p>Anotate code to generate documentation</p>
+
+<ul><li>examples</li>
+<li>src</li></ul></li>
+<li><p>Delete old example code</p></li>
+<li><p>Redo the gh-pages branch build system to accomodate for the new structure</p>
+
+<ul><li>Rethink the page layout of the website</li></ul></li>
+<li><p>Tag Game-Builder, again.</p></li>
+<li><p>Make Sublime plugin to generate files from templates</p>
+
+<ul><li>Make an empty menu structure.</li>
+<li>Hook yeoman generators into each option</li></ul></li>
+<li><p>Think about how to handle paths to images/sound</p>
+
+<ul><li>Yeoman subgenerator to create a file with name/paths pairs.</li>
+<li>Pick up urls from another file to create mappings for remote resources.</li>
+<li>This could be loaded as a text file when needed, or maybe a module. In any case, should be lightweight.</li>
+<li>The idea is to have something else other than raw strings in the code.</li></ul></li>
+<li><p>Extensions 2</p>
+
+<ul><li>TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )</li>
+<li>Keyboard extension, block keyboard keys when pausing the game ( No Demo )</li></ul></li>
+</ul>
+
+<p>-Examples v4
+    - Use HTML to add some on screen explanation of what is going on
+    - Or anything to make them look prettier.
+    - Some CSS to decorate the sorroundings? Maybe a Frame for the canvas.</p>
+
+<ul>
+<li><p>Spike Performance Boost</p>
+
+<ul><li>Canvas caching
+<ul><li>Cache static drawings (Drawing Renderer, NEW)</li>
+<li>Cache Images (Bitmap renderer)       </li></ul></li></ul></li>
+<li><p>Sub state machine state. Special state which contains a state machine. Used for branching paths</p></li>
+<li><p>Text</p></li>
+<li><p>Premade renderer to draw rectangles, circles lines and triangles.</p></li>
+<li><p>Figure out how to use r.js</p></li>
+<li><p>Do a simple game and get this over with for fucks sake!</p></li>
+</ul>
+
+<h4 id="thisistheprototypegametiradorwhichspurredthecreationofthisproject"><a href="http://www.treintipollo.com/tirador/index.html">This is the prototype game</a> which spurred the creation of this project.</h4></div></div></div></div></body></html>

@@ -1,0 +1,16 @@
+{
+  "name": "colliders",
+  "version": "0.1.0",
+  "dependencies": {
+    "requirejs": "2.1.8",
+    "requirejs-domready": "*"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "lib"
+  ]
+}

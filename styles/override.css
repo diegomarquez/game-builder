@@ -1,0 +1,68 @@
+@import url("../bower_components/bootstrap/dist/css/bootstrap.css");
+
+@import url(http://fonts.googleapis.com/css?family=Press+Start+2P);
+
+h1, h2, h3, h4, h5, h6, p, div {
+  font-family: 'Press Start 2P';
+}
+
+div {
+  color: #777777;
+}
+
+body {
+  background-color: #000000;
+}
+
+.jumbotron {
+  width: 100%;
+  padding: 30px;
+  margin: 0px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  color: inherit;
+  background-color: #eeeeee;
+}
+
+.container {
+  width: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.container .jumbotron {
+  border-radius: 0px;
+}
+
+.jumbotron h1 {
+  margin-bottom: 0;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: inherit;
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 0px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+}

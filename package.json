@@ -1,9 +1,8 @@
 {
-  "name": "game-builder-tasks",
-  "version": "0.1.0",
-  "description": "Deploy game-builder to gh-pages",
   "author": "Diego Enrique Marquez",
-  "repository": "git@github.com:diegomarquez/game.git",
+  
+  "examplesRepository": "git@github.com:diegomarquez/game-builder-examples.git",
+
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-shell": "~0.6.0"

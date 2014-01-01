@@ -11,30 +11,28 @@ module.exports = function(grunt) {
 
         clone: {
           command: function() { 
-            return 'git clone ' + pkg.repository + ' ' + "work/" 
+            return 'git clone ' + pkg.examplesRepository + ' ' + "work/" 
           } 
         },
 
         cp: {
           command: [
-            'cp -rf work/src src/',
-            'cp -rf work/examples/ examples/',
-            'cp -rf work/lib/ lib/'
+            'cp -rf work/game-builder game-builder/',
+            'cp -rf work/lib/ lib/',
+            'cp -rf work/examples/ examples/'
           ].join('&&')
         },
 
         groc: {
-          command: function(docs) {
-            return 'groc "work/**/*.js" "work/**/*.md" "work/README.md" -e "work/lib/**/*.*"'
+          command: function(folder) {
+            var obj = { folder: folder };
+            var command = 'groc "work/<%= folder %>/**/*.js" "work/<%= folder %>/**/*.md" "work/<%= folder %>/README.md" -o ./<%= folder %>-docs';
+            return grunt.template.process(command, {data: obj});
           }
         },
 
         bower: {
-          command: [
-            'cd work/',
-            'bower install',
-            'cd ..',
-          ].join('&&')
+          command: 'bower install'
         },
 
         push: {
@@ -51,15 +49,35 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-shell');
 
-  grunt.registerTask('publish', [
+  grunt.registerTask('clean', [
     'shell:rm:work',
-    'shell:rm:doc',
+    'shell:rm:examples-docs',
+    'shell:rm:game-builder-docs',
+    'shell:rm:game-builder',
     'shell:rm:lib',
+    'shell:rm:bower_components'
+  ]);
+
+  grunt.registerTask('download', [
     'shell:clone',
-    'shell:bower',
-    'shell:groc', 
+    'shell:bower'
+  ]);
+
+  grunt.registerTask('generateDocs', [
+    'shell:groc:examples',
+    'shell:groc:game-builder'
+  ]);
+
+  grunt.registerTask('push', [
     'shell:cp',
     'shell:rm:work',
     'shell:push'
+  ]);
+
+  grunt.registerTask('publish', [
+    'clean',
+    'download',  
+    'generateDocs',
+    'push'
   ]);
 };

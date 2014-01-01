@@ -1,0 +1,28 @@
+{
+  "name": "renderers",
+  
+  "version": "0.1.0",
+  
+  "additionalSrcPaths": "../common_src",
+  "additionalAssetPaths": "../common_assets", 
+  "additionalLibPaths": "",
+
+  "frameworkLocation": "../../",
+  "libLocation": "../../",
+
+  "libFolderName": "lib",
+  "frameworkFolderName": "game-builder",
+
+  "size": {
+  	"width": "400",
+  	"height": "300" 
+  },
+
+  "frameworkTag": "latest",
+  
+  "dependencies": {
+    "grunt": "~0.4.2",
+    "grunt-shell": "~0.6.0",
+    "grunt-open": "~0.2.2"
+  }
+}

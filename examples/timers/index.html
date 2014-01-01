@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>timers</title>
+	<!-- For all your styling needs -->
+	<link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+
+	<!-- This is what will render the canvas. This needs to be here. There is nothing preventing
+	you from adding more HTML if that is what you want, though. -->
+
+	<!-- The content of this file will be inserted in index.html when you run the proper grunt task -->
+
+	<!-- div #main and canvas #game need to be here for this whole contraption to work. -->
+	<div id="main">
+		<canvas id="game" width="400" height="300">
+			Sorry, your web browser does not support Canvas content.
+		</canvas>		
+	</div>
+	<!-- require.js -->
+	<script src="../../lib/require.js"> </script>
+
+	<!-- require.js configuration -->
+	<script>
+		require.config(
+			{
+				paths: {
+					"class": "../../game-builder/src/class",
+					"circle_collider": "../../game-builder/src/collision/circle_collider",
+					"collision_component": "../../game-builder/src/collision/collision_component",
+					"collision_resolver": "../../game-builder/src/collision/collision_resolver",
+					"fixed_polygon_collider": "../../game-builder/src/collision/fixed_polygon_collider",
+					"polygon_collider": "../../game-builder/src/collision/polygon_collider",
+					"sat": "../../game-builder/src/collision/sat",
+					"component": "../../game-builder/src/components/component",
+					"bitmap_renderer": "../../game-builder/src/components/rendering/bitmap_renderer",
+					"renderer": "../../game-builder/src/components/rendering/renderer",
+					"game_object_debug_draw": "../../game-builder/src/debug/game_object_debug_draw",
+					"delegate": "../../game-builder/src/delegate",
+					"draw": "../../game-builder/src/draw",
+					"aspect_ratio_resize": "../../game-builder/src/game_canvas/extensions/aspect_ratio_resize",
+					"basic_layer_setup": "../../game-builder/src/game_canvas/extensions/basic_layer_setup",
+					"pause": "../../game-builder/src/game_canvas/extensions/pause",
+					"resume": "../../game-builder/src/game_canvas/extensions/resume",
+					"game": "../../game-builder/src/game_canvas/game",
+					"gb": "../../game-builder/src/gb",
+					"game_object": "../../game-builder/src/hierarchy/game_object",
+					"game_object_container": "../../game-builder/src/hierarchy/game_object_container",
+					"layer": "../../game-builder/src/hierarchy/layer",
+					"layers": "../../game-builder/src/hierarchy/layers",
+					"root": "../../game-builder/src/hierarchy/root",
+					"keyboard": "../../game-builder/src/input/keyboard",
+					"matrix_3x3": "../../game-builder/src/math/matrix_3x3",
+					"vector_2D": "../../game-builder/src/math/vector_2D",
+					"assembler": "../../game-builder/src/pools/assembler",
+					"bundle": "../../game-builder/src/pools/bundle",
+					"component_pool": "../../game-builder/src/pools/component_pool",
+					"game_object_pool": "../../game-builder/src/pools/game_object_pool",
+					"pool": "../../game-builder/src/pools/pool",
+					"reclaimer": "../../game-builder/src/pools/reclaimer",
+					"sound_player": "../../game-builder/src/sound_player",
+					"state_machine": "../../game-builder/src/state_machine",
+					"timer_factory": "../../game-builder/src/timer_factory",
+					"util": "../../game-builder/src/util",
+					"domready": "../../lib/domready",
+					"require": "../../lib/require",
+					"basic_container": "../common_src/basic_container",
+					"basic_game_object": "../common_src/basic_game_object",
+					"box_renderer": "../common_src/box_renderer",
+					"colliders_bundle": "../common_src/bundles/colliders_bundle",
+					"input_bundle": "../common_src/bundles/input_bundle",
+					"layering_bundle": "../common_src/bundles/layering_bundle",
+					"logic_bundle": "../common_src/bundles/logic_bundle",
+					"nesting_bundle": "../common_src/bundles/nesting_bundle",
+					"rendering_bundle": "../common_src/bundles/rendering_bundle",
+					"component_1": "../common_src/component_1",
+					"state_1": "../common_src/state_1",
+					"state_2": "../common_src/state_2",
+					"state_3": "../common_src/state_3",
+					
+				}
+			}
+		);
+
+		//Up until now it has been boilerplate, from now on it's all magic. That is, your magic.
+		require(["domready!", "main"], function(doc, main) {});
+	</script>
+</body>
+</html>
