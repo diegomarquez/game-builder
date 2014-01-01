@@ -26,7 +26,7 @@ module.exports = function(grunt) {
         groc: {
           command: function(folder) {
             var obj = { folder: folder };
-            var command = 'groc "work/<%= folder %>/**/*.js" "work/<%= folder %>/**/*.md" "work/<%= folder %>/README.md" -i "work/<%= folder %>/README.md" -o ./<%= folder %>-docs';
+            var command = 'groc "work/<%= folder %>/**/*.js" "work/<%= folder %>/**/*.md" "work/<%= folder %>/README.md" -i "work/<%= folder %>/README.md" -o ./<%= folder %>-docs -e "work/<%= folder %>/**/Gruntfile.js"';
             return grunt.template.process(command, {data: obj});
           }
         },

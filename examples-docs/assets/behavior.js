@@ -33,26 +33,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "file",
           "data": {
             "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/Gruntfile.js",
-            "projectPath": "work/examples/colliders/Gruntfile.js",
-            "targetPath": "colliders/Gruntfile",
-            "pageTitle": "colliders/Gruntfile",
-            "title": "Gruntfile"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
               "nameMatchers": [".md"],
               "commentsOnly": true,
               "name": "Markdown"
@@ -389,26 +369,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "file",
           "data": {
             "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/Gruntfile.js",
-            "projectPath": "work/examples/empty/Gruntfile.js",
-            "targetPath": "empty/Gruntfile",
-            "pageTitle": "empty/Gruntfile",
-            "title": "Gruntfile"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
               "nameMatchers": [".md"],
               "commentsOnly": true,
               "name": "Markdown"
@@ -462,26 +422,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       "depth": 1,
       "children": [
         {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/Gruntfile.js",
-            "projectPath": "work/examples/extensions/Gruntfile.js",
-            "targetPath": "extensions/Gruntfile",
-            "pageTitle": "extensions/Gruntfile",
-            "title": "Gruntfile"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
           "type": "file",
           "data": {
             "language": {
@@ -541,26 +481,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "file",
           "data": {
             "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/Gruntfile.js",
-            "projectPath": "work/examples/fixed_state_machine/Gruntfile.js",
-            "targetPath": "fixed_state_machine/Gruntfile",
-            "pageTitle": "fixed_state_machine/Gruntfile",
-            "title": "Gruntfile"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
               "nameMatchers": [".md"],
               "commentsOnly": true,
               "name": "Markdown"
@@ -617,26 +537,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "file",
           "data": {
             "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/Gruntfile.js",
-            "projectPath": "work/examples/game_object_creation/Gruntfile.js",
-            "targetPath": "game_object_creation/Gruntfile",
-            "pageTitle": "game_object_creation/Gruntfile",
-            "title": "Gruntfile"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
               "nameMatchers": [".md"],
               "commentsOnly": true,
               "name": "Markdown"
@@ -690,26 +590,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       "depth": 1,
       "children": [
         {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/Gruntfile.js",
-            "projectPath": "work/examples/game_object_nesting/Gruntfile.js",
-            "targetPath": "game_object_nesting/Gruntfile",
-            "pageTitle": "game_object_nesting/Gruntfile",
-            "title": "Gruntfile"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
           "type": "file",
           "data": {
             "language": {
@@ -780,26 +660,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "file",
           "data": {
             "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/Gruntfile.js",
-            "projectPath": "work/examples/keyboard/Gruntfile.js",
-            "targetPath": "keyboard/Gruntfile",
-            "pageTitle": "keyboard/Gruntfile",
-            "title": "Gruntfile"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
               "nameMatchers": [".md"],
               "commentsOnly": true,
               "name": "Markdown"
@@ -853,26 +713,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       "depth": 1,
       "children": [
         {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/Gruntfile.js",
-            "projectPath": "work/examples/layering/Gruntfile.js",
-            "targetPath": "layering/Gruntfile",
-            "pageTitle": "layering/Gruntfile",
-            "title": "Gruntfile"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
           "type": "file",
           "data": {
             "language": {
@@ -932,26 +772,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "file",
           "data": {
             "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/Gruntfile.js",
-            "projectPath": "work/examples/logic_components/Gruntfile.js",
-            "targetPath": "logic_components/Gruntfile",
-            "pageTitle": "logic_components/Gruntfile",
-            "title": "Gruntfile"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
               "nameMatchers": [".md"],
               "commentsOnly": true,
               "name": "Markdown"
@@ -1005,26 +825,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       "depth": 1,
       "children": [
         {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/Gruntfile.js",
-            "projectPath": "work/examples/loose_state_machine/Gruntfile.js",
-            "targetPath": "loose_state_machine/Gruntfile",
-            "pageTitle": "loose_state_machine/Gruntfile",
-            "title": "Gruntfile"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
           "type": "file",
           "data": {
             "language": {
@@ -1084,26 +884,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "file",
           "data": {
             "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/Gruntfile.js",
-            "projectPath": "work/examples/reclaimer/Gruntfile.js",
-            "targetPath": "reclaimer/Gruntfile",
-            "pageTitle": "reclaimer/Gruntfile",
-            "title": "Gruntfile"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
               "nameMatchers": [".md"],
               "commentsOnly": true,
               "name": "Markdown"
@@ -1157,26 +937,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       "depth": 1,
       "children": [
         {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/Gruntfile.js",
-            "projectPath": "work/examples/renderers/Gruntfile.js",
-            "targetPath": "renderers/Gruntfile",
-            "pageTitle": "renderers/Gruntfile",
-            "title": "Gruntfile"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
           "type": "file",
           "data": {
             "language": {
@@ -1236,26 +996,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "file",
           "data": {
             "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/Gruntfile.js",
-            "projectPath": "work/examples/sound/Gruntfile.js",
-            "targetPath": "sound/Gruntfile",
-            "pageTitle": "sound/Gruntfile",
-            "title": "Gruntfile"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
               "nameMatchers": [".md"],
               "commentsOnly": true,
               "name": "Markdown"
@@ -1309,26 +1049,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       "depth": 1,
       "children": [
         {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/Gruntfile.js",
-            "projectPath": "work/examples/timers/Gruntfile.js",
-            "targetPath": "timers/Gruntfile",
-            "pageTitle": "timers/Gruntfile",
-            "title": "Gruntfile"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
           "type": "file",
           "data": {
             "language": {
