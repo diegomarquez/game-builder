@@ -12,17 +12,15 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
+- Redo the gh-pages branch build system to accomodate for the new structure
+    - Rethink the page layout of the website
+
 - Anotate code to generate documentation
     - examples
     - src
 
 - Delete old example code
      
-- Redo the gh-pages branch build system to accomodate for the new structure
-    - Rethink the page layout of the website
-
-- Tag Game-Builder, again.
-
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.
     - Hook yeoman generators into each option
