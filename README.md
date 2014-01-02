@@ -10,20 +10,19 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 -----------------------------------
 
-###### Current TODO List:
-
-- Examples v3
-    - Delete old example code
+###### TODO List:
 
 - Anotate code to generate documentation
-    - examples
     - src
-     
-- Redo the gh-pages branch build system to accomodate for the new structure
-    - Rethink the page layout of the website
-    - Move into own repository
+    - examples
 
-- Tag Game-Builder, again.
+- Delete old example code
+
+- New Website sections
+    - Getting started. Instructions on what you need to download. And how to us the tools.
+    - Links to running examples
+
+- Documentation generate links to other parts of the documentation
 
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.

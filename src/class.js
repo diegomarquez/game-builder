@@ -1,4 +1,10 @@
-/* Simple JavaScript Inheritance
+// Class
+//// Class
+// # Class H1
+// # # Class H2
+
+/* 
+ * Simple JavaScript Inheritance
  * By John Resig http://ejohn.org/
  * MIT Licensed.
  */
