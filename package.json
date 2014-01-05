@@ -1,10 +1,10 @@
 {
   "author": "Diego Enrique Marquez",
-  
   "examplesRepository": "git@github.com:diegomarquez/game-builder-examples.git",
-
   "devDependencies": {
     "grunt": "~0.4.2",
-    "grunt-shell": "~0.6.0"
+    "grunt-shell": "~0.6.0",
+    "grunt-text-replace": "~0.3.10",
+    "grunt-replace": "~0.5.1"
   }
 }
