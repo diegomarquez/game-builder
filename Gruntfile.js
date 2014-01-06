@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
   var pkg = grunt.file.readJSON('package.json');
-  
+
   pkg.projectRoot = pkg.projectRoot[grunt.option('dictionary')];
 
   var gruntOptions = {}
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
             work: "work/" + folder 
           };
 
-          var command = 'groc "<%= work %>/**/*.js" "<%= work %>/**/*.md" "<%= work %>/README.md" -i "<%= work %>/README.md" -o ./<%= folder %>-docs -e "<%= work %>/**/Gruntfile.js" -t "work/"';
+          var command = 'groc "<%= work %>/**/*.js" "<%= work %>/**/*.md" "<%= work %>/README.md" -i "<%= work %>/README.md" -o ./<%= folder %>-docs -e "<%= work %>/**/Gruntfile.js"';
           return grunt.template.process(command, {data: obj});
         }
       },

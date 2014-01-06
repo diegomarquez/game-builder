@@ -24,16 +24,132 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
     }, {
       "type": "folder",
       "data": {
-        "path": "examples",
-        "title": "examples"
+        "path": "colliders",
+        "title": "colliders"
       },
       "depth": 1,
       "children": [
         {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/README.md",
+            "projectPath": "work/examples/colliders/README.md",
+            "targetPath": "colliders/README",
+            "pageTitle": "colliders/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "# colliders",
+                "slug": "-colliders"
+              },
+              "depth": 2
+            }
+          ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/main.js",
+            "projectPath": "work/examples/colliders/main.js",
+            "targetPath": "colliders/main",
+            "pageTitle": "colliders/main",
+            "title": "main"
+          },
+          "depth": 2,
+          "outline": []
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "common_src",
+        "title": "common_src"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/basic_container.js",
+            "projectPath": "work/examples/common_src/basic_container.js",
+            "targetPath": "common_src/basic_container",
+            "pageTitle": "common_src/basic_container",
+            "title": "basic_container"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/basic_game_object.js",
+            "projectPath": "work/examples/common_src/basic_game_object.js",
+            "targetPath": "common_src/basic_game_object",
+            "pageTitle": "common_src/basic_game_object",
+            "title": "basic_game_object"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/box_renderer.js",
+            "projectPath": "work/examples/common_src/box_renderer.js",
+            "targetPath": "common_src/box_renderer",
+            "pageTitle": "common_src/box_renderer",
+            "title": "box_renderer"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
           "type": "folder",
           "data": {
-            "path": "examples/colliders",
-            "title": "colliders"
+            "path": "common_src/bundles",
+            "title": "bundles"
           },
           "depth": 2,
           "children": [
@@ -41,28 +157,22 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "file",
               "data": {
                 "language": {
-                  "nameMatchers": [".md"],
-                  "commentsOnly": true,
-                  "name": "Markdown"
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/README.md",
-                "projectPath": "work/examples/colliders/README.md",
-                "targetPath": "examples/colliders/README",
-                "pageTitle": "examples/colliders/README",
-                "title": "README"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/colliders_bundle.js",
+                "projectPath": "work/examples/common_src/bundles/colliders_bundle.js",
+                "targetPath": "common_src/bundles/colliders_bundle",
+                "pageTitle": "common_src/bundles/colliders_bundle",
+                "title": "colliders_bundle"
               },
               "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "# colliders",
-                    "slug": "-colliders"
-                  },
-                  "depth": 2
-                }
-              ]
+              "outline": []
             }, {
               "type": "file",
               "data": {
@@ -75,1035 +185,915 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/main.js",
-                "projectPath": "work/examples/colliders/main.js",
-                "targetPath": "examples/colliders/main",
-                "pageTitle": "examples/colliders/main",
-                "title": "main"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/input_bundle.js",
+                "projectPath": "work/examples/common_src/bundles/input_bundle.js",
+                "targetPath": "common_src/bundles/input_bundle",
+                "pageTitle": "common_src/bundles/input_bundle",
+                "title": "input_bundle"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/layering_bundle.js",
+                "projectPath": "work/examples/common_src/bundles/layering_bundle.js",
+                "targetPath": "common_src/bundles/layering_bundle",
+                "pageTitle": "common_src/bundles/layering_bundle",
+                "title": "layering_bundle"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/logic_bundle.js",
+                "projectPath": "work/examples/common_src/bundles/logic_bundle.js",
+                "targetPath": "common_src/bundles/logic_bundle",
+                "pageTitle": "common_src/bundles/logic_bundle",
+                "title": "logic_bundle"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/nesting_bundle.js",
+                "projectPath": "work/examples/common_src/bundles/nesting_bundle.js",
+                "targetPath": "common_src/bundles/nesting_bundle",
+                "pageTitle": "common_src/bundles/nesting_bundle",
+                "title": "nesting_bundle"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/rendering_bundle.js",
+                "projectPath": "work/examples/common_src/bundles/rendering_bundle.js",
+                "targetPath": "common_src/bundles/rendering_bundle",
+                "pageTitle": "common_src/bundles/rendering_bundle",
+                "title": "rendering_bundle"
               },
               "depth": 3,
               "outline": []
             }
           ]
         }, {
-          "type": "folder",
+          "type": "file",
           "data": {
-            "path": "examples/common_src",
-            "title": "common_src"
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/component_1.js",
+            "projectPath": "work/examples/common_src/component_1.js",
+            "targetPath": "common_src/component_1",
+            "pageTitle": "common_src/component_1",
+            "title": "component_1"
           },
           "depth": 2,
-          "children": [
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/state_1.js",
+            "projectPath": "work/examples/common_src/state_1.js",
+            "targetPath": "common_src/state_1",
+            "pageTitle": "common_src/state_1",
+            "title": "state_1"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/state_2.js",
+            "projectPath": "work/examples/common_src/state_2.js",
+            "targetPath": "common_src/state_2",
+            "pageTitle": "common_src/state_2",
+            "title": "state_2"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/state_3.js",
+            "projectPath": "work/examples/common_src/state_3.js",
+            "targetPath": "common_src/state_3",
+            "pageTitle": "common_src/state_3",
+            "title": "state_3"
+          },
+          "depth": 2,
+          "outline": []
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "empty",
+        "title": "empty"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/README.md",
+            "projectPath": "work/examples/empty/README.md",
+            "targetPath": "empty/README",
+            "pageTitle": "empty/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
             {
-              "type": "file",
+              "type": "heading",
               "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/basic_container.js",
-                "projectPath": "work/examples/common_src/basic_container.js",
-                "targetPath": "examples/common_src/basic_container",
-                "pageTitle": "examples/common_src/basic_container",
-                "title": "basic_container"
+                "level": 2,
+                "title": "# empty",
+                "slug": "-empty"
               },
-              "depth": 3,
-              "outline": []
-            }, {
-              "type": "file",
+              "depth": 2
+            }
+          ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/main.js",
+            "projectPath": "work/examples/empty/main.js",
+            "targetPath": "empty/main",
+            "pageTitle": "empty/main",
+            "title": "main"
+          },
+          "depth": 2,
+          "outline": []
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "extensions",
+        "title": "extensions"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/README.md",
+            "projectPath": "work/examples/extensions/README.md",
+            "targetPath": "extensions/README",
+            "pageTitle": "extensions/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
               "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/basic_game_object.js",
-                "projectPath": "work/examples/common_src/basic_game_object.js",
-                "targetPath": "examples/common_src/basic_game_object",
-                "pageTitle": "examples/common_src/basic_game_object",
-                "title": "basic_game_object"
+                "level": 2,
+                "title": "# extensions",
+                "slug": "-extensions"
               },
-              "depth": 3,
-              "outline": []
-            }, {
-              "type": "file",
+              "depth": 2
+            }
+          ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/main.js",
+            "projectPath": "work/examples/extensions/main.js",
+            "targetPath": "extensions/main",
+            "pageTitle": "extensions/main",
+            "title": "main"
+          },
+          "depth": 2,
+          "outline": []
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "fixed_state_machine",
+        "title": "fixed_state_machine"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/README.md",
+            "projectPath": "work/examples/fixed_state_machine/README.md",
+            "targetPath": "fixed_state_machine/README",
+            "pageTitle": "fixed_state_machine/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
               "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/box_renderer.js",
-                "projectPath": "work/examples/common_src/box_renderer.js",
-                "targetPath": "examples/common_src/box_renderer",
-                "pageTitle": "examples/common_src/box_renderer",
-                "title": "box_renderer"
+                "level": 2,
+                "title": "# fixed-state-machine",
+                "slug": "-fixed-state-machine"
               },
-              "depth": 3,
-              "outline": []
-            }, {
-              "type": "folder",
+              "depth": 2
+            }
+          ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/main.js",
+            "projectPath": "work/examples/fixed_state_machine/main.js",
+            "targetPath": "fixed_state_machine/main",
+            "pageTitle": "fixed_state_machine/main",
+            "title": "main"
+          },
+          "depth": 2,
+          "outline": []
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "game_object_creation",
+        "title": "game_object_creation"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/README.md",
+            "projectPath": "work/examples/game_object_creation/README.md",
+            "targetPath": "game_object_creation/README",
+            "pageTitle": "game_object_creation/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
               "data": {
-                "path": "examples/common_src/bundles",
-                "title": "bundles"
+                "level": 2,
+                "title": "# game-object-creation",
+                "slug": "-game-object-creation"
               },
-              "depth": 3,
+              "depth": 2
+            }
+          ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/main.js",
+            "projectPath": "work/examples/game_object_creation/main.js",
+            "targetPath": "game_object_creation/main",
+            "pageTitle": "game_object_creation/main",
+            "title": "main"
+          },
+          "depth": 2,
+          "outline": []
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "game_object_nesting",
+        "title": "game_object_nesting"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/README.md",
+            "projectPath": "work/examples/game_object_nesting/README.md",
+            "targetPath": "game_object_nesting/README",
+            "pageTitle": "game_object_nesting/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "# game-object-nesting",
+                "slug": "-game-object-nesting"
+              },
+              "depth": 2,
               "children": [
                 {
-                  "type": "file",
+                  "type": "heading",
                   "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/colliders_bundle.js",
-                    "projectPath": "work/examples/common_src/bundles/colliders_bundle.js",
-                    "targetPath": "examples/common_src/bundles/colliders_bundle",
-                    "pageTitle": "examples/common_src/bundles/colliders_bundle",
-                    "title": "colliders_bundle"
+                    "level": 3,
+                    "title": "Acknowledgments:",
+                    "slug": "acknowledgments"
                   },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/input_bundle.js",
-                    "projectPath": "work/examples/common_src/bundles/input_bundle.js",
-                    "targetPath": "examples/common_src/bundles/input_bundle",
-                    "pageTitle": "examples/common_src/bundles/input_bundle",
-                    "title": "input_bundle"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/layering_bundle.js",
-                    "projectPath": "work/examples/common_src/bundles/layering_bundle.js",
-                    "targetPath": "examples/common_src/bundles/layering_bundle",
-                    "pageTitle": "examples/common_src/bundles/layering_bundle",
-                    "title": "layering_bundle"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/logic_bundle.js",
-                    "projectPath": "work/examples/common_src/bundles/logic_bundle.js",
-                    "targetPath": "examples/common_src/bundles/logic_bundle",
-                    "pageTitle": "examples/common_src/bundles/logic_bundle",
-                    "title": "logic_bundle"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/nesting_bundle.js",
-                    "projectPath": "work/examples/common_src/bundles/nesting_bundle.js",
-                    "targetPath": "examples/common_src/bundles/nesting_bundle",
-                    "pageTitle": "examples/common_src/bundles/nesting_bundle",
-                    "title": "nesting_bundle"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/rendering_bundle.js",
-                    "projectPath": "work/examples/common_src/bundles/rendering_bundle.js",
-                    "targetPath": "examples/common_src/bundles/rendering_bundle",
-                    "pageTitle": "examples/common_src/bundles/rendering_bundle",
-                    "title": "rendering_bundle"
-                  },
-                  "depth": 4,
-                  "outline": []
+                  "depth": 3
                 }
               ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/component_1.js",
-                "projectPath": "work/examples/common_src/component_1.js",
-                "targetPath": "examples/common_src/component_1",
-                "pageTitle": "examples/common_src/component_1",
-                "title": "component_1"
-              },
-              "depth": 3,
-              "outline": []
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/state_1.js",
-                "projectPath": "work/examples/common_src/state_1.js",
-                "targetPath": "examples/common_src/state_1",
-                "pageTitle": "examples/common_src/state_1",
-                "title": "state_1"
-              },
-              "depth": 3,
-              "outline": []
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/state_2.js",
-                "projectPath": "work/examples/common_src/state_2.js",
-                "targetPath": "examples/common_src/state_2",
-                "pageTitle": "examples/common_src/state_2",
-                "title": "state_2"
-              },
-              "depth": 3,
-              "outline": []
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/state_3.js",
-                "projectPath": "work/examples/common_src/state_3.js",
-                "targetPath": "examples/common_src/state_3",
-                "pageTitle": "examples/common_src/state_3",
-                "title": "state_3"
-              },
-              "depth": 3,
-              "outline": []
             }
           ]
         }, {
-          "type": "folder",
+          "type": "file",
           "data": {
-            "path": "examples/empty",
-            "title": "empty"
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/main.js",
+            "projectPath": "work/examples/game_object_nesting/main.js",
+            "targetPath": "game_object_nesting/main",
+            "pageTitle": "game_object_nesting/main",
+            "title": "main"
           },
           "depth": 2,
-          "children": [
+          "outline": []
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "keyboard",
+        "title": "keyboard"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/README.md",
+            "projectPath": "work/examples/keyboard/README.md",
+            "targetPath": "keyboard/README",
+            "pageTitle": "keyboard/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
             {
-              "type": "file",
+              "type": "heading",
               "data": {
-                "language": {
-                  "nameMatchers": [".md"],
-                  "commentsOnly": true,
-                  "name": "Markdown"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/README.md",
-                "projectPath": "work/examples/empty/README.md",
-                "targetPath": "examples/empty/README",
-                "pageTitle": "examples/empty/README",
-                "title": "README"
+                "level": 2,
+                "title": "# keyboard",
+                "slug": "-keyboard"
               },
-              "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "# empty",
-                    "slug": "-empty"
-                  },
-                  "depth": 2
-                }
-              ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/main.js",
-                "projectPath": "work/examples/empty/main.js",
-                "targetPath": "examples/empty/main",
-                "pageTitle": "examples/empty/main",
-                "title": "main"
-              },
-              "depth": 3,
-              "outline": []
+              "depth": 2
             }
           ]
         }, {
-          "type": "folder",
+          "type": "file",
           "data": {
-            "path": "examples/extensions",
-            "title": "extensions"
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/main.js",
+            "projectPath": "work/examples/keyboard/main.js",
+            "targetPath": "keyboard/main",
+            "pageTitle": "keyboard/main",
+            "title": "main"
           },
           "depth": 2,
-          "children": [
+          "outline": []
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "layering",
+        "title": "layering"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/README.md",
+            "projectPath": "work/examples/layering/README.md",
+            "targetPath": "layering/README",
+            "pageTitle": "layering/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
             {
-              "type": "file",
+              "type": "heading",
               "data": {
-                "language": {
-                  "nameMatchers": [".md"],
-                  "commentsOnly": true,
-                  "name": "Markdown"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/README.md",
-                "projectPath": "work/examples/extensions/README.md",
-                "targetPath": "examples/extensions/README",
-                "pageTitle": "examples/extensions/README",
-                "title": "README"
+                "level": 2,
+                "title": "# layering",
+                "slug": "-layering"
               },
-              "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "# extensions",
-                    "slug": "-extensions"
-                  },
-                  "depth": 2
-                }
-              ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/main.js",
-                "projectPath": "work/examples/extensions/main.js",
-                "targetPath": "examples/extensions/main",
-                "pageTitle": "examples/extensions/main",
-                "title": "main"
-              },
-              "depth": 3,
-              "outline": []
+              "depth": 2
             }
           ]
         }, {
-          "type": "folder",
+          "type": "file",
           "data": {
-            "path": "examples/fixed_state_machine",
-            "title": "fixed_state_machine"
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/main.js",
+            "projectPath": "work/examples/layering/main.js",
+            "targetPath": "layering/main",
+            "pageTitle": "layering/main",
+            "title": "main"
           },
           "depth": 2,
-          "children": [
+          "outline": []
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "logic_components",
+        "title": "logic_components"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/README.md",
+            "projectPath": "work/examples/logic_components/README.md",
+            "targetPath": "logic_components/README",
+            "pageTitle": "logic_components/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
             {
-              "type": "file",
+              "type": "heading",
               "data": {
-                "language": {
-                  "nameMatchers": [".md"],
-                  "commentsOnly": true,
-                  "name": "Markdown"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/README.md",
-                "projectPath": "work/examples/fixed_state_machine/README.md",
-                "targetPath": "examples/fixed_state_machine/README",
-                "pageTitle": "examples/fixed_state_machine/README",
-                "title": "README"
+                "level": 2,
+                "title": "# logic-components",
+                "slug": "-logic-components"
               },
-              "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "# fixed-state-machine",
-                    "slug": "-fixed-state-machine"
-                  },
-                  "depth": 2
-                }
-              ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/main.js",
-                "projectPath": "work/examples/fixed_state_machine/main.js",
-                "targetPath": "examples/fixed_state_machine/main",
-                "pageTitle": "examples/fixed_state_machine/main",
-                "title": "main"
-              },
-              "depth": 3,
-              "outline": []
+              "depth": 2
             }
           ]
         }, {
-          "type": "folder",
+          "type": "file",
           "data": {
-            "path": "examples/game_object_creation",
-            "title": "game_object_creation"
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/main.js",
+            "projectPath": "work/examples/logic_components/main.js",
+            "targetPath": "logic_components/main",
+            "pageTitle": "logic_components/main",
+            "title": "main"
           },
           "depth": 2,
-          "children": [
+          "outline": []
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "loose_state_machine",
+        "title": "loose_state_machine"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/README.md",
+            "projectPath": "work/examples/loose_state_machine/README.md",
+            "targetPath": "loose_state_machine/README",
+            "pageTitle": "loose_state_machine/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
             {
-              "type": "file",
+              "type": "heading",
               "data": {
-                "language": {
-                  "nameMatchers": [".md"],
-                  "commentsOnly": true,
-                  "name": "Markdown"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/README.md",
-                "projectPath": "work/examples/game_object_creation/README.md",
-                "targetPath": "examples/game_object_creation/README",
-                "pageTitle": "examples/game_object_creation/README",
-                "title": "README"
+                "level": 2,
+                "title": "# loose-state-machine",
+                "slug": "-loose-state-machine"
               },
-              "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "# game-object-creation",
-                    "slug": "-game-object-creation"
-                  },
-                  "depth": 2
-                }
-              ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/main.js",
-                "projectPath": "work/examples/game_object_creation/main.js",
-                "targetPath": "examples/game_object_creation/main",
-                "pageTitle": "examples/game_object_creation/main",
-                "title": "main"
-              },
-              "depth": 3,
-              "outline": []
+              "depth": 2
             }
           ]
         }, {
-          "type": "folder",
+          "type": "file",
           "data": {
-            "path": "examples/game_object_nesting",
-            "title": "game_object_nesting"
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/main.js",
+            "projectPath": "work/examples/loose_state_machine/main.js",
+            "targetPath": "loose_state_machine/main",
+            "pageTitle": "loose_state_machine/main",
+            "title": "main"
           },
           "depth": 2,
-          "children": [
+          "outline": []
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "reclaimer",
+        "title": "reclaimer"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/README.md",
+            "projectPath": "work/examples/reclaimer/README.md",
+            "targetPath": "reclaimer/README",
+            "pageTitle": "reclaimer/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
             {
-              "type": "file",
+              "type": "heading",
               "data": {
-                "language": {
-                  "nameMatchers": [".md"],
-                  "commentsOnly": true,
-                  "name": "Markdown"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/README.md",
-                "projectPath": "work/examples/game_object_nesting/README.md",
-                "targetPath": "examples/game_object_nesting/README",
-                "pageTitle": "examples/game_object_nesting/README",
-                "title": "README"
+                "level": 2,
+                "title": "# reclaimer",
+                "slug": "-reclaimer"
               },
-              "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "# game-object-nesting",
-                    "slug": "-game-object-nesting"
-                  },
-                  "depth": 2,
-                  "children": [
-                    {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "Acknowledgments:",
-                        "slug": "acknowledgments"
-                      },
-                      "depth": 3
-                    }
-                  ]
-                }
-              ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/main.js",
-                "projectPath": "work/examples/game_object_nesting/main.js",
-                "targetPath": "examples/game_object_nesting/main",
-                "pageTitle": "examples/game_object_nesting/main",
-                "title": "main"
-              },
-              "depth": 3,
-              "outline": []
+              "depth": 2
             }
           ]
         }, {
-          "type": "folder",
+          "type": "file",
           "data": {
-            "path": "examples/keyboard",
-            "title": "keyboard"
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/main.js",
+            "projectPath": "work/examples/reclaimer/main.js",
+            "targetPath": "reclaimer/main",
+            "pageTitle": "reclaimer/main",
+            "title": "main"
           },
           "depth": 2,
-          "children": [
+          "outline": []
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "renderers",
+        "title": "renderers"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/README.md",
+            "projectPath": "work/examples/renderers/README.md",
+            "targetPath": "renderers/README",
+            "pageTitle": "renderers/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
             {
-              "type": "file",
+              "type": "heading",
               "data": {
-                "language": {
-                  "nameMatchers": [".md"],
-                  "commentsOnly": true,
-                  "name": "Markdown"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/README.md",
-                "projectPath": "work/examples/keyboard/README.md",
-                "targetPath": "examples/keyboard/README",
-                "pageTitle": "examples/keyboard/README",
-                "title": "README"
+                "level": 2,
+                "title": "# renderers",
+                "slug": "-renderers"
               },
-              "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "# keyboard",
-                    "slug": "-keyboard"
-                  },
-                  "depth": 2
-                }
-              ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/main.js",
-                "projectPath": "work/examples/keyboard/main.js",
-                "targetPath": "examples/keyboard/main",
-                "pageTitle": "examples/keyboard/main",
-                "title": "main"
-              },
-              "depth": 3,
-              "outline": []
+              "depth": 2
             }
           ]
         }, {
-          "type": "folder",
+          "type": "file",
           "data": {
-            "path": "examples/layering",
-            "title": "layering"
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/main.js",
+            "projectPath": "work/examples/renderers/main.js",
+            "targetPath": "renderers/main",
+            "pageTitle": "renderers/main",
+            "title": "main"
           },
           "depth": 2,
-          "children": [
+          "outline": []
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "sound",
+        "title": "sound"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/README.md",
+            "projectPath": "work/examples/sound/README.md",
+            "targetPath": "sound/README",
+            "pageTitle": "sound/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
             {
-              "type": "file",
+              "type": "heading",
               "data": {
-                "language": {
-                  "nameMatchers": [".md"],
-                  "commentsOnly": true,
-                  "name": "Markdown"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/README.md",
-                "projectPath": "work/examples/layering/README.md",
-                "targetPath": "examples/layering/README",
-                "pageTitle": "examples/layering/README",
-                "title": "README"
+                "level": 2,
+                "title": "# sound",
+                "slug": "-sound"
               },
-              "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "# layering",
-                    "slug": "-layering"
-                  },
-                  "depth": 2
-                }
-              ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/main.js",
-                "projectPath": "work/examples/layering/main.js",
-                "targetPath": "examples/layering/main",
-                "pageTitle": "examples/layering/main",
-                "title": "main"
-              },
-              "depth": 3,
-              "outline": []
+              "depth": 2
             }
           ]
         }, {
-          "type": "folder",
+          "type": "file",
           "data": {
-            "path": "examples/logic_components",
-            "title": "logic_components"
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/main.js",
+            "projectPath": "work/examples/sound/main.js",
+            "targetPath": "sound/main",
+            "pageTitle": "sound/main",
+            "title": "main"
           },
           "depth": 2,
-          "children": [
+          "outline": []
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "timers",
+        "title": "timers"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/README.md",
+            "projectPath": "work/examples/timers/README.md",
+            "targetPath": "timers/README",
+            "pageTitle": "timers/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
             {
-              "type": "file",
+              "type": "heading",
               "data": {
-                "language": {
-                  "nameMatchers": [".md"],
-                  "commentsOnly": true,
-                  "name": "Markdown"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/README.md",
-                "projectPath": "work/examples/logic_components/README.md",
-                "targetPath": "examples/logic_components/README",
-                "pageTitle": "examples/logic_components/README",
-                "title": "README"
+                "level": 2,
+                "title": "# timers",
+                "slug": "-timers"
               },
-              "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "# logic-components",
-                    "slug": "-logic-components"
-                  },
-                  "depth": 2
-                }
-              ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/main.js",
-                "projectPath": "work/examples/logic_components/main.js",
-                "targetPath": "examples/logic_components/main",
-                "pageTitle": "examples/logic_components/main",
-                "title": "main"
-              },
-              "depth": 3,
-              "outline": []
+              "depth": 2
             }
           ]
         }, {
-          "type": "folder",
+          "type": "file",
           "data": {
-            "path": "examples/loose_state_machine",
-            "title": "loose_state_machine"
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/main.js",
+            "projectPath": "work/examples/timers/main.js",
+            "targetPath": "timers/main",
+            "pageTitle": "timers/main",
+            "title": "main"
           },
           "depth": 2,
-          "children": [
-            {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".md"],
-                  "commentsOnly": true,
-                  "name": "Markdown"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/README.md",
-                "projectPath": "work/examples/loose_state_machine/README.md",
-                "targetPath": "examples/loose_state_machine/README",
-                "pageTitle": "examples/loose_state_machine/README",
-                "title": "README"
-              },
-              "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "# loose-state-machine",
-                    "slug": "-loose-state-machine"
-                  },
-                  "depth": 2
-                }
-              ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/main.js",
-                "projectPath": "work/examples/loose_state_machine/main.js",
-                "targetPath": "examples/loose_state_machine/main",
-                "pageTitle": "examples/loose_state_machine/main",
-                "title": "main"
-              },
-              "depth": 3,
-              "outline": []
-            }
-          ]
-        }, {
-          "type": "folder",
-          "data": {
-            "path": "examples/reclaimer",
-            "title": "reclaimer"
-          },
-          "depth": 2,
-          "children": [
-            {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".md"],
-                  "commentsOnly": true,
-                  "name": "Markdown"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/README.md",
-                "projectPath": "work/examples/reclaimer/README.md",
-                "targetPath": "examples/reclaimer/README",
-                "pageTitle": "examples/reclaimer/README",
-                "title": "README"
-              },
-              "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "# reclaimer",
-                    "slug": "-reclaimer"
-                  },
-                  "depth": 2
-                }
-              ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/main.js",
-                "projectPath": "work/examples/reclaimer/main.js",
-                "targetPath": "examples/reclaimer/main",
-                "pageTitle": "examples/reclaimer/main",
-                "title": "main"
-              },
-              "depth": 3,
-              "outline": []
-            }
-          ]
-        }, {
-          "type": "folder",
-          "data": {
-            "path": "examples/renderers",
-            "title": "renderers"
-          },
-          "depth": 2,
-          "children": [
-            {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".md"],
-                  "commentsOnly": true,
-                  "name": "Markdown"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/README.md",
-                "projectPath": "work/examples/renderers/README.md",
-                "targetPath": "examples/renderers/README",
-                "pageTitle": "examples/renderers/README",
-                "title": "README"
-              },
-              "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "# renderers",
-                    "slug": "-renderers"
-                  },
-                  "depth": 2
-                }
-              ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/main.js",
-                "projectPath": "work/examples/renderers/main.js",
-                "targetPath": "examples/renderers/main",
-                "pageTitle": "examples/renderers/main",
-                "title": "main"
-              },
-              "depth": 3,
-              "outline": []
-            }
-          ]
-        }, {
-          "type": "folder",
-          "data": {
-            "path": "examples/sound",
-            "title": "sound"
-          },
-          "depth": 2,
-          "children": [
-            {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".md"],
-                  "commentsOnly": true,
-                  "name": "Markdown"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/README.md",
-                "projectPath": "work/examples/sound/README.md",
-                "targetPath": "examples/sound/README",
-                "pageTitle": "examples/sound/README",
-                "title": "README"
-              },
-              "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "# sound",
-                    "slug": "-sound"
-                  },
-                  "depth": 2
-                }
-              ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/main.js",
-                "projectPath": "work/examples/sound/main.js",
-                "targetPath": "examples/sound/main",
-                "pageTitle": "examples/sound/main",
-                "title": "main"
-              },
-              "depth": 3,
-              "outline": []
-            }
-          ]
-        }, {
-          "type": "folder",
-          "data": {
-            "path": "examples/timers",
-            "title": "timers"
-          },
-          "depth": 2,
-          "children": [
-            {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".md"],
-                  "commentsOnly": true,
-                  "name": "Markdown"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/README.md",
-                "projectPath": "work/examples/timers/README.md",
-                "targetPath": "examples/timers/README",
-                "pageTitle": "examples/timers/README",
-                "title": "README"
-              },
-              "depth": 3,
-              "outline": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "# timers",
-                    "slug": "-timers"
-                  },
-                  "depth": 2
-                }
-              ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/main.js",
-                "projectPath": "work/examples/timers/main.js",
-                "targetPath": "examples/timers/main",
-                "pageTitle": "examples/timers/main",
-                "title": "main"
-              },
-              "depth": 3,
-              "outline": []
-            }
-          ]
+          "outline": []
         }
       ]
     }

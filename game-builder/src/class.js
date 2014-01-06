@@ -1,7 +1,10 @@
 /* 
  * # class.js
+ * 
  * ### By [John Resig](http://ejohn.org/)
  * ### MIT Licensed.
+ *
+ * This is at the core of everything game-builder. Among other things it provides a **_super()** method, which is extremely usefull.
  */
 
 /**

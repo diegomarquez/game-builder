@@ -34,68 +34,37 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
     }, {
       "type": "folder",
       "data": {
-        "path": "game-builder",
-        "title": "game-builder"
+        "path": "src",
+        "title": "src"
       },
       "depth": 1,
       "children": [
         {
-          "type": "folder",
+          "type": "file",
           "data": {
-            "path": "game-builder/src",
-            "title": "src"
-          },
-          "depth": 2,
-          "children": [
-            {
-              "type": "file",
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/class.js",
+            "projectPath": "work/game-builder/src/class.js",
+            "targetPath": "src/class",
+            "pageTitle": "src/class",
+            "firstHeader": {
+              "type": "heading",
               "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/class.js",
-                "projectPath": "work/game-builder/src/class.js",
-                "targetPath": "game-builder/src/class",
-                "pageTitle": "game-builder/src/class",
-                "firstHeader": {
-                  "type": "heading",
-                  "data": {
-                    "level": 1,
-                    "title": "class.js",
-                    "slug": "classjs",
-                    "isFileHeader": true
-                  },
-                  "depth": 1,
-                  "children": [
-                    {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "MIT Licensed.",
-                        "slug": "mit-licensed"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 2,
-                        "title": "Simple JavaScript Inheritance",
-                        "slug": "simple-javascript-inheritance"
-                      },
-                      "depth": 2
-                    }
-                  ]
-                },
-                "title": "class.js"
+                "level": 1,
+                "title": "class.js",
+                "slug": "classjs",
+                "isFileHeader": true
               },
-              "depth": 3,
-              "outline": [
+              "depth": 1,
+              "children": [
                 {
                   "type": "heading",
                   "data": {
@@ -114,246 +83,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "depth": 2
                 }
               ]
-            }, {
-              "type": "folder",
+            },
+            "title": "class.js"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
               "data": {
-                "path": "game-builder/src/collision",
-                "title": "collision"
+                "level": 3,
+                "title": "MIT Licensed.",
+                "slug": "mit-licensed"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Simple JavaScript Inheritance",
+                "slug": "simple-javascript-inheritance"
+              },
+              "depth": 2
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
+            "path": "src/collision",
+            "title": "collision"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/circle_collider.js",
+                "projectPath": "work/game-builder/src/collision/circle_collider.js",
+                "targetPath": "src/collision/circle_collider",
+                "pageTitle": "src/collision/circle_collider",
+                "title": "circle_collider"
               },
               "depth": 3,
-              "children": [
-                {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/circle_collider.js",
-                    "projectPath": "work/game-builder/src/collision/circle_collider.js",
-                    "targetPath": "game-builder/src/collision/circle_collider",
-                    "pageTitle": "game-builder/src/collision/circle_collider",
-                    "title": "circle_collider"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/collision_component.js",
-                    "projectPath": "work/game-builder/src/collision/collision_component.js",
-                    "targetPath": "game-builder/src/collision/collision_component",
-                    "pageTitle": "game-builder/src/collision/collision_component",
-                    "title": "collision_component"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/collision_resolver.js",
-                    "projectPath": "work/game-builder/src/collision/collision_resolver.js",
-                    "targetPath": "game-builder/src/collision/collision_resolver",
-                    "pageTitle": "game-builder/src/collision/collision_resolver",
-                    "title": "collision_resolver"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/fixed_polygon_collider.js",
-                    "projectPath": "work/game-builder/src/collision/fixed_polygon_collider.js",
-                    "targetPath": "game-builder/src/collision/fixed_polygon_collider",
-                    "pageTitle": "game-builder/src/collision/fixed_polygon_collider",
-                    "title": "fixed_polygon_collider"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/polygon_collider.js",
-                    "projectPath": "work/game-builder/src/collision/polygon_collider.js",
-                    "targetPath": "game-builder/src/collision/polygon_collider",
-                    "pageTitle": "game-builder/src/collision/polygon_collider",
-                    "title": "polygon_collider"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/sat.js",
-                    "projectPath": "work/game-builder/src/collision/sat.js",
-                    "targetPath": "game-builder/src/collision/sat",
-                    "pageTitle": "game-builder/src/collision/sat",
-                    "title": "sat"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }
-              ]
-            }, {
-              "type": "folder",
-              "data": {
-                "path": "game-builder/src/components",
-                "title": "components"
-              },
-              "depth": 3,
-              "children": [
-                {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/component.js",
-                    "projectPath": "work/game-builder/src/components/component.js",
-                    "targetPath": "game-builder/src/components/component",
-                    "pageTitle": "game-builder/src/components/component",
-                    "title": "component"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "folder",
-                  "data": {
-                    "path": "game-builder/src/components/rendering",
-                    "title": "rendering"
-                  },
-                  "depth": 4,
-                  "children": [
-                    {
-                      "type": "file",
-                      "data": {
-                        "language": {
-                          "nameMatchers": [".js"],
-                          "pygmentsLexer": "javascript",
-                          "multiLineComment": ["/*", "*", "*/"],
-                          "singleLineComment": ["//"],
-                          "ignorePrefix": "}",
-                          "foldPrefix": "^",
-                          "name": "JavaScript"
-                        },
-                        "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/rendering/bitmap_renderer.js",
-                        "projectPath": "work/game-builder/src/components/rendering/bitmap_renderer.js",
-                        "targetPath": "game-builder/src/components/rendering/bitmap_renderer",
-                        "pageTitle": "game-builder/src/components/rendering/bitmap_renderer",
-                        "title": "bitmap_renderer"
-                      },
-                      "depth": 5,
-                      "outline": []
-                    }, {
-                      "type": "file",
-                      "data": {
-                        "language": {
-                          "nameMatchers": [".js"],
-                          "pygmentsLexer": "javascript",
-                          "multiLineComment": ["/*", "*", "*/"],
-                          "singleLineComment": ["//"],
-                          "ignorePrefix": "}",
-                          "foldPrefix": "^",
-                          "name": "JavaScript"
-                        },
-                        "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/rendering/renderer.js",
-                        "projectPath": "work/game-builder/src/components/rendering/renderer.js",
-                        "targetPath": "game-builder/src/components/rendering/renderer",
-                        "pageTitle": "game-builder/src/components/rendering/renderer",
-                        "title": "renderer"
-                      },
-                      "depth": 5,
-                      "outline": []
-                    }
-                  ]
-                }
-              ]
-            }, {
-              "type": "folder",
-              "data": {
-                "path": "game-builder/src/debug",
-                "title": "debug"
-              },
-              "depth": 3,
-              "children": [
-                {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/debug/game_object_debug_draw.js",
-                    "projectPath": "work/game-builder/src/debug/game_object_debug_draw.js",
-                    "targetPath": "game-builder/src/debug/game_object_debug_draw",
-                    "pageTitle": "game-builder/src/debug/game_object_debug_draw",
-                    "title": "game_object_debug_draw"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }
-              ]
+              "outline": []
             }, {
               "type": "file",
               "data": {
@@ -366,35 +146,232 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/delegate.js",
-                "projectPath": "work/game-builder/src/delegate.js",
-                "targetPath": "game-builder/src/delegate",
-                "pageTitle": "game-builder/src/delegate",
-                "firstHeader": {
-                  "type": "heading",
-                  "data": {
-                    "level": 1,
-                    "title": "delegate.js",
-                    "slug": "delegatejs",
-                    "isFileHeader": true
-                  },
-                  "depth": 1,
-                  "children": [
-                    {
-                      "type": "heading",
-                      "data": {
-                        "level": 2,
-                        "title": "Simple, flexible and powerful.",
-                        "slug": "simple-flexible-and-powerful"
-                      },
-                      "depth": 2
-                    }
-                  ]
-                },
-                "title": "delegate.js"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/collision_component.js",
+                "projectPath": "work/game-builder/src/collision/collision_component.js",
+                "targetPath": "src/collision/collision_component",
+                "pageTitle": "src/collision/collision_component",
+                "title": "collision_component"
               },
               "depth": 3,
-              "outline": [
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/collision_resolver.js",
+                "projectPath": "work/game-builder/src/collision/collision_resolver.js",
+                "targetPath": "src/collision/collision_resolver",
+                "pageTitle": "src/collision/collision_resolver",
+                "title": "collision_resolver"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/fixed_polygon_collider.js",
+                "projectPath": "work/game-builder/src/collision/fixed_polygon_collider.js",
+                "targetPath": "src/collision/fixed_polygon_collider",
+                "pageTitle": "src/collision/fixed_polygon_collider",
+                "title": "fixed_polygon_collider"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/polygon_collider.js",
+                "projectPath": "work/game-builder/src/collision/polygon_collider.js",
+                "targetPath": "src/collision/polygon_collider",
+                "pageTitle": "src/collision/polygon_collider",
+                "title": "polygon_collider"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/sat.js",
+                "projectPath": "work/game-builder/src/collision/sat.js",
+                "targetPath": "src/collision/sat",
+                "pageTitle": "src/collision/sat",
+                "title": "sat"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
+            "path": "src/components",
+            "title": "components"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/component.js",
+                "projectPath": "work/game-builder/src/components/component.js",
+                "targetPath": "src/components/component",
+                "pageTitle": "src/components/component",
+                "title": "component"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "folder",
+              "data": {
+                "path": "src/components/rendering",
+                "title": "rendering"
+              },
+              "depth": 3,
+              "children": [
+                {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/rendering/bitmap_renderer.js",
+                    "projectPath": "work/game-builder/src/components/rendering/bitmap_renderer.js",
+                    "targetPath": "src/components/rendering/bitmap_renderer",
+                    "pageTitle": "src/components/rendering/bitmap_renderer",
+                    "title": "bitmap_renderer"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/rendering/renderer.js",
+                    "projectPath": "work/game-builder/src/components/rendering/renderer.js",
+                    "targetPath": "src/components/rendering/renderer",
+                    "pageTitle": "src/components/rendering/renderer",
+                    "title": "renderer"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }
+              ]
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
+            "path": "src/debug",
+            "title": "debug"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/debug/game_object_debug_draw.js",
+                "projectPath": "work/game-builder/src/debug/game_object_debug_draw.js",
+                "targetPath": "src/debug/game_object_debug_draw",
+                "pageTitle": "src/debug/game_object_debug_draw",
+                "title": "game_object_debug_draw"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/delegate.js",
+            "projectPath": "work/game-builder/src/delegate.js",
+            "targetPath": "src/delegate",
+            "pageTitle": "src/delegate",
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "delegate.js",
+                "slug": "delegatejs",
+                "isFileHeader": true
+              },
+              "depth": 1,
+              "children": [
                 {
                   "type": "heading",
                   "data": {
@@ -405,124 +382,77 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "depth": 2
                 }
               ]
-            }, {
-              "type": "file",
+            },
+            "title": "delegate.js"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
               "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/draw.js",
-                "projectPath": "work/game-builder/src/draw.js",
-                "targetPath": "game-builder/src/draw",
-                "pageTitle": "game-builder/src/draw",
-                "title": "draw"
+                "level": 2,
+                "title": "Simple, flexible and powerful.",
+                "slug": "simple-flexible-and-powerful"
               },
-              "depth": 3,
-              "outline": []
-            }, {
+              "depth": 2
+            }
+          ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/draw.js",
+            "projectPath": "work/game-builder/src/draw.js",
+            "targetPath": "src/draw",
+            "pageTitle": "src/draw",
+            "title": "draw"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "folder",
+          "data": {
+            "path": "src/game_canvas",
+            "title": "game_canvas"
+          },
+          "depth": 2,
+          "children": [
+            {
               "type": "folder",
               "data": {
-                "path": "game-builder/src/game_canvas",
-                "title": "game_canvas"
+                "path": "src/game_canvas/extensions",
+                "title": "extensions"
               },
               "depth": 3,
               "children": [
                 {
-                  "type": "folder",
+                  "type": "file",
                   "data": {
-                    "path": "game-builder/src/game_canvas/extensions",
-                    "title": "extensions"
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/aspect_ratio_resize.js",
+                    "projectPath": "work/game-builder/src/game_canvas/extensions/aspect_ratio_resize.js",
+                    "targetPath": "src/game_canvas/extensions/aspect_ratio_resize",
+                    "pageTitle": "src/game_canvas/extensions/aspect_ratio_resize",
+                    "title": "aspect_ratio_resize"
                   },
                   "depth": 4,
-                  "children": [
-                    {
-                      "type": "file",
-                      "data": {
-                        "language": {
-                          "nameMatchers": [".js"],
-                          "pygmentsLexer": "javascript",
-                          "multiLineComment": ["/*", "*", "*/"],
-                          "singleLineComment": ["//"],
-                          "ignorePrefix": "}",
-                          "foldPrefix": "^",
-                          "name": "JavaScript"
-                        },
-                        "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/aspect_ratio_resize.js",
-                        "projectPath": "work/game-builder/src/game_canvas/extensions/aspect_ratio_resize.js",
-                        "targetPath": "game-builder/src/game_canvas/extensions/aspect_ratio_resize",
-                        "pageTitle": "game-builder/src/game_canvas/extensions/aspect_ratio_resize",
-                        "title": "aspect_ratio_resize"
-                      },
-                      "depth": 5,
-                      "outline": []
-                    }, {
-                      "type": "file",
-                      "data": {
-                        "language": {
-                          "nameMatchers": [".js"],
-                          "pygmentsLexer": "javascript",
-                          "multiLineComment": ["/*", "*", "*/"],
-                          "singleLineComment": ["//"],
-                          "ignorePrefix": "}",
-                          "foldPrefix": "^",
-                          "name": "JavaScript"
-                        },
-                        "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/basic_layer_setup.js",
-                        "projectPath": "work/game-builder/src/game_canvas/extensions/basic_layer_setup.js",
-                        "targetPath": "game-builder/src/game_canvas/extensions/basic_layer_setup",
-                        "pageTitle": "game-builder/src/game_canvas/extensions/basic_layer_setup",
-                        "title": "basic_layer_setup"
-                      },
-                      "depth": 5,
-                      "outline": []
-                    }, {
-                      "type": "file",
-                      "data": {
-                        "language": {
-                          "nameMatchers": [".js"],
-                          "pygmentsLexer": "javascript",
-                          "multiLineComment": ["/*", "*", "*/"],
-                          "singleLineComment": ["//"],
-                          "ignorePrefix": "}",
-                          "foldPrefix": "^",
-                          "name": "JavaScript"
-                        },
-                        "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/pause.js",
-                        "projectPath": "work/game-builder/src/game_canvas/extensions/pause.js",
-                        "targetPath": "game-builder/src/game_canvas/extensions/pause",
-                        "pageTitle": "game-builder/src/game_canvas/extensions/pause",
-                        "title": "pause"
-                      },
-                      "depth": 5,
-                      "outline": []
-                    }, {
-                      "type": "file",
-                      "data": {
-                        "language": {
-                          "nameMatchers": [".js"],
-                          "pygmentsLexer": "javascript",
-                          "multiLineComment": ["/*", "*", "*/"],
-                          "singleLineComment": ["//"],
-                          "ignorePrefix": "}",
-                          "foldPrefix": "^",
-                          "name": "JavaScript"
-                        },
-                        "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/resume.js",
-                        "projectPath": "work/game-builder/src/game_canvas/extensions/resume.js",
-                        "targetPath": "game-builder/src/game_canvas/extensions/resume",
-                        "pageTitle": "game-builder/src/game_canvas/extensions/resume",
-                        "title": "resume"
-                      },
-                      "depth": 5,
-                      "outline": []
-                    }
-                  ]
+                  "outline": []
                 }, {
                   "type": "file",
                   "data": {
@@ -535,11 +465,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "foldPrefix": "^",
                       "name": "JavaScript"
                     },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/game.js",
-                    "projectPath": "work/game-builder/src/game_canvas/game.js",
-                    "targetPath": "game-builder/src/game_canvas/game",
-                    "pageTitle": "game-builder/src/game_canvas/game",
-                    "title": "game"
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/basic_layer_setup.js",
+                    "projectPath": "work/game-builder/src/game_canvas/extensions/basic_layer_setup.js",
+                    "targetPath": "src/game_canvas/extensions/basic_layer_setup",
+                    "pageTitle": "src/game_canvas/extensions/basic_layer_setup",
+                    "title": "basic_layer_setup"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/pause.js",
+                    "projectPath": "work/game-builder/src/game_canvas/extensions/pause.js",
+                    "targetPath": "src/game_canvas/extensions/pause",
+                    "pageTitle": "src/game_canvas/extensions/pause",
+                    "title": "pause"
+                  },
+                  "depth": 4,
+                  "outline": []
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/resume.js",
+                    "projectPath": "work/game-builder/src/game_canvas/extensions/resume.js",
+                    "targetPath": "src/game_canvas/extensions/resume",
+                    "pageTitle": "src/game_canvas/extensions/resume",
+                    "title": "resume"
                   },
                   "depth": 4,
                   "outline": []
@@ -557,416 +527,436 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/gb.js",
-                "projectPath": "work/game-builder/src/gb.js",
-                "targetPath": "game-builder/src/gb",
-                "pageTitle": "game-builder/src/gb",
-                "title": "gb"
-              },
-              "depth": 3,
-              "outline": []
-            }, {
-              "type": "folder",
-              "data": {
-                "path": "game-builder/src/hierarchy",
-                "title": "hierarchy"
-              },
-              "depth": 3,
-              "children": [
-                {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/game_object.js",
-                    "projectPath": "work/game-builder/src/hierarchy/game_object.js",
-                    "targetPath": "game-builder/src/hierarchy/game_object",
-                    "pageTitle": "game-builder/src/hierarchy/game_object",
-                    "title": "game_object"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/game_object_container.js",
-                    "projectPath": "work/game-builder/src/hierarchy/game_object_container.js",
-                    "targetPath": "game-builder/src/hierarchy/game_object_container",
-                    "pageTitle": "game-builder/src/hierarchy/game_object_container",
-                    "title": "game_object_container"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/layer.js",
-                    "projectPath": "work/game-builder/src/hierarchy/layer.js",
-                    "targetPath": "game-builder/src/hierarchy/layer",
-                    "pageTitle": "game-builder/src/hierarchy/layer",
-                    "title": "layer"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/layers.js",
-                    "projectPath": "work/game-builder/src/hierarchy/layers.js",
-                    "targetPath": "game-builder/src/hierarchy/layers",
-                    "pageTitle": "game-builder/src/hierarchy/layers",
-                    "title": "layers"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/root.js",
-                    "projectPath": "work/game-builder/src/hierarchy/root.js",
-                    "targetPath": "game-builder/src/hierarchy/root",
-                    "pageTitle": "game-builder/src/hierarchy/root",
-                    "title": "root"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }
-              ]
-            }, {
-              "type": "folder",
-              "data": {
-                "path": "game-builder/src/input",
-                "title": "input"
-              },
-              "depth": 3,
-              "children": [
-                {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/input/keyboard.js",
-                    "projectPath": "work/game-builder/src/input/keyboard.js",
-                    "targetPath": "game-builder/src/input/keyboard",
-                    "pageTitle": "game-builder/src/input/keyboard",
-                    "title": "keyboard"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }
-              ]
-            }, {
-              "type": "folder",
-              "data": {
-                "path": "game-builder/src/math",
-                "title": "math"
-              },
-              "depth": 3,
-              "children": [
-                {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/math/matrix_3x3.js",
-                    "projectPath": "work/game-builder/src/math/matrix_3x3.js",
-                    "targetPath": "game-builder/src/math/matrix_3x3",
-                    "pageTitle": "game-builder/src/math/matrix_3x3",
-                    "title": "matrix_3x3"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/math/vector_2D.js",
-                    "projectPath": "work/game-builder/src/math/vector_2D.js",
-                    "targetPath": "game-builder/src/math/vector_2D",
-                    "pageTitle": "game-builder/src/math/vector_2D",
-                    "title": "vector_2D"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }
-              ]
-            }, {
-              "type": "folder",
-              "data": {
-                "path": "game-builder/src/pools",
-                "title": "pools"
-              },
-              "depth": 3,
-              "children": [
-                {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/assembler.js",
-                    "projectPath": "work/game-builder/src/pools/assembler.js",
-                    "targetPath": "game-builder/src/pools/assembler",
-                    "pageTitle": "game-builder/src/pools/assembler",
-                    "title": "assembler"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/bundle.js",
-                    "projectPath": "work/game-builder/src/pools/bundle.js",
-                    "targetPath": "game-builder/src/pools/bundle",
-                    "pageTitle": "game-builder/src/pools/bundle",
-                    "title": "bundle"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/component_pool.js",
-                    "projectPath": "work/game-builder/src/pools/component_pool.js",
-                    "targetPath": "game-builder/src/pools/component_pool",
-                    "pageTitle": "game-builder/src/pools/component_pool",
-                    "title": "component_pool"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/game_object_pool.js",
-                    "projectPath": "work/game-builder/src/pools/game_object_pool.js",
-                    "targetPath": "game-builder/src/pools/game_object_pool",
-                    "pageTitle": "game-builder/src/pools/game_object_pool",
-                    "title": "game_object_pool"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/pool.js",
-                    "projectPath": "work/game-builder/src/pools/pool.js",
-                    "targetPath": "game-builder/src/pools/pool",
-                    "pageTitle": "game-builder/src/pools/pool",
-                    "title": "pool"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }, {
-                  "type": "file",
-                  "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/reclaimer.js",
-                    "projectPath": "work/game-builder/src/pools/reclaimer.js",
-                    "targetPath": "game-builder/src/pools/reclaimer",
-                    "pageTitle": "game-builder/src/pools/reclaimer",
-                    "title": "reclaimer"
-                  },
-                  "depth": 4,
-                  "outline": []
-                }
-              ]
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/sound_player.js",
-                "projectPath": "work/game-builder/src/sound_player.js",
-                "targetPath": "game-builder/src/sound_player",
-                "pageTitle": "game-builder/src/sound_player",
-                "title": "sound_player"
-              },
-              "depth": 3,
-              "outline": []
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/state_machine.js",
-                "projectPath": "work/game-builder/src/state_machine.js",
-                "targetPath": "game-builder/src/state_machine",
-                "pageTitle": "game-builder/src/state_machine",
-                "title": "state_machine"
-              },
-              "depth": 3,
-              "outline": []
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/timer_factory.js",
-                "projectPath": "work/game-builder/src/timer_factory.js",
-                "targetPath": "game-builder/src/timer_factory",
-                "pageTitle": "game-builder/src/timer_factory",
-                "title": "timer_factory"
-              },
-              "depth": 3,
-              "outline": []
-            }, {
-              "type": "file",
-              "data": {
-                "language": {
-                  "nameMatchers": [".js"],
-                  "pygmentsLexer": "javascript",
-                  "multiLineComment": ["/*", "*", "*/"],
-                  "singleLineComment": ["//"],
-                  "ignorePrefix": "}",
-                  "foldPrefix": "^",
-                  "name": "JavaScript"
-                },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/util.js",
-                "projectPath": "work/game-builder/src/util.js",
-                "targetPath": "game-builder/src/util",
-                "pageTitle": "game-builder/src/util",
-                "title": "util"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/game.js",
+                "projectPath": "work/game-builder/src/game_canvas/game.js",
+                "targetPath": "src/game_canvas/game",
+                "pageTitle": "src/game_canvas/game",
+                "title": "game"
               },
               "depth": 3,
               "outline": []
             }
           ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/gb.js",
+            "projectPath": "work/game-builder/src/gb.js",
+            "targetPath": "src/gb",
+            "pageTitle": "src/gb",
+            "title": "gb"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "folder",
+          "data": {
+            "path": "src/hierarchy",
+            "title": "hierarchy"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/game_object.js",
+                "projectPath": "work/game-builder/src/hierarchy/game_object.js",
+                "targetPath": "src/hierarchy/game_object",
+                "pageTitle": "src/hierarchy/game_object",
+                "title": "game_object"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/game_object_container.js",
+                "projectPath": "work/game-builder/src/hierarchy/game_object_container.js",
+                "targetPath": "src/hierarchy/game_object_container",
+                "pageTitle": "src/hierarchy/game_object_container",
+                "title": "game_object_container"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/layer.js",
+                "projectPath": "work/game-builder/src/hierarchy/layer.js",
+                "targetPath": "src/hierarchy/layer",
+                "pageTitle": "src/hierarchy/layer",
+                "title": "layer"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/layers.js",
+                "projectPath": "work/game-builder/src/hierarchy/layers.js",
+                "targetPath": "src/hierarchy/layers",
+                "pageTitle": "src/hierarchy/layers",
+                "title": "layers"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/root.js",
+                "projectPath": "work/game-builder/src/hierarchy/root.js",
+                "targetPath": "src/hierarchy/root",
+                "pageTitle": "src/hierarchy/root",
+                "title": "root"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
+            "path": "src/input",
+            "title": "input"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/input/keyboard.js",
+                "projectPath": "work/game-builder/src/input/keyboard.js",
+                "targetPath": "src/input/keyboard",
+                "pageTitle": "src/input/keyboard",
+                "title": "keyboard"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
+            "path": "src/math",
+            "title": "math"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/math/matrix_3x3.js",
+                "projectPath": "work/game-builder/src/math/matrix_3x3.js",
+                "targetPath": "src/math/matrix_3x3",
+                "pageTitle": "src/math/matrix_3x3",
+                "title": "matrix_3x3"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/math/vector_2D.js",
+                "projectPath": "work/game-builder/src/math/vector_2D.js",
+                "targetPath": "src/math/vector_2D",
+                "pageTitle": "src/math/vector_2D",
+                "title": "vector_2D"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
+            "path": "src/pools",
+            "title": "pools"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/assembler.js",
+                "projectPath": "work/game-builder/src/pools/assembler.js",
+                "targetPath": "src/pools/assembler",
+                "pageTitle": "src/pools/assembler",
+                "title": "assembler"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/bundle.js",
+                "projectPath": "work/game-builder/src/pools/bundle.js",
+                "targetPath": "src/pools/bundle",
+                "pageTitle": "src/pools/bundle",
+                "title": "bundle"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/component_pool.js",
+                "projectPath": "work/game-builder/src/pools/component_pool.js",
+                "targetPath": "src/pools/component_pool",
+                "pageTitle": "src/pools/component_pool",
+                "title": "component_pool"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/game_object_pool.js",
+                "projectPath": "work/game-builder/src/pools/game_object_pool.js",
+                "targetPath": "src/pools/game_object_pool",
+                "pageTitle": "src/pools/game_object_pool",
+                "title": "game_object_pool"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/pool.js",
+                "projectPath": "work/game-builder/src/pools/pool.js",
+                "targetPath": "src/pools/pool",
+                "pageTitle": "src/pools/pool",
+                "title": "pool"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/reclaimer.js",
+                "projectPath": "work/game-builder/src/pools/reclaimer.js",
+                "targetPath": "src/pools/reclaimer",
+                "pageTitle": "src/pools/reclaimer",
+                "title": "reclaimer"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/sound_player.js",
+            "projectPath": "work/game-builder/src/sound_player.js",
+            "targetPath": "src/sound_player",
+            "pageTitle": "src/sound_player",
+            "title": "sound_player"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/state_machine.js",
+            "projectPath": "work/game-builder/src/state_machine.js",
+            "targetPath": "src/state_machine",
+            "pageTitle": "src/state_machine",
+            "title": "state_machine"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/timer_factory.js",
+            "projectPath": "work/game-builder/src/timer_factory.js",
+            "targetPath": "src/timer_factory",
+            "pageTitle": "src/timer_factory",
+            "title": "timer_factory"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/util.js",
+            "projectPath": "work/game-builder/src/util.js",
+            "targetPath": "src/util",
+            "pageTitle": "src/util",
+            "title": "util"
+          },
+          "depth": 2,
+          "outline": []
         }
       ]
     }

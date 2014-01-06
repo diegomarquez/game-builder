@@ -1,0 +1,23 @@
+<!DOCTYPE html><html lang="en"><head><title>src/gb</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="src/gb"><meta name="groc-project-path" content="work/game-builder/src/gb.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/gb.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;game&#39;</span><span class="p">,</span> <span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="s1">&#39;layers&#39;</span><span class="p">,</span> <span class="s1">&#39;assembler&#39;</span><span class="p">,</span> <span class="s1">&#39;reclaimer&#39;</span><span class="p">,</span> <span class="s1">&#39;game_object_pool&#39;</span><span class="p">,</span> <span class="s1">&#39;component_pool&#39;</span><span class="p">],</span> 
+  <span class="kd">function</span><span class="p">(</span><span class="nx">game</span><span class="p">,</span> <span class="nx">root</span><span class="p">,</span> <span class="nx">layers</span><span class="p">,</span> <span class="nx">assembler</span><span class="p">,</span> <span class="nx">reclaimer</span><span class="p">,</span> <span class="nx">gameObjectPool</span><span class="p">,</span> <span class="nx">componentPool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">game</span><span class="o">:</span> <span class="nx">game</span><span class="p">,</span>
+      <span class="nx">root</span><span class="o">:</span> <span class="nx">root</span><span class="p">,</span>
+      <span class="nx">layers</span><span class="o">:</span><span class="nx">layers</span><span class="p">,</span>
+
+      <span class="nx">assembler</span><span class="o">:</span> <span class="nx">assembler</span><span class="p">,</span>
+      <span class="nx">reclaimer</span><span class="o">:</span> <span class="nx">reclaimer</span><span class="p">,</span>
+
+      <span class="nx">goPool</span><span class="o">:</span><span class="nx">gameObjectPool</span><span class="p">,</span>
+      <span class="nx">coPool</span><span class="o">:</span><span class="nx">componentPool</span><span class="p">,</span>
+
+      <span class="nx">canvas</span><span class="o">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;game&#39;</span><span class="p">),</span>
+
+      <span class="nx">addToLayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">layerName</span><span class="p">,</span> <span class="nx">goId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">go</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">layerName</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">assembler</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">goId</span><span class="p">));</span>
+        <span class="nx">go</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span> 
+        <span class="k">return</span> <span class="nx">go</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">);</span></div></div></div></div></body></html>
