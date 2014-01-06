@@ -22,7 +22,8 @@ For better results it is better to use it in conjuction with [generator-game-bui
     - Getting started. Instructions on what you need to download. And how to us the tools.
     - Links to running examples
 
-- Documentation generate links to other parts of the documentation
+- Documentation 
+    - generate links to other parts of the documentation. Ej. Dependencies
 
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.

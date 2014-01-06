@@ -1,14 +1,20 @@
-// Class
-//// Class
-// # Class H1
-// # # Class H2
-
 /* 
- * Simple JavaScript Inheritance
- * By John Resig http://ejohn.org/
- * MIT Licensed.
+ * # class.js
+ * 
+ * ### By [John Resig](http://ejohn.org/)
+ * ### MIT Licensed.
+ *
+ * This is at the core of everything [Game-Builder](http://diegomarquez.github.io/game-builder). 
+ * The main feature it provides as opposed to more crud inheritance implementations in Javascript,
+ * is a **_super()** method, which is extremely usefull. 
+ *
+ * Inspired by [base2](https://code.google.com/p/base2/) and [Prototype](http://prototypejs.org/)
  */
-// Inspired by base2 and Prototype
+
+/**
+ * Simple JavaScript Inheritance
+ * --------------------------------
+ */
 (function(){
   var initializing = false, fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
  
