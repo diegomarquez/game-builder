@@ -2,9 +2,12 @@
  * # delegate.js
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
  *
- * Dependencies: [util](http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html), [class](http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html)
+ * Inherits from: [class](http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html)
+ * Dependends of: [util](http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html)
  *
- * A @@requireJS module implementing a [Multicast Delegate](http://en.wikipedia.org/wiki/Delegation_pattern). 
+ * A [requireJS](http://requirejs.org/) module.
+ * 
+ * It implements a [Multicast Delegate](http://en.wikipedia.org/wiki/Delegation_pattern). 
  * Sounds like a mouthful? The more friendly name is, 'Event System', which sounds about a million times less cool.
  *
  * Now you know what the hell every is trying to talk about when they mention events.
@@ -40,6 +43,9 @@ define(["util", "class"], function(util) {
 			this.callbackList = {};
 			this.list = null;
 		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>on</strong> Use it to add functions to the delegate instance.</p>

@@ -1,9 +1,11 @@
-//HELP: To refresh dictionary files, grunt dictionary --dictionary
-
 module.exports = function(grunt) {
   var pkg = grunt.file.readJSON('package.json');
+  
+  pkg.projectRoot = pkg.projectRoot[grunt.option('dictionary')];
 
   var gruntOptions = {}
+
+  gruntOptions['pkg'] = pkg;
 
   gruntOptions['shell'] = {
       rm: { 
@@ -14,7 +16,7 @@ module.exports = function(grunt) {
 
       clone: {
         command: function() { 
-          return 'git clone ' + pkg.examplesRepository + ' ' + "work/" 
+          return "git clone <%= pkg.examplesRepository %> work/"
         } 
       },
 
@@ -28,8 +30,12 @@ module.exports = function(grunt) {
 
       groc: {
         command: function(folder) {
-          var obj = { folder: folder };
-          var command = 'groc "work/<%= folder %>/**/*.js" "work/<%= folder %>/**/*.md" "work/<%= folder %>/README.md" -i "work/<%= folder %>/README.md" -o ./<%= folder %>-docs -e "work/<%= folder %>/**/Gruntfile.js"';
+          var obj = { 
+            folder: folder,
+            work: "work/" + folder 
+          };
+
+          var command = 'groc "<%= work %>/**/*.js" "<%= work %>/**/*.md" "<%= work %>/README.md" -i "<%= work %>/README.md" -o ./<%= folder %>-docs -e "<%= work %>/**/Gruntfile.js" -t "work/"';
           return grunt.template.process(command, {data: obj});
         }
       },
@@ -54,14 +60,14 @@ module.exports = function(grunt) {
       gameBuilder: {
         paths: ["**/*.js"],
         cwd: "work/game-builder/",
-        prefix: "http://diegomarquez.github.io/game-builder/game-builder-docs/",
+        prefix: "<%= pkg.projectRoot %>/game-builder-docs/",
         suffix: ".html",
         output: "game-builder-dictionary.json"
       },
       examples: {
         paths: ["**/*.js"],
         cwd: "work/examples/",
-        prefix: "http://diegomarquez.github.io/game-builder/examples-docs/",
+        prefix: "<%= pkg.projectRoot %>/examples-docs/",
         suffix: ".html",
         output: "examples-dictionary.json"
       }
@@ -120,18 +126,6 @@ module.exports = function(grunt) {
     'shell:rm:work'
   ]);
 
-  grunt.registerTask('publish', [
-    'docs',
-    'shell:push'
-  ]);
-
-  grunt.registerTask('dictionary', [
-    'clean',
-    'shell:clone',
-    'linkJSON',
-    'clean'
-  ]);
-
   grunt.registerMultiTask("linkJSON", "Build a link JSON", function() {
       var paths = grunt.file.expand({cwd:this.data.cwd}, this.data.paths );
       var out = this.data.output;
@@ -148,4 +142,18 @@ module.exports = function(grunt) {
 
       grunt.file.write(out, JSON.stringify(dictionary, undefined, 2 ));
   });
+
+  if(grunt.option('dictionary')) {
+    grunt.registerTask('default', [
+      'clean',
+      'shell:clone',
+      'linkJSON',
+      'clean'
+    ]);      
+  }else {
+    grunt.registerTask('default', [
+      'docs',
+      'shell:push'
+    ]);
+  }
 };
