@@ -4,7 +4,7 @@
  *
  * Inherits from: [class](http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html)
  * 
- * Dependends of: [util](http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html)
+ * Depends of: [util](http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html)
  *
  * A [requireJS](http://requirejs.org/) module.
  * 

@@ -553,10 +553,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/game-builder/src/gb.js",
             "targetPath": "src/gb",
             "pageTitle": "src/gb",
-            "title": "gb"
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "gb.js",
+                "slug": "gbjs",
+                "isFileHeader": true
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "A bunch of shortcuts",
+                    "slug": "a-bunch-of-shortcuts"
+                  },
+                  "depth": 2
+                }
+              ]
+            },
+            "title": "gb.js"
           },
           "depth": 2,
-          "outline": []
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "A bunch of shortcuts",
+                "slug": "a-bunch-of-shortcuts"
+              },
+              "depth": 2
+            }
+          ]
         }, {
           "type": "folder",
           "data": {

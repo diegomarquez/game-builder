@@ -4,9 +4,11 @@
 
 <h3 id="mit-licensed">MIT Licensed.</h3>
 
-<p>This is at the core of everything game-builder. Among other things it provides a <strong>_super()</strong> method, which is extremely usefull.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="simple-javascript-inheritance">Simple JavaScript Inheritance</h2>
+<p>This is at the core of everything <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a>. 
+The main feature it provides as opposed to more crud inheritance implementations in Javascript,
+is a <strong>_super()</strong> method, which is extremely usefull. </p>
 
-<p>Inspired by <a href="https://code.google.com/p/base2/">base2</a> and <a href="http://prototypejs.org/">Prototype</a></p></div></div><div class="code"><div class="wrapper"><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+<p>Inspired by <a href="https://code.google.com/p/base2/">base2</a> and <a href="http://prototypejs.org/">Prototype</a></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="simple-javascript-inheritance">Simple JavaScript Inheritance</h2></div></div></div><div class="segment"><div class="code"><div class="wrapper"><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
   <span class="kd">var</span> <span class="nx">initializing</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">fnTest</span> <span class="o">=</span> <span class="sr">/xyz/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span><span class="nx">xyz</span><span class="p">;})</span> <span class="o">?</span> <span class="sr">/\b_super\b/</span> <span class="o">:</span> <span class="sr">/.*/</span><span class="p">;</span>
  </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The base Class implementation (does nothing)</p></div></div><div class="code"><div class="wrapper">  <span class="k">this</span><span class="p">.</span><span class="nx">Class</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){};</span>
  </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Create a new Class that inherits from this class</p></div></div><div class="code"><div class="wrapper">  <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">prop</span><span class="p">)</span> <span class="p">{</span>
