@@ -1,4 +1,4 @@
-define(['game_object_pool', 'component_pool'], function(GameObjectPool, ComponentPool) {
+define(['game-object-pool', 'component-pool'], function(GameObjectPool, ComponentPool) {
 	var Reclaimer = function() {};
 
 	Reclaimer.prototype.claim = function(go, id) {

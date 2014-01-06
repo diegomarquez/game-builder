@@ -1,11 +1,11 @@
 define(function() {
-	var Matrix_3x3 = function(a, b, c, d, tx, ty) {
+	var matrix_3x3 = function(a, b, c, d, tx, ty) {
 		this.initialize(a, b, c, d, tx, ty);
 	};
 
-	var p = Matrix_3x3.prototype;
+	var p = matrix_3x3.prototype;
 
-	Matrix_3x3.DEG_TO_RAD = Math.PI / 180;
+	matrix_3x3.DEG_TO_RAD = Math.PI / 180;
 
 	p.a = 1;
 	p.b = 0;
@@ -60,7 +60,7 @@ define(function() {
 
 	p.prependTransform = function(x, y, scaleX, scaleY, rotation, regX, regY) {
 		if (rotation % 360) {
-			var r = rotation * Matrix_3x3.DEG_TO_RAD;
+			var r = rotation * matrix_3x3.DEG_TO_RAD;
 			var cos = Math.cos(r);
 			var sin = Math.sin(r);
 		} else {
@@ -80,7 +80,7 @@ define(function() {
 
 	p.appendTransform = function(x, y, scaleX, scaleY, rotation, regX, regY) {
 		if (rotation % 360) {
-			var r = rotation * Matrix_3x3.DEG_TO_RAD;
+			var r = rotation * matrix_3x3.DEG_TO_RAD;
 			var cos = Math.cos(r);
 			var sin = Math.sin(r);
 		} else {
@@ -151,7 +151,7 @@ define(function() {
 		var skewY = Math.atan2(this.b, this.a);
 
 		if (skewX == skewY) {
-			target.rotation = skewY / Matrix_3x3.DEG_TO_RAD;
+			target.rotation = skewY / matrix_3x3.DEG_TO_RAD;
 			if (this.a < 0 && this.d >= 0) {
 				target.rotation += (target.rotation <= 0) ? 180 : -180;
 			}
@@ -168,8 +168,8 @@ define(function() {
 	};
 
 	p.clone = function() {
-		return new Matrix_3x3(this.a, this.b, this.c, this.d, this.tx, this.ty);
+		return new matrix_3x3(this.a, this.b, this.c, this.d, this.tx, this.ty);
 	};
 
-	return Matrix_3x3
+	return matrix_3x3
 });

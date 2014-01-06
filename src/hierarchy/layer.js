@@ -1,4 +1,4 @@
-define(["game_object_container"], function(Container){
+define(["game-object-container"], function(Container){
 	var Layer = Container.extend({
 		clear: function() {
 			if(this.childs) {	

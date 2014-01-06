@@ -1,4 +1,4 @@
-define(["game_object"], function(GameObject){
+define(["game-object"], function(GameObject){
 
 	var GameObjectContainer = GameObject.extend({
 		init: function() {

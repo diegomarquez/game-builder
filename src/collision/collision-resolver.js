@@ -4,22 +4,22 @@ define(['sat'], function(SAT) {
 		this.toCollideCache = {};
 	};
 
-	CollisionResolver.prototype.addToCollisionList = function(collision_component) {
-		var indexes = this.toCollideCache[collision_component.collisionId];
+	CollisionResolver.prototype.addToCollisionList = function(collisionComponent) {
+		var indexes = this.toCollideCache[collisionComponent.collisionId];
 
 		if (indexes != null && indexes.length > 0) {
 			for (var i = 0; i < indexes.length; i++) {
-				this.collisionLists[indexes[i]].push(collision_component);
+				this.collisionLists[indexes[i]].push(collisionComponent);
 			}
 		}
 	};
 
-	CollisionResolver.prototype.removeFromCollisionList = function(collision_component) {
-		var indexes = this.toCollideCache[collision_component.collisionId];
+	CollisionResolver.prototype.removeFromCollisionList = function(collisionComponent) {
+		var indexes = this.toCollideCache[collisionComponent.collisionId];
 
 		if (indexes != null && indexes.length > 0) {
 			for (m = indexes.length - 1; m >= 0; m--) {
-				this.collisionLists[indexes[m]].splice(this.collisionLists[indexes[m]].indexOf(collision_component), 1);
+				this.collisionLists[indexes[m]].splice(this.collisionLists[indexes[m]].indexOf(collisionComponent), 1);
 			}
 		}
 	};
@@ -42,17 +42,17 @@ define(['sat'], function(SAT) {
 		}
 
 		if (first.colliderType == second.colliderType) {
-			if (first.colliderType == this.CIRCLE_COLLIDER) {
+			if (first.colliderType == this.circleCollider) {
 				return SAT.testCircleCircle(first.collider, second.collider);
 			}
-			if (first.colliderType == this.POLYGON_COLLIDER) {
+			if (first.colliderType == this.polygonCollider) {
 				return SAT.testPolygonPolygon(first.collider, second.collider);
 			}
 		} else {
-			if (first.colliderType == this.CIRCLE_COLLIDER) {
+			if (first.colliderType == this.circleCollider) {
 				return SAT.testPolygonCircle(second.collider, first.collider);
 			}
-			if (first.colliderType == this.POLYGON_COLLIDER) {
+			if (first.colliderType == this.polygonCollider) {
 				return SAT.testPolygonCircle(first.collider, second.collider);
 			}
 		}
@@ -60,8 +60,8 @@ define(['sat'], function(SAT) {
 		return false;
 	}
 
-	CollisionResolver.prototype.CIRCLE_COLLIDER  = 0;
-	CollisionResolver.prototype.POLYGON_COLLIDER = 1;
+	CollisionResolver.prototype.circleCollider  = 0;
+	CollisionResolver.prototype.polygonCollider = 1;
 
 	return new CollisionResolver();
 });

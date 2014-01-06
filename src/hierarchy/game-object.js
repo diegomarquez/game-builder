@@ -1,4 +1,4 @@
-define(["delegate", "matrix_3x3", "game_object_debug_draw"], function(Delegate, Matrix, DebugDraw) {
+define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, Matrix, DebugDraw) {
 
 	//This is used as a helper in getTransform and getMatrix
 	//Declared here in an act of ultimate evil, AKA, premature optimization.

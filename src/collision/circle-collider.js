@@ -1,4 +1,4 @@
-define(['collision_component', 'sat', 'collision_resolver', 'vector_2D', 'draw'],
+define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw'],
 	function(CollisionComponent, SAT, CollisionResolver, Vector2D, draw){
 
 	var p = {};
@@ -10,7 +10,7 @@ define(['collision_component', 'sat', 'collision_resolver', 'vector_2D', 'draw']
 			this._super();
 
 			this.collider 	  = new SAT.Circle(new Vector2D(0, 0), this.radius);
-			this.colliderType = CollisionResolver.CIRCLE_COLLIDER;
+			this.colliderType = CollisionResolver.circleCollider;
 		},
 		
 		update: function() {

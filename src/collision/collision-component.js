@@ -1,4 +1,4 @@
-define(['component', 'collision_resolver'], function(Component, CollisionResolver) {
+define(['component', 'collision-resolver'], function(Component, CollisionResolver) {
 
 	var collisionList = null;
 	var collisionOpponent = null;

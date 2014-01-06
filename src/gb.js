@@ -4,7 +4,7 @@
  *
  * Inherits from: ---
  *
- * Depends of: [game](@@game), [root](@@root), [layers](@@layers), [assembler](@@assembler), [reclaimer](@@reclaimer), [game_object_pool](@@game_object_pool), [component_pool](@@component_pool) 	
+ * Depends of: [game](@@game), [root](@@root), [layers](@@layers), [assembler](@@assembler), [reclaimer](@@reclaimer), [game-object-pool](@@game-object-pool), [component-pool](@@component-pool) 	
  *
  * A [requireJS](http://requirejs.org/) module.
  * 
@@ -20,7 +20,7 @@
 /**
  * --------------------------------
  */
-define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game_object_pool', 'component_pool'], 
+define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool'], 
 	function(game, root, layers, assembler, reclaimer, gameObjectPool, componentPool) {
 		return {
 			game: game,
@@ -37,12 +37,15 @@ define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game_object_pool', 
 			 * A reference to the main canvas object in index.html. 
 			 */
 			canvas: document.getElementById('game'),
+			/**
+			 * --------------------------------
+			 */
 
 			/**
-			 * <p style='color:#AD071D'><strong>addToLayer<strong> wraps all the steps needed to add a [game_object](@@game_object)
-			 * into a layer. </p>
-			 * @param {String} layerName Id of the layer to add the [game_object](@@game_object) to. View [layers](@@layers), for more details.
-			 * @param {String} goId      Id of [game_object](@@game_object) to add. View [game_object_pool](@@game_object_pool), for more details
+			 * <p style='color:#AD071D'><strong>addToLayer<strong> wraps all the steps needed to add a <a href=@@game-object>game-object</a>
+			 * into a <a href=@@layer>layer</a>. </p>
+			 * @param {String} layerName Id of the layer to add the [game-object](@@game-object) to. View [layers](@@layers), for more details.
+			 * @param {String} goId      Id of [game-object](@@game-object) to add. View [game-object-pool](@@game-object-pool), for more details.
 			 */
 			addToLayer: function(layerName, goId) {
 				var go = this.layers.get(layerName).add(this.assembler.get(goId));

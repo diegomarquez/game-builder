@@ -1,4 +1,4 @@
-define(["game_object_container"], function(Container){
+define(["game-object-container"], function(Container){
 	var Root = Container.extend({
 		transformAndDraw: function(context) {
 			context.setTransform(1, 0, 0, 1, 0, 0);

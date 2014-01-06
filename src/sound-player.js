@@ -1,4 +1,4 @@
-define(['timer_factory'], function(timerFactory) {
+define(['timer-factory'], function(timerFactory) {
 	var isLoading = false;
 
 	var SoundPlayer = function() {
