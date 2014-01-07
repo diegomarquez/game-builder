@@ -11,7 +11,7 @@
  * It implements a [Multicast Delegate](http://en.wikipedia.org/wiki/Delegation_pattern). 
  * Sounds like a mouthful? The more friendly name is, 'Event System', which sounds about a million times less cool.
  *
- * Now you know what the hell every is trying to talk about when they mention events.
+ * Now you know what the hell everyone is trying to talk about when they mention events.
  *
  * Basically this class is a hash, with each key of the hash being an array of functions. 
  *
