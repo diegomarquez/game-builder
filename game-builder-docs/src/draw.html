@@ -1,7 +1,34 @@
-<!DOCTYPE html><html lang="en"><head><title>src/draw</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="src/draw"><meta name="groc-project-path" content="work/game-builder/src/draw.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/draw.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">DrawUtils</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span>
+<!DOCTYPE html><html lang="en"><head><title>src/draw</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="src/draw"><meta name="groc-project-path" content="work/game-builder/src/draw.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/draw.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="drawjs">draw.js</h1>
 
-  <span class="nx">DrawUtils</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">circle</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">radius</span><span class="p">,</span> <span class="nx">fillColor</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">)</span> <span class="p">{</span>
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<p>Inherits from: </p>
+
+<p>Depends of: </p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module.</p>
+
+<p>This is a collection of methods to ease the pain of using HTML5's <a href="http://www.w3schools.com/tags/ref_canvas.asp">Canvas drawing API</a>. 
+Not by much though, it's still pretty painfull. Believe me, I did I wrote a whole game only relaying
+on it for graphics <a href="http://www.treintipollo.com/tirador/index.html">SHAMELESS SELF PUBLICITY</a></p>
+
+<p>There are some stuff missing, like individual method to wrap quadratic and cubic curves. 
+These methods are hopefully to just ilustrate an idea and you won't be relying on them to get serious things done.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">DrawUtils</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>circle</strong> Well... you can draw a circle.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>.)</p></li>
+<li><p><strong>x must be a Number.</strong><br/>(X coordinate of the registration point.)</p></li>
+<li><p><strong>y must be a Number.</strong><br/>(Y coordinate of the registration point.)</p></li>
+<li><p><strong>radius must be a Number.</strong><br/>(Radius of the circle.)</p></li>
+<li><p><strong>fillColor can be a String or a Number and has a default value of current.</strong><br/>(fill color of the context] Fill color for the circle can be a <a href="http://www.w3schools.com/html/html_colors.asp">hex string</a> or a number (If you are into that kind of bullshit).)</p></li>
+<li><p><strong>strokeColor can be a String or a Number and has a default value of current.</strong><br/>(line color of the context] Stroke color for the circle can be a <a href="http://www.w3schools.com/html/html_colors.asp">hex string</a> or a number.)</p></li>
+<li><p><strong>lineWidth must be a Number and has a default value of current.</strong><br/>(line width of the context] Line width.)</p></li>
+</ul>
+
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">DrawUtils</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">circle</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">radius</span><span class="p">,</span> <span class="nx">fillColor</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">fillColor</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="nx">strokeColor</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">lineWidth</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="nx">lineWidth</span><span class="p">;</span>
@@ -12,9 +39,22 @@
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fill</span><span class="p">();</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
-  <span class="p">}</span>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rectangle</strong> A rectangle, yeah!</p>
 
-  <span class="nx">DrawUtils</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">rectangle</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">fillColor</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">)</span> <span class="p">{</span>
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>.)</p></li>
+<li><p><strong>x must be a Number.</strong><br/>(X coordinate of the registration point.)</p></li>
+<li><p><strong>y must be a Number.</strong><br/>(Y coordinate of the registration point.)</p></li>
+<li><p><strong>width must be a Number.</strong><br/>(Width of the rectangle.)</p></li>
+<li><p><strong>height must be a Number.</strong><br/>(Height of the rectangle.)</p></li>
+<li><p><strong>fillColor can be a String or a Number and has a default value of current.</strong><br/>(fill color of the context] Fill color for the rectangle can be a <a href="http://www.w3schools.com/html/html_colors.asp">hex string</a> or a number (If you are into that kind of bullshit).)</p></li>
+<li><p><strong>strokeColor can be a String or a Number and has a default value of current.</strong><br/>(line color of the context] Stroke color for the rectangle can be a <a href="http://www.w3schools.com/html/html_colors.asp">hex string</a> or a number (If you are into that kind of bullshit).)</p></li>
+<li><p><strong>lineWidth must be a Number and has a default value of current.</strong><br/>(line width of the context] Line width.)</p></li>
+</ul>
+
+<p><strong>Returns a null</strong><br/>([description])</p></div></div><div class="code"><div class="wrapper">  <span class="nx">DrawUtils</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">rectangle</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">fillColor</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="nx">strokeColor</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">lineWidth</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="nx">lineWidth</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">fillColor</span><span class="p">;</span>
@@ -25,9 +65,27 @@
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fill</span><span class="p">();</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
-  <span class="p">}</span>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>triangle</strong> A triangle. This is getting interesting. Points of the triangle are drawn clock-wise.</p>
 
-  <span class="nx">DrawUtils</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">triangle</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">centerX</span><span class="p">,</span> <span class="nx">centerY</span><span class="p">,</span> <span class="nx">x1</span><span class="p">,</span> <span class="nx">y1</span><span class="p">,</span> <span class="nx">x2</span><span class="p">,</span> <span class="nx">y2</span><span class="p">,</span> <span class="nx">x3</span><span class="p">,</span> <span class="nx">y3</span><span class="p">,</span> <span class="nx">fillColor</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">,</span> <span class="nx">scale</span><span class="p">)</span> <span class="p">{</span>
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>.)</p></li>
+<li><p><strong>centerX must be a Number.</strong><br/>(X coordinate of the registration point. The rest of the points are relative to this.)</p></li>
+<li><p><strong>centerY must be a Number.</strong><br/>(Y coordinate of the registration point. The rest of the points are relative to this.)</p></li>
+<li><p><strong>x1 must be a Number.</strong><br/>(X coordinate of the first vertex.)</p></li>
+<li><p><strong>y1 must be a Number.</strong><br/>(Y coordinate of the first vertex.)</p></li>
+<li><p><strong>x2 must be a Number.</strong><br/>(X coordinate of the second vertex.)</p></li>
+<li><p><strong>y2 must be a Number.</strong><br/>(Y coordinate of the second vertex.)</p></li>
+<li><p><strong>x3 must be a Number.</strong><br/>(X coordinate of the third vertex.)</p></li>
+<li><p><strong>y3 must be a Number.</strong><br/>(Y coordinate of the third vertex.)</p></li>
+<li><p><strong>fillColor can be a String or a Number and has a default value of current.</strong><br/>(fill color of the context] Fill color for the triangle can be a <a href="http://www.w3schools.com/html/html_colors.asp">hex string</a> or a number (If you are into that kind of bullshit).)</p></li>
+<li><p><strong>strokeColor can be a String or a Number and has a default value of current.</strong><br/>(line color of the context] Stroke color for the triangle can be a <a href="http://www.w3schools.com/html/html_colors.asp">hex string</a> or a number (If you are into that kind of bullshit).)</p></li>
+<li><p><strong>lineWidth must be a Number and has a default value of current.</strong><br/>(line width of the context] Line width.)</p></li>
+<li><p><strong>scale is optional, must be a Number, and has a default value of 1.</strong><br/>(Scale of the triangle. This can be usefull to avoid moving recalculating vertex position.)</p></li>
+</ul>
+
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">DrawUtils</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">triangle</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">centerX</span><span class="p">,</span> <span class="nx">centerY</span><span class="p">,</span> <span class="nx">x1</span><span class="p">,</span> <span class="nx">y1</span><span class="p">,</span> <span class="nx">x2</span><span class="p">,</span> <span class="nx">y2</span><span class="p">,</span> <span class="nx">x3</span><span class="p">,</span> <span class="nx">y3</span><span class="p">,</span> <span class="nx">fillColor</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">,</span> <span class="nx">scale</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="nx">strokeColor</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">lineWidth</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="nx">lineWidth</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">fillColor</span><span class="p">;</span>
@@ -58,9 +116,34 @@
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fill</span><span class="p">();</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
-  <span class="p">}</span>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>quadraticTriangle</strong> This one is pretty weird. It lets you define a triangle, with each side being drawn as a quadratic curve. Looks neat!
+You might want to look into what a <a href="http://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B.C3.A9zier_curves">quadratic curve</a> is.</p>
 
-  <span class="nx">DrawUtils</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">quadraticTriangle</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">centerX</span><span class="p">,</span> <span class="nx">centerY</span><span class="p">,</span> <span class="nx">x1</span><span class="p">,</span> <span class="nx">y1</span><span class="p">,</span> <span class="nx">ax1</span><span class="p">,</span> <span class="nx">ay1</span><span class="p">,</span> <span class="nx">x2</span><span class="p">,</span> <span class="nx">y2</span><span class="p">,</span> <span class="nx">ax2</span><span class="p">,</span> <span class="nx">ay2</span><span class="p">,</span> <span class="nx">x3</span><span class="p">,</span> <span class="nx">y3</span><span class="p">,</span> <span class="nx">ax3</span><span class="p">,</span> <span class="nx">ay3</span><span class="p">,</span> <span class="nx">fillColor</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">,</span> <span class="nx">scale</span><span class="p">)</span> <span class="p">{</span>
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>.)</p></li>
+<li><p><strong>centerX must be a Number.</strong><br/>(X coordinate of the registration point. The rest of the points are relative to this.)</p></li>
+<li><p><strong>centerY must be a Number.</strong><br/>(Y coordinate of the registration point. The rest of the points are relative to this.)</p></li>
+<li><p><strong>x1 must be a Number.</strong><br/>(X coordinate of the first vertex.)</p></li>
+<li><p><strong>y1 must be a Number.</strong><br/>(Y coordinate of the first vertex.)</p></li>
+<li><p><strong>ax1 must be a Number.</strong><br/>(X coordinate of the first vertex's anchor point.)</p></li>
+<li><p><strong>ay1 must be a Number.</strong><br/>(Y coordinate of the first vertex's anchor point.)</p></li>
+<li><p><strong>x1 must be a Number.</strong><br/>(X coordinate of the second vertex.)</p></li>
+<li><p><strong>y1 must be a Number.</strong><br/>(Y coordinate of the second vertex.)</p></li>
+<li><p><strong>ax1 must be a Number.</strong><br/>(X coordinate of the second vertex's anchor point.)</p></li>
+<li><p><strong>ay1 must be a Number.</strong><br/>(Y coordinate of the second vertex's anchor point.)</p></li>
+<li><p><strong>x1 must be a Number.</strong><br/>(X coordinate of the third vertex.)</p></li>
+<li><p><strong>y1 must be a Number.</strong><br/>(Y coordinate of the third vertex.)</p></li>
+<li><p><strong>ax1 must be a Number.</strong><br/>(X coordinate of the third vertex's anchor point.)</p></li>
+<li><p><strong>ay1 must be a Number.</strong><br/>(Y coordinate of the third vertex's anchor point.)</p></li>
+<li><p><strong>fillColor can be a String or a Number and has a default value of current.</strong><br/>(fill color of the context] Fill color for the triangle can be a <a href="http://www.w3schools.com/html/html_colors.asp">hex string</a> or a number (If you are into that kind of bullshit).)</p></li>
+<li><p><strong>strokeColor can be a String or a Number and has a default value of current.</strong><br/>(line color of the context] Stroke color for the triangle can be a <a href="http://www.w3schools.com/html/html_colors.asp">hex string</a> or a number (If you are into that kind of bullshit).)</p></li>
+<li><p><strong>lineWidth must be a Number and has a default value of current.</strong><br/>(line width of the context] Line width.)</p></li>
+<li><p><strong>scale is optional, must be a Number, and has a default value of 1.</strong><br/>(Scale of the triangle. This can be usefull to avoid moving recalculating vertex position.)</p></li>
+</ul>
+
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">DrawUtils</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">quadraticTriangle</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">centerX</span><span class="p">,</span> <span class="nx">centerY</span><span class="p">,</span> <span class="nx">x1</span><span class="p">,</span> <span class="nx">y1</span><span class="p">,</span> <span class="nx">ax1</span><span class="p">,</span> <span class="nx">ay1</span><span class="p">,</span> <span class="nx">x2</span><span class="p">,</span> <span class="nx">y2</span><span class="p">,</span> <span class="nx">ax2</span><span class="p">,</span> <span class="nx">ay2</span><span class="p">,</span> <span class="nx">x3</span><span class="p">,</span> <span class="nx">y3</span><span class="p">,</span> <span class="nx">ax3</span><span class="p">,</span> <span class="nx">ay3</span><span class="p">,</span> <span class="nx">fillColor</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">,</span> <span class="nx">scale</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="nx">strokeColor</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">lineWidth</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="nx">lineWidth</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">fillColor</span><span class="p">;</span>
@@ -104,9 +187,22 @@
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fill</span><span class="p">();</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
-  <span class="p">}</span>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>polygon</strong> This one is pretty usefull. Send in an array of points and lines will be ploted clock-wise to form the polygon.</p>
 
-  <span class="nx">DrawUtils</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">polygon</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">points</span><span class="p">,</span> <span class="nx">fillColor</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">,</span> <span class="nx">scale</span><span class="p">)</span> <span class="p">{</span>
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>.)</p></li>
+<li><p><strong>x must be a Number.</strong><br/>(X coordinate registration point. All the points of the polygon are relative to this.)</p></li>
+<li><p><strong>y must be a Number.</strong><br/>(Y coordinate registration point. All the points of the polygon are relative to this.)</p></li>
+<li><p><strong>points must be an Array.</strong><br/>(An array of objects with the following form, {x:x, y:y}.)</p></li>
+<li><p><strong>fillColor can be a String or a Number and has a default value of current.</strong><br/>(fill color of the context] Fill color for the polygon can be a <a href="http://www.w3schools.com/html/html_colors.asp">hex string</a> or a number (If you are into that kind of bullshit).)</p></li>
+<li><p><strong>strokeColor can be a String or a Number and has a default value of current.</strong><br/>(line color of the context] Stroke color for the polygon can be a <a href="http://www.w3schools.com/html/html_colors.asp">hex string</a> or a number (If you are into that kind of bullshit).)</p></li>
+<li><p><strong>lineWidth must be a Number and has a default value of current.</strong><br/>(line width of the context] Line width.)</p></li>
+<li><p><strong>scale is optional, must be a Number, and has a default value of 1.</strong><br/>(Scale of the polygon. This can be usefull to avoid moving recalculating vertex position.)</p></li>
+</ul>
+
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">DrawUtils</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">polygon</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">points</span><span class="p">,</span> <span class="nx">fillColor</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">,</span> <span class="nx">scale</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="nx">strokeColor</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">lineWidth</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="nx">lineWidth</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">fillColor</span><span class="p">;</span>
@@ -125,9 +221,22 @@
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fill</span><span class="p">();</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
-  <span class="p">}</span>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>quadraticPolygon</strong> This is like the polygon but the lines between vertexes are drawn as quadratic curves.</p>
 
-  <span class="nx">DrawUtils</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">quadraticPolygon</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">points</span><span class="p">,</span> <span class="nx">fillColor</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">,</span> <span class="nx">scale</span><span class="p">)</span> <span class="p">{</span>
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>.)</p></li>
+<li><p><strong>x must be a Number.</strong><br/>(X coordinate registration point. All the points of the polygon are relative to this. )</p></li>
+<li><p><strong>y must be a Number.</strong><br/>(Y coordinate registration point. All the points of the polygon are relative to this.)</p></li>
+<li><p><strong>points must be a String.</strong><br/>(An array of objects with the following form, {x:x, y:y}. Note that since lines are quadratic curves, you need to provide anchor anchor points in between each pair of vertexes. )</p></li>
+<li><p><strong>fillColor can be a String or a Number and has a default value of current.</strong><br/>(fill color of the context] Fill color for the polygon can be a <a href="http://www.w3schools.com/html/html_colors.asp">hex string</a> or a number (If you are into that kind of bullshit).)</p></li>
+<li><p><strong>strokeColor can be a String or a Number and has a default value of current.</strong><br/>(line color of the context] Stroke color for the polygon can be a <a href="http://www.w3schools.com/html/html_colors.asp">hex string</a> or a number (If you are into that kind of bullshit).)</p></li>
+<li><p><strong>lineWidth must be a Number and has a default value of current.</strong><br/>(line width of the context] Line width.)</p></li>
+<li><p><strong>scale is optional, must be a Number, and has a default value of 1.</strong><br/>(Scale of the polygon. This can be usefull to avoid moving recalculating vertex position.)</p></li>
+</ul>
+
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">DrawUtils</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">quadraticPolygon</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">points</span><span class="p">,</span> <span class="nx">fillColor</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">,</span> <span class="nx">scale</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="nx">strokeColor</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">lineWidth</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="nx">lineWidth</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">fillColor</span><span class="p">;</span>
@@ -153,7 +262,5 @@
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fill</span><span class="p">();</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
-  <span class="p">}</span>
-
-  <span class="k">return</span> <span class="k">new</span> <span class="nx">DrawUtils</span><span class="p">()</span>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="k">return</span> <span class="k">new</span> <span class="nx">DrawUtils</span><span class="p">()</span>
 <span class="p">});</span></div></div></div></div></body></html>

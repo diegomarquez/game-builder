@@ -1,6 +1,38 @@
+/**
+ * # draw.js
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ *
+ * Inherits from: 
+ *
+ * Depends of: 
+ *
+ * A [requireJS](http://requirejs.org/) module.
+ * 
+ * This is a collection of methods to ease the pain of using HTML5's [Canvas drawing API](http://www.w3schools.com/tags/ref_canvas.asp). 
+ * Not by much though, it's still pretty painfull. Believe me, I did I wrote a whole game only relaying
+ * on it for graphics [SHAMELESS SELF PUBLICITY](http://www.treintipollo.com/tirador/index.html)
+ *
+ * There are some stuff missing, like individual method to wrap quadratic and cubic curves. 
+ * These methods are hopefully to just ilustrate an idea and you won't be relying on them to get serious things done.
+ */
+
+/**
+ * --------------------------------
+ */
 define(function() {
 	var DrawUtils = function() {}
 
+	/**
+	 * <p style='color:#AD071D'><strong>circle</strong> Well... you can draw a circle.</p>
+	 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/).
+	 * @param  {Number} x           X coordinate of the registration point.
+	 * @param  {Number} y           Y coordinate of the registration point.
+	 * @param  {Number} radius      Radius of the circle.
+	 * @param  {String|Number} [fillColor=current fill color of the context] Fill color for the circle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit).
+	 * @param  {String|Number} [strokeColor=current line color of the context] Stroke color for the circle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number.
+	 * @param  {Number} [lineWidth=current line width of the context] Line width.
+	 * @return {null}             	
+	 */
 	DrawUtils.prototype.circle = function(context, x, y, radius, fillColor, strokeColor, lineWidth) {
 		if (fillColor) context.fillStyle = fillColor;
 		if (strokeColor) context.strokeStyle = strokeColor;
@@ -13,7 +45,22 @@ define(function() {
 		if (fillColor) context.fill();
 		if (strokeColor) context.stroke();
 	}
+	/**
+	 * --------------------------------
+	 */
 
+	 /**
+	  * <p style='color:#AD071D'><strong>rectangle</strong> A rectangle, yeah!</p>
+	  * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/).
+	  * @param  {Number} x           X coordinate of the registration point.
+	  * @param  {Number} y           Y coordinate of the registration point.
+	  * @param  {Number} width       Width of the rectangle.
+	  * @param  {Number} height      Height of the rectangle.
+	  * @param  {String|Number} [fillColor=current fill color of the context]   Fill color for the rectangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit).
+	  * @param  {String|Number} [strokeColor=current line color of the context] Stroke color for the rectangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit).
+	  * @param  {Number} [lineWidth=current line width of the context]   Line width.
+	  * @return {null}             [description]
+	  */
 	DrawUtils.prototype.rectangle = function(context, x, y, width, height, fillColor, strokeColor, lineWidth) {
 		if (strokeColor) context.strokeStyle = strokeColor;
 		if (lineWidth) context.lineWidth = lineWidth;
@@ -26,7 +73,27 @@ define(function() {
 		if (fillColor) context.fill();
 		if (strokeColor) context.stroke();
 	}
+	/**
+	 * --------------------------------
+	 */
 
+	 /**
+	  * <p style='color:#AD071D'><strong>triangle</strong> A triangle. This is getting interesting. Points of the triangle are drawn clock-wise.</p>
+	  * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/).
+	  * @param  {Number} centerX     X coordinate of the registration point. The rest of the points are relative to this.
+	  * @param  {Number} centerY     Y coordinate of the registration point. The rest of the points are relative to this.
+	  * @param  {Number} x1          X coordinate of the first vertex.
+	  * @param  {Number} y1          Y coordinate of the first vertex.
+	  * @param  {Number} x2          X coordinate of the second vertex.
+	  * @param  {Number} y2          Y coordinate of the second vertex.
+	  * @param  {Number} x3          X coordinate of the third vertex.
+	  * @param  {Number} y3          Y coordinate of the third vertex.
+	  * @param  {String|Number} [fillColor=current fill color of the context]   Fill color for the triangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit).
+	  * @param  {String|Number} [strokeColor=current line color of the context] Stroke color for the triangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit).
+	  * @param  {Number} [lineWidth=current line width of the context]   Line width.
+	  * @param  {Number} [scale=1] Scale of the triangle. This can be usefull to avoid moving recalculating vertex position.
+	  * @return {null}             
+	  */
 	DrawUtils.prototype.triangle = function(context, centerX, centerY, x1, y1, x2, y2, x3, y3, fillColor, strokeColor, lineWidth, scale) {
 		if (strokeColor) context.strokeStyle = strokeColor;
 		if (lineWidth) context.lineWidth = lineWidth;
@@ -59,7 +126,34 @@ define(function() {
 		if (fillColor) context.fill();
 		if (strokeColor) context.stroke();
 	}
+	/**
+	 * --------------------------------
+	 */
 
+	 /**
+	  * <p style='color:#AD071D'><strong>quadraticTriangle</strong> This one is pretty weird. It lets you define a triangle, with each side being drawn as a quadratic curve. Looks neat!
+	  * You might want to look into what a <a href="http://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B.C3.A9zier_curves">quadratic curve</a> is.</p>
+	  * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/).
+	  * @param  {Number} centerX     X coordinate of the registration point. The rest of the points are relative to this.
+	  * @param  {Number} centerY     Y coordinate of the registration point. The rest of the points are relative to this.
+	  * @param  {Number} x1          X coordinate of the first vertex.
+	  * @param  {Number} y1          Y coordinate of the first vertex.
+	  * @param  {Number} ax1         X coordinate of the first vertex's anchor point.
+	  * @param  {Number} ay1         Y coordinate of the first vertex's anchor point.
+	  * @param  {Number} x1          X coordinate of the second vertex.
+	  * @param  {Number} y1          Y coordinate of the second vertex.
+	  * @param  {Number} ax1         X coordinate of the second vertex's anchor point.
+	  * @param  {Number} ay1         Y coordinate of the second vertex's anchor point.
+	  * @param  {Number} x1          X coordinate of the third vertex.
+	  * @param  {Number} y1          Y coordinate of the third vertex.
+	  * @param  {Number} ax1         X coordinate of the third vertex's anchor point.
+	  * @param  {Number} ay1         Y coordinate of the third vertex's anchor point.
+	  * @param  {String|Number} [fillColor=current fill color of the context]   Fill color for the triangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit).
+	  * @param  {String|Number} [strokeColor=current line color of the context] Stroke color for the triangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit).
+	  * @param  {Number} [lineWidth=current line width of the context]   Line width.
+	  * @param  {Number} [scale=1] Scale of the triangle. This can be usefull to avoid moving recalculating vertex position.
+	  * @return {null}
+	  */
 	DrawUtils.prototype.quadraticTriangle = function(context, centerX, centerY, x1, y1, ax1, ay1, x2, y2, ax2, ay2, x3, y3, ax3, ay3, fillColor, strokeColor, lineWidth, scale) {
 		if (strokeColor) context.strokeStyle = strokeColor;
 		if (lineWidth) context.lineWidth = lineWidth;
@@ -105,7 +199,22 @@ define(function() {
 		if (fillColor) context.fill();
 		if (strokeColor) context.stroke();
 	}
+	/**
+	 * --------------------------------
+	 */
 
+	 /**
+	  * <p style='color:#AD071D'><strong>polygon</strong> This one is pretty usefull. Send in an array of points and lines will be ploted clock-wise to form the polygon.</p>
+	  * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/).
+	  * @param  {Number} x           X coordinate registration point. All the points of the polygon are relative to this.
+	  * @param  {Number} y           Y coordinate registration point. All the points of the polygon are relative to this.
+	  * @param  {Array} points       An array of objects with the following form, {x:x, y:y}.
+	  * @param  {String|Number} [fillColor=current fill color of the context]   Fill color for the polygon can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit).
+	  * @param  {String|Number} [strokeColor=current line color of the context] Stroke color for the polygon can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit).
+	  * @param  {Number} [lineWidth=current line width of the context]   Line width.
+	  * @param  {Number} [scale=1] Scale of the polygon. This can be usefull to avoid moving recalculating vertex position.
+	  * @return {null}
+	  */
 	DrawUtils.prototype.polygon = function(context, x, y, points, fillColor, strokeColor, lineWidth, scale) {
 		if (strokeColor) context.strokeStyle = strokeColor;
 		if (lineWidth) context.lineWidth = lineWidth;
@@ -126,7 +235,22 @@ define(function() {
 		if (fillColor) context.fill();
 		if (strokeColor) context.stroke();
 	}
+	/**
+	 * --------------------------------
+	 */
 
+	 /**
+	  * <p style='color:#AD071D'><strong>quadraticPolygon</strong> This is like the polygon but the lines between vertexes are drawn as quadratic curves.</p>
+	  * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/).
+	  * @param  {Number} x           X coordinate registration point. All the points of the polygon are relative to this. 
+	  * @param  {Number} y           Y coordinate registration point. All the points of the polygon are relative to this.
+	  * @param  {String} points      An array of objects with the following form, {x:x, y:y}. Note that since lines are quadratic curves, you need to provide anchor anchor points in between each pair of vertexes.  
+	  * @param  {String|Number} [fillColor=current fill color of the context]   Fill color for the polygon can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit).
+	  * @param  {String|Number} [strokeColor=current line color of the context] Stroke color for the polygon can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit).
+	  * @param  {Number} [lineWidth=current line width of the context]   Line width.
+	  * @param  {Number} [scale=1] Scale of the polygon. This can be usefull to avoid moving recalculating vertex position.
+	  * @return {null}
+	  */
 	DrawUtils.prototype.quadraticPolygon = function(context, x, y, points, fillColor, strokeColor, lineWidth, scale) {
 		if (strokeColor) context.strokeStyle = strokeColor;
 		if (lineWidth) context.lineWidth = lineWidth;
@@ -154,6 +278,9 @@ define(function() {
 		if (fillColor) context.fill();
 		if (strokeColor) context.stroke();
 	}
+	/**
+	 * --------------------------------
+	 */
 
 	return new DrawUtils()
 });

@@ -2,7 +2,7 @@
  * # class.js
  * 
  * ### By [John Resig](http://ejohn.org/)
- * ### MIT Licensed.
+ * # MIT Licensed.
  *
  * This is at the core of everything [Game-Builder](http://diegomarquez.github.io/game-builder). 
  * The main feature it provides as opposed to more crud inheritance implementations in Javascript,
