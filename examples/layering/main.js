@@ -9,15 +9,15 @@ define(function(require){
 
 	var keyboard = require('keyboard');
 
-	game.add_extension(require('basic_layer_setup'));
+	game.add_extension(require('basic-layer-setup'));
 
 	// This is the main initialization function
 	game.on("init", this, function() {
 		console.log("Welcome to Game-Builder!");
 
-		require('layering_bundle').create();
+		require('layering-bundle').create();
 
-		//Here each game_object is added to a different layer
+		//Here each game-object is added to a different layer
 		gb.addToLayer('Front', 'Base_3');
 		gb.addToLayer('Middle', 'Base_2');
 		gb.addToLayer('Back', 'Base_1');
@@ -69,7 +69,7 @@ define(function(require){
 			layers.all('remove');
 		});
 
-		//Since layers are containers which in turn are game_objects, 
+		//Since layers are containers which in turn are game-objects, 
 		//theoretically you should be able to do fancy things with them to achieve
 		//some cool effects.		
 

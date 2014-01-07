@@ -4,7 +4,14 @@
  *
  * Inherits from: ---
  *
- * Depends of: [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html), [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html), [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layer.htmls), [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html), [reclaimer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html), [game_object_pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html_object_pool), [component_pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html_pool) 	
+ * Depends of: 
+ * [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html) 
+ * [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html) 
+ * [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html) 
+ * [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html) 
+ * [reclaimer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html) 
+ * [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html) 
+ * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html) 	
  *
  * A [requireJS](http://requirejs.org/) module.
  * 
@@ -20,7 +27,7 @@
 /**
  * --------------------------------
  */
-define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game_object_pool', 'component_pool'], 
+define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool'], 
 	function(game, root, layers, assembler, reclaimer, gameObjectPool, componentPool) {
 		return {
 			game: game,
@@ -37,12 +44,15 @@ define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game_object_pool', 
 			 * A reference to the main canvas object in index.html. 
 			 */
 			canvas: document.getElementById('game'),
+			/**
+			 * --------------------------------
+			 */
 
 			/**
-			 * <p style='color:#AD071D'><strong>addToLayer<strong> wraps all the steps needed to add a [game_object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html_object)
-			 * into a layer. </p>
-			 * @param {String} layerName Id of the layer to add the [game_object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html_object) to. View [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layer.htmls), for more details.
-			 * @param {String} goId      Id of [game_object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html_object) to add. View [game_object_pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html_object_pool), for more details
+			 * <p style='color:#AD071D'><strong>addToLayer</strong> wraps all the steps needed to add a <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html>game-object</a>
+			 * into a <a href=@@layer>layer</a>. </p>
+			 * @param {String} layerName Id of the layer to add the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to. View [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html), for more details.
+			 * @param {String} goId      Id of [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to add. View [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html), for more details.
 			 */
 			addToLayer: function(layerName, goId) {
 				var go = this.layers.get(layerName).add(this.assembler.get(goId));

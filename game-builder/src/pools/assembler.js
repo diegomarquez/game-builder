@@ -1,4 +1,4 @@
-define(['game_object_pool', 'component_pool', 'util'], function(GameObjectPool, ComponentPool, Util) {
+define(['game-object-pool', 'component-pool', 'util'], function(GameObjectPool, ComponentPool, Util) {
 	var Assembler = function() {};
 
 	var addComponent = function(component, pooledObject, addMethod) {
@@ -28,7 +28,7 @@ define(['game_object_pool', 'component_pool', 'util'], function(GameObjectPool, 
 
 		//Get one object from the pool
 		var pooledObject = GameObjectPool.getPooledObject(configuration.type);
-		//Reset some internal properties of the game_object before actually using it.
+		//Reset some internal properties of the game-object before actually using it.
 		pooledObject.reset();
 		//Merge arguments from configuration the the ones specific to this call
 		pooledObject.configure( Util.shallow_merge(configuration.hardArguments, args) );

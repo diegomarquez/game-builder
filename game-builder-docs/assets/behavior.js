@@ -126,11 +126,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/circle_collider.js",
-                "projectPath": "work/game-builder/src/collision/circle_collider.js",
-                "targetPath": "src/collision/circle_collider",
-                "pageTitle": "src/collision/circle_collider",
-                "title": "circle_collider"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/circle-collider.js",
+                "projectPath": "work/game-builder/src/collision/circle-collider.js",
+                "targetPath": "src/collision/circle-collider",
+                "pageTitle": "src/collision/circle-collider",
+                "title": "circle-collider"
               },
               "depth": 3,
               "outline": []
@@ -146,11 +146,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/collision_component.js",
-                "projectPath": "work/game-builder/src/collision/collision_component.js",
-                "targetPath": "src/collision/collision_component",
-                "pageTitle": "src/collision/collision_component",
-                "title": "collision_component"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/collision-component.js",
+                "projectPath": "work/game-builder/src/collision/collision-component.js",
+                "targetPath": "src/collision/collision-component",
+                "pageTitle": "src/collision/collision-component",
+                "title": "collision-component"
               },
               "depth": 3,
               "outline": []
@@ -166,11 +166,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/collision_resolver.js",
-                "projectPath": "work/game-builder/src/collision/collision_resolver.js",
-                "targetPath": "src/collision/collision_resolver",
-                "pageTitle": "src/collision/collision_resolver",
-                "title": "collision_resolver"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/collision-resolver.js",
+                "projectPath": "work/game-builder/src/collision/collision-resolver.js",
+                "targetPath": "src/collision/collision-resolver",
+                "pageTitle": "src/collision/collision-resolver",
+                "title": "collision-resolver"
               },
               "depth": 3,
               "outline": []
@@ -186,11 +186,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/fixed_polygon_collider.js",
-                "projectPath": "work/game-builder/src/collision/fixed_polygon_collider.js",
-                "targetPath": "src/collision/fixed_polygon_collider",
-                "pageTitle": "src/collision/fixed_polygon_collider",
-                "title": "fixed_polygon_collider"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/fixed-polygon-collider.js",
+                "projectPath": "work/game-builder/src/collision/fixed-polygon-collider.js",
+                "targetPath": "src/collision/fixed-polygon-collider",
+                "pageTitle": "src/collision/fixed-polygon-collider",
+                "title": "fixed-polygon-collider"
               },
               "depth": 3,
               "outline": []
@@ -206,11 +206,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/polygon_collider.js",
-                "projectPath": "work/game-builder/src/collision/polygon_collider.js",
-                "targetPath": "src/collision/polygon_collider",
-                "pageTitle": "src/collision/polygon_collider",
-                "title": "polygon_collider"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/collision/polygon-collider.js",
+                "projectPath": "work/game-builder/src/collision/polygon-collider.js",
+                "targetPath": "src/collision/polygon-collider",
+                "pageTitle": "src/collision/polygon-collider",
+                "title": "polygon-collider"
               },
               "depth": 3,
               "outline": []
@@ -284,11 +284,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "foldPrefix": "^",
                       "name": "JavaScript"
                     },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/rendering/bitmap_renderer.js",
-                    "projectPath": "work/game-builder/src/components/rendering/bitmap_renderer.js",
-                    "targetPath": "src/components/rendering/bitmap_renderer",
-                    "pageTitle": "src/components/rendering/bitmap_renderer",
-                    "title": "bitmap_renderer"
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/rendering/bitmap-renderer.js",
+                    "projectPath": "work/game-builder/src/components/rendering/bitmap-renderer.js",
+                    "targetPath": "src/components/rendering/bitmap-renderer",
+                    "pageTitle": "src/components/rendering/bitmap-renderer",
+                    "title": "bitmap-renderer"
                   },
                   "depth": 4,
                   "outline": []
@@ -336,11 +336,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/debug/game_object_debug_draw.js",
-                "projectPath": "work/game-builder/src/debug/game_object_debug_draw.js",
-                "targetPath": "src/debug/game_object_debug_draw",
-                "pageTitle": "src/debug/game_object_debug_draw",
-                "title": "game_object_debug_draw"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/debug/game-object-debug-draw.js",
+                "projectPath": "work/game-builder/src/debug/game-object-debug-draw.js",
+                "targetPath": "src/debug/game-object-debug-draw",
+                "pageTitle": "src/debug/game-object-debug-draw",
+                "title": "game-object-debug-draw"
               },
               "depth": 3,
               "outline": []
@@ -445,11 +445,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "foldPrefix": "^",
                       "name": "JavaScript"
                     },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/aspect_ratio_resize.js",
-                    "projectPath": "work/game-builder/src/game_canvas/extensions/aspect_ratio_resize.js",
-                    "targetPath": "src/game_canvas/extensions/aspect_ratio_resize",
-                    "pageTitle": "src/game_canvas/extensions/aspect_ratio_resize",
-                    "title": "aspect_ratio_resize"
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/aspect-ratio-resize.js",
+                    "projectPath": "work/game-builder/src/game_canvas/extensions/aspect-ratio-resize.js",
+                    "targetPath": "src/game_canvas/extensions/aspect-ratio-resize",
+                    "pageTitle": "src/game_canvas/extensions/aspect-ratio-resize",
+                    "title": "aspect-ratio-resize"
                   },
                   "depth": 4,
                   "outline": []
@@ -465,11 +465,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "foldPrefix": "^",
                       "name": "JavaScript"
                     },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/basic_layer_setup.js",
-                    "projectPath": "work/game-builder/src/game_canvas/extensions/basic_layer_setup.js",
-                    "targetPath": "src/game_canvas/extensions/basic_layer_setup",
-                    "pageTitle": "src/game_canvas/extensions/basic_layer_setup",
-                    "title": "basic_layer_setup"
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/basic-layer-setup.js",
+                    "projectPath": "work/game-builder/src/game_canvas/extensions/basic-layer-setup.js",
+                    "targetPath": "src/game_canvas/extensions/basic-layer-setup",
+                    "pageTitle": "src/game_canvas/extensions/basic-layer-setup",
+                    "title": "basic-layer-setup"
                   },
                   "depth": 4,
                   "outline": []
@@ -608,11 +608,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/game_object.js",
-                "projectPath": "work/game-builder/src/hierarchy/game_object.js",
-                "targetPath": "src/hierarchy/game_object",
-                "pageTitle": "src/hierarchy/game_object",
-                "title": "game_object"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/game-object.js",
+                "projectPath": "work/game-builder/src/hierarchy/game-object.js",
+                "targetPath": "src/hierarchy/game-object",
+                "pageTitle": "src/hierarchy/game-object",
+                "title": "game-object"
               },
               "depth": 3,
               "outline": []
@@ -628,11 +628,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/game_object_container.js",
-                "projectPath": "work/game-builder/src/hierarchy/game_object_container.js",
-                "targetPath": "src/hierarchy/game_object_container",
-                "pageTitle": "src/hierarchy/game_object_container",
-                "title": "game_object_container"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/game-object-container.js",
+                "projectPath": "work/game-builder/src/hierarchy/game-object-container.js",
+                "targetPath": "src/hierarchy/game-object-container",
+                "pageTitle": "src/hierarchy/game-object-container",
+                "title": "game-object-container"
               },
               "depth": 3,
               "outline": []
@@ -748,11 +748,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/math/matrix_3x3.js",
-                "projectPath": "work/game-builder/src/math/matrix_3x3.js",
-                "targetPath": "src/math/matrix_3x3",
-                "pageTitle": "src/math/matrix_3x3",
-                "title": "matrix_3x3"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/math/matrix-3x3.js",
+                "projectPath": "work/game-builder/src/math/matrix-3x3.js",
+                "targetPath": "src/math/matrix-3x3",
+                "pageTitle": "src/math/matrix-3x3",
+                "title": "matrix-3x3"
               },
               "depth": 3,
               "outline": []
@@ -768,11 +768,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/math/vector_2D.js",
-                "projectPath": "work/game-builder/src/math/vector_2D.js",
-                "targetPath": "src/math/vector_2D",
-                "pageTitle": "src/math/vector_2D",
-                "title": "vector_2D"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/math/vector-2D.js",
+                "projectPath": "work/game-builder/src/math/vector-2D.js",
+                "targetPath": "src/math/vector-2D",
+                "pageTitle": "src/math/vector-2D",
+                "title": "vector-2D"
               },
               "depth": 3,
               "outline": []
@@ -838,11 +838,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/component_pool.js",
-                "projectPath": "work/game-builder/src/pools/component_pool.js",
-                "targetPath": "src/pools/component_pool",
-                "pageTitle": "src/pools/component_pool",
-                "title": "component_pool"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/component-pool.js",
+                "projectPath": "work/game-builder/src/pools/component-pool.js",
+                "targetPath": "src/pools/component-pool",
+                "pageTitle": "src/pools/component-pool",
+                "title": "component-pool"
               },
               "depth": 3,
               "outline": []
@@ -858,11 +858,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/game_object_pool.js",
-                "projectPath": "work/game-builder/src/pools/game_object_pool.js",
-                "targetPath": "src/pools/game_object_pool",
-                "pageTitle": "src/pools/game_object_pool",
-                "title": "game_object_pool"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/game-object-pool.js",
+                "projectPath": "work/game-builder/src/pools/game-object-pool.js",
+                "targetPath": "src/pools/game-object-pool",
+                "pageTitle": "src/pools/game-object-pool",
+                "title": "game-object-pool"
               },
               "depth": 3,
               "outline": []
@@ -920,11 +920,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/sound_player.js",
-            "projectPath": "work/game-builder/src/sound_player.js",
-            "targetPath": "src/sound_player",
-            "pageTitle": "src/sound_player",
-            "title": "sound_player"
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/sound-player.js",
+            "projectPath": "work/game-builder/src/sound-player.js",
+            "targetPath": "src/sound-player",
+            "pageTitle": "src/sound-player",
+            "title": "sound-player"
           },
           "depth": 2,
           "outline": []
@@ -940,11 +940,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/state_machine.js",
-            "projectPath": "work/game-builder/src/state_machine.js",
-            "targetPath": "src/state_machine",
-            "pageTitle": "src/state_machine",
-            "title": "state_machine"
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/state-machine.js",
+            "projectPath": "work/game-builder/src/state-machine.js",
+            "targetPath": "src/state-machine",
+            "pageTitle": "src/state-machine",
+            "title": "state-machine"
           },
           "depth": 2,
           "outline": []
@@ -960,11 +960,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/timer_factory.js",
-            "projectPath": "work/game-builder/src/timer_factory.js",
-            "targetPath": "src/timer_factory",
-            "pageTitle": "src/timer_factory",
-            "title": "timer_factory"
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/timer-factory.js",
+            "projectPath": "work/game-builder/src/timer-factory.js",
+            "targetPath": "src/timer-factory",
+            "pageTitle": "src/timer-factory",
+            "title": "timer-factory"
           },
           "depth": 2,
           "outline": []

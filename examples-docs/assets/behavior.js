@@ -97,11 +97,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/basic_container.js",
-            "projectPath": "work/examples/common_src/basic_container.js",
-            "targetPath": "common_src/basic_container",
-            "pageTitle": "common_src/basic_container",
-            "title": "basic_container"
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/basic-container.js",
+            "projectPath": "work/examples/common_src/basic-container.js",
+            "targetPath": "common_src/basic-container",
+            "pageTitle": "common_src/basic-container",
+            "title": "basic-container"
           },
           "depth": 2,
           "outline": []
@@ -117,11 +117,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/basic_game_object.js",
-            "projectPath": "work/examples/common_src/basic_game_object.js",
-            "targetPath": "common_src/basic_game_object",
-            "pageTitle": "common_src/basic_game_object",
-            "title": "basic_game_object"
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/basic-game-object.js",
+            "projectPath": "work/examples/common_src/basic-game-object.js",
+            "targetPath": "common_src/basic-game-object",
+            "pageTitle": "common_src/basic-game-object",
+            "title": "basic-game-object"
           },
           "depth": 2,
           "outline": []
@@ -137,11 +137,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/box_renderer.js",
-            "projectPath": "work/examples/common_src/box_renderer.js",
-            "targetPath": "common_src/box_renderer",
-            "pageTitle": "common_src/box_renderer",
-            "title": "box_renderer"
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/box-renderer.js",
+            "projectPath": "work/examples/common_src/box-renderer.js",
+            "targetPath": "common_src/box-renderer",
+            "pageTitle": "common_src/box-renderer",
+            "title": "box-renderer"
           },
           "depth": 2,
           "outline": []
@@ -165,11 +165,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/colliders_bundle.js",
-                "projectPath": "work/examples/common_src/bundles/colliders_bundle.js",
-                "targetPath": "common_src/bundles/colliders_bundle",
-                "pageTitle": "common_src/bundles/colliders_bundle",
-                "title": "colliders_bundle"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/colliders-bundle.js",
+                "projectPath": "work/examples/common_src/bundles/colliders-bundle.js",
+                "targetPath": "common_src/bundles/colliders-bundle",
+                "pageTitle": "common_src/bundles/colliders-bundle",
+                "title": "colliders-bundle"
               },
               "depth": 3,
               "outline": []
@@ -185,11 +185,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/input_bundle.js",
-                "projectPath": "work/examples/common_src/bundles/input_bundle.js",
-                "targetPath": "common_src/bundles/input_bundle",
-                "pageTitle": "common_src/bundles/input_bundle",
-                "title": "input_bundle"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/input-bundle.js",
+                "projectPath": "work/examples/common_src/bundles/input-bundle.js",
+                "targetPath": "common_src/bundles/input-bundle",
+                "pageTitle": "common_src/bundles/input-bundle",
+                "title": "input-bundle"
               },
               "depth": 3,
               "outline": []
@@ -205,11 +205,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/layering_bundle.js",
-                "projectPath": "work/examples/common_src/bundles/layering_bundle.js",
-                "targetPath": "common_src/bundles/layering_bundle",
-                "pageTitle": "common_src/bundles/layering_bundle",
-                "title": "layering_bundle"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/layering-bundle.js",
+                "projectPath": "work/examples/common_src/bundles/layering-bundle.js",
+                "targetPath": "common_src/bundles/layering-bundle",
+                "pageTitle": "common_src/bundles/layering-bundle",
+                "title": "layering-bundle"
               },
               "depth": 3,
               "outline": []
@@ -225,11 +225,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/logic_bundle.js",
-                "projectPath": "work/examples/common_src/bundles/logic_bundle.js",
-                "targetPath": "common_src/bundles/logic_bundle",
-                "pageTitle": "common_src/bundles/logic_bundle",
-                "title": "logic_bundle"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/logic-bundle.js",
+                "projectPath": "work/examples/common_src/bundles/logic-bundle.js",
+                "targetPath": "common_src/bundles/logic-bundle",
+                "pageTitle": "common_src/bundles/logic-bundle",
+                "title": "logic-bundle"
               },
               "depth": 3,
               "outline": []
@@ -245,11 +245,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/nesting_bundle.js",
-                "projectPath": "work/examples/common_src/bundles/nesting_bundle.js",
-                "targetPath": "common_src/bundles/nesting_bundle",
-                "pageTitle": "common_src/bundles/nesting_bundle",
-                "title": "nesting_bundle"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/nesting-bundle.js",
+                "projectPath": "work/examples/common_src/bundles/nesting-bundle.js",
+                "targetPath": "common_src/bundles/nesting-bundle",
+                "pageTitle": "common_src/bundles/nesting-bundle",
+                "title": "nesting-bundle"
               },
               "depth": 3,
               "outline": []
@@ -265,11 +265,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/rendering_bundle.js",
-                "projectPath": "work/examples/common_src/bundles/rendering_bundle.js",
-                "targetPath": "common_src/bundles/rendering_bundle",
-                "pageTitle": "common_src/bundles/rendering_bundle",
-                "title": "rendering_bundle"
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/rendering-bundle.js",
+                "projectPath": "work/examples/common_src/bundles/rendering-bundle.js",
+                "targetPath": "common_src/bundles/rendering-bundle",
+                "pageTitle": "common_src/bundles/rendering-bundle",
+                "title": "rendering-bundle"
               },
               "depth": 3,
               "outline": []
@@ -287,11 +287,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/component_1.js",
-            "projectPath": "work/examples/common_src/component_1.js",
-            "targetPath": "common_src/component_1",
-            "pageTitle": "common_src/component_1",
-            "title": "component_1"
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/component-1.js",
+            "projectPath": "work/examples/common_src/component-1.js",
+            "targetPath": "common_src/component-1",
+            "pageTitle": "common_src/component-1",
+            "title": "component-1"
           },
           "depth": 2,
           "outline": []
@@ -307,11 +307,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/state_1.js",
-            "projectPath": "work/examples/common_src/state_1.js",
-            "targetPath": "common_src/state_1",
-            "pageTitle": "common_src/state_1",
-            "title": "state_1"
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/state-1.js",
+            "projectPath": "work/examples/common_src/state-1.js",
+            "targetPath": "common_src/state-1",
+            "pageTitle": "common_src/state-1",
+            "title": "state-1"
           },
           "depth": 2,
           "outline": []
@@ -327,11 +327,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/state_2.js",
-            "projectPath": "work/examples/common_src/state_2.js",
-            "targetPath": "common_src/state_2",
-            "pageTitle": "common_src/state_2",
-            "title": "state_2"
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/state-2.js",
+            "projectPath": "work/examples/common_src/state-2.js",
+            "targetPath": "common_src/state-2",
+            "pageTitle": "common_src/state-2",
+            "title": "state-2"
           },
           "depth": 2,
           "outline": []
@@ -347,11 +347,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/state_3.js",
-            "projectPath": "work/examples/common_src/state_3.js",
-            "targetPath": "common_src/state_3",
-            "pageTitle": "common_src/state_3",
-            "title": "state_3"
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/state-3.js",
+            "projectPath": "work/examples/common_src/state-3.js",
+            "targetPath": "common_src/state-3",
+            "pageTitle": "common_src/state-3",
+            "title": "state-3"
           },
           "depth": 2,
           "outline": []

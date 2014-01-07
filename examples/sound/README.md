@@ -1,7 +1,7 @@
 # sound
 -------------------
 
-This example is about the sound_player module. It plays sound. That's it, move along.
+This example is about the sound-player module. It plays sound. That's it, move along.
 
 A [GAME-BUILDER][game-builder] project
 

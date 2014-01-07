@@ -6,13 +6,13 @@ define(function(require){
 	var game = gb.game;
 	var root = gb.root;
 	
-	game.add_extension(require('basic_layer_setup'));
+	game.add_extension(require('basic-layer-setup'));
 
 	// This is the main initialization function
 	game.on("init", this, function() {
 		console.log("Welcome to Game-Builder!");
 
-		require('rendering_bundle').create();
+		require('rendering-bundle').create();
 
 		gb.addToLayer('Middle', 'Base_1');
 		gb.addToLayer('Middle', 'Base_2');

@@ -6,7 +6,7 @@ define(function(require){
 	var game = gb.game;
 	var root = gb.root;
 
-	game.add_extension(require('basic_layer_setup'));
+	game.add_extension(require('basic-layer-setup'));
 
 	// This is the main initialization function
 	game.on("init", this, function() {
@@ -14,7 +14,7 @@ define(function(require){
 
 		// This object encapsulates the logic to setup pools of objects.
 		// Incase you though the first example was a bit crud.
-		require('nesting_bundle').create();
+		require('nesting-bundle').create();
 
 		// This helper method will add a game object with the id specified in the second argument
 		// to the layer specified in the first argument. It also calls the start method of the game object.

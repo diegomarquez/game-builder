@@ -1,7 +1,15 @@
+var p = require('path');
+
 module.exports = function(grunt) {
   var pkg = grunt.file.readJSON('package.json');
 
-  pkg.projectRoot = pkg.projectRoot[grunt.option('dictionary')];
+  if(grunt.option('dictionary')) {
+    if(grunt.option('dictionary') != 'prod' && grunt.option('dictionary') != 'dev'){
+      grunt.fail.fatal('Must specify an enviroment. prod or dev');
+    }
+
+    pkg.projectRoot = pkg.projectRoot[grunt.option('dictionary')];
+  }
 
   var gruntOptions = {}
 
@@ -136,8 +144,11 @@ module.exports = function(grunt) {
       var dictionary = {};
 
       paths.forEach(function( path ) {
-        var alias = path.match(/(\w+)\.js$/)[1];
-        dictionary[alias] = prefix + path.replace(/\.js$/, suffix);
+        var base = p.basename(path, '.js');
+        var dir = p.dirname(path);
+        var path = dir + p.sep + base;
+
+        dictionary[base+'@@'] = prefix + path + suffix;
       });
 
       grunt.file.write(out, JSON.stringify(dictionary, undefined, 2 ));

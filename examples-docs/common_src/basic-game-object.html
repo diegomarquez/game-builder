@@ -1,0 +1,16 @@
+<!DOCTYPE html><html lang="en"><head><title>common_src/basic-game-object</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="common_src/basic-game-object"><meta name="groc-project-path" content="work/examples/common_src/basic-game-object.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/examples/common_src/basic-game-object.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;game-object&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">){</span>
+  <span class="c1">//A very basic game-object with some logic, not really usefull at all but as an example.</span>
+  <span class="kd">var</span> <span class="nx">Basic</span> <span class="o">=</span> <span class="nx">GameObject</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">rotation</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="nx">rotation_speed</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="c1">//This method needs to be defined if a game-object has a collider component attached</span>
+    <span class="c1">//Might change in the future, haven&#39;t figured out what is the best way to do this yet</span>
+    <span class="nx">onCollide</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">other</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">typeId</span> <span class="o">+</span> <span class="s2">&quot; Collided with &quot;</span> <span class="o">+</span> <span class="nx">other</span><span class="p">.</span><span class="nx">typeId</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="nx">Basic</span><span class="p">;</span>
+<span class="p">});</span></div></div></div></div></body></html>

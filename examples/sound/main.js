@@ -6,7 +6,7 @@ define(function(require){
 	var game = gb.game;
 	var root = gb.root;
 
-	var sound_player = require('sound_player');
+	var sound_player = require('sound-player');
 	var keyboard = require('keyboard');
 
 	// This is the main initialization function
@@ -17,10 +17,10 @@ define(function(require){
 		sound_player.createChannels(4);
 
 		//Add the sound resources that will be available
-		sound_player.add('Sound_1', '../../common_assets/sound/bird.mp3');
-		sound_player.add('Sound_2', '../../common_assets/sound/horse.mp3');
-		sound_player.add('Sound_3', '../../common_assets/sound/sheep.mp3');
-		sound_player.add('Sound_4', '../../common_assets/sound/elevator.mp3');
+		sound_player.add('Sound_1', '../common_assets/sound/bird.mp3');
+		sound_player.add('Sound_2', '../common_assets/sound/horse.mp3');
+		sound_player.add('Sound_3', '../common_assets/sound/sheep.mp3');
+		sound_player.add('Sound_4', '../common_assets/sound/elevator.mp3');
 
 		//Call loadAll to load all the resources, the callback gets executed once everything is loaded.
 		

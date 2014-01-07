@@ -6,7 +6,7 @@ define(function(require){
 	var game = gb.game;
 	var root = gb.root;
 
-	var timer_factory = require('timer_factory');
+	var timer_factory = require('timer-factory');
 	var keyboard = require('keyboard');
 	
 	// This is the main initialization function

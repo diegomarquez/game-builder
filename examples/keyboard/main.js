@@ -12,13 +12,13 @@ define(function(require){
 	var keyboard = require('keyboard');
 	var util = require('util');
 
-	game.add_extension(require('basic_layer_setup'));
+	game.add_extension(require('basic-layer-setup'));
 
 	// This is the main initialization function
 	game.on("init", this, function() {
 		console.log("Welcome to Game-Builder!");
 
-		require('input_bundle').create();
+		require('input-bundle').create();
 
 		//Key Down Events
 		keyboard.onKeyDown(keyboard.A, this, function() { 

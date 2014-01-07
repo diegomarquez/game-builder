@@ -6,7 +6,7 @@ define(function(require){
 	var game = gb.game;
 	var root = gb.root;
 
-	var stateMachineFactory = require('state_machine');
+	var stateMachineFactory = require('state-machine');
 
 	// This is the main initialization function
 	game.on("init", this, function() {
@@ -21,9 +21,9 @@ define(function(require){
 
 		//The states are now in different files. 
 		//Go check those out to see how they look.
-		var state_1 = require('../../common_src/state_1');
-		var state_2 = require('../../common_src/state_2');
-		var state_3 = require('../../common_src/state_3');
+		var state_1 = require('../common_src/state-1');
+		var state_2 = require('../common_src/state-2');
+		var state_3 = require('../common_src/state-3');
 
 		//Note: After starting the state machine. The last and first states will be connected
 		// By the next() and previous() methods respectively.

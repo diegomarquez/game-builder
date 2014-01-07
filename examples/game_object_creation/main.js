@@ -15,19 +15,19 @@ define(function(require){
 	//it adds 4 layers to work with, 'Back', 'Middle', 'Front' and 'Text'.
 	//Each layer is on top of the previous one.
 	//If your project needs more layers, you can replace this extension with one of your own.
-	game.add_extension(require('basic_layer_setup'));
+	game.add_extension(require('basic-layer-setup'));
 	
-	var basic_game_object = require('basic_game_object'); 
-	var box_renderer      = require('box_renderer');
+	var basic_game_object = require('basic-game-object'); 
+	var box_renderer      = require('box-renderer');
 
 	// This is the main initialization function
 	game.on('init', this, function() {
 		console.log('Welcome to Game-Builder!');
 
-		//Create a 'box_renderer' components pool and give it the id 'Box_Renderer'
+		//Create a 'box-renderer' components pool and give it the id 'box-renderer'
 		componentPool.createPool('Box_Renderer', box_renderer);
 		
-		//Create a 'Red_Renderer' configuration for the components in the pool 'Box_Renderer'
+		//Create a 'Red_Renderer' configuration for the components in the pool 'box-renderer'
 		//When a component with with id 'Red_Renderer' is requested, it will take this arguments.
 		//This particular render will draw a box with the specified parameters
 		componentPool.createConfiguration('Red_Renderer', 'Box_Renderer')
@@ -39,18 +39,18 @@ define(function(require){
 				height: 100,
 			  });			
 		
-		//Create a 'basic_game_object' components pool and give it the id 'Base'.
+		//Create a 'basic-game-object' components pool and give it the id 'Base'.
 		//The last arguments specifies the amount of objects to create in the pool. In this case 1.
 		gameObjectPool.createPool('Base', basic_game_object, 1);
 
 		//Create a 'Base_1' configuration for the components in the pool 'Base'
-		//When a game_object with with id 'Base_1' is requested, it will take this arguments
+		//When a game-object with with id 'Base_1' is requested, it will take this arguments
 		//NOTICE: The if being sent in through setRenderer(), it matches the one of the component configuration above.
 		gameObjectPool.createConfiguration('Base_1', 'Base')
 			.args({x:canvas.width/2, y:canvas.height/2, rotation_speed: 3})
 			.setRenderer('Red_Renderer');
 
-		// This fetches the game_object with id 'Base_1'. In the process it applies all the configurations we just set.
+		// This fetches the game-object with id 'Base_1'. In the process it applies all the configurations we just set.
 		var go = assembler.get('Base_1');
 		// Add the game object to a rendering layer
 		layers.get('Middle').add(go);

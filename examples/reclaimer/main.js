@@ -7,7 +7,7 @@ define(function(require){
 	var root = gb.root;
 	var reclaimer = gb.reclaimer;
 
-	game.add_extension(require('basic_layer_setup'));
+	game.add_extension(require('basic-layer-setup'));
 
 	var keyboard = require('keyboard');
 
@@ -15,7 +15,7 @@ define(function(require){
 	game.on("init", this, function() {
 		console.log("Welcome to Game-Builder!");
 		
-		require('layering_bundle').create();
+		require('layering-bundle').create();
 
 		gb.addToLayer('Front', 'Base_1');
 		gb.addToLayer('Middle', 'Base_2');

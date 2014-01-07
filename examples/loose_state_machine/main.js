@@ -6,9 +6,9 @@ define(function(require){
 	var game = gb.game;
 	var root = gb.root;
 
-	//The first thing to do is get a hold to a reference to the state_machine_factory.
+	//The first thing to do is get a hold to a reference to the state-machine_factory.
 	//This thing will let you instantiate different kinds of state machines and their states.
-	var stateMachineFactory = require('state_machine');
+	var stateMachineFactory = require('state-machine');
 	var keyboard = require('keyboard');
 
 	// This is the main initialization function

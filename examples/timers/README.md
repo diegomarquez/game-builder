@@ -1,7 +1,7 @@
 # timers
 -------------------
 
-This example will deal with the timer_factory module.
+This example will deal with the timer-factory module.
 This module exists because Javascript's setTimeout and setInterval methods work... but they are a bit lacking in functionality.
 
 The timer factory gives you a type of object which uses setTimeout under the hood,

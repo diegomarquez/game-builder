@@ -1,4 +1,4 @@
-define(['vector_2D'], function(Vector) {
+define(['vector-2D'], function(Vector) {
 
   var T_VECTORS = [];
   for (var i = 0; i < 10; i++) {

@@ -2,9 +2,9 @@
  * # delegate.js
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
  *
- * Inherits from: [class](http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html)
+ * Inherits from: [class](@@class)
  * 
- * Depends of: [util](http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html)
+ * Depends of: [util](@@util)
  *
  * A [requireJS](http://requirejs.org/) module.
  * 

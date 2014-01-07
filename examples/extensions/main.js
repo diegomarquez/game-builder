@@ -6,8 +6,8 @@ define(function(require){
 	var game = gb.game;
 	var root = gb.root;
 
-	game.add_extension(require("aspect_ratio_resize"));
-	game.add_extension(require("basic_layer_setup"));
+	game.add_extension(require("aspect-ratio-resize"));
+	game.add_extension(require("basic-layer-setup"));
 	game.add_extension(require("pause"));
 	game.add_extension(require("resume"));
 	
@@ -15,7 +15,7 @@ define(function(require){
 	game.on("init", this, function() {
 		console.log("Welcome to Game-Builder!");
 
-		require('layering_bundle').create();
+		require('layering-bundle').create();
 
 		gb.addToLayer('Front', 'Base_3');
 		gb.addToLayer('Middle', 'Base_2');
