@@ -1,12 +1,13 @@
 /**
  * # delegate.js
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
- *
+ * ### [Find me in Github](https://github.com/diegomarquez)
+ * 
  * Inherits from: [class](@@class)
  * 
  * Depends of: [util](@@util)
  *
- * A [requireJS](http://requirejs.org/) module.
+ * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
  * It implements a [Multicast Delegate](http://en.wikipedia.org/wiki/Delegation_pattern). 
  * Sounds like a mouthful? The more friendly name is, 'Event System', which sounds about a million times less cool.
