@@ -1,7 +1,7 @@
 /**
  * # delegate.js
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
- * ### [Find me in Github](https://github.com/diegomarquez)
+ * ### [Find me on Github](https://github.com/diegomarquez)
  * 
  * Inherits from: [class](@@class)
  * 
@@ -52,12 +52,12 @@ define(["util", "class"], function(util) {
 		/**
 		 * <p style='color:#AD071D'><strong>on</strong> Use it to add functions to the delegate instance.</p>
 		 * @param  {String} name Id that the function will be associated with
-		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'.
-		 * @param  {Function} callback Function you want to execute.
-		 * @param  {Boolean} [removeOnExecute=false] The function will be removed from the corresponding list, after executing it once.
-		 * @param  {Boolean} [inmediate=false] Execute function inmediatelly after adding it.
-		 * @param  {Boolean} [keepOnCleanUp=false] Save the function when executing the **softCleanUp**.
-		 * @param  {Boolean} [single=false] Do not add function if there is already one with the same id.
+		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'
+		 * @param  {Function} callback Function you want to execute
+		 * @param  {Boolean} [removeOnExecute=false] The function will be removed from the corresponding list, after executing it once
+		 * @param  {Boolean} [inmediate=false] Execute function inmediatelly after adding it
+		 * @param  {Boolean} [keepOnCleanUp=false] Save the function when executing the **softCleanUp**
+		 * @param  {Boolean} [single=false] Do not add function if there is already one with the same id
 		 * @return {null}
 		 */
 		on: function(name, scope, callback, removeOnExecute, inmediate, keepOnCleanUp, single) {
@@ -88,9 +88,9 @@ define(["util", "class"], function(util) {
 
 		/**
 		 * <p style='color:#AD071D'><strong>remove</strong> Removes the specified function from the array it is in.</p>
-		 * @param  {String}   name Id the funtion you want to remove is associated with.
-		 * @param  {Object}   scope Scope used when adding the function to the delegate.
-		 * @param  {Function} callback Function you want to remove from the delegate.
+		 * @param  {String}   name Id the funtion you want to remove is associated with
+		 * @param  {Object}   scope Scope used when adding the function to the delegate
+		 * @param  {Function} callback Function you want to remove from the delegate
 		 * @return {null}
 		 */
 		remove: function(name, scope, callback) {
@@ -112,7 +112,7 @@ define(["util", "class"], function(util) {
 
 		/**
 		 * <p style='color:#AD071D'><strong>removeAll</strong> Removes all the funtions associated with an id.</p>
-		 * @param  {String} name All funtions matching this Id will be removed from the delegate.
+		 * @param  {String} name All funtions matching this Id will be removed from the delegate
 		 * @return {null}
 		 */
 		removeAll: function(name) {
@@ -177,8 +177,8 @@ define(["util", "class"], function(util) {
 
 		/**
 		 * <p style='color:#AD071D'><strong>execute</strong> Use this to call all the methods registered using <strong>on</strong>.</p>
-		 * @param  {String} name All the funtions registered with the id provided will be executed.
-		 * @param  {Object} args This Object will be passed as argument to all the funtions executed.
+		 * @param  {String} name All the funtions registered with the id provided will be executed
+		 * @param  {Object} args This Object will be passed as argument to all the funtions executed
 		 * @return {null}
 		 */
 		execute: function(name, args) {
