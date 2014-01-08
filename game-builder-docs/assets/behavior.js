@@ -405,12 +405,33 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "slug": "drawjs",
                 "isFileHeader": true
               },
-              "depth": 1
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Doodling time",
+                    "slug": "doodling-time"
+                  },
+                  "depth": 2
+                }
+              ]
             },
             "title": "draw.js"
           },
           "depth": 2,
-          "outline": []
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Doodling time",
+                "slug": "doodling-time"
+              },
+              "depth": 2
+            }
+          ]
         }, {
           "type": "folder",
           "data": {
@@ -918,10 +939,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/game-builder/src/sound-player.js",
             "targetPath": "src/sound-player",
             "pageTitle": "src/sound-player",
-            "title": "sound-player"
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "sound-player.js",
+                "slug": "sound-playerjs",
+                "isFileHeader": true
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Play it loud!",
+                    "slug": "play-it-loud"
+                  },
+                  "depth": 2
+                }
+              ]
+            },
+            "title": "sound-player.js"
           },
           "depth": 2,
-          "outline": []
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Play it loud!",
+                "slug": "play-it-loud"
+              },
+              "depth": 2
+            }
+          ]
         }, {
           "type": "file",
           "data": {

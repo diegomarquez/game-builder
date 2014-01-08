@@ -32,8 +32,10 @@ For better results it is better to use it in conjuction with [generator-game-bui
 - Think about how to handle paths to images/sound
     - Yeoman subgenerator to create a file with name/paths pairs.
     - Pick up urls from another file to create mappings for remote resources.
-    - This could be loaded as a text file when needed, or maybe a module. In any case, should be lightweight.
-    - The idea is to have something else other than raw strings in the code.
+        - This could be loaded as a text file when needed, or maybe a module. In any case, should be lightweight.
+        - The idea is to have something else other than raw strings in the code.
+    - Refactor sound-player so it loads things and plays them as they become available.
+    - Add functionality to use a manipulate an individual sound channel to the sound-player
 
 - Extensions 2
     - TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )

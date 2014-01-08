@@ -1,4 +1,30 @@
-<!DOCTYPE html><html lang="en"><head><title>src/sound-player</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="src/sound-player"><meta name="groc-project-path" content="work/game-builder/src/sound-player.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/sound-player.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;timer-factory&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">timerFactory</span><span class="p">)</span> <span class="p">{</span>
+<!DOCTYPE html><html lang="en"><head><title>src/sound-player</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="src/sound-player"><meta name="groc-project-path" content="work/game-builder/src/sound-player.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/sound-player.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="sound-playerjs">sound-player.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from:</p>
+
+<p>Depends of: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/timer-factory.html">timer-factory</a></p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>The name is pretty self explanatory, use this module to play some sounds. You can load sound files,
+play them, pause them, resume them and stop them. As an additional bonus this is also a manager
+that will let you do all the actions described earlier in all the sounds in one method call. Pretty neat.</p>
+
+<p>The first thing to do when using this module is create some channels using the <strong>createChannels</strong> method,
+this will dictate the amount of sounds that can be played simultaneously. Of course more sound channels means
+a bigger memory foot print.</p>
+
+<p>After creating the channels, it is a matter of adding some sounds files, using the <strong>add</strong> method. After doing that, a call
+to <strong>loadAll</strong> will trigger loading. <strong>loadAll</strong> has an callback that is triggered when all the specified sounds are loaded.</p>
+
+<p>During loading, no new files can be loaded. You should take that into account when using this module.</p>
+
+<p>The rest of the methods do what they say on the tin, it should be pretty easy for you, a master coder, 
+to figure out how to use them.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="play-it-loud">Play it loud!</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;timer-factory&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">timerFactory</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">isLoading</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 
   <span class="kd">var</span> <span class="nx">SoundPlayer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -39,9 +65,17 @@
     <span class="nx">channel</span><span class="p">.</span><span class="nx">time</span> <span class="o">=</span> <span class="nx">audio</span><span class="p">.</span><span class="nx">duration</span><span class="p">;</span>
 
     <span class="nx">channel</span><span class="p">.</span><span class="nx">load</span><span class="p">();</span>
-  <span class="p">}</span>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>createChannels</strong> This will create the specified amount
+of channels. A channel is an instance of the <a href="http://www.w3schools.com/html/html5_audio.asp">HTML5 Audio Object</a>.
+Created channels are stored in an array so they can be re-used when idle.</p>
 
-  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">createChannels</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">amount</span><span class="p">)</span> <span class="p">{</span>
+<p>Parameters:</p>
+
+<ul>
+<li><strong>amount must be a Number.</strong><br/>(The amount of channels to create)</li>
+</ul>
+
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">createChannels</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">amount</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">amount</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">channel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Audio</span><span class="p">();</span>
 
@@ -49,13 +83,26 @@
 
       <span class="k">this</span><span class="p">.</span><span class="nx">pooledChannels</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">channel</span><span class="p">);</span>
     <span class="p">}</span>
-  <span class="p">};</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong> Use this method add files that should be loaded 
+when <strong>loadAll</strong> is called.</p>
 
-  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>id must be a String.</strong><br/>(Use this identifier to later play the loaded sound )</p></li>
+<li><p><strong>path must be a String.</strong><br/>(A path to a sound file. Can be relative or absolute)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">audioAssetPaths</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">path</span><span class="p">;</span>
-  <span class="p">};</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>loadAll</strong> Will load all the sounds that were added previously using <strong>add</strong>
+when all the loading is complete a callback is executed.</p>
 
-  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">loadAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">onComplete</span><span class="p">)</span> <span class="p">{</span>
+<p>Parameters:</p>
+
+<ul>
+<li><strong>onComplete must be a Function.</strong><br/>(Function to execute once all the loading is complete)</li>
+</ul>
+
+<p><strong>Can throw an Error</strong><br/>(If it is already loading files)<br/><strong>and</strong> <strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">loadAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">onComplete</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">isLoading</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Sound Player: Still loading resources. Wait till everything is complete, before loading more.&#39;</span><span class="p">)</span>
       <span class="k">return</span><span class="p">;</span>
@@ -89,9 +136,16 @@
 
       <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">audio</span><span class="p">);</span>
     <span class="p">}</span>
-  <span class="p">};</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>playSingle</strong> Plays a sound 1 time.</p>
 
-  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">playSingle</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">onComplete</span><span class="p">)</span> <span class="p">{</span>
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>id must be a String.</strong><br/>(Id of the sound to play)</p></li>
+<li><p><strong>onComplete must be a Function.</strong><br/>(This will be executed when the sound completes playing)</p></li>
+</ul>
+
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">playSingle</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">onComplete</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
     <span class="nx">setUpChannel</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span> <span class="p">{</span>
@@ -115,9 +169,15 @@
 
       <span class="nx">channel</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
     <span class="p">});</span>
-  <span class="p">};</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>playLoop</strong> Plays a sound continously, until it is stopped manually.</p>
 
-  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">playLoop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+<p>Parameters:</p>
+
+<ul>
+<li><strong>id must be a String.</strong><br/>(Id of the sound to play)</li>
+</ul>
+
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">playLoop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">setUpChannel</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">channel</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;repeate&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">channel</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -132,14 +192,18 @@
 
       <span class="nx">channel</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
     <span class="p">});</span>
-  <span class="p">};</span>
-
-  <span class="kd">var</span> <span class="nx">pauseChannel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">pauseChannel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">channel</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">pause</span><span class="p">();</span>
     <span class="nx">channel</span><span class="p">.</span><span class="nx">pause</span><span class="p">();</span>
-  <span class="p">}</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>pause</strong> Pauses all the channels playing a sound with the given id.</p>
 
-  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">pause</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+<p>Parameters:</p>
+
+<ul>
+<li><strong>id must be a String.</strong><br/>(Id of the sound to pause)</li>
+</ul>
+
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">pause</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">channel</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
 
@@ -147,15 +211,13 @@
         <span class="nx">pauseChannel</span><span class="p">(</span><span class="nx">channel</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">};</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>pauseAll</strong> Pauses all sounds rgistered with the player.</p>
 
-  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">pauseAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">pauseAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">pauseChannel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
     <span class="p">}</span>
-  <span class="p">};</span>
-
-  <span class="kd">var</span> <span class="nx">stopChannel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">stopChannel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">channel</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="nx">channel</span><span class="p">.</span><span class="nx">pause</span><span class="p">();</span>
     <span class="nx">channel</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
@@ -165,9 +227,15 @@
 
     <span class="k">this</span><span class="p">.</span><span class="nx">pooledChannels</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">channel</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>stop</strong> Stops all the channels playing a sound with the given id.</p>
 
-  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">stop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+<p>Parameters:</p>
+
+<ul>
+<li><strong>id must be a String.</strong><br/>(Id of the sound to stop)</li>
+</ul>
+
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">stop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">channel</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
 
@@ -175,20 +243,24 @@
         <span class="nx">stopChannel</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">channel</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">};</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>stopAll</strong> Stops all sounds rgistered with the player.</p>
 
-  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">stopAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p><strong>Returns a [type]</strong><br/>([description])</p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">stopAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">stopChannel</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">i</span><span class="p">);</span>
     <span class="p">}</span>
-  <span class="p">};</span>
-
-  <span class="kd">var</span> <span class="nx">resumeChannel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">resumeChannel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">channel</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
     <span class="nx">channel</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">resume</span><span class="p">();</span>
-  <span class="p">}</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resume</strong> Resumes all the channels paused with the given id.</p>
 
-  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">resume</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+<p>Parameters:</p>
+
+<ul>
+<li><strong>id must be a String.</strong><br/>(Id of the sound to stop)</li>
+</ul>
+
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">resume</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">channel</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
 
@@ -196,13 +268,11 @@
         <span class="nx">resumeChannel</span><span class="p">(</span><span class="nx">channel</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">};</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resumeAll</strong> Resumes all paused channels.</p>
 
-  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">resumeAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">resumeAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">resumeChannel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
     <span class="p">}</span>
-  <span class="p">};</span>
-
-  <span class="k">return</span> <span class="k">new</span> <span class="nx">SoundPlayer</span><span class="p">();</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="k">return</span> <span class="k">new</span> <span class="nx">SoundPlayer</span><span class="p">();</span>
 <span class="p">});</span></div></div></div></div></body></html>
