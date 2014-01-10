@@ -39,8 +39,10 @@ situation.</p>
 The first two are functions executed when entering and exiting a state. <strong>Update</strong> must be called in a loop.
 All phases are optional. Ofcourse, having a state with no phases is a bit on the dumb side.</p>
 
-<p><strong>Note: State machines may throw a custom error, when trying to execute <em>*Initialization</strong> and <strong>Completion</strong> actions. 
-This means there is something wrong in the callbacks registered with the state machine, rather than the state machine itself.</em>*</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="encapsulation-is-good">Encapsulation is good</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;delegate&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>StateMachine</strong></p></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">StateMachine</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+<p style='color:#AD071D'>Note: State machines may throw a custom error when trying to 
+execute <strong>Initialization</strong> and <strong>Completion</strong> actions. 
+This means there is something wrong in the callbacks registered 
+with the state machine, rather than the state machine itself.</p> </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="encapsulation-is-good">Encapsulation is good</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;delegate&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>StateMachine</strong></p></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">StateMachine</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">stateIds</span> <span class="o">=</span> <span class="p">{}</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">states</span> <span class="o">=</span> <span class="p">[];</span>
@@ -109,21 +111,18 @@ to another state.</p>
 
 <p>When executing the <strong>change</strong> delegate an arguments is required to be passed. ej.</p>
 
-<p><code>javascript
- state.execute('change', 
-     {
-         // Name of the state to pass control to
-            // This is required
-            next: 'StateName'
-            // This will be passed as arguments to the **complete** actions of the current state
-            // This is optional
-            lastCompleteArgs: {},
-            // This will be passed as arguments to the **start** actions of the next state
-            // This is optional 
-            nextInitArgs: {}
-     }
- )
-</code></p>
+<pre><code class=" javascript">state.execute('change', {
+             // Name of the state to pass control to
+             // This is required
+              next: 'StateName'
+              // This will be passed as arguments to the complete actions of the current state
+              // This is optional
+              lastCompleteArgs: {},
+              // This will be passed as arguments to the start actions of the next state
+              // This is optional 
+              nextInitArgs: {}
+});
+</code></pre>
 
 <p>Parameters:</p>
 
@@ -152,18 +151,15 @@ to the corresponding states.</p>
 
 <p>When executing the <strong>next</strong> and <strong>previous</strong> delegates an argument is optional. ej.</p>
 
-<p><code>javascript
- state.execute('next', 
-     {
-            // This will be passed as arguments to the **complete** actions of the current state
-            // This is optional
-            lastCompleteArgs: {},
-            // This will be passed as arguments to the **start** actions of the next state
-            // This is optional 
-            nextInitArgs: {}
-     }
- )
-</code></p>
+<pre><code class=" javascript  ">state.execute('next', {
+              // This will be passed as arguments to the complete actions of the current state
+              // This is optional
+              lastCompleteArgs: {},
+              // This will be passed as arguments to the start actions of the next state
+              // This is optional 
+              nextInitArgs: {}
+});
+</code></pre>
 
 <p>Parameters:</p>
 
@@ -228,8 +224,11 @@ Just a way to type less stuff when adding callbacks.</p></div></div><div class="
     <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span> <span class="p">},</span>
     <span class="nx">complete</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;complete&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span> <span class="p">},</span>
   <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>State Machine Factory</strong></p></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">StateMachineFactory</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">//Create a &quot;loose&quot; state machine</span>
     <span class="nx">createLooseStateMachine</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nx">LooseStateMachine</span><span class="p">();</span> <span class="p">},</span>
+    <span class="c1">//Create a &quot;fixed&quot; state machine</span>
     <span class="nx">createFixedStateMachine</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nx">FixedStateMachine</span><span class="p">();</span> <span class="p">},</span>
+    <span class="c1">//Create a state, send in the scope for the state and a name</span>
     <span class="nx">createState</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="nx">State</span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span> <span class="p">}</span>
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  
   <span class="kd">var</span> <span class="nx">executeStateAction</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">stateId</span><span class="p">,</span> <span class="nx">action</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>

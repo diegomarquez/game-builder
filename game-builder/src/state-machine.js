@@ -38,8 +38,10 @@
  * The first two are functions executed when entering and exiting a state. **Update** must be called in a loop.
  * All phases are optional. Ofcourse, having a state with no phases is a bit on the dumb side.
  *
- * **Note: State machines may throw a custom error, when trying to execute **Initialization** and **Completion** actions. 
- * This means there is something wrong in the callbacks registered with the state machine, rather than the state machine itself.**
+ * <p style='color:#AD071D'>Note: State machines may throw a custom error when trying to 
+ * execute <strong>Initialization</strong> and <strong>Completion</strong> actions. 
+ * This means there is something wrong in the callbacks registered 
+ * with the state machine, rather than the state machine itself.</p> 
  */
 
 /**
@@ -170,21 +172,19 @@ define(["delegate", "class"], function(Delegate) {
 		 *
 		 * When executing the **change** delegate an arguments is required to be passed. ej.
 		 *
-		 *  ```javascript
-		 *  state.execute('change', 
-		 *  	{
-		 *  		// Name of the state to pass control to
-		 * 	    	// This is required
-		 * 	    	next: 'StateName'
-		 * 			// This will be passed as arguments to the **complete** actions of the current state
-		 * 			// This is optional
-		 * 	 		lastCompleteArgs: {},
-		 * 	  		// This will be passed as arguments to the **start** actions of the next state
-		 * 	  		// This is optional 
-		 * 	   		nextInitArgs: {}
-		 *      }
-		 *  )
-		 *  ```
+		 * ``` javascript
+		 * state.execute('change', {
+ 			// Name of the state to pass control to
+ 			// This is required
+  	    	next: 'StateName'
+  			// This will be passed as arguments to the complete actions of the current state
+  			// This is optional
+  	 		lastCompleteArgs: {},
+  	  		// This will be passed as arguments to the start actions of the next state
+  	  		// This is optional 
+  	   		nextInitArgs: {}
+		 * });
+		 * ```
 		 * 
 		 * @param {State} state State object to add
 		 * @return {null}
@@ -224,18 +224,17 @@ define(["delegate", "class"], function(Delegate) {
 		 *
 		 * When executing the **next** and **previous** delegates an argument is optional. ej.
 		 *
-		 *  ```javascript
-		 *  state.execute('next', 
-		 *  	{
-		 * 			// This will be passed as arguments to the **complete** actions of the current state
-		 * 			// This is optional
-		 * 	 		lastCompleteArgs: {},
-		 * 	  		// This will be passed as arguments to the **start** actions of the next state
-		 * 	  		// This is optional 
-		 * 	   		nextInitArgs: {}
-		 *      }
-		 *  )
-		 *  ```
+		 * ``` javascript  
+		 * state.execute('next', {
+  			// This will be passed as arguments to the complete actions of the current state
+  			// This is optional
+  	 		lastCompleteArgs: {},
+  	  		// This will be passed as arguments to the start actions of the next state
+  	  		// This is optional 
+  	   		nextInitArgs: {}
+		 * });
+		 *  
+		 * ```
 		 * 
 		 * @param {State} state State object to add
 		 * @return {null}
@@ -323,11 +322,11 @@ define(["delegate", "class"], function(Delegate) {
 	 * <p style='color:#AD071D'><strong>State Machine Factory</strong></p>
 	 */
 	var StateMachineFactory = {
-		//
+		//Create a "loose" state machine
 		createLooseStateMachine: function() { return new LooseStateMachine(); },
-		//
+		//Create a "fixed" state machine
 		createFixedStateMachine: function() { return new FixedStateMachine(); },
-		//
+		//Create a state, send in the scope for the state and a name
 		createState: function(scope, name) { return new State(scope, name); }
 	};
 	/**
