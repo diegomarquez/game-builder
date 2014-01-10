@@ -192,7 +192,7 @@ define(['timer-factory'], function(timerFactory) {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>playLoop</strong> Plays a sound continously, until it is stopped manually.</p>
+	 * <p style='color:#AD071D'><strong>playLoop</strong> Plays a sound continuosly, until it is stopped manually.</p>
 	 * @param  {String} id Id of the sound to play
 	 * @return {null}
 	 */
@@ -240,7 +240,7 @@ define(['timer-factory'], function(timerFactory) {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>pauseAll</strong> Pauses all sounds rgistered with the player.</p>
+	 * <p style='color:#AD071D'><strong>pauseAll</strong> Pauses all playing channels registered with the player.</p>
 	 * @return {null}
 	 */
 	SoundPlayer.prototype.pauseAll = function() {
@@ -283,7 +283,7 @@ define(['timer-factory'], function(timerFactory) {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>stopAll</strong> Stops all sounds rgistered with the player.</p>
+	 * <p style='color:#AD071D'><strong>stopAll</strong> Stops all channels registered with the player.</p>
 	 * @return {[type]} [description]
 	 */
 	SoundPlayer.prototype.stopAll = function() {

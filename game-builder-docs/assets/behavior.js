@@ -990,10 +990,89 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/game-builder/src/state-machine.js",
             "targetPath": "src/state-machine",
             "pageTitle": "src/state-machine",
-            "title": "state-machine"
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "state-machine.js",
+                "slug": "state-machinejs",
+                "isFileHeader": true
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "1. Provide a factory for creating state machines and their states.",
+                    "slug": "1-provide-a-factory-for-creating-state-machines-and-their-states"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "2. Provides 2 types of state machines.",
+                    "slug": "2-provides-2-types-of-state-machines"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "3. Provides a base class from which to extend your own states.",
+                    "slug": "3-provides-a-base-class-from-which-to-extend-your-own-states"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Encapsulation is good",
+                    "slug": "encapsulation-is-good"
+                  },
+                  "depth": 2
+                }
+              ]
+            },
+            "title": "state-machine.js"
           },
           "depth": 2,
-          "outline": []
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "1. Provide a factory for creating state machines and their states.",
+                "slug": "1-provide-a-factory-for-creating-state-machines-and-their-states"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "2. Provides 2 types of state machines.",
+                "slug": "2-provides-2-types-of-state-machines"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 3,
+                "title": "3. Provides a base class from which to extend your own states.",
+                "slug": "3-provides-a-base-class-from-which-to-extend-your-own-states"
+              },
+              "depth": 3
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Encapsulation is good",
+                "slug": "encapsulation-is-good"
+              },
+              "depth": 2
+            }
+          ]
         }, {
           "type": "file",
           "data": {
