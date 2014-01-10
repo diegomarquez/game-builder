@@ -37,6 +37,9 @@
  * **States** have three main phases. **Initialization**, **Completion** and **Update**.
  * The first two are functions executed when entering and exiting a state. **Update** must be called in a loop.
  * All phases are optional. Ofcourse, having a state with no phases is a bit on the dumb side.
+ *
+ * **Note: State machines may throw a custom error, when trying to execute **Initialization** and **Completion** actions. 
+ * This means there is something wrong in the callbacks registered with the state machine, rather than the state machine itself.**
  */
 
 /**
@@ -48,36 +51,6 @@
  * --------------------------------
  */
 define(["delegate", "class"], function(Delegate) {
-
-	var executeStateAction = function(stateId, action, args) {
-		if (this.isBlocked || this.states == null) { return; }
-
-		try {
-			this.states[stateId][action](args);	
-		} catch(e) {
-			throw new Error("Error setting new state: " + e.message);
-		}
-
-		this.currentStateId = stateId;
-	}
-
-	var getStateId = function(stateIdOrName) {
-		return this.stateIds[stateIdOrName.toString()]
-	};
-
-	var canNotMoveToNewState = function(state) {
-		var changingStateId = getStateId.call(this, state.name)
-		if (this.currentStateId != changingStateId) {
-			return true;
-		}
-		
-		if (this.isBlocked || this.states == null) { 
-			return true; 
-		}
-
-		return false;
-	}
-
 	/**
 	 * <p style='color:#AD071D'><strong>StateMachine</strong></p>
 	 */
@@ -89,29 +62,83 @@ define(["delegate", "class"], function(Delegate) {
 			this.block();
 		},
 
+		/**
+		 * <p style='color:#AD071D'><strong>start</strong> Once the states have been added, call this method to go into
+		 * the first state, optionally sending some arguments.</p>
+		 * @param  {*} [args=null] Arguments to be sent to the initial state.
+		 * @return {null}  
+		 */
 		start: function(args) {
 			this.unblock();
 			executeStateAction.call(this, 0, 'start', args);
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>add</strong> Add state object to the state machine. 
+		 * This method is redifined by the concrete implementations.</p>
+		 * @param {State} state State object to add
+		 */
 		add: function(state) {
 			var stateIndex = this.states.push(state) - 1
 		
 			this.stateIds[state.name] = stateIndex;
 			this.stateIds[stateIndex.toString()] = stateIndex;
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>get</strong> Get a reference to a state.</p>
+		 * @param  {String|Number} stateIdOrName State id or name
+		 * @return {State} The requested state
+		 */
 		get: function(stateIdOrName) { 
 			return this.states[getStateId.call(this, stateIdOrName)]; 
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>block</strong> Blocks the state machine. While blocked no actions will be executed, 
+		 * and state changes can not occur.</p>
+		 * @return {null}
+		 */
 		block: function() { this.isBlocked = true; },
-		unblock: function() { this.isBlocked = false; },
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>unblock</strong> Unblock the state machine. All behaviour returns to normal after
+		 * executing this method.</p>
+		 * @return {null}
+		 */
+		unblock: function() { this.isBlocked = false; },
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>update</strong> Execute the update actions of the state machine. </p>
+		 * @return {null}
+		 */
 		update: function() {
 			this.states[this.currentStateId].update(arguments);
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>destroy</strong> Calls the destroy method of all the states registered,
+		 * and nulls the main references. Set's the object up for garbage collection.</p>
+		 * @return {null}
+		 */
 		destroy: function() {
 			for (var i=0; i<this.states.length; i++) {
 				this.states[i].destroy();
@@ -120,6 +147,9 @@ define(["delegate", "class"], function(Delegate) {
 			this.states.length = 0;
 			this.states = null;
 		}
+		/**
+		 * --------------------------------
+		 */
 	});
 	/**
 	 * --------------------------------
@@ -133,6 +163,32 @@ define(["delegate", "class"], function(Delegate) {
 			this._super();
 		},
 
+		/**
+		 * <p style='color:#AD071D'><strong>add</strong> Add state object to the state machine.
+		 * Setup the **change** delegate of the state, so it is able to pass control flow
+		 * to another state.</p>
+		 *
+		 * When executing the **change** delegate an arguments is required to be passed. ej.
+		 *
+		 *  ```javascript
+		 *  state.execute('change', 
+		 *  	{
+		 *  		// Name of the state to pass control to
+		 * 	    	// This is required
+		 * 	    	next: 'StateName'
+		 * 			// This will be passed as arguments to the **complete** actions of the current state
+		 * 			// This is optional
+		 * 	 		lastCompleteArgs: {},
+		 * 	  		// This will be passed as arguments to the **start** actions of the next state
+		 * 	  		// This is optional 
+		 * 	   		nextInitArgs: {}
+		 *      }
+		 *  )
+		 *  ```
+		 * 
+		 * @param {State} state State object to add
+		 * @return {null}
+		 */
 		add: function(state) {
 			state.on('change', this, function(args) { 
 				if (canNotMoveToNewState.call(this, state)) { 
@@ -144,7 +200,10 @@ define(["delegate", "class"], function(Delegate) {
 			});
 
 			this._super(state);
-		}		
+		}	
+		/**
+		 * --------------------------------
+		 */	
 	});
 	/**
 	 * --------------------------------
@@ -158,6 +217,29 @@ define(["delegate", "class"], function(Delegate) {
 			this._super();
 		},
 
+		/**
+		 * <p style='color:#AD071D'><strong>add</strong> Add state object to the state machine.
+		 * Setup the **next** and **previous** delegates of the state, so it is able to pass control flow
+		 * to the corresponding states.</p>
+		 *
+		 * When executing the **next** and **previous** delegates an argument is optional. ej.
+		 *
+		 *  ```javascript
+		 *  state.execute('next', 
+		 *  	{
+		 * 			// This will be passed as arguments to the **complete** actions of the current state
+		 * 			// This is optional
+		 * 	 		lastCompleteArgs: {},
+		 * 	  		// This will be passed as arguments to the **start** actions of the next state
+		 * 	  		// This is optional 
+		 * 	   		nextInitArgs: {}
+		 *      }
+		 *  )
+		 *  ```
+		 * 
+		 * @param {State} state State object to add
+		 * @return {null}
+		 */
 		add: function(state) {
 			state.on('next', this, function(args) { 
 				if (canNotMoveToNewState.call(this, state)) { 
@@ -186,30 +268,49 @@ define(["delegate", "class"], function(Delegate) {
 			});
 
 			return this._super(state);
-		}		
+		}
+		/**
+		 * --------------------------------
+		 */		
 	});
 	/**
 	 * --------------------------------
 	 */
 	
 	/**
-	 * <p style='color:#AD071D'><strong>State</strong> extends [delegate](@@delegate@@)</p>
+	 * <p style='color:#AD071D'><strong>State</strong> extends <a href=@@delegate@@>delegate</a></p>
 	 */
 	var State = Delegate.extend({
+		/**
+		 * <p style='color:#AD071D'><strong>init</strong> Constructor method</p>
+		 * @param  {Object} scope Scope to be used by all the callbacks registered with this state
+		 * @param  {String} name  Name to later be able to retrieve a reference to the state if needed
+		 * @return {null}
+		 */
 		init: function(scope, name) { 
 			this._super(); 
 			this.scope = scope;
 			this.name = name;
 		},
 
+		// Use these methods to add callbacks to each of the three phases of a state.
+		// These method are really just wrappers to the [delegate](@@delegate@@) this object is extending.
+		// Just a way to type less stuff when adding callbacks.
 		addStartAction: function(callback) { this.on('start', this.scope, callback); },
 		addUpdateAction: function(callback) { this.on('update', this.scope, callback); },
 		addCompleteAction: function(callback) { this.on('complete', this.scope, callback); },
 
+		// Use these methods to remove callbacks from each of the three phases of a state.
+		// These method are really just wrappers to the [delegate](@@delegate@@) this object is extending.
+		// Just a way to type less stuff when adding callbacks.
 		removeStartAction: function(callback) { this.remove('start', this.scope, callback); },
 		removeUpdateAction: function(callback) { this.remove('update', this.scope, callback); },
 		removeCompleteAction: function(callback) { this.remove('complete', this.scope, callback); },
 
+		// You can use these methods to execute the actions associated with a state's phase,
+		// usually you leave that to the state machine.
+		// These method are really just wrappers to the [delegate](@@delegate@@) this object is extending.
+		// Just a way to type less stuff when adding callbacks.
 		start: function(args) { this.execute('start', args); },
 		update: function(args) { this.execute('update', args); },
 		complete: function(args) { this.execute('complete', args); },
@@ -219,17 +320,48 @@ define(["delegate", "class"], function(Delegate) {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>State Machine Factory</strong> extends [delegate](@@delegate@@)</p>
+	 * <p style='color:#AD071D'><strong>State Machine Factory</strong></p>
 	 */
 	var StateMachineFactory = {
+		//
 		createLooseStateMachine: function() { return new LooseStateMachine(); },
+		//
 		createFixedStateMachine: function() { return new FixedStateMachine(); },
-		
+		//
 		createState: function(scope, name) { return new State(scope, name); }
 	};
 	/**
 	 * --------------------------------
 	 */
+	
+	var executeStateAction = function(stateId, action, args) {
+		if (this.isBlocked || this.states == null) { return; }
+
+		try {
+			this.states[stateId][action](args);	
+		} catch(e) {
+			throw new Error("Error setting new state: " + e.message);
+		}
+
+		this.currentStateId = stateId;
+	}
+
+	var getStateId = function(stateIdOrName) {
+		return this.stateIds[stateIdOrName.toString()]
+	};
+
+	var canNotMoveToNewState = function(state) {
+		var changingStateId = getStateId.call(this, state.name)
+		if (this.currentStateId != changingStateId) {
+			return true;
+		}
+		
+		if (this.isBlocked || this.states == null) { 
+			return true; 
+		}
+
+		return false;
+	}
 
 	return StateMachineFactory;
 });
