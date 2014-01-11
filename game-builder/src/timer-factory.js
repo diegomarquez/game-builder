@@ -34,6 +34,7 @@
  * ``` javascript  
  * timer.on('repeate' function(repeatsLeft) {});
  * ``` 
+ *
  * 
  * ### **complete**
  * When a timer completes. 
@@ -41,36 +42,48 @@
  * ``` javascript  
  * timer.on('complete' function() {});
  * ```
+ *
+ * 
  * ### **stop**
  * When a timer is stopped.
  * 
  * ``` javascript  
  * timer.on('stop' function() {});
  * ```
+ *
+ * 
  * ### **reset**
  * When a timer is reset.
  * 
  * ``` javascript  
  * timer.on('reset' function() {});
  * ```
+ *
+ * 
  * ### **pause**
  * When a timer is paused.
  * 
  * ``` javascript  
  * timer.on('pause' function() {});
  * ```
+ *
+ * 
  * ### **resume**
  * When a timer is resumed.
  * 
  * ``` javascript  
  * timer.on('resume' function() {});
  * ```
+ *
+ * 
  * ### **remove**
  * When a timer is removed from the factory register.
  * 
  * ``` javascript  
  * timer.on('remove' function() {});
  * ```
+ *
+ * 
  */
 
 /**

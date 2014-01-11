@@ -1092,10 +1092,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/game-builder/src/util.js",
             "targetPath": "src/util",
             "pageTitle": "src/util",
-            "title": "util"
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "util.js",
+                "slug": "utiljs",
+                "isFileHeader": true
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Miscelaneous methods",
+                    "slug": "miscelaneous-methods"
+                  },
+                  "depth": 2
+                }
+              ]
+            },
+            "title": "util.js"
           },
           "depth": 2,
-          "outline": []
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Miscelaneous methods",
+                "slug": "miscelaneous-methods"
+              },
+              "depth": 2
+            }
+          ]
         }
       ]
     }

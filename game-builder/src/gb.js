@@ -2,7 +2,7 @@
  * # gb.js
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  *
- * Inherits from: ---
+ * Inherits from:
  *
  * Depends of: 
  * [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html) 
