@@ -63,8 +63,6 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			 * Creates a FixedSizePolygon object defined in the [sat](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html) module.
 			 * The polygon is said to be fixed of size becuase no more vertexes can be
 			 * added to it after it is created.
-			 * 
-			 * @return {null}
 			 */
 			start: function() {
 				this._super();
@@ -83,8 +81,6 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			 * <p style='color:#AD071D'><strong>update</strong> Updates the transformation of the collider.</p>
 			 *
 			 * The collider follows it's parent along every matrix transformation.
-			 * 
-			 * @return {null}
 			 */
 			update: function() {
 				m = this.parent.getMatrix(m);
@@ -107,11 +103,10 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			/**
 			 * <p style='color:#AD071D'><strong>debug_draw</strong> Draw the circle collider</p>
 			 *
-			 * This method is only executed if the **debub** property of the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
+			 * This method is only executed if the **debug** property of the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 			 * is set to true. It is better to leave the drawing to the [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) components.
 			 * 
 			 * @param  {Context 2D} context Context 2D property of the Canvas.
-			 * @return {null}
 			 */
 			debug_draw: function(context) {
 				draw.polygon(context, 0, 0, this.pointsCopy, null, this.debugColor, 2);

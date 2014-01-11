@@ -41,20 +41,16 @@ may vary</strong></p></div></div><div class="code"><div class="wrapper">    </di
   <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
   
-  <span class="kd">var</span> <span class="nx">Component</span> <span class="o">=</span> <span class="nx">CollisionComponent</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>start</strong> Set up the collider.</p>
+  <span class="kd">var</span> <span class="nx">Component</span> <span class="o">=</span> <span class="nx">CollisionComponent</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>start</strong> Set up the collider.</p>
 
-<p>Creates a Circle object defined in the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html">sat</a> module.</p>
-
-<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Creates a Circle object defined in the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html">sat</a> module.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">collider</span>     <span class="o">=</span> <span class="k">new</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">Circle</span><span class="p">(</span><span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">);</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">=</span> <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">circleCollider</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>update</strong> Updates the position of the collider.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>update</strong> Updates the position of the collider.</p>
 
-<p>The collider follows the position of it's parent.</p>
-
-<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>The collider follows the position of it's parent.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">getTransform</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">m</span><span class="p">);</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">collider</span><span class="p">.</span><span class="nx">pos</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
@@ -63,16 +59,14 @@ may vary</strong></p></div></div><div class="code"><div class="wrapper">    </di
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>debug_draw</strong> Draw the circle collider</p>
 
-<p>This method is only executed if the <strong>debub</strong> property of the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>
+<p>This method is only executed if the <strong>debug</strong> property of the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>
 is set to true. It is better to leave the drawing to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a> components.</p>
 
 <p>Parameters:</p>
 
 <ul>
 <li><strong>context must be a Context 2D.</strong><br/>(Context 2D property of the Canvas.)</li>
-</ul>
-
-<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">debug_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">debug_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">getTransform</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">m</span><span class="p">);</span>
 
       <span class="nx">context</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>

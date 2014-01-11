@@ -57,8 +57,6 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 		 * <p style='color:#AD071D'><strong>start</strong> Set up the collider.</p>
 		 *
 		 * Creates a Circle object defined in the [sat](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html) module.
-		 * 
-		 * @return {null}
 		 */
 		start: function() {
 			this._super();
@@ -74,8 +72,6 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 		 * <p style='color:#AD071D'><strong>update</strong> Updates the position of the collider.</p>
 		 *
 		 * The collider follows the position of it's parent.
-		 * 
-		 * @return {null}
 		 */
 		update: function() {
 			this.parent.getTransform(p, m);
@@ -92,11 +88,10 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong> Draw the circle collider</p>
 		 *
-		 * This method is only executed if the **debub** property of the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
+		 * This method is only executed if the **debug** property of the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 		 * is set to true. It is better to leave the drawing to the [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) components.
 		 * 
 		 * @param  {Context 2D} context Context 2D property of the Canvas.
-		 * @return {null}
 		 */
 		debug_draw: function(context) {
 			this.parent.getTransform(p, m);

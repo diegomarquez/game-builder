@@ -113,8 +113,7 @@ define(function(require) {
 	 * @throws {Error} If the owner already has a property with the value of **propertyName**
 	 * @throws {Error} If owner is not passed as argument
 	 * @throws {Error} If name is not passed as argument
-	 * @throws {Error} If propertyName is not passed as argument
-	 * @returns {null}       
+	 * @throws {Error} If propertyName is not passed as a       
 	 */
 	TimerFactory.prototype.get = function(owner, name, propertyName) {
 		if(owner.hasOwnProperty(propertyName)) {
@@ -276,8 +275,7 @@ define(function(require) {
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Function} callback Function you want to execute
 		 * @param  {Boolean} [removeOnExecute=false] The function will be removed from the corresponding list, after executing it once
-		 * @param  {Boolean} [single=false] Do not add function if there is already one with the same id
-		 * @returns {null}
+		 * @param  {Boolean} [single=false] Do not add function if there is already one with the s
 		 */
 		on: function(name, callback, removeOnComplete, single) {
 			this._super(name, this.owner, callback, removeOnComplete, false, false, single);
@@ -303,8 +301,7 @@ define(function(require) {
 		 * });
 		 * ```
 		 *
-		 * @param  {Object} options An object with all the options to set.
-		 * @returns {null}        
+		 * @param  {Object} options An object with all the options t        
 		 */
 		configure: function(options) {
 			if (!options.hasOwnProperty('delay')) { options['delay'] = this._delay;	}
@@ -320,8 +317,7 @@ define(function(require) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>start</strong> Starts the timer.</p>
-		 * @returns {null}
+		 * <p style='color:#AD071D'><strong>start</strong> Starts the time
 		 */
 		start: function(resumeTime) {
 			if (this.isRunning || this.isPaused) {
@@ -375,8 +371,6 @@ define(function(require) {
 		 * <p style='color:#AD071D'><strong>stop</strong> Stops the timer.</p>
 		 *
 		 * Resets everything else. Starting the timer again will do so from the beginning.
-		 * 
-		 * @returns {null}
 		 */
 		stop: function() {
 			clearTimeout(this.id);
@@ -397,8 +391,6 @@ define(function(require) {
 		 * <p style='color:#AD071D'><strong>reset</strong> Resets the timer.</p>
 		 *
 		 * Short cut for **stop** followed by **play**
-		 * 
-		 * @returns {null}
 		 */
 		reset: function() {
 			this.stop();
@@ -414,8 +406,6 @@ define(function(require) {
 		 * <p style='color:#AD071D'><strong>pause</strong> Pause the timer.</p>
 		 *
 		 * Pause the timer until the **resume** method is called.
-		 * 
-		 * @returns {null}
 		 */
 		pause: function() {
 			if (!this.isRunning) {
@@ -434,8 +424,7 @@ define(function(require) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>resume</strong> Resume if paused.</p>
-		 * @returns {null}
+		 * <p style='color:#AD071D'><strong>resume</strong> Resume if pause
 		 */
 		resume: function() {
 			if (!this.isRunning && !this.isPaused) {
@@ -459,8 +448,6 @@ define(function(require) {
 		 * when constructing this instance.
 		 *
 		 * It also nulls every property of the object, setting it up for garbage collection.
-		 * 
-		 * @returns {null}
 		 */
 		remove: function() {
 			this.stop();

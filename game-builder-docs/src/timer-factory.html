@@ -92,7 +92,7 @@ giving it the name <strong>propertyName</strong>. </p>
 <li><p><strong>propertyName must be a String.</strong><br/>(Name of the property the timer will be added in <strong>owner</strong>.)</p></li>
 </ul>
 
-<p><strong>Can throw an Error</strong><br/>(If the owner already has a property with the value of <strong>propertyName</strong>)<br/><strong>and</strong> <strong>Can throw an Error</strong><br/>(If owner is not passed as argument)<br/><strong>and</strong> <strong>Can throw an Error</strong><br/>(If name is not passed as argument)<br/><strong>and</strong> <strong>Can throw an Error</strong><br/>(If propertyName is not passed as argument)<br/><strong>and</strong> <strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">get</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">owner</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">propertyName</span><span class="p">)</span> <span class="p">{</span>
+<p><strong>Can throw an Error</strong><br/>(If the owner already has a property with the value of <strong>propertyName</strong>)<br/><strong>and</strong> <strong>Can throw an Error</strong><br/>(If owner is not passed as argument)<br/><strong>and</strong> <strong>Can throw an Error</strong><br/>(If name is not passed as argument)<br/><strong>and</strong> <strong>Can throw an Error</strong><br/>(If propertyName is not passed as a )</p></div></div><div class="code"><div class="wrapper">  <span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">get</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">owner</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">propertyName</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">owner</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">propertyName</span><span class="p">))</span> <span class="p">{</span>
       <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;This owner is already using this property, assigning it again with a timer might cause your program to go ape shit.&#39;</span><span class="p">)</span>  
     <span class="p">}</span><span class="k">else</span><span class="p">{</span>
@@ -206,10 +206,8 @@ that evaluate to true will qualify to change state.</p>
 <li><p><strong>name must be a String.</strong><br/>(Id that the function will be associated with)</p></li>
 <li><p><strong>callback must be a Function.</strong><br/>(Function you want to execute)</p></li>
 <li><p><strong>removeOnExecute is optional, must be a Boolean, and has a default value of false.</strong><br/>(The function will be removed from the corresponding list, after executing it once)</p></li>
-<li><p><strong>single is optional, must be a Boolean, and has a default value of false.</strong><br/>(Do not add function if there is already one with the same id)</p></li>
-</ul>
-
-<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">on</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">removeOnComplete</span><span class="p">,</span> <span class="nx">single</span><span class="p">)</span> <span class="p">{</span>
+<li><p><strong>single is optional, must be a Boolean, and has a default value of false.</strong><br/>(Do not add function if there is already one with the s)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">on</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">removeOnComplete</span><span class="p">,</span> <span class="nx">single</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">owner</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">removeOnComplete</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">single</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>configure</strong> Configures the timer.</p>
 
@@ -229,10 +227,8 @@ that evaluate to true will qualify to change state.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><strong>options must be an Object.</strong><br/>(An object with all the options to set.)</li>
-</ul>
-
-<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">configure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+<li><strong>options must be an Object.</strong><br/>(An object with all the options t )</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">configure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;delay&#39;</span><span class="p">))</span> <span class="p">{</span> <span class="nx">options</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_delay</span><span class="p">;</span> <span class="p">}</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;repeatCount&#39;</span><span class="p">))</span> <span class="p">{</span> <span class="nx">options</span><span class="p">[</span><span class="s1">&#39;repeatCount&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">repeateCount</span><span class="p">;</span> <span class="p">}</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;removeOnComplete&#39;</span><span class="p">))</span> <span class="p">{</span> <span class="nx">options</span><span class="p">[</span><span class="s1">&#39;removeOnComplete&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">removeOnComplete</span><span class="p">;</span> <span class="p">}</span>
@@ -240,9 +236,7 @@ that evaluate to true will qualify to change state.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">Delay</span><span class="p">(</span><span class="nx">options</span><span class="p">[</span><span class="s1">&#39;delay&#39;</span><span class="p">]);</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">RepeateCount</span><span class="p">(</span><span class="nx">options</span><span class="p">[</span><span class="s1">&#39;repeatCount&#39;</span><span class="p">]);</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">RemoveOnComplete</span><span class="p">(</span><span class="nx">options</span><span class="p">[</span><span class="s1">&#39;removeOnComplete&#39;</span><span class="p">]);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>start</strong> Starts the timer.</p>
-
-<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resumeTime</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><p style='color:#AD071D'><strong>start</strong> Starts the time</p></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">resumeTime</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isRunning</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">isPaused</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span><span class="p">;</span>
       <span class="p">}</span>
@@ -285,11 +279,9 @@ that evaluate to true will qualify to change state.</p>
           <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">},</span> <span class="nx">actualDelay</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>stop</strong> Stops the timer.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>stop</strong> Stops the timer.</p>
 
-<p>Resets everything else. Starting the timer again will do so from the beginning.</p>
-
-<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">stop</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Resets everything else. Starting the timer again will do so from the beginning.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">stop</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="nx">clearTimeout</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">isRunning</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
@@ -299,20 +291,16 @@ that evaluate to true will qualify to change state.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">repeates</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">STOP</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>reset</strong> Resets the timer.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>reset</strong> Resets the timer.</p>
 
-<p>Short cut for <strong>stop</strong> followed by <strong>play</strong></p>
-
-<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">reset</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Short cut for <strong>stop</strong> followed by <strong>play</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">reset</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">RESET</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>pause</strong> Pause the timer.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>pause</strong> Pause the timer.</p>
 
-<p>Pause the timer until the <strong>resume</strong> method is called.</p>
-
-<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">pause</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Pause the timer until the <strong>resume</strong> method is called.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">pause</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isRunning</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span><span class="p">;</span>
       <span class="p">}</span>
@@ -323,9 +311,7 @@ that evaluate to true will qualify to change state.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">isPaused</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">PAUSE</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resume</strong> Resume if paused.</p>
-
-<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">resume</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><p style='color:#AD071D'><strong>resume</strong> Resume if pause</p></div></div><div class="code"><div class="wrapper">    <span class="nx">resume</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isRunning</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isPaused</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span><span class="p">;</span>
       <span class="p">}</span>
@@ -335,14 +321,12 @@ that evaluate to true will qualify to change state.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_delay</span><span class="p">);</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">RESUME</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>remove</strong> Stop the timer and remove it from the factory register.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>remove</strong> Stop the timer and remove it from the factory register.</p>
 
 <p>Other less obvious behaviour is that it deletes the timer from the <strong>owner</strong> set
 when constructing this instance.</p>
 
-<p>It also nulls every property of the object, setting it up for garbage collection.</p>
-
-<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">remove</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>It also nulls every property of the object, setting it up for garbage collection.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">remove</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">owner</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">propertyName</span><span class="p">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>

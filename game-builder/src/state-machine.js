@@ -71,8 +71,7 @@ define(["delegate", "class"], function(Delegate) {
 		 * Once the states have been added, call this method to go into
 		 * the first state, optionally sending some arguments.
 		 * 
-		 * @param  {Anything} [args=null] Arguments to be sent to the initial state.
-		 * @return {null}  
+		 * @param  {Anything} [args=null] Arguments to be sent to the initial state.  
 		 */
 		start: function(args) {
 			this.unblock();
@@ -117,7 +116,6 @@ define(["delegate", "class"], function(Delegate) {
 		 * While blocked no actions will be executed, 
 		 * and state changes can not occur.
 		 * 
-		 * @return {null}
 		 */
 		block: function() { this.isBlocked = true; },
 		/**
@@ -129,7 +127,6 @@ define(["delegate", "class"], function(Delegate) {
 		 *
 		 * All behaviour returns to normal after executing this method.
 		 * 
-		 * @return {null}
 		 */
 		unblock: function() { this.isBlocked = false; },
 		/**
@@ -138,7 +135,6 @@ define(["delegate", "class"], function(Delegate) {
 
 		/**
 		 * <p style='color:#AD071D'><strong>update</strong> Execute the update actions of the state machine. </p>
-		 * @return {null}
 		 */
 		update: function() {
 			this.states[this.currentStateId].update(arguments);
@@ -152,7 +148,6 @@ define(["delegate", "class"], function(Delegate) {
 		 *
 		 * Nulls the main references. Sets the object up for garbage collection.
 		 * 
-		 * @return {null}
 		 */
 		destroy: function() {
 			for (var i=0; i<this.states.length; i++) {
@@ -198,7 +193,6 @@ define(["delegate", "class"], function(Delegate) {
 		 * ```
 		 * 
 		 * @param {State} state State object to add
-		 * @return {null}
 		 */
 		add: function(state) {
 			state.on(state.CHANGE, this, function(args) { 
@@ -245,7 +239,6 @@ define(["delegate", "class"], function(Delegate) {
 		 * ```
 		 * 
 		 * @param {State} state State object to add
-		 * @return {null}
 		 */
 		add: function(state) {
 			state.on(state.NEXT, this, function(args) { 
@@ -289,7 +282,6 @@ define(["delegate", "class"], function(Delegate) {
 		 * <p style='color:#AD071D'><strong>init</strong> Constructor method</p>
 		 * @param  {Object} scope Scope to be used by all the callbacks registered with this state
 		 * @param  {String} name  Name to later be able to retrieve a reference to the state if needed
-		 * @return {null}
 		 */
 		init: function(scope, name) { 
 			this._super(); 

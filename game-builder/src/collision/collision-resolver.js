@@ -47,7 +47,6 @@ define(['sat'], function(SAT) {
 	 * The component is added to the correponding lists, depending on it's collision id.
 	 * 
 	 * @param {[collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html)} collisionComponent An object extending [collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html)
-	 * @return {null}
 	 */
 	CollisionResolver.prototype.addToCollisionList = function(collisionComponent) {
 		var indexes = this.toCollideCache[collisionComponent.collisionId];
@@ -68,7 +67,6 @@ define(['sat'], function(SAT) {
 	 * The component is removed from the corresponding lists, depending on it's collision id.
 	 * 
 	 * @param {[collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html)} collisionComponent An object extending [collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html)
-	 * @return {null}
 	 */
 	CollisionResolver.prototype.removeFromCollisionList = function(collisionComponent) {
 		var indexes = this.toCollideCache[collisionComponent.collisionId];
@@ -110,7 +108,7 @@ define(['sat'], function(SAT) {
 	 * 
 	 * @param  {[collider-component](@@collider-component@@)} first  The first collider in the test
 	 * @param  {[collider-component](@@collider-component@@)} second The second collider in the test
-	 * @return {Boolean} Whether there was a collision or not.
+	 * @return {Boolean} Whether there was a collision
 	 */
 	CollisionResolver.prototype.areColliding = function(first, second) {
 		if (first.collider == null || second.collider == null) {
