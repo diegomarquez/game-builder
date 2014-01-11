@@ -22,7 +22,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			this._super();
 		},
 
-		draw: function(context) {
+		debug_draw: function(context) {
 			this.parent.getTransform(p, m);
 
 			context.save();

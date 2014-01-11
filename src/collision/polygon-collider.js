@@ -30,7 +30,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 				this._super();
 			},
 
-			draw: function(context) {
+			debug_draw: function(context) {
 				draw.polygon(context, 0, 0, this.pointsCopy, null, this.debugColor, 2);
 
 				this._super();

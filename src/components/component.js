@@ -38,6 +38,8 @@ define(["delegate"], function(Delegate) {
 		
 		update: function(delta) {},
 
+		debug_draw: function(context) {},
+
 		destroy: function() {
 			this.execute('recycle', this);
 		}

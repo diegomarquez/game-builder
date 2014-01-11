@@ -46,7 +46,7 @@ define(['component', 'collision-resolver'], function(Component, CollisionResolve
 			this.debugColor = "#FF0000";
 		},
 
-		draw: function() {
+		debug_draw: function() {
 			this.debugColor = "#FFFFFF";
 		},
 
