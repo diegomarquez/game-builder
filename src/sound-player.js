@@ -284,7 +284,7 @@ define(['timer-factory'], function(timerFactory) {
 
 	/**
 	 * <p style='color:#AD071D'><strong>stopAll</strong> Stops all channels registered with the player.</p>
-	 * @return {[type]} [description]
+	 * @return {null}
 	 */
 	SoundPlayer.prototype.stopAll = function() {
 		for (var i = this.activeChannels.length - 1; i >= 0; i--) {

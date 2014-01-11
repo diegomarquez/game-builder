@@ -40,7 +40,7 @@
  *
  * <p style='color:#AD071D'>Note: State machines may throw a custom error when trying to 
  * execute <strong>Initialization</strong> and <strong>Completion</strong> actions. 
- * This is because those methods are enclosed in a _'try catch'_ block. 
+ * This is because those methods are enclosed in a _'try_ _catch'_ block. 
  * This means if you see this illusive error, there is something wrong in the callbacks registered with the
  * state machine rather than the state machine itself.</p> 
  */
@@ -71,7 +71,7 @@ define(["delegate", "class"], function(Delegate) {
 		 * Once the states have been added, call this method to go into
 		 * the first state, optionally sending some arguments.
 		 * 
-		 * @param  {*} [args=null] Arguments to be sent to the initial state.
+		 * @param  {Anything} [args=null] Arguments to be sent to the initial state.
 		 * @return {null}  
 		 */
 		start: function(args) {
@@ -325,7 +325,7 @@ define(["delegate", "class"], function(Delegate) {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>State Machine Factory</strong></p>
+	 * ## **State Machine Factory** 
 	 */
 	var StateMachineFactory = {
 		// Create a "loose" state machine
