@@ -201,7 +201,7 @@ define(["delegate", "class"], function(Delegate) {
 		 * @return {null}
 		 */
 		add: function(state) {
-			state.on('change', this, function(args) { 
+			state.on(state.CHANGE, this, function(args) { 
 				if (canNotMoveToNewState.call(this, state)) { 
 					return; 
 				} 
@@ -248,7 +248,7 @@ define(["delegate", "class"], function(Delegate) {
 		 * @return {null}
 		 */
 		add: function(state) {
-			state.on('next', this, function(args) { 
+			state.on(state.NEXT, this, function(args) { 
 				if (canNotMoveToNewState.call(this, state)) { 
 					return; 
 				}
@@ -261,7 +261,7 @@ define(["delegate", "class"], function(Delegate) {
 				executeStateAction.call(this, this.currentStateId, 'start', args.nextInitArgs);
 			});
 
-			state.on('previous', this, function(args) { 
+			state.on(state.PREVIOUS, this, function(args) { 
 				if (canNotMoveToNewState.call(this, state)) { 
 					return; 
 				}
@@ -280,7 +280,6 @@ define(["delegate", "class"], function(Delegate) {
 		 * --------------------------------
 		 */		
 	});
-	
 
 	/**
 	 * ## **State** extends [**delegate**](@@delegate@@)
@@ -323,6 +322,16 @@ define(["delegate", "class"], function(Delegate) {
 	/**
 	 * --------------------------------
 	 */
+	
+	// Getters for the types of events a State can fire to change control flow 
+	// If State fires an event that does not correspond to the type of state machine it is part off,
+	// nothing will happen.
+	
+	//NEXT and PREVIOUS must be used when a state is part of a **"fixed"** state machine 
+	Object.defineProperty(State.prototype, "NEXT", { get: function() { return 'next'; } });
+	Object.defineProperty(State.prototype, "PREVIOUS", { get: function() { return 'previous'; } });
+	//CHANGE must be used when a state is part of a **"loose"** state machine 
+	Object.defineProperty(State.prototype, "CHANGE", { get: function() { return 'change'; } });
 
 	/**
 	 * ## **State Machine Factory** 

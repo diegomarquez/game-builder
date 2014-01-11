@@ -1,3 +1,21 @@
+/**
+ * # sat.js
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Inherits from:
+ *
+ * Depends of: [vector-2D](@@vector-2D@@)
+ *
+ * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
+ * 
+ * This module was not actually made by me, I just took some code in github and made a requireJS module
+ * out of it. [The original code is in here](https://github.com/jriecken/sat-js). 
+ * The documentation in there should be more than enough.
+ *
+ * I added a few things, but nothing of true interest. The main code is largely unchanged.
+ */
+
 define(['vector-2D'], function(Vector) {
 
   var T_VECTORS = [];

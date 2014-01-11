@@ -32,15 +32,14 @@
  * 
  * Registered callbacks get the amount of repeats left as argument. 
  * ``` javascript  
- * timer.on('repeate' function(repeatsLeft) {});
+ * timer.on(timer.REPEATE, function(repeatsLeft) {});
  * ``` 
  *
- * 
  * ### **complete**
  * When a timer completes. 
  * 
  * ``` javascript  
- * timer.on('complete' function() {});
+ * timer.on(timer.COMPLETE, function() {});
  * ```
  *
  * 
@@ -48,7 +47,7 @@
  * When a timer is stopped.
  * 
  * ``` javascript  
- * timer.on('stop' function() {});
+ * timer.on(timer.STOP, function() {});
  * ```
  *
  * 
@@ -56,7 +55,7 @@
  * When a timer is reset.
  * 
  * ``` javascript  
- * timer.on('reset' function() {});
+ * timer.on(timer.RESET, function() {});
  * ```
  *
  * 
@@ -64,7 +63,7 @@
  * When a timer is paused.
  * 
  * ``` javascript  
- * timer.on('pause' function() {});
+ * timer.on(timer.PAUSE, function() {});
  * ```
  *
  * 
@@ -72,7 +71,7 @@
  * When a timer is resumed.
  * 
  * ``` javascript  
- * timer.on('resume' function() {});
+ * timer.on(timer.RESUME, function() {});
  * ```
  *
  * 
@@ -340,7 +339,7 @@ define(function(require) {
 
 			this.id = setTimeout(function() {
 				if (to.isRunning && !to.isPaused) {
-					to.execute("repeate", to.repeates)
+					to.execute(this.REPEATE, to.repeates)
 					to.repeates++;
 				} else {
 					return;
@@ -359,7 +358,7 @@ define(function(require) {
 						to.start();
 					} else {
 						to.stop();
-						to.execute("complete");
+						to.execute(this.COMPLETE);
 
 						if (to.removeOnComplete) {
 							to.remove();
@@ -388,7 +387,7 @@ define(function(require) {
 			this._delay = this.initDelay;
 			this.repeates = 0;
 
-			this.execute("stop");
+			this.execute(this.STOP);
 		},
 		/**
 		 * --------------------------------
@@ -405,7 +404,7 @@ define(function(require) {
 			this.stop();
 			this.start();
 
-			this.execute("reset");
+			this.execute(this.RESET);
 		},
 		/**
 		 * --------------------------------
@@ -428,7 +427,7 @@ define(function(require) {
 			this.isRunning = false;
 			this.isPaused = true;
 
-			this.execute("pause");
+			this.execute(this.PAUSE);
 		},
 		/**
 		 * --------------------------------
@@ -447,7 +446,7 @@ define(function(require) {
 			this._delay -= (this.pauseTime - this.startTime);
 			this.start(this._delay);
 
-			this.execute("resume");
+			this.execute(this.RESUME);
 		},
 		/**
 		 * --------------------------------
@@ -473,7 +472,7 @@ define(function(require) {
 			index = timerFactory.timeOuts.indexOf(this);
 			timerFactory.timeOuts.splice(index, 1);
 
-			this.execute("remove");
+			this.execute(this.REMOVE);
 
 			this.destroy();
 		},
@@ -554,6 +553,14 @@ define(function(require) {
 			this.initDelay = v;
 		}
 	});
+
+	//Getters for all the types of events a Timer can hook into
+	Object.defineProperty(Timer.prototype, "REPEATE", { get: function() { return 'repeate'; } });
+	Object.defineProperty(Timer.prototype, "COMPLETE", { get: function() { return 'complete'; } });
+	Object.defineProperty(Timer.prototype, "STOP", { get: function() { return 'stop'; } });
+	Object.defineProperty(Timer.prototype, "PAUSE", { get: function() { return 'pause'; } });
+	Object.defineProperty(Timer.prototype, "RESUME", { get: function() { return 'resume'; } });
+	Object.defineProperty(Timer.prototype, "REMOVE", { get: function() { return 'remove'; } });
 
 	return timerFactory;
 });
