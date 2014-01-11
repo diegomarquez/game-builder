@@ -15,6 +15,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 - Anotate code to generate documentation
     - src
     - examples
+    - Links to known errors, like requireJS
 
 - Delete old example code
 
