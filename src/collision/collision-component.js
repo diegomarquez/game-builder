@@ -11,13 +11,13 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * All colliders extend the object defined in this module. it's main responsibility
+ * All colliders extend the object defined in this module. It's main responsibility
  * is checking if it is colliding against any of the objects the [collision-resolver](@@collision-resolver@@)
  * is saying it should collide against.
  *
  * When setting up the [component-pool](@@component-pool@@) with collider components, be sure
  * to checkout the documentation for [circle-collider](@@circle-collider@@), [polygon-collider](@@polygon-collider@@)
- * and [fixed-polygon-colider](@@fixed-polygon-colider@@) to see what kind of object they expect as an argument
+ * and [fixed-polygon-collider](@@fixed-polygon-collider@@) to see what kind of object they expect as an argument
  * to be properly configured.
  */
 
@@ -111,7 +111,7 @@ define(['component', 'collision-resolver'], function(Component, CollisionResolve
 
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong> This is redifined by objects extending this one.</p>
-		 * @return {[type]} [description]
+		 * @return {null}
 		 */
 		debug_draw: function() {
 			this.debugColor = "#FFFFFF";

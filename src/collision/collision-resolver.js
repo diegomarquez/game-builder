@@ -110,7 +110,7 @@ define(['sat'], function(SAT) {
 	 * 
 	 * @param  {[collider-component](@@collider-component@@)} first  The first collider in the test
 	 * @param  {[collider-component](@@collider-component@@)} second The second collider in the test
-	 * @return {Boolean} Whether there was a collision or not.
+	 * @return {Boolean} Whether there was a collision
 	 */
 	CollisionResolver.prototype.areColliding = function(first, second) {
 		if (first.collider == null || second.collider == null) {

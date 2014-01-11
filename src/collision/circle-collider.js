@@ -92,7 +92,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong> Draw the circle collider</p>
 		 *
-		 * This method is only executed if the **debub** property of the parent [game-object](@@game-object@@)
+		 * This method is only executed if the **debug** property of the parent [game-object](@@game-object@@)
 		 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
 		 * 
 		 * @param  {Context 2D} context Context 2D property of the Canvas.
