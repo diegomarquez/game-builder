@@ -81,8 +81,7 @@ define(['timer-factory'], function(timerFactory) {
 	 * <p style='color:#AD071D'><strong>createChannels</strong> This will create the specified amount
 	 * of channels. A channel is an instance of the <a href="http://www.w3schools.com/html/html5_audio.asp">HTML5 Audio Object</a>.
 	 * Created channels are stored in an array so they can be re-used when idle.</p>
-	 * @param  {Number} amount The amount of channels to create
-	 * @return {null} 
+	 * @param  {Number} amount The amount of channels to create 
 	 */
 	SoundPlayer.prototype.createChannels = function(amount) {
 		for (var i = 0; i < amount; i++) {
@@ -114,8 +113,7 @@ define(['timer-factory'], function(timerFactory) {
 	 * <p style='color:#AD071D'><strong>loadAll</strong> Will load all the sounds that were added previously using <strong>add</strong>
 	 * when all the loading is complete a callback is executed.</p>
 	 * @param  {Function} onComplete Function to execute once all the loading is complete
-	 * @throws {Error} If it is already loading files
-	 * @return {null}          
+	 * @throws {Error} If it is already loading files          
 	 */
 	SoundPlayer.prototype.loadAll = function(onComplete) {
 		if (isLoading) {
@@ -159,8 +157,7 @@ define(['timer-factory'], function(timerFactory) {
 	/**
 	 * <p style='color:#AD071D'><strong>playSingle</strong> Plays a sound 1 time.</p>
 	 * @param  {String} id Id of the sound to play
-	 * @param  {Function} onComplete This will be executed when the sound completes playing
-	 * @return {null}      
+	 * @param  {Function} onComplete This will be executed when the sound completes playing      
 	 */
 	SoundPlayer.prototype.playSingle = function(id, onComplete) {
 		var self = this;
@@ -194,7 +191,6 @@ define(['timer-factory'], function(timerFactory) {
 	/**
 	 * <p style='color:#AD071D'><strong>playLoop</strong> Plays a sound continuosly, until it is stopped manually.</p>
 	 * @param  {String} id Id of the sound to play
-	 * @return {null}
 	 */
 	SoundPlayer.prototype.playLoop = function(id) {
 		setUpChannel.call(this, id, function(channel) {
@@ -223,8 +219,7 @@ define(['timer-factory'], function(timerFactory) {
 
 	/**
 	 * <p style='color:#AD071D'><strong>pause</strong> Pauses all the channels playing a sound with the given id.</p>
-	 * @param  {String} id Id of the sound to pause
-	 * @return {null} 
+	 * @param  {String} id Id of the sound to pause 
 	 */
 	SoundPlayer.prototype.pause = function(id) {
 		for (var i = 0; i < this.activeChannels.length; i++) {
@@ -241,7 +236,6 @@ define(['timer-factory'], function(timerFactory) {
 
 	/**
 	 * <p style='color:#AD071D'><strong>pauseAll</strong> Pauses all playing channels registered with the player.</p>
-	 * @return {null}
 	 */
 	SoundPlayer.prototype.pauseAll = function() {
 		for (var i = 0; i < this.activeChannels.length; i++) {
@@ -266,8 +260,7 @@ define(['timer-factory'], function(timerFactory) {
 
 	/**
 	 * <p style='color:#AD071D'><strong>stop</strong> Stops all the channels playing a sound with the given id.</p>
-	 * @param  {String} id Id of the sound to stop
-	 * @return {null} 
+	 * @param  {String} id Id of the sound to stop 
 	 */
 	SoundPlayer.prototype.stop = function(id) {
 		for (var i = this.activeChannels.length - 1; i >= 0; i--) {
@@ -284,7 +277,6 @@ define(['timer-factory'], function(timerFactory) {
 
 	/**
 	 * <p style='color:#AD071D'><strong>stopAll</strong> Stops all channels registered with the player.</p>
-	 * @return {null}
 	 */
 	SoundPlayer.prototype.stopAll = function() {
 		for (var i = this.activeChannels.length - 1; i >= 0; i--) {
@@ -302,8 +294,7 @@ define(['timer-factory'], function(timerFactory) {
 
 	/**
 	 * <p style='color:#AD071D'><strong>resume</strong> Resumes all the channels paused with the given id.</p>
-	 * @param  {String} id Id of the sound to stop
-	 * @return {null}   
+	 * @param  {String} id Id of the sound to stop   
 	 */
 	SoundPlayer.prototype.resume = function(id) {
 		for (var i = 0; i < this.activeChannels.length; i++) {
@@ -320,7 +311,6 @@ define(['timer-factory'], function(timerFactory) {
 
 	/**
 	 * <p style='color:#AD071D'><strong>resumeAll</strong> Resumes all paused channels.</p>
-	 * @return {null}
 	 */
 	SoundPlayer.prototype.resumeAll = function() {
 		for (var i = 0; i < this.activeChannels.length; i++) {

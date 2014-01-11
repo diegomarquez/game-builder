@@ -77,8 +77,7 @@ define(function() {
 
 	/**
 	 * <p style='color:#AD071D'><strong>destroyObject</strong> Destroys all the properties of an object</p>
-	 * @param  {Object} o        Object to destroy properties from
-	 * @return {null}          
+	 * @param  {Object} o        Object to destroy properties from          
 	 */
 	Utils.prototype.destroyObject = function(o) {
 		for(var propName in o) {
@@ -95,7 +94,6 @@ define(function() {
 	 * <p style='color:#AD071D'><strong>destroyArray</strong> Null all the elements of an array</p>
 	 * @param  {Array} a        Array to destroy
 	 * @param  {Boolean} [resetLength=false] Whether to set the lenght of the array to 0
-	 * @return {null}
 	 */
 	Utils.prototype.destroyArray = function(a, resetLength) {
 		for(var i=0; i<a.length; i++) {

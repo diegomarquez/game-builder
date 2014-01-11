@@ -57,8 +57,6 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 		 * <p style='color:#AD071D'><strong>start</strong> Set up the collider.</p>
 		 *
 		 * Creates a Circle object defined in the [sat](@@sat@@) module.
-		 * 
-		 * @return {null}
 		 */
 		start: function() {
 			this._super();
@@ -74,8 +72,6 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 		 * <p style='color:#AD071D'><strong>update</strong> Updates the position of the collider.</p>
 		 *
 		 * The collider follows the position of it's parent.
-		 * 
-		 * @return {null}
 		 */
 		update: function() {
 			this.parent.getTransform(p, m);
@@ -96,7 +92,6 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 		 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
 		 * 
 		 * @param  {Context 2D} context Context 2D property of the Canvas.
-		 * @return {null}
 		 */
 		debug_draw: function(context) {
 			this.parent.getTransform(p, m);

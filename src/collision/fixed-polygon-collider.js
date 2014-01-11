@@ -70,7 +70,6 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			 * The polygon is said to be fixed of size becuase no more vertexes can be
 			 * added to it after it is created.
 			 * 
-			 * @return {null}
 			 */
 			start: function() {
 				this._super();
@@ -88,9 +87,8 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			/**
 			 * <p style='color:#AD071D'><strong>update</strong> Updates the position of the collider.</p>
 			 *
-			  * The collider follows the position of it's parent.
+			 * The collider follows the position of it's parent.
 			 * 
-			 * @return {null}
 			 */
 			update: function() {
 				this.parent.getTransform(p, m);
@@ -111,7 +109,6 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
 			 * 
 			 * @param  {Context 2D} context Context 2D property of the Canvas.
-			 * @return {null}
 			 */
 			debug_draw: function(context) {
 				this.parent.getTransform(p, m);

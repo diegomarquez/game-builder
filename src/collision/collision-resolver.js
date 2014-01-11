@@ -47,7 +47,6 @@ define(['sat'], function(SAT) {
 	 * The component is added to the correponding lists, depending on it's collision id.
 	 * 
 	 * @param {[collision-component](@@collision-component@@)} collisionComponent An object extending [collision-component](@@collision-component@@)
-	 * @return {null}
 	 */
 	CollisionResolver.prototype.addToCollisionList = function(collisionComponent) {
 		var indexes = this.toCollideCache[collisionComponent.collisionId];
@@ -68,7 +67,6 @@ define(['sat'], function(SAT) {
 	 * The component is removed from the corresponding lists, depending on it's collision id.
 	 * 
 	 * @param {[collision-component](@@collision-component@@)} collisionComponent An object extending [collision-component](@@collision-component@@)
-	 * @return {null}
 	 */
 	CollisionResolver.prototype.removeFromCollisionList = function(collisionComponent) {
 		var indexes = this.toCollideCache[collisionComponent.collisionId];

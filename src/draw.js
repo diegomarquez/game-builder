@@ -16,7 +16,7 @@
  * There are some stuff missing, like individual method to wrap quadratic and cubic curves. 
  * These methods are hopefully to just ilustrate an idea and you won't be relying on them to get serious things done.
  *
- * **A note on all method. If you don't specify a fill color, a stroke color or a line width, the current value set
+ * **A note on all methods. If you don't specify a fill color, a stroke color or a line width, the current value set
  * in the context will be used.**
  */
 
@@ -39,8 +39,7 @@ define(function() {
 	 * @param  {Number} radius      Radius of the circle
 	 * @param  {String|Number} [fillColor=null the circle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
 	 * @param  {String|Number} [strokeColor=null the circle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number
-	 * @param  {Number} [lineWidth=null] Line width
-	 * @return {null}             	
+	 * @param  {Number} [lineWidth=null] Line widt             	
 	 */
 	DrawUtils.prototype.circle = function(context, x, y, radius, fillColor, strokeColor, lineWidth) {
 		if (fillColor) context.fillStyle = fillColor;
@@ -67,8 +66,7 @@ define(function() {
 	  * @param  {Number} height      Height of the rectangle
 	  * @param  {String|Number} [fillColor=null]   Fill color for the rectangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
 	  * @param  {String|Number} [strokeColor=null] Stroke color for the rectangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
-	  * @param  {Number} [lineWidth=null]   Line width
-	  * @return {null}            
+	  * @param  {Number} [lineWidth=null]   Line width            
 	  */
 	DrawUtils.prototype.rectangle = function(context, x, y, width, height, fillColor, strokeColor, lineWidth) {
 		if (strokeColor) context.strokeStyle = strokeColor;
@@ -100,8 +98,7 @@ define(function() {
 	  * @param  {String|Number} [fillColor=null]   Fill color for the triangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
 	  * @param  {String|Number} [strokeColor=null] Stroke color for the triangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
 	  * @param  {Number} [lineWidth=null]   Line width
-	  * @param  {Number} [scale=1] Scale of the triangle. This can be usefull to avoid recalculating vertex position
-	  * @return {null}             
+	  * @param  {Number} [scale=1] Scale of the triangle. This can be usefull to avoid recalculating vertex position             
 	  */
 	DrawUtils.prototype.triangle = function(context, centerX, centerY, x1, y1, x2, y2, x3, y3, fillColor, strokeColor, lineWidth, scale) {
 		if (strokeColor) context.strokeStyle = strokeColor;
@@ -161,7 +158,6 @@ define(function() {
 	  * @param  {String|Number} [strokeColor=null] Stroke color for the triangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
 	  * @param  {Number} [lineWidth=null]   Line width
 	  * @param  {Number} [scale=1] Scale of the triangle. This can be usefull to avoid recalculating vertex position
-	  * @return {null}
 	  */
 	DrawUtils.prototype.quadraticTriangle = function(context, centerX, centerY, x1, y1, ax1, ay1, x2, y2, ax2, ay2, x3, y3, ax3, ay3, fillColor, strokeColor, lineWidth, scale) {
 		if (strokeColor) context.strokeStyle = strokeColor;
@@ -222,7 +218,6 @@ define(function() {
 	  * @param  {String|Number} [strokeColor=null] Stroke color for the polygon can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
 	  * @param  {Number} [lineWidth=null]   Line width
 	  * @param  {Number} [scale=1] Scale of the polygon. This can be usefull to avoid recalculating vertex position
-	  * @return {null}
 	  */
 	DrawUtils.prototype.polygon = function(context, x, y, points, fillColor, strokeColor, lineWidth, scale) {
 		if (strokeColor) context.strokeStyle = strokeColor;
@@ -258,7 +253,6 @@ define(function() {
 	  * @param  {String|Number} [strokeColor=null] Stroke color for the polygon can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
 	  * @param  {Number} [lineWidth=null]   Line width
 	  * @param  {Number} [scale=1] Scale of the polygon. This can be usefull to avoid recalculating vertex position
-	  * @return {null}
 	  */
 	DrawUtils.prototype.quadraticPolygon = function(context, x, y, points, fillColor, strokeColor, lineWidth, scale) {
 		if (strokeColor) context.strokeStyle = strokeColor;
