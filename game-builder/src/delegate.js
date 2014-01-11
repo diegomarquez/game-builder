@@ -8,21 +8,21 @@
  * Depends of: [util](@@util)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
+ *
+ * If you are a software engineer, the name of this file will sound outrageous to you, because
+ * it's not really a delegate. It's more of a container for delegates. If you keep stretching, it 
+ * actually is more like an event emitter. But there is no notion of events 
+ * in [Game-Builder](http://diegomarquez.github.io/game-builder), so I have no idea what to call it.
+ *
+ * It works fine and is very usefull. The basic workflow is the following:
  * 
- * It implements a [Multicast Delegate](http://en.wikipedia.org/wiki/Delegation_pattern). 
- * Sounds like a mouthful? The more friendly name is, 'Event System', which sounds about a million times less cool.
- *
- * Now you know what the hell everyone is trying to talk about when they mention events.
- *
- * Basically this class is a hash, with each key of the hash being an array of functions. 
- *
- * Add funtions using <strong>on</strong>, always providing an id and scope with the function.
+ * Add functions using <strong>on</strong>, always providing an id and for the function.
  * At some point in the future call the method <strong>execute</strong>, passing an id. 
  * All the functions registered under the id provided will be executed in the order they were added.
  */
 
 /**
- * Simple, flexible and powerful.
+ * Totally usefull
  * --------------------------------
  */
 
@@ -30,16 +30,6 @@
  * --------------------------------
  */
 define(["util", "class"], function(util) {
-	var removeAllNulls = function(list) {
-		for (var i = list.length - 1; i >= 0; i--) {
-			var callbackObject = list[i];
-
-			if (!callbackObject) {
-				list.splice(i, 1);
-			}
-		}
-	}
-
 	var Delegate = Class.extend({
 		init: function() {
 			this.callbackList = {};
@@ -50,7 +40,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>on</strong> Use it to add functions to the delegate instance.</p>
+		 * <p style='color:#AD071D'><strong>on</strong> Use it to add functions.</p>
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'
 		 * @param  {Function} callback Function you want to execute
@@ -152,7 +142,7 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>hardCleanUp</strong> Removes every function in the delegate.</p>
+		 * <p style='color:#AD071D'><strong>hardCleanUp</strong> Removes every registered function.</p>
 		 * @return {null}
 		 */
 		hardCleanUp: function() {
@@ -204,6 +194,16 @@ define(["util", "class"], function(util) {
 		 * --------------------------------
 		 */
 	});
+
+	var removeAllNulls = function(list) {
+		for (var i = list.length - 1; i >= 0; i--) {
+			var callbackObject = list[i];
+
+			if (!callbackObject) {
+				list.splice(i, 1);
+			}
+		}
+	}
 
 	return Delegate;
 });

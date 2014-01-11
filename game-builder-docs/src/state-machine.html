@@ -115,10 +115,10 @@ and state changes can not occur.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong> Add a state object to the state machine.</p>
 
-<p>Setup the <strong>change</strong> delegate of the state, so it is able to pass control flow
+<p>Setup the <strong>change</strong> event of the state, so it is able to pass control flow
 to another state.</p>
 
-<p>When executing the <strong>change</strong> delegate an argument is required to be passed. ej.</p>
+<p>When executing the <strong>change</strong> event an argument is required to be passed. ej.</p>
 
 <pre><code class=" javascript">state.execute('change', {
     // Name of the state to pass control to
@@ -156,10 +156,10 @@ to another state.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong> Add state object to the state machine.</p>
 
-<p>Setup the <strong>next</strong> and <strong>previous</strong> delegates of the state, 
+<p>Setup the <strong>next</strong> and <strong>previous</strong> events of the state, 
 so it is able to pass control flow to the corresponding states.</p>
 
-<p>When executing the <strong>next</strong> and <strong>previous</strong> delegates an argument is optional. ej.</p>
+<p>When executing the <strong>next</strong> and <strong>previous</strong> events an argument is optional. ej.</p>
 
 <pre><code class=" javascript  ">state.execute('next', {
     // This will be passed as arguments to the complete actions of the current state

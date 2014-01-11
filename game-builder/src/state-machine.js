@@ -178,10 +178,10 @@ define(["delegate", "class"], function(Delegate) {
 		/**
 		 * <p style='color:#AD071D'><strong>add</strong> Add a state object to the state machine.</p>
 		 *
-		 * Setup the **change** delegate of the state, so it is able to pass control flow
+		 * Setup the **change** event of the state, so it is able to pass control flow
 		 * to another state.
 		 * 
-		 * When executing the **change** delegate an argument is required to be passed. ej.
+		 * When executing the **change** event an argument is required to be passed. ej.
 		 *
 		 * ``` javascript
 		 * state.execute('change', {
@@ -228,10 +228,10 @@ define(["delegate", "class"], function(Delegate) {
 		/**
 		 * <p style='color:#AD071D'><strong>add</strong> Add state object to the state machine.</p>
 		 *
-		 * Setup the **next** and **previous** delegates of the state, 
+		 * Setup the **next** and **previous** events of the state, 
 		 * so it is able to pass control flow to the corresponding states.
 		 * 
-		 * When executing the **next** and **previous** delegates an argument is optional. ej.
+		 * When executing the **next** and **previous** events an argument is optional. ej.
 		 *
 		 * ``` javascript  
 		 * state.execute('next', {
