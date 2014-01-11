@@ -19,11 +19,58 @@
  * it also keeps track of them so it is easy to manipulate them in bulk.
  * 
  * ### **2. Provide a Timer object**
- *
+ * 
  * The timer object uses [**setTimeout**](http://www.w3schools.com/js/js_timing.asp) under the hood and adds 
  * a few things to it. The main feature is that it handles recording the timeout id, so that stopping it
  * is more intuitive, with a **stop** method. Another cool feature is being able to pause the timer, 
  * something which [**setTimeout**](http://www.w3schools.com/js/js_timing.asp) simply does not do.
+ *
+ * The Timer object extends [delegate](@@delegate@@) so it provides a few events to hook into:
+ *
+ * ### **repeate** 
+ * Each time a timer is repeated. 
+ * 
+ * Registered callbacks get the amount of repeats left as argument. 
+ * ``` javascript  
+ * timer.on('repeate' function(repeatsLeft) {});
+ * ``` 
+ * 
+ * ### **complete**
+ * When a timer completes. 
+ * 
+ * ``` javascript  
+ * timer.on('complete' function() {});
+ * ```
+ * ### **stop**
+ * When a timer is stopped.
+ * 
+ * ``` javascript  
+ * timer.on('stop' function() {});
+ * ```
+ * ### **reset**
+ * When a timer is reset.
+ * 
+ * ``` javascript  
+ * timer.on('reset' function() {});
+ * ```
+ * ### **pause**
+ * When a timer is paused.
+ * 
+ * ``` javascript  
+ * timer.on('pause' function() {});
+ * ```
+ * ### **resume**
+ * When a timer is resumed.
+ * 
+ * ``` javascript  
+ * timer.on('resume' function() {});
+ * ```
+ * ### **remove**
+ * When a timer is removed from the factory register.
+ * 
+ * ``` javascript  
+ * timer.on('remove' function() {});
+ * ```
  */
 
 /**
@@ -244,7 +291,7 @@ define(function(require) {
 		 * });
 		 * ```
 		 *
-		 * @param  {Object} options And object with all the options to set. ej. follows
+		 * @param  {Object} options An object with all the options to set.
 		 * @returns {null}        
 		 */
 		configure: function(options) {
