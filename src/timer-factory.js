@@ -1,19 +1,109 @@
-define(function(require) {
-	Delegate = require('delegate')
+/**
+ * # timer-factory.js
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Inherits from:
+ *
+ * Depends of: [delegate](@@delegate@@)
+ *
+ * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
+ * 
+ * This module's main concern is try and make [**setTimeout**](http://www.w3schools.com/js/js_timing.asp) a bit more usefull. 
+ * 
+ * For that purpose it has 2 main responsibilities:
+ * 
+ * ### **1. Provide a factory to create and manage manage Timers in a single place**
+ *
+ * The factory is what this module actually exposes. Asides from from creating timers
+ * it also keeps track of them so it is easy to manipulate them in bulk. This is the object
+ * exposed by this module.
+ * 
+ * ### **2. Provide a Timer object**
+ *
+ * The timer object uses [**setTimeout**](http://www.w3schools.com/js/js_timing.asp) under and adds 
+ * a few things to it. The main feature is that it handles recording the timeout id, so that stopping it
+ * is more intuitive, with a **stop** method. Another cool feature is being able to pause the timer, 
+ * something which [**setTimeout**](http://www.w3schools.com/js/js_timing.asp) simply does not do.
+ */
 
+/**
+ * Time, time, time, time, TIME!
+ * --------------------------------
+ */
+
+/**
+ * --------------------------------
+ */
+define(function(require) {
+	/**
+	 * ## **TimerFactory**
+	 */
 	var TimerFactory = function() {
 		this.timeOuts = [];
 	};
 
+	/**
+	 * <p style='color:#AD071D'><strong>get</strong> Creates a new instance of a Timer.</p>
+	 *
+	 * After creating it, it saves it into an array. It will also create a property in the **owner** 
+	 * giving it the name **propertyName**. 
+	 * 
+	 * @param  {Object} owner        Object in which the method was called in. Common value is _'this'_
+	 * @param  {String} name         An identifier for the Timer
+	 * @param  {String} propertyName Name of the property the timer will be added in **owner**.
+	 * @throws {Error} If the owner already has a property with the value of **propertyName**
+	 * @throws {Error} If owner is not passed as argument
+	 * @throws {Error} If name is not passed as argument
+	 * @throws {Error} If propertyName is not passed as argument
+	 * @returns {null}       
+	 */
 	TimerFactory.prototype.get = function(owner, name, propertyName) {
 		if(owner.hasOwnProperty(propertyName)) {
 			throw new Error('This owner is already using this property, assigning it again with a timer might cause your program to go ape shit.')	
 		}else{
+
+			if (!owner) { throw new Error('Timer must have an owner, if unsure just send in "this"') }
+			if (!name) { throw new Error('Timer must have an name to identify it later') }
+			if (!propertyName) { throw new Error('Timer must have a propertyName to be refered with from its owners scope') }
+
 			var timeout = new Timer(owner, name, propertyName);
 			this.timeOuts.push(timeout);
 			owner[propertyName] = timeout;	
 		}
 	};
+	/**
+	 * --------------------------------
+	 */
+
+	/*
+	These methods are pretty obvious in what they do. They are meant to apply a state to all registered timers
+	at the same time. Usefull to handle global state of an application.
+
+	For instance, if the application looses focus, you probably want to pause all timers, regardless of what they are doing
+	and to which part of the code base they belong to.
+	
+	After gaining focus, you can resume them all together. Pretty usefull.
+
+	Although the names suggest obvious behaviour, the usage is not so obvious. Keep reading to find out
+	how to use the control object these methods return.
+	 */
+	TimerFactory.prototype.startAll = function() { return getChangeObject.call(this, 'start'); }
+	TimerFactory.prototype.resetAll = function() { return getChangeObject.call(this, 'reset'); }
+	TimerFactory.prototype.stopAll = function() { return getChangeObject.call(this, 'stop'); }
+	TimerFactory.prototype.pauseAll = function() { return getChangeObject.call(this, 'pause'); }
+	TimerFactory.prototype.resumeAll = function() { return getChangeObject.call(this, 'resume'); }
+	TimerFactory.prototype.removeAll = function() { return getChangeObject.call(this, 'remove'); }
+
+	var timerFactory = new TimerFactory();
+
+	var applyChangeToTimersIfTrue = function(state, condition) {
+		this.forEach(function(element, index, array) {
+			if(condition(element, index, array)) {
+				element[state]();
+			}
+		});
+	}
 
 	var applyChangeToSomeTimers = function(state, identifier, identifierValue) {
 		this.forEach(function(element, index, array) {
@@ -29,35 +119,63 @@ define(function(require) {
 		});
 	}
 
+	/**
+	 * <p style='color:#AD071D'><strong>getChangeObject</strong> Private method, but important enough 
+	 * to document.</p>
+	 *
+	 * This method returns on object with methods to filter which timers 
+	 * should move to a new state.
+	 * 
+	 * @param  {String} state The state selected timers will go to. ej. _'start'_
+	 * @returns {Object}       A control Object to manage all the registered Timers.
+	 */
 	var getChangeObject = function(state) {
 		var self = this;
 
 		return {
-			which: function(identifier, identifierValue) {
-				applyChangeToSomeTimers.call(self.timeOuts, state, identifier, identifierValue);
+			// All the timers with a **name** equaling (===) **value** qualify to change state
+			withName: function(value) {
+				applyChangeToSomeTimers.call(self.timeOuts, state, 'name', value);	
 			},
+			/**
+			 * --------------------------------
+			 */
+
+			// All the timers with a **owner** equaling (===) **value** qualify to change state
+			withOwner: function(owner) {
+				applyChangeToSomeTimers.call(self.timeOuts, state, 'owner', owner);	
+			},
+			/**
+			 * --------------------------------
+			 */
+
+			// The **condition** function will be evaluates for all timers, timers
+			// that evaluate to true will qualify to change state.
+			// 
+			// The signature for the condition function is **function(element, index, array)**
+			which: function(condition) {
+				applyChangeToTimersIfTrue.call(self.timeOuts, state, condition);	
+			},
+			/**
+			 * --------------------------------
+			 */
+
+			// All timers qualify to change state
 			now: function() {
-				applyChangeToSomeTimers.call(self.timeOuts, state);
+				applyChangeToAllTimers.call(self.timeOuts, state);
 			}
+			/**
+			 * --------------------------------
+			 */
 		}
 	}
 
-	TimerFactory.prototype.startAll = function() { return getChangeObject.call(this, 'start'); }
-	TimerFactory.prototype.resetAll = function() { return getChangeObject.call(this, 'reset'); }
-	TimerFactory.prototype.stopAll = function() { return getChangeObject.call(this, 'stop'); }
-	TimerFactory.prototype.pauseAll = function() { return getChangeObject.call(this, 'pause'); }
-	TimerFactory.prototype.resumeAll = function() { return getChangeObject.call(this, 'resume'); }
-	TimerFactory.prototype.removeAll = function() { return getChangeObject.call(this, 'remove'); }
-
-	var timerFactory = new TimerFactory();
-
-	var Timer = Delegate.extend({
+	/**
+	 * ## **Timer** extends [delegate](@@delegate@@)
+	 */
+	var Timer = require('delegate').extend({
 		init: function(owner, name, propertyName) {
 			this._super();
-
-			if (!owner) { throw new Error('Timer must have an owner, if unsure just send in "this"') }
-			if (!name) { throw new Error('Timer must have an name to identify it later') }
-			if (!propertyName) { throw new Error('Timer must have a propertyName to be refered with from its owners scope') }
 
 			this.owner = owner;
 			this.name = name;
@@ -79,10 +197,40 @@ define(function(require) {
 			this.isPaused = false;
 		},
 
+		/**
+		 * <p style='color:#AD071D'><strong>on</strong> Wrapper to <a href=@@delegate@@>delegate</a> method of the same name</p>
+		 * @param  {String} name Id that the function will be associated with
+		 * @param  {Function} callback Function you want to execute
+		 * @param  {Boolean} [removeOnExecute=false] The function will be removed from the corresponding list, after executing it once
+		 * @param  {Boolean} [single=false] Do not add function if there is already one with the same id
+		 * @returns {null}
+		 */
 		on: function(name, callback, removeOnComplete, single) {
 			this._super(name, this.owner, callback, removeOnComplete, false, false, single);
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>configure</strong> Configures the timer.</p>
+		 * @param  {Object} options And object with all the options to set. ej. follows
+		 *
+		 * ``` javascript  
+		 * timer.configure({
+			// The amount of milliseconds the timer will last
+			// Defaults to 1000
+			delay: 2000,
+			// The amount of times to repeate the timer.
+			// Defaults to 1
+			repeateCount: 2,
+			// If set to true the timer is removed from the factories array when it completes.
+			// Defaults to true
+			removeOnComplete: false
+		 * });
+		 * ```
+		 * @returns {null}        
+		 */
 		configure: function(options) {
 			if (!options.hasOwnProperty('delay')) { options['delay'] = this._delay;	}
 			if (!options.hasOwnProperty('repeatCount')) { options['repeatCount'] = this.repeateCount;	}
@@ -92,7 +240,14 @@ define(function(require) {
 			this.RepeateCount(options['repeatCount']);
 			this.RemoveOnComplete(options['removeOnComplete']);
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>start</strong> Starts the timer.</p>
+		 * @returns {null}
+		 */
 		start: function(resumeTime) {
 			if (this.isRunning || this.isPaused) {
 				return;
@@ -116,7 +271,6 @@ define(function(require) {
 				}
 
 				if (to.repeateCount < 0) {
-					//This is the looping condition
 					to.isRunning = false;
 					to._delay = to.initDelay;
 					to.start();
@@ -138,7 +292,17 @@ define(function(require) {
 				}
 			}, actualDelay);
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>stop</strong> Stops the timer.</p>
+		 *
+		 * Resets everything else. Starting the timer again will do so from the beginning.
+		 * 
+		 * @returns {null}
+		 */
 		stop: function() {
 			clearTimeout(this.id);
 
@@ -150,17 +314,34 @@ define(function(require) {
 
 			this.execute("stop");
 		},
+		/**
+		 * --------------------------------
+		 */
 
-		reset: function(withCallback) {
-			if (withCallback)
-				this.callback.call(this.scope);
-
+		/**
+		 * <p style='color:#AD071D'><strong>reset</strong> Resets the timer.</p>
+		 *
+		 * Short cut for **stop** followed by **play**
+		 * 
+		 * @returns {null}
+		 */
+		reset: function() {
 			this.stop();
 			this.start();
 
 			this.execute("reset");
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>pause</strong> Pause the timer.</p>
+		 *
+		 * Pause the timer until the **resume** method is called.
+		 * 
+		 * @returns {null}
+		 */
 		pause: function() {
 			if (!this.isRunning) {
 				return;
@@ -173,7 +354,14 @@ define(function(require) {
 
 			this.execute("pause");
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>resume</strong> Resume if paused.</p>
+		 * @returns {null}
+		 */
 		resume: function() {
 			if (!this.isRunning && !this.isPaused) {
 				return;
@@ -185,16 +373,27 @@ define(function(require) {
 
 			this.execute("resume");
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>remove</strong> Stop the timer and remove it from the factory register.</p>
+		 *
+		 * Other less obvious behaviour is that it deletes the timer from the **owner** set
+		 * when constructing this instance.
+		 *
+		 * It also nulls every property of the object, setting it up for garbage collection.
+		 * 
+		 * @returns {null}
+		 */
 		remove: function() {
 			this.stop();
 
-			//Removing it from owner
 			this.owner[this.propertyName] = null;
 			delete this.owner[this.propertyName];
 			this.owner = null;
 
-			//Removing it from the factory cache
 			index = timerFactory.timeOuts.indexOf(this);
 			timerFactory.timeOuts.splice(index, 1);
 
@@ -202,7 +401,18 @@ define(function(require) {
 
 			this.destroy();
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>Delay</strong> Sets the delay of the timer.</p>
+		 *
+		 * This method returns the __'this'__ so it is possible to concatenate it.
+		 * This method is used internally by **configure**
+		 * 
+		 * @param {Number} d Delay amount in milliseconds
+		 */
 		Delay: function(d) {
 			canModify()
 
@@ -210,7 +420,18 @@ define(function(require) {
 			this.initDelay = d;
 			return this;
 		},
-
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>RepeateCount</strong> Sets the repeateCount of the timer.</p>
+		 *
+		 * This method returns the __'this'__ so it is possible to concatenate it.
+		 * This method is used internally by **configure**
+		 * 
+		 * @param {Number} d Amount of times this timer should be repeated before completing.
+		 */
 		RepeateCount: function(r) {
 			canModify()
 
@@ -218,13 +439,28 @@ define(function(require) {
 			this.initRepeatCount = r;
 			return this;
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>RemoveOnComplete</strong> Whether to remove the timer 
+		 * from the factory register when complete.</p>
+		 *
+		 * This method returns the __'this'__ so it is possible to concatenate it.
+		 * This method is used internally by **configure**
+		 * 
+		 * @param {Boolean} r Wheter to keep or remove the timer when it is done.
+		 */
 		RemoveOnComplete: function(r) {
 			canModify()
 
 			this.removeOnComplete = r;
 			return this;
 		}
+		/**
+		 * --------------------------------
+		 */
 	});
 
 	var canModify = function() {

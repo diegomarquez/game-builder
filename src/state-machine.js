@@ -17,11 +17,11 @@
  * 
  * This module has three main responsibilities:
  *
- * ### 1. Provide a factory for creating state machines and their states.
+ * ### **1. Provide a factory for creating state machines and their states**
  *
  * The factory is what this module actually exposes, nothing special about it.
  * 
- * ### 2. Provides 2 types of state machines.
+ * ### **2. Provides 2 types of state machines**
  *
  * The first **"loose"** type, allows you to just go from state to state, with no restriction. 
  * It's pretty usefull, but states need to know about the other states in order to change control flow to them. 
@@ -32,7 +32,7 @@
  * and stuff happens. No need to know identifiers of any sort. It's a bit more rigid, but could save some headaches if used in the proper
  * situation.
  *
- * ### 3. Provides a base class from which to extend your own states.
+ * ### **3. Provides a base class from which to extend your own states**
  * 
  * **States** have three main phases. **Initialization**, **Completion** and **Update**.
  * The first two are functions executed when entering and exiting a state. **Update** must be called in a loop.
@@ -40,8 +40,9 @@
  *
  * <p style='color:#AD071D'>Note: State machines may throw a custom error when trying to 
  * execute <strong>Initialization</strong> and <strong>Completion</strong> actions. 
- * This means there is something wrong in the callbacks registered 
- * with the state machine, rather than the state machine itself.</p> 
+ * This is because those methods are enclosed in a _'try catch'_ block. 
+ * This means if you see this illusive error, there is something wrong in the callbacks registered with the
+ * state machine rather than the state machine itself.</p> 
  */
 
 /**
@@ -54,7 +55,7 @@
  */
 define(["delegate", "class"], function(Delegate) {
 	/**
-	 * <p style='color:#AD071D'><strong>StateMachine</strong></p>
+	 * ## **StateMachine**
 	 */
 	var StateMachine = Class.extend({
 		init: function() {
@@ -65,8 +66,11 @@ define(["delegate", "class"], function(Delegate) {
 		},
 
 		/**
-		 * <p style='color:#AD071D'><strong>start</strong> Once the states have been added, call this method to go into
-		 * the first state, optionally sending some arguments.</p>
+		 * <p style='color:#AD071D'><strong>start</strong> Start the state machine.</p>
+		 *
+		 * Once the states have been added, call this method to go into
+		 * the first state, optionally sending some arguments.
+		 * 
 		 * @param  {*} [args=null] Arguments to be sent to the initial state.
 		 * @return {null}  
 		 */
@@ -79,8 +83,10 @@ define(["delegate", "class"], function(Delegate) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>add</strong> Add state object to the state machine. 
-		 * This method is redifined by the concrete implementations.</p>
+		 * <p style='color:#AD071D'><strong>add</strong> Add a state object to the state machine.</p>
+		 *
+		 * This method is redifined by the concrete implementations.
+		 * 
 		 * @param {State} state State object to add
 		 */
 		add: function(state) {
@@ -106,8 +112,11 @@ define(["delegate", "class"], function(Delegate) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>block</strong> Blocks the state machine. While blocked no actions will be executed, 
-		 * and state changes can not occur.</p>
+		 * <p style='color:#AD071D'><strong>block</strong> Blocks the state machine.</p>
+		 *
+		 * While blocked no actions will be executed, 
+		 * and state changes can not occur.
+		 * 
 		 * @return {null}
 		 */
 		block: function() { this.isBlocked = true; },
@@ -116,8 +125,10 @@ define(["delegate", "class"], function(Delegate) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>unblock</strong> Unblock the state machine. All behaviour returns to normal after
-		 * executing this method.</p>
+		 * <p style='color:#AD071D'><strong>unblock</strong> Unblock the state machine.</p>
+		 *
+		 * All behaviour returns to normal after executing this method.
+		 * 
 		 * @return {null}
 		 */
 		unblock: function() { this.isBlocked = false; },
@@ -137,8 +148,10 @@ define(["delegate", "class"], function(Delegate) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>destroy</strong> Calls the destroy method of all the states registered,
-		 * and nulls the main references. Set's the object up for garbage collection.</p>
+		 * <p style='color:#AD071D'><strong>destroy</strong> Calls the destroy method of all the states registered.</p>
+		 *
+		 * Nulls the main references. Sets the object up for garbage collection.
+		 * 
 		 * @return {null}
 		 */
 		destroy: function() {
@@ -153,12 +166,9 @@ define(["delegate", "class"], function(Delegate) {
 		 * --------------------------------
 		 */
 	});
-	/**
-	 * --------------------------------
-	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>LooseStateMachine</strong> extends StateMachine</p>
+	 * ## **LooseStateMachine** extends **StateMachine**
 	 */
 	var LooseStateMachine = StateMachine.extend({
 		init: function() {
@@ -166,23 +176,24 @@ define(["delegate", "class"], function(Delegate) {
 		},
 
 		/**
-		 * <p style='color:#AD071D'><strong>add</strong> Add state object to the state machine.
-		 * Setup the **change** delegate of the state, so it is able to pass control flow
-		 * to another state.</p>
+		 * <p style='color:#AD071D'><strong>add</strong> Add a state object to the state machine.</p>
 		 *
-		 * When executing the **change** delegate an arguments is required to be passed. ej.
+		 * Setup the **change** delegate of the state, so it is able to pass control flow
+		 * to another state.
+		 * 
+		 * When executing the **change** delegate an argument is required to be passed. ej.
 		 *
 		 * ``` javascript
 		 * state.execute('change', {
- 			// Name of the state to pass control to
- 			// This is required
-  	    	next: 'StateName'
-  			// This will be passed as arguments to the complete actions of the current state
-  			// This is optional
-  	 		lastCompleteArgs: {},
-  	  		// This will be passed as arguments to the start actions of the next state
-  	  		// This is optional 
-  	   		nextInitArgs: {}
+			// Name of the state to pass control to
+			// This is required
+			next: 'StateName'
+			// This will be passed as arguments to the complete actions of the current state
+			// This is optional
+			lastCompleteArgs: {},
+			// This will be passed as arguments to the start actions of the next state
+			// This is optional 
+			nextInitArgs: {}
 		 * });
 		 * ```
 		 * 
@@ -205,12 +216,9 @@ define(["delegate", "class"], function(Delegate) {
 		 * --------------------------------
 		 */	
 	});
-	/**
-	 * --------------------------------
-	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>FixedStateMachine</strong> extends StateMachine</p>
+	 * ## **FixedStateMachine** extends **StateMachine**
 	 */
 	var FixedStateMachine = StateMachine.extend({
 		init: function() {
@@ -218,22 +226,22 @@ define(["delegate", "class"], function(Delegate) {
 		},
 
 		/**
-		 * <p style='color:#AD071D'><strong>add</strong> Add state object to the state machine.
-		 * Setup the **next** and **previous** delegates of the state, so it is able to pass control flow
-		 * to the corresponding states.</p>
+		 * <p style='color:#AD071D'><strong>add</strong> Add state object to the state machine.</p>
 		 *
+		 * Setup the **next** and **previous** delegates of the state, 
+		 * so it is able to pass control flow to the corresponding states.
+		 * 
 		 * When executing the **next** and **previous** delegates an argument is optional. ej.
 		 *
 		 * ``` javascript  
 		 * state.execute('next', {
-  			// This will be passed as arguments to the complete actions of the current state
-  			// This is optional
-  	 		lastCompleteArgs: {},
-  	  		// This will be passed as arguments to the start actions of the next state
-  	  		// This is optional 
-  	   		nextInitArgs: {}
+			// This will be passed as arguments to the complete actions of the current state
+			// This is optional
+			lastCompleteArgs: {},
+			// This will be passed as arguments to the start actions of the next state
+			// This is optional 
+			nextInitArgs: {}
 		 * });
-		 *  
 		 * ```
 		 * 
 		 * @param {State} state State object to add
@@ -272,12 +280,10 @@ define(["delegate", "class"], function(Delegate) {
 		 * --------------------------------
 		 */		
 	});
-	/**
-	 * --------------------------------
-	 */
 	
+
 	/**
-	 * <p style='color:#AD071D'><strong>State</strong> extends <a href=@@delegate@@>delegate</a></p>
+	 * ## **State** extends [**delegate**](@@delegate@@)
 	 */
 	var State = Delegate.extend({
 		/**
@@ -322,11 +328,11 @@ define(["delegate", "class"], function(Delegate) {
 	 * <p style='color:#AD071D'><strong>State Machine Factory</strong></p>
 	 */
 	var StateMachineFactory = {
-		//Create a "loose" state machine
+		// Create a "loose" state machine
 		createLooseStateMachine: function() { return new LooseStateMachine(); },
-		//Create a "fixed" state machine
+		// Create a "fixed" state machine
 		createFixedStateMachine: function() { return new FixedStateMachine(); },
-		//Create a state, send in the scope for the state and a name
+		// Create a state, send in the scope for the state and a name
 		createState: function(scope, name) { return new State(scope, name); }
 	};
 	/**
