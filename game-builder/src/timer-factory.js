@@ -15,13 +15,12 @@
  * 
  * ### **1. Provide a factory to create and manage manage Timers in a single place**
  *
- * The factory is what this module actually exposes. Asides from from creating timers
- * it also keeps track of them so it is easy to manipulate them in bulk. This is the object
- * exposed by this module.
+ * The factory is what this module actually exposes. Asides from creating timers
+ * it also keeps track of them so it is easy to manipulate them in bulk.
  * 
  * ### **2. Provide a Timer object**
  *
- * The timer object uses [**setTimeout**](http://www.w3schools.com/js/js_timing.asp) under and adds 
+ * The timer object uses [**setTimeout**](http://www.w3schools.com/js/js_timing.asp) under the hood and adds 
  * a few things to it. The main feature is that it handles recording the timeout id, so that stopping it
  * is more intuitive, with a **stop** method. Another cool feature is being able to pause the timer, 
  * something which [**setTimeout**](http://www.w3schools.com/js/js_timing.asp) simply does not do.
@@ -94,6 +93,9 @@ define(function(require) {
 	TimerFactory.prototype.pauseAll = function() { return getChangeObject.call(this, 'pause'); }
 	TimerFactory.prototype.resumeAll = function() { return getChangeObject.call(this, 'resume'); }
 	TimerFactory.prototype.removeAll = function() { return getChangeObject.call(this, 'remove'); }
+	/**
+	 * --------------------------------
+	 */
 
 	var timerFactory = new TimerFactory();
 
@@ -133,15 +135,21 @@ define(function(require) {
 		var self = this;
 
 		return {
-			// All the timers with a **name** equaling (===) **value** qualify to change state
+			/**
+			 * <p style='color:#AD071D'><strong>withName</strong></p>
+			 * All the timers with a **name** equaling (===) **value** qualify to change state
+			 */
 			withName: function(value) {
 				applyChangeToSomeTimers.call(self.timeOuts, state, 'name', value);	
 			},
 			/**
 			 * --------------------------------
 			 */
-
-			// All the timers with a **owner** equaling (===) **value** qualify to change state
+			
+			/**
+			 * <p style='color:#AD071D'><strong>withOwner</strong></p>
+			 * All the timers with a **owner** equaling (===) **value** qualify to change state
+			 */
 			withOwner: function(owner) {
 				applyChangeToSomeTimers.call(self.timeOuts, state, 'owner', owner);	
 			},
@@ -149,18 +157,25 @@ define(function(require) {
 			 * --------------------------------
 			 */
 
-			// The **condition** function will be evaluates for all timers, timers
-			// that evaluate to true will qualify to change state.
-			// 
-			// The signature for the condition function is **function(element, index, array)**
+			/**
+			 * <p style='color:#AD071D'><strong>which</strong></p>
+			 *
+			 * The **condition** function will be evaluates for all timers, timers
+			 * that evaluate to true will qualify to change state.
+			 * 
+			 * The signature for the condition function is **function(element, index, array)**
+			 */
 			which: function(condition) {
 				applyChangeToTimersIfTrue.call(self.timeOuts, state, condition);	
 			},
 			/**
 			 * --------------------------------
 			 */
-
-			// All timers qualify to change state
+						
+			/**
+			 * <p style='color:#AD071D'><strong>now</strong></p>
+			 * All timers qualify to change state
+			 */
 			now: function() {
 				applyChangeToAllTimers.call(self.timeOuts, state);
 			}
@@ -214,8 +229,7 @@ define(function(require) {
 
 		/**
 		 * <p style='color:#AD071D'><strong>configure</strong> Configures the timer.</p>
-		 * @param  {Object} options And object with all the options to set. ej. follows
-		 *
+		 *		 
 		 * ``` javascript  
 		 * timer.configure({
 			// The amount of milliseconds the timer will last
@@ -229,6 +243,8 @@ define(function(require) {
 			removeOnComplete: false
 		 * });
 		 * ```
+		 *
+		 * @param  {Object} options And object with all the options to set. ej. follows
 		 * @returns {null}        
 		 */
 		configure: function(options) {
