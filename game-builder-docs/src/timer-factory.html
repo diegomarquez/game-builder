@@ -34,42 +34,42 @@ something which <a href="http://www.w3schools.com/js/js_timing.asp"><strong>setT
 
 <p>Registered callbacks get the amount of repeats left as argument. </p>
 
-<pre><code class=" javascript  ">timer.on('repeate' function(repeatsLeft) {});
+<pre><code class=" javascript  ">timer.on(timer.REPEATE, function(repeatsLeft) {});
 </code></pre>
 
 <h3 id="complete"><strong>complete</strong></h3>
 
 <p>When a timer completes. </p>
 
-<pre><code class=" javascript  ">timer.on('complete' function() {});
+<pre><code class=" javascript  ">timer.on(timer.COMPLETE, function() {});
 </code></pre>
 
 <h3 id="stop"><strong>stop</strong></h3>
 
 <p>When a timer is stopped.</p>
 
-<pre><code class=" javascript  ">timer.on('stop' function() {});
+<pre><code class=" javascript  ">timer.on(timer.STOP, function() {});
 </code></pre>
 
 <h3 id="reset"><strong>reset</strong></h3>
 
 <p>When a timer is reset.</p>
 
-<pre><code class=" javascript  ">timer.on('reset' function() {});
+<pre><code class=" javascript  ">timer.on(timer.RESET, function() {});
 </code></pre>
 
 <h3 id="pause"><strong>pause</strong></h3>
 
 <p>When a timer is paused.</p>
 
-<pre><code class=" javascript  ">timer.on('pause' function() {});
+<pre><code class=" javascript  ">timer.on(timer.PAUSE, function() {});
 </code></pre>
 
 <h3 id="resume"><strong>resume</strong></h3>
 
 <p>When a timer is resumed.</p>
 
-<pre><code class=" javascript  ">timer.on('resume' function() {});
+<pre><code class=" javascript  ">timer.on(timer.RESUME, function() {});
 </code></pre>
 
 <h3 id="remove"><strong>remove</strong></h3>
@@ -258,7 +258,7 @@ that evaluate to true will qualify to change state.</p>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">to</span><span class="p">.</span><span class="nx">isRunning</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">to</span><span class="p">.</span><span class="nx">isPaused</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">to</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s2">&quot;repeate&quot;</span><span class="p">,</span> <span class="nx">to</span><span class="p">.</span><span class="nx">repeates</span><span class="p">)</span>
+          <span class="nx">to</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">REPEATE</span><span class="p">,</span> <span class="nx">to</span><span class="p">.</span><span class="nx">repeates</span><span class="p">)</span>
           <span class="nx">to</span><span class="p">.</span><span class="nx">repeates</span><span class="o">++</span><span class="p">;</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
           <span class="k">return</span><span class="p">;</span>
@@ -277,7 +277,7 @@ that evaluate to true will qualify to change state.</p>
             <span class="nx">to</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
           <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
             <span class="nx">to</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
-            <span class="nx">to</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s2">&quot;complete&quot;</span><span class="p">);</span>
+            <span class="nx">to</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">COMPLETE</span><span class="p">);</span>
 
             <span class="k">if</span> <span class="p">(</span><span class="nx">to</span><span class="p">.</span><span class="nx">removeOnComplete</span><span class="p">)</span> <span class="p">{</span>
               <span class="nx">to</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
@@ -298,7 +298,7 @@ that evaluate to true will qualify to change state.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">_delay</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">initDelay</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">repeates</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s2">&quot;stop&quot;</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">STOP</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>reset</strong> Resets the timer.</p>
 
 <p>Short cut for <strong>stop</strong> followed by <strong>play</strong></p>
@@ -307,7 +307,7 @@ that evaluate to true will qualify to change state.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s2">&quot;reset&quot;</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">RESET</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>pause</strong> Pause the timer.</p>
 
 <p>Pause the timer until the <strong>resume</strong> method is called.</p>
@@ -322,7 +322,7 @@ that evaluate to true will qualify to change state.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">isRunning</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">isPaused</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s2">&quot;pause&quot;</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">PAUSE</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resume</strong> Resume if paused.</p>
 
 <p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">resume</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -334,7 +334,7 @@ that evaluate to true will qualify to change state.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">_delay</span> <span class="o">-=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pauseTime</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">startTime</span><span class="p">);</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_delay</span><span class="p">);</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s2">&quot;resume&quot;</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">RESUME</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>remove</strong> Stop the timer and remove it from the factory register.</p>
 
 <p>Other less obvious behaviour is that it deletes the timer from the <strong>owner</strong> set
@@ -352,7 +352,7 @@ when constructing this instance.</p>
       <span class="nx">index</span> <span class="o">=</span> <span class="nx">timerFactory</span><span class="p">.</span><span class="nx">timeOuts</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
       <span class="nx">timerFactory</span><span class="p">.</span><span class="nx">timeOuts</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s2">&quot;remove&quot;</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">REMOVE</span><span class="p">);</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>Delay</strong> Sets the delay of the timer.</p>
@@ -417,6 +417,14 @@ This method is used internally by <strong>configure</strong></p>
       <span class="k">this</span><span class="p">.</span><span class="nx">initDelay</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span>
     <span class="p">}</span>
   <span class="p">});</span>
+
+  <span class="c1">//Getters for all the types of events a Timer can hook into</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Timer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REPEATE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;repeate&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Timer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;COMPLETE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;complete&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Timer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;STOP&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;stop&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Timer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;PAUSE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;pause&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Timer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;RESUME&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;resume&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Timer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REMOVE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;remove&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
 
   <span class="k">return</span> <span class="nx">timerFactory</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

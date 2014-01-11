@@ -1,4 +1,20 @@
-<!DOCTYPE html><html lang="en"><head><title>src/collision/sat</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/collision/sat"><meta name="groc-project-path" content="work/game-builder/src/collision/sat.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/collision/sat.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;vector-2D&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Vector</span><span class="p">)</span> <span class="p">{</span>
+<!DOCTYPE html><html lang="en"><head><title>src/collision/sat</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/collision/sat"><meta name="groc-project-path" content="work/game-builder/src/collision/sat.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/collision/sat.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="satjs">sat.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from:</p>
+
+<p>Depends of: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/vector-2D.html">vector-2D</a></p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This module was not actually made by me, I just took some code in github and made a requireJS module
+out of it. <a href="https://github.com/jriecken/sat-js">The original code is in here</a>. 
+The documentation in there should be more than enough.</p>
+
+<p>I added a few things, but nothing of true interest. The main code is largely unchanged.</p></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;vector-2D&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Vector</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="kd">var</span> <span class="nx">T_VECTORS</span> <span class="o">=</span> <span class="p">[];</span>
   <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>

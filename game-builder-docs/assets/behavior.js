@@ -114,10 +114,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/collision/circle-collider.js",
                 "targetPath": "src/collision/circle-collider",
                 "pageTitle": "src/collision/circle-collider",
-                "title": "circle-collider"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "circle-collider.js",
+                    "slug": "circle-colliderjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Circles colliding",
+                        "slug": "circles-colliding"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "circle-collider.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Circles colliding",
+                    "slug": "circles-colliding"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -134,10 +165,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/collision/collision-component.js",
                 "targetPath": "src/collision/collision-component",
                 "pageTitle": "src/collision/collision-component",
-                "title": "collision-component"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "collision-component.js",
+                    "slug": "collision-componentjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Collisions",
+                        "slug": "collisions"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "collision-component.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Collisions",
+                    "slug": "collisions"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -154,10 +216,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/collision/collision-resolver.js",
                 "targetPath": "src/collision/collision-resolver",
                 "pageTitle": "src/collision/collision-resolver",
-                "title": "collision-resolver"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "collision-resolver.js",
+                    "slug": "collision-resolverjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Resolve collisions",
+                        "slug": "resolve-collisions"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "collision-resolver.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Resolve collisions",
+                    "slug": "resolve-collisions"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -174,10 +267,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/collision/fixed-polygon-collider.js",
                 "targetPath": "src/collision/fixed-polygon-collider",
                 "pageTitle": "src/collision/fixed-polygon-collider",
-                "title": "fixed-polygon-collider"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "polygon-collider.js",
+                    "slug": "polygon-colliderjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Polygons colliding",
+                        "slug": "polygons-colliding"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "polygon-collider.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Polygons colliding",
+                    "slug": "polygons-colliding"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -194,10 +318,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/collision/polygon-collider.js",
                 "targetPath": "src/collision/polygon-collider",
                 "pageTitle": "src/collision/polygon-collider",
-                "title": "polygon-collider"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "polygon-collider.js",
+                    "slug": "polygon-colliderjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Polygons colliding",
+                        "slug": "polygons-colliding"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "polygon-collider.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Polygons colliding",
+                    "slug": "polygons-colliding"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -214,7 +369,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/collision/sat.js",
                 "targetPath": "src/collision/sat",
                 "pageTitle": "src/collision/sat",
-                "title": "sat"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "sat.js",
+                    "slug": "satjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "sat.js"
               },
               "depth": 3,
               "outline": []

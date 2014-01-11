@@ -19,9 +19,7 @@ define(['draw'], function(draw) {
 
 			// Draw whatever the components want to draw
 			for(var i=0; i<this.components.length; i++){
-				if(this.components[i].draw) {
-					this.components[i].draw(context)
-				}
+				this.components[i].debug_draw(context)
 			}
 		}
 	}

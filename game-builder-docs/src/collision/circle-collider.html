@@ -1,28 +1,78 @@
-<!DOCTYPE html><html lang="en"><head><title>src/collision/circle-collider</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/collision/circle-collider"><meta name="groc-project-path" content="work/game-builder/src/collision/circle-collider.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/collision/circle-collider.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;collision-component&#39;</span><span class="p">,</span> <span class="s1">&#39;sat&#39;</span><span class="p">,</span> <span class="s1">&#39;collision-resolver&#39;</span><span class="p">,</span> <span class="s1">&#39;vector-2D&#39;</span><span class="p">,</span> <span class="s1">&#39;draw&#39;</span><span class="p">],</span>
+<!DOCTYPE html><html lang="en"><head><title>src/collision/circle-collider</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/collision/circle-collider"><meta name="groc-project-path" content="work/game-builder/src/collision/circle-collider.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/collision/circle-collider.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="circle-colliderjs">circle-collider.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html">collision-component</a></p>
+
+<p>Depends of: 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html">sat</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/vector-2D.html">vector-2D</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html">draw</a></p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This module defines a component mean to be attached to a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>, to give it
+the ability to collide against other <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> with collider components.</p>
+
+<p>Since this is a circle collider there is not much about it, other than a radius. Other than
+that it follows it's <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> parent around.</p>
+
+<p>During the configuration of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a> circle colliders need to 
+receive an object that looks similar to the following:</p>
+
+<pre><code class=" javascript">gb.coPool.createConfiguration("Circle_1", 'Circle')
+    .args({
+        id:'circle-collider_ID', 
+        radius:10
+     });
+</code></pre>
+
+<p>If it is not provided it will most likely fail in un expected ways.</p>
+
+<p><strong>Note: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
+The way you get a hold to a reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+may vary</strong></p></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="circles-colliding">Circles colliding</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;collision-component&#39;</span><span class="p">,</span> <span class="s1">&#39;sat&#39;</span><span class="p">,</span> <span class="s1">&#39;collision-resolver&#39;</span><span class="p">,</span> <span class="s1">&#39;vector-2D&#39;</span><span class="p">,</span> <span class="s1">&#39;draw&#39;</span><span class="p">],</span>
   <span class="kd">function</span><span class="p">(</span><span class="nx">CollisionComponent</span><span class="p">,</span> <span class="nx">SAT</span><span class="p">,</span> <span class="nx">CollisionResolver</span><span class="p">,</span> <span class="nx">Vector2D</span><span class="p">,</span> <span class="nx">draw</span><span class="p">){</span>
 
   <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
   
-  <span class="kd">var</span> <span class="nx">Component</span> <span class="o">=</span> <span class="nx">CollisionComponent</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="kd">var</span> <span class="nx">Component</span> <span class="o">=</span> <span class="nx">CollisionComponent</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>start</strong> Set up the collider.</p>
 
-    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Creates a Circle object defined in the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html">sat</a> module.</p>
+
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">collider</span>     <span class="o">=</span> <span class="k">new</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">Circle</span><span class="p">(</span><span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="nx">radius</span><span class="p">);</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">=</span> <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">circleCollider</span><span class="p">;</span>
-    <span class="p">},</span>
-    
-    <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>update</strong> Updates the position of the collider.</p>
+
+<p>The collider follows the position of it's parent.</p>
+
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">getTransform</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">m</span><span class="p">);</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">collider</span><span class="p">.</span><span class="nx">pos</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">collider</span><span class="p">.</span><span class="nx">pos</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
-    <span class="p">},</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>debug_draw</strong> Draw the circle collider</p>
 
-    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+<p>This method is only executed if the <strong>debub</strong> property of the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>
+is set to true. It is better to leave the drawing to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a> components.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>context must be a Context 2D.</strong><br/>(Context 2D property of the Canvas.)</li>
+</ul>
+
+<p><strong>Returns a null</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">debug_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">getTransform</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">m</span><span class="p">);</span>
 
       <span class="nx">context</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
@@ -34,9 +84,7 @@
       <span class="nx">context</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
-    <span class="p">}</span> 
-
-  <span class="p">});</span>
+    <span class="p">}</span> </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
 
   <span class="k">return</span> <span class="nx">Component</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>
