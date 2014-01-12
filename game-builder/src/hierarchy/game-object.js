@@ -43,12 +43,12 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			this.canDraw = true;
 
 			if(this.renderer) {
-				this.renderer.start();
+				this.renderer.start(this);
 			}
 
 			if (this.components) {
 				for (var i = 0; i < this.components.length; i++) {
-					this.components[i].start();
+					this.components[i].start(this);
 				}
 			}
 

@@ -1,4 +1,52 @@
-<!DOCTYPE html><html lang="en"><head><title>src/components/component</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/components/component"><meta name="groc-project-path" content="work/game-builder/src/components/component.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/components/component.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;delegate&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">)</span> <span class="p">{</span>
+<!DOCTYPE html><html lang="en"><head><title>src/components/component</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/components/component"><meta name="groc-project-path" content="work/game-builder/src/components/component.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/components/component.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="componentjs">component.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
+
+<p>Depends of:</p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>Every components extends from the object defined in this module. If you add this
+to a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> it will do nothing, so it needs to be extended.</p>
+
+<p>The idea behind components is being able to add logic to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>
+using the components with out hardcoding it in the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> itself.</p>
+
+<p>If you are crafty enough when writting components you may even be able to share their
+functionality between completely different <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p>
+
+<p>The Component object extends <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</p>
+
+<h3 id="added"><strong>added</strong></h3>
+
+<p>When it is added to a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> </p>
+
+<p>Registered callbacks get the component as argument. </p>
+
+<pre><code class=" javascript  ">component.on(component.ADDED, function(component) {});
+</code></pre>
+
+<h3 id="removed"><strong>removed</strong></h3>
+
+<p>When a component completes. </p>
+
+<p>Registered callbacks get the component as argument.</p>
+
+<pre><code class=" javascript  ">component.on(component.REMOVED, function(component) {});
+</code></pre>
+
+<h3 id="recycle"><strong>recycle</strong></h3>
+
+<p>When a component completes. </p>
+
+<p>Registered callbacks get the component as argument.</p>
+
+<pre><code class=" javascript  ">component.on(component.RECYCLE, function(component) {});
+</code></pre></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="extend-logic">Extend logic</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;delegate&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="kd">var</span> <span class="nx">Component</span> <span class="o">=</span> <span class="nx">Delegate</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -6,9 +54,17 @@
 
       <span class="k">this</span><span class="p">.</span><span class="nx">poolId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">parent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="p">},</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>configure</strong> Configures properties
+set via the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a></p>
 
-    <span class="nx">configure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+<p>This method is important as it applies all the configuration needed for 
+the component to work as expected.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>args must be an Object.</strong><br/>(An object with all the properties to write into the component)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">configure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">args</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">ha</span> <span class="k">in</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
@@ -16,34 +72,85 @@
       <span class="p">}</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">args</span> <span class="o">=</span> <span class="nx">args</span><span class="p">;</span>
-    <span class="p">},</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>onAdded</strong></p>
 
-    <span class="nx">onAdded</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+<p>This is called by the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> when it
+adds this component to it's list.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>parent must be a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>.</strong></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">onAdded</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">parent</span> <span class="o">=</span> <span class="nx">parent</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;added&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ADDED</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">added</span><span class="p">(</span><span class="nx">parent</span><span class="p">);</span>
-    <span class="p">},</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>onRemoved</strong></p>
 
-    <span class="nx">onRemoved</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>This is called by the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> when it
+removed this component to it's list.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">onRemoved</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">removed</span><span class="p">(</span><span class="nx">parent</span><span class="p">);</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;removed&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">REMOVED</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">parent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="p">},</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>added</strong></p>
 
-    <span class="nx">added</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{},</span>
-    
-    <span class="nx">removed</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{},</span>
+<p>Much like <strong>onAdded</strong>, but this method is only meant to be overriden
+with out having to remember calling <strong>_super()</strong></p>
 
-    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{},</span>
-    
-    <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">)</span> <span class="p">{},</span>
+<p>Parameters:</p>
 
-    <span class="nx">debug_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{},</span>
+<ul>
+<li><strong>parent must be a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>.</strong></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">added</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{},</span>
+    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removed</strong></p>
 
-    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;recycle&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+<p>Much like <strong>onRemoved</strong>, but this method is only meant to be overriden
+with out having to remember calling <strong>_super()</strong></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>parent must be a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>.</strong></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">removed</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>start</strong></p>
+
+<p>Called by the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> when
+it is started</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>parent must be a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>.</strong></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{},</span>
+    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>update</strong></p>
+
+<p>Called by the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> 
+after updating itself.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>delta must be a Number.</strong><br/>(Time elapsed since last update cycle)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">)</span> <span class="p">{},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>debug_draw</strong></p>
+
+<p>This method is only executed if the <strong>debug</strong> property of the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>
+is set to true. It is better to leave the drawing to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a> components.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>context must be a Context 2D.</strong><br/>(Context 2D property of the Canvas.)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">debug_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>destroy</strong></p>
+
+<p>Called by the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> 
+when it is sent back to it's pool for reuse.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">RECYCLE</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">});</span>
+
+  <span class="c1">//Getters for all the types of events a Component can hook into</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Component</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;ADDED&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;added&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Component</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REMOVED&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;removed&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Component</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;RECYCLED&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;recycle&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
 
   <span class="k">return</span> <span class="nx">Component</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

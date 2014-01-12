@@ -32,7 +32,6 @@ adds itself to the <a href="http://diegomarquez.github.io/game-builder/game-buil
 <p><strong>Can throw an Error</strong><br/>(If the parent of the component does not define an <strong>onCollide</strong> method )</p></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span> <span class="o">=</span> <span class="s2">&quot;#FFFFFF&quot;</span><span class="p">;</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">collisionId</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">checkingCollisions</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 
       <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">addToCollisionList</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
@@ -44,7 +43,7 @@ adds itself to the <a href="http://diegomarquez.github.io/game-builder/game-buil
 <p>The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a> will test this collider against
 all other registered colliders that are supposed to collide against it. If there is a collision
 A bunch of callbacks will be executed notifying the objects involved.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">collisionList</span> <span class="o">=</span> <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">collisionLists</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">collisionId</span><span class="p">];</span>
+      <span class="nx">collisionList</span> <span class="o">=</span> <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">collisionLists</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">];</span>
 
       <span class="k">if</span> <span class="p">(</span><span class="nx">collisionList</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">for</span> <span class="p">(</span><span class="nx">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">k</span> <span class="o">&lt;</span> <span class="nx">collisionList</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -83,7 +82,6 @@ A bunch of callbacks will be executed notifying the objects involved.</p></div><
 from the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a></p></div></div><div class="code"><div class="wrapper">    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">collisionId</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">checkingCollisions</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 
       <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">removeFromCollisionList</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>

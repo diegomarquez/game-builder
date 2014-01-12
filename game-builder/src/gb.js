@@ -16,7 +16,7 @@
  * A [requireJS](http://requirejs.org/) module.
  * 
  * This module acts as a hub for the main modules of [Game-Builder](http://diegomarquez.github.io/game-builder). So instead of loading them individualy, 
- * you just lod this one and use the references that it provides.
+ * you just load this one and use the references that it provides.
  */
 
 /**

@@ -409,10 +409,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/components/component.js",
                 "targetPath": "src/components/component",
                 "pageTitle": "src/components/component",
-                "title": "component"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "component.js",
+                    "slug": "componentjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Extend logic",
+                        "slug": "extend-logic"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "component.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Extend logic",
+                    "slug": "extend-logic"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "folder",
               "data": {
@@ -437,10 +468,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "projectPath": "work/game-builder/src/components/rendering/bitmap-renderer.js",
                     "targetPath": "src/components/rendering/bitmap-renderer",
                     "pageTitle": "src/components/rendering/bitmap-renderer",
-                    "title": "bitmap-renderer"
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "bitmap-renderer.js",
+                        "slug": "bitmap-rendererjs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Draw Images",
+                            "slug": "draw-images"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "bitmap-renderer.js"
                   },
                   "depth": 4,
-                  "outline": []
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Draw Images",
+                        "slug": "draw-images"
+                      },
+                      "depth": 2
+                    }
+                  ]
                 }, {
                   "type": "file",
                   "data": {
@@ -457,10 +519,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "projectPath": "work/game-builder/src/components/rendering/renderer.js",
                     "targetPath": "src/components/rendering/renderer",
                     "pageTitle": "src/components/rendering/renderer",
-                    "title": "renderer"
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "renderer.js",
+                        "slug": "rendererjs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "An Interface for renderers",
+                            "slug": "an-interface-for-renderers"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "renderer.js"
                   },
                   "depth": 4,
-                  "outline": []
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "An Interface for renderers",
+                        "slug": "an-interface-for-renderers"
+                      },
+                      "depth": 2
+                    }
+                  ]
                 }
               ]
             }

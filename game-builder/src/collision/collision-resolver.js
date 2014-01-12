@@ -49,7 +49,7 @@ define(['sat'], function(SAT) {
 	 * @param {[collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html)} collisionComponent An object extending [collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html)
 	 */
 	CollisionResolver.prototype.addToCollisionList = function(collisionComponent) {
-		var indexes = this.toCollideCache[collisionComponent.collisionId];
+		var indexes = this.toCollideCache[collisionComponent.id];
 
 		if (indexes != null && indexes.length > 0) {
 			for (var i = 0; i < indexes.length; i++) {
@@ -69,7 +69,7 @@ define(['sat'], function(SAT) {
 	 * @param {[collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html)} collisionComponent An object extending [collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html)
 	 */
 	CollisionResolver.prototype.removeFromCollisionList = function(collisionComponent) {
-		var indexes = this.toCollideCache[collisionComponent.collisionId];
+		var indexes = this.toCollideCache[collisionComponent.id];
 
 		if (indexes != null && indexes.length > 0) {
 			for (m = indexes.length - 1; m >= 0; m--) {
