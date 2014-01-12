@@ -18,7 +18,7 @@
  * If you are crafty enough when writting components you may even be able to share their
  * functionality between completely different [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
  *
- * The Component object extends [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
+ * ### The Component object extends [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
  *
  * ### **added** 
  * When it is added to a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) 
@@ -29,7 +29,7 @@
  * ``` 
  *
  * ### **removed**
- * When a component completes. 
+ * When it is removed from a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html). 
  *
  * Registered callbacks get the component as argument.
  * ``` javascript  
@@ -37,7 +37,9 @@
  * ```
  *
  * ### **recycle**
- * When a component completes. 
+ * When the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) is sent
+ * back to the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html) it triggers
+ * this event which sends the component back to the [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html)
  *
  * Registered callbacks get the component as argument.
  * ``` javascript  
@@ -197,7 +199,7 @@ define(["delegate"], function(Delegate) {
 		 */
 	});
 
-	// # Getters for all the types of events a Component can hook into
+	// ### Getters for all the types of events a Component can hook into
 	Object.defineProperty(Component.prototype, "ADDED", { get: function() { return 'added'; } });
 	Object.defineProperty(Component.prototype, "REMOVED", { get: function() { return 'removed'; } });
 	Object.defineProperty(Component.prototype, "RECYCLED", { get: function() { return 'recycle'; } });

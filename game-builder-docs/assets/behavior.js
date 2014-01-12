@@ -426,7 +426,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "title": "Extend logic",
                         "slug": "extend-logic"
                       },
-                      "depth": 2
+                      "depth": 2,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Getters for all the types of events a Component can hook into",
+                            "slug": "getters-for-all-the-types-of-events-a-component-can-hook-into"
+                          },
+                          "depth": 3
+                        }
+                      ]
                     }
                   ]
                 },
@@ -441,15 +452,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "title": "Extend logic",
                     "slug": "extend-logic"
                   },
-                  "depth": 2
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 1,
-                    "title": "Getters for all the types of events a Component can hook into",
-                    "slug": "getters-for-all-the-types-of-events-a-component-can-hook-into"
-                  },
-                  "depth": 1
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Getters for all the types of events a Component can hook into",
+                        "slug": "getters-for-all-the-types-of-events-a-component-can-hook-into"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             }, {
@@ -1066,10 +1080,63 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/game_canvas/game.js",
                 "targetPath": "src/game_canvas/game",
                 "pageTitle": "src/game_canvas/game",
-                "title": "game"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "game.js",
+                    "slug": "gamejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Main Update loop",
+                        "slug": "main-update-loop"
+                      },
+                      "depth": 2,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Getters for all the types of events game can hook into",
+                            "slug": "getters-for-all-the-types-of-events-game-can-hook-into"
+                          },
+                          "depth": 3
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "title": "game.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Main Update loop",
+                    "slug": "main-update-loop"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Getters for all the types of events game can hook into",
+                        "slug": "getters-for-all-the-types-of-events-game-can-hook-into"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }, {
@@ -1527,7 +1594,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "title": "Encapsulation is good",
                     "slug": "encapsulation-is-good"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Getters for the types of events a State can fire to change control flow",
+                        "slug": "getters-for-the-types-of-events-a-state-can-fire-to-change-control-flow"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             },
@@ -1542,15 +1620,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "title": "Encapsulation is good",
                 "slug": "encapsulation-is-good"
               },
-              "depth": 2
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "Getters for the types of events a State can fire to change control flow",
-                "slug": "getters-for-the-types-of-events-a-state-can-fire-to-change-control-flow"
-              },
-              "depth": 1
+              "depth": 2,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Getters for the types of events a State can fire to change control flow",
+                    "slug": "getters-for-the-types-of-events-a-state-can-fire-to-change-control-flow"
+                  },
+                  "depth": 3
+                }
+              ]
             }
           ]
         }, {
@@ -1586,7 +1667,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "title": "Time, time, time, time, TIME!",
                     "slug": "time-time-time-time-time"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Getters for all the types of events a Timer can hook into",
+                        "slug": "getters-for-all-the-types-of-events-a-timer-can-hook-into"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             },
@@ -1601,15 +1693,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "title": "Time, time, time, time, TIME!",
                 "slug": "time-time-time-time-time"
               },
-              "depth": 2
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "Getters for all the types of events a Timer can hook into",
-                "slug": "getters-for-all-the-types-of-events-a-timer-can-hook-into"
-              },
-              "depth": 1
+              "depth": 2,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Getters for all the types of events a Timer can hook into",
+                    "slug": "getters-for-all-the-types-of-events-a-timer-can-hook-into"
+                  },
+                  "depth": 3
+                }
+              ]
             }
           ]
         }, {

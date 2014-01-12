@@ -55,7 +55,7 @@ define(["class"], function() {
 		/**
 		 * <p style='color:#AD071D'><strong>execute</strong></p>
 		 *
-		 * this is whatever the extensions should do.
+		 * This is whatever the extensions should do.
 		 */
 		execute: function() {
 			throw new Error("Extensions is not meant to be instantiated directly");

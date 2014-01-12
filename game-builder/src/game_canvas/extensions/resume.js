@@ -13,6 +13,18 @@
  * 
  * This module defines an extension that uses [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html) to resume all update activity
  * when the application gains focus.
+ *
+ * The extension also adds a resume method to [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html), to be able to resume the application
+ * manually after pausing.
+ *
+ * ### This Extension add an event [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html) can hook into:
+ *
+ * * ### **resume** 
+ * When the application is resumed manually
+ * 
+ * ``` javascript  
+ * game.on(game.RESUME, function() {});
+ * ```
  */
 
 /**
@@ -25,6 +37,8 @@
  */
 
 define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
+	var game = Gb.game;
+
 	var Resume = Extension.extend({
 		type: function() {
 			// Notice the use of the constant FOCUS defined in [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html)
@@ -48,6 +62,16 @@ define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
 			}
 		}
 	});
+
+	Object.defineProperty(game.prototype, "RESUME", { get: function() { return 'resume'; } });
+
+	game.resume = function() {
+		if(game.focus()) {
+			game.execute(game.RESUME);
+			window.addEventListener("blur", game.blur);
+			window.addEventListener("focus", game.focus);	
+		}
+	}
 
 	return Resume;
 });

@@ -315,14 +315,14 @@ define(["delegate", "class"], function(Delegate) {
 	 * --------------------------------
 	 */
 	
-	// # Getters for the types of events a State can fire to change control flow 
+	// ### Getters for the types of events a State can fire to change control flow 
 	// If State fires an event that does not correspond to the type of state machine it is part off,
 	// nothing will happen.
 	
-	//NEXT and PREVIOUS must be used when a state is part of a **"fixed"** state machine 
+	// **next** and **previous** must be used when a state is part of a **"fixed"** state machine 
 	Object.defineProperty(State.prototype, "NEXT", { get: function() { return 'next'; } });
 	Object.defineProperty(State.prototype, "PREVIOUS", { get: function() { return 'previous'; } });
-	//CHANGE must be used when a state is part of a **"loose"** state machine 
+	// **change** must be used when a state is part of a **"loose"** state machine 
 	Object.defineProperty(State.prototype, "CHANGE", { get: function() { return 'change'; } });
 	/**
 	 * --------------------------------

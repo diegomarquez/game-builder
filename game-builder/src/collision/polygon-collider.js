@@ -35,7 +35,7 @@
  			new vector_2D(64, 64), 
  			new vector_2D(0, 64) 
  		]
- 	});
+ * });
  * ```
  * If it is not provided it will most likely fail in un expected ways.
  * 

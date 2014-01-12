@@ -13,7 +13,22 @@
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
 <p>This module defines an extension that uses <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html">layers</a> to resume all update activity
-when the application gains focus.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="resume-activity">Resume activity</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;layers&quot;</span><span class="p">,</span> <span class="s2">&quot;gb&quot;</span><span class="p">,</span> <span class="s2">&quot;extension&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Layers</span><span class="p">,</span> <span class="nx">Gb</span><span class="p">,</span> <span class="nx">Extension</span><span class="p">)</span> <span class="p">{</span>
+when the application gains focus.</p>
+
+<p>The extension also adds a resume method to <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html">game</a>, to be able to resume the application
+manually after pausing.</p>
+
+<h3 id="thisextensionaddaneventgamehttpdiegomarquezgithubiogamebuildergamebuilderdocssrcgame_canvasgamehtmlcanhookinto">This Extension add an event <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html">game</a> can hook into:</h3>
+
+<ul>
+<li>### <strong>resume</strong> 
+When the application is resumed manually</li>
+</ul>
+
+<pre><code class=" javascript  ">game.on(game.RESUME, function() {});
+</code></pre></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="resume-activity">Resume activity</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;layers&quot;</span><span class="p">,</span> <span class="s2">&quot;gb&quot;</span><span class="p">,</span> <span class="s2">&quot;extension&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Layers</span><span class="p">,</span> <span class="nx">Gb</span><span class="p">,</span> <span class="nx">Extension</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">game</span> <span class="o">=</span> <span class="nx">Gb</span><span class="p">.</span><span class="nx">game</span><span class="p">;</span>
+
   <span class="kd">var</span> <span class="nx">Resume</span> <span class="o">=</span> <span class="nx">Extension</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">type</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Notice the use of the constant FOCUS defined in <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html">game</a>
 to define this extension should be executed on creation.</p></div></div><div class="code"><div class="wrapper">      <span class="k">return</span> <span class="nx">Gb</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">FOCUS</span><span class="p">;</span>
@@ -35,6 +50,16 @@ to define this extension should be executed on creation.</p></div></div><div cla
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">});</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;RESUME&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;resume&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+
+  <span class="nx">game</span><span class="p">.</span><span class="nx">resume</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">focus</span><span class="p">())</span> <span class="p">{</span>
+      <span class="nx">game</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">RESUME</span><span class="p">);</span>
+      <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;blur&quot;</span><span class="p">,</span> <span class="nx">game</span><span class="p">.</span><span class="nx">blur</span><span class="p">);</span>
+      <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;focus&quot;</span><span class="p">,</span> <span class="nx">game</span><span class="p">.</span><span class="nx">focus</span><span class="p">);</span> 
+    <span class="p">}</span>
+  <span class="p">}</span>
 
   <span class="k">return</span> <span class="nx">Resume</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

@@ -19,7 +19,7 @@ using the components with out hardcoding it in the <a href="http://diegomarquez.
 <p>If you are crafty enough when writting components you may even be able to share their
 functionality between completely different <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p>
 
-<p>The Component object extends <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</p>
+<h3 id="thecomponentobjectextendsdelegatehttpdiegomarquezgithubiogamebuildergamebuilderdocssrcdelegatehtmlsoitprovidesafeweventstohookinto">The Component object extends <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</h3>
 
 <h3 id="added"><strong>added</strong></h3>
 
@@ -32,7 +32,7 @@ functionality between completely different <a href="http://diegomarquez.github.i
 
 <h3 id="removed"><strong>removed</strong></h3>
 
-<p>When a component completes. </p>
+<p>When it is removed from a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>. </p>
 
 <p>Registered callbacks get the component as argument.</p>
 
@@ -41,7 +41,9 @@ functionality between completely different <a href="http://diegomarquez.github.i
 
 <h3 id="recycle"><strong>recycle</strong></h3>
 
-<p>When a component completes. </p>
+<p>When the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> is sent
+back to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> it triggers
+this event which sends the component back to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a></p>
 
 <p>Registered callbacks get the component as argument.</p>
 
@@ -142,7 +144,7 @@ is set to true. It is better to leave the drawing to the <a href="http://diegoma
 <p>Called by the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> 
 when it is sent back to it's pool for reuse.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">RECYCLE</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h1 id="getters-for-all-the-types-of-events-a-component-can-hook-into">Getters for all the types of events a Component can hook into</h1></div></div></div><div class="segment"><div class="code"><div class="wrapper">  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Component</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;ADDED&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;added&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="getters-for-all-the-types-of-events-a-component-can-hook-into">Getters for all the types of events a Component can hook into</h3></div></div></div><div class="segment"><div class="code"><div class="wrapper">  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Component</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;ADDED&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;added&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Component</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REMOVED&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;removed&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Component</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;RECYCLED&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;recycle&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="k">return</span> <span class="nx">Component</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

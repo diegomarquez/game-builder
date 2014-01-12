@@ -30,7 +30,7 @@
 		
 		//Radius of the collider
 		radius:10
- 	});
+ * });
  * ```
  * If it is not provided it will most likely fail in un expected ways.
  * 
