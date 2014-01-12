@@ -28,7 +28,10 @@
  * ``` javascript
  * gb.coPool.createConfiguration("Fixed_Polygon", 'Fixed_Polygon_1')
 	.args({
+		//Id used by the Collision Resolver
 		id:'fixed-polygon-collider_ID', 
+		
+		//Array of points that define the polygon collider
 		points:[ 
 			new vector_2D(-10, -10), 
 			new vector_2D(10, -10), 
@@ -42,11 +45,8 @@
  * <strong>Note: The snippet uses the reference to the <a href=@@component-pool@@>component-pool</a>
  * found in the <a href=@@gb@@>gb</a> module. 
  * The way you get a hold to a reference to the <a href=@@component-pool@@>component-pool</a> 
- * may vary</strong>
+ * may vary.</strong>
  */
-
-this.componentPool.createConfiguration("Fixed_Polygon_1", 'Fixed_Polygon')
-	.args({id:'fixed-polygon-collider_ID', points:[ new vector_2D(-10, -10), new vector_2D(10, -10), new vector_2D(10, 10), new vector_2D(-10, 10) ]});
 
 /**
  * Polygons colliding

@@ -25,7 +25,10 @@
  * ``` javascript
  * gb.coPool.createConfiguration("Circle_1", 'Circle')
 	.args({
+		//Id used by the Collision Resolver
 		id:'circle-collider_ID', 
+		
+		//Radius of the collider
 		radius:10
  	});
  * ```
@@ -34,7 +37,7 @@
  * <strong>Note: The snippet uses the reference to the <a href=@@component-pool@@>component-pool</a>
  * found in the <a href=@@gb@@>gb</a> module. 
  * The way you get a hold to a reference to the <a href=@@component-pool@@>component-pool</a>
- * may vary</strong>
+ * may vary.</strong>
  */		
 
 /**
@@ -52,7 +55,6 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 	var m = null;
 	
 	var Component = CollisionComponent.extend({
-
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong> Set up the collider.</p>
 		 *

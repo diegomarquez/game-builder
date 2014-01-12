@@ -46,7 +46,6 @@ define(['component', 'collision-resolver'], function(Component, CollisionResolve
 		start: function() {
 			this.debugColor = "#FFFFFF";
 
-			this.collisionId = this.id;
 			this.checkingCollisions = true;
 
 			CollisionResolver.addToCollisionList(this);
@@ -67,7 +66,7 @@ define(['component', 'collision-resolver'], function(Component, CollisionResolve
 		 * 
 		 */
 		update: function() {
-			collisionList = CollisionResolver.collisionLists[this.collisionId];
+			collisionList = CollisionResolver.collisionLists[this.id];
 
 			if (collisionList != null) {
 				for (k = 0; k < collisionList.length; k++) {
@@ -121,12 +120,10 @@ define(['component', 'collision-resolver'], function(Component, CollisionResolve
 		 *
 		 * Asides from resetting some properties the component removes itself
 		 * from the [collision-resolver](@@collision-resolver@@)
-		 * 
 		 */
 		destroy: function() {
 			this._super();
 
-			this.collisionId = '';
 			this.checkingCollisions = false;
 
 			CollisionResolver.removeFromCollisionList(this);

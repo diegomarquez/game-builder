@@ -25,7 +25,10 @@
  * ``` javascript
  * gb.coPool.createConfiguration("Polygon_1", 'Polygon')
  	.args({
+ 		//Id used by the Collision Resolver
  		id:'polygon-collider_ID', 
+
+ 		//Array of points that define the polygon collider
  		points:[ 
  			new vector_2D(0, 0), 
  			new vector_2D(64, 0), 
@@ -39,7 +42,7 @@
  * <strong>Note: The snippet uses the reference to the <a href=@@component-pool@@>component-pool</a>
  * found in the <a href=@@gb@@>gb</a> module. 
  * The way you get a hold to a reference to the <a href=@@component-pool@@>component-pool</a>
- * may vary</strong>
+ * may vary.</strong>
  */
 
 /**

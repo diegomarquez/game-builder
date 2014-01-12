@@ -49,7 +49,7 @@ define(['sat'], function(SAT) {
 	 * @param {[collision-component](@@collision-component@@)} collisionComponent An object extending [collision-component](@@collision-component@@)
 	 */
 	CollisionResolver.prototype.addToCollisionList = function(collisionComponent) {
-		var indexes = this.toCollideCache[collisionComponent.collisionId];
+		var indexes = this.toCollideCache[collisionComponent.id];
 
 		if (indexes != null && indexes.length > 0) {
 			for (var i = 0; i < indexes.length; i++) {
@@ -69,7 +69,7 @@ define(['sat'], function(SAT) {
 	 * @param {[collision-component](@@collision-component@@)} collisionComponent An object extending [collision-component](@@collision-component@@)
 	 */
 	CollisionResolver.prototype.removeFromCollisionList = function(collisionComponent) {
-		var indexes = this.toCollideCache[collisionComponent.collisionId];
+		var indexes = this.toCollideCache[collisionComponent.id];
 
 		if (indexes != null && indexes.length > 0) {
 			for (m = indexes.length - 1; m >= 0; m--) {
