@@ -9,11 +9,7 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * Not much going on in here. For the mean time this module only makes splicit that
- * a renderer extends [component](@@component@@) by adding a **draw** method.
- *
- * In the future if needed common logic to all renderer will be dropped in here.
- * 
+ * This module only exists to make the interface for a renderer explicit.
  */
 
 /**
@@ -32,8 +28,14 @@ define(["component"], function(Component) {
 		 * This method is overriden my objects extending this one
 		 * 
 		 * @param  {Context 2D} context Context 2D property of the Canvas
+		 * @throws {Error} If called
 		 */
-		draw: function(context) {}
+		draw: function(context) {
+			throw new Error("Renderer is not meant to be instantiated directly")
+		}
+		/**
+		 * --------------------------------
+		 */
 	});
 
 	return Renderer;

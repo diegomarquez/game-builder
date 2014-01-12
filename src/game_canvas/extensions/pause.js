@@ -1,6 +1,33 @@
-define(["layers", "gb", "class"], function(Layers, Gb) {
-	var Extension = Class.extend({
+/**
+ * # pause.js
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Inherits from: [extension](@@extension@@)
+ *
+ * Depends of: 
+ * [layers](@@layers@@)
+ * [gb](@@gb@@)
+ *
+ * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
+ * 
+ * This module defines an extension that uses [layers](@@layers@@) to halt all update activity
+ * when the application looses focus.
+ */
+
+/**
+ * Pause activity
+ * --------------------------------
+ */
+
+/**
+ * --------------------------------
+ */
+define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
+	var Pause = Extension.extend({
 		type: function() {
+			// Notice the use of the constant BLUR defined in [game](@@game@@)
+			// to define this extension should be executed on creation.
 			return Gb.game.BLUR;
 		},
 
@@ -14,5 +41,5 @@ define(["layers", "gb", "class"], function(Layers, Gb) {
 		}
 	});
 
-	return Extension;
+	return Pause;
 });

@@ -1,6 +1,33 @@
-define(["layers", "gb", "class"], function(Layers, Gb) {
-	var Extension = Class.extend({
+/**
+ * # aspect-ratio-resize.js
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Inherits from: [extension](@@extension@@)
+ *
+ * Depends of: 
+ * [layers](@@layers@@)
+ * [gb](@@gb@@)
+ *
+ * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
+ * 
+ * This module defines an extension that will make the canvas scale to fit in the viewport
+ * while maintening the original aspect ratio.
+ */
+
+/**
+ * Resize the Canvas
+ * --------------------------------
+ */
+
+/**
+ * --------------------------------
+ */
+define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
+	var AspectRatioResize = Extension.extend({
 		type: function() {
+			// Notice the use of the constant CREATE defined in [game](@@game@@)
+			// to define this extension should be executed on creation.
 			return Gb.game.CREATE;
 		},
 
@@ -42,5 +69,5 @@ define(["layers", "gb", "class"], function(Layers, Gb) {
 		}
 	});
 
-	return Extension;
+	return AspectRatioResize;
 });
