@@ -16,6 +16,15 @@
  *
  * The extension also adds a pause method to [game](@@game@@) to be able to pause the application
  * manually.
+ *
+ * ### This Extension add an event [game](@@game@@) can hook into: 
+ *
+ * ### **pause** 
+ * When the application is paused manually
+ * 
+ * ``` javascript  
+ * game.on(game.PAUSE, function() {});
+ * ```
  */
 
 /**
@@ -47,8 +56,6 @@ define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
 	});
 
 	Object.defineProperty(game.prototype, "PAUSE", { get: function() { return 'pause'; } });
-
-	var paused = false;
 
 	game.pause = function() {
 		if(game.blur()) {

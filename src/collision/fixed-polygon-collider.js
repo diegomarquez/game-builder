@@ -38,7 +38,7 @@
 			new vector_2D(10, 10), 
 			new vector_2D(-10, 10) 
 		]
-	});
+ * });
  * ```
  * If it is not provided it will most likely fail in un expected ways.
  * 

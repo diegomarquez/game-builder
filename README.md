@@ -19,6 +19,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Test delegate.js destroy method properly
 - Change delegate.js to something more sensible. Maybe broadcaster.js
+- Change how events are registered in main.js in all the examples
 
 - Delete old example code
 

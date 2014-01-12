@@ -25,7 +25,7 @@
  * is more intuitive, with a **stop** method. Another cool feature is being able to pause the timer, 
  * something which [**setTimeout**](http://www.w3schools.com/js/js_timing.asp) simply does not do.
  *
- * The Timer object extends [delegate](@@delegate@@) so it provides a few events to hook into:
+ * ### The Timer object extends [delegate](@@delegate@@) so it provides a few events to hook into:
  *
  * ### **repeate** 
  * Each time a timer is repeated. 
@@ -541,7 +541,7 @@ define(function(require) {
 		}
 	});
 
-	// # Getters for all the types of events a Timer can hook into
+	// ### Getters for all the types of events a Timer can hook into
 	Object.defineProperty(Timer.prototype, "REPEATE", { get: function() { return 'repeate'; } });
 	Object.defineProperty(Timer.prototype, "COMPLETE", { get: function() { return 'complete'; } });
 	Object.defineProperty(Timer.prototype, "STOP", { get: function() { return 'stop'; } });
