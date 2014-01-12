@@ -14,6 +14,7 @@
   "draw@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html",
   "aspect-ratio-resize@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/aspect-ratio-resize.html",
   "basic-layer-setup@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/basic-layer-setup.html",
+  "extension@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html",
   "pause@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/pause.html",
   "resume@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/resume.html",
   "game@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html",

@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="en"><head><title>src/game_canvas/extensions/extension</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../../"><meta name="groc-document-path" content="src/game_canvas/extensions/extension"><meta name="groc-project-path" content="work/game-builder/src/game_canvas/extensions/extension.js"><link rel="stylesheet" type="text/css" media="all" href="../../../assets/style.css"><script type="text/javascript" src="../../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/game_canvas/extensions/extension.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="extensionjs">extension.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html">class</a></p>
+
+<p>Depends of:</p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This module only exists to make the interface for an extension explicit.</p>
+
+<p>Extensions works with <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html">game</a>. They provide functionality that is common enough
+to be executed by <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html">game</a>, but not so common to make it part of the core
+of <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a>.</p>
+
+<h1 id="extensionscanbehookedinto4partsofgamehttpdiegomarquezgithubiogamebuildergamebuilderdocssrcgame_canvasgamehtml">Extensions can be hooked into 4 parts of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html">game</a>:</h1>
+
+<h3 id="initialization">Initialization</h3>
+
+<p>These extensions return the string <strong>'create'</strong> for their type.
+They are executed once on the initialization of the application</p>
+
+<h3 id="focus">Focus</h3>
+
+<p>These extensions return the string <strong>'focus'</strong> for their type.
+They are executed each time the application gains focus.</p>
+
+<h3 id="blur">Blur</h3>
+
+<p>These extensions return the string <strong>'blur'</strong> for their type.
+They are executed each time the application looses focus.</p>
+
+<h3 id="update">Update</h3>
+
+<p>These extensions return the string <strong>'update'</strong> for their type.
+They are executed on the main update loop.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="extendfunctionalityofgamehttpdiegomarquezgithubiogamebuildergamebuilderdocssrcgame_canvasgamehtml">Extend functionality of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html">game</a></h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">Extension</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>type</strong></p>
+
+<p>Sets the type of the extensions.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">type</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&quot;Extensions is not meant to be instantiated directly&quot;</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>execute</strong></p>
+
+<p>this is whatever the extensions should do.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">execute</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&quot;Extensions is not meant to be instantiated directly&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="nx">Extension</span><span class="p">;</span>
+<span class="p">});</span></div></div></div></div></body></html>

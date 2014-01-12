@@ -1,7 +1,23 @@
-<!DOCTYPE html><html lang="en"><head><title>src/game_canvas/extensions/basic-layer-setup</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../../"><meta name="groc-document-path" content="src/game_canvas/extensions/basic-layer-setup"><meta name="groc-project-path" content="work/game-builder/src/game_canvas/extensions/basic-layer-setup.js"><link rel="stylesheet" type="text/css" media="all" href="../../../assets/style.css"><script type="text/javascript" src="../../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/game_canvas/extensions/basic-layer-setup.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;layers&quot;</span><span class="p">,</span> <span class="s2">&quot;gb&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Layers</span><span class="p">,</span> <span class="nx">Gb</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">Extension</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-    <span class="nx">type</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="nx">Gb</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">CREATE</span><span class="p">;</span>
+<!DOCTYPE html><html lang="en"><head><title>src/game_canvas/extensions/basic-layer-setup</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../../"><meta name="groc-document-path" content="src/game_canvas/extensions/basic-layer-setup"><meta name="groc-project-path" content="work/game-builder/src/game_canvas/extensions/basic-layer-setup.js"><link rel="stylesheet" type="text/css" media="all" href="../../../assets/style.css"><script type="text/javascript" src="../../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/game_canvas/extensions/basic-layer-setup.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="basic-layer-setupjs">basic-layer-setup.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a></p>
+
+<p>Depends of: 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html">layers</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a></p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This module defines an extension that adds a bunch of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layer.html">layer</a> objects to the 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html">layers</a> object. If you need more layers you can create a different extension
+that defines all the layers you want to use.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="define-layers">Define layers</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;layers&quot;</span><span class="p">,</span> <span class="s2">&quot;gb&quot;</span><span class="p">,</span> <span class="s2">&quot;extension&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Layers</span><span class="p">,</span> <span class="nx">Gb</span><span class="p">,</span> <span class="nx">Extension</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">BasicLayerSetup</span> <span class="o">=</span> <span class="nx">Extension</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Notice the use of the constant CREATE defined in <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html">game</a>
+to define this extension should be executed on creation.</p></div></div><div class="code"><div class="wrapper">      <span class="k">return</span> <span class="nx">Gb</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">CREATE</span><span class="p">;</span>
     <span class="p">},</span>
 
     <span class="nx">execute</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -12,5 +28,5 @@
     <span class="p">}</span>
   <span class="p">});</span>
 
-  <span class="k">return</span> <span class="nx">Extension</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nx">BasicLayerSetup</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

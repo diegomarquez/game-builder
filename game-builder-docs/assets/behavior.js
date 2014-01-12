@@ -761,10 +761,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "projectPath": "work/game-builder/src/game_canvas/extensions/aspect-ratio-resize.js",
                     "targetPath": "src/game_canvas/extensions/aspect-ratio-resize",
                     "pageTitle": "src/game_canvas/extensions/aspect-ratio-resize",
-                    "title": "aspect-ratio-resize"
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "aspect-ratio-resize.js",
+                        "slug": "aspect-ratio-resizejs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Resize the Canvas",
+                            "slug": "resize-the-canvas"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "aspect-ratio-resize.js"
                   },
                   "depth": 4,
-                  "outline": []
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Resize the Canvas",
+                        "slug": "resize-the-canvas"
+                      },
+                      "depth": 2
+                    }
+                  ]
                 }, {
                   "type": "file",
                   "data": {
@@ -781,10 +812,140 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "projectPath": "work/game-builder/src/game_canvas/extensions/basic-layer-setup.js",
                     "targetPath": "src/game_canvas/extensions/basic-layer-setup",
                     "pageTitle": "src/game_canvas/extensions/basic-layer-setup",
-                    "title": "basic-layer-setup"
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "basic-layer-setup.js",
+                        "slug": "basic-layer-setupjs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Define layers",
+                            "slug": "define-layers"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "basic-layer-setup.js"
                   },
                   "depth": 4,
-                  "outline": []
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Define layers",
+                        "slug": "define-layers"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/extension.js",
+                    "projectPath": "work/game-builder/src/game_canvas/extensions/extension.js",
+                    "targetPath": "src/game_canvas/extensions/extension",
+                    "pageTitle": "src/game_canvas/extensions/extension",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "extension.js",
+                        "slug": "extensionjs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Initialization",
+                            "slug": "initialization"
+                          },
+                          "depth": 3
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Focus",
+                            "slug": "focus"
+                          },
+                          "depth": 3
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Blur",
+                            "slug": "blur"
+                          },
+                          "depth": 3
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Update",
+                            "slug": "update"
+                          },
+                          "depth": 3
+                        }
+                      ]
+                    },
+                    "title": "extension.js"
+                  },
+                  "depth": 4,
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Initialization",
+                        "slug": "initialization"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Focus",
+                        "slug": "focus"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Blur",
+                        "slug": "blur"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Update",
+                        "slug": "update"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "file",
                   "data": {
@@ -801,10 +962,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "projectPath": "work/game-builder/src/game_canvas/extensions/pause.js",
                     "targetPath": "src/game_canvas/extensions/pause",
                     "pageTitle": "src/game_canvas/extensions/pause",
-                    "title": "pause"
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "pause.js",
+                        "slug": "pausejs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Pause activity",
+                            "slug": "pause-activity"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "pause.js"
                   },
                   "depth": 4,
-                  "outline": []
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Pause activity",
+                        "slug": "pause-activity"
+                      },
+                      "depth": 2
+                    }
+                  ]
                 }, {
                   "type": "file",
                   "data": {
@@ -821,10 +1013,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "projectPath": "work/game-builder/src/game_canvas/extensions/resume.js",
                     "targetPath": "src/game_canvas/extensions/resume",
                     "pageTitle": "src/game_canvas/extensions/resume",
-                    "title": "resume"
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "resume.js",
+                        "slug": "resumejs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Resume activity",
+                            "slug": "resume-activity"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "resume.js"
                   },
                   "depth": 4,
-                  "outline": []
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Resume activity",
+                        "slug": "resume-activity"
+                      },
+                      "depth": 2
+                    }
+                  ]
                 }
               ]
             }, {
