@@ -82,6 +82,9 @@ define(["delegate"], function(Delegate) {
 
 			this.args = args;
 		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>onAdded</strong></p>
@@ -96,6 +99,9 @@ define(["delegate"], function(Delegate) {
 			this.execute(this.ADDED, this);
 			this.added(parent);
 		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>onRemoved</strong></p>
@@ -108,6 +114,9 @@ define(["delegate"], function(Delegate) {
 			this.execute(this.REMOVED, this);
 			this.parent = null;
 		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>added</strong></p>
@@ -118,7 +127,10 @@ define(["delegate"], function(Delegate) {
 		 * @param  {[game-object](@@game-object@@)} parent 
 		 */
 		added: function(parent) {},
-		
+		/**
+		 * --------------------------------
+		 */
+
 		/**
 		 * <p style='color:#AD071D'><strong>removed</strong></p>
 		 *
@@ -128,6 +140,9 @@ define(["delegate"], function(Delegate) {
 		 * @param  {[game-object](@@game-object@@)} parent
 		 */
 		removed: function(parent) {},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
@@ -138,7 +153,10 @@ define(["delegate"], function(Delegate) {
 		 * @param  {[game-object](@@game-object@@)} parent 
 		 */
 		start: function(parent) {},
-		
+		/**
+		 * --------------------------------
+		 */
+
 		/**
 		 * <p style='color:#AD071D'><strong>update</strong></p>
 		 *
@@ -148,6 +166,9 @@ define(["delegate"], function(Delegate) {
 		 * @param  {Number} delta Time elapsed since last update cycle
 		 */
 		update: function(delta) {},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
@@ -158,6 +179,9 @@ define(["delegate"], function(Delegate) {
 		 * @param  {Context 2D} context Context 2D property of the Canvas.
 		 */
 		debug_draw: function(context) {},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>destroy</strong></p>
@@ -168,12 +192,18 @@ define(["delegate"], function(Delegate) {
 		destroy: function() {
 			this.execute(this.RECYCLE, this);
 		}
+		/**
+		 * --------------------------------
+		 */
 	});
 
-	//Getters for all the types of events a Component can hook into
+	// # Getters for all the types of events a Component can hook into
 	Object.defineProperty(Component.prototype, "ADDED", { get: function() { return 'added'; } });
 	Object.defineProperty(Component.prototype, "REMOVED", { get: function() { return 'removed'; } });
 	Object.defineProperty(Component.prototype, "RECYCLED", { get: function() { return 'recycle'; } });
+	/**
+	 * --------------------------------
+	 */
 
 	return Component;
 });

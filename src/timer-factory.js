@@ -541,13 +541,16 @@ define(function(require) {
 		}
 	});
 
-	//Getters for all the types of events a Timer can hook into
+	// # Getters for all the types of events a Timer can hook into
 	Object.defineProperty(Timer.prototype, "REPEATE", { get: function() { return 'repeate'; } });
 	Object.defineProperty(Timer.prototype, "COMPLETE", { get: function() { return 'complete'; } });
 	Object.defineProperty(Timer.prototype, "STOP", { get: function() { return 'stop'; } });
 	Object.defineProperty(Timer.prototype, "PAUSE", { get: function() { return 'pause'; } });
 	Object.defineProperty(Timer.prototype, "RESUME", { get: function() { return 'resume'; } });
 	Object.defineProperty(Timer.prototype, "REMOVE", { get: function() { return 'remove'; } });
+	/**
+	 * --------------------------------
+	 */
 
 	return timerFactory;
 });
