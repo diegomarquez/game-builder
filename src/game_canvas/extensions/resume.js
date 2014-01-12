@@ -13,6 +13,9 @@
  * 
  * This module defines an extension that uses [layers](@@layers@@) to resume all update activity
  * when the application gains focus.
+ *
+ * The extension also adds a resume method to [game](@@game@@), to be able to resume the application
+ * manually after pausing.
  */
 
 /**
@@ -25,6 +28,8 @@
  */
 
 define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
+	var game = Gb.game;
+
 	var Resume = Extension.extend({
 		type: function() {
 			// Notice the use of the constant FOCUS defined in [game](@@game@@)
@@ -48,6 +53,16 @@ define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
 			}
 		}
 	});
+
+	Object.defineProperty(game.prototype, "RESUME", { get: function() { return 'resume'; } });
+
+	game.resume = function() {
+		if(game.focus()) {
+			game.execute(game.RESUME);
+			window.addEventListener("blur", game.blur);
+			window.addEventListener("focus", game.focus);	
+		}
+	}
 
 	return Resume;
 });

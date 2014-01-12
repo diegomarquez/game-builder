@@ -1,3 +1,17 @@
+/**
+ * # game.js
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Inherits from: [delegate](@@delegate@@)
+ *
+ * Depends of:
+ *
+ * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
+ * 
+ * This module deines the object
+ */
+
 define(["delegate"], function(Delegate) {
 	var Game = Delegate.extend({
 		init: function() {
@@ -13,13 +27,6 @@ define(["delegate"], function(Delegate) {
 			this.context = null;
 
 			this.delta = null;
-
-			this.extensions = {
-				"create": [],
-				"update": [],
-				"blur": [],
-				"focus": []
-			}
 		},
 
 		execute_extensions: function(place) {
@@ -38,35 +45,38 @@ define(["delegate"], function(Delegate) {
 			this.canvas = canvas;
 			this.context = this.canvas.getContext("2d");
 
-			this.execute_extensions("create");
-
 			var mainLoop;
 			var self = this;
 
 			var mainGameCreation = function() {
 				self.initialized = true;
-				self.execute("init");
+				self.execute_extensions(this.CREATE);
+				self.execute(this.CREATE);
 			};
 
 			var blur = false;
 
-			var onBlur = function(event) {
+			var onBlur = function() {
+				var oldBlur = self.blur;
+
 				if (self.blur) {
 					self.blur = false;
 					self.focus = true;
 
 					if (!blur) {
-						self.execute_extensions("blur");	
-						self.execute("blur");
+						self.execute_extensions(this.BLUR);	
+						self.execute(this.BLUR);
 
 						blur = true;
 					}
 				}
+
+				return oldBlur;
 			};
 
-			window.addEventListener("blur", onBlur);
+			var onFocus = function() {
+				var oldFocus = self.focus;
 
-			var onFocus = function(event) {
 				//In the case the game is not already created when the document gains focus 
 				//for the first time, it is created here.
 				if (!self.initialized) {
@@ -77,18 +87,21 @@ define(["delegate"], function(Delegate) {
 						self.focus = false;
 
 						if (blur) {
-							self.execute_extensions("focus");
-							self.execute("focus");
+							self.execute_extensions(this.FOCUS);
+							self.execute(this.FOCUS);
 
 							blur = false;
 						}
 					}
 				}
+
+				return oldFocus;
 			}
 
 			this.blur = onBlur;
 			this.focus = onFocus;
 
+			window.addEventListener("blur", onBlur);
 			window.addEventListener("focus", onFocus);
 
 			if (document.hasFocus()) {
@@ -101,8 +114,8 @@ define(["delegate"], function(Delegate) {
 					this.delta = (now - self.lastUpdate) / 1000;
 					self.lastUpdate = now;
 
-					self.execute_extensions("update");
-					self.execute("update");
+					self.execute_extensions(this.UPDATE);
+					self.execute(this.UPDATE);
 
 					window.requestAnimationFrame(mainLoop);
 				}
@@ -131,21 +144,19 @@ define(["delegate"], function(Delegate) {
 		}
 	});
 
-	Object.defineProperty(Game.prototype, "CREATE", {
-		get: function() { return 'create'; }
-	});
+	Object.defineProperty(Game.prototype, "CREATE", { get: function() { return 'create'; } });
+	Object.defineProperty(Game.prototype, "UPDATE", { get: function() { return 'update'; } });
+	Object.defineProperty(Game.prototype, "FOCUS", { get: function() { return 'focus'; } });
+	Object.defineProperty(Game.prototype, "BLUR", { get: function() { return 'blur'; } });
 
-	Object.defineProperty(Game.prototype, "UPDATE", {
-		get: function() { return 'update'; }
-	});
+	var game = new Game();
 
-	Object.defineProperty(Game.prototype, "FOCUS", {
-		get: function() { return 'focus'; }
-	});
-
-	Object.defineProperty(Game.prototype, "BLUR", {
-		get: function() { return 'blur'; }
-	});
+	game.extensions = {
+		game.CREATE: [],
+		game.UPDATE: [],
+		game.BLUR: [],
+		game.FOCUS: []
+	};
 
 	return new Game();
 });

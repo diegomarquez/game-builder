@@ -18,6 +18,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
     - Links to known errors, like requireJS
 
 - Test delegate.js destroy method properly
+- Change delegate.js to something more sensible. Maybe broadcaster.js
 
 - Delete old example code
 

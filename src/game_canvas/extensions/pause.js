@@ -13,6 +13,9 @@
  * 
  * This module defines an extension that uses [layers](@@layers@@) to halt all update activity
  * when the application looses focus.
+ *
+ * The extension also adds a pause method to [game](@@game@@) to be able to pause the application
+ * manually.
  */
 
 /**
@@ -24,11 +27,13 @@
  * --------------------------------
  */
 define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
+	var game = Gb.game;
+
 	var Pause = Extension.extend({
 		type: function() {
 			// Notice the use of the constant BLUR defined in [game](@@game@@)
 			// to define this extension should be executed on creation.
-			return Gb.game.BLUR;
+			return game.BLUR;
 		},
 
 		execute: function() {
@@ -40,6 +45,18 @@ define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
 			Layers.all('stop', 'update');
 		}
 	});
+
+	Object.defineProperty(game.prototype, "PAUSE", { get: function() { return 'pause'; } });
+
+	var paused = false;
+
+	game.pause = function() {
+		if(game.blur()) {
+			game.execute(game.PAUSE);
+			window.removeEventListener("blur", game.blur);
+			window.removeEventListener("focus", game.focus);	
+		}
+	}
 
 	return Pause;
 });
