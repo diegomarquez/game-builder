@@ -1214,10 +1214,95 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/hierarchy/game-object.js",
                 "targetPath": "src/hierarchy/game-object",
                 "pageTitle": "src/hierarchy/game-object",
-                "title": "game-object"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "game-object.js",
+                    "slug": "game-objectjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Main features are:",
+                        "slug": "main-features-are"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Main building block",
+                        "slug": "main-building-block"
+                      },
+                      "depth": 2,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Game Objects have a bunch of properties",
+                            "slug": "game-objects-have-a-bunch-of-properties"
+                          },
+                          "depth": 3
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Getters for all the types of events a GameObject can hook into",
+                            "slug": "getters-for-all-the-types-of-events-a-gameobject-can-hook-into"
+                          },
+                          "depth": 3
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "title": "game-object.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Main features are:",
+                    "slug": "main-features-are"
+                  },
+                  "depth": 3
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Main building block",
+                    "slug": "main-building-block"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Game Objects have a bunch of properties",
+                        "slug": "game-objects-have-a-bunch-of-properties"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Getters for all the types of events a GameObject can hook into",
+                        "slug": "getters-for-all-the-types-of-events-a-gameobject-can-hook-into"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -1234,10 +1319,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/hierarchy/game-object-container.js",
                 "targetPath": "src/hierarchy/game-object-container",
                 "pageTitle": "src/hierarchy/game-object-container",
-                "title": "game-object-container"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "game-object-container.js",
+                    "slug": "game-object-containerjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Nesting FTW!",
+                        "slug": "nesting-ftw"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "game-object-container.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Nesting FTW!",
+                    "slug": "nesting-ftw"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "file",
               "data": {
