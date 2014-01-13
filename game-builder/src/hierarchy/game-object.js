@@ -85,43 +85,43 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			 * requesting a game object to the [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html) module.
 			 */ 
 
-			// The parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html)
+			// The parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html).
 			this.parent = null;
-			// 3x3 Matrix used to control affine transformations
+			// [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html) used to control affine transformations.
 			this.matrix = new Matrix();
-			// List of [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) attached
+			// List of [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) attached.
 			this.components = null;
-			// The [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) attached
+			// The [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) attached.
 			this.renderer = null;
 
 			// Pair of local coordinates. This coordinates are relative to the
-			// parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html)
+			// parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html).
 			this.x = 0;
 			this.y = 0;
 			// Registration point. Ussually 0, 0 means top left corner.
 			this.centerX = 0;
 			this.centerY = 0;
-			// Rotation
+			// Rotation.
 			this.rotation = 0;
-			//Scale
+			//Scale.
 			this.scaleX = 1;
 			this.scaleY = 1;
-			//Alpha / Opacity
+			//Alpha / Opacity.
 			this.alpha = 1;
 
-			// The type id, is the id of the configuration that was used to put together this game object
-			// Set in the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
+			// The type id, is the id of the configuration that was used to put together this game object.
+			// Set in the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html).
 			// Very usefull to identify game objects
 			this.typeId = null;
 			// The pool id, is the id of the pool this game object came from. Not so usefull
 			this.poolId = null;
 
 			// These two properties are used by [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html) to turn on and off activity
-			// on a given [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layer.html)
+			// on a given [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layer.html).
 			
-			// If this is true the game object will update
+			// If this is true the game object will update.
 			this.canUpdate = false;
-			// if this is true the game object will render
+			// if this is true the game object will render.
 			this.canDraw = false;
 		},
 		/**
@@ -166,7 +166,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 				}
 			}
 
-			this.execute('start', this);
+			this.execute(this.START, this);
 		},
 		/**
 		 * --------------------------------
@@ -189,11 +189,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 *
 		 * This method is supposed to be redifined by objects extending this one.
 		 * All the logic concerning clearing references should go in here.
-		 * 
-		 * @return {[type]} [description]
 		 */
 		recycle: function() {
-			this.execute('recycle', this);
+			this.execute(this.RECYCLE, this);
 		},
 		/**
 		 * --------------------------------
@@ -358,7 +356,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		clear: function() {
 			this.recycle();
 
-			this.execute('clear', this);
+			this.execute(this.CLEAR, this);
 
 			this.removeRenderer();
 			this.removeComponents();
@@ -384,8 +382,6 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * @param  {[type]} rotation Rotation in degrees
 		 * @param  {[type]} centerX  Registration point X coordinate. This value is added to the x coordinate.
 		 * @param  {[type]} centerY  Registration point Y coordinate. This value is added to the x coordinate.
-		 *
-		 * @return {[type]}          [description]
 		 */
 		resetTransform: function(x, y, scaleX, scaleY, rotation, centerX, centerY) {
 			this.x = x || 0;

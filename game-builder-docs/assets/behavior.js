@@ -1370,10 +1370,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/hierarchy/layer.js",
                 "targetPath": "src/hierarchy/layer",
                 "pageTitle": "src/hierarchy/layer",
-                "title": "layer"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "layer.js",
+                    "slug": "layerjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Visual organization",
+                        "slug": "visual-organization"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "layer.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Visual organization",
+                    "slug": "visual-organization"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -1390,10 +1421,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/hierarchy/layers.js",
                 "targetPath": "src/hierarchy/layers",
                 "pageTitle": "src/hierarchy/layers",
-                "title": "layers"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "layers.js",
+                    "slug": "layersjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Layer management",
+                        "slug": "layer-management"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "layers.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Layer management",
+                    "slug": "layer-management"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -1410,10 +1472,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/hierarchy/root.js",
                 "targetPath": "src/hierarchy/root",
                 "pageTitle": "src/hierarchy/root",
-                "title": "root"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "root.js",
+                    "slug": "rootjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "The root of all things",
+                        "slug": "the-root-of-all-things"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "root.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "The root of all things",
+                    "slug": "the-root-of-all-things"
+                  },
+                  "depth": 2
+                }
+              ]
             }
           ]
         }, {
