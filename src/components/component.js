@@ -25,7 +25,7 @@
  * 
  * Registered callbacks get the component as argument. 
  * ``` javascript  
- * component.on(component.ADDED, function(component) {});
+ * component.on(component.ADD, function(component) {});
  * ``` 
  *
  * ### **removed**
@@ -33,7 +33,7 @@
  *
  * Registered callbacks get the component as argument.
  * ``` javascript  
- * component.on(component.REMOVED, function(component) {});
+ * component.on(component.REMOVE, function(component) {});
  * ```
  *
  * ### **recycle**
@@ -119,6 +119,20 @@ define(["delegate"], function(Delegate) {
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>onRecycled</strong></p>
+		 *
+		 * This is called by the parent [game-object](@@game-object@@) when it
+		 * is destroyeing itself.
+		 */
+		onRecycled: function() {
+			this.recycle();
+			this.execute(this.RECYCLE, this);
+		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>added</strong></p>
@@ -173,6 +187,18 @@ define(["delegate"], function(Delegate) {
 		 */
 
 		/**
+		 * <p style='color:#AD071D'><strong>recycle</strong></p>
+		 *
+		 * Called by the parent [game-object](@@game-object@@) 
+		 * when it is sent back to it's pool for reuse.
+		 * 
+		 */
+		recycle: function() {}
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 		 *
 		 * This method is only executed if the **debug** property of the parent [game-object](@@game-object@@)
@@ -184,25 +210,12 @@ define(["delegate"], function(Delegate) {
 		/**
 		 * --------------------------------
 		 */
-
-		/**
-		 * <p style='color:#AD071D'><strong>destroy</strong></p>
-		 *
-		 * Called by the parent [game-object](@@game-object@@) 
-		 * when it is sent back to it's pool for reuse.
-		 */
-		destroy: function() {
-			this.execute(this.RECYCLE, this);
-		}
-		/**
-		 * --------------------------------
-		 */
 	});
 
 	// ### Getters for all the types of events a Component can hook into
-	Object.defineProperty(Component.prototype, "ADDED", { get: function() { return 'added'; } });
-	Object.defineProperty(Component.prototype, "REMOVED", { get: function() { return 'removed'; } });
-	Object.defineProperty(Component.prototype, "RECYCLED", { get: function() { return 'recycle'; } });
+	Object.defineProperty(Component.prototype, "ADD", { get: function() { return 'added'; } });
+	Object.defineProperty(Component.prototype, "REMOVE", { get: function() { return 'removed'; } });
+	Object.defineProperty(Component.prototype, "RECYCLE", { get: function() { return 'recycle'; } });
 	/**
 	 * --------------------------------
 	 */
