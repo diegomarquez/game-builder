@@ -85,43 +85,43 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			 * requesting a game object to the [assembler](@@assembler@@) module.
 			 */ 
 
-			// The parent [game-object-container](@@game-object-container@@)
+			// The parent [game-object-container](@@game-object-container@@).
 			this.parent = null;
-			// 3x3 Matrix used to control affine transformations
+			// [matrix-3x3](@@matrix-3x3@@) used to control affine transformations.
 			this.matrix = new Matrix();
-			// List of [components](@@component@@) attached
+			// List of [components](@@component@@) attached.
 			this.components = null;
-			// The [renderer](@@renderer@@) attached
+			// The [renderer](@@renderer@@) attached.
 			this.renderer = null;
 
 			// Pair of local coordinates. This coordinates are relative to the
-			// parent [game-object-container](@@game-object-container@@)
+			// parent [game-object-container](@@game-object-container@@).
 			this.x = 0;
 			this.y = 0;
 			// Registration point. Ussually 0, 0 means top left corner.
 			this.centerX = 0;
 			this.centerY = 0;
-			// Rotation
+			// Rotation.
 			this.rotation = 0;
-			//Scale
+			//Scale.
 			this.scaleX = 1;
 			this.scaleY = 1;
-			//Alpha / Opacity
+			//Alpha / Opacity.
 			this.alpha = 1;
 
-			// The type id, is the id of the configuration that was used to put together this game object
-			// Set in the [game-object-pool](@@game-object-pool@@)
+			// The type id, is the id of the configuration that was used to put together this game object.
+			// Set in the [game-object-pool](@@game-object-pool@@).
 			// Very usefull to identify game objects
 			this.typeId = null;
 			// The pool id, is the id of the pool this game object came from. Not so usefull
 			this.poolId = null;
 
 			// These two properties are used by [layers](@@layers@@) to turn on and off activity
-			// on a given [layer](@@layer@@)
+			// on a given [layer](@@layer@@).
 			
-			// If this is true the game object will update
+			// If this is true the game object will update.
 			this.canUpdate = false;
-			// if this is true the game object will render
+			// if this is true the game object will render.
 			this.canDraw = false;
 		},
 		/**
@@ -166,7 +166,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 				}
 			}
 
-			this.execute('start', this);
+			this.execute(this.START, this);
 		},
 		/**
 		 * --------------------------------
@@ -189,11 +189,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 *
 		 * This method is supposed to be redifined by objects extending this one.
 		 * All the logic concerning clearing references should go in here.
-		 * 
-		 * @return {[type]} [description]
 		 */
 		recycle: function() {
-			this.execute('recycle', this);
+			this.execute(this.RECYCLE, this);
 		},
 		/**
 		 * --------------------------------
@@ -358,7 +356,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		clear: function() {
 			this.recycle();
 
-			this.execute('clear', this);
+			this.execute(this.CLEAR, this);
 
 			this.removeRenderer();
 			this.removeComponents();
@@ -384,8 +382,6 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * @param  {[type]} rotation Rotation in degrees
 		 * @param  {[type]} centerX  Registration point X coordinate. This value is added to the x coordinate.
 		 * @param  {[type]} centerY  Registration point Y coordinate. This value is added to the x coordinate.
-		 *
-		 * @return {[type]}          [description]
 		 */
 		resetTransform: function(x, y, scaleX, scaleY, rotation, centerX, centerY) {
 			this.x = x || 0;

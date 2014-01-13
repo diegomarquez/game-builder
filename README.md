@@ -16,9 +16,11 @@ For better results it is better to use it in conjuction with [generator-game-bui
     - src
     - examples
     - Links to known errors, like requireJS
+    - Review all docs to standarize the structure of each file and to iron out, the gazillion 
+    typos.
 
-- Test delegate.js destroy method properly
 - Change delegate.js to something more sensible. Maybe broadcaster.js
+- Test delegate.js destroy method properly
 - Change how events are registered in main.js in all the examples
 
 - Delete old example code
