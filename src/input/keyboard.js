@@ -1,9 +1,39 @@
+/**
+ * # keyboard.js
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Inherits from: [delegate](@@delegate@@)
+ *
+ * Depends of:
+ *
+ * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
+ * 
+ * This module defines to interact with the keyboard. In similar fashion to [timer-factory](@@timer-factory@@),
+ * this module extends on existing behaviour to make it less annoying.
+ */
+
+/**
+ * The Keyboard
+ * --------------------------------
+ */
+
+/**
+ * --------------------------------
+ */
 define(function(require) {
 	var pressed = {};
 
 	var Keyboard = require('delegate').extend({
 		init: function() {
 			this._super();
+
+			// ### Defined keyboard constants
+			
+			// Not all the keys of the keyboard,
+			// but they should be more than enough
+			// for a [Game-Builder](http://diegomarquez.github.io/game-builder)
+			// project
 
 			this.LEFT = 37;
 			this.UP = 38;
@@ -33,6 +63,10 @@ define(function(require) {
 			this.NUM_4 = 52;
 			this.NUM_5 = 53;
 
+			// These constants are pretty usefull
+			// to avoid having undescriptive names littered around the code.
+			// These should make pretty clear what you are trying to do, when you
+			// use them. Plus it's easy to change them later down the road. 
 			this.GAME_LEFT = this.LEFT;
 			this.GAME_RIGHT = this.RIGHT;
 			this.GAME_UP = this.UP;
@@ -42,29 +76,99 @@ define(function(require) {
 			this.GAME_BUTTON_PAUSE = this.P;
 		},
 
+		/**
+		 * <p style='color:#AD071D'><strong>onKeyDown</strong></p>
+		 *
+		 * Register a callback to be executed when a key is pressed.
+		 *
+		 * This wraps the extended [delegate](@@delegate@@)
+		 * 
+		 * @param  {Number}   keyCode  Key code to listen to
+		 * @param  {Object}   scope    Scope of the callback function
+		 * @param  {Function} callback The callback function
+		 */
 		onKeyDown: function(keyCode, scope, callback) {
 			this.on('keydown' + keyCode.toString(), scope, callback);
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>onKeyUp</strong></p>
+		 *
+		 * Register a callback to be executed when a key is released.
+		 *
+		 * This wraps the extended [delegate](@@delegate@@)
+		 * 
+		 * @param  {Number}   keyCode  Key code to listen to
+		 * @param  {Object}   scope    Scope of the callback function
+		 * @param  {Function} callback The callback function
+		 */
 		onKeyUp: function(keyCode, scope, callback) {
 			this.on('keyup' + keyCode.toString(), scope, callback);
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>removeKeyDown</strong></p>
+		 *
+		 * Removes a registered callback for a key press.
+		 *
+		 * This wraps the extended [delegate](@@delegate@@)
+		 * 
+		 * @param  {Number}   keyCode  Key code to stop listening to
+		 * @param  {Object}   scope    Scope of the callback function to remove
+		 * @param  {Function} callback The callback function to remove
+		 */
 		removeKeyDown: function(keyCode, scope, callback) {
 			this.remove('keydown' + keyCode.toString(), scope, callback);
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>removeKeyUp</strong></p>
+		 *
+		 * Removes a registered callback for a key release.
+		 *
+		 * This wraps the extended [delegate](@@delegate@@)
+		 * 
+		 * @param  {Number}   keyCode  Key code to stop listening to
+		 * @param  {Object}   scope    Scope of the callback function to remove
+		 * @param  {Function} callback The callback function to remove
+		 */
 		removeKeyUp: function(keyCode, scope, callback) {
 			this.remove('keyup' + keyCode.toString(), scope, callback);
 		},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>isKeyDown</strong></p>
+		 *
+		 * This method is meant to be used in an update loop. It returns
+		 * true of the specified key is pressed, false otherwise.
+		 * 
+		 * @param  {Number}  keyCode Key to test for a press
+		 *
+		 * @return {Boolean} True if key is pressed, false otherwise.
+		 */
 		isKeyDown: function(keyCode) {
 			return pressed[keyCode];	
 		}
+		/**
+		 * --------------------------------
+		 */
 	});
 
 	var keyboard = new Keyboard();
 
+	// ### Actual registering with the windown keyboard events.
 	window.addEventListener('keyup', function(event) {
 		delete pressed[event.keyCode];
 
@@ -77,7 +181,11 @@ define(function(require) {
 		pressed[event.keyCode] = true;
 		keyboard.execute('keydown' + event.keyCode.toString(), event);
 	}, false);
+	/**
+	 * --------------------------------
+	 */
 
+	// ### Prevent default behaviour of keys in the browser
 	document.onkeydown = function(event) {
 		if (event.keyCode == keyboard.LEFT ||
 			event.keyCode == keyboard.UP ||
