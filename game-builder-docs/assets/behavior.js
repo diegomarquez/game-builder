@@ -1648,10 +1648,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/math/matrix-3x3.js",
                 "targetPath": "src/math/matrix-3x3",
                 "pageTitle": "src/math/matrix-3x3",
-                "title": "matrix-3x3"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "matrix-3x3.js",
+                    "slug": "matrix-3x3js",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Transformations",
+                        "slug": "transformations"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "matrix-3x3.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Transformations",
+                    "slug": "transformations"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -1668,7 +1699,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/math/vector-2D.js",
                 "targetPath": "src/math/vector-2D",
                 "pageTitle": "src/math/vector-2D",
-                "title": "vector-2D"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "vector-2D.js",
+                    "slug": "vector-2djs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "vector-2D.js"
               },
               "depth": 3,
               "outline": []

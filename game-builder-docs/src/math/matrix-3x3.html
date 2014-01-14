@@ -1,4 +1,29 @@
-<!DOCTYPE html><html lang="en"><head><title>src/math/matrix-3x3</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/math/matrix-3x3"><meta name="groc-project-path" content="work/game-builder/src/math/matrix-3x3.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/math/matrix-3x3.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<!DOCTYPE html><html lang="en"><head><title>src/math/matrix-3x3</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/math/matrix-3x3"><meta name="groc-project-path" content="work/game-builder/src/math/matrix-3x3.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/math/matrix-3x3.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="matrix-3x3js">matrix-3x3.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from:</p>
+
+<p>Depends of:</p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>Similar sat.js in that I took the code from somewhere else I made a requireJS module with it.
+In this case the victim was <a href="https://github.com/CreateJS/EaselJS/">EaselJS</a>. Somewhere
+in there is a javascript file that desribes a 3x3 matrix. Instead of implementing it myself,
+I took the cowards way out and took that code and changed it to suit my needs.</p>
+
+<p>Anyway this module is very important for everything that has to do with rendering,
+because matrix transformations are used to by each <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> 
+to apply a transformation to the context 2D property 
+of the <a href="http://www.w3schools.com/html/html5_canvas.asp">Canvas</a>
+modifying it's position and that of all sub sequent rendering commands.</p>
+
+<p>If you want to know what all this methods do, you are better off going to the original code,
+or better yet, reading up on 
+<a href="https://www.google.co.uk/search?q=Matrix+Affine+Transformations&amp;oq=Matrix+Affine+Transformations&amp;aqs=chrome..69i57j0l3.6454j0j7&amp;sourceid=chrome&amp;espv=210&amp;es_sm=91&amp;ie=UTF-8">Matrix Transformations</a></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="transformations">Transformations</h2></div></div></div><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">matrix_3x3</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">tx</span><span class="p">,</span> <span class="nx">ty</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">initialize</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">,</span> <span class="nx">d</span><span class="p">,</span> <span class="nx">tx</span><span class="p">,</span> <span class="nx">ty</span><span class="p">);</span>
   <span class="p">};</span>

@@ -1,4 +1,22 @@
-<!DOCTYPE html><html lang="en"><head><title>src/math/vector-2D</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/math/vector-2D"><meta name="groc-project-path" content="work/game-builder/src/math/vector-2D.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/math/vector-2D.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<!DOCTYPE html><html lang="en"><head><title>src/math/vector-2D</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/math/vector-2D"><meta name="groc-project-path" content="work/game-builder/src/math/vector-2D.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/math/vector-2D.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="vector-2djs">vector-2D.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from:</p>
+
+<p>Depends of:</p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>Another module made of <a href="https://github.com/jriecken/sat-js">stolen code</a>!
+In the original you can see that the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html">sat</a> and this module where originally
+a single file, but I though It woulf be a good idea to make a standalone module
+out of the Vector implementation, as it is a very usefull thing to have laying around.</p>
+
+<p>The code does basically the same thing, define a 2d vector with x and y coordinates,
+and several methods to apply different transformations to those coordinates.</p></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">vector_2D</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
     <span class="k">this</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
