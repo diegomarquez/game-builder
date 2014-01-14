@@ -1,3 +1,35 @@
+/**
+ * # matrix-3x3.js
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Inherits from:
+ *
+ * Depends of:
+ *
+ * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
+ * 
+ * Similar sat.js in that I took the code from somewhere else I made a requireJS module with it.
+ * In this case the victim was [EaselJS](https://github.com/CreateJS/EaselJS/). Somewhere
+ * in there is a javascript file that desribes a 3x3 matrix. Instead of implementing it myself,
+ * I took the cowards way out and took that code and changed it to suit my needs.
+ *
+ * Anyway this module is very important for everything that has to do with rendering,
+ * because matrix transformations are used to by each [game-object](@@game-object@@) 
+ * to apply a transformation to the context 2D property 
+ * of the [Canvas](http://www.w3schools.com/html/html5_canvas.asp)
+ * modifying it's position and that of all sub sequent rendering commands.
+ *
+ * If you want to know what all this methods do, you are better off going to the original code,
+ * or better yet, reading up on 
+ * [Matrix Transformations](https://www.google.co.uk/search?q=Matrix+Affine+Transformations&oq=Matrix+Affine+Transformations&aqs=chrome..69i57j0l3.6454j0j7&sourceid=chrome&espv=210&es_sm=91&ie=UTF-8)
+ */
+
+/**
+ * Transformations
+ * --------------------------------
+ */
+
 define(function() {
 	var matrix_3x3 = function(a, b, c, d, tx, ty) {
 		this.initialize(a, b, c, d, tx, ty);
