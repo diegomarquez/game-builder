@@ -1533,10 +1533,95 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/input/keyboard.js",
                 "targetPath": "src/input/keyboard",
                 "pageTitle": "src/input/keyboard",
-                "title": "keyboard"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "keyboard.js",
+                    "slug": "keyboardjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "The Keyboard",
+                        "slug": "the-keyboard"
+                      },
+                      "depth": 2,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Defined keyboard constants",
+                            "slug": "defined-keyboard-constants"
+                          },
+                          "depth": 3
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Actual registering with the windown keyboard events.",
+                            "slug": "actual-registering-with-the-windown-keyboard-events"
+                          },
+                          "depth": 3
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Prevent default behaviour of keys in the browser",
+                            "slug": "prevent-default-behaviour-of-keys-in-the-browser"
+                          },
+                          "depth": 3
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "title": "keyboard.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "The Keyboard",
+                    "slug": "the-keyboard"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Defined keyboard constants",
+                        "slug": "defined-keyboard-constants"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Actual registering with the windown keyboard events.",
+                        "slug": "actual-registering-with-the-windown-keyboard-events"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Prevent default behaviour of keys in the browser",
+                        "slug": "prevent-default-behaviour-of-keys-in-the-browser"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
             }
           ]
         }, {
