@@ -1,3 +1,39 @@
+/**
+ * # assembler.js
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Inherits from:
+ *
+ * Depends of: 
+ * [game-object-pool](@@game-object-pool@@)
+ * [component-pool](@@component-pool@@)
+ * [util](@@util@@)
+ *
+ * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
+ * 
+ * This module defines a very important module for [Game-Builder](http://diegomarquez.github.io/game-builder).
+ *
+ * The assembler module takes care of putting together the [game-objects](@@game-object@@) with their
+ * [components](@@component@@) as they were configured in the [game-object-pool](@@game-object-pool@@)
+ * and [component-pool](@@component-pool@@) respectively. 
+ *
+ * In addition you are able to override the configured arguments, or a new ones when you
+ * request a [game-object](@@game-object@@). When a [game-object](@@game-object@@) is
+ * put together the necessary callbacks are setup so that it and it's components return to their
+ * respective pools for reuse.
+ *
+ * The object responsible for recycling [game-objects](@@game-objects@@) is the [reclaimer](@@reclaimer@@).
+ */
+
+/**
+ * ASSEMBLE!
+ * --------------------------------
+ */
+
+/**
+ * --------------------------------
+ */
 define(['game-object-pool', 'component-pool', 'util'], function(GameObjectPool, ComponentPool, Util) {
 	var Assembler = function() {};
 
@@ -22,7 +58,20 @@ define(['game-object-pool', 'component-pool', 'util'], function(GameObjectPool, 
 		pooledObject[addMethod](componentIntance); 
 	}
 
-	//This method only return an instance. It is up to the user to call the start method with arguments.
+	/**
+	 * <p style='color:#AD071D'><strong>get</strong></p>
+	 *
+	 * The only method in the module. It returns a [game-object](@@game-object@@)
+	 * ready to be started.
+	 * 
+	 * @param  {String} name       Id of the [game-object](@@game-object@@) we want assembled. It should be an existing configured id on the [game-object-pool](@@game-object-pool@@)
+	 * @param  {Object} [args=null]       All the properties in this object will be copied to the assembled object. 
+	 * @param  {Boolean} [nestedCall=false] This argument is reserved for internal use. It defaults to false, but you can see what happens if you set it to true :P 
+	 *
+	 * @throws {Error} If a [game-object](@@game-object@@) was configured to have childs. Only [game-object-containers](@@game-object-containers@@) can have nested childs
+	 * 
+	 * @return {Object} A [game-object](@@game-object@@) ready to be used
+	 */
 	Assembler.prototype.get = function(name, args, nestedCall) {
 		var configuration = GameObjectPool.getConfiguration(name, nestedCall);
 
@@ -62,6 +111,9 @@ define(['game-object-pool', 'component-pool', 'util'], function(GameObjectPool, 
 
 		return pooledObject;
 	};
+	/**
+	 * --------------------------------
+	 */
 
 	return new Assembler();
 });
