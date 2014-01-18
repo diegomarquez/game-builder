@@ -1,4 +1,24 @@
-<!DOCTYPE html><html lang="en"><head><title>src/pools/bundle</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/pools/bundle"><meta name="groc-project-path" content="work/game-builder/src/pools/bundle.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/pools/bundle.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+<!DOCTYPE html><html lang="en"><head><title>src/pools/bundle</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/pools/bundle"><meta name="groc-project-path" content="work/game-builder/src/pools/bundle.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/pools/bundle.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="bundlejs">bundle.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from:</p>
+
+<p>Depends of: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a></p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This is a helper module to define block of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and 
+<a href="@@components-pool@@">components-pool</a> configuration. </p>
+
+<p>The basic workflow is extending this module, and putting all the required code
+to configure the pools in there. That way you can reuse that code in different places.</p>
+
+<p>It's not really needed but it will make things a bit more tidy.
+Because it has <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a> as a dependency it already has references to the pools
+and the canvas, so you don't have to require those in the modules extending this one.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="bundle-up">Bundle up!</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">Bundle</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">gb</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gb&#39;</span><span class="p">);</span>
@@ -6,12 +26,19 @@
       <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span> <span class="o">=</span> <span class="nx">gb</span><span class="p">.</span><span class="nx">goPool</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">componentPool</span>  <span class="o">=</span> <span class="nx">gb</span><span class="p">.</span><span class="nx">coPool</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span>     <span class="o">=</span> <span class="nx">gb</span><span class="p">.</span><span class="nx">canvas</span><span class="p">;</span>
-    <span class="p">},</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>create</strong></p>
 
-    <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+<p>Modules extending this one should implement this method.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>args is optional, must be an Object, and has a default value of null.</strong></li>
+</ul>
+
+<p><strong>Can throw an Error</strong><br/>(If it is not overriden)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Bundle: This method must be overriden&#39;</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">});</span>
+    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
 
   <span class="k">return</span> <span class="nx">Bundle</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

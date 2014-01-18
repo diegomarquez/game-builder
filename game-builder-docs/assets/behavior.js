@@ -1739,10 +1739,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/pools/assembler.js",
                 "targetPath": "src/pools/assembler",
                 "pageTitle": "src/pools/assembler",
-                "title": "assembler"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "assembler.js",
+                    "slug": "assemblerjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "ASSEMBLE!",
+                        "slug": "assemble"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "assembler.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "ASSEMBLE!",
+                    "slug": "assemble"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -1759,10 +1790,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/pools/bundle.js",
                 "targetPath": "src/pools/bundle",
                 "pageTitle": "src/pools/bundle",
-                "title": "bundle"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "bundle.js",
+                    "slug": "bundlejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Bundle up!",
+                        "slug": "bundle-up"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "bundle.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Bundle up!",
+                    "slug": "bundle-up"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -1779,10 +1841,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/pools/component-pool.js",
                 "targetPath": "src/pools/component-pool",
                 "pageTitle": "src/pools/component-pool",
-                "title": "component-pool"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "component-pool.js",
+                    "slug": "component-pooljs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Pooling",
+                        "slug": "pooling"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "component-pool.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Pooling",
+                    "slug": "pooling"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -1799,10 +1892,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/pools/game-object-pool.js",
                 "targetPath": "src/pools/game-object-pool",
                 "pageTitle": "src/pools/game-object-pool",
-                "title": "game-object-pool"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "game-object-pool.js",
+                    "slug": "game-object-pooljs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Pooling",
+                        "slug": "pooling"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "game-object-pool.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Pooling",
+                    "slug": "pooling"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -1819,10 +1943,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/pools/pool.js",
                 "targetPath": "src/pools/pool",
                 "pageTitle": "src/pools/pool",
-                "title": "pool"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "pool.js",
+                    "slug": "pooljs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Pooling",
+                        "slug": "pooling"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "pool.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Pooling",
+                    "slug": "pooling"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -1839,10 +1994,41 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/game-builder/src/pools/reclaimer.js",
                 "targetPath": "src/pools/reclaimer",
                 "pageTitle": "src/pools/reclaimer",
-                "title": "reclaimer"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "reclaimer.js",
+                    "slug": "reclaimerjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Recycling",
+                        "slug": "recycling"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "reclaimer.js"
               },
               "depth": 3,
-              "outline": []
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Recycling",
+                    "slug": "recycling"
+                  },
+                  "depth": 2
+                }
+              ]
             }
           ]
         }, {

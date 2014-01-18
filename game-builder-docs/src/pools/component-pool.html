@@ -1,15 +1,70 @@
-<!DOCTYPE html><html lang="en"><head><title>src/pools/component-pool</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/pools/component-pool"><meta name="groc-project-path" content="work/game-builder/src/pools/component-pool.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/pools/component-pool.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">ComponentPool</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pool&#39;</span><span class="p">).</span><span class="nx">extend</span><span class="p">({</span>
-    <span class="nx">createConfiguration</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">,</span> <span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">configuration</span> <span class="o">=</span> <span class="p">{</span>
+<!DOCTYPE html><html lang="en"><head><title>src/pools/component-pool</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/pools/component-pool"><meta name="groc-project-path" content="work/game-builder/src/pools/component-pool.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/pools/component-pool.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="component-pooljs">component-pool.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/pool.html">pool</a></p>
+
+<p>Depends of:</p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This module defines the component pool. All the required instances of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a>
+objects are held in here. </p>
+
+<p>As <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> are assembled by <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html">assembler</a>, 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> objects might be needed, at that point they are instantiated.
+When they are not needed anymore, instead of destroying the instance, they are sent back to this
+pool for later usage. </p>
+
+<p>When the pool reaches the maximun amount of objects, of a certain type, it can handle, it will not create
+anymore if it is requested. Instead it will throw an error
+saying that there are no more <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> of that type available.</p>
+
+<p>Unlike <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>, <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> don't make sense by themselves, so
+you don't specify the maximun amount of them you want, like you do with the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>. 
+Instead <a href="@@components@@">components</a> will be created as needed. Since <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a>,
+can not exists outside of a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>, when the cap on <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
+is reached, naturally, no more <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> will be created.</p>
+
+<p>From that point, if a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> is recycled all of it's <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> will
+be recycled aswell, freeing them to be used in another <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> if needed.</p>
+
+<p>This pool also stores configurations for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> instances. 
+That means that you can be having a single pooled
+object, but with three different configurations, for example. ej.</p>
+
+<pre><code class=" javascript">componentPool.createPool("Component", someComponentPrototypeObject);
+
+    componentPool.createConfiguration("Conf_1", 'Component').args({some_property:  1});
+    componentPool.createConfiguration("Conf_2", 'Component').args({some_property:2});
+    componentPool.createConfiguration("Conf_3", 'Component').args({some_property: 3});
+</code></pre>
+
+<p>In the example above, there will only be 
+a single instance of <em>'someComponentPrototypeObject'</em>, but it might be configured with the arguments
+for any of those configurations at the moment it is requested.</p>
+
+<p>This is usefull to avoid having too many idling instances at the same time.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="pooling">Pooling</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">ComponentPool</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;pool&#39;</span><span class="p">).</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>createConfiguration</strong></p>
+
+<p>Creates a configuration for the given type of pooled object.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>alias must be a String.</strong><br/>(The id that will be used to retrieve this configuration)</p></li>
+<li><p><strong>type must be a String.</strong><br/>(With this id the configuration has the information needed to know to which pool of objects it refers to)</p></li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(A configuration object. Nothing too fancy)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">createConfiguration</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">,</span> <span class="nx">type</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Configurations objects for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a>
+contain the arguments that this configuration will apply</p></div></div><div class="code"><div class="wrapper">      <span class="kd">var</span> <span class="nx">configuration</span> <span class="o">=</span> <span class="p">{</span>
         <span class="nx">componentId</span><span class="o">:</span> <span class="nx">type</span><span class="p">,</span>
-        <span class="nx">componentArgs</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
-
-        <span class="nx">typeId</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">componentArgs</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Returns the id of the pool this configuration refers to</p></div></div><div class="code"><div class="wrapper">        <span class="nx">typeId</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
           <span class="k">return</span> <span class="nx">type</span><span class="p">;</span>
-        <span class="p">},</span>
-
-        <span class="nx">args</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Set which arguments this configuration will apply to a
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a></p></div></div><div class="code"><div class="wrapper">        <span class="nx">args</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
           <span class="k">this</span><span class="p">.</span><span class="nx">componentArgs</span> <span class="o">=</span> <span class="nx">args</span><span class="p">;</span>
           <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
         <span class="p">}</span>
@@ -18,15 +73,24 @@
       <span class="k">this</span><span class="p">.</span><span class="nx">configurations</span><span class="p">[</span><span class="nx">alias</span><span class="p">]</span> <span class="o">=</span> <span class="nx">configuration</span><span class="p">;</span>
     
       <span class="k">return</span> <span class="nx">configuration</span><span class="p">;</span>
-    <span class="p">},</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getName</strong></p>
 
-    <span class="nx">getName</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Get the name of the pool</p>
+
+<p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">getName</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">return</span> <span class="s1">&#39;Component Pool&#39;</span><span class="p">;</span>
-    <span class="p">},</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    <span class="nx">addInitialObjectsToPool</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">amount</span><span class="p">,</span> <span class="nx">alias</span><span class="p">)</span> <span class="p">{},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getConfiguration</strong></p>
 
-    <span class="nx">addInitialObjectsToPool</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">amount</span><span class="p">,</span> <span class="nx">alias</span><span class="p">)</span> <span class="p">{},</span>
+<p>Gets a configuration for the requested <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a>.</p>
 
-    <span class="nx">getConfiguration</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">,</span> <span class="nx">nestedCall</span><span class="p">)</span> <span class="p">{</span>
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>alias must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> requested)</p></li>
+<li><p><strong>nestedCall is optional, must be a Boolean, and has a default value of false.</strong><br/>(Internal argument)</p></li>
+</ul>
+
+<p><strong>Can throw an Error</strong><br/>(If the corresponding pool has no available objects)<br/><strong>and</strong> <strong>Returns an Object</strong><br/>(The configuration object requested)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getConfiguration</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">,</span> <span class="nx">nestedCall</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">configuration</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">configurations</span><span class="p">[</span><span class="nx">alias</span><span class="p">];</span>
       <span class="kd">var</span> <span class="nx">pool</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">pools</span><span class="p">[</span><span class="nx">configuration</span><span class="p">.</span><span class="nx">componentId</span><span class="p">];</span>
 
@@ -39,8 +103,7 @@
       <span class="p">}</span>
 
       <span class="k">return</span> <span class="nx">configuration</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="p">});</span>
+    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
 
   <span class="k">return</span> <span class="k">new</span> <span class="nx">ComponentPool</span><span class="p">();</span>
 <span class="p">});</span></div></div></div></div></body></html>
