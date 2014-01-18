@@ -9,7 +9,36 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
+ * This module defines the base object from which [game-object-pool](@@game-object-pool@@) and
+ * [component-pool](@@component-pool@@) are extended from.
  *
+ * These pools create objects dynamically when requested, when one of those objects is 
+ * not needed in it's current state anymore
+ * it is recycled. Instead of destroying the reference it is sent back to the corresponding pool, so it
+ * can be picked up again and refurbished later. 
+ *
+ * Pools continue to create objects dynamically until the set cap for a given type is reached.
+ * From then on, if the pool does not have available objects, it throws an error if it is requested
+ * something.
+ *
+ * One of the key features of both [game-object-pool](@@game-object-pool@@) and
+ * [component-pool](@@component-pool@@) is that you not only can define collections of 
+ * instances, but also configurations for those instances. A configuration defines a set
+ * of arguments, to be applied on an instance. This allows to have configurations that would
+ * otherwise be sprinckled all over a project, centralized in the same place, or the same handfull
+ * of places. 
+ *
+ * A less obvious advantage of preconfiguring objects, is that you avoid creating small dynamic
+ * objects that will most likely be used in the initialization of other larger dynamic objects.
+ *
+ * Generally speaking pooling is very usefull because it frees CPU time from the burden of allocating
+ * and deallocating memory every single time you want something new. In the case of Garbage Collected
+ * environments, like a Javascript virtual machine, pooling should also reduce the time spent
+ * by the Garbage Collector doing it's thing. Which is good.
+ *
+ * Pooling objects is good and all, but it is probably not a good idea to pool absolutely everything
+ * you will need in the entire life span of an application, unless it is a small one. For that reason
+ * it is possible to clear pools, and repopulate them.
  */
 
 /**
@@ -31,11 +60,12 @@ define(["util", "class"], function(util) {
 		/**
 		 * <p style='color:#AD071D'><strong>createPool</strong></p>
 		 *
-		 * @param  {[type]} alias  [description]
-		 * @param  {[type]} type   [description]
-		 * @param  {[type]} amount [description]
-		 *
-		 * @return {[type]}        [description]
+		 * Creates a collections of a given type of objects, assigning it an
+		 * id to later be able to get references out of it.
+		 * 
+		 * @param  {String} alias  Id used to later refer to the collection that is being created
+		 * @param  {Object} type   The object prototype from which instances in this pool will be created from
+		 * @param  {Number} amount The amount of objects to add to the pool initially.
 		 */
 		createPool: function(alias, type, amount) {
 			// A pool object contains an array of objects, and a variable 
@@ -61,9 +91,9 @@ define(["util", "class"], function(util) {
 		/**
 		 * <p style='color:#AD071D'><strong>createPooledObject</strong></p>
 		 *
-		 * @param  {[type]} alias [description]
-		 *
-		 * @return {[type]}       [description]
+		 * Creates a pooled object.
+		 * 
+		 * @param  {String} alias Id used to referer to this kind of object
 		 */
 		createPooledObject: function(alias) {
 			var pool = this.pools[alias];
@@ -80,9 +110,9 @@ define(["util", "class"], function(util) {
 		/**
 		 * <p style='color:#AD071D'><strong>getPoolSize</strong></p>
 		 *
-		 * @param  {[type]} alias [description]
-		 *
-		 * @return {[type]}       [description]
+		 * Gets the size of the requested collection of pooled objects.
+		 * 
+		 * @param  {String} alias Id corresponding to an object type
 		 */
 		getPoolSize: function(alias) {
 			this.pools[alias].objects.length;
@@ -94,9 +124,9 @@ define(["util", "class"], function(util) {
 		/**
 		 * <p style='color:#AD071D'><strong>getActiveObjects</strong></p>
 		 *
-		 * @param  {[type]} alias [description]
-		 *
-		 * @return {[type]}       [description]
+		 * Gets the amount of objects in a given pool, that are active.
+		 * 
+		 * @param  {String} alias Id corresponding to an object type
 		 */
 		getActiveObjects: function(alias) {
 			return this.active[alias];
@@ -120,9 +150,10 @@ define(["util", "class"], function(util) {
 		/**
 		 * <p style='color:#AD071D'><strong>returnToPool</strong></p>
 		 *
-		 * @param  {[type]} o [description]
-		 *
-		 * @return {[type]}   [description]
+		 * This method is used in [assembler](@@assembler@@) when an object is
+		 * recycled to send it back to it's corresponding pool for reuse.
+		 * 
+		 * @param  {Object} o Returning object
 		 */
 		returnToPool: function(o) {
 			if (!o.poolId) return;
@@ -134,52 +165,19 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>getName</strong></p>
-		 *
-		 * @return {[type]} [description]
+		 * Methods to be overriden by objects extending this one
+		 * View [game-object-pool](@@game-object-pool@@) and
+		 * [component-pool](@@component-pool@@) for implementations.
 		 */
 		getName: function() {
 			throw new Error('Pool: This method must be overriden');
 		},
-		/**
-		 * --------------------------------
-		 */
-
-		/**
-		 * <p style='color:#AD071D'><strong>addInitialObjectsToPool</strong></p>
-		 *
-		 * @param {[type]} amount [description]
-		 */
 		addInitialObjectsToPool: function(amount) {
 			throw new Error('Pool: This method must be overriden');
 		},
-		/**
-		 * --------------------------------
-		 */		
-
-		/**
-		 * <p style='color:#AD071D'><strong>createConfiguration</strong></p>
-		 *
-		 * @param  {[type]} alias [description]
-		 * @param  {[type]} type  [description]
-		 *
-		 * @return {[type]}       [description]
-		 */
 		createConfiguration: function(alias, type) {
 			throw new Error('Pool: This method must be overriden');
 		},
-		/**
-		 * --------------------------------
-		 */
-
-		/**
-		 * <p style='color:#AD071D'><strong>getConfiguration</strong></p>
-		 *
-		 * @param  {[type]} name       [description]
-		 * @param  {[type]} nestedCall [description]
-		 *
-		 * @return {[type]}            [description]
-		 */
 		getConfiguration: function(name, nestedCall) {
 			throw new Error('Pool: This method must be overriden');
 		},
@@ -190,9 +188,13 @@ define(["util", "class"], function(util) {
 		/**
 		 * <p style='color:#AD071D'><strong>createNewIfNeeded</strong></p>
 		 *
-		 * @param  {[type]} type [description]
+		 * Dynamically creates an instance of the type specified. This
+		 * method will only create instances of types that do not specify
+		 * a maximun amount when created.
+		 * 
+		 * @param  {String} type id of the type of object to create
 		 *
-		 * @return {[type]}      [description]
+		 * @return {Boolean}      True or false depending if an object was created or not
 		 */
 		createNewIfNeeded: function(type) {
 			if(!this.pools[type].maxAmount) {
@@ -209,9 +211,13 @@ define(["util", "class"], function(util) {
 		/**
 		 * <p style='color:#AD071D'><strong>getPooledObject</strong></p>
 		 *
-		 * @param  {[type]} type [description]
+		 * Get a pooled object, the object to be returned is added to the collection
+		 * of active objects. This method is mainly used by the [assembler](@@assembler@@)
+		 * module when putting together [game-objects](@@game-object@@)
+		 * 
+		 * @param  {String} type id of the type of object to retrieve
 		 *
-		 * @return {[type]}      [description]
+		 * @return {Object}
 		 */
 		getPooledObject: function(type) {
 			var o = this.pools[type].objects.pop();
@@ -225,7 +231,8 @@ define(["util", "class"], function(util) {
 		/**
 		 * <p style='color:#AD071D'><strong>clear</strong></p>
 		 *
-		 * @return {[type]} [description]
+		 * Clear a pool out of everything. This method is
+		 * used by the [reclaimer](@@reclaimer@@) module.
 		 */
 		clear: function() {
 			var k;
@@ -261,7 +268,9 @@ define(["util", "class"], function(util) {
 		/**
 		 * <p style='color:#AD071D'><strong>toString</strong></p>
 		 *
-		 * @return {[type]} [description]
+		 * Return a string representation of the pool, for debugging purposes.
+		 * 
+		 * @return {String}
 		 */
 		toString: function() {
 			var r = {
