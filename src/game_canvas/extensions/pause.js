@@ -14,10 +14,10 @@
  * This module defines an extension that uses [layers](@@layers@@) to halt all update activity
  * when the application looses focus.
  *
- * The extension also adds a pause method to [game](@@game@@) to be able to pause the application
+ * The extension also adds a **pause** method to [game](@@game@@) to be able to pause the application
  * manually.
  *
- * ### This Extension add an event [game](@@game@@) can hook into: 
+ * ### This Extension adds an event [game](@@game@@) can hook into: 
  *
  * ### **pause** 
  * When the application is paused manually

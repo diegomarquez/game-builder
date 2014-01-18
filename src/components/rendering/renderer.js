@@ -23,11 +23,13 @@
 define(["component"], function(Component) {
 	var Renderer = Component.extend({
 		/**
-		 * <p style='color:#AD071D'><strong>draw</strong> Drawing logic</p>
+		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
-		 * This method is overriden my objects extending this one
+		 * Drawing logic.
 		 * 
-		 * @param  {Context 2D} context Context 2D property of the Canvas
+		 * This method is overriden my objects extending this one.
+		 * 
+		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 * @throws {Error} If called
 		 */
 		draw: function(context) {

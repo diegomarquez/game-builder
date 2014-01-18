@@ -66,12 +66,14 @@ define(["delegate", "class"], function(Delegate) {
 		},
 
 		/**
-		 * <p style='color:#AD071D'><strong>start</strong> Start the state machine.</p>
+		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
+		 * Start the state machine.
+		 * 
 		 * Once the states have been added, call this method to go into
 		 * the first state, optionally sending some arguments.
 		 * 
-		 * @param  {Anything} [args=null] Arguments to be sent to the initial state.  
+		 * @param  {Object} [args=null] Arguments to be sent to the initial state.  
 		 */
 		start: function(args) {
 			this.unblock();
@@ -82,8 +84,10 @@ define(["delegate", "class"], function(Delegate) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>add</strong> Add a state object to the state machine.</p>
+		 * <p style='color:#AD071D'><strong>add</strong></p>
 		 *
+		 * Add a state object to the state machine.
+		 * 
 		 * This method is redifined by the concrete implementations.
 		 * 
 		 * @param {State} state State object to add
@@ -99,7 +103,10 @@ define(["delegate", "class"], function(Delegate) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>get</strong> Get a reference to a state.</p>
+		 * <p style='color:#AD071D'><strong>get</strong></p>
+		 *
+		 * Get a reference to a state.
+		 * 
 		 * @param  {String|Number} stateIdOrName State id or name
 		 * @return {State} The requested state
 		 */
@@ -111,11 +118,12 @@ define(["delegate", "class"], function(Delegate) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>block</strong> Blocks the state machine.</p>
+		 * <p style='color:#AD071D'><strong>block</strong></p>
 		 *
+		 * Blocks the state machine.
+		 * 
 		 * While blocked no actions will be executed, 
 		 * and state changes can not occur.
-		 * 
 		 */
 		block: function() { this.isBlocked = true; },
 		/**
@@ -123,10 +131,11 @@ define(["delegate", "class"], function(Delegate) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>unblock</strong> Unblock the state machine.</p>
+		 * <p style='color:#AD071D'><strong>unblock</strong></p>
+		 *
+		 * Unblock the state machine.
 		 *
 		 * All behaviour returns to normal after executing this method.
-		 * 
 		 */
 		unblock: function() { this.isBlocked = false; },
 		/**
@@ -134,7 +143,9 @@ define(["delegate", "class"], function(Delegate) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>update</strong> Execute the update actions of the state machine. </p>
+		 * <p style='color:#AD071D'><strong>update</strong></p>
+		 *
+		 * Execute the update actions of the state machine. 
 		 */
 		update: function() {
 			this.states[this.currentStateId].update(arguments);
@@ -144,10 +155,11 @@ define(["delegate", "class"], function(Delegate) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>destroy</strong> Calls the destroy method of all the states registered.</p>
+		 * <p style='color:#AD071D'><strong>destroy</strong></p>
 		 *
-		 * Nulls the main references. Sets the object up for garbage collection.
+		 * Calls the destroy method of all the states registered.
 		 * 
+		 * Nulls the main references. Sets the object up for garbage collection.
 		 */
 		destroy: function() {
 			for (var i=0; i<this.states.length; i++) {
@@ -171,8 +183,10 @@ define(["delegate", "class"], function(Delegate) {
 		},
 
 		/**
-		 * <p style='color:#AD071D'><strong>add</strong> Add a state object to the state machine.</p>
+		 * <p style='color:#AD071D'><strong>add</strong></p>
 		 *
+		 * Add a state object to the state machine.
+		 * 
 		 * Setup the **change** event of the state, so it is able to pass control flow
 		 * to another state.
 		 * 
@@ -220,8 +234,10 @@ define(["delegate", "class"], function(Delegate) {
 		},
 
 		/**
-		 * <p style='color:#AD071D'><strong>add</strong> Add state object to the state machine.</p>
+		 * <p style='color:#AD071D'><strong>add</strong></p>
 		 *
+		 * Add state object to the state machine.
+		 * 
 		 * Setup the **next** and **previous** events of the state, 
 		 * so it is able to pass control flow to the corresponding states.
 		 * 

@@ -13,7 +13,8 @@
  * Not by much though, it's still pretty painfull. Believe me, I did I wrote a whole game only relaying
  * on it for graphics [SHAMELESS SELF PUBLICITY](http://www.treintipollo.com/tirador/index.html)
  *
- * There are some stuff missing, like individual method to wrap quadratic and cubic curves. 
+ * There are some stuff missing, like individual method to wrap quadratic and cubic curves. There
+ * are no helpers to draw a single line either.
  * These methods are hopefully to just ilustrate an idea and you won't be relying on them to get serious things done.
  *
  * **A note on all methods. If you don't specify a fill color, a stroke color or a line width, the current value set
@@ -32,7 +33,10 @@ define(function() {
 	var DrawUtils = function() {}
 
 	/**
-	 * <p style='color:#AD071D'><strong>circle</strong> Well... you can draw a circle.</p>
+	 * <p style='color:#AD071D'><strong>circle</strong></p>
+	 *
+	 * Well... you can draw a circle.
+	 * 
 	 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 	 * @param  {Number} x           X coordinate of the registration point
 	 * @param  {Number} y           Y coordinate of the registration point
@@ -58,7 +62,10 @@ define(function() {
 	 */
 
 	 /**
-	  * <p style='color:#AD071D'><strong>rectangle</strong> A rectangle, yeah!</p>
+	  * <p style='color:#AD071D'><strong>rectangle</strong></p>
+	  *
+	  * A rectangle, yeah!
+	  * 
 	  * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 	  * @param  {Number} x           X coordinate of the registration point
 	  * @param  {Number} y           Y coordinate of the registration point
@@ -85,7 +92,10 @@ define(function() {
 	 */
 
 	 /**
-	  * <p style='color:#AD071D'><strong>triangle</strong> A triangle. This is getting interesting. Points of the triangle are drawn clock-wise.</p>
+	  * <p style='color:#AD071D'><strong>triangle</strong></p>
+	  *
+	  * A triangle. This is getting interesting. Points of the triangle are drawn clock-wise.
+	  * 
 	  * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 	  * @param  {Number} centerX     X coordinate of the registration point. The rest of the points are relative to this
 	  * @param  {Number} centerY     Y coordinate of the registration point. The rest of the points are relative to this
@@ -137,8 +147,11 @@ define(function() {
 	 */
 
 	 /**
-	  * <p style='color:#AD071D'><strong>quadraticTriangle</strong> This one is pretty weird. It lets you define a triangle, with each side being drawn as a quadratic curve. Looks neat!
-	  * You might want to look into what a <a href="http://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B.C3.A9zier_curves">quadratic curve</a> is.</p>
+	  * <p style='color:#AD071D'><strong>quadraticTriangle</strong></p>
+	  *
+	  * This one is pretty weird. It lets you define a triangle, with each side being drawn as a quadratic curve. Looks neat!
+	  * You might want to look into what a <a href="http://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B.C3.A9zier_curves">quadratic curve</a> is.
+	  * 
 	  * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 	  * @param  {Number} centerX     X coordinate of the registration point. The rest of the points are relative to this
 	  * @param  {Number} centerY     Y coordinate of the registration point. The rest of the points are relative to this
@@ -209,7 +222,10 @@ define(function() {
 	 */
 
 	 /**
-	  * <p style='color:#AD071D'><strong>polygon</strong> This one is pretty usefull. Send in an array of points and lines will be ploted clock-wise to form the polygon.</p>
+	  * <p style='color:#AD071D'><strong>polygon</strong> </p>
+	  *
+	  * This one is pretty usefull. Send in an array of points and lines will be ploted clock-wise to form the polygon.
+	  * 
 	  * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 	  * @param  {Number} x           X coordinate registration point. All the points of the polygon are relative to this
 	  * @param  {Number} y           Y coordinate registration point. All the points of the polygon are relative to this
@@ -244,7 +260,10 @@ define(function() {
 	 */
 
 	 /**
-	  * <p style='color:#AD071D'><strong>quadraticPolygon</strong> This is like the polygon but the lines between vertexes are drawn as quadratic curves.</p>
+	  * <p style='color:#AD071D'><strong>quadraticPolygon</strong></p>
+	  *
+	  * This is like the polygon but the lines between vertexes are drawn as quadratic curves.
+	  * 
 	  * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 	  * @param  {Number} x           X coordinate registration point. All the points of the polygon are relative to this
 	  * @param  {Number} y           Y coordinate registration point. All the points of the polygon are relative to this

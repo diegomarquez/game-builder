@@ -13,20 +13,21 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### TODO List:
 
 - Anotate code to generate documentation
-    - src
-    - examples
-    - Links to known errors, like requireJS
-    - Review all docs to standarize the structure of each file and to iron out, the gazillion 
+    - Review src docs to standarize the structure of each file and to iron out the gazillion 
     typos.
+    - examples
+    - Review example docs to standarize the structure of each file and to iron out the gazillion 
+    typos.
+    - Links to known errors, like requireJS
+    - README in examples folder. Explains the structure of a Game-Builde application
 
-- Change delegate.js to something more sensible. Maybe broadcaster.js
 - Test delegate.js destroy method properly
 - Change how events are registered in main.js in all the examples
 
 - Delete old example code
 
 - New Website sections
-    - Getting started. Instructions on what you need to download. And how to us the tools.
+    - Getting started. Instructions on what you need to download. And how to use the tools.
     - Links to running examples
 
 - Make Sublime plugin to generate files from templates

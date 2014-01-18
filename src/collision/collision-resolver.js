@@ -15,7 +15,7 @@
  *
  * Worth noting is that the module only checks for overlaps, there is no projection. For the type
  * of projects [Game-Builder](http://diegomarquez.github.io/game-builder) attempts to tackle, it should
- * be more than enough. 
+ * be enough. 
  *
  * Also important is the fact there is no 
  * [broad-phase](http://www.htmlgoodies.com/html5/client/broad-phase-collision-detection-using-spatial-partitioning.html#fbid=fsD5-BRjvS-) 
@@ -42,11 +42,13 @@ define(['sat'], function(SAT) {
 	};
 
 	/**
-	 * <p style='color:#AD071D'><strong>addToCollisionList</strong> Adds a component to a collision list.</p>
+	 * <p style='color:#AD071D'><strong>addToCollisionList</strong></p>
 	 *
+	 * Adds a component to a collision list.
+	 * 
 	 * The component is added to the correponding lists, depending on it's collision id.
 	 * 
-	 * @param {[collision-component](@@collision-component@@)} collisionComponent An object extending [collision-component](@@collision-component@@)
+	 * @param {Object} collisionComponent An object extending [collision-component](@@collision-component@@)
 	 */
 	CollisionResolver.prototype.addToCollisionList = function(collisionComponent) {
 		var indexes = this.toCollideCache[collisionComponent.id];
@@ -62,11 +64,13 @@ define(['sat'], function(SAT) {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>removeFromCollisionList</strong> Removes a component from a collision list.</p>
+	 * <p style='color:#AD071D'><strong>removeFromCollisionList</strong></p>
 	 *
+	 * Removes a component from a collision list.
+	 * 
 	 * The component is removed from the corresponding lists, depending on it's collision id.
 	 * 
-	 * @param {[collision-component](@@collision-component@@)} collisionComponent An object extending [collision-component](@@collision-component@@)
+	 * @param {Obejct} collisionComponent An object extending [collision-component](@@collision-component@@)
 	 */
 	CollisionResolver.prototype.removeFromCollisionList = function(collisionComponent) {
 		var indexes = this.toCollideCache[collisionComponent.id];
@@ -82,7 +86,10 @@ define(['sat'], function(SAT) {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>addCollisionPair</strong> Use this method to setup collision pairs.</p>
+	 * <p style='color:#AD071D'><strong>addCollisionPair</strong></p>
+	 *
+	 * Use this method to setup collision pairs.
+	 * 
 	 * @param {String} first  The collidionId of the first group in the pair
 	 * @param {String} second The collidionId of the first group in the pair
 	 */
@@ -102,12 +109,14 @@ define(['sat'], function(SAT) {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>areColliding</strong> This is the actual method that does the magic.</p>
+	 * <p style='color:#AD071D'><strong>areColliding</strong></p>
 	 *
+	 * This is the actual method that does the magic.
+	 * 
 	 * This method will make the appropiate tests according to the type of the colliders involved.
 	 * 
-	 * @param  {[collider-component](@@collider-component@@)} first  The first collider in the test
-	 * @param  {[collider-component](@@collider-component@@)} second The second collider in the test
+	 * @param  {Object} first  The first [collider-component](@@collider-component@@) in the test
+	 * @param  {Object} second The second [collider-component](@@collider-component@@) in the test
 	 * @return {Boolean} Whether there was a collision
 	 */
 	CollisionResolver.prototype.areColliding = function(first, second) {
@@ -136,7 +145,7 @@ define(['sat'], function(SAT) {
 
 	// These variables are used by the concrete implementations of colliders to decide what
 	// type of collider they are, and hence, which method should be used when checking for collisions
-	// on them.
+	// between them.
 	CollisionResolver.prototype.circleCollider  = 0;
 	CollisionResolver.prototype.polygonCollider = 1;
 

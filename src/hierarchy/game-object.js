@@ -25,7 +25,7 @@
  * ### These objects extend [delegate](@@delegate@@) so they provide a few events to hook into:
  *
  * ### **start** 
- * WHen the game object is started 
+ * When the game object is started 
  * 
  * Registered callbacks get the game object as argument 
  * ``` javascript  
@@ -78,8 +78,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			 *	});
 			 * ```
 			 *
-			 * And if you are extending this base object, the properties of your
-			 * object can also be set in that way.
+			 * If you are extending this base object, the properties of your
+			 * object can also be set in the same way.
 			 *
 			 * You can also choose not to do that, and set the properties after
 			 * requesting a game object to the [assembler](@@assembler@@) module.
@@ -221,10 +221,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * <p style='color:#AD071D'><strong>setRenderer</strong></p>
 		 *
-		 * Sets the renderer and notifies the renderer it was added through the **onAdded**
+		 * Sets the [renderer](@@renderer@@) and notifies it, through the **onAdded**
 		 * callback.
 		 *
-		 * @param {[renderer](@@renderer@@)} renderer
+		 * @param {Object} renderer [renderer](@@renderer@@) added
 		 */
 		setRenderer: function(renderer) {
 			if(!renderer) return;
@@ -239,7 +239,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * <p style='color:#AD071D'><strong>removeRenderer</strong></p>
 		 *
-		 * Removes the renderer.
+		 * Removes the [renderer](@@renderer@@), and notifies it through the **onRemove**
+		 * and **onRecycled** callbacks.
 		 */
 		removeRenderer: function() {
 			if(!this.renderer) return;
@@ -258,7 +259,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * Adds a component and notifies it, 
 		 * it was added through the **onAdded** callback.
 		 * 
-		 * @param {[component](@@component@@)} component 
+		 * @param {Object} component [component](@@component@@) added
 		 */
 		addComponent: function(component) {
 			if (!this.components) {
@@ -279,12 +280,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * <p style='color:#AD071D'><strong>removeComponent</strong></p>
 		 *
-		 * Removes a component, and notifies it, 
+		 * Removes a [component](@@component@@), and notifies it, 
 		 * it was removed through the **onRemoved** callback.
-		 *
-		 * It also triggers the event that will send it back to the [component-pool](@@component-pool@@)
 		 * 
-		 * @param  {[component](@@component@@)} component
+		 * @param  {Object} component [component](@@component@@) to remove
 		 */
 		removeComponent: function(component) {
 			if (!this.components) return;
@@ -330,7 +329,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 *
 		 * Alpha is applied individually for each game object.
 		 * 
-		 * @param  {Context 2D} context Context 2D of the Canvas
+		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 */
 		transformAndDraw: function(context) {
 			this.matrix.identity().appendTransform(this.x, this.y, this.scaleX, this.scaleY, this.rotation, this.centerX, this.centerY);
@@ -431,9 +430,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 *
 		 * Get's the complete concatenated [matrix-3x3](@@matrix-3x3@@) of the game object.
 		 * 
-		 * @param  {[matrix-3x3](@@matrix-3x3@@)} [m=new Matrix()] A matrix object into which put result.
+		 * @param  {Object} [m=new Matrix()] A matrix object into which to put result.
 		 *
-		 * @return {[matrix-3x3](@@matrix-3x3@@)} The concatenated [matrix-3x3](@@matrix-3x3@@)
+		 * @return {Object} The concatenated [matrix-3x3](@@matrix-3x3@@)
 		 */
 		getMatrix: function(m) {
 			if (m) {
@@ -463,7 +462,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * at any given point.
 		 * 
 		 * @param  {Object} [r=new Object()] On object into which to put the result of this operation.
-		 * @param  {[matrix-3x3](@@matrix-3x3@@)} [m=new Matrix()] A matrix object into which put result.
+		 * @param  {Object} [m=new Matrix()] A matrix object into which put result.
 		 *
 		 * @return {Object} Contains the individual properties of a trandformation. ej. x, y, rotation, scale
 		 */

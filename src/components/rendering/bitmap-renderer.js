@@ -52,9 +52,11 @@
 define(["component"], function(Component) {
 	var Renderer = Component.extend({
 		/**
-		 * <p style='color:#AD071D'><strong>init</strong> Constructor. </p>
-		 *
-		 * It create an Image object to be used later by the renderer
+		 * <p style='color:#AD071D'><strong>init</strong></p>
+		 * 
+		 * Constructor.
+		 * 
+		 * It create an Image object to be used later by the renderer.
 		 */
 		init: function() {
 			this._super()
@@ -73,7 +75,7 @@ define(["component"], function(Component) {
 		 *
 		 * This is called by the [game-object](@@game-object@@) using this renderer
 		 * and it will set the **src** property of the **image** to what
-		 * was specified during configuration
+		 * was specified during configuration.
 		 */
 		start: function() {
 			this.image.src = this.path;
@@ -88,7 +90,7 @@ define(["component"], function(Component) {
 		 * Draws the image into the canvas. Applying configured properties,
 		 * like **width**, **height** and **offsets**
 		 * 
-		 * @param  {Context 2D} context Context 2D property of the Canvas
+		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 */
 		draw: function(context) {
 			var w, h;

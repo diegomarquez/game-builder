@@ -14,10 +14,10 @@
  * This module defines an extension that uses [layers](@@layers@@) to resume all update activity
  * when the application gains focus.
  *
- * The extension also adds a resume method to [game](@@game@@), to be able to resume the application
+ * The extension also adds a **resume** method to [game](@@game@@), to be able to resume the application
  * manually after pausing.
  *
- * ### This Extension add an event [game](@@game@@) can hook into:
+ * ### This Extension adds an event [game](@@game@@) can hook into:
  *
  * * ### **resume** 
  * When the application is resumed manually

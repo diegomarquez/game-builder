@@ -42,14 +42,12 @@
  * timer.on(timer.COMPLETE, function() {});
  * ```
  *
- * 
  * ### **stop**
  * When a timer is stopped.
  * 
  * ``` javascript  
  * timer.on(timer.STOP, function() {});
  * ```
- *
  * 
  * ### **reset**
  * When a timer is reset.
@@ -57,7 +55,6 @@
  * ``` javascript  
  * timer.on(timer.RESET, function() {});
  * ```
- *
  * 
  * ### **pause**
  * When a timer is paused.
@@ -65,7 +62,6 @@
  * ``` javascript  
  * timer.on(timer.PAUSE, function() {});
  * ```
- *
  * 
  * ### **resume**
  * When a timer is resumed.
@@ -73,16 +69,13 @@
  * ``` javascript  
  * timer.on(timer.RESUME, function() {});
  * ```
- *
  * 
  * ### **remove**
  * When a timer is removed from the factory register.
  * 
  * ``` javascript  
  * timer.on('remove' function() {});
- * ```
- *
- * 
+ * ``` 
  */
 
 /**
@@ -102,8 +95,10 @@ define(function(require) {
 	};
 
 	/**
-	 * <p style='color:#AD071D'><strong>get</strong> Creates a new instance of a Timer.</p>
+	 * <p style='color:#AD071D'><strong>get</strong></p>
 	 *
+	 * Creates a new instance of a Timer.
+	 * 
 	 * After creating it, it saves it into an array. It will also create a property in the **owner** 
 	 * giving it the name **propertyName**. 
 	 * 
@@ -180,9 +175,10 @@ define(function(require) {
 	}
 
 	/**
-	 * <p style='color:#AD071D'><strong>getChangeObject</strong> Private method, but important enough 
-	 * to document.</p>
+	 * <p style='color:#AD071D'><strong>getChangeObject</strong></p>
 	 *
+	 * Private method, but important enough to document.
+	 * 
 	 * This method returns on object with methods to filter which timers 
 	 * should move to a new state.
 	 * 
@@ -271,7 +267,10 @@ define(function(require) {
 		},
 
 		/**
-		 * <p style='color:#AD071D'><strong>on</strong> Wrapper to <a href=@@delegate@@>delegate</a> method of the same name</p>
+		 * <p style='color:#AD071D'><strong>on</strong></p>
+		 *
+		 * Wrapper to <a href=@@delegate@@>delegate</a> method of the same name
+		 * 
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Function} callback Function you want to execute
 		 * @param  {Boolean} [removeOnExecute=false] The function will be removed from the corresponding list, after executing it once
@@ -285,7 +284,9 @@ define(function(require) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>configure</strong> Configures the timer.</p>
+		 * <p style='color:#AD071D'><strong>configure</strong></p>
+		 *
+		 * Configures the timer.
 		 *		 
 		 * ``` javascript  
 		 * timer.configure({
@@ -301,7 +302,7 @@ define(function(require) {
 		 * });
 		 * ```
 		 *
-		 * @param  {Object} options An object with all the options t        
+		 * @param  {Object} options An object with all the options to configure a timer        
 		 */
 		configure: function(options) {
 			if (!options.hasOwnProperty('delay')) { options['delay'] = this._delay;	}
@@ -317,7 +318,9 @@ define(function(require) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>start</strong> Starts the time
+		 * <p style='color:#AD071D'><strong>start</strong></p> 
+		 * 
+		 * Starts the timer.
 		 */
 		start: function(resumeTime) {
 			if (this.isRunning || this.isPaused) {
@@ -368,7 +371,9 @@ define(function(require) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>stop</strong> Stops the timer.</p>
+		 * <p style='color:#AD071D'><strong>stop</strong></p>
+		 *
+		 * Stops the timer. 
 		 *
 		 * Resets everything else. Starting the timer again will do so from the beginning.
 		 */
@@ -388,8 +393,10 @@ define(function(require) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>reset</strong> Resets the timer.</p>
+		 * <p style='color:#AD071D'><strong>reset</strong></p>
 		 *
+		 * Resets the timer.
+		 * 
 		 * Short cut for **stop** followed by **play**
 		 */
 		reset: function() {
@@ -403,8 +410,10 @@ define(function(require) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>pause</strong> Pause the timer.</p>
+		 * <p style='color:#AD071D'><strong>pause</strong></p>
 		 *
+		 * Pause the timer.
+		 * 
 		 * Pause the timer until the **resume** method is called.
 		 */
 		pause: function() {
@@ -424,7 +433,9 @@ define(function(require) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>resume</strong> Resume if pause
+		 * <p style='color:#AD071D'><strong>resume</strong></p> 
+		 *
+		 * Resume if paused.
 		 */
 		resume: function() {
 			if (!this.isRunning && !this.isPaused) {
@@ -442,9 +453,11 @@ define(function(require) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>remove</strong> Stop the timer and remove it from the factory register.</p>
+		 * <p style='color:#AD071D'><strong>remove</strong></p>
 		 *
-		 * Other less obvious behaviour is that it deletes the timer from the **owner** set
+		 * Stop the timer and remove it from the factory register.
+		 * 
+		 * Other less obvious behaviour is that it deletes the timer from the **owner**, set
 		 * when constructing this instance.
 		 *
 		 * It also nulls every property of the object, setting it up for garbage collection.
@@ -468,12 +481,16 @@ define(function(require) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>Delay</strong> Sets the delay of the timer.</p>
+		 * <p style='color:#AD071D'><strong>Delay</strong></p>
 		 *
-		 * This method returns the __'this'__ so it is possible to concatenate it.
+		 * Sets the delay of the timer.
+		 * 
+		 * This method returns _'this'_ so it is possible to concatenate it.
 		 * This method is used internally by **configure**
 		 * 
 		 * @param {Number} d Delay amount in milliseconds
+		 *
+		 * @return {Object} Itself
 		 */
 		Delay: function(d) {
 			canModify()
@@ -487,12 +504,16 @@ define(function(require) {
 		 */
 		
 		/**
-		 * <p style='color:#AD071D'><strong>RepeateCount</strong> Sets the repeateCount of the timer.</p>
+		 * <p style='color:#AD071D'><strong>RepeateCount</strong></p>
 		 *
-		 * This method returns the __'this'__ so it is possible to concatenate it.
+		 * Sets the repeateCount of the timer.
+		 * 
+		 * This method returns the _'this'_ so it is possible to concatenate it.
 		 * This method is used internally by **configure**
 		 * 
 		 * @param {Number} d Amount of times this timer should be repeated before completing.
+		 *
+		 * @return {Object} Itself
 		 */
 		RepeateCount: function(r) {
 			canModify()
@@ -506,13 +527,17 @@ define(function(require) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>RemoveOnComplete</strong> Whether to remove the timer 
-		 * from the factory register when complete.</p>
+		 * <p style='color:#AD071D'><strong>RemoveOnComplete</strong></p>
 		 *
-		 * This method returns the __'this'__ so it is possible to concatenate it.
+		 * Whether to remove the timer 
+		 * from the factory register when complete.
+		 * 
+		 * This method returns the _'this'_ so it is possible to concatenate it.
 		 * This method is used internally by **configure**
 		 * 
 		 * @param {Boolean} r Wheter to keep or remove the timer when it is done.
+		 *
+		 * @return {Object} Itself
 		 */
 		RemoveOnComplete: function(r) {
 			canModify()

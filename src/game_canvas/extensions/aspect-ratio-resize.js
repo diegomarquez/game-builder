@@ -26,7 +26,7 @@
 define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
 	var AspectRatioResize = Extension.extend({
 		type: function() {
-			// Notice the use of the constant CREATE defined in [game](@@game@@)
+			// Notice the use of the constant CREATE defined in [game](@@game@@),
 			// to define this extension should be executed on creation.
 			return Gb.game.CREATE;
 		},

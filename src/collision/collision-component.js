@@ -36,8 +36,10 @@ define(['component', 'collision-resolver'], function(Component, CollisionResolve
 
 	var CollisionComponent = Component.extend({
 		/**
-		 * <p style='color:#AD071D'><strong>start</strong> Setup the component.</p>
+		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
+		 * Setup the component.
+		 * 
 		 * The main thing here is that the component 
 		 * adds itself to the [collision-resolver](@@collision-resolver@@)
 		 *	
@@ -58,12 +60,13 @@ define(['component', 'collision-resolver'], function(Component, CollisionResolve
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>update</strong> Here is where the magic happens.</p>
+		 * <p style='color:#AD071D'><strong>update</strong></p>
 		 *
+		 * Here is where the magic happens.
+		 * 
 		 * The [collision-resolver](@@collision-resolver@@) will test this collider against
 		 * all other registered colliders that are supposed to collide against it. If there is a collision
 		 * A bunch of callbacks will be executed notifying the objects involved.
-		 * 
 		 */
 		update: function() {
 			collisionList = CollisionResolver.collisionLists[this.id];
@@ -95,8 +98,11 @@ define(['component', 'collision-resolver'], function(Component, CollisionResolve
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>onCollide</strong> This will be executed if there is a collision</p>
-		 * @param  {[game-object](@@game-object@@)} other The other [game-object](@@game-object@@) involved in the collision.
+		 * <p style='color:#AD071D'><strong>onCollide</strong></p>
+		 *
+		 * This will be executed if there is a collision.
+		 * 
+		 * @param  {Object} other The other [game-object](@@game-object@@) involved in the collision.
 		 */
 		onCollide: function(other) {
 			this.debugColor = "#FF0000";
@@ -106,7 +112,9 @@ define(['component', 'collision-resolver'], function(Component, CollisionResolve
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>debug_draw</strong> This is redifined by objects extending this one.</p>
+		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
+		 *
+		 * This is redifined by objects extending this one.
 		 */
 		debug_draw: function() {
 			this.debugColor = "#FFFFFF";
@@ -116,8 +124,10 @@ define(['component', 'collision-resolver'], function(Component, CollisionResolve
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>destroy</strong> Destroys the component.</p>
+		 * <p style='color:#AD071D'><strong>destroy</strong></p>
 		 *
+		 * Destroys the component.
+		 * 
 		 * Asides from resetting some properties the component removes itself
 		 * from the [collision-resolver](@@collision-resolver@@)
 		 */
@@ -134,5 +144,4 @@ define(['component', 'collision-resolver'], function(Component, CollisionResolve
 	});
 
 	return CollisionComponent;
-
 });
