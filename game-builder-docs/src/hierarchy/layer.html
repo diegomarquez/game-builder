@@ -10,13 +10,13 @@
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module defines a special kind of <a href="@@game-object container@@">game-object container</a>.</p>
+<p>This module defines a special kind of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>.</p>
 
 <p>It's only purpose it be used by <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html">layers</a> as a way to organize visual
 elements in a way that makes sense.</p>
 
 <p>It behaives exactly like a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> except
-for the fact it redefines the <strong>clear</strong> method so that it only removed all children.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="visual-organization">Visual organization</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;game-object-container&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Container</span><span class="p">){</span>
+for the fact it redefines the <strong>clear</strong> method so that it only removes all children.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="visual-organization">Visual organization</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;game-object-container&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Container</span><span class="p">){</span>
   <span class="kd">var</span> <span class="nx">Layer</span> <span class="o">=</span> <span class="nx">Container</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>clear</strong></p>
 
 <p>This is normally called through <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html">layers</a> to empty a 

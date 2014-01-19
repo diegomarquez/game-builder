@@ -14,10 +14,10 @@
  * This module defines an extension that uses [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html) to halt all update activity
  * when the application looses focus.
  *
- * The extension also adds a pause method to [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html) to be able to pause the application
+ * The extension also adds a **pause** method to [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html) to be able to pause the application
  * manually.
  *
- * ### This Extension add an event [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html) can hook into: 
+ * ### This Extension adds an event [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html) can hook into: 
  *
  * ### **pause** 
  * When the application is paused manually

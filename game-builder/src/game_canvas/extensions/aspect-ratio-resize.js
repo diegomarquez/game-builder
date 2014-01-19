@@ -26,7 +26,7 @@
 define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
 	var AspectRatioResize = Extension.extend({
 		type: function() {
-			// Notice the use of the constant CREATE defined in [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html)
+			// Notice the use of the constant CREATE defined in [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html),
 			// to define this extension should be executed on creation.
 			return Gb.game.CREATE;
 		},

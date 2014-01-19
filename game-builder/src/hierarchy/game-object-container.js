@@ -9,15 +9,15 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This modules defines a container for [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) objects, which in turn
+ * This modules defines a container for [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html), which in turn
  * is a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) itself. Being a parent means that all of it's child
  * [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) will follow it according to it's transformation matrix.
  *
  * It's a pretty usefull behaviour to form more complex displays out of smaller, more manageable 
  * pieces. 
  *
- * A note on drawing, a container will execute it's renderer code, and then the rendering code
- * of it's children. Than means that the parent drawing will show up, below it's children's.
+ * A note on drawing: A container will execute it's renderer code, and then the rendering code
+ * of it's children. This means that the parent drawing will show up, below it's children's.
  *
  * Asides from that, a container is no different to a regular [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html),
  * so go look at that part of the documentation for more details on every method here.
@@ -63,7 +63,7 @@ define(["game-object"], function(GameObject){
 		 * If the child already is part of another parent, it is removed from it
 		 * and added to this one.
 		 * 
-		 * @param {[game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)} The child to add
+		 * @param {Object} The child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to add
 		 */
 		add: function(child) {
 			if(!child) return;
@@ -89,7 +89,7 @@ define(["game-object"], function(GameObject){
 		 *
 		 * Removed a child from this container.
 		 * 
-		 * @param {[game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)} The child to remove
+		 * @param {Object} The child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to remove
 		 */
 		remove: function(child) {
 			if(!child) return;
@@ -109,7 +109,7 @@ define(["game-object"], function(GameObject){
 		 *
 		 * Updates all of it's children.
 		 * 
-		 * @param  {[type]} delta Time ellapsed since the last update
+		 * @param  {Number} delta Time ellapsed since the last update
 		 */
 		update: function(delta) {
 			if(!this.childs) return;
@@ -144,7 +144,7 @@ define(["game-object"], function(GameObject){
 		 *
 		 * It does so after drawing itself.
 		 * 
-		 * @param  {Context 2D} context Context 2D property of the canvas
+		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 */
 		transformAndDraw: function(context) {
 			context.save();
@@ -199,7 +199,7 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>clear</strong></p>
 		 *
-		 * Calls the clear method on on each child, and then on it self.
+		 * Calls the clear method on each child, and then on it self.
 		 * It also removes all the childs.
 		 */
 		clear: function() {

@@ -15,9 +15,10 @@
 <p>In any given <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a> application
 this is is the only <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> that is updated
 explicitly in the main update loop. As it is updated and rendered, it will update and render all of its 
-children, who will in turn update and render their childs, so on and so forth.</p>
+children, who will in turn update and render their childs, until everything has been updated
+and renderer.</p>
 
-<p>If you where wonderin this is where the screen is cleared before each update cycle. 
+<p>If you where wondering, this is where the screen is cleared before each update cycle. 
 It is possible to manipulate this object as any other <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>, 
 but that is probably not a good idea :P</p>
 
@@ -31,7 +32,7 @@ it's children, which will in turn do the same for their children.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><strong>context must be a Context 2D.</strong><br/>(Context 2D property of the Canvas)</li>
+<li><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">transformAndDraw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">context</span><span class="p">.</span><span class="nx">setTransform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
       <span class="nx">context</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">context</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">context</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>

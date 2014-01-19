@@ -1556,8 +1556,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                           "type": "heading",
                           "data": {
                             "level": 3,
-                            "title": "Defined keyboard constants",
-                            "slug": "defined-keyboard-constants"
+                            "title": "Defined keycodes",
+                            "slug": "defined-keycodes"
                           },
                           "depth": 3
                         }, {
@@ -1598,8 +1598,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "Defined keyboard constants",
-                        "slug": "defined-keyboard-constants"
+                        "title": "Defined keycodes",
+                        "slug": "defined-keycodes"
                       },
                       "depth": 3
                     }, {

@@ -18,12 +18,12 @@
  * [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) as they were configured in the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
  * and [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html) respectively. 
  *
- * In addition you are able to override the configured arguments, or a new ones when you
+ * In addition you are able to override the configured arguments, or add new ones when you
  * request a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html). When a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) is
  * put together the necessary callbacks are setup so that it and it's components return to their
- * respective pools for reuse.
+ * respective pools for reuse when they are no longer needed.
  *
- * The object responsible for recycling [game-objects](@@game-objects@@) is the [reclaimer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html).
+ * The object responsible for recycling [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) is [reclaimer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html).
  */
 
 /**
@@ -68,7 +68,7 @@ define(['game-object-pool', 'component-pool', 'util'], function(GameObjectPool, 
 	 * @param  {Object} [args=null]       All the properties in this object will be copied to the assembled object. 
 	 * @param  {Boolean} [nestedCall=false] This argument is reserved for internal use. It defaults to false, but you can see what happens if you set it to true :P 
 	 *
-	 * @throws {Error} If a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) was configured to have childs. Only [game-object-containers](@@game-object-containers@@) can have nested childs
+	 * @throws {Error} If a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) was configured to have childs. Only [game-object-containers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html) can have nested childs
 	 * 
 	 * @return {Object} A [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) ready to be used
 	 */

@@ -65,7 +65,9 @@ to figure out how to use them.</p></div></div></div><div class="segment"><div cl
     <span class="nx">channel</span><span class="p">.</span><span class="nx">time</span> <span class="o">=</span> <span class="nx">audio</span><span class="p">.</span><span class="nx">duration</span><span class="p">;</span>
 
     <span class="nx">channel</span><span class="p">.</span><span class="nx">load</span><span class="p">();</span>
-  <span class="p">}</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>createChannels</strong> This will create the specified amount
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>createChannels</strong></p>
+
+<p>This will create the specified amount
 of channels. A channel is an instance of the <a href="http://www.w3schools.com/html/html5_audio.asp">HTML5 Audio Object</a>.
 Created channels are stored in an array so they can be re-used when idle.</p>
 
@@ -81,7 +83,9 @@ Created channels are stored in an array so they can be re-used when idle.</p>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">pooledChannels</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">channel</span><span class="p">);</span>
     <span class="p">}</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong> Use this method add files that should be loaded 
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong></p>
+
+<p>Use this method to files that should be loaded 
 when <strong>loadAll</strong> is called.</p>
 
 <p>Parameters:</p>
@@ -91,7 +95,9 @@ when <strong>loadAll</strong> is called.</p>
 <li><p><strong>path must be a String.</strong><br/>(A path to a sound file. Can be relative or absolute)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">audioAssetPaths</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">path</span><span class="p">;</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>loadAll</strong> Will load all the sounds that were added previously using <strong>add</strong>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>loadAll</strong></p>
+
+<p>Will load all the sounds that were added previously using <strong>add</strong>
 when all the loading is complete a callback is executed.</p>
 
 <p>Parameters:</p>
@@ -134,7 +140,9 @@ when all the loading is complete a callback is executed.</p>
 
       <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">audio</span><span class="p">);</span>
     <span class="p">}</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>playSingle</strong> Plays a sound 1 time.</p>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>playSingle</strong></p>
+
+<p>Plays a sound 1 time.</p>
 
 <p>Parameters:</p>
 
@@ -165,7 +173,9 @@ when all the loading is complete a callback is executed.</p>
 
       <span class="nx">channel</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
     <span class="p">});</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>playLoop</strong> Plays a sound continuosly, until it is stopped manually.</p>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>playLoop</strong></p>
+
+<p>Plays a sound continuosly, until it is stopped manually.</p>
 
 <p>Parameters:</p>
 
@@ -189,7 +199,9 @@ when all the loading is complete a callback is executed.</p>
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">pauseChannel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">channel</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">pause</span><span class="p">();</span>
     <span class="nx">channel</span><span class="p">.</span><span class="nx">pause</span><span class="p">();</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>pause</strong> Pauses all the channels playing a sound with the given id.</p>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>pause</strong></p>
+
+<p>Pauses all the channels playing a sound with the given id.</p>
 
 <p>Parameters:</p>
 
@@ -203,7 +215,9 @@ when all the loading is complete a callback is executed.</p>
         <span class="nx">pauseChannel</span><span class="p">(</span><span class="nx">channel</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>pauseAll</strong> Pauses all playing channels registered with the player.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">pauseAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>pauseAll</strong></p>
+
+<p>Pauses all playing channels registered with the player.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">pauseAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">pauseChannel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
     <span class="p">}</span>
@@ -217,7 +231,9 @@ when all the loading is complete a callback is executed.</p>
 
     <span class="k">this</span><span class="p">.</span><span class="nx">pooledChannels</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">channel</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>stop</strong> Stops all the channels playing a sound with the given id.</p>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>stop</strong></p>
+
+<p>Stops all the channels playing a sound with the given id.</p>
 
 <p>Parameters:</p>
 
@@ -231,14 +247,18 @@ when all the loading is complete a callback is executed.</p>
         <span class="nx">stopChannel</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">channel</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>stopAll</strong> Stops all channels registered with the player.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">stopAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>stopAll</strong></p>
+
+<p>Stops all channels registered with the player.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">stopAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">stopChannel</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">i</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">resumeChannel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">channel</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
     <span class="nx">channel</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">resume</span><span class="p">();</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resume</strong> Resumes all the channels paused with the given id.</p>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resume</strong></p>
+
+<p>Resumes all the channels paused with the given id.</p>
 
 <p>Parameters:</p>
 
@@ -252,7 +272,9 @@ when all the loading is complete a callback is executed.</p>
         <span class="nx">resumeChannel</span><span class="p">(</span><span class="nx">channel</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>resumeAll</strong> Resumes all paused channels.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">resumeAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>resumeAll</strong></p>
+
+<p>Resumes all paused channels.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">resumeAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">resumeChannel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
     <span class="p">}</span>

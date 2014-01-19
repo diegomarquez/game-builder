@@ -21,7 +21,7 @@
  * anymore if it is requested. Instead it will throw an error
  * saying that there are no more [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) of that type available.
  *
- * Unlike [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html), [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) don't make sense by themselves, so
+ * Unlike [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html), [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) don't make sense by themselves, so
  * you don't specify the maximun amount of them you want, like you do with the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html). 
  * Instead [components](@@components@@) will be created as needed. Since [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html),
  * can not exists outside of a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html), when the cap on [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
@@ -47,7 +47,7 @@
  * a single instance of _'someComponentPrototypeObject'_, but it might be configured with the arguments
  * for any of those configurations at the moment it is requested.
  *
- * This is usefull to avoid having too many idling instances at the same time.
+ * This is usefull to avoid having too many idling instances of the same type at the same time.
  */
 
 /**
@@ -122,7 +122,6 @@ define(function(require) {
 		 * Gets a configuration for the requested [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html).
 		 *
 		 * @param  {String} alias      Id of the [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) requested
-		 * @param  {Boolean} [nestedCall=false] Internal argument
 		 *
 		 * @throws {Error} If the corresponding pool has no available objects
 		 * @return {Object} The configuration object requested

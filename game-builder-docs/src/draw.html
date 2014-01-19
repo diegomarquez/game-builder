@@ -14,12 +14,15 @@
 Not by much though, it's still pretty painfull. Believe me, I did I wrote a whole game only relaying
 on it for graphics <a href="http://www.treintipollo.com/tirador/index.html">SHAMELESS SELF PUBLICITY</a></p>
 
-<p>There are some stuff missing, like individual method to wrap quadratic and cubic curves. 
+<p>There are some stuff missing, like individual method to wrap quadratic and cubic curves. There
+are no helpers to draw a single line either.
 These methods are hopefully to just ilustrate an idea and you won't be relying on them to get serious things done.</p>
 
 <p><strong>A note on all methods. If you don't specify a fill color, a stroke color or a line width, the current value set
 in the context will be used.</strong></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="doodling-time">Doodling time</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">DrawUtils</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>circle</strong> Well... you can draw a circle.</p>
+  <span class="kd">var</span> <span class="nx">DrawUtils</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>circle</strong></p>
+
+<p>Well... you can draw a circle.</p>
 
 <p>Parameters:</p>
 
@@ -42,7 +45,9 @@ in the context will be used.</strong></p></div></div></div><div class="segment">
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fill</span><span class="p">();</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
-  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rectangle</strong> A rectangle, yeah!</p>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rectangle</strong></p>
+
+<p>A rectangle, yeah!</p>
 
 <p>Parameters:</p>
 
@@ -66,7 +71,9 @@ in the context will be used.</strong></p></div></div></div><div class="segment">
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fill</span><span class="p">();</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
-  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>triangle</strong> A triangle. This is getting interesting. Points of the triangle are drawn clock-wise.</p>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>triangle</strong></p>
+
+<p>A triangle. This is getting interesting. Points of the triangle are drawn clock-wise.</p>
 
 <p>Parameters:</p>
 
@@ -115,7 +122,9 @@ in the context will be used.</strong></p></div></div></div><div class="segment">
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fill</span><span class="p">();</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
-  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>quadraticTriangle</strong> This one is pretty weird. It lets you define a triangle, with each side being drawn as a quadratic curve. Looks neat!
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>quadraticTriangle</strong></p>
+
+<p>This one is pretty weird. It lets you define a triangle, with each side being drawn as a quadratic curve. Looks neat!
 You might want to look into what a <a href="http://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B.C3.A9zier_curves">quadratic curve</a> is.</p>
 
 <p>Parameters:</p>
@@ -184,7 +193,9 @@ You might want to look into what a <a href="http://en.wikipedia.org/wiki/B%C3%A9
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fill</span><span class="p">();</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
-  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>polygon</strong> This one is pretty usefull. Send in an array of points and lines will be ploted clock-wise to form the polygon.</p>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>polygon</strong> </p>
+
+<p>This one is pretty usefull. Send in an array of points and lines will be ploted clock-wise to form the polygon.</p>
 
 <p>Parameters:</p>
 
@@ -216,7 +227,9 @@ You might want to look into what a <a href="http://en.wikipedia.org/wiki/B%C3%A9
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fill</span><span class="p">();</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
-  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>quadraticPolygon</strong> This is like the polygon but the lines between vertexes are drawn as quadratic curves.</p>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>quadraticPolygon</strong></p>
+
+<p>This is like the polygon but the lines between vertexes are drawn as quadratic curves.</p>
 
 <p>Parameters:</p>
 

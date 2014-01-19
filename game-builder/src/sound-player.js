@@ -78,9 +78,12 @@ define(['timer-factory'], function(timerFactory) {
 	}
 
 	/**
-	 * <p style='color:#AD071D'><strong>createChannels</strong> This will create the specified amount
+	 * <p style='color:#AD071D'><strong>createChannels</strong></p>
+	 *
+	 * This will create the specified amount
 	 * of channels. A channel is an instance of the <a href="http://www.w3schools.com/html/html5_audio.asp">HTML5 Audio Object</a>.
-	 * Created channels are stored in an array so they can be re-used when idle.</p>
+	 * Created channels are stored in an array so they can be re-used when idle.
+	 * 
 	 * @param  {Number} amount The amount of channels to create 
 	 */
 	SoundPlayer.prototype.createChannels = function(amount) {
@@ -97,8 +100,11 @@ define(['timer-factory'], function(timerFactory) {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>add</strong> Use this method add files that should be loaded 
-	 * when <strong>loadAll</strong> is called.</p>
+	 * <p style='color:#AD071D'><strong>add</strong></p>
+	 *
+	 * Use this method to files that should be loaded 
+	 * when <strong>loadAll</strong> is called.
+	 * 
 	 * @param {String} id Use this identifier to later play the loaded sound  
 	 * @param {String} path A path to a sound file. Can be relative or absolute
 	 */
@@ -110,8 +116,11 @@ define(['timer-factory'], function(timerFactory) {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>loadAll</strong> Will load all the sounds that were added previously using <strong>add</strong>
-	 * when all the loading is complete a callback is executed.</p>
+	 * <p style='color:#AD071D'><strong>loadAll</strong></p>
+	 *
+	 * Will load all the sounds that were added previously using <strong>add</strong>
+	 * when all the loading is complete a callback is executed.
+	 * 
 	 * @param  {Function} onComplete Function to execute once all the loading is complete
 	 * @throws {Error} If it is already loading files          
 	 */
@@ -155,7 +164,10 @@ define(['timer-factory'], function(timerFactory) {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>playSingle</strong> Plays a sound 1 time.</p>
+	 * <p style='color:#AD071D'><strong>playSingle</strong></p>
+	 *
+	 * Plays a sound 1 time.
+	 * 
 	 * @param  {String} id Id of the sound to play
 	 * @param  {Function} onComplete This will be executed when the sound completes playing      
 	 */
@@ -189,7 +201,10 @@ define(['timer-factory'], function(timerFactory) {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>playLoop</strong> Plays a sound continuosly, until it is stopped manually.</p>
+	 * <p style='color:#AD071D'><strong>playLoop</strong></p>
+	 *
+	 * Plays a sound continuosly, until it is stopped manually.
+	 * 
 	 * @param  {String} id Id of the sound to play
 	 */
 	SoundPlayer.prototype.playLoop = function(id) {
@@ -218,7 +233,10 @@ define(['timer-factory'], function(timerFactory) {
 	};
 
 	/**
-	 * <p style='color:#AD071D'><strong>pause</strong> Pauses all the channels playing a sound with the given id.</p>
+	 * <p style='color:#AD071D'><strong>pause</strong></p>
+	 *
+	 * Pauses all the channels playing a sound with the given id.
+	 * 
 	 * @param  {String} id Id of the sound to pause 
 	 */
 	SoundPlayer.prototype.pause = function(id) {
@@ -235,7 +253,9 @@ define(['timer-factory'], function(timerFactory) {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>pauseAll</strong> Pauses all playing channels registered with the player.</p>
+	 * <p style='color:#AD071D'><strong>pauseAll</strong></p>
+	 *
+	 * Pauses all playing channels registered with the player.
 	 */
 	SoundPlayer.prototype.pauseAll = function() {
 		for (var i = 0; i < this.activeChannels.length; i++) {
@@ -259,7 +279,10 @@ define(['timer-factory'], function(timerFactory) {
 	};
 
 	/**
-	 * <p style='color:#AD071D'><strong>stop</strong> Stops all the channels playing a sound with the given id.</p>
+	 * <p style='color:#AD071D'><strong>stop</strong></p>
+	 *
+	 * Stops all the channels playing a sound with the given id.
+	 * 
 	 * @param  {String} id Id of the sound to stop 
 	 */
 	SoundPlayer.prototype.stop = function(id) {
@@ -276,7 +299,9 @@ define(['timer-factory'], function(timerFactory) {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>stopAll</strong> Stops all channels registered with the player.</p>
+	 * <p style='color:#AD071D'><strong>stopAll</strong></p>
+	 *
+	 * Stops all channels registered with the player.
 	 */
 	SoundPlayer.prototype.stopAll = function() {
 		for (var i = this.activeChannels.length - 1; i >= 0; i--) {
@@ -293,7 +318,10 @@ define(['timer-factory'], function(timerFactory) {
 	};
 
 	/**
-	 * <p style='color:#AD071D'><strong>resume</strong> Resumes all the channels paused with the given id.</p>
+	 * <p style='color:#AD071D'><strong>resume</strong></p>
+	 *
+	 * Resumes all the channels paused with the given id.
+	 * 
 	 * @param  {String} id Id of the sound to stop   
 	 */
 	SoundPlayer.prototype.resume = function(id) {
@@ -310,7 +338,9 @@ define(['timer-factory'], function(timerFactory) {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>resumeAll</strong> Resumes all paused channels.</p>
+	 * <p style='color:#AD071D'><strong>resumeAll</strong></p>
+	 *
+	 * Resumes all paused channels.
 	 */
 	SoundPlayer.prototype.resumeAll = function() {
 		for (var i = 0; i < this.activeChannels.length; i++) {

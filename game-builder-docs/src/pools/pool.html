@@ -13,8 +13,8 @@
 <p>This module defines the base object from which <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a> are extended from.</p>
 
-<p>These pools create objects dynamically when requested, when one of those objects is 
-not needed in it's current state anymore
+<p>These pools create objects dynamically when requested. When one of those objects is 
+not needed in it's current state anymore,
 it is recycled. Instead of destroying the reference it is sent back to the corresponding pool, so it
 can be picked up again and refurbished later. </p>
 
@@ -32,14 +32,14 @@ of places. </p>
 <p>A less obvious advantage of preconfiguring objects, is that you avoid creating small dynamic
 objects that will most likely be used in the initialization of other larger dynamic objects.</p>
 
-<p>Generally speaking pooling is very usefull because it frees CPU time from the burden of allocating
+<p>Generally speaking, pooling is very usefull because it frees CPU time from the burden of allocating
 and deallocating memory every single time you want something new. In the case of Garbage Collected
 environments, like a Javascript virtual machine, pooling should also reduce the time spent
 by the Garbage Collector doing it's thing. Which is good.</p>
 
 <p>Pooling objects is good and all, but it is probably not a good idea to pool absolutely everything
 you will need in the entire life span of an application, unless it is a small one. For that reason
-it is possible to clear pools, and repopulate them.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="pooling">Pooling</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;util&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">util</span><span class="p">)</span> <span class="p">{</span>
+it is possible to clear and repopulate pools.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="pooling">Pooling</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;util&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">util</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">Pool</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">pools</span> <span class="o">=</span> <span class="p">{};</span>
@@ -104,7 +104,9 @@ of the type of the objects it contains.</p></div></div><div class="code"><div cl
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">active</span><span class="p">[</span><span class="nx">alias</span><span class="p">];</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getAllActiveObjects</strong></p>
 
-<p><strong>Returns a [type]</strong><br/>([description])</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getAllActiveObjects</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Gets all the active <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> instances.</p>
+
+<p><strong>Returns an Object</strong><br/>(All the different types of active <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getAllActiveObjects</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">active</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>returnToPool</strong></p>
 
@@ -155,7 +157,7 @@ a maximun amount when created.</p>
 
 <p>Get a pooled object, the object to be returned is added to the collection
 of active objects. This method is mainly used by the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html">assembler</a>
-module when putting together <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p>
+module when putting together <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>.</p>
 
 <p>Parameters:</p>
 
@@ -198,7 +200,7 @@ used by the <a href="http://diegomarquez.github.io/game-builder/game-builder-doc
       <span class="k">this</span><span class="p">.</span><span class="nx">active</span> <span class="o">=</span> <span class="p">{};</span> 
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>toString</strong></p>
 
-<p>Return a string representation of the pool, for debugging purposes.</p>
+<p>Return a string representation of the pool. For debugging purposes.</p>
 
 <p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">toString</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">{</span>

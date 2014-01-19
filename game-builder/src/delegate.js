@@ -16,7 +16,7 @@
  *
  * It works fine and is very usefull. The basic workflow is the following:
  * 
- * Add functions using <strong>on</strong>, always providing an id and for the function.
+ * Add functions using <strong>on</strong>, always providing an id and a scope for each function.
  * At some point in the future call the method <strong>execute</strong>, passing an id. 
  * All the functions registered under the id provided will be executed in the order they were added.
  */
@@ -40,7 +40,10 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>on</strong> Use it to add functions.</p>
+		 * <p style='color:#AD071D'><strong>on</strong></p>
+		 *
+		 * Use to register functions under the given id.
+		 * 
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'
 		 * @param  {Function} callback Function you want to execute
@@ -76,10 +79,13 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>remove</strong> Removes the specified function from the array it is in.</p>
+		 * <p style='color:#AD071D'><strong>remove</strong></p>
+		 *
+		 * Removes the specified function from the array it is in.
+		 * 
 		 * @param  {String}   name Id the funtion you want to remove is associated with
-		 * @param  {Object}   scope Scope used when adding the function to the delegate
-		 * @param  {Function} callback Function you want to remove from the delegate
+		 * @param  {Object}   scope Scope used when adding the function
+		 * @param  {Function} callback Function you want to remove
 		 */
 		remove: function(name, scope, callback) {
 			this.list = this.callbackList[name];
@@ -99,8 +105,11 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>removeAll</strong> Removes all the funtions associated with an id.</p>
-		 * @param  {String} name All funtions matching this Id will be removed from the delegate
+		 * <p style='color:#AD071D'><strong>removeAll</strong></p>
+		 *
+		 * Removes all the functions associated with an id.
+		 * 
+		 * @param  {String} name All functions matching this Id will be removed
 		 */
 		removeAll: function(name) {
 			var list = this.callbackList[name];
@@ -116,7 +125,10 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>softCleanUp</strong> Removes every function in the delegate, except for the ones that were configured to be kept in <strong>on</strong>.</p>
+		 * <p style='color:#AD071D'><strong>softCleanUp</strong></p>
+		 *
+		 * Removes every function, 
+		 * except for the ones that were configured to be kept in **on**.
 		 */
 		softCleanUp: function() {
 			for (var k in this.callbackList) {
@@ -138,7 +150,9 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>hardCleanUp</strong> Removes every registered function.</p>
+		 * <p style='color:#AD071D'><strong>hardCleanUp</strong></p>
+		 *
+		 * Removes every registered function.
 		 */
 		hardCleanUp: function() {
 			for (var k in this.callbackList) {
@@ -150,7 +164,9 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>destroy</strong> Gets ready for garbage collection.</p>
+		 * <p style='color:#AD071D'><strong>destroy</strong></p>
+		 *
+		 * Gets ready for garbage collection.
 		 */
 		destroy: function() {
 			util.destroyObject(this);
@@ -160,9 +176,12 @@ define(["util", "class"], function(util) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>execute</strong> Use this to call all the methods registered using <strong>on</strong>.</p>
-		 * @param  {String} name All the funtions registered with the id provided will be executed
-		 * @param  {Object} args This Object will be passed as argument to all the funtions executed
+		 * <p style='color:#AD071D'><strong>execute</strong></p>
+		 *
+		 * Use this to call all the methods registered using **on**.
+		 * 
+		 * @param  {String} name All the functions registered with the id provided will be executed
+		 * @param  {Object} args This Object will be passed as argument to all the functions executed
 		 */
 		execute: function(name, args) {
 			this.list = this.callbackList[name];

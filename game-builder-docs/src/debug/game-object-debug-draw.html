@@ -10,11 +10,13 @@
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This is just used in <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to call the <strong>debug_draw</strong> method
+<p>This is  used in <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to call the <strong>debug_draw</strong> method
 of all the components. It also draws the registration point of the the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>
 calling the <strong>debugDraw</strong> method.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="visual-aid">Visual aid</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;draw&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">draw</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>debugDraw</strong> Draw info about <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html>game-object</a></p>
+  <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>debugDraw</strong></p>
+
+<p>Draw info about <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html>game-object</a>.</p>
 
 <p>This method only does something if the <strong>debug</strong> property is set to <strong>true</strong> in 
 the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> making the call.</p>
@@ -22,7 +24,7 @@ the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hi
 <p>Parameters:</p>
 
 <ul>
-<li><strong>context must be a Context 2D.</strong><br/>(Context 2D property of the Canvas.)</li>
+<li><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">debugDraw</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">debug</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">p</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getTransform</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">m</span><span class="p">);</span>

@@ -17,14 +17,16 @@ in <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a>, so I h
 
 <p>It works fine and is very usefull. The basic workflow is the following:</p>
 
-<p>Add functions using <strong>on</strong>, always providing an id and for the function.
+<p>Add functions using <strong>on</strong>, always providing an id and a scope for each function.
 At some point in the future call the method <strong>execute</strong>, passing an id. 
 All the functions registered under the id provided will be executed in the order they were added.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="totally-usefull">Totally usefull</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;util&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">util</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">Delegate</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">callbackList</span> <span class="o">=</span> <span class="p">{};</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">list</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>on</strong> Use it to add functions.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>on</strong></p>
+
+<p>Use to register functions under the given id.</p>
 
 <p>Parameters:</p>
 
@@ -57,14 +59,16 @@ All the functions registered under the id provided will be executed in the order
         <span class="nx">removeOnExecute</span><span class="o">:</span> <span class="nx">removeOnExecute</span><span class="p">,</span>
         <span class="nx">keep</span><span class="o">:</span> <span class="nx">keepOnCleanUp</span>
       <span class="p">});</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>remove</strong> Removes the specified function from the array it is in.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>remove</strong></p>
+
+<p>Removes the specified function from the array it is in.</p>
 
 <p>Parameters:</p>
 
 <ul>
 <li><p><strong>name must be a String.</strong><br/>(Id the funtion you want to remove is associated with)</p></li>
-<li><p><strong>scope must be an Object.</strong><br/>(Scope used when adding the function to the delegate)</p></li>
-<li><p><strong>callback must be a Function.</strong><br/>(Function you want to remove from the delegate)</p></li>
+<li><p><strong>scope must be an Object.</strong><br/>(Scope used when adding the function)</p></li>
+<li><p><strong>callback must be a Function.</strong><br/>(Function you want to remove)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">remove</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">scope</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">list</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">callbackList</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
 
@@ -77,12 +81,14 @@ All the functions registered under the id provided will be executed in the order
           <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
         <span class="p">}</span>
       <span class="p">}</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removeAll</strong> Removes all the funtions associated with an id.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removeAll</strong></p>
+
+<p>Removes all the functions associated with an id.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(All funtions matching this Id will be removed from the delegate)</li>
+<li><strong>name must be a String.</strong><br/>(All functions matching this Id will be removed)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">removeAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">callbackList</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
 
@@ -91,7 +97,10 @@ All the functions registered under the id provided will be executed in the order
         <span class="nx">list</span><span class="p">.</span><span class="nx">lenght</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
         <span class="nx">list</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
       <span class="p">}</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>softCleanUp</strong> Removes every function in the delegate, except for the ones that were configured to be kept in <strong>on</strong>.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">softCleanUp</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>softCleanUp</strong></p>
+
+<p>Removes every function, 
+except for the ones that were configured to be kept in <strong>on</strong>.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">softCleanUp</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">callbackList</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">list</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">callbackList</span><span class="p">[</span><span class="nx">k</span><span class="p">];</span>
 
@@ -105,19 +114,25 @@ All the functions registered under the id provided will be executed in the order
           <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">}</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>hardCleanUp</strong> Removes every registered function.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">hardCleanUp</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>hardCleanUp</strong></p>
+
+<p>Removes every registered function.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">hardCleanUp</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">callbackList</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">removeAll</span><span class="p">(</span><span class="nx">k</span><span class="p">);</span>
       <span class="p">}</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>destroy</strong> Gets ready for garbage collection.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>destroy</strong></p>
+
+<p>Gets ready for garbage collection.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="nx">util</span><span class="p">.</span><span class="nx">destroyObject</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>execute</strong> Use this to call all the methods registered using <strong>on</strong>.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>execute</strong></p>
+
+<p>Use this to call all the methods registered using <strong>on</strong>.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>name must be a String.</strong><br/>(All the funtions registered with the id provided will be executed)</p></li>
-<li><p><strong>args must be an Object.</strong><br/>(This Object will be passed as argument to all the funtions executed)</p></li>
+<li><p><strong>name must be a String.</strong><br/>(All the functions registered with the id provided will be executed)</p></li>
+<li><p><strong>args must be an Object.</strong><br/>(This Object will be passed as argument to all the functions executed)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">execute</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">list</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">callbackList</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
 

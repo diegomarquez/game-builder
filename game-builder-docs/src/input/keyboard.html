@@ -10,13 +10,14 @@
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module defines to interact with the keyboard. In similar fashion to <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/timer-factory.html">timer-factory</a>,
+<p>This module defines to interact with the keyboard. 
+In similar fashion to <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/timer-factory.html">timer-factory</a>,
 this module extends on existing behaviour to make it less annoying.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="the-keyboard">The Keyboard</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">pressed</span> <span class="o">=</span> <span class="p">{};</span>
 
   <span class="kd">var</span> <span class="nx">Keyboard</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;delegate&#39;</span><span class="p">).</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="defined-keyboard-constants">Defined keyboard constants</h3></div></div><div class="code"><div class="wrapper">      </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Not all the keys of the keyboard,
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="defined-keycodes">Defined keycodes</h3></div></div><div class="code"><div class="wrapper">      </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Not all the keys of the keyboard,
 but they should be more than enough
 for a <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a>
 project</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">LEFT</span> <span class="o">=</span> <span class="mi">37</span><span class="p">;</span>
@@ -45,9 +46,9 @@ project</p></div></div><div class="code"><div class="wrapper">      <span class=
       <span class="k">this</span><span class="p">.</span><span class="nx">NUM_2</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">NUM_3</span> <span class="o">=</span> <span class="mi">51</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">NUM_4</span> <span class="o">=</span> <span class="mi">52</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">NUM_5</span> <span class="o">=</span> <span class="mi">53</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>These constants are pretty usefull
+      <span class="k">this</span><span class="p">.</span><span class="nx">NUM_5</span> <span class="o">=</span> <span class="mi">53</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>These variables are pretty usefull
 to avoid having undescriptive names littered around the code.
-These should make pretty clear what you are trying to do, when you
+These should make pretty clear what you are trying to do when you
 use them. Plus it's easy to change them later down the road. </p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">GAME_LEFT</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">LEFT</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">GAME_RIGHT</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">RIGHT</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">GAME_UP</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">UP</span><span class="p">;</span>
@@ -114,7 +115,7 @@ use them. Plus it's easy to change them later down the road. </p></div></div><di
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>isKeyDown</strong></p>
 
 <p>This method is meant to be used in an update loop. It returns
-true of the specified key is pressed, false otherwise.</p>
+true if the specified key is pressed, false otherwise.</p>
 
 <p>Parameters:</p>
 

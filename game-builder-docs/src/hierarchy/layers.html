@@ -26,7 +26,7 @@
 it also is added to <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html">root</a>, which is what will actually make it
 display.</p>
 
-<p>On that subject, it is important to not that if you re arrange the elements
+<p>On that subject, it is important to not that if you re-arrange the elements
 of the array that the layer is added to, nothing will happen to the order of
 updating or rendering, as that is controlled by the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html">root</a>, which has
 a list of childs of it's own.</p>
@@ -47,8 +47,8 @@ a list of childs of it's own.</p>
 <p>Removes a layer from the array in this object, and also from the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html">root</a>.
 Prior to removing the layer it also clears it from any <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p>
 
-<p>A removed layer can not be used again, if you wish to just clear a layer
-you might want to use the <strong>clear</strong> method.</p>
+<p>A removed layer can not be used again, if you wish to just remove all <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
+from a layer you might want to use the <strong>clear</strong> method.</p>
 
 <p>Parameters:</p>
 
@@ -58,15 +58,11 @@ you might want to use the <strong>clear</strong> method.</p>
     <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">clear</span><span class="p">();</span>
     <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
     <span class="nx">root</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">name</span><span class="p">]);</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>clear</strong></p>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>clear</strong></p>
 
-<p>Clears a layer from all <a href="@@game-objects@@">game-objects</a></p>
+<p>Clears a layer from all <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p>
 
-<p>Parameters:</p>
-
-<ul>
-<li><strong>name must be a [type].</strong><br/>(Id of the layer to clear)</li>
-</ul></div></div><div class="code"><div class="wrapper">  <span class="nx">LayerContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">clear</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> 
+<p>A cleared layer can still be used to add more things to it.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">LayerContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">clear</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> 
     <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">clear</span><span class="p">();</span> 
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>get</strong></p>
 
@@ -86,10 +82,9 @@ you might want to use the <strong>clear</strong> method.</p>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span> 
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>stop</strong></p>
 
-<p>Stops updating and rendering everythin requested layer.
-For practical purposes this method, pauses and turn an entire layer invisible.</p>
-
-<p>A cleared layer can still be used to add more things to it.</p>
+<p>Stops updating and rendering everythin in the requested layer.
+For practical purposes this method pauses and makes invisible all the contents
+of a layer.</p>
 
 <p>Parameters:</p>
 
@@ -116,7 +111,7 @@ For practical purposes this method, pauses and turn an entire layer invisible.</
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the layer that should stop rendering.)</li>
+<li><strong>name must be a String.</strong><br/>(Id of the layer that should stop rendering)</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">LayerContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">stop_draw</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">canDraw</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resume_draw</strong></p>
 
 <p>Resumes rendering of the specified layer. </p>
@@ -132,7 +127,7 @@ For practical purposes this method, pauses and turn an entire layer invisible.</
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the layer that should stop updating.)</li>
+<li><strong>name must be a String.</strong><br/>(Id of the layer that should stop updating)</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">LayerContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">stop_update</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">canUpdate</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resume_update</strong></p>
 
 <p>Resumes updating of the specified layer. </p>
@@ -144,8 +139,8 @@ For practical purposes this method, pauses and turn an entire layer invisible.</
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">LayerContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">resume_update</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">canUpdate</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>all</strong></p>
 
 <p>Performs a given action on all the layers. The two arguments
-are concatenated to for the name of one of the methods described 
-earlies to control layers. ej.:</p>
+are concatenated to form the name of one of the methods described 
+earlier to control layers. ej.:</p>
 
 <ul>
 <li><code>javascript

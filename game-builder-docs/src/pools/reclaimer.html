@@ -66,7 +66,7 @@ that match the given configuration id. </p>
 <p>Parameters:</p>
 
 <ul>
-<li><strong>configurationName must be a [type].</strong><br/>(An id matching an existing configuration in <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>)</li>
+<li><strong>configurationName must be a String.</strong><br/>(An id matching an existing configuration in <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">Reclaimer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">claimConfiguration</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">configurationName</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">configuration</span> <span class="o">=</span> <span class="nx">GameObjectPool</span><span class="p">.</span><span class="nx">getConfigurationObject</span><span class="p">(</span><span class="nx">configurationName</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">activeGameObjects</span> <span class="o">=</span> <span class="nx">GameObjectPool</span><span class="p">.</span><span class="nx">getActiveObjects</span><span class="p">(</span><span class="nx">configuration</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>
@@ -91,7 +91,7 @@ but the ones specified in the second argument.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>mode must be a String.</strong><br/>(What are the id's in the second argument refering too. Can be either <strong>Type</strong> or <strong>Configuration</strong> )</p></li>
+<li><p><strong>mode must be a String.</strong><br/>(What are the id's in the second argument refering too. Can be either <strong>"type"</strong> or <strong>"configuration"</strong> )</p></li>
 <li><p><strong>doNotClaim must be an Array.</strong><br/>(Array of Id's not to claim)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">Reclaimer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">claimAllBut</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mode</span><span class="p">,</span> <span class="nx">doNotClaim</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">allActiveGameObjects</span> <span class="o">=</span> <span class="nx">GameObjectPool</span><span class="p">.</span><span class="nx">getAllActiveObjects</span><span class="p">();</span>
@@ -125,7 +125,7 @@ specified. </p>
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>mode must be a String.</strong><br/>(What are the id's in the second argument refering too. Can be either <strong>Type</strong> or <strong>Configuration</strong> )</p></li>
+<li><p><strong>mode must be a String.</strong><br/>(What are the id's in the second argument refering too. Can be either <strong>"type"</strong> or <strong>"configuration"</strong> )</p></li>
 <li><p><strong>doNotClaim must be an Array.</strong><br/>(Array of Id's to claim)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">Reclaimer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">claimOnly</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mode</span><span class="p">,</span> <span class="nx">only</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">capitalizedMode</span> <span class="o">=</span> <span class="nx">mode</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="nx">mode</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>

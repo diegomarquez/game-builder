@@ -109,8 +109,10 @@ define(["delegate"], function(Delegate) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>create</strong> The main method that will kick start everything.</p>
+		 * <p style='color:#AD071D'><strong>create</strong></p>
 		 *
+		 * The main method that will kick start everything.
+		 * 
 		 * This method does a bunch of things. The main one being setting up the update loop
 		 * using [request animation frame](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/)
 		 *
@@ -120,8 +122,7 @@ define(["delegate"], function(Delegate) {
 		 * to setup the update loop.
 		 * 
 		 * @param  {ElementObject} mainContainer The Dom element that contains the canvas
-		 * @param  {Canvas} canvas The canvas
-		 *
+		 * @param  {Canvas} canvas A [Canvas](http://www.w3schools.com/html/html5_canvas.asp) object
 		 */
 		create: function(mainContainer, canvas) {
 			this.mainContainer = mainContainer;

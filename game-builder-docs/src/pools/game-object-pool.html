@@ -140,8 +140,7 @@ that can be requested explicitly.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>alias must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> requested)</p></li>
-<li><p><strong>nestedCall is optional, must be a Boolean, and has a default value of false.</strong><br/>(Internal argument)</p></li>
+<li><strong>alias must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> requested)</li>
 </ul>
 
 <p><strong>Can throw an Error</strong><br/>(If the corresponding pool has no available objects)<br/><strong>and</strong> <strong>Can throw an Error</strong><br/>(If a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> type which did not specified a maximun amount is requested explicitly)<br/><strong>and</strong> <strong>Returns an Object</strong><br/>(The configuration object requested)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getConfiguration</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">,</span> <span class="nx">nestedCall</span><span class="p">)</span> <span class="p">{</span>
@@ -163,7 +162,7 @@ that can be requested explicitly.</p>
       <span class="k">return</span> <span class="nx">configuration</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getConfigurationObject</strong></p>
 
-<p>Gets the requested configuration, it doesn't perform any type of validations.</p>
+<p>Gets the requested configuration. It doesn't perform any type of validations.</p>
 
 <p>Parameters:</p>
 

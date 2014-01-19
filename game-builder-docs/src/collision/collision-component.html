@@ -24,7 +24,9 @@ to be properly configured.</p></div></div></div><div class="segment"><div class=
   <span class="kd">var</span> <span class="nx">collisionList</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">collisionOpponent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
-  <span class="kd">var</span> <span class="nx">CollisionComponent</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>start</strong> Setup the component.</p>
+  <span class="kd">var</span> <span class="nx">CollisionComponent</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>start</strong></p>
+
+<p>Setup the component.</p>
 
 <p>The main thing here is that the component 
 adds itself to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a></p>
@@ -38,7 +40,9 @@ adds itself to the <a href="http://diegomarquez.github.io/game-builder/game-buil
 
       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">onCollide</span><span class="p">)</span>
         <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&quot;GameObject with typeId: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">typeId</span> <span class="o">+</span> <span class="s2">&quot;, needs to define an onCollide method, yo.&quot;</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>update</strong> Here is where the magic happens.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>update</strong></p>
+
+<p>Here is where the magic happens.</p>
 
 <p>The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a> will test this collider against
 all other registered colliders that are supposed to collide against it. If there is a collision
@@ -66,17 +70,23 @@ A bunch of callbacks will be executed notifying the objects involved.</p></div><
           <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">}</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>onCollide</strong> This will be executed if there is a collision</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>onCollide</strong></p>
+
+<p>This will be executed if there is a collision.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>other must be a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>.</strong><br/>(The other <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> involved in the collision.)</li>
+<li><strong>other must be an Object.</strong><br/>(The other <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> involved in the collision.)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">onCollide</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">other</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span> <span class="o">=</span> <span class="s2">&quot;#FF0000&quot;</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>debug_draw</strong> This is redifined by objects extending this one.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">debug_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>debug_draw</strong></p>
+
+<p>This is redifined by objects extending this one.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">debug_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span> <span class="o">=</span> <span class="s2">&quot;#FFFFFF&quot;</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>destroy</strong> Destroys the component.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>destroy</strong></p>
+
+<p>Destroys the component.</p>
 
 <p>Asides from resetting some properties the component removes itself
 from the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a></p></div></div><div class="code"><div class="wrapper">    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -88,5 +98,4 @@ from the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/s
     <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
 
   <span class="k">return</span> <span class="nx">CollisionComponent</span><span class="p">;</span>
-
 <span class="p">});</span></div></div></div></div></body></html>

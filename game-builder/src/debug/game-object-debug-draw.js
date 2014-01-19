@@ -9,7 +9,7 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This is just used in [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to call the **debug_draw** method
+ * This is  used in [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to call the **debug_draw** method
  * of all the components. It also draws the registration point of the the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
  * calling the **debugDraw** method.
  */
@@ -27,12 +27,14 @@ define(['draw'], function(draw) {
 	var m = null;
 
 	/**
-	 * <p style='color:#AD071D'><strong>debugDraw</strong> Draw info about <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html>game-object</a></p>
+	 * <p style='color:#AD071D'><strong>debugDraw</strong></p>
 	 *
+	 * Draw info about <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html>game-object</a>.
+	 * 
 	 * This method only does something if the **debug** property is set to **true** in 
 	 * the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) making the call.
 	 * 
-	 * @param  {Context 2D} context Context 2D property of the Canvas.
+	 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 	 */
 	var debugDraw = function(context) {
 		if(this.debug) {

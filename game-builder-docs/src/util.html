@@ -15,7 +15,9 @@ I should consider just using a popular library for this kind of thing,
 like <a href="http://lodash.com/">lodash</a> or <a href="http://underscorejs.org/">underscore</a>.</p>
 
 <p>They are so little functions though, that using an external library sounds like overkill.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="miscelaneous-methods">Miscelaneous methods</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">Utils</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>shallow_merge</strong> Performs a shallow merge of two objects</p>
+  <span class="kd">var</span> <span class="nx">Utils</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>shallow_merge</strong></p>
+
+<p>Performs a shallow merge of two objects.</p>
 
 <p>It is shallow because reference values are kept as references. It creates a new object into which
 all the properties of the first object are copied into, then all the properties of the second object
@@ -37,7 +39,9 @@ are copied into it.</p>
     <span class="k">this</span><span class="p">.</span><span class="nx">shallow_copy</span><span class="p">(</span><span class="nx">second</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
 
     <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>shallow_copy</strong> Performs a shallow copy properties</p>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>shallow_copy</strong></p>
+
+<p>Performs a shallow copy properties.</p>
 
 <p>The copy is shallow because reference values are kept as references.</p>
 
@@ -57,7 +61,9 @@ are copied into it.</p>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="nx">to</span><span class="p">;</span>
-  <span class="p">};</span>  </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>destroyObject</strong> Destroys all the properties of an object</p>
+  <span class="p">};</span>  </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>destroyObject</strong></p>
+
+<p>Destroys all the properties of an object.</p>
 
 <p>Parameters:</p>
 
@@ -69,7 +75,9 @@ are copied into it.</p>
         <span class="k">delete</span> <span class="nx">o</span><span class="p">[</span><span class="nx">propName</span><span class="p">];</span>
       <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>destroyArray</strong> Null all the elements of an array</p>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>destroyArray</strong></p>
+
+<p>Null all the elements of an array.</p>
 
 <p>Parameters:</p>
 
@@ -84,7 +92,9 @@ are copied into it.</p>
     <span class="k">if</span><span class="p">(</span><span class="nx">resetLength</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">a</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> 
     <span class="p">}</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>bind</strong> Get a function binded to the given scope</p>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>bind</strong></p>
+
+<p>Get a function binded to the given scope.</p>
 
 <p>Managing the scope of functions is a pretty big thing in Javascript.</p>
 

@@ -82,7 +82,9 @@ in order to be able to pause and resume the application if needed.</p>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">add_extension</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">extensionMoudle</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">ex</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">extensionMoudle</span><span class="p">();</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">[</span><span class="nx">ex</span><span class="p">.</span><span class="nx">type</span><span class="p">()].</span><span class="nx">push</span><span class="p">(</span><span class="nx">ex</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>create</strong> The main method that will kick start everything.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>create</strong></p>
+
+<p>The main method that will kick start everything.</p>
 
 <p>This method does a bunch of things. The main one being setting up the update loop
 using <a href="http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/">request animation frame</a></p>
@@ -96,7 +98,7 @@ to setup the update loop.</p>
 
 <ul>
 <li><p><strong>mainContainer must be an ElementObject.</strong><br/>(The Dom element that contains the canvas)</p></li>
-<li><p><strong>canvas must be a Canvas.</strong><br/>(The canvas)</p></li>
+<li><p><strong>canvas must be a Canvas.</strong><br/>(A <a href="http://www.w3schools.com/html/html5_canvas.asp">Canvas</a> object)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mainContainer</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">mainContainer</span> <span class="o">=</span> <span class="nx">mainContainer</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">;</span>

@@ -13,8 +13,8 @@
  * 
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines a component mean to be attached to a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html), to give it
- * the ability to collide against other [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) with collider components.
+ * This module defines a component meant to be attached to a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html), to give it
+ * the ability to collide against other [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) with collider components.
  *
  * Since this is a circle collider there is not much about it, other than a radius. Other than
  * that it follows it's [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) parent around.
@@ -32,7 +32,7 @@
 		radius:10
  * });
  * ```
- * If it is not provided it will most likely fail in un expected ways.
+ * If it is not provided it will most likely fail in un-expected ways.
  * 
  * <strong>Note: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
  * found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
@@ -56,8 +56,10 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 	
 	var Component = CollisionComponent.extend({
 		/**
-		 * <p style='color:#AD071D'><strong>start</strong> Set up the collider.</p>
+		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
+		 * Set up the collider.
+		 * 
 		 * Creates a Circle object defined in the [sat](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html) module.
 		 */
 		start: function() {
@@ -71,8 +73,10 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 		 */
 		
 		/**
-		 * <p style='color:#AD071D'><strong>update</strong> Updates the position of the collider.</p>
+		 * <p style='color:#AD071D'><strong>update</strong></p>
 		 *
+		 * Updates the position of the collider.
+		 * 
 		 * The collider follows the position of it's parent.
 		 */
 		update: function() {
@@ -88,12 +92,14 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>debug_draw</strong> Draw the circle collider</p>
+		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 		 *
+		 * Draw the circle collider.
+		 * 
 		 * This method is only executed if the **debug** property of the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 		 * is set to true. It is better to leave the drawing to the [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) components.
 		 * 
-		 * @param  {Context 2D} context Context 2D property of the Canvas.
+		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 */
 		debug_draw: function(context) {
 			this.parent.getTransform(p, m);

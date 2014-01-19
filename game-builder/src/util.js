@@ -28,8 +28,10 @@ define(function() {
 	var Utils = function() {}
 
  	/**
- 	 * <p style='color:#AD071D'><strong>shallow_merge</strong> Performs a shallow merge of two objects</p>
+ 	 * <p style='color:#AD071D'><strong>shallow_merge</strong></p>
  	 *
+ 	 * Performs a shallow merge of two objects.
+ 	 * 
  	 * It is shallow because reference values are kept as references. It creates a new object into which
  	 * all the properties of the first object are copied into, then all the properties of the second object
  	 * are copied into it.
@@ -53,8 +55,10 @@ define(function() {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>shallow_copy</strong> Performs a shallow copy properties</p>
+	 * <p style='color:#AD071D'><strong>shallow_copy</strong></p>
 	 *
+	 * Performs a shallow copy properties.
+	 * 
 	 * The copy is shallow because reference values are kept as references.
 	 * 
 	 * @param  {Object} [from={}] The Object from which to copy properties
@@ -76,7 +80,10 @@ define(function() {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>destroyObject</strong> Destroys all the properties of an object</p>
+	 * <p style='color:#AD071D'><strong>destroyObject</strong></p>
+	 *
+	 * Destroys all the properties of an object.
+	 * 
 	 * @param  {Object} o        Object to destroy properties from          
 	 */
 	Utils.prototype.destroyObject = function(o) {
@@ -91,7 +98,10 @@ define(function() {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>destroyArray</strong> Null all the elements of an array</p>
+	 * <p style='color:#AD071D'><strong>destroyArray</strong></p>
+	 *
+	 * Null all the elements of an array.
+	 * 
 	 * @param  {Array} a        Array to destroy
 	 * @param  {Boolean} [resetLength=false] Whether to set the lenght of the array to 0
 	 */
@@ -109,8 +119,10 @@ define(function() {
 	 */
 
 	/**
-	 * <p style='color:#AD071D'><strong>bind</strong> Get a function binded to the given scope</p>
+	 * <p style='color:#AD071D'><strong>bind</strong></p>
 	 *
+	 * Get a function binded to the given scope.
+	 * 
 	 * Managing the scope of functions is a pretty big thing in Javascript.
 	 * 
 	 * @param  {Function} func  Function to bind

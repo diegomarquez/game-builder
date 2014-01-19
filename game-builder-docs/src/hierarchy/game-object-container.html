@@ -10,15 +10,15 @@
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This modules defines a container for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> objects, which in turn
+<p>This modules defines a container for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>, which in turn
 is a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> itself. Being a parent means that all of it's child
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> will follow it according to it's transformation matrix.</p>
 
 <p>It's a pretty usefull behaviour to form more complex displays out of smaller, more manageable 
 pieces. </p>
 
-<p>A note on drawing, a container will execute it's renderer code, and then the rendering code
-of it's children. Than means that the parent drawing will show up, below it's children's.</p>
+<p>A note on drawing: A container will execute it's renderer code, and then the rendering code
+of it's children. This means that the parent drawing will show up, below it's children's.</p>
 
 <p>Asides from that, a container is no different to a regular <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>,
 so go look at that part of the documentation for more details on every method here.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="nesting-ftw">Nesting FTW!</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;game-object&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">){</span>
@@ -45,7 +45,7 @@ and added to this one.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><strong>The must be a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>.</strong><br/>(child to add)</li>
+<li><strong>The must be an Object.</strong><br/>(child <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to add)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">add</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">child</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
@@ -67,7 +67,7 @@ and added to this one.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><strong>The must be a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>.</strong><br/>(child to remove)</li>
+<li><strong>The must be an Object.</strong><br/>(child <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to remove)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">remove</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">child</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
@@ -83,7 +83,7 @@ and added to this one.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><strong>delta must be a [type].</strong><br/>(Time ellapsed since the last update)</li>
+<li><strong>delta must be a Number.</strong><br/>(Time ellapsed since the last update)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
@@ -114,7 +114,7 @@ but it also calls the method for all of it's children.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><strong>context must be a Context 2D.</strong><br/>(Context 2D property of the canvas)</li>
+<li><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">transformAndDraw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">context</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
       
@@ -154,7 +154,7 @@ nulling every reference on it's way.</p></div></div><div class="code"><div class
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>clear</strong></p>
 
-<p>Calls the clear method on on each child, and then on it self.
+<p>Calls the clear method on each child, and then on it self.
 It also removes all the childs.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">clear</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">)</span> <span class="p">{</span>       
         <span class="k">while</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>

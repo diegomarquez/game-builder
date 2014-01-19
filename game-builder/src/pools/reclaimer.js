@@ -84,7 +84,7 @@ define(['game-object-pool', 'component-pool'], function(GameObjectPool, Componen
 	 * Calls **claim** on all the active [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 	 * that match the given configuration id. 
 	 * 
-	 * @param  {[type]} configurationName An id matching an existing configuration in [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
+	 * @param  {String} configurationName An id matching an existing configuration in [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
 	 */
 	Reclaimer.prototype.claimConfiguration = function(configurationName) {
 		var configuration = GameObjectPool.getConfigurationObject(configurationName);
@@ -122,7 +122,7 @@ define(['game-object-pool', 'component-pool'], function(GameObjectPool, Componen
 	 * but the ones specified in the second argument.
 	 * 
 	 * @param  {String} mode       What are the id's in the second argument refering too.
-	 *                             Can be either **Type** or **Configuration** 
+	 *                             Can be either **"type"** or **"configuration"** 
 	 * @param  {Array} doNotClaim Array of Id's not to claim
 	 */
 	Reclaimer.prototype.claimAllBut = function(mode, doNotClaim) {
@@ -161,7 +161,7 @@ define(['game-object-pool', 'component-pool'], function(GameObjectPool, Componen
 	 * specified. 
 	 * 
 	 * @param  {String} mode       What are the id's in the second argument refering too.
-	 *                             Can be either **Type** or **Configuration** 
+	 *                             Can be either **"type"** or **"configuration"** 
 	 * @param  {Array} doNotClaim Array of Id's to claim
 	 */
 	Reclaimer.prototype.claimOnly = function(mode, only) {

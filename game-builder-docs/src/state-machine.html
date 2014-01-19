@@ -49,7 +49,9 @@ state machine rather than the state machine itself.</p> </div></div></div><div c
       <span class="k">this</span><span class="p">.</span><span class="nx">states</span> <span class="o">=</span> <span class="p">[];</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">currentStateId</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">block</span><span class="p">();</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>start</strong> Start the state machine.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>start</strong></p>
+
+<p>Start the state machine.</p>
 
 <p>Once the states have been added, call this method to go into
 the first state, optionally sending some arguments.</p>
@@ -57,11 +59,13 @@ the first state, optionally sending some arguments.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><strong>args is optional, must be an Anything, and has a default value of null.</strong><br/>(Arguments to be sent to the initial state. )</li>
+<li><strong>args is optional, must be an Object, and has a default value of null.</strong><br/>(Arguments to be sent to the initial state. )</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">unblock</span><span class="p">();</span>
       <span class="nx">executeStateAction</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong> Add a state object to the state machine.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong></p>
+
+<p>Add a state object to the state machine.</p>
 
 <p>This method is redifined by the concrete implementations.</p>
 
@@ -74,7 +78,9 @@ the first state, optionally sending some arguments.</p>
     
       <span class="k">this</span><span class="p">.</span><span class="nx">stateIds</span><span class="p">[</span><span class="nx">state</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">stateIndex</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">stateIds</span><span class="p">[</span><span class="nx">stateIndex</span><span class="p">.</span><span class="nx">toString</span><span class="p">()]</span> <span class="o">=</span> <span class="nx">stateIndex</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>get</strong> Get a reference to a state.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>get</strong></p>
+
+<p>Get a reference to a state.</p>
 
 <p>Parameters:</p>
 
@@ -84,14 +90,22 @@ the first state, optionally sending some arguments.</p>
 
 <p><strong>Returns a State</strong><br/>(The requested state)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">stateIdOrName</span><span class="p">)</span> <span class="p">{</span> 
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">states</span><span class="p">[</span><span class="nx">getStateId</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">stateIdOrName</span><span class="p">)];</span> 
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>block</strong> Blocks the state machine.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>block</strong></p>
+
+<p>Blocks the state machine.</p>
 
 <p>While blocked no actions will be executed, 
-and state changes can not occur.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">block</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">isBlocked</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>unblock</strong> Unblock the state machine.</p>
+and state changes can not occur.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">block</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">isBlocked</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>unblock</strong></p>
 
-<p>All behaviour returns to normal after executing this method.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">unblock</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">isBlocked</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>update</strong> Execute the update actions of the state machine. </p></div></div><div class="code"><div class="wrapper">    <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Unblock the state machine.</p>
+
+<p>All behaviour returns to normal after executing this method.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">unblock</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">isBlocked</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>update</strong></p>
+
+<p>Execute the update actions of the state machine. </p></div></div><div class="code"><div class="wrapper">    <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">states</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">currentStateId</span><span class="p">].</span><span class="nx">update</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>destroy</strong> Calls the destroy method of all the states registered.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>destroy</strong></p>
+
+<p>Calls the destroy method of all the states registered.</p>
 
 <p>Nulls the main references. Sets the object up for garbage collection.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="nx">states</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -103,7 +117,9 @@ and state changes can not occur.</p></div></div><div class="code"><div class="wr
     <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="loosestatemachineextendsstatemachine"><strong>LooseStateMachine</strong> extends <strong>StateMachine</strong></h2></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">LooseStateMachine</span> <span class="o">=</span> <span class="nx">StateMachine</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong> Add a state object to the state machine.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong></p>
+
+<p>Add a state object to the state machine.</p>
 
 <p>Setup the <strong>change</strong> event of the state, so it is able to pass control flow
 to another state.</p>
@@ -142,7 +158,9 @@ to another state.</p>
   <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="fixedstatemachineextendsstatemachine"><strong>FixedStateMachine</strong> extends <strong>StateMachine</strong></h2></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">FixedStateMachine</span> <span class="o">=</span> <span class="nx">StateMachine</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong> Add state object to the state machine.</p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong></p>
+
+<p>Add state object to the state machine.</p>
 
 <p>Setup the <strong>next</strong> and <strong>previous</strong> events of the state, 
 so it is able to pass control flow to the corresponding states.</p>
