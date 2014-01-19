@@ -14,9 +14,10 @@
  * In any given [Game-Builder](http://diegomarquez.github.io/game-builder) application
  * this is is the only [game-object-container](@@game-object-container@@) that is updated
  * explicitly in the main update loop. As it is updated and rendered, it will update and render all of its 
- * children, who will in turn update and render their childs, so on and so forth.
+ * children, who will in turn update and render their childs, until everything has been updated
+ * and renderer.
  *
- * If you where wonderin this is where the screen is cleared before each update cycle. 
+ * If you where wondering, this is where the screen is cleared before each update cycle. 
  * It is possible to manipulate this object as any other [game-object](@@game-object@@), 
  * but that is probably not a good idea :P
  *
@@ -40,7 +41,7 @@ define(["game-object-container"], function(Container){
 		 * Clears the screen, and then proceeds to updat and render all of
 		 * it's children, which will in turn do the same for their children.
 		 * 
-		 * @param  {Context 2D} context Context 2D property of the Canvas
+		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 */
 		transformAndDraw: function(context) {
 			context.setTransform(1, 0, 0, 1, 0, 0);

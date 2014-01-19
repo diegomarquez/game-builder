@@ -39,7 +39,7 @@ define(["root", "layer"], function(root, Layer) {
 	 * it also is added to [root](@@root@@), which is what will actually make it
 	 * display.
 	 *
-	 * On that subject, it is important to not that if you re arrange the elements
+	 * On that subject, it is important to not that if you re-arrange the elements
 	 * of the array that the layer is added to, nothing will happen to the order of
 	 * updating or rendering, as that is controlled by the [root](@@root@@), which has
 	 * a list of childs of it's own.
@@ -64,8 +64,8 @@ define(["root", "layer"], function(root, Layer) {
 	 * Removes a layer from the array in this object, and also from the [root](@@root@@).
 	 * Prior to removing the layer it also clears it from any [game-objects](@@game-object@@)
 	 *
-	 * A removed layer can not be used again, if you wish to just clear a layer
-	 * you might want to use the **clear** method.
+	 * A removed layer can not be used again, if you wish to just remove all [game-objects](@@game-object@@)
+	 * from a layer you might want to use the **clear** method.
 	 * 
 	 * @param  {String} name Id of the layer to remove
 	 */
@@ -81,9 +81,9 @@ define(["root", "layer"], function(root, Layer) {
 	/**
 	 * <p style='color:#AD071D'><strong>clear</strong></p>
 	 *
-	 * Clears a layer from all [game-objects](@@game-objects@@)
-	 * 
-	 * @param  {[type]} name Id of the layer to clear
+	 * Clears a layer from all [game-objects](@@game-object@@)
+	 *
+	 * A cleared layer can still be used to add more things to it.
 	 */
 	LayerContainer.prototype.clear = function(name) { 
 		this.layers[name].clear(); 
@@ -115,10 +115,9 @@ define(["root", "layer"], function(root, Layer) {
 	/**
 	 * <p style='color:#AD071D'><strong>stop</strong></p>
 	 *
-	 * Stops updating and rendering everythin requested layer.
-	 * For practical purposes this method, pauses and turn an entire layer invisible.
-	 *
-	 * A cleared layer can still be used to add more things to it.
+	 * Stops updating and rendering everythin in the requested layer.
+	 * For practical purposes this method pauses and makes invisible all the contents
+	 * of a layer.
 	 * 
 	 * @param  {String} name Id of the layer in which to stop all activity
 	 */
@@ -150,7 +149,7 @@ define(["root", "layer"], function(root, Layer) {
 	 *
 	 * Stops rendering of the specified layer. Effectively making everything in it invisible.
 	 * 
-	 * @param  {String} name Id of the layer that should stop rendering.
+	 * @param  {String} name Id of the layer that should stop rendering
 	 */
 	LayerContainer.prototype.stop_draw = function(name) { this.layers[name].canDraw = false; };
 	/**
@@ -174,7 +173,7 @@ define(["root", "layer"], function(root, Layer) {
 	 *
 	 * Stops updating of the specified layer. Effectively pausing everything in it.
 	 * 
-	 * @param  {String} name Id of the layer that should stop updating.
+	 * @param  {String} name Id of the layer that should stop updating
 	 */
 	LayerContainer.prototype.stop_update = function(name) { this.layers[name].canUpdate = false; };
 	/**
@@ -197,8 +196,8 @@ define(["root", "layer"], function(root, Layer) {
 	 * <p style='color:#AD071D'><strong>all</strong></p>
 	 *
 	 * Performs a given action on all the layers. The two arguments
-	 * are concatenated to for the name of one of the methods described 
-	 * earlies to control layers. ej.:
+	 * are concatenated to form the name of one of the methods described 
+	 * earlier to control layers. ej.:
 	 *
 	 * * ``` javascript
 	 * layers.all('stop', 'update');

@@ -183,7 +183,6 @@ define(function(require) {
 		 * Gets a configuration for the requested [game-object](@@game-object@@).
 		 *
 		 * @param  {String} alias      Id of the [game-object](@@game-object@@) requested
-		 * @param  {Boolean} [nestedCall=false] Internal argument
 		 *
 		 * @throws {Error} If the corresponding pool has no available objects
 		 * @throws {Error} If a [game-object](@@game-object@@) type which did not specified a maximun amount is requested explicitly
@@ -214,7 +213,7 @@ define(function(require) {
 		/**
 		 * <p style='color:#AD071D'><strong>getConfigurationObject</strong></p>
 		 *
-		 * Gets the requested configuration, it doesn't perform any type of validations.
+		 * Gets the requested configuration. It doesn't perform any type of validations.
 		 * 
 		 * @param  {String} alias      Id of the [game-object](@@game-object@@) requested
 		 *

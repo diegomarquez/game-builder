@@ -12,8 +12,8 @@
  * This module defines the base object from which [game-object-pool](@@game-object-pool@@) and
  * [component-pool](@@component-pool@@) are extended from.
  *
- * These pools create objects dynamically when requested, when one of those objects is 
- * not needed in it's current state anymore
+ * These pools create objects dynamically when requested. When one of those objects is 
+ * not needed in it's current state anymore,
  * it is recycled. Instead of destroying the reference it is sent back to the corresponding pool, so it
  * can be picked up again and refurbished later. 
  *
@@ -31,14 +31,14 @@
  * A less obvious advantage of preconfiguring objects, is that you avoid creating small dynamic
  * objects that will most likely be used in the initialization of other larger dynamic objects.
  *
- * Generally speaking pooling is very usefull because it frees CPU time from the burden of allocating
+ * Generally speaking, pooling is very usefull because it frees CPU time from the burden of allocating
  * and deallocating memory every single time you want something new. In the case of Garbage Collected
  * environments, like a Javascript virtual machine, pooling should also reduce the time spent
  * by the Garbage Collector doing it's thing. Which is good.
  *
  * Pooling objects is good and all, but it is probably not a good idea to pool absolutely everything
  * you will need in the entire life span of an application, unless it is a small one. For that reason
- * it is possible to clear pools, and repopulate them.
+ * it is possible to clear and repopulate pools.
  */
 
 /**
@@ -138,7 +138,9 @@ define(["util", "class"], function(util) {
 		/**
 		 * <p style='color:#AD071D'><strong>getAllActiveObjects</strong></p>
 		 *
-		 * @return {[type]} [description]
+		 * Gets all the active [game-object](@@game-object@@) instances.
+		 * 
+		 * @return {Object} All the different types of active [game-objects](@@game-object@@)
 		 */
 		getAllActiveObjects: function() {
 			return this.active;
@@ -213,7 +215,7 @@ define(["util", "class"], function(util) {
 		 *
 		 * Get a pooled object, the object to be returned is added to the collection
 		 * of active objects. This method is mainly used by the [assembler](@@assembler@@)
-		 * module when putting together [game-objects](@@game-object@@)
+		 * module when putting together [game-objects](@@game-object@@).
 		 * 
 		 * @param  {String} type id of the type of object to retrieve
 		 *
@@ -268,7 +270,7 @@ define(["util", "class"], function(util) {
 		/**
 		 * <p style='color:#AD071D'><strong>toString</strong></p>
 		 *
-		 * Return a string representation of the pool, for debugging purposes.
+		 * Return a string representation of the pool. For debugging purposes.
 		 * 
 		 * @return {String}
 		 */

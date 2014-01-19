@@ -9,7 +9,7 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This is a helper module to define block of [game-object-pool](@@game-object-pool@@) and 
+ * This is a helper module to define a block of [game-object-pool](@@game-object-pool@@) and 
  * [components-pool](@@components-pool@@) configuration. 
  *
  * The basic workflow is extending this module, and putting all the required code

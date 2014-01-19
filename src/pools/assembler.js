@@ -18,12 +18,12 @@
  * [components](@@component@@) as they were configured in the [game-object-pool](@@game-object-pool@@)
  * and [component-pool](@@component-pool@@) respectively. 
  *
- * In addition you are able to override the configured arguments, or a new ones when you
+ * In addition you are able to override the configured arguments, or add new ones when you
  * request a [game-object](@@game-object@@). When a [game-object](@@game-object@@) is
  * put together the necessary callbacks are setup so that it and it's components return to their
- * respective pools for reuse.
+ * respective pools for reuse when they are no longer needed.
  *
- * The object responsible for recycling [game-objects](@@game-objects@@) is the [reclaimer](@@reclaimer@@).
+ * The object responsible for recycling [game-objects](@@game-object@@) is [reclaimer](@@reclaimer@@).
  */
 
 /**
@@ -68,7 +68,7 @@ define(['game-object-pool', 'component-pool', 'util'], function(GameObjectPool, 
 	 * @param  {Object} [args=null]       All the properties in this object will be copied to the assembled object. 
 	 * @param  {Boolean} [nestedCall=false] This argument is reserved for internal use. It defaults to false, but you can see what happens if you set it to true :P 
 	 *
-	 * @throws {Error} If a [game-object](@@game-object@@) was configured to have childs. Only [game-object-containers](@@game-object-containers@@) can have nested childs
+	 * @throws {Error} If a [game-object](@@game-object@@) was configured to have childs. Only [game-object-containers](@@game-object-container@@) can have nested childs
 	 * 
 	 * @return {Object} A [game-object](@@game-object@@) ready to be used
 	 */

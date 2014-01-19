@@ -9,13 +9,13 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines a special kind of [game-object container](@@game-object container@@).
+ * This module defines a special kind of [game-object-container](@@game-object-container@@).
  *
  * It's only purpose it be used by [layers](@@layers@@) as a way to organize visual
  * elements in a way that makes sense.
  *
  * It behaives exactly like a [game-object-container](@@game-object-container@@) except
- * for the fact it redefines the **clear** method so that it only removed all children.
+ * for the fact it redefines the **clear** method so that it only removes all children.
  */
 
 /**

@@ -9,7 +9,8 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines to interact with the keyboard. In similar fashion to [timer-factory](@@timer-factory@@),
+ * This module defines to interact with the keyboard. 
+ * In similar fashion to [timer-factory](@@timer-factory@@),
  * this module extends on existing behaviour to make it less annoying.
  */
 
@@ -28,7 +29,7 @@ define(function(require) {
 		init: function() {
 			this._super();
 
-			// ### Defined keyboard constants
+			// ### Defined keycodes
 			
 			// Not all the keys of the keyboard,
 			// but they should be more than enough
@@ -63,9 +64,9 @@ define(function(require) {
 			this.NUM_4 = 52;
 			this.NUM_5 = 53;
 
-			// These constants are pretty usefull
+			// These variables are pretty usefull
 			// to avoid having undescriptive names littered around the code.
-			// These should make pretty clear what you are trying to do, when you
+			// These should make pretty clear what you are trying to do when you
 			// use them. Plus it's easy to change them later down the road. 
 			this.GAME_LEFT = this.LEFT;
 			this.GAME_RIGHT = this.RIGHT;
@@ -152,7 +153,7 @@ define(function(require) {
 		 * <p style='color:#AD071D'><strong>isKeyDown</strong></p>
 		 *
 		 * This method is meant to be used in an update loop. It returns
-		 * true of the specified key is pressed, false otherwise.
+		 * true if the specified key is pressed, false otherwise.
 		 * 
 		 * @param  {Number}  keyCode Key to test for a press
 		 *

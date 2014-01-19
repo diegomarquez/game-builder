@@ -21,7 +21,7 @@
  * anymore if it is requested. Instead it will throw an error
  * saying that there are no more [components](@@component@@) of that type available.
  *
- * Unlike [game-objects](@@game-object@@), [component](@@component@@) don't make sense by themselves, so
+ * Unlike [game-objects](@@game-object@@), [components](@@component@@) don't make sense by themselves, so
  * you don't specify the maximun amount of them you want, like you do with the [game-object-pool](@@game-object-pool@@). 
  * Instead [components](@@components@@) will be created as needed. Since [components](@@component@@),
  * can not exists outside of a [game-object](@@game-object@@), when the cap on [game-objects](@@game-object@@)
@@ -47,7 +47,7 @@
  * a single instance of _'someComponentPrototypeObject'_, but it might be configured with the arguments
  * for any of those configurations at the moment it is requested.
  *
- * This is usefull to avoid having too many idling instances at the same time.
+ * This is usefull to avoid having too many idling instances of the same type at the same time.
  */
 
 /**
@@ -122,7 +122,6 @@ define(function(require) {
 		 * Gets a configuration for the requested [component](@@component@@).
 		 *
 		 * @param  {String} alias      Id of the [component](@@component@@) requested
-		 * @param  {Boolean} [nestedCall=false] Internal argument
 		 *
 		 * @throws {Error} If the corresponding pool has no available objects
 		 * @return {Object} The configuration object requested
