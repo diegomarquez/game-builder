@@ -1,14 +1,15 @@
 # extensions
 -------------------
 
-This example deals with adding extensions to the behaviour of the main object that wraps the canvas and sets up the update loop. Up until now all the examples have been using an extension to set the layers used by the application.
+This example deals with adding extensions to the behaviour of the main object that wraps the canvas and sets up the update loop. You most likely already noticed this in every example, but no mention
+of it was made. This is when you get an explanation.
 
 This example will show that you can do some more interesting things with extensions, while keeping your code reasonably tidy. 
 
 There are three new extensions in use:
-- pause extensions takes care of pausing game object behaviour when the application looses focus.
-- resume extensions takes care of resuming game object behaviour when the application gains focus.  
-- resize extension resizes the canvas as the viewport changes size while keeping the original aspect ratio. I don't mean to be cocky, but it's pretty fucking great!
+- pause extension takes care of pausing game object behaviour when the application looses focus.
+- resume extension takes care of resuming game object behaviour when the application gains focus.  
+- resize extension resizes the canvas as the viewport changes size while keeping the original aspect ratio.
 
 There are 4 types of extensions: 
 - CREATE. These extensions get called once when the application is initialized. 

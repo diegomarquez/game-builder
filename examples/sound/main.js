@@ -1,4 +1,13 @@
-// sound's main entry point 
+// # sound's main entry point 
+
+/**
+ * ### Modules at work in this example
+ * [gb](@@gb@@)
+ * [game](@@game@@)
+ * [root](@@root@@)
+ * [sound-player](@@sound-player@@)
+ * [keyboard](@@keyboard@@)
+ */
 
 define(function(require){
 	var gb = require('gb');
@@ -10,22 +19,22 @@ define(function(require){
 	var keyboard = require('keyboard');
 
 	// This is the main initialization function
-	game.on("init", this, function() {
+	game.on(game.CREATE, this, function() {
 		console.log("Welcome to Game-Builder!");
 
-		//This sets the amount of different channels that can be played at the same time
+		// This sets the amount of different channels that can be played at the same time
 		sound_player.createChannels(4);
 
-		//Add the sound resources that will be available
+		// Add the sound resources that will be available
 		sound_player.add('Sound_1', '../common_assets/sound/bird.mp3');
 		sound_player.add('Sound_2', '../common_assets/sound/horse.mp3');
 		sound_player.add('Sound_3', '../common_assets/sound/sheep.mp3');
 		sound_player.add('Sound_4', '../common_assets/sound/elevator.mp3');
 
-		//Call loadAll to load all the resources, the callback gets executed once everything is loaded.
+		// Call loadAll to load all the resources, the callback gets executed once everything is loaded.
 		
-		//Note: This method can not be called again until
-		//it has completed downloading all previous resources.
+		// Note: This method can not be called again until
+		// it has completed downloading all previous resources.
 		sound_player.loadAll(function() {
 			console.log('Sound load complete')
 
@@ -58,17 +67,17 @@ define(function(require){
 	});
 
 	// This is called when the canvas looses focus
-	game.on("blur", this, function() {
+	game.on(game.BLUR, this, function() {
 		console.log("sound has lost focus");
 	});
 
 	// This is called when the canvas regains focus
-	game.on("focus", this, function() {
+	game.on(game.FOCUS, this, function() {
 		console.log("sound has regained focus");
 	});
 
 	// This is the main update loop
-	game.on("update", this, function() {
+	game.on(game.UPDATE, this, function() {
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.

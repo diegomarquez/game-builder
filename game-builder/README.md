@@ -13,8 +13,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### TODO List:
 
 - Anotate code to generate documentation
-    - Review src docs to standarize the structure of each file and to iron out the gazillion 
-    typos.
     - examples
     - Review example docs to standarize the structure of each file and to iron out the gazillion 
     typos.

@@ -10,8 +10,6 @@ You can setup collision pairs and choose between a circular or polygonal collide
 Then the first collection of colliders in a pair will test against against the second collection for overlapping.
 
 Very basic, but get's the job done in a lot of cases. 
-Think you can do it better? Be my guest :) 
-Really, be a good person and do it better, because this is pretty lame.
 
 A [GAME-BUILDER][game-builder] project
 

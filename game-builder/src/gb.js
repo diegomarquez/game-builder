@@ -56,6 +56,8 @@ define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 
 			 * 
 			 * @param {String} layerName Id of the layer to add the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to. View [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html), for more details.
 			 * @param {String} goId      Id of [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to add. View [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html), for more details.
+			 *
+			 * @return {Object} The [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) that was just assembled.
 			 */
 			addToLayer: function(layerName, goId) {
 				var go = this.layers.get(layerName).add(this.assembler.get(goId));

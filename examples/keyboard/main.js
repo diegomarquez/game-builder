@@ -1,4 +1,15 @@
-// keyboard's main entry point 
+// # keyboard's main entry point 
+
+/**
+ * ### Modules at work in this example
+ * [gb](@@gb@@)
+ * [game](@@game@@)
+ * [root](@@root@@)
+ * [basic-layer-setup](@@basic-layer-setup@@)
+ * [input-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/input-bundle.html)
+ * [keyboard](@@keyboard@@)
+ * [util](@@util@@)
+ */
 
 define(function(require){
 	var gb = require('gb');
@@ -15,7 +26,7 @@ define(function(require){
 	game.add_extension(require('basic-layer-setup'));
 
 	// This is the main initialization function
-	game.on("init", this, function() {
+	game.on(game.CREATE, this, function() {
 		console.log("Welcome to Game-Builder!");
 
 		require('input-bundle').create();
@@ -24,18 +35,15 @@ define(function(require){
 		keyboard.onKeyDown(keyboard.A, this, function() { 
 			console.log("A was pressed");
 
-			// Since I want to do some stuff with this game object before displaying it
-			// I don't use the short hand method in the gb object
-			var go = assembler.get('Base_2');
+			// Adding the [game-object](@@game-object@@)
+			var go = gb.addToLayer('Middle', 'Base_2');
 
+			// Modifying the [game-object](@@game-object@@) right after adding it to a layer.
 			go.x = util.rand_f(20, canvas.width-20);
 			go.y = util.rand_f(20, canvas.height-20);
-			//In this case I know that the renderer I am using has a 'color' property.
-			//If you write your own renderer this might not be available.
+			// In this case I know that the renderer I am using has a 'color' property.
+			// If you write your own renderer this might not be available.
 			go.renderer.color = util.rand_color(); 
-
-			// Add and start the game object
-			layers.get('Middle').add(go).start();
 		});
 		
 		keyboard.onKeyDown(keyboard.S, this, function() { 
@@ -44,24 +52,24 @@ define(function(require){
 		
 		keyboard.onKeyDown(keyboard.D, this, function() { console.log("D was pressed") });
 
-		//Key Up Events
+		// Key Up Events
 		keyboard.onKeyUp(keyboard.A, this, function() { console.log("A was released") });
 		keyboard.onKeyUp(keyboard.S, this, function() { console.log("S was released") });
 		keyboard.onKeyUp(keyboard.D, this, function() { console.log("D was released") });
 	});
 
 	// This is called when the canvas looses focus
-	game.on("blur", this, function() {
+	game.on(game.BLUR, this, function() {
 		console.log("keyboard has lost focus");
 	});
 
 	// This is called when the canvas regains focus
-	game.on("focus", this, function() {
+	game.on(game.FOCUS, this, function() {
 		console.log("keyboard has regained focus");
 	});
 
 	// This is the main update loop
-	game.on("update", this, function() {
+	game.on(game.UPDATE, this, function() {
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.

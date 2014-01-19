@@ -1,4 +1,13 @@
-// reclaimer's main entry point 
+// # reclaimer's main entry point 
+
+/**
+ * ### Modules at work in this example
+ * [gb](@@gb@@)
+ * [game](@@game@@)
+ * [root](@@root@@)
+ * [basic-layer-setup](@@basic-layer-setup@@)
+ * [layering-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/layering-bundle.html)
+ */
 
 define(function(require){
 	var gb = require('gb');
@@ -12,7 +21,7 @@ define(function(require){
 	var keyboard = require('keyboard');
 
 	// This is the main initialization function
-	game.on("init", this, function() {
+	game.on(game.CREATE, this, function() {
 		console.log("Welcome to Game-Builder!");
 		
 		require('layering-bundle').create();
@@ -59,17 +68,17 @@ define(function(require){
 	});
 
 	// This is called when the canvas looses focus
-	game.on("blur", this, function() {
+	game.on(game.BLUR, this, function() {
 		console.log("reclaimer has lost focus");
 	});
 
 	// This is called when the canvas regains focus
-	game.on("focus", this, function() {
+	game.on(game.FOCUS, this, function() {
 		console.log("reclaimer has regained focus");
 	});
 
 	// This is the main update loop
-	game.on("update", this, function() {
+	game.on(game.UPDATE, this, function() {
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.

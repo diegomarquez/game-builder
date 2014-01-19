@@ -1,4 +1,14 @@
-// renderers's main entry point 
+// # renderers's main entry point 
+
+/**
+ * ### Modules at work in this example
+ * [gb](@@gb@@)
+ * [game](@@game@@)
+ * [root](@@root@@)
+ * [layers](@@layers@@)
+ * [basic-layer-setup](@@basic-layer-setup@@)
+ * [rendering-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/rendering-bundle.html)
+ */
 
 define(function(require){
 	var gb = require('gb');
@@ -9,7 +19,7 @@ define(function(require){
 	game.add_extension(require('basic-layer-setup'));
 
 	// This is the main initialization function
-	game.on("init", this, function() {
+	game.on(game.CREATE, this, function() {
 		console.log("Welcome to Game-Builder!");
 
 		require('rendering-bundle').create();
@@ -20,17 +30,17 @@ define(function(require){
 	});
 
 	// This is called when the canvas looses focus
-	game.on("blur", this, function() {
+	game.on(game.BLUR, this, function() {
 		console.log("renderers has lost focus");
 	});
 
 	// This is called when the canvas regains focus
-	game.on("focus", this, function() {
+	game.on(game.FOCUS, this, function() {
 		console.log("renderers has regained focus");
 	});
 
 	// This is the main update loop
-	game.on("update", this, function() {
+	game.on(game.UPDATE, this, function() {
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.

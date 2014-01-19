@@ -1,4 +1,16 @@
-// fixed-state-machine's main entry point 
+// # fixed-state-machine's main entry point 
+
+/**
+ * ### Modules at work in this example
+ * [gb](@@gb@@)
+ * [game](@@game@@)
+ * [root](@@root@@)
+ * [state-machine](@@state-machine@@)
+ * [keyboard](@@keyboard@@)
+ * [state-1](http://diegomarquez.github.io/game-builder/examples-docs/common_src/state-1.html)
+ * [state-2](http://diegomarquez.github.io/game-builder/examples-docs/common_src/state-2.html)
+ * [state-3](http://diegomarquez.github.io/game-builder/examples-docs/common_src/state-3.html)
+ */
 
 define(function(require){
 	var gb = require('gb');
@@ -9,45 +21,45 @@ define(function(require){
 	var stateMachineFactory = require('state-machine');
 
 	// This is the main initialization function
-	game.on("init", this, function() {
+	game.on(game.CREATE, this, function() {
 		console.log("Welcome to Game-Builder!");
 
-		//This will create a loose state machine.
-		//By fixed I mean that the next and previous state of the current executing state
-		//are well defined and can not be bi-passed, like with a loose state machine.
-		//The good thing about this type of state machine is that it promotes less coupling
-		//between states.
+		// This will create a fixed state machine.
+		// By fixed I mean that the next and previous state of the current executing state
+		// are well defined and can not be bi-passed, like with a loose state machine.
+		// The good thing about this type of state machine is that it promotes less coupling
+		// between states.
 		var fixedStateMachine = stateMachineFactory.createFixedStateMachine(); 
 
-		//The states are now in different files. 
-		//Go check those out to see how they look.
+		// The states are now in different files. 
+		// Go check those out to see how they look.
 		var state_1 = require('../common_src/state-1');
 		var state_2 = require('../common_src/state-2');
 		var state_3 = require('../common_src/state-3');
 
-		//Note: After starting the state machine. The last and first states will be connected
+		// Note: After starting the state machine. The last and first states will be connected
 		// By the next() and previous() methods respectively.
 
 		fixedStateMachine.add(state_1('state_1_name'));
 		fixedStateMachine.add(state_2('state_2_name'));
 		fixedStateMachine.add(state_3('state_3_name'));
 
-		//Don't forget to start the state machine if you don't none of this nonesense will work.
+		// Don't forget to start the state machine if you don't none of this nonesense will work.
 		fixedStateMachine.start('State machine was started!');
 	});
 
 	// This is called when the canvas looses focus
-	game.on("blur", this, function() {
+	game.on(game.BLUR, this, function() {
 		console.log("fixed-state-machine has lost focus");
 	});
 
 	// This is called when the canvas regains focus
-	game.on("focus", this, function() {
+	game.on(game.FOCUS, this, function() {
 		console.log("fixed-state-machine has regained focus");
 	});
 
 	// This is the main update loop
-	game.on("update", this, function() {
+	game.on(game.UPDATE, this, function() {
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.

@@ -7,12 +7,11 @@ I believe that is pretty self explanatory.
 Some notes, the keyboard module will setup some listeners to override standard browser behaviour.
 You probably do not want the window to scroll when you press the arrow keys.
 
-There are a bunch of defined constants, you can find them in the framework's folder in keyboard.js 
+There are a bunch of variables set with keycodes, you can find them in the framework's folder in keyboard.js 
 It's not all of them, but if you need more than 20 keys for a game... I don't know... maybe you are doing it wrong.
 
 For reasons (I don't want to do it), only the callback for the A key makes something appear on the canvas.
 If you want to see the rest of the messages, you can do so on your browser's console. 
-By 'your browser' I mean Chrome.
 
 If you try to create more game objects than the amount specified when creating the pools,
 an error will be thrown, but that escapes the scope of this example.
