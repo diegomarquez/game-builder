@@ -56,6 +56,8 @@ define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 
 			 * 
 			 * @param {String} layerName Id of the layer to add the [game-object](@@game-object@@) to. View [layers](@@layers@@), for more details.
 			 * @param {String} goId      Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
+			 *
+			 * @return {Object} The [game-object](@@game-object@@) that was just assembled.
 			 */
 			addToLayer: function(layerName, goId) {
 				var go = this.layers.get(layerName).add(this.assembler.get(goId));
