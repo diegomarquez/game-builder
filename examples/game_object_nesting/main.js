@@ -1,14 +1,18 @@
-// # game-object-nesting's main entry point 
-
 /**
- * ### Modules at work in this example
- * [gb](@@gb@@)
- * [game](@@game@@)
- * [root](@@root@@)
- * [basic-layer-setup](@@basic-layer-setup@@)
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Depends of:
+ * [gb](@@gb@@),
+ * [game](@@game@@),
+ * [root](@@root@@),
+ * [basic-layer-setup](@@basic-layer-setup@@),
  * [nesting-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/nesting-bundle.html)
  */
 
+/**
+ * --------------------------------
+ */
 define(function(require){
 	var gb = require('gb');
 	

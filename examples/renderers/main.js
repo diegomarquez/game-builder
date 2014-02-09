@@ -1,15 +1,19 @@
-// # renderers's main entry point 
-
 /**
- * ### Modules at work in this example
- * [gb](@@gb@@)
- * [game](@@game@@)
- * [root](@@root@@)
- * [layers](@@layers@@)
- * [basic-layer-setup](@@basic-layer-setup@@)
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Depends of:
+ * [gb](@@gb@@),
+ * [game](@@game@@),
+ * [root](@@root@@),
+ * [layers](@@layers@@),
+ * [basic-layer-setup](@@basic-layer-setup@@),
  * [rendering-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/rendering-bundle.html)
  */
 
+/**
+ * --------------------------------
+ */
 define(function(require){
 	var gb = require('gb');
 	

@@ -1,7 +1,17 @@
-<!DOCTYPE html><html lang="en"><head><title>common_src/basic-container</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="common_src/basic-container"><meta name="groc-project-path" content="work/examples/common_src/basic-container.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/examples/common_src/basic-container.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;game-object-container&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">GameObjectContainer</span><span class="p">){</span>
-  <span class="c1">//Very basic example of what a container game-object looks like.</span>
-  <span class="c1">//This one has some logic to demonstrate how childs of it, will follow</span>
-  <span class="c1">//according to the transformation of the parent.</span>
+<!DOCTYPE html><html lang="en"><head><title>common_src/basic-container</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="common_src/basic-container"><meta name="groc-project-path" content="work/examples/common_src/basic-container.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/examples/common_src/basic-container.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="basic-containerjs">basic-container.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from:
+<a href="@@game-object-container@@">game-object-container</a></p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>A very basic example on on hot extend <a href="@@game-object-containe@@">game-object-containe</a>.
+It's behaviour is not terribly usefull, it just spins in place. It's children will
+be transformed accordingly.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;game-object-container&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">GameObjectContainer</span><span class="p">){</span>
   <span class="kd">var</span> <span class="nx">Container</span> <span class="o">=</span> <span class="nx">GameObjectContainer</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>

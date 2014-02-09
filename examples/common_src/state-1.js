@@ -1,3 +1,24 @@
+/**
+ * # state-1.js
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Depends of:
+ * [state-machine](@@state-machine@@),
+ * [keyboard](@@keyboard@@)
+ *  
+ * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
+ * 
+ * This module is just an example on how to setup a state to be used in a [state-machine](@@state-machine@@)
+ *
+ * This particular state is meant to be used in a **fixed-state-machine** as
+ * it uses the **next** and **previous** events. If this file was to be used in a **loose-state-machine**
+ * it should use the **change** event to pass control to another state.
+ */
+
+/**
+ * --------------------------------
+ */
 define(function(require) {
 	var state_machine_factory = require("state-machine");
 	var keyboard = require('keyboard');

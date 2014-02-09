@@ -1,16 +1,20 @@
-// # keyboard's main entry point 
-
 /**
- * ### Modules at work in this example
- * [gb](@@gb@@)
- * [game](@@game@@)
- * [root](@@root@@)
- * [basic-layer-setup](@@basic-layer-setup@@)
- * [input-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/input-bundle.html)
- * [keyboard](@@keyboard@@)
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Depends of:
+ * [gb](@@gb@@),
+ * [game](@@game@@),
+ * [root](@@root@@),
+ * [basic-layer-setup](@@basic-layer-setup@@),
+ * [input-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/input-bundle.html),
+ * [keyboard](@@keyboard@@),
  * [util](@@util@@)
  */
 
+/**
+ * --------------------------------
+ */
 define(function(require){
 	var gb = require('gb');
 	

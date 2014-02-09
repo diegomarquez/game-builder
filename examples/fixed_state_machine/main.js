@@ -1,17 +1,21 @@
-// # fixed-state-machine's main entry point 
-
 /**
- * ### Modules at work in this example
- * [gb](@@gb@@)
- * [game](@@game@@)
- * [root](@@root@@)
- * [state-machine](@@state-machine@@)
- * [keyboard](@@keyboard@@)
- * [state-1](http://diegomarquez.github.io/game-builder/examples-docs/common_src/state-1.html)
- * [state-2](http://diegomarquez.github.io/game-builder/examples-docs/common_src/state-2.html)
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Depends of:
+ * [gb](@@gb@@),
+ * [game](@@game@@),
+ * [root](@@root@@),
+ * [state-machine](@@state-machine@@),
+ * [keyboard](@@keyboard@@),
+ * [state-1](http://diegomarquez.github.io/game-builder/examples-docs/common_src/state-1.html),
+ * [state-2](http://diegomarquez.github.io/game-builder/examples-docs/common_src/state-2.html),
  * [state-3](http://diegomarquez.github.io/game-builder/examples-docs/common_src/state-3.html)
  */
 
+/**
+ * --------------------------------
+ */
 define(function(require){
 	var gb = require('gb');
 	

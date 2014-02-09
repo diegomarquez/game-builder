@@ -12,17 +12,15 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
+- Rethink generator concerns
+    - grunt should handle generation of requirejs configuration
+    - generator should only be concerned with scaffolding
+    - keep requirejs configuration in external file
+    - Remove main.html partial
+    - Refactor generator templates
+
 - Anotate code to generate documentation
-    - examples
-    - Review example docs to standarize the structure of each file and to iron out the gazillion 
-    typos.
-    - Links to known errors, like requireJS
     - README in examples folder. Explains the structure of a Game-Builde application
-
-- Test delegate.js destroy method properly
-- Change how events are registered in main.js in all the examples
-
-- Delete old example code
 
 - New Website sections
     - Getting started. Instructions on what you need to download. And how to use the tools.
@@ -63,6 +61,11 @@ For better results it is better to use it in conjuction with [generator-game-bui
 - Figure out how to use r.js
 
 - Do a simple game and get this over with for fucks sake!
+
+- Test garbage collection
+    - Test delegate.js destroy method properly
+
+- Links to known errors, like requireJS
 
 #### [This is the prototype game][tirador] which spurred the creation of this project.
 

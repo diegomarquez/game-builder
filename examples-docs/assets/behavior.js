@@ -24,35 +24,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         {
           "type": "heading",
           "data": {
-            "level": 3,
-            "title": "Suggested order:",
-            "slug": "suggested-order"
+            "level": 1,
+            "title": "### Suggested order: ",
+            "slug": "-suggested-order-"
           },
-          "depth": 3
+          "depth": 1
         }, {
           "type": "heading",
           "data": {
-            "level": 3,
-            "title": "In no specific order:",
-            "slug": "in-no-specific-order"
+            "level": 1,
+            "title": "### In no specific order:",
+            "slug": "-in-no-specific-order"
           },
-          "depth": 3
+          "depth": 1
         }, {
           "type": "heading",
           "data": {
-            "level": 3,
-            "title": "Quick overview on default files",
-            "slug": "quick-overview-on-default-files"
+            "level": 1,
+            "title": "### Overview on default files",
+            "slug": "-overview-on-default-files"
           },
-          "depth": 3
+          "depth": 1
         }, {
           "type": "heading",
           "data": {
-            "level": 3,
-            "title": "Quick overview on available Grunt tasks",
-            "slug": "quick-overview-on-available-grunt-tasks"
+            "level": 1,
+            "title": "### Overview on available Grunt tasks",
+            "slug": "-overview-on-available-grunt-tasks"
           },
-          "depth": 3
+          "depth": 1
         }
       ]
     }, {
@@ -105,41 +105,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/colliders/main.js",
             "targetPath": "colliders/main",
             "pageTitle": "colliders/main",
-            "firstHeader": {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "colliders's main entry point",
-                "slug": "colliderss-main-entry-point",
-                "isFileHeader": true
-              },
-              "depth": 1,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Modules at work in this example",
-                    "slug": "modules-at-work-in-this-example"
-                  },
-                  "depth": 3
-                }
-              ]
-            },
-            "title": "colliders's main entry point"
+            "title": "main"
           },
           "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Modules at work in this example",
-                "slug": "modules-at-work-in-this-example"
-              },
-              "depth": 3
-            }
-          ]
+          "outline": []
         }
       ]
     }, {
@@ -166,7 +135,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/common_src/basic-container.js",
             "targetPath": "common_src/basic-container",
             "pageTitle": "common_src/basic-container",
-            "title": "basic-container"
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "basic-container.js",
+                "slug": "basic-containerjs",
+                "isFileHeader": true
+              },
+              "depth": 1
+            },
+            "title": "basic-container.js"
           },
           "depth": 2,
           "outline": []
@@ -186,7 +165,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/common_src/basic-game-object.js",
             "targetPath": "common_src/basic-game-object",
             "pageTitle": "common_src/basic-game-object",
-            "title": "basic-game-object"
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "basic-game-object.js",
+                "slug": "basic-game-objectjs",
+                "isFileHeader": true
+              },
+              "depth": 1
+            },
+            "title": "basic-game-object.js"
           },
           "depth": 2,
           "outline": []
@@ -206,7 +195,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/common_src/box-renderer.js",
             "targetPath": "common_src/box-renderer",
             "pageTitle": "common_src/box-renderer",
-            "title": "box-renderer"
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "box-renderer.js",
+                "slug": "box-rendererjs",
+                "isFileHeader": true
+              },
+              "depth": 1
+            },
+            "title": "box-renderer.js"
           },
           "depth": 2,
           "outline": []
@@ -234,7 +233,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/examples/common_src/bundles/colliders-bundle.js",
                 "targetPath": "common_src/bundles/colliders-bundle",
                 "pageTitle": "common_src/bundles/colliders-bundle",
-                "title": "colliders-bundle"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "nesting-bundle.js",
+                    "slug": "nesting-bundlejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "nesting-bundle.js"
               },
               "depth": 3,
               "outline": []
@@ -254,7 +263,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/examples/common_src/bundles/input-bundle.js",
                 "targetPath": "common_src/bundles/input-bundle",
                 "pageTitle": "common_src/bundles/input-bundle",
-                "title": "input-bundle"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "nesting-bundle.js",
+                    "slug": "nesting-bundlejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "nesting-bundle.js"
               },
               "depth": 3,
               "outline": []
@@ -274,7 +293,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/examples/common_src/bundles/layering-bundle.js",
                 "targetPath": "common_src/bundles/layering-bundle",
                 "pageTitle": "common_src/bundles/layering-bundle",
-                "title": "layering-bundle"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "nesting-bundle.js",
+                    "slug": "nesting-bundlejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "nesting-bundle.js"
               },
               "depth": 3,
               "outline": []
@@ -294,7 +323,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/examples/common_src/bundles/logic-bundle.js",
                 "targetPath": "common_src/bundles/logic-bundle",
                 "pageTitle": "common_src/bundles/logic-bundle",
-                "title": "logic-bundle"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "nesting-bundle.js",
+                    "slug": "nesting-bundlejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "nesting-bundle.js"
               },
               "depth": 3,
               "outline": []
@@ -314,7 +353,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/examples/common_src/bundles/nesting-bundle.js",
                 "targetPath": "common_src/bundles/nesting-bundle",
                 "pageTitle": "common_src/bundles/nesting-bundle",
-                "title": "nesting-bundle"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "nesting-bundle.js",
+                    "slug": "nesting-bundlejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "nesting-bundle.js"
               },
               "depth": 3,
               "outline": []
@@ -334,7 +383,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/examples/common_src/bundles/rendering-bundle.js",
                 "targetPath": "common_src/bundles/rendering-bundle",
                 "pageTitle": "common_src/bundles/rendering-bundle",
-                "title": "rendering-bundle"
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "nesting-bundle.js",
+                    "slug": "nesting-bundlejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "nesting-bundle.js"
               },
               "depth": 3,
               "outline": []
@@ -356,7 +415,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/common_src/component-1.js",
             "targetPath": "common_src/component-1",
             "pageTitle": "common_src/component-1",
-            "title": "component-1"
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "component-1.js",
+                "slug": "component-1js",
+                "isFileHeader": true
+              },
+              "depth": 1
+            },
+            "title": "component-1.js"
           },
           "depth": 2,
           "outline": []
@@ -376,7 +445,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/common_src/state-1.js",
             "targetPath": "common_src/state-1",
             "pageTitle": "common_src/state-1",
-            "title": "state-1"
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "state-1.js",
+                "slug": "state-1js",
+                "isFileHeader": true
+              },
+              "depth": 1
+            },
+            "title": "state-1.js"
           },
           "depth": 2,
           "outline": []
@@ -396,7 +475,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/common_src/state-2.js",
             "targetPath": "common_src/state-2",
             "pageTitle": "common_src/state-2",
-            "title": "state-2"
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "state-2.js",
+                "slug": "state-2js",
+                "isFileHeader": true
+              },
+              "depth": 1
+            },
+            "title": "state-2.js"
           },
           "depth": 2,
           "outline": []
@@ -416,7 +505,17 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/common_src/state-3.js",
             "targetPath": "common_src/state-3",
             "pageTitle": "common_src/state-3",
-            "title": "state-3"
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "state-3.js",
+                "slug": "state-3js",
+                "isFileHeader": true
+              },
+              "depth": 1
+            },
+            "title": "state-3.js"
           },
           "depth": 2,
           "outline": []
@@ -472,41 +571,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/empty/main.js",
             "targetPath": "empty/main",
             "pageTitle": "empty/main",
-            "firstHeader": {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "empty's main entry point",
-                "slug": "emptys-main-entry-point",
-                "isFileHeader": true
-              },
-              "depth": 1,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Modules at work in this example",
-                    "slug": "modules-at-work-in-this-example"
-                  },
-                  "depth": 3
-                }
-              ]
-            },
-            "title": "empty's main entry point"
+            "title": "main"
           },
           "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Modules at work in this example",
-                "slug": "modules-at-work-in-this-example"
-              },
-              "depth": 3
-            }
-          ]
+          "outline": []
         }
       ]
     }, {
@@ -559,41 +627,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/extensions/main.js",
             "targetPath": "extensions/main",
             "pageTitle": "extensions/main",
-            "firstHeader": {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "extensions's main entry point",
-                "slug": "extensionss-main-entry-point",
-                "isFileHeader": true
-              },
-              "depth": 1,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Modules at work in this example",
-                    "slug": "modules-at-work-in-this-example"
-                  },
-                  "depth": 3
-                }
-              ]
-            },
-            "title": "extensions's main entry point"
+            "title": "main"
           },
           "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Modules at work in this example",
-                "slug": "modules-at-work-in-this-example"
-              },
-              "depth": 3
-            }
-          ]
+          "outline": []
         }
       ]
     }, {
@@ -646,41 +683,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/fixed_state_machine/main.js",
             "targetPath": "fixed_state_machine/main",
             "pageTitle": "fixed_state_machine/main",
-            "firstHeader": {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "fixed-state-machine's main entry point",
-                "slug": "fixed-state-machines-main-entry-point",
-                "isFileHeader": true
-              },
-              "depth": 1,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Modules at work in this example",
-                    "slug": "modules-at-work-in-this-example"
-                  },
-                  "depth": 3
-                }
-              ]
-            },
-            "title": "fixed-state-machine's main entry point"
+            "title": "main"
           },
           "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Modules at work in this example",
-                "slug": "modules-at-work-in-this-example"
-              },
-              "depth": 3
-            }
-          ]
+          "outline": []
         }
       ]
     }, {
@@ -733,41 +739,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/game_object_creation/main.js",
             "targetPath": "game_object_creation/main",
             "pageTitle": "game_object_creation/main",
-            "firstHeader": {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "game-object-creation's main entry point",
-                "slug": "game-object-creations-main-entry-point",
-                "isFileHeader": true
-              },
-              "depth": 1,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Modules at work in this example",
-                    "slug": "modules-at-work-in-this-example"
-                  },
-                  "depth": 3
-                }
-              ]
-            },
-            "title": "game-object-creation's main entry point"
+            "title": "main"
           },
           "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Modules at work in this example",
-                "slug": "modules-at-work-in-this-example"
-              },
-              "depth": 3
-            }
-          ]
+          "outline": []
         }
       ]
     }, {
@@ -820,41 +795,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/game_object_nesting/main.js",
             "targetPath": "game_object_nesting/main",
             "pageTitle": "game_object_nesting/main",
-            "firstHeader": {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "game-object-nesting's main entry point",
-                "slug": "game-object-nestings-main-entry-point",
-                "isFileHeader": true
-              },
-              "depth": 1,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Modules at work in this example",
-                    "slug": "modules-at-work-in-this-example"
-                  },
-                  "depth": 3
-                }
-              ]
-            },
-            "title": "game-object-nesting's main entry point"
+            "title": "main"
           },
           "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Modules at work in this example",
-                "slug": "modules-at-work-in-this-example"
-              },
-              "depth": 3
-            }
-          ]
+          "outline": []
         }
       ]
     }, {
@@ -907,41 +851,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/keyboard/main.js",
             "targetPath": "keyboard/main",
             "pageTitle": "keyboard/main",
-            "firstHeader": {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "keyboard's main entry point",
-                "slug": "keyboards-main-entry-point",
-                "isFileHeader": true
-              },
-              "depth": 1,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Modules at work in this example",
-                    "slug": "modules-at-work-in-this-example"
-                  },
-                  "depth": 3
-                }
-              ]
-            },
-            "title": "keyboard's main entry point"
+            "title": "main"
           },
           "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Modules at work in this example",
-                "slug": "modules-at-work-in-this-example"
-              },
-              "depth": 3
-            }
-          ]
+          "outline": []
         }
       ]
     }, {
@@ -994,41 +907,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/layering/main.js",
             "targetPath": "layering/main",
             "pageTitle": "layering/main",
-            "firstHeader": {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "layering's main entry point",
-                "slug": "layerings-main-entry-point",
-                "isFileHeader": true
-              },
-              "depth": 1,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Modules at work in this example",
-                    "slug": "modules-at-work-in-this-example"
-                  },
-                  "depth": 3
-                }
-              ]
-            },
-            "title": "layering's main entry point"
+            "title": "main"
           },
           "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Modules at work in this example",
-                "slug": "modules-at-work-in-this-example"
-              },
-              "depth": 3
-            }
-          ]
+          "outline": []
         }
       ]
     }, {
@@ -1081,41 +963,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/logic_components/main.js",
             "targetPath": "logic_components/main",
             "pageTitle": "logic_components/main",
-            "firstHeader": {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "logic-components's main entry point",
-                "slug": "logic-componentss-main-entry-point",
-                "isFileHeader": true
-              },
-              "depth": 1,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Modules at work in this example",
-                    "slug": "modules-at-work-in-this-example"
-                  },
-                  "depth": 3
-                }
-              ]
-            },
-            "title": "logic-components's main entry point"
+            "title": "main"
           },
           "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Modules at work in this example",
-                "slug": "modules-at-work-in-this-example"
-              },
-              "depth": 3
-            }
-          ]
+          "outline": []
         }
       ]
     }, {
@@ -1168,41 +1019,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/loose_state_machine/main.js",
             "targetPath": "loose_state_machine/main",
             "pageTitle": "loose_state_machine/main",
-            "firstHeader": {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "loose-state-machine's main entry point",
-                "slug": "loose-state-machines-main-entry-point",
-                "isFileHeader": true
-              },
-              "depth": 1,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Modules at work in this example",
-                    "slug": "modules-at-work-in-this-example"
-                  },
-                  "depth": 3
-                }
-              ]
-            },
-            "title": "loose-state-machine's main entry point"
+            "title": "main"
           },
           "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Modules at work in this example",
-                "slug": "modules-at-work-in-this-example"
-              },
-              "depth": 3
-            }
-          ]
+          "outline": []
         }
       ]
     }, {
@@ -1255,41 +1075,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/reclaimer/main.js",
             "targetPath": "reclaimer/main",
             "pageTitle": "reclaimer/main",
-            "firstHeader": {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "reclaimer's main entry point",
-                "slug": "reclaimers-main-entry-point",
-                "isFileHeader": true
-              },
-              "depth": 1,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Modules at work in this example",
-                    "slug": "modules-at-work-in-this-example"
-                  },
-                  "depth": 3
-                }
-              ]
-            },
-            "title": "reclaimer's main entry point"
+            "title": "main"
           },
           "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Modules at work in this example",
-                "slug": "modules-at-work-in-this-example"
-              },
-              "depth": 3
-            }
-          ]
+          "outline": []
         }
       ]
     }, {
@@ -1342,41 +1131,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/renderers/main.js",
             "targetPath": "renderers/main",
             "pageTitle": "renderers/main",
-            "firstHeader": {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "renderers's main entry point",
-                "slug": "rendererss-main-entry-point",
-                "isFileHeader": true
-              },
-              "depth": 1,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Modules at work in this example",
-                    "slug": "modules-at-work-in-this-example"
-                  },
-                  "depth": 3
-                }
-              ]
-            },
-            "title": "renderers's main entry point"
+            "title": "main"
           },
           "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Modules at work in this example",
-                "slug": "modules-at-work-in-this-example"
-              },
-              "depth": 3
-            }
-          ]
+          "outline": []
         }
       ]
     }, {
@@ -1429,41 +1187,10 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "projectPath": "work/examples/sound/main.js",
             "targetPath": "sound/main",
             "pageTitle": "sound/main",
-            "firstHeader": {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "sound's main entry point",
-                "slug": "sounds-main-entry-point",
-                "isFileHeader": true
-              },
-              "depth": 1,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Modules at work in this example",
-                    "slug": "modules-at-work-in-this-example"
-                  },
-                  "depth": 3
-                }
-              ]
-            },
-            "title": "sound's main entry point"
+            "title": "main"
           },
           "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Modules at work in this example",
-                "slug": "modules-at-work-in-this-example"
-              },
-              "depth": 3
-            }
-          ]
+          "outline": []
         }
       ]
     }, {
@@ -1519,17 +1246,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "title": "main"
           },
           "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 3,
-                "title": "Modules at work in this example",
-                "slug": "modules-at-work-in-this-example"
-              },
-              "depth": 3
-            }
-          ]
+          "outline": []
         }
       ]
     }

@@ -1,3 +1,28 @@
+/**
+ * # nesting-bundle.js
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Inherits from:
+ * [bundle](@@bundle@@)
+ *
+ * Depends of:
+ * [basic-game-object](http://diegomarquez.github.io/game-builder/examples-docs/common_src/basic-game-object.html)
+ * [bitmap-renderer](@@bitmap-renderer@@)
+ * [circle-collider](@@circle-collider@@)
+ * [polygon-collider](@@polygon-collider@@)
+ * [fixed-polygon-collider](@@fixed-polygon-collider@@)
+ * [vector-2D](@@vector-2D@@)
+ * 
+ * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
+ * 
+ * This is an example on how to encapsulate the logic needed to setup the [game-object-pool](@@game-object-pool@@)
+ * and the [component-pool](@@component-pool@@)
+ */
+
+/**
+ * --------------------------------
+ */
 define(function(require) {
 	var basic_game_object = require('basic-game-object'); 
 	var bitmap_renderer = require('bitmap-renderer');

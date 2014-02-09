@@ -1,16 +1,20 @@
-// # colliders's main entry point 
-
 /**
- * ### Modules at work in this example
- * [gb](@@gb@@)
- * [game](@@game@@)
- * [root](@@root@@)
- * [layers](@@layers@@)
- * [basic-layer-setup](@@basic-layer-setup@@)
- * [colliders-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/colliders-bundle.html)
+ * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ *
+ * Depends of:
+ * [gb](@@gb@@),
+ * [game](@@game@@),
+ * [root](@@root@@),
+ * [layers](@@layers@@),
+ * [basic-layer-setup](@@basic-layer-setup@@),
+ * [colliders-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/colliders-bundle.html),
  * [collision-resolver](@@collision-resolver@@)
  */
 
+/**
+ * --------------------------------
+ */
 define(function(require){
 	var gb = require('gb');
 	

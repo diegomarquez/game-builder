@@ -1,4 +1,20 @@
-<!DOCTYPE html><html lang="en"><head><title>common_src/state-3</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="common_src/state-3"><meta name="groc-project-path" content="work/examples/common_src/state-3.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/examples/common_src/state-3.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+<!DOCTYPE html><html lang="en"><head><title>common_src/state-3</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="common_src/state-3"><meta name="groc-project-path" content="work/examples/common_src/state-3.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/examples/common_src/state-3.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="state-3js">state-3.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Depends of:
+<a href="@@state-machine@@">state-machine</a>,
+<a href="@@keyboard@@">keyboard</a></p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This module is just an example on how to setup a state to be used in a <a href="@@state-machine@@">state-machine</a></p>
+
+<p>This particular state is meant to be used in a <strong>fixed-state-machine</strong> as
+it uses the <strong>next</strong> and <strong>previous</strong> events. If this file was to be used in a <strong>loose-state-machine</strong>
+it should use the <strong>change</strong> event to pass control to another state.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">state_machine_factory</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;state-machine&quot;</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">keyboard</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;keyboard&#39;</span><span class="p">);</span>
 
