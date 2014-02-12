@@ -135,8 +135,8 @@ define(["delegate"], function(Delegate) {
 			// When this is called the application has trully started.
 			var setupUpdateLoop = function() {
 				self.initialized = true;
-				self.execute_extensions(this.CREATE);
-				self.execute(this.CREATE);
+				self.execute_extensions(self.CREATE);
+				self.execute(self.CREATE);
 
 				var now;
 
@@ -145,8 +145,8 @@ define(["delegate"], function(Delegate) {
 					this.delta = (now - self.lastUpdate) / 1000;
 					self.lastUpdate = now;
 
-					self.execute_extensions(this.UPDATE);
-					self.execute(this.UPDATE);
+					self.execute_extensions(self.UPDATE);
+					self.execute(self.UPDATE);
 
 					window.requestAnimationFrame(mainLoop);
 				}
@@ -186,8 +186,8 @@ define(["delegate"], function(Delegate) {
 					self.focus = true;
 
 					if (!blur) {
-						self.execute_extensions(this.BLUR);	
-						self.execute(this.BLUR);
+						self.execute_extensions(self.BLUR);	
+						self.execute(self.BLUR);
 
 						blur = true;
 					}
@@ -209,8 +209,8 @@ define(["delegate"], function(Delegate) {
 						self.focus = false;
 
 						if (blur) {
-							self.execute_extensions(this.FOCUS);
-							self.execute(this.FOCUS);
+							self.execute_extensions(self.FOCUS);
+							self.execute(self.FOCUS);
 
 							blur = false;
 						}
@@ -251,11 +251,11 @@ define(["delegate"], function(Delegate) {
 	var game = new Game();
 
 	game.extensions = {
-		game.CREATE: [],
-		game.UPDATE: [],
-		game.BLUR: [],
-		game.FOCUS: []
+		'create': [],
+		'update': [],
+		'focus': [],
+		'blur': []
 	};
 
-	return new Game();
+	return game;
 });

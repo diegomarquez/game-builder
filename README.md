@@ -13,11 +13,9 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### TODO List:
 
 - Rethink generator concerns
-    - grunt should handle generation of requirejs configuration
-    - generator should only be concerned with scaffolding
-    - keep requirejs configuration in external file
-    - Remove main.html partial
     - Refactor generator templates
+    - Refactor grunt tasks to be run on all examples
+    - Update all examples to use the new structure
 
 - Anotate code to generate documentation
     - README in examples folder. Explains the structure of a Game-Builde application
@@ -62,10 +60,14 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Do a simple game and get this over with for fucks sake!
 
-- Test garbage collection
-    - Test delegate.js destroy method properly
-
-- Links to known errors, like requireJS
+- Annoying tasks
+    - Test garbage collection
+        - Test delegate.js destroy method properly
+    - Links to explanations of known errors, like requireJS
+    - Rename delegate.js to broadcaster.js
+    - Examples docs need another review
+        - Get rid of "_" chars, because they mess with markdown
+        - Don't forget about fullstops at the end of comments.
 
 #### [This is the prototype game][tirador] which spurred the creation of this project.
 
