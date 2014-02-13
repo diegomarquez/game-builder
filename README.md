@@ -13,16 +13,20 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### TODO List:
 
 - Rethink generator concerns
-    - Refactor generator templates
-    - Refactor grunt tasks to be run on all examples
     - Update all examples to use the new structure
+    - Refactor grunt tasks to be run on all examples
 
 - Anotate code to generate documentation
-    - README in examples folder. Explains the structure of a Game-Builde application
+    - README in examples folder. 
+    - Explains the structure of a Game-Builde application
+    - Overview of generated files
 
 - New Website sections
-    - Getting started. Instructions on what you need to download. And how to use the tools.
+    - Getting started. BIG BLUE BUTTON in Jumbotron. 
+    - Instructions on what you need to download. And how to use the tools
     - Links to running examples
+        - Should have link to github, to view the code
+        - Should have link to corresponding doc
 
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.
@@ -35,6 +39,8 @@ For better results it is better to use it in conjuction with [generator-game-bui
         - The idea is to have something else other than raw strings in the code.
     - Refactor sound-player so it loads things and plays them as they become available.
     - Add functionality to use a manipulate an individual sound channel to the sound-player
+
+- Tag latest version of game-builder
 
 - Extensions 2
     - TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )

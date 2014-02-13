@@ -250,6 +250,8 @@ define(["delegate"], function(Delegate) {
 
 	var game = new Game();
 
+	game.prototype = Game;
+
 	game.extensions = {
 		'create': [],
 		'update': [],
