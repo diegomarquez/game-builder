@@ -12,14 +12,10 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Rethink generator concerns
-    - Update all examples to use the new structure
-    - Refactor grunt tasks to be run on all examples
-
 - Anotate code to generate documentation
     - README in examples folder. 
     - Explains the structure of a Game-Builde application
-    - Overview of generated files
+    - Overview of common files
 
 - New Website sections
     - Getting started. BIG BLUE BUTTON in Jumbotron. 
