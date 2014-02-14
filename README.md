@@ -11,15 +11,19 @@ For better results it is better to use it in conjuction with [generator-game-bui
 -----------------------------------
 
 ###### TODO List:
-
-- Anotate code to generate documentation
-    - README in examples folder. 
-    - Explains the structure of a Game-Builde application
-    - Overview of common files
-
+        
 - New Website sections
     - Getting started. BIG BLUE BUTTON in Jumbotron. 
-    - Instructions on what you need to download. And how to use the tools
+        - Instructions on what you need to download. And how to use the tools
+        - Overview of default files and folders
+            - .bowerrc
+            - .gitignore
+            - bower.json
+            - config.js
+            - Gruntfile.js
+            - index.html
+            - package.json
+        - Overview of available grunt tasks
     - Links to running examples
         - Should have link to github, to view the code
         - Should have link to corresponding doc
@@ -27,6 +31,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.
     - Hook yeoman generators into each option
+    - Hook Grunt tasks
 
 - Think about how to handle paths to images/sound
     - Yeoman subgenerator to create a file with name/paths pairs.
