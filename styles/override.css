@@ -46,11 +46,52 @@ body {
   color: inherit;
 }
 
+.large-font {
+  font-size: 40px;
+}
+
+.blue-background {
+  background-color: #428bca;
+}
+
+.blue-text {
+  color:#428bca;
+}
+
+.red-text {
+  color:#ca4247;
+}
+
+.description li {
+  color:#b9b5b5; 
+  font-size: 10px;
+  padding-bottom: 5px;
+}
+
+.blue-background h4 {
+  color: #521412;
+}
+
+.blue-background p {
+  color: #eeeeee;
+}
+
+.blue-background a {
+  color: #d9534f;
+}
+
+.blue-background a:hover {
+  color: #b52b27;
+}
+
+.left-padding { 
+  padding-left: 30px; 
+}
+
 .btn {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  font-size: 14px;
   font-weight: normal;
   line-height: 1.428571429;
   text-align: center;
