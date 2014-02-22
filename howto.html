@@ -7,7 +7,7 @@
    <body>
    		<div class="container">
             <div class="jumbotron">
-                <h1 class="text-center" class="page-header">How to GAME-BUILDER
+                <h1 class="text-center" class="page-header">How to <a href="index.html" >GAME-BUILDER</a>
                     <hr>
                     <small>So you decided to give this a try? Good. Let's get started.</small>
                 </h1>
@@ -19,32 +19,36 @@
                     <h4 class="text-center col-md-6 col-md-offset-3">Tools</h4> 
                 </div>
                 <div class="row"> 
-                    <p class="text-center"><small>These are the different tools and libraries used in a default Game-Builder project. Before doing anything you need these</small></p>
+                    <p class="left-padding right-padding text-center"><small>These are the different tools and libraries used in a default Game-Builder project. You should be familiar with these, and install what you don't already have</small></p>
                 </div>
                 <hr>
             </div>
 
             <ol class="left-padding list-unstyled">
+              <li><a href="http://www.nodejs.org/">node</a></li>
+              <ul class="description left-padding list-unstyled">
+                <li>Game-Builder relies on <em class="red-text">bower</em> and <em class="red-text">grunt</em> to try and make things a little less annoying when developing. Those
+                    two are built on <em class="red-text">node</em>. So you need to install it. <a href="http://blog.nodeknockout.com/post/65463770933/how-to-install-node-js-and-npm">This is a pretty nice guide.</a></li>
+              </ul>
               <li><a href="http://git-scm.com/">git</a></li>
               <ul class="description left-padding list-unstyled">
-                <li>You don't really need git, but it's pretty cool</li>
+                <li>One of the grunt tasks uses <em class="red-text">git</em> to download Game-Builder, so you need to install it.
+                    <a href="http://git-scm.com/book/en/Getting-Started-Installing-Git">Here is a guide on how to
+                        to that.</a></li>
               </ul>
               <li><a href="http://requirejs.org/">requirejs</a></li>
               <ul class="description left-padding list-unstyled">
-                <li>Everything in Game-Builder is a requirejs module. It helps a lot with managing dependencies.</li>
-              </ul>
-              <li><a href="http://www.nodejs.org/">node</a></li>
-              <ul class="description left-padding list-unstyled">
-                <li>Game-Builder relies on bower and grunt to try and make things a little less annoying when developing. Those
-                    two are built on node. So you need to install it. <a href="http://blog.nodeknockout.com/post/65463770933/how-to-install-node-js-and-npm">This is a pretty nice guide</a></li>
+                <li>Everything in Game-Builder is a <em class="red-text">requirejs</em> module. It helps a lot with managing dependencies.
+                    This will be downloaded when setting up a new Game-Builder project, so don't worry about it.</li>
               </ul>
               <li><a href="http://www.gruntjs.com/">grunt</a></li>
               <ul class="description left-padding list-unstyled">
-                <li>Grunt is used used to try and solve a few annoying aspects of developing a game for the HTML5 Canvas</li>
+                <li><em class="red-text">Grunt</em> is used to try and solve a few annoying aspects of developing a game for the HTML5 Canvas. This will be downloaded when setting up a new Game-Builder project, so don't worry about it.</li>
               </ul>
               <li><a href="http://www.bower.io/">bower</a></li>
               <ul class="description left-padding list-unstyled">
-                <li>Bower is used to avoid the need of manually downloading external dependencies</li>
+                <li><em class="red-text">Bower</em> is used to avoid the need of manually downloading external dependencies.
+                This will be downloaded when setting up a new Game-Builder project, so don't worry about it.</li>
               </ul>
             </ol>
 
@@ -54,17 +58,32 @@
                     <h4 class="text-center col-md-6 col-md-offset-3">Quick Setup</h4>
                 </div>
                 <div class="row"> 
-                    <p class="text-center"><small>Quickest way to start doing something</small></p>
+                    <p class="left-padding right-padding text-center"><small>Quickest way to start doing something</small></p>
                 </div>
                 <hr>
             </div>
 
             <ol class="left-padding list-unstyled">
               <li>Open your favorite shell</li>
-              <li><em class="red-text">git clone</em> empty project. (Insert Repo URL)</li>
-              <li><em class="red-text">npm install</em> in project root</li>
-              <li><em class="red-text">grunt</em> in project root</li>
-              <li>Open <em class="red-text">index.html</em> in a browser to see something!</li>
+              <ul class="description left-padding list-unstyled">
+                <li>We will be using the command line a bit now. Just a little bit.</li>
+              </ul>
+              <li><em class="red-text">git clone</em> empty project.</li>
+              <ul class="description left-padding list-unstyled">
+                <li>(Insert Repo URL)</li>
+              </ul>
+              <li><em class="red-text">npm install</em> in project root.</li>
+              <ul class="description left-padding list-unstyled">
+                <li>This will install <em class="red-text">grunt</em> and <em class="red-text">bower</em> as local dependencies.</li>
+              </ul>
+              <li><em class="red-text">grunt</em> in project root.</li>
+              <ul class="description left-padding list-unstyled">
+                <li>This will download <em class="red-text">requirejs</em> and Game-Builder source.</li>
+              </ul>
+              <li>Open <em class="red-text">index.html</em></li>
+              <ul class="description left-padding list-unstyled">
+                <li>You should be seeing something in the browser now!</li>
+              </ul>
             </ol>
 
             <div class='blue-background'>
@@ -73,7 +92,8 @@
                     <h4 class="text-center col-md-6 col-md-offset-3">File Overview</h4>
                 </div>            
                 <div class="row"> 
-                    <p class="text-center"><small>A quick overview on the default files of a Game-Builder project</small></p>
+                    <p class="left-padding right-padding text-center"><small>A quick overview on the default files of a Game-Builder project. You
+                        can view all the files in (Insert Repo URL)</small></p>
                 </div>
                 <hr>
             </div>
@@ -82,41 +102,41 @@
               <li class="blue-text">assets/</li>
               <ul class="description left-padding list-unstyled">
                 <li>A folder in which to drop assets. It is empty by default. It can be deleted, but it is highly likely
-                    that you will be using a folder to put assets into</li>
+                    that you will be using a folder to put assets into.</li>
               </ul>
 
               <li class="blue-text">node_modules/</li>
               <ul class="description left-padding list-unstyled">
-                <li>This is created by when doing <em class="red-text">npm install</em> in the root of a project</li>
+                <li>This is created when doing <em class="red-text">npm install</em> in the root of a project.</li>
               </ul>
               <li class="blue-text">src/</li>
               <ul class="description left-padding list-unstyled">
                 <li>A folder in which to drop source code. It is empty by default. It can be deleted, but it is highly likely
-                    that you will be using a folder to put source code into</li>
+                    that you will be using a folder to put source code into.</li>
               </ul>
               <li class="blue-text">styles/</li>
               <ul class="description left-padding list-unstyled">
                 <li>A folder in which to drop stylesheets. By default it contains <em class="red-text">main.css</em>. If you change this
-                    folder you need to make appropiate changes in <em class="red-text">index.html</em></li>
+                    folder you need to make appropiate changes in <em class="red-text">index.html</em>.</li>
               </ul>
               <li class="blue-text">game-builder/</li>
               <ul class="description left-padding list-unstyled">
                 <li>This folder is downloaded when doing <em class="red-text">grunt</em> in the root of a project. It contains
-                all the source that will hopefully help you make a game</li> 
+                all the source that will hopefully help you make a game.</li> 
               </ul>
               <li class="blue-text">lib/</li>
               <ul class="description left-padding list-unstyled">
                 <li>This folder is downloaded when doing <em class="red-text">grunt</em> in the root of a project. By default this is
-                    where <em class="red-text">requirejs</em> is found</li>
+                    where <em class="red-text">requirejs</em> is found.</li>
               </ul>
               <li>.bowerrc</li>
               <ul class="description left-padding list-unstyled">
-                <li>This file is used to configure <em class="red-text">bower</em> in different ways. By default it only outlines where should <em class="red-text">bower</em> drop everything that it downloads</li>
+                <li>This file is used to configure <em class="red-text">bower</em> in different ways. By default it only outlines where should <em class="red-text">bower</em> drop everything that it downloads.</li>
               </ul>
               <li>bower.json</li>
               <ul class="description left-padding list-unstyled">
                 <li>This file describes all the things that <em class="red-text">bower</em> should download. By default it
-                    will get <em class="red-text">requirejs</em> and the <em class="red-text">domready plugin</em></li>
+                    will get <em class="red-text">requirejs</em> and the <em class="red-text">domready plugin</em>.</li>
               </ul>
               <li>.gitignore</li>
               <ul class="description left-padding list-unstyled">
@@ -125,20 +145,20 @@
               <li>config.js</li>
               <ul class="description left-padding list-unstyled">
                 <li>This file is generatd when doing <em class="red-text">grunt</em> in the root of a project. It contains
-                configuration for <em class="red-text">requirejs</em></li>
+                configuration for <em class="red-text">requirejs</em>.</li>
               </ul>
               <li>Gruntfile.js</li>
               <ul class="description left-padding list-unstyled">
-                <li>This contains the <em class="red-text">grunt</em> tasks available in a Game-Builder project</li>
+                <li>This contains the <em class="red-text">grunt</em> tasks available in a Game-Builder project.</li>
               </ul>
               <li>index.html</li>
               <ul class="description left-padding list-unstyled">
-                <li>The main .html file that will be used by a browser</li>
+                <li>The main .html file that will be used by a browser.</li>
               </ul>
               <li>package.json</li>
               <ul class="description left-padding list-unstyled">
                 <li>This file is used by <em class="red-text">npm</em> to install dependencies. It also has other fields used
-                    by <em class="red-text">grunt</em></li>
+                    by <em class="red-text">grunt</em>.</li>
               </ul>
             </ul>
 
@@ -148,7 +168,7 @@
                     <h4 class="text-center col-md-6 col-md-offset-3">Grunt Tasks</h4>
                 </div>            
                 <div class="row"> 
-                    <p class="text-center"><small>A Game-Builder project has a few grunt tasks available</small></p>
+                    <p class="left-padding right-padding text-center"><small>A Game-Builder project has a few grunt tasks available</small></p>
                 </div>
                 <hr>
             </div>
@@ -159,7 +179,7 @@
                     <h4 class="text-center col-md-6 col-md-offset-3">Bonus Tools</h4>
                 </div>            
                 <div class="row"> 
-                    <p class="text-center"><small>A few extra things you can do to make the development 
+                    <p class="left-padding right-padding text-center"><small>A few extra things you can do to make the development 
                         experience a little less of a chore</small></p>
                 </div>
                 <hr>
@@ -167,11 +187,11 @@
 
             <hr>
 
-            <h6 class="footer text-center">That's pretty much all you need to know about setting up a project.</h6>
+            <h6 class="left-padding right-padding footer text-center">That's pretty much all you need to know about Game-Builder. The rest is making a game.</h6>
 
             <hr>
 
-            <div class="footer text-center">
+            <div class="left-padding right-padding footer text-center">
                 <p>A project by 
                     <a href="https://github.com/diegomarquez">Diego Enrique Marquez<a>
                 </p>
