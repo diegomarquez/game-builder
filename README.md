@@ -11,29 +11,21 @@ For better results it is better to use it in conjuction with [generator-game-bui
 -----------------------------------
 
 ###### TODO List:
-        
+    
+- Update Gruntfile in all examples
+- Make Seed project for a quick start
+
 - New Website sections
-    - Getting started. BIG BLUE BUTTON in Jumbotron. 
-        - Quick start
-        - Overview of default files and folders
-            - .bowerrc
-            - .gitignore
-            - bower.json
-            - config.js
-            - Gruntfile.js
-            - index.html
-            - package.json
-        - Overview of available grunt tasks
-        - Slow start
-    - Links to running examples
+    - Overview of default files and folders (LINK TO SEED PROJECT)
+    - Overview of available grunt tasks
+    - howto.html should finish with the grunt overview
+    - additionalTools.html (Generator and Sublime Plugin)
+    - Main. Links to running examples
         - Should have link to github, to view the code
         - Should have link to corresponding doc
 
-- Use path to generate proper in all systems.
-- Download game-builder with grunt instead of the generator
-- Make Seed project for a quick start
-
 - Update howto.html with any relevant changes introduced up until this point
+- Build and deploy documentation
 
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.
