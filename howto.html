@@ -176,21 +176,32 @@
                 <hr>
             </div>
 
-            <div class='blue-background'>
-                <hr>
-                <div class="row">
-                    <h4 class="text-center col-md-6 col-md-offset-3">Bonus Tools</h4>
-                </div>            
-                <div class="row"> 
-                    <p class="left-padding right-padding text-center"><small>A few extra things you can do to make the development 
-                        experience a little less of a chore</small></p>
-                </div>
-                <hr>
-            </div>
+            <ul class="left-padding list-unstyled">
+              <li class="blue-text">config</li>
+              <ul class="description left-padding list-unstyled">
+                <li>This task generates <em class="red-text">requirejs</em> configuration and drops it in <em class="red-text">config.js</em>.</li>
+              </ul>
+              <li class="blue-text">framework</li>
+              <ul class="description left-padding list-unstyled">
+                <li>This task download Game-Builder source.</li>
+              </ul>
+              <li class="blue-text">run</li>
+              <ul class="description left-padding list-unstyled">
+                <li>This task opens <em class="red-text">index.html</em> in the default browser.</li>
+              </ul>
+              <li class="blue-text">build</li>
+              <ul class="description left-padding list-unstyled">
+                <li>This task downloads <em class="red-text">bower</em> dependencies, calls <em class="red-text">framework</em> and finally calls <em class="red-text">config</em>.</li>
+              </ul>
+              <li class="blue-text">default</li>
+              <ul class="description left-padding list-unstyled">
+                <li>The default task is just as calling <em class="red-text">build</em>, but it also calls <em class="red-text">run</em></li>
+              </ul>              
+            </ul>
 
             <hr>
 
-            <h6 class="left-padding right-padding footer text-center">That's pretty much all you need to know about Game-Builder. The rest is making a game.</h6>
+            <h6 class="left-padding right-padding footer text-center">That's pretty much all you need to know about Game-Builder. The rest is making a game. Easier said than done.</h6>
 
             <hr>
 
