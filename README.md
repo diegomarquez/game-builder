@@ -12,20 +12,17 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
     
-- Update Gruntfile in all examples
-- Make Seed project for a quick start
-
 - New Website sections
-    - Overview of default files and folders (LINK TO SEED PROJECT)
-    - Overview of available grunt tasks
-    - howto.html should finish with the grunt overview
     - additionalTools.html (Generator and Sublime Plugin)
     - Main. Links to running examples
         - Should have link to github, to view the code
         - Should have link to corresponding doc
 
 - Update howto.html with any relevant changes introduced up until this point
+
 - Build and deploy documentation
+    - Get rid of "_" chars, because they mess with markdown
+    - Don't forget about fullstops at the end of comments.
 
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.
@@ -71,9 +68,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
         - Test delegate.js destroy method properly
     - Links to explanations of known errors, like requireJS
     - Rename delegate.js to broadcaster.js
-    - Examples docs need another review
-        - Get rid of "_" chars, because they mess with markdown
-        - Don't forget about fullstops at the end of comments.
 
 #### [This is the prototype game][tirador] which spurred the creation of this project.
 
