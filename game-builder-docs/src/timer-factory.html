@@ -261,7 +261,7 @@ that evaluate to true will qualify to change state.</p>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">to</span><span class="p">.</span><span class="nx">isRunning</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">to</span><span class="p">.</span><span class="nx">isPaused</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">to</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">REPEATE</span><span class="p">,</span> <span class="nx">to</span><span class="p">.</span><span class="nx">repeates</span><span class="p">)</span>
+          <span class="nx">to</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">to</span><span class="p">.</span><span class="nx">REPEATE</span><span class="p">,</span> <span class="nx">to</span><span class="p">.</span><span class="nx">repeates</span><span class="p">)</span>
           <span class="nx">to</span><span class="p">.</span><span class="nx">repeates</span><span class="o">++</span><span class="p">;</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
           <span class="k">return</span><span class="p">;</span>
@@ -280,7 +280,8 @@ that evaluate to true will qualify to change state.</p>
             <span class="nx">to</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span>
           <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
             <span class="nx">to</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
-            <span class="nx">to</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">COMPLETE</span><span class="p">);</span>
+
+            <span class="nx">to</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">to</span><span class="p">.</span><span class="nx">COMPLETE</span><span class="p">);</span>
 
             <span class="k">if</span> <span class="p">(</span><span class="nx">to</span><span class="p">.</span><span class="nx">removeOnComplete</span><span class="p">)</span> <span class="p">{</span>
               <span class="nx">to</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>

@@ -1,6 +1,8 @@
 {
   "Gruntfile@@": "http://diegomarquez.github.io/game-builder/examples-docs/timers/Gruntfile.html",
+  "config@@": "http://diegomarquez.github.io/game-builder/examples-docs/timers/config.html",
   "main@@": "http://diegomarquez.github.io/game-builder/examples-docs/timers/main.html",
+  "create-config@@": "http://diegomarquez.github.io/game-builder/examples-docs/timers/tasks/create-config.html",
   "basic-container@@": "http://diegomarquez.github.io/game-builder/examples-docs/common_src/basic-container.html",
   "basic-game-object@@": "http://diegomarquez.github.io/game-builder/examples-docs/common_src/basic-game-object.html",
   "box-renderer@@": "http://diegomarquez.github.io/game-builder/examples-docs/common_src/box-renderer.html",

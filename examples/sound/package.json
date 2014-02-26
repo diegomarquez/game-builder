@@ -1,28 +1,17 @@
 {
   "name": "sound",
-  
   "version": "0.1.0",
-  
   "additionalSrcPaths": "../common_src",
-  "additionalAssetPaths": "../common_assets", 
-  "additionalLibPaths": "",
-
-  "frameworkLocation": "../../",
-  "libLocation": "../../",
-
-  "libFolderName": "lib",
-  "frameworkFolderName": "game-builder",
-
-  "size": {
-  	"width": "400",
-  	"height": "300" 
-  },
-
+  "additionalAssetPaths": "../common_assets",
+  "framework": "../../game-builder",
+  "lib": "../../lib",
   "frameworkTag": "latest",
-  
   "dependencies": {
     "grunt": "~0.4.2",
     "grunt-shell": "~0.6.0",
-    "grunt-open": "~0.2.2"
+    "grunt-open": "~0.2.2",
+    "bower": "~1.2.8",
+    "grunt-bower-requirejs": "~0.8.4",
+    "grunt-contrib-clean": "~0.5.0"
   }
 }

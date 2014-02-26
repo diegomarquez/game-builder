@@ -338,7 +338,7 @@ define(function(require) {
 
 			this.id = setTimeout(function() {
 				if (to.isRunning && !to.isPaused) {
-					to.execute(this.REPEATE, to.repeates)
+					to.execute(to.REPEATE, to.repeates)
 					to.repeates++;
 				} else {
 					return;
@@ -357,7 +357,8 @@ define(function(require) {
 						to.start();
 					} else {
 						to.stop();
-						to.execute(this.COMPLETE);
+
+						to.execute(to.COMPLETE);
 
 						if (to.removeOnComplete) {
 							to.remove();

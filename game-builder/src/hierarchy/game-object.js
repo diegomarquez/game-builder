@@ -488,9 +488,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 	});
 
 	// ### Getters for all the types of events a GameObject can hook into
-	Object.defineProperty(Game.prototype, "START", { get: function() { return 'start'; } });
-	Object.defineProperty(Game.prototype, "RECYCLE", { get: function() { return 'recycle'; } });
-	Object.defineProperty(Game.prototype, "CLEAR", { get: function() { return 'clear'; } });
+	Object.defineProperty(GameObject.prototype, "START", { get: function() { return 'start'; } });
+	Object.defineProperty(GameObject.prototype, "RECYCLE", { get: function() { return 'recycle'; } });
+	Object.defineProperty(GameObject.prototype, "CLEAR", { get: function() { return 'clear'; } });
 
 	return GameObject;
 });

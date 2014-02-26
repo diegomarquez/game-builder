@@ -11,32 +11,38 @@ For better results it is better to use it in conjuction with [generator-game-bui
 -----------------------------------
 
 ###### TODO List:
-
-- Rethink generator concerns
-    - grunt should handle generation of requirejs configuration
-    - generator should only be concerned with scaffolding
-    - keep requirejs configuration in external file
-    - Remove main.html partial
-    - Refactor generator templates
-
-- Anotate code to generate documentation
-    - README in examples folder. Explains the structure of a Game-Builde application
+    
+- Make Seed project for a quick start (Make it with generator to see how it works)
 
 - New Website sections
-    - Getting started. Instructions on what you need to download. And how to use the tools.
-    - Links to running examples
+    - Overview of default files and folders (LINK TO SEED PROJECT)
+    - Overview of available grunt tasks
+    - howto.html should finish with the grunt overview
+    - additionalTools.html (Generator and Sublime Plugin)
+    - Main. Links to running examples
+        - Should have link to github, to view the code
+        - Should have link to corresponding doc
+
+- Update howto.html with any relevant changes introduced up until this point
+
+- Build and deploy documentation
+    - Get rid of "_" chars, because they mess with markdown
+    - Don't forget about fullstops at the end of comments.
 
 - Make Sublime plugin to generate files from templates
     - Make an empty menu structure.
-    - Hook yeoman generators into each option
+    - Hook yeoman generators into each option.
+    - Hook Grunt tasks.
 
 - Think about how to handle paths to images/sound
-    - Yeoman subgenerator to create a file with name/paths pairs.
+    - Grunt task to create a file with name/paths pairs.
     - Pick up urls from another file to create mappings for remote resources.
         - This could be loaded as a text file when needed, or maybe a module. In any case, should be lightweight.
         - The idea is to have something else other than raw strings in the code.
     - Refactor sound-player so it loads things and plays them as they become available.
-    - Add functionality to use a manipulate an individual sound channel to the sound-player
+    - Add functionality to manipulate an individual sound channel to the sound-player
+
+- Tag latest version of game-builder
 
 - Extensions 2
     - TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
@@ -62,10 +68,11 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Do a simple game and get this over with for fucks sake!
 
-- Test garbage collection
-    - Test delegate.js destroy method properly
-
-- Links to known errors, like requireJS
+- Annoying tasks
+    - Test garbage collection
+        - Test delegate.js destroy method properly
+    - Links to explanations of known errors, like requireJS
+    - Rename delegate.js to broadcaster.js
 
 #### [This is the prototype game][tirador] which spurred the creation of this project.
 

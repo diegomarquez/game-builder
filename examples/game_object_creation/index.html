@@ -10,81 +10,20 @@
 	<!-- This is what will render the canvas. This needs to be here. There is nothing preventing
 	you from adding more HTML if that is what you want, though. -->
 
-	<!-- The content of this file will be inserted in index.html when you run the proper grunt task -->
-
 	<!-- div #main and canvas #game need to be here for this whole contraption to work. -->
 	<div id="main">
 		<canvas id="game" width="400" height="300">
 			Sorry, your web browser does not support Canvas content.
 		</canvas>		
 	</div>
+
 	<!-- require.js -->
-	<script src="../../lib/require.js"> </script>
-
+	<script src="../../lib/requirejs/require.js"></script>
 	<!-- require.js configuration -->
+	<script src="config.js"></script>
 	<script>
-		require.config(
-			{
-				paths: {
-					"class": "../../game-builder/src/class",
-					"circle-collider": "../../game-builder/src/collision/circle-collider",
-					"collision-component": "../../game-builder/src/collision/collision-component",
-					"collision-resolver": "../../game-builder/src/collision/collision-resolver",
-					"fixed-polygon-collider": "../../game-builder/src/collision/fixed-polygon-collider",
-					"polygon-collider": "../../game-builder/src/collision/polygon-collider",
-					"sat": "../../game-builder/src/collision/sat",
-					"component": "../../game-builder/src/components/component",
-					"bitmap-renderer": "../../game-builder/src/components/rendering/bitmap-renderer",
-					"renderer": "../../game-builder/src/components/rendering/renderer",
-					"game-object-debug-draw": "../../game-builder/src/debug/game-object-debug-draw",
-					"delegate": "../../game-builder/src/delegate",
-					"draw": "../../game-builder/src/draw",
-					"aspect-ratio-resize": "../../game-builder/src/game_canvas/extensions/aspect-ratio-resize",
-					"basic-layer-setup": "../../game-builder/src/game_canvas/extensions/basic-layer-setup",
-					"pause": "../../game-builder/src/game_canvas/extensions/pause",
-					"resume": "../../game-builder/src/game_canvas/extensions/resume",
-					"game": "../../game-builder/src/game_canvas/game",
-					"gb": "../../game-builder/src/gb",
-					"game-object": "../../game-builder/src/hierarchy/game-object",
-					"game-object-container": "../../game-builder/src/hierarchy/game-object-container",
-					"layer": "../../game-builder/src/hierarchy/layer",
-					"layers": "../../game-builder/src/hierarchy/layers",
-					"root": "../../game-builder/src/hierarchy/root",
-					"keyboard": "../../game-builder/src/input/keyboard",
-					"matrix-3x3": "../../game-builder/src/math/matrix-3x3",
-					"vector-2D": "../../game-builder/src/math/vector-2D",
-					"assembler": "../../game-builder/src/pools/assembler",
-					"bundle": "../../game-builder/src/pools/bundle",
-					"component-pool": "../../game-builder/src/pools/component-pool",
-					"game-object-pool": "../../game-builder/src/pools/game-object-pool",
-					"pool": "../../game-builder/src/pools/pool",
-					"reclaimer": "../../game-builder/src/pools/reclaimer",
-					"sound-player": "../../game-builder/src/sound-player",
-					"state-machine": "../../game-builder/src/state-machine",
-					"timer-factory": "../../game-builder/src/timer-factory",
-					"util": "../../game-builder/src/util",
-					"domready": "../../lib/domready",
-					"require": "../../lib/require",
-					"basic-container": "../common_src/basic-container",
-					"basic-game-object": "../common_src/basic-game-object",
-					"box-renderer": "../common_src/box-renderer",
-					"colliders-bundle": "../common_src/bundles/colliders-bundle",
-					"input-bundle": "../common_src/bundles/input-bundle",
-					"layering-bundle": "../common_src/bundles/layering-bundle",
-					"logic-bundle": "../common_src/bundles/logic-bundle",
-					"nesting-bundle": "../common_src/bundles/nesting-bundle",
-					"rendering-bundle": "../common_src/bundles/rendering-bundle",
-					"component-1": "../common_src/component-1",
-					"state_1": "../common_src/state_1",
-					"state_2": "../common_src/state_2",
-					"state_3": "../common_src/state_3",
-					
-				}
-			}
-		);
-
 		//Up until now it has been boilerplate, from now on it's all magic. That is, your magic.
-		require(["domready!", "main"], function(doc, main) {});
+		require(["domReady!", "main"], function(doc, main) {});
 	</script>
 </body>
 </html>

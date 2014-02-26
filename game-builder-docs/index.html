@@ -13,32 +13,35 @@
 <h6 id="todo-list">TODO List:</h6>
 
 <ul>
-<li><p>Rethink generator concerns</p>
-
-<ul><li>grunt should handle generation of requirejs configuration</li>
-<li>generator should only be concerned with scaffolding</li>
-<li>keep requirejs configuration in external file</li>
-<li>Remove main.html partial</li>
-<li>Refactor generator templates</li></ul></li>
-<li><p>Anotate code to generate documentation</p>
-
-<ul><li>README in examples folder. Explains the structure of a Game-Builde application</li></ul></li>
+<li><p>Make Seed project for a quick start (Make it with generator to see how it works)</p></li>
 <li><p>New Website sections</p>
 
-<ul><li>Getting started. Instructions on what you need to download. And how to use the tools.</li>
-<li>Links to running examples</li></ul></li>
+<ul><li>Overview of default files and folders (LINK TO SEED PROJECT)</li>
+<li>Overview of available grunt tasks</li>
+<li>howto.html should finish with the grunt overview</li>
+<li>additionalTools.html (Generator and Sublime Plugin)</li>
+<li>Main. Links to running examples
+<ul><li>Should have link to github, to view the code</li>
+<li>Should have link to corresponding doc</li></ul></li></ul></li>
+<li><p>Update howto.html with any relevant changes introduced up until this point</p></li>
+<li><p>Build and deploy documentation</p>
+
+<ul><li>Get rid of "_" chars, because they mess with markdown</li>
+<li>Don't forget about fullstops at the end of comments.</li></ul></li>
 <li><p>Make Sublime plugin to generate files from templates</p>
 
 <ul><li>Make an empty menu structure.</li>
-<li>Hook yeoman generators into each option</li></ul></li>
+<li>Hook yeoman generators into each option.</li>
+<li>Hook Grunt tasks.</li></ul></li>
 <li><p>Think about how to handle paths to images/sound</p>
 
-<ul><li>Yeoman subgenerator to create a file with name/paths pairs.</li>
+<ul><li>Grunt task to create a file with name/paths pairs.</li>
 <li>Pick up urls from another file to create mappings for remote resources.
 <ul><li>This could be loaded as a text file when needed, or maybe a module. In any case, should be lightweight.</li>
 <li>The idea is to have something else other than raw strings in the code.</li></ul></li>
 <li>Refactor sound-player so it loads things and plays them as they become available.</li>
-<li>Add functionality to use a manipulate an individual sound channel to the sound-player</li></ul></li>
+<li>Add functionality to manipulate an individual sound channel to the sound-player</li></ul></li>
+<li><p>Tag latest version of game-builder</p></li>
 <li><p>Extensions 2</p>
 
 <ul><li>TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )</li>
@@ -61,10 +64,12 @@
 <li><p>Premade renderer to draw rectangles, circles lines and triangles.</p></li>
 <li><p>Figure out how to use r.js</p></li>
 <li><p>Do a simple game and get this over with for fucks sake!</p></li>
-<li><p>Test garbage collection</p>
+<li><p>Annoying tasks</p>
 
+<ul><li>Test garbage collection
 <ul><li>Test delegate.js destroy method properly</li></ul></li>
-<li><p>Links to known errors, like requireJS</p></li>
+<li>Links to explanations of known errors, like requireJS</li>
+<li>Rename delegate.js to broadcaster.js</li></ul></li>
 </ul>
 
 <h4 id="thisistheprototypegametiradorwhichspurredthecreationofthisproject"><a href="http://www.treintipollo.com/tirador/index.html">This is the prototype game</a> which spurred the creation of this project.</h4></div></div></div></div></body></html>

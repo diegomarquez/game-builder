@@ -195,7 +195,7 @@ define(["delegate"], function(Delegate) {
 		 * when it is sent back to it's pool for reuse.
 		 * 
 		 */
-		recycle: function() {}
+		recycle: function() {},
 		/**
 		 * --------------------------------
 		 */

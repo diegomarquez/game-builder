@@ -28,20 +28,31 @@
 
             <hr>
 
+            <!-- <div class="row">
+                <a href="#" class="btn btn-large btn-block btn-danger">Examples</a>
+            </div> -->
+
+            <select id="pageselected">
+                <option value="examples/empty/index.html">Empty</option>
+                <option value="examples/colliders/index.html">Colliders</option>
+            </select>
+            <input type="button" onclick="changePage()" value="Change Page" />
+            <iframe id="myiframe"></iframe>
+
             <div class="row">
-                <a href="#" class="btn btn-large btn-block btn-danger">View Running Examples</a>
+                <a href="#" class="btn btn-large btn-block btn-danger">Example Game</a>
             </div>
 
             <div class="row">
-                <a href="#" class="btn btn-large btn-block btn-danger">Play Example Game</a>
+                <a href="game-builder-docs/index.html" class="btn btn-large btn-block btn-success">Game-Builder Documentation</a>
             </div>
 
             <div class="row">
-                <a href="game-builder-docs/index.html" class="btn btn-large btn-block btn-success">Read Game-Builder Documentation</a>
+                <a href="examples-docs/index.html" class="btn btn-large btn-block btn-success">Examples Documentation</a>
             </div>
 
             <div class="row">
-                <a href="examples-docs/index.html" class="btn btn-large btn-block btn-success">Read Examples Documentation</a>
+                <a href="tools.html" class="btn btn-large btn-block btn-danger">Additional Tools</a>
             </div>
 
             <div class="row">
@@ -49,7 +60,7 @@
             </div>
 
             <div class="row">
-                <a href="http://www.treintipollo.com" class="btn btn-large btn-block btn-success">Visit seriously awesome website</a>
+                <a href="http://www.treintipollo.com" class="btn btn-large btn-block btn-success">Seriously awesome website</a>
             </div>            
 
             <hr>
@@ -64,6 +75,16 @@
                 </p>
             </div>
         </div>
+
+        <script type="text/javascript">
+            var changePage = function() {
+                var iframe = document.getElementById("myiframe");  // One of the many ways to select your iframe
+                var select = document.getElementById("pageselected");
+                var url = select.options[select.selectedIndex].value;
+                iframe.src = url;
+            }
+        </script>
+
    		<script type="text/javascript" scr="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     </body>
 </html>
