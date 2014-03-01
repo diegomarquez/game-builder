@@ -1,8 +1,7 @@
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
         <title>Game Builder Home</title>
-        <link rel="stylesheet" type="text/css" href="styles/override.css">
+        <link rel="stylesheet" type="text/css" href="styles/override.css"></link>
    </head>
    <body>
    		<div class="container">
@@ -28,16 +27,55 @@
 
             <hr>
 
-            <!-- <div class="row">
-                <a href="#" class="btn btn-large btn-block btn-danger">Examples</a>
-            </div> -->
-
-            <select id="pageselected">
-                <option value="examples/empty/index.html">Empty</option>
-                <option value="examples/colliders/index.html">Colliders</option>
-            </select>
-            <input type="button" onclick="changePage()" value="Change Page" />
-            <iframe id="myiframe"></iframe>
+            <div class="row">
+                <div class="panel-group" id="accordion">
+                <a class="btn btn-large btn-block btn-success" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Examples</a>
+                <div id="collapseOne" class="collapse out">
+                    <div class="row text-center">
+                       <a href="examples/empty/index.html" class="btn btn-large">Empty</a>
+                    </div>
+                    <div class="row text-center">
+                        <a href="examples/game_object_creation/index.html" class="btn btn-large">Game object Creation</a>
+                    </div>
+                    <div class="row text-center">
+                        <a href="examples/game_object_nesting/index.html" class="btn btn-large">Game Object Nesting</a>
+                    </div>
+                    <div class="row text-center">
+                        <a href="examples/layering/index.html" class="btn btn-large">Layering</a>
+                    </div>
+                    <div class="row text-center">
+                        <a href="examples/logic_components/index.html" class="btn btn-large">Logic Components</a>
+                    </div>
+                    <div class="row text-center">
+                        <a href="examples/renderers/index.html" class="btn btn-large">Renderers</a>
+                    </div>
+                    <div class="row text-center">
+                        <a href="examples/colliders/index.html" class="btn btn-large">Colliders</a>
+                    </div>
+                    <div class="row text-center">
+                        <a href="examples/keyboard/index.html" class="btn btn-large">Keyboard</a>
+                    </div>
+                    <div class="row text-center">
+                        <a href="examples/reclaimer/index.html" class="btn btn-large">Reclaimer</a>
+                    </div>
+                    <div class="row text-center">
+                        <a href="examples/sound/index.html" class="btn btn-large">Sound</a>
+                    </div>
+                    <div class="row text-center">
+                        <a href="examples/timers/index.html" class="btn btn-large">Timers</a>
+                    </div>
+                    <div class="row text-center">
+                        <a href="examples/loose_state_machine/index.html" class="btn btn-large">Loose State Machine</a>
+                    </div>
+                    <div class="row text-center">
+                        <a href="examples/fixed_state_machine/index.html" class="btn btn-large">Fixed State Machine</a>
+                    </div>
+                    <div class="row text-center">
+                        <a href="examples/extensions/index.html" class="btn btn-large">Extensions</a>
+                    </div>
+                  </div>
+                </div>
+            </div>
 
             <div class="row">
                 <a href="#" class="btn btn-large btn-block btn-danger">Example Game</a>
@@ -71,20 +109,12 @@
 
             <div class="footer text-center">
                 <p>A project by 
-                    <a href="https://github.com/diegomarquez">Diego Enrique Marquez<a>
+                    <a href="https://github.com/diegomarquez">Diego Enrique Marquez</a>
                 </p>
             </div>
         </div>
 
-        <script type="text/javascript">
-            var changePage = function() {
-                var iframe = document.getElementById("myiframe");  // One of the many ways to select your iframe
-                var select = document.getElementById("pageselected");
-                var url = select.options[select.selectedIndex].value;
-                iframe.src = url;
-            }
-        </script>
-
-   		<script type="text/javascript" scr="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+   		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     </body>
 </html>
