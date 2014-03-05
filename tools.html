@@ -19,7 +19,9 @@
                     <h4 class="text-center col-md-6 col-md-offset-3">Generator Game-Builder</h4> 
                 </div>
                 <div class="row"> 
-                    <p class="left-padding right-padding text-center"><small>A <a href="http://yeomain.io">Yeoman</a> generator to scaffold a Game-Builder project. <a href="https://github.com/diegomarquez/generator-game-builder">https://github.com/diegomarquez/generator-game-builder</a></small></p>
+                  <p class="left-padding right-padding text-center"><small><a href="https://github.com/diegomarquez/generator-game-builder">https://github.com/diegomarquez/generator-game-builder</a></p>
+                    
+                  <p class="left-padding right-padding text-center"><small>A <a href="http://yeomain.io">Yeoman</a> generator to scaffold a Game-Builder project. Generators are executed from the command line, so it's convinient to have a shell handy to quickly jump back and forth your text editor</small></p>
                 </div>
                 <hr>
             </div>
@@ -28,7 +30,7 @@
               <li>Open your favorite shell</li>
               <li><em class="red-text">npm install yo -g</em></li>
               <ul class="description left-padding list-unstyled">
-                <li>This will make the <em class="red-text">yo</em> command globally available.</li>
+                <li>This will make the <em class="red-text">yo</em> command globally available</li>
               </ul>
               <li><em class="red-text">git clone</em></li>
               <ul class="description left-padding list-unstyled">
@@ -37,53 +39,67 @@
               <li><em class="red-text">cd generator-game-builder</em></li>
               <li><em class="red-text">npm link</em></li>
               <ul class="description left-padding list-unstyled">
-                <li>This will make <em class="red-text">game-builder</em> a valid argument for <em class="red-text">yo</em>.</li>
+                <li>This will make <em class="red-text">game-builder</em> a valid argument for <em class="red-text">yo</em></li>
               </ul>
-              <li><em class="red-text">mkdir</em> my_cool_project</li>
-              <li><em class="red-text">cd</em> my_cool_project</li>
+              <li><em class="red-text">mkdir</em> "my_cool_project"</li>
+              <li><em class="red-text">cd</em> "my_cool_project"</li>
               <li><em class="red-text">yo game-builder</em></li>
               <ul class="description left-padding list-unstyled">
-                <li>This will get all the stuff needed to get started with Game-Builder.</li>
-              </ul>
-              <li>Additional information on the generator</li>
-              <ul class="description left-padding list-unstyled">
-                <li><a href="https://github.com/diegomarquez/generator-game-builder">https://github.com/diegomarquez/generator-game-builder</a></li>
+                <li>This will get all the stuff needed to get started with Game-Builder</li>
               </ul>
             </ol>
 
-            <!-- <div class='blue-background'>
+            <div class='blue-background'>
                 <hr>
                 <div class="row">
-                    <h4 class="text-center col-md-6 col-md-offset-3"><a href="http://www.sublimetext.com/">Sublime Text</a> Package</h4>
+                    <h4 class="text-center col-md-6 col-md-offset-3">Generators Provided</h4> 
                 </div>
                 <div class="row"> 
-                    <p class="left-padding right-padding text-center"><small>A <a href="http://www.sublimetext.com/">Sublime Text</a> package that puts relevant <em class="red-text">Grunt</em> tasks and <em class="red-text">Game-Builder Generators</em> in a more friendly place than the command line.</small></p>
+                    <p class="left-padding right-padding text-center"><small>A quick overview on what the main generator and sub-generators do. To create a file where needed with a sub-generator, navigate to the folder you want the file in and run the corresponding command in that folder</small></p>
                 </div>
                 <hr>
             </div>
 
             <ol class="left-padding list-unstyled">
-              <li>Open your favorite shell</li>
+              <li><em class="red-text">yo game-builder</em></li>
               <ul class="description left-padding list-unstyled">
-                <li>We will be using the command line a bit now. Just a little bit.</li>
+                <li>The main generator setups a fresh empty project. The first thing you need to do after the scaffolding is complete is run
+                  <em class="red-text">grunt</em> in the project folder</li>
               </ul>
-              <li><em class="red-text">git clone</em> seed project.</li>
+              <li><em class="red-text">yo game-builder:bundle</em> "bundle name"</li>
               <ul class="description left-padding list-unstyled">
-                <li><a href="https://github.com/diegomarquez/game-builder-seed">https://github.com/diegomarquez/game-builder-seed</a></li>
+                <li>This sub-generator setups an empty bundle file</li>
               </ul>
-              <li><em class="red-text">npm install</em> in project root.</li>
+              <li><em class="red-text">yo game-builder:component</em>  "component name"</li>
               <ul class="description left-padding list-unstyled">
-                <li>This will install <em class="red-text">grunt</em> and <em class="red-text">bower</em> as local dependencies.</li>
+                <li>This sub-generator setups an empty component file</li>
               </ul>
-              <li><em class="red-text">grunt</em> in project root.</li>
+
+              <li><em class="red-text">yo game-builder:container</em>  "container name"</li>
               <ul class="description left-padding list-unstyled">
-                <li>This will download <em class="red-text">requirejs</em> and Game-Builder source.</li>
+                <li>This sub-generator setups an empty container file</li>
               </ul>
-              <li>Open <em class="red-text">index.html</em></li>
+
+              <li><em class="red-text">yo game-builder:extension</em>  "extension name"</li>
               <ul class="description left-padding list-unstyled">
-                <li>You should be seeing something in the browser now!</li>
+                <li>This sub-generator setups an empty extension file</li>
               </ul>
-            </ol> -->
+
+              <li><em class="red-text">yo game-builder:game-object</em>  "game-object name"</li>
+              <ul class="description left-padding list-unstyled">
+                <li>This sub-generator setups an empty game-object file</li>
+              </ul>
+
+              <li><em class="red-text">yo game-builder:renderer</em>  "renderer name"</li>
+              <ul class="description left-padding list-unstyled">
+                <li>This sub-generator setups an empty renderer file</li>
+              </ul>
+
+              <li><em class="red-text">yo game-builder:state</em>  "state name"</li>
+              <ul class="description left-padding list-unstyled">
+                <li>This sub-generator setups an empty state file</li>
+              </ul>
+            </ol>
 
             <hr>
             <h6 class="left-padding right-padding footer text-center">That's all the extra help provided by Game-Builder. Let's hope it is enough.</h6>
