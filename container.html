@@ -1,0 +1,66 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Additional Game-Builder Tools</title>
+        <link rel="stylesheet" type="text/css" href="styles/override.css">
+    </head>
+   <body>
+   		<div class="container">
+            <div class="jumbotron">
+                <h1 class="text-center" class="page-header"><a href="index.html" >GAME-BUILDER</a> Demo
+                    <hr>
+                    <small class="demoTitle"></small>
+                </h1>
+            </div>
+
+            <hr>
+
+            <div class="row iframeWrap">
+              <iframe id="frame" scrolling="no" width="400" height="300"></iframe>
+            </div>
+  
+            <div class="row top-padding">
+                <a class="start btn btn-large btn-block btn-primary">Click to Start</a>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <a href="#" class="github btn btn-large btn-block btn-success">View source on Github</a>
+            </div>
+
+            <div class="row">
+                <a href="#" class="docs btn btn-large btn-block btn-success">View Docs</a>
+            </div>
+
+            <hr>
+            <h6 class="left-padding right-padding footer text-center">A simple demonstration.</h6>
+            <hr>
+
+            <div class="left-padding right-padding footer text-center">
+                <p>A project by 
+                    <a href="https://github.com/diegomarquez">Diego Enrique Marquez</a>
+                </p>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="bower_components/stringjs/lib/string.min.js"></script>
+
+        <script type="text/javascript">
+          $(function() {
+            var url = window.location.toString();
+            var exampleName = url.substring(url.indexOf('=')+1);
+
+            $('#frame').attr("src", 'examples/' + exampleName + '/index.html');
+            $('.demoTitle').text(S(exampleName).humanize().s);
+            $('.github').attr('href', 'https://github.com/diegomarquez/game-builder-examples/tree/master/examples/' + exampleName);
+            $('.docs').attr('href', 'examples-docs/' + exampleName + '/README.html');
+            
+            $('.start').on('click', function(event) {
+              $('#frame').trigger('focus');
+            });
+          });
+        </script>
+    </body>
+</html>

@@ -92,6 +92,20 @@ body {
   padding-right: 30px; 
 }
 
+.top-padding { 
+  padding-top: 30px; 
+}
+
+.iframeWrap {
+  margin: 0 auto;
+  text-align:center
+}
+
+iframe {
+  overflow:hidden;
+  display:inline-block
+}
+
 .btn {
   display: inline-block;
   padding: 6px 12px;
