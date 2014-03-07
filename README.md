@@ -11,23 +11,10 @@ For better results it is better to use it in conjuction with [generator-game-bui
 -----------------------------------
 
 ###### TODO List:
-    
-- New Website sections
-    - additionalTools.html (Generator and Sublime Plugin)
-    - Main. Links to running examples
-        - Should have link to github, to view the code
-        - Should have link to corresponding doc
-
-- Update howto.html with any relevant changes introduced up until this point
 
 - Build and deploy documentation
     - Get rid of "_" chars, because they mess with markdown
     - Don't forget about fullstops at the end of comments.
-
-- Make Sublime plugin to generate files from templates
-    - Make an empty menu structure.
-    - Hook yeoman generators into each option.
-    - Hook Grunt tasks.
 
 - Think about how to handle paths to images/sound
     - Grunt task to create a file with name/paths pairs.
