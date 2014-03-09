@@ -134,7 +134,7 @@ module.exports = function(grunt) {
     'shell:rm:work'
   ]);
 
-  grunt.registerMultiTask("linkJSON", "Build a link JSON", function() {
+  grunt.registerMultiTask("linkJSON", "Build a links JSON", function() {
       var paths = grunt.file.expand({cwd:this.data.cwd}, this.data.paths );
       var out = this.data.output;
       var prefix = this.data.prefix;
