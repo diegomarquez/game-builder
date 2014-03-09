@@ -16,7 +16,7 @@
  * I took the cowards way out and took that code and changed it to suit my needs.
  *
  * Anyway, this module is very important for everything that has to do with rendering,
- * because matrix transformations are used to each [game-object](@@game-object@@) 
+ * because matrix transformations are used in each [game-object](@@game-object@@) 
  * to apply a transformation to the context 2D property 
  * of the [Canvas](http://www.w3schools.com/html/html5_canvas.asp)
  * modifying it's position and that of all sub-sequent rendering commands.

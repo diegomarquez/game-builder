@@ -19,7 +19,7 @@
  *
  * ### This Extension adds an event [game](@@game@@) can hook into:
  *
- * * ### **resume** 
+ * ### **resume** 
  * When the application is resumed manually
  * 
  * ``` javascript  

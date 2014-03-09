@@ -140,7 +140,7 @@ define(["delegate"], function(Delegate) {
 		 * <p style='color:#AD071D'><strong>added</strong></p>
 		 *
 		 * Much like **onAdded**, but this method is only meant to be overriden
-		 * with out having to remember calling **_super()**
+		 * with out having to remember calling **_super**
 		 * 
 		 * @param  {Object} parent [game-object](@@game-object@@) using this component
 		 */
@@ -153,7 +153,7 @@ define(["delegate"], function(Delegate) {
 		 * <p style='color:#AD071D'><strong>removed</strong></p>
 		 *
 		 * Much like **onRemoved**, but this method is only meant to be overriden
-		 * with out having to remember calling **_super()**
+		 * with out having to remember calling **_super**
 		 * 
 		 * @param  {Object} parent [game-object](@@game-object@@) using this component
 		 */
