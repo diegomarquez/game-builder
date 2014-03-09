@@ -10,7 +10,7 @@ Be sure to check the links at the top of each example,
 for some documentation on all the modules involved.
 
 Suggested order: 
-============================
+----------------
 
 1. [Empty][empty]	
 2. [Game object creation][game_object_creation]
@@ -23,13 +23,14 @@ Suggested order:
 10. [Reclaimer][reclaimer]
 
 In no specific order:
-============================
+---------------------
 
 - [Sound][sound]
 - [Timers][timers]
 - [Loose state machine][loose_state_machine]
 - [Fixed state machine][fixed_state_machine]
 - [Extensions][extensions]
+
 
 [game-builder]: http://diegomarquez.github.io/game-builder
 [empty]: ./empty/main.html

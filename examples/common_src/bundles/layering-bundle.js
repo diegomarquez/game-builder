@@ -1,5 +1,5 @@
 /**
- * # nesting-bundle.js
+ * # layering-bundle.js
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *

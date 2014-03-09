@@ -1,5 +1,5 @@
 /**
- * # nesting-bundle.js
+ * # rendering-bundle.js
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
@@ -42,15 +42,12 @@ define(function(require) {
 
 			this.gameObjectPool.createConfiguration("Base_3", "Base")
 				.args({x: this.canvas.width/2, y: this.canvas.height/2 + 100, rotation_speed: 1})
-				//BONUS: you can override the configuration of a component/renderer or just add additional parameters.
-				//The object after the ID will be merged with the one set through createConfiguration
+				// BONUS: you can override the configuration of a component/renderer or just add additional parameters.
+				// The object after the ID will be merged with the one set through createConfiguration
 				.setRenderer('Pear_1', { width: 20, height: 20 });
 		}
 	});
 
 	return new RenderingBundle();
 });
-
 		
-
-				

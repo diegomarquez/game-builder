@@ -85,7 +85,7 @@ define(["component"], function(Component) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>draw</strong> Drawing logic</p>
+		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
 		 * Draws the image into the canvas. Applying configured properties,
 		 * like **width**, **height** and **offsets**

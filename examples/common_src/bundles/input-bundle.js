@@ -1,5 +1,5 @@
 /**
- * # nesting-bundle.js
+ * # input-bundle.js
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
@@ -45,7 +45,4 @@ define(function(require) {
 
 	return new CollidersBundle();
 });
-
-		
-
-				
+	

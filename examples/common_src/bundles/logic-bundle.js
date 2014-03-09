@@ -1,5 +1,5 @@
 /**
- * # nesting-bundle.js
+ * # logic-bundle.js
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
@@ -23,12 +23,12 @@
 define(function(require) {	
 	var basic_game_object = require('basic-game-object'); 
 	var box_renderer = require('box-renderer');		
-	//The cleverly named component we will be using in this example
+	// The cleverly named component we will be using in this example
 	var component = require('component-1');
 
 	var LogicBundle = require('bundle').extend({
 		create: function() {
-			//Nothing new in this part of the setup
+			// Nothing new in this part of the setup
 			this.componentPool.createPool("Box_Renderer", box_renderer);
 			this.componentPool.createPool("Component", component);
 
@@ -39,7 +39,7 @@ define(function(require) {
 			this.componentPool.createConfiguration("Blue_Renderer", 'Box_Renderer')
 				.args({color: '#0000FF', offsetX: -10, offsetY: -10, width: 20, height: 20});
 
-			//Creating the different configurations for the same type of component
+			// Creating the different configurations for the same type of component
 			this.componentPool.createConfiguration("Component_1", 'Component').args({amount:2});
 			this.componentPool.createConfiguration("Component_2", 'Component').args({amount:5});
 			this.componentPool.createConfiguration("Component_3", 'Component').args({amount:15});
@@ -65,7 +65,4 @@ define(function(require) {
 
 	return new LogicBundle();
 });
-
-		
-
 				

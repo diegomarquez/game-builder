@@ -25,8 +25,10 @@ module.exports = function(grunt) {
     clean: {
       // Clean the folder where game-builder is downloaded
       target: {
-        src: [path.join(p.framework)]
-      }
+        src: [path.join(p.framework)],
+      },
+
+      options: { force: true }
     },
 
     bower: {

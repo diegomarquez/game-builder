@@ -19,7 +19,7 @@
  *
  * ### This Extension adds an event [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html) can hook into:
  *
- * * ### **resume** 
+ * ### **resume** 
  * When the application is resumed manually
  * 
  * ``` javascript  

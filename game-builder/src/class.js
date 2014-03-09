@@ -6,7 +6,7 @@
  *
  * This is at the core of everything [Game-Builder](http://diegomarquez.github.io/game-builder). 
  * The main feature it provides as opposed to more crud inheritance implementations in Javascript,
- * is a **_super()** method, which is extremely usefull. 
+ * is a **_super** method, which is extremely usefull. 
  *
  * Inspired by [base2](https://code.google.com/p/base2/) and [Prototype](http://prototypejs.org/)
  */
