@@ -12,13 +12,23 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Think about how to handle paths to images/sound
-    - Grunt task to create a file with name/paths pairs.
-    - Pick up urls from another file to create mappings for remote resources.
-        - This could be loaded as a text file when needed, or maybe a module. In any case, should be lightweight.
-        - The idea is to have something else other than raw strings in the code.
+- Asset Paths
+    - Module to load asset-map.json
+    - Update howto.html with new grunt task and related files
+    - Update generator
+        - Gruntfile
+        - tasks folder
+
+- Sound
     - Refactor sound-player so it loads things and plays them as they become available.
     - Add functionality to manipulate an individual sound channel to the sound-player
+    - Update Sound example
+
+- Timers
+    - Something to get the current milliseconds left in a timer
+    - Update Timer example
+
+- Get a cool logo for Game-Builder
 
 - Tag latest version of game-builder
 
@@ -28,8 +38,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 -Examples v4
     - Use HTML to add some on screen explanation of what is going on
-    - Or anything to make them look prettier.
-    - Some CSS to decorate the sorroundings? Maybe a Frame for the canvas.
 
 - Spike Performance Boost
     - Canvas caching
