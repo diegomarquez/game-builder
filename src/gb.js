@@ -11,7 +11,8 @@
  * [assembler](@@assembler@@) 
  * [reclaimer](@@reclaimer@@) 
  * [game-object-pool](@@game-object-pool@@) 
- * [component-pool](@@component-pool@@) 	
+ * [component-pool](@@component-pool@@)
+ * [json-cache](@@json-cache@@) 	
  *
  * A [requireJS](http://requirejs.org/) module.
  * 
@@ -27,8 +28,8 @@
 /**
  * --------------------------------
  */
-define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool'], 
-	function(game, root, layers, assembler, reclaimer, gameObjectPool, componentPool) {
+define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool', 'json-cache'], 
+	function(game, root, layers, assembler, reclaimer, gameObjectPool, componentPool, jsonCache) {
 		return {
 			game: game,
 			root: root,
@@ -39,6 +40,7 @@ define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 
 
 			goPool:gameObjectPool,
 			coPool:componentPool,
+			jsonCache: jsonCache,
 
 			/**
 			 * A reference to the main canvas object in index.html. 
@@ -63,6 +65,18 @@ define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 
 				var go = this.layers.get(layerName).add(this.assembler.get(goId));
 				go.start();	
 				return go;
+			},
+			/**
+			 * --------------------------------
+			 */
+			
+			/**
+			 * <p style='color:#AD071D'><strong>assetMap</strong></p>
+			 *
+			 * @return {Object} Cached object in the 'asset-map' key of the [json-cache](@@json-cache@@) module
+			 */
+			assetMap: function() {
+				return this.jsonCache.get('asset-map')
 			}
 			/**
 			 * --------------------------------

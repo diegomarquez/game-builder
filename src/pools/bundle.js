@@ -36,6 +36,7 @@ define(function(require) {
 			this.gameObjectPool = gb.goPool;
 			this.componentPool 	= gb.coPool;
 			this.canvas 		= gb.canvas;
+			this.assetMap       = gb.assetMap();
 		},
 
 		/**

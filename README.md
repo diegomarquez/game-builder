@@ -13,7 +13,9 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### TODO List:
 
 - Asset Paths
-    - Module to load asset-map.json
+    - gb.js assetMap()
+    - Try all examples
+    - Update Seed
     - Update howto.html with new grunt task and related files
     - Update generator
         - Gruntfile
@@ -22,6 +24,13 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Sound
     - Refactor sound-player so it loads things and plays them as they become available.
+        - _index.html
+        - add remote-assets.json
+        - package.json
+
+- Sound
+    - asset-map
+    - sound-player lazy loading
     - Add functionality to manipulate an individual sound channel to the sound-player
     - Update Sound example
 
@@ -29,6 +38,9 @@ For better results it is better to use it in conjuction with [generator-game-bui
     - Something to get the current milliseconds left in a timer
     - Update Timer example
 
+- State Machines
+    - asset-map
+    
 - Get a cool logo for Game-Builder
 
 - Extensions 2
