@@ -31,6 +31,16 @@ define(function() {
 	};
 
 	/**
+	 * <p style='color:#AD071D'><strong>cache</strong></p>
+	 *
+	 * @param  {String} id     Id to retrived the cached object later
+	 * @param  {Object} object Object to cache
+	 */
+	JSONCache.prototype.cache = function(id, object) {
+		cache[id] = object;
+	};
+
+	/**
 	 * <p style='color:#AD071D'><strong>get</strong></p>
 	 *
 	 * @param  {String} id Id of the object to retrieve

@@ -18,6 +18,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
     - Update generator
         - Gruntfile
         - tasks folder
+    - Use asset map where needed
 
 - Sound
     - Refactor sound-player so it loads things and plays them as they become available.
@@ -30,11 +31,13 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Get a cool logo for Game-Builder
 
-- Tag latest version of game-builder
-
 - Extensions 2
     - TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
     - Keyboard extension, block keyboard keys when pausing the game ( No Demo )
+
+- Tag latest version of game-builder
+
+- Deploy gh-pages
 
 -Examples v4
     - Use HTML to add some on screen explanation of what is going on
