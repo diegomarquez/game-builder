@@ -12,21 +12,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Asset Paths
-    - gb.js assetMap()
-    - Try all examples
-    - Update Seed
-    - Update howto.html with new grunt task and related files
-    - Update generator
-        - Gruntfile
-        - tasks folder
-    - Use asset map where needed
-
-- Sound
-    - Refactor sound-player so it loads things and plays them as they become available.
-        - _index.html
-        - add remote-assets.json
-        - package.json
+- Tag latest version of game-builder
 
 - Sound
     - asset-map
@@ -40,7 +26,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - State Machines
     - asset-map
-    
+
 - Get a cool logo for Game-Builder
 
 - Extensions 2
