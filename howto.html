@@ -116,7 +116,7 @@
               <li class="blue-text">styles/</li>
               <ul class="description left-padding list-unstyled">
                 <li>A folder in which to drop stylesheets. By default it contains <em class="red-text">main.css</em>. If you change this
-                    folder you need to make appropiate changes in <em class="red-text">index.html</em>.</li>
+                    folder you need to make appropiate changes in <em class="red-text">index.html</em>, so the stylesheet is no longer used, or the path is changed.</li>
               </ul>
               <li class="blue-text">game-builder/</li>
               <ul class="description left-padding list-unstyled">
@@ -130,7 +130,7 @@
               </ul>
               <li class="blue-text">tasks/</li>
               <ul class="description left-padding list-unstyled">
-                <li>Local <em class="red-text">grunt</em> that are not good enough to publish them on <em class="red-text">npm</em>.</li>
+                <li>Local <em class="red-text">grunt</em> tasks that are not good enough to publish them on <em class="red-text">npm</em>.</li>
               </ul>
               <li>.bowerrc</li>
               <ul class="description left-padding list-unstyled">
@@ -144,6 +144,16 @@
               <li>.gitignore</li>
               <ul class="description left-padding list-unstyled">
                 <li>Things that should be ignored by <em class="red-text">git</em>. By default it ignores the <em class="red-text">node_modules</em> folder.</li>
+              </ul>
+              <li>asset-map.js</li>
+              <ul class="description left-padding list-unstyled">
+                <li>This file is generatd when doing <em class="red-text">grunt</em> in the root of a project. It contains the
+                  definition of an object with key value pairs corresponding to local and remote asset paths. This is usefull to have all asset paths centralized and to avoid hardcoding paths.</li>
+              </ul>
+              <li>remote-assets.json</li>
+              <ul class="description left-padding list-unstyled">
+                <li>This file is a JSON string where remote assets can be defined. During the building process it's contents are copied
+                  into <em class="red-text">asset-map.js</em>. By default it is empty, and has to be filled out manually.</li>
               </ul>
               <li>config.js</li>
               <ul class="description left-padding list-unstyled">
@@ -177,6 +187,10 @@
             </div>
 
             <ul class="left-padding list-unstyled">
+              <li class="blue-text">asset-map</li>
+              <ul class="description left-padding list-unstyled">
+                <li>This task generates <em class="red-text">asset-map.js</em>. It looks at the contents of the default and additional assets folders and creates entries of a javascript object. When that is done it merges that file with <em class="red-text">remote-assets.json</em> to generate a single file with all the local and remote assets.</li>
+              </ul>
               <li class="blue-text">config</li>
               <ul class="description left-padding list-unstyled">
                 <li>This task generates <em class="red-text">requirejs</em> configuration and drops it in <em class="red-text">config.js</em>.</li>
