@@ -49,15 +49,13 @@ define(['timer-factory'], function(timerFactory) {
 	};
 
 	var setUpChannel = function(id, onMetadata) {
-		if (this.pooledChannels.length == 0) {
-			return;
-		}
-
 		var audio = this.audioTags[id];
 
-		if (!audio) {
-			return;
-		}
+		if (this.pooledChannels.length == 0) { return; }
+		
+		if (!audio) { return; }
+
+		if (audio.readyState != 4) { return; }
 
 		var channel = this.pooledChannels.pop();
 
@@ -126,8 +124,7 @@ define(['timer-factory'], function(timerFactory) {
 	 */
 	SoundPlayer.prototype.loadAll = function(onComplete) {
 		if (isLoading) {
-			throw new Error('Sound Player: Still loading resources. Wait till everything is complete, before loading more.')
-			return;
+			throw new Error('Sound Player: Still loading resources. Wait till everything is complete, before loading more.');
 		}
 
 		isLoading = true;
@@ -158,6 +155,34 @@ define(['timer-factory'], function(timerFactory) {
 
 			document.body.appendChild(audio);
 		}
+	};
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>load</strong></p>
+	 *
+	 * Starts loading a sound file into an audio tag.
+	 * 
+	 * @param {String} id Use this identifier to later play the loaded sound  
+	 * @param {String} path A path to a sound file. Can be relative or absolute
+	 * @throws {Error} If the id sent is already in use.
+	 */
+	SoundPlayer.prototype.load = function(id, path) {
+		// If an audio tag with this id already exists, do nothing.
+		if (this.audioTags[id]) {
+			throw new Error('Sound Player: Id is already in use.');
+		}
+
+		var audio = document.createElement("audio");
+
+		audio.setAttribute("src", path);
+		audio.setAttribute("preload", "auto");
+
+		this.audioTags[id] = audio;
+
+		document.body.appendChild(audio);
 	};
 	/**
 	 * --------------------------------
