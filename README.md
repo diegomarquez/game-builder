@@ -12,8 +12,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Get a cool logo for Game-Builder
-
 - Extensions 2
     - TimerFactory extension, pause and resume all timeout when pausing the game ( No Demo )
     - Keyboard extension, block keyboard keys when pausing the game ( No Demo )
@@ -24,6 +22,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 -Examples v4
     - Use HTML to add some on screen explanation of what is going on
+    - Some feed back on what to press
 
 - Spike Performance Boost
     - Canvas caching

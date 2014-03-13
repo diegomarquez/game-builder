@@ -452,6 +452,30 @@ define(function(require) {
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>rest</strong></p>
+		 *
+		 * Get the time remaining
+		 * 
+		 * @return {Number} The time left
+		 */
+		rest: function() {
+			// Timer is stopped, rest is the initial delay
+			if (!this.isRunning && !this.isPaused) {
+				return this._delay;
+			}
+
+			// Timer is paused, rest is fixed
+			if (this.isPaused) {
+				return this._delay - (this.pauseTime - this.startTime);
+			}
+
+			// Timer is running, rest is dynamic in relation to current time
+			if (this.isRunning) {
+				return (this.startTime + this._delay) - Date.now();
+			}
+		},
 
 		/**
 		 * <p style='color:#AD071D'><strong>remove</strong></p>
