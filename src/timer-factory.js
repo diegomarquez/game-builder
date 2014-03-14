@@ -145,33 +145,61 @@ define(function(require) {
 	TimerFactory.prototype.stopAll = function() { return getChangeObject.call(this, 'stop'); }
 	TimerFactory.prototype.pauseAll = function() { return getChangeObject.call(this, 'pause'); }
 	TimerFactory.prototype.resumeAll = function() { return getChangeObject.call(this, 'resume'); }
-	TimerFactory.prototype.removeAll = function() { return getChangeObject.call(this, 'remove'); }
+	TimerFactory.prototype.removeAll = function() { return getChangeObject.call(this, 'remove'); }	
 	/**
 	 * --------------------------------
 	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>setProperty</strong></p>
+	 *
+	 * This method is used to add or modify properties of all timers based
+	 * on a condition. If the condition evaluates to _'true'_ the property will be
+	 * set with the given value.
+	 * 
+	 * @param {Sring}    propertyName Name of the propety to set
+	 * @param {Anything} value        Value to set
+	 * @param {Function} condition    Condition that must be fullfilled before setting the property
+	 */
+	TimerFactory.prototype.setProperty = function(propertyName, value, condition) {
+		this.timeOuts.forEach(function(timer, index, array) {
+			if(condition(timer, index, array)) {
+				timer[propertyName] = value;
+			}
+		});
+	}
 
 	var timerFactory = new TimerFactory();
 
 	var applyChangeToTimersIfTrue = function(state, condition) {
-		this.forEach(function(element, index, array) {
-			if(condition(element, index, array)) {
-				element[state]();
+		var timer = null;
+
+		for(var i=this.length-1; i>=0; i--) {
+			timer = this[i];
+
+			if(condition(timer, index, this)) {
+				timer[state]();		
 			}
-		});
+		}
 	}
 
 	var applyChangeToSomeTimers = function(state, identifier, identifierValue) {
-		this.forEach(function(element, index, array) {
-			if (element[identifier] === identifierValue) {
-				element[state]();
+		var timer = null;
+
+		for(var i=this.length-1; i>=0; i--) {
+			timer = this[i];
+
+			if (timer[identifier] === identifierValue) {
+				timer[state]();
 			}
-		});
+		}
 	}
 
 	var applyChangeToAllTimers = function(state) {
-		this.forEach(function(element, index, array) {
-			element[state]();
-		});
+		for(var i=this.length-1; i>=0; i--) {
+			timer = this[i];
+			timer[state]();
+		}
 	}
 
 	/**
@@ -217,7 +245,7 @@ define(function(require) {
 			 * The **condition** function will be evaluates for all timers, timers
 			 * that evaluate to true will qualify to change state.
 			 * 
-			 * The signature for the condition function is **function(element, index, array)**
+			 * The signature for the condition function is **function(timer, index, array)**
 			 */
 			which: function(condition) {
 				applyChangeToTimersIfTrue.call(self.timeOuts, state, condition);	
@@ -337,7 +365,7 @@ define(function(require) {
 			var to = this;
 
 			this.id = setTimeout(function() {
-				if (to.isRunning && !to.isPaused) {
+				if (to.Running) {
 					to.execute(to.REPEATE, to.repeates)
 					to.repeates++;
 				} else {
@@ -418,10 +446,9 @@ define(function(require) {
 		 * Pause the timer until the **resume** method is called.
 		 */
 		pause: function() {
-			if (!this.isRunning) {
-				return;
-			}
-
+			if (this.Stopped) return;
+			if (this.Paused) return;
+			
 			clearTimeout(this.id);
 			this.pauseTime = Date.now();
 			this.isRunning = false;
@@ -439,9 +466,8 @@ define(function(require) {
 		 * Resume if paused.
 		 */
 		resume: function() {
-			if (!this.isRunning && !this.isPaused) {
-				return;
-			}
+			if (this.Stopped) return;
+			if (this.Running) return;
 
 			this.isPaused = false;
 			this._delay -= (this.pauseTime - this.startTime);
@@ -462,17 +488,17 @@ define(function(require) {
 		 */
 		rest: function() {
 			// Timer is stopped, rest is the initial delay
-			if (!this.isRunning && !this.isPaused) {
+			if (this.Stopped) {
 				return this._delay;
 			}
 
 			// Timer is paused, rest is fixed
-			if (this.isPaused) {
+			if (this.Paused) {
 				return this._delay - (this.pauseTime - this.startTime);
 			}
 
 			// Timer is running, rest is dynamic in relation to current time
-			if (this.isRunning) {
+			if (this.Running) {
 				return (this.startTime + this._delay) - Date.now();
 			}
 		},
@@ -489,6 +515,8 @@ define(function(require) {
 		 */
 		remove: function() {
 			this.stop();
+
+			console.log(this.propertyName)
 
 			this.owner[this.propertyName] = null;
 			delete this.owner[this.propertyName];
@@ -580,6 +608,24 @@ define(function(require) {
 			throw new Error("Can't modify timer while it is running")
 		}		
 	}
+
+	Object.defineProperty(Timer.prototype, "Stopped", {
+		get: function() {
+			return !this.isRunning && !this.isPaused;
+		}
+	});
+
+	Object.defineProperty(Timer.prototype, "Paused", {
+		get: function() {
+			return !this.isRunning && this.isPaused;
+		}
+	});
+
+	Object.defineProperty(Timer.prototype, "Running", {
+		get: function() {
+			return this.isRunning && !this.isPaused;
+		}
+	});
 
 	Object.defineProperty(Timer.prototype, "delay", {
 		get: function() {
