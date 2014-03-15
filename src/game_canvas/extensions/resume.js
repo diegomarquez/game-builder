@@ -66,10 +66,10 @@ define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
 	Object.defineProperty(game.prototype, "RESUME", { get: function() { return 'resume'; } });
 
 	game.resume = function() {
-		if(game.focus()) {
+		if(game.focusAction()) {
 			game.execute(game.RESUME);
-			window.addEventListener("blur", game.blur);
-			window.addEventListener("focus", game.focus);	
+			window.addEventListener("blur", game.blurAction);
+			window.addEventListener("focus", game.focusAction);	
 		}
 	}
 

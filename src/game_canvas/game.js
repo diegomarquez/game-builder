@@ -199,8 +199,8 @@ define(["delegate"], function(Delegate) {
 			var onFocus = function() {
 				var oldFocus = self.focus;
 
-				//In the case the game is not already created when the document gains focus 
-				//for the first time, it is created here.
+				// In the case the game is not already created when the document gains focus 
+				// for the first time, it is created here.
 				if (!self.initialized) {
 					setupUpdateLoop();
 				} else {
@@ -223,8 +223,8 @@ define(["delegate"], function(Delegate) {
 			// References to the blur and focus callbacks
 			// The [pause](@@pause@@) and [resume](@@resume@@)
 			// extensions use these.
-			this.blur = onBlur;
-			this.focus = onFocus;
+			this.blurAction = onBlur;
+			this.focusAction = onFocus;
 
 			// Actually setting up the listener to the events 
 			// window dispatches.
@@ -250,7 +250,7 @@ define(["delegate"], function(Delegate) {
 
 	var game = new Game();
 
-	game.prototype = Game;
+	game.prototype = Game.prototype;
 
 	game.extensions = {
 		'create': [],

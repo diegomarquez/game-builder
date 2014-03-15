@@ -22,7 +22,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 -Examples v4
     - Use HTML to add some on screen explanation of what is going on
-    - Some feed back on what to press
+    - Some feed back on what to do
 
 - Spike Performance Boost
     - Canvas caching
