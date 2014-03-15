@@ -37,6 +37,8 @@ define(function(require){
 		//These are used to add back the stuff to the layers if you
 		//remove them while trying out the example.
 		keyboard.onKeyDown(keyboard.A, this, function() {
+			reclaimer.claimAll();
+
 			gb.addToLayer('Front', 'Base_1');
 			gb.addToLayer('Middle', 'Base_2');
 			gb.addToLayer('Back', 'Base_3');

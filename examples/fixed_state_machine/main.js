@@ -37,9 +37,9 @@ define(function(require){
 
 		// The states are now in different files. 
 		// Go check those out to see how they look.
-		var state_1 = require('../common_src/state-1');
-		var state_2 = require('../common_src/state-2');
-		var state_3 = require('../common_src/state-3');
+		var state_1 = require('state-1');
+		var state_2 = require('state-2');
+		var state_3 = require('state-3');
 
 		// Note: After starting the state machine. The last and first states will be connected
 		// By the next() and previous() methods respectively.

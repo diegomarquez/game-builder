@@ -28,6 +28,9 @@ define(function(require){
 	var util = require('util');
 
 	game.add_extension(require('basic-layer-setup'));
+	game.add_extension(require("keyboard-lock"));
+	game.add_extension(require("pause"));
+	game.add_extension(require("resume"));
 
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {
@@ -51,15 +54,26 @@ define(function(require){
 		});
 		
 		keyboard.onKeyDown(keyboard.S, this, function() { 
-			console.log("S was pressed") 
+			console.log("S was pressed");
+			console.log('Pause');
+			game.pause();
 		});
 		
-		keyboard.onKeyDown(keyboard.D, this, function() { console.log("D was pressed") });
+		keyboard.onKeyDown(keyboard.D, this, function() { 
+			console.log("D was pressed");
+		});
+
+		keyboard.onKeyDown(keyboard.GAME_BUTTON_PAUSE, this, function() { 
+			console.log("GAME_BUTTON_PAUSE was pressed");
+			console.log('Resume');
+			game.resume(); 
+		});
 
 		// Key Up Events
 		keyboard.onKeyUp(keyboard.A, this, function() { console.log("A was released") });
 		keyboard.onKeyUp(keyboard.S, this, function() { console.log("S was released") });
 		keyboard.onKeyUp(keyboard.D, this, function() { console.log("D was released") });
+		keyboard.onKeyUp(keyboard.GAME_BUTTON_PAUSE, this, function() { console.log("GAME_BUTTON_PAUSE was released") });
 	});
 
 	// This is called when the canvas looses focus

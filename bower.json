@@ -12,6 +12,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.0.3"
+    "bootstrap": "~3.0.3",
+    "stringjs": "~1.8.0"
   }
 }

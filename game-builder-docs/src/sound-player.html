@@ -39,15 +39,13 @@ to figure out how to use them.</p></div></div></div><div class="segment"><div cl
   <span class="p">};</span>
 
   <span class="kd">var</span> <span class="nx">setUpChannel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">onMetadata</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pooledChannels</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
-
     <span class="kd">var</span> <span class="nx">audio</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">audioTags</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">audio</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span><span class="p">;</span>
-    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pooledChannels</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">audio</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">audio</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">!=</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
 
     <span class="kd">var</span> <span class="nx">channel</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">pooledChannels</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
 
@@ -108,8 +106,7 @@ when all the loading is complete a callback is executed.</p>
 
 <p><strong>Can throw an Error</strong><br/>(If it is already loading files )</p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">loadAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">onComplete</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">isLoading</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Sound Player: Still loading resources. Wait till everything is complete, before loading more.&#39;</span><span class="p">)</span>
-      <span class="k">return</span><span class="p">;</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Sound Player: Still loading resources. Wait till everything is complete, before loading more.&#39;</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="nx">isLoading</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
@@ -140,6 +137,29 @@ when all the loading is complete a callback is executed.</p>
 
       <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">audio</span><span class="p">);</span>
     <span class="p">}</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>load</strong></p>
+
+<p>Starts loading a sound file into an audio tag.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>id must be a String.</strong><br/>(Use this identifier to later play the loaded sound )</p></li>
+<li><p><strong>path must be a String.</strong><br/>(A path to a sound file. Can be relative or absolute)</p></li>
+</ul>
+
+<p><strong>Can throw an Error</strong><br/>(If the id sent is already in use.)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">load</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If an audio tag with this id already exists, do nothing.</p></div></div><div class="code"><div class="wrapper">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">audioTags</span><span class="p">[</span><span class="nx">id</span><span class="p">])</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Sound Player: Id is already in use.&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">var</span> <span class="nx">audio</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;audio&quot;</span><span class="p">);</span>
+
+    <span class="nx">audio</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">,</span> <span class="nx">path</span><span class="p">);</span>
+    <span class="nx">audio</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&quot;preload&quot;</span><span class="p">,</span> <span class="s2">&quot;auto&quot;</span><span class="p">);</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">audioTags</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">audio</span><span class="p">;</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">audio</span><span class="p">);</span>
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>playSingle</strong></p>
 
 <p>Plays a sound 1 time.</p>

@@ -18,6 +18,7 @@ define(function(require){
 	
 	var game = gb.game;
 	var root = gb.root;
+	var assetMap = gb.assetMap();
 
 	var sound_player = require('sound-player');
 	var keyboard = require('keyboard');
@@ -30,10 +31,16 @@ define(function(require){
 		sound_player.createChannels(4);
 
 		// Add the sound resources that will be available
-		sound_player.add('Sound_1', '../common_assets/sound/bird.mp3');
-		sound_player.add('Sound_2', '../common_assets/sound/horse.mp3');
-		sound_player.add('Sound_3', '../common_assets/sound/sheep.mp3');
-		sound_player.add('Sound_4', '../common_assets/sound/elevator.mp3');
+		sound_player.add('Sound_1', assetMap['BIRD.MP3']);
+		sound_player.add('Sound_2', assetMap['HORSE.MP3']);
+		sound_player.add('Sound_3', assetMap['SHEEP.MP3']);
+		sound_player.add('Sound_4', assetMap['ELEVATOR.MP3']);
+
+		sound_player.load('Sound_5', assetMap['CROW.WAV']);
+
+		keyboard.onKeyDown(keyboard.C, this, function() {
+			sound_player.playSingle('Sound_5');
+		});
 
 		// Call loadAll to load all the resources, the callback gets executed once everything is loaded.
 		

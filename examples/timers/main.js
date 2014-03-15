@@ -22,6 +22,8 @@ define(function(require){
 	var timer_factory = require('timer-factory');
 	var keyboard = require('keyboard');
 	
+	game.add_extension(require("timers-control"));
+
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {
 		console.log("Welcome to Game-Builder!");
@@ -35,15 +37,17 @@ define(function(require){
 
 			// Creating the timers
 			// This creates a timer object, it has 3 arguments
-			// 1) It becomes part of the scope 'this' (or any other scope passed), 
-			// 2) It belongs to the group 'timer_1'
-			// 3) And can be accessed in the scope specified in 1) through the name 'my_timer' 
+				// 1) It becomes part of the scope 'this' (or any other scope passed), 
+				// 2) It belongs to the group 'timer_1'
+				// 3) And can be accessed in the scope specified in 1) through the name 'my_timer' 
 			timer_factory.get(this, 'timer_1', 'my_timer_1');
 			timer_factory.get(this, 'timer_1', 'my_timer_2');
+			timer_factory.get(this, 'timer_1', 'my_timer_3');
 
 			// Configuring the timers
 			this.my_timer_1.configure({ delay: 3000 });
 			this.my_timer_2.configure({ delay: 2000, repeatCount:2, removeOnComplete:false});
+			this.my_timer_3.configure({ delay: 10000 });
 		});
 
 		// Bring up your javascript console to view when stuff gets printed.
@@ -53,7 +57,7 @@ define(function(require){
 		// Being destroyed means it is removed from the factory cache, and removed from the owner.
 		// Trying to access it again after it is complete would just break things.
 		keyboard.onKeyDown(keyboard.A, this, function() { 
-			if (!this.my_timer_1) return
+			if (!this.my_timer_1) return;
 
 			// Start the timer
 			console.log('my_timer_1 started');
@@ -72,9 +76,9 @@ define(function(require){
 		// That means it can be restarted and it's properties changed.
 		// In this case it is re-used as a one shot timer.			
 		keyboard.onKeyDown(keyboard.S, this, function() { 
-			if (!this.my_timer_2) return
+			if (!this.my_timer_2) return;
 
-			console.log('my_timer_2 started')
+			console.log('my_timer_2 started');
 			console.log('Total timer amount in factory: ' + timer_factory.timeOuts.length);
 
 			this.my_timer_2.start();
@@ -97,6 +101,22 @@ define(function(require){
 				console.log('Total timer amount in factory: ' + timer_factory.timeOuts.length)
 			});
 		});
+
+		keyboard.onKeyDown(keyboard.D, this, function() {
+			if (!this.my_timer_3) return;
+			this.my_timer_3.start();
+			console.log('my_timer_3 started');
+		});
+
+		keyboard.onKeyDown(keyboard.P, this, function() {
+			if (!this.my_timer_3) return;
+
+			if (this.my_timer_3.isPaused) {
+				this.my_timer_3.resume();
+			} else {
+				this.my_timer_3.pause();
+			}
+		});
 	});
 
 	// This is called when the canvas looses focus
@@ -115,6 +135,10 @@ define(function(require){
 		root.update(game.delta);
 		// Draws ALL the things.
 		root.transformAndDraw(game.context);
+
+		if (this.my_timer_3) {
+			console.log(this.my_timer_3.rest());
+		}
 	});
 
 	// This is the main setup that kicks off the whole thing

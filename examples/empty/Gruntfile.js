@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 
       // Clone game-builder from github
       framework: {
-        command: t('git clone -b <%= p.frameworkTag %> git@github.com:diegomarquez/game-builder.git <%= p.framework %>', {data: {p:p}}) 
+        command: t('git clone -b <%= p.frameworkTag %> <%= p.frameworkRepo %> <%= p.framework %>', {data: {p:p}}) 
       }
   	},
 
@@ -39,7 +39,26 @@ module.exports = function(grunt) {
   	open: {
       // Open index.html with the default browser
   		index : { path : 'index.html' }
-  	}
+  	},
+
+    // Merge files to create asset-map.js
+    "merge-json": {
+      map: {
+        src: [ 'asset-map.js', "remote-assets.json"],
+        dest: 'asset-map.js'
+      }
+    },
+
+    // Prepend a variable declaration in asset-map.js
+    file_append: {
+      default_options: {
+        files: {
+          'asset-map.js': {
+            prepend: "var assetMap = "
+          }
+        }
+      }
+    }
   });
 
   // Npm goodness
@@ -47,18 +66,26 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-open');
   grunt.loadNpmTasks('grunt-bower-requirejs');
+  grunt.loadNpmTasks('grunt-merge-json');
+  grunt.loadNpmTasks('grunt-file-append');
 
   // Local tasks
   grunt.loadTasks('tasks');
 
+  // This task creates the asset map 
+  grunt.registerTask('asset-map', ['local-assets', 'merge-json', 'file_append']);
   // This task creates all the requirejs configuration needed
   grunt.registerTask('config', ['create-config', 'bower:requireJS']);
   // This task downloads game-builder source code
   grunt.registerTask('framework', ['clean', 'shell:framework']);
   // This task opens index.html
   grunt.registerTask('run', ['open:index']);
-  // This task downloads any bower components, downloads game-builder source and generates requirejs configuration
-  grunt.registerTask('build', ['shell:bower', 'framework', 'config']);
+  // This task 
+    // downloads any bower components
+    // downloads game-builder source
+    // generates requirejs configuration
+    // generates the local and remote asset map
+  grunt.registerTask('build', ['shell:bower', 'framework', 'config', 'asset-map']);
 
   // The default task get's all dependencies, generates everything needed and finally opens index.html 
   grunt.registerTask('default', ['build', 'run']);

@@ -121,28 +121,57 @@ how to use the control object these methods return.</p></div></div><div class="c
   <span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">stopAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">getChangeObject</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">);</span> <span class="p">}</span>
   <span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">pauseAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">getChangeObject</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;pause&#39;</span><span class="p">);</span> <span class="p">}</span>
   <span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">resumeAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">getChangeObject</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;resume&#39;</span><span class="p">);</span> <span class="p">}</span>
-  <span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">removeAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">getChangeObject</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;remove&#39;</span><span class="p">);</span> <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">timerFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TimerFactory</span><span class="p">();</span>
+  <span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">removeAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">getChangeObject</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;remove&#39;</span><span class="p">);</span> <span class="p">}</span>  </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>setProperty</strong></p>
 
-  <span class="kd">var</span> <span class="nx">applyChangeToTimersIfTrue</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">condition</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="nx">condition</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">array</span><span class="p">))</span> <span class="p">{</span>
-        <span class="nx">element</span><span class="p">[</span><span class="nx">state</span><span class="p">]();</span>
+<p>This method is used to add or modify properties of all timers based
+on a condition. If the condition evaluates to <em>'true'</em> the property will be
+set with the given value.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>propertyName must be a Sring.</strong><br/>(Name of the propety to set)</p></li>
+<li><p><strong>value must be an Anything.</strong><br/>(Value to set)</p></li>
+<li><p><strong>condition must be a Function.</strong><br/>(Condition that must be fullfilled before setting the property)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setProperty</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">propertyName</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">condition</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">timeOuts</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">timer</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">condition</span><span class="p">(</span><span class="nx">timer</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">array</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">timer</span><span class="p">[</span><span class="nx">propertyName</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
       <span class="p">}</span>
     <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">timerFactory</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">TimerFactory</span><span class="p">();</span>
+
+  <span class="kd">var</span> <span class="nx">applyChangeToTimersIfTrue</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">condition</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">timer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">timer</span> <span class="o">=</span> <span class="k">this</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+      <span class="k">if</span><span class="p">(</span><span class="nx">condition</span><span class="p">(</span><span class="nx">timer</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="k">this</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">timer</span><span class="p">[</span><span class="nx">state</span><span class="p">]();</span>   
+      <span class="p">}</span>
+    <span class="p">}</span>
   <span class="p">}</span>
 
   <span class="kd">var</span> <span class="nx">applyChangeToSomeTimers</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">identifier</span><span class="p">,</span> <span class="nx">identifierValue</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">element</span><span class="p">[</span><span class="nx">identifier</span><span class="p">]</span> <span class="o">===</span> <span class="nx">identifierValue</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">element</span><span class="p">[</span><span class="nx">state</span><span class="p">]();</span>
+    <span class="kd">var</span> <span class="nx">timer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">timer</span> <span class="o">=</span> <span class="k">this</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">timer</span><span class="p">[</span><span class="nx">identifier</span><span class="p">]</span> <span class="o">===</span> <span class="nx">identifierValue</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">timer</span><span class="p">[</span><span class="nx">state</span><span class="p">]();</span>
       <span class="p">}</span>
-    <span class="p">});</span>
+    <span class="p">}</span>
   <span class="p">}</span>
 
   <span class="kd">var</span> <span class="nx">applyChangeToAllTimers</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">element</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">element</span><span class="p">[</span><span class="nx">state</span><span class="p">]();</span>
-    <span class="p">});</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">timer</span> <span class="o">=</span> <span class="k">this</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+      <span class="nx">timer</span><span class="p">[</span><span class="nx">state</span><span class="p">]();</span>
+    <span class="p">}</span>
   <span class="p">}</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getChangeObject</strong></p>
 
 <p>Private method, but important enough to document.</p>
@@ -172,7 +201,7 @@ should move to a new state.</p>
 <p>The <strong>condition</strong> function will be evaluates for all timers, timers
 that evaluate to true will qualify to change state.</p>
 
-<p>The signature for the condition function is <strong>function(element, index, array)</strong></p></div></div><div class="code"><div class="wrapper">      <span class="nx">which</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">condition</span><span class="p">)</span> <span class="p">{</span>
+<p>The signature for the condition function is <strong>function(timer, index, array)</strong></p></div></div><div class="code"><div class="wrapper">      <span class="nx">which</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">condition</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">applyChangeToTimersIfTrue</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">timeOuts</span><span class="p">,</span> <span class="nx">state</span><span class="p">,</span> <span class="nx">condition</span><span class="p">);</span>  
       <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">            </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>now</strong></p>
 
@@ -260,7 +289,7 @@ that evaluate to true will qualify to change state.</p>
       <span class="kd">var</span> <span class="nx">to</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">to</span><span class="p">.</span><span class="nx">isRunning</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">to</span><span class="p">.</span><span class="nx">isPaused</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">to</span><span class="p">.</span><span class="nx">Running</span><span class="p">)</span> <span class="p">{</span>
           <span class="nx">to</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">to</span><span class="p">.</span><span class="nx">REPEATE</span><span class="p">,</span> <span class="nx">to</span><span class="p">.</span><span class="nx">repeates</span><span class="p">)</span>
           <span class="nx">to</span><span class="p">.</span><span class="nx">repeates</span><span class="o">++</span><span class="p">;</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -317,10 +346,9 @@ that evaluate to true will qualify to change state.</p>
 <p>Pause the timer.</p>
 
 <p>Pause the timer until the <strong>resume</strong> method is called.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">pause</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isRunning</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span><span class="p">;</span>
-      <span class="p">}</span>
-
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">Stopped</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">Paused</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+      
       <span class="nx">clearTimeout</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">pauseTime</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">isRunning</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
@@ -330,16 +358,26 @@ that evaluate to true will qualify to change state.</p>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>resume</strong></p> 
 
 <p>Resume if paused.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">resume</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isRunning</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isPaused</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span><span class="p">;</span>
-      <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">Stopped</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">Running</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">isPaused</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">_delay</span> <span class="o">-=</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pauseTime</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">startTime</span><span class="p">);</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_delay</span><span class="p">);</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">RESUME</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>remove</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rest</strong></p>
+
+<p>Get the time remaining</p>
+
+<p><strong>Returns a Number</strong><br/>(The time left)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rest</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Timer is stopped, rest is the initial delay</p></div></div><div class="code"><div class="wrapper">      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">Stopped</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_delay</span><span class="p">;</span>
+      <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Timer is paused, rest is fixed</p></div></div><div class="code"><div class="wrapper">      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">Paused</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_delay</span> <span class="o">-</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pauseTime</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">startTime</span><span class="p">);</span>
+      <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Timer is running, rest is dynamic in relation to current time</p></div></div><div class="code"><div class="wrapper">      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">Running</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">startTime</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">_delay</span><span class="p">)</span> <span class="o">-</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>remove</strong></p>
 
 <p>Stop the timer and remove it from the factory register.</p>
 
@@ -348,6 +386,8 @@ when constructing this instance.</p>
 
 <p>It also nulls every property of the object, setting it up for garbage collection.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">remove</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
+
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">propertyName</span><span class="p">)</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">owner</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">propertyName</span><span class="p">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
       <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">owner</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">propertyName</span><span class="p">];</span>
@@ -423,6 +463,24 @@ This method is used internally by <strong>configure</strong></p>
       <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&quot;Can&#39;t modify timer while it is running&quot;</span><span class="p">)</span>
     <span class="p">}</span>   
   <span class="p">}</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Timer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;Stopped&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isRunning</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isPaused</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Timer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;Paused&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isRunning</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">isPaused</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Timer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;Running&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">isRunning</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isPaused</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
 
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Timer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;delay&quot;</span><span class="p">,</span> <span class="p">{</span>
     <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>

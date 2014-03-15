@@ -85,6 +85,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/asset-map.js",
+            "projectPath": "work/examples/colliders/asset-map.js",
+            "targetPath": "colliders/asset-map",
+            "pageTitle": "colliders/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
             "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/config.js",
             "projectPath": "work/examples/colliders/config.js",
             "targetPath": "colliders/config",
@@ -138,6 +158,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "targetPath": "colliders/tasks/create-config",
                 "pageTitle": "colliders/tasks/create-config",
                 "title": "create-config"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/tasks/local-assets.js",
+                "projectPath": "work/examples/colliders/tasks/local-assets.js",
+                "targetPath": "colliders/tasks/local-assets",
+                "pageTitle": "colliders/tasks/local-assets",
+                "title": "local-assets"
               },
               "depth": 3,
               "outline": []
@@ -601,6 +641,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/asset-map.js",
+            "projectPath": "work/examples/empty/asset-map.js",
+            "targetPath": "empty/asset-map",
+            "pageTitle": "empty/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
             "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/config.js",
             "projectPath": "work/examples/empty/config.js",
             "targetPath": "empty/config",
@@ -657,6 +717,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/tasks/local-assets.js",
+                "projectPath": "work/examples/empty/tasks/local-assets.js",
+                "targetPath": "empty/tasks/local-assets",
+                "pageTitle": "empty/tasks/local-assets",
+                "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }
@@ -695,6 +775,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/asset-map.js",
+            "projectPath": "work/examples/extensions/asset-map.js",
+            "targetPath": "extensions/asset-map",
+            "pageTitle": "extensions/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
         }, {
           "type": "file",
           "data": {
@@ -763,6 +863,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/tasks/local-assets.js",
+                "projectPath": "work/examples/extensions/tasks/local-assets.js",
+                "targetPath": "extensions/tasks/local-assets",
+                "pageTitle": "extensions/tasks/local-assets",
+                "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }
@@ -801,6 +921,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/asset-map.js",
+            "projectPath": "work/examples/fixed_state_machine/asset-map.js",
+            "targetPath": "fixed_state_machine/asset-map",
+            "pageTitle": "fixed_state_machine/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
         }, {
           "type": "file",
           "data": {
@@ -869,6 +1009,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/tasks/local-assets.js",
+                "projectPath": "work/examples/fixed_state_machine/tasks/local-assets.js",
+                "targetPath": "fixed_state_machine/tasks/local-assets",
+                "pageTitle": "fixed_state_machine/tasks/local-assets",
+                "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }
@@ -907,6 +1067,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/asset-map.js",
+            "projectPath": "work/examples/game_object_creation/asset-map.js",
+            "targetPath": "game_object_creation/asset-map",
+            "pageTitle": "game_object_creation/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
         }, {
           "type": "file",
           "data": {
@@ -975,6 +1155,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/tasks/local-assets.js",
+                "projectPath": "work/examples/game_object_creation/tasks/local-assets.js",
+                "targetPath": "game_object_creation/tasks/local-assets",
+                "pageTitle": "game_object_creation/tasks/local-assets",
+                "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }
@@ -1013,6 +1213,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/asset-map.js",
+            "projectPath": "work/examples/game_object_nesting/asset-map.js",
+            "targetPath": "game_object_nesting/asset-map",
+            "pageTitle": "game_object_nesting/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
         }, {
           "type": "file",
           "data": {
@@ -1081,6 +1301,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/tasks/local-assets.js",
+                "projectPath": "work/examples/game_object_nesting/tasks/local-assets.js",
+                "targetPath": "game_object_nesting/tasks/local-assets",
+                "pageTitle": "game_object_nesting/tasks/local-assets",
+                "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }
@@ -1119,6 +1359,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/asset-map.js",
+            "projectPath": "work/examples/keyboard/asset-map.js",
+            "targetPath": "keyboard/asset-map",
+            "pageTitle": "keyboard/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
         }, {
           "type": "file",
           "data": {
@@ -1187,6 +1447,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/tasks/local-assets.js",
+                "projectPath": "work/examples/keyboard/tasks/local-assets.js",
+                "targetPath": "keyboard/tasks/local-assets",
+                "pageTitle": "keyboard/tasks/local-assets",
+                "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }
@@ -1225,6 +1505,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/asset-map.js",
+            "projectPath": "work/examples/layering/asset-map.js",
+            "targetPath": "layering/asset-map",
+            "pageTitle": "layering/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
         }, {
           "type": "file",
           "data": {
@@ -1293,6 +1593,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/tasks/local-assets.js",
+                "projectPath": "work/examples/layering/tasks/local-assets.js",
+                "targetPath": "layering/tasks/local-assets",
+                "pageTitle": "layering/tasks/local-assets",
+                "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }
@@ -1331,6 +1651,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/asset-map.js",
+            "projectPath": "work/examples/logic_components/asset-map.js",
+            "targetPath": "logic_components/asset-map",
+            "pageTitle": "logic_components/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
         }, {
           "type": "file",
           "data": {
@@ -1399,6 +1739,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/tasks/local-assets.js",
+                "projectPath": "work/examples/logic_components/tasks/local-assets.js",
+                "targetPath": "logic_components/tasks/local-assets",
+                "pageTitle": "logic_components/tasks/local-assets",
+                "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }
@@ -1437,6 +1797,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/asset-map.js",
+            "projectPath": "work/examples/loose_state_machine/asset-map.js",
+            "targetPath": "loose_state_machine/asset-map",
+            "pageTitle": "loose_state_machine/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
         }, {
           "type": "file",
           "data": {
@@ -1505,6 +1885,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/tasks/local-assets.js",
+                "projectPath": "work/examples/loose_state_machine/tasks/local-assets.js",
+                "targetPath": "loose_state_machine/tasks/local-assets",
+                "pageTitle": "loose_state_machine/tasks/local-assets",
+                "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }
@@ -1543,6 +1943,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/asset-map.js",
+            "projectPath": "work/examples/reclaimer/asset-map.js",
+            "targetPath": "reclaimer/asset-map",
+            "pageTitle": "reclaimer/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
         }, {
           "type": "file",
           "data": {
@@ -1611,6 +2031,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/tasks/local-assets.js",
+                "projectPath": "work/examples/reclaimer/tasks/local-assets.js",
+                "targetPath": "reclaimer/tasks/local-assets",
+                "pageTitle": "reclaimer/tasks/local-assets",
+                "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }
@@ -1649,6 +2089,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/asset-map.js",
+            "projectPath": "work/examples/renderers/asset-map.js",
+            "targetPath": "renderers/asset-map",
+            "pageTitle": "renderers/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
         }, {
           "type": "file",
           "data": {
@@ -1717,6 +2177,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/tasks/local-assets.js",
+                "projectPath": "work/examples/renderers/tasks/local-assets.js",
+                "targetPath": "renderers/tasks/local-assets",
+                "pageTitle": "renderers/tasks/local-assets",
+                "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }
@@ -1755,6 +2235,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/asset-map.js",
+            "projectPath": "work/examples/sound/asset-map.js",
+            "targetPath": "sound/asset-map",
+            "pageTitle": "sound/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
         }, {
           "type": "file",
           "data": {
@@ -1823,6 +2323,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/tasks/local-assets.js",
+                "projectPath": "work/examples/sound/tasks/local-assets.js",
+                "targetPath": "sound/tasks/local-assets",
+                "pageTitle": "sound/tasks/local-assets",
+                "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }
@@ -1861,6 +2381,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 2
             }
           ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/asset-map.js",
+            "projectPath": "work/examples/timers/asset-map.js",
+            "targetPath": "timers/asset-map",
+            "pageTitle": "timers/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
         }, {
           "type": "file",
           "data": {
@@ -1926,6 +2466,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "targetPath": "timers/tasks/create-config",
                 "pageTitle": "timers/tasks/create-config",
                 "title": "create-config"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/tasks/local-assets.js",
+                "projectPath": "work/examples/timers/tasks/local-assets.js",
+                "targetPath": "timers/tasks/local-assets",
+                "pageTitle": "timers/tasks/local-assets",
+                "title": "local-assets"
               },
               "depth": 3,
               "outline": []

@@ -58,10 +58,10 @@ define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
 	Object.defineProperty(game.prototype, "PAUSE", { get: function() { return 'pause'; } });
 
 	game.pause = function() {
-		if(game.blur()) {
+		if(game.blurAction()) {
 			game.execute(game.PAUSE);
-			window.removeEventListener("blur", game.blur);
-			window.removeEventListener("focus", game.focus);	
+			window.removeEventListener("blur", game.blurAction);
+			window.removeEventListener("focus", game.focusAction);	
 		}
 	}
 

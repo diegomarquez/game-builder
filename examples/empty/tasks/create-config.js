@@ -6,7 +6,6 @@ module.exports = function(grunt) {
 
 	  	// Making sure that this path has the correct separator. Just in case.
 	  	p.additionalSrcPaths = p.additionalSrcPaths ? p.additionalSrcPaths.split(/[/|\\]/).join(path.sep) : "";
-	  	p.additionalLibPaths = p.additionalLibPaths ? p.additionalLibPaths.split(/[/|\\]/).join(path.sep) : "";
 	  	p.framework 		 = p.framework.split(/[/|\\]/).join(path.sep);
 	  	p.lib 				 = p.lib.split(/[/|\\]/).join(path.sep);
 
@@ -14,14 +13,13 @@ module.exports = function(grunt) {
 
 	    // Add all source paths
 	    paths.push(p.additionalSrcPaths);
-	    paths.push(p.additionalLibPaths);
 	    paths.push(p.framework);
 	    paths.push(p.lib);
 	    paths.push('src');
 
 	    // Create array with all the file paths in the source paths provided
 	    var files = [];
-	    var glob = '/**/*.js'.replace('/', path.sep); 
+	    var glob = '/**/*.js'; 
 
 	    for(var i=0; i<paths.length; i++) {
 	      if(paths[i] != "") {

@@ -15,6 +15,9 @@ In similar fashion to <a href="http://diegomarquez.github.io/game-builder/game-b
 this module extends on existing behaviour to make it less annoying.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="the-keyboard">The Keyboard</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">pressed</span> <span class="o">=</span> <span class="p">{};</span>
 
+  <span class="kd">var</span> <span class="nx">blocked</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">whiteListedKeys</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
   <span class="kd">var</span> <span class="nx">Keyboard</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;delegate&#39;</span><span class="p">).</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="defined-keycodes">Defined keycodes</h3></div></div><div class="code"><div class="wrapper">      </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Not all the keys of the keyboard,
@@ -125,16 +128,45 @@ true if the specified key is pressed, false otherwise.</p>
 
 <p><strong>Returns a Boolean</strong><br/>(True if key is pressed, false otherwise.)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">isKeyDown</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">keyCode</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span> <span class="nx">pressed</span><span class="p">[</span><span class="nx">keyCode</span><span class="p">];</span>  
-    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>setBlock</strong></p>
 
-  <span class="kd">var</span> <span class="nx">keyboard</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Keyboard</span><span class="p">();</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="actual-registering-with-the-windown-keyboard-events">Actual registering with the windown keyboard events.</h3></div></div></div><div class="segment"><div class="code"><div class="wrapper">  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>value must be a Boolean.</strong><br/>(The state of the the block, can be true or false)</p></li>
+<li><p><strong>whiteList must be an Array=null.</strong><br/>(Keys that should not be blocked)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">setBlock</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">whiteList</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">blocked</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span> 
+      <span class="nx">whiteListedKeys</span> <span class="o">=</span> <span class="nx">whiteList</span> <span class="o">||</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="kd">var</span> <span class="nx">keyboard</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Keyboard</span><span class="p">();</span>
+
+  <span class="kd">var</span> <span class="nx">preventKeyboardEvent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">keyCode</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">blocked</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">whiteListedKeys</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">whiteListedKeys</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">keyCode</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="actual-registering-with-the-windown-keyboard-events">Actual registering with the windown keyboard events.</h3></div></div></div><div class="segment"><div class="code"><div class="wrapper">  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">delete</span> <span class="nx">pressed</span><span class="p">[</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">];</span>
 
+    <span class="k">if</span><span class="p">(</span><span class="nx">preventKeyboardEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">))</span> <span class="k">return</span><span class="p">;</span> 
+    
     <span class="nx">keyboard</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;keyup&#39;</span> <span class="o">+</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="nx">event</span><span class="p">);</span>
   <span class="p">},</span> <span class="kc">false</span><span class="p">);</span>
 
   <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;keydown&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
     <span class="k">if</span><span class="p">(</span><span class="nx">pressed</span><span class="p">[</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">])</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="nx">preventKeyboardEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">))</span> <span class="k">return</span><span class="p">;</span>
 
     <span class="nx">pressed</span><span class="p">[</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
     <span class="nx">keyboard</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;keydown&#39;</span> <span class="o">+</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="nx">event</span><span class="p">);</span>

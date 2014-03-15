@@ -25,6 +25,9 @@
 define(function(require) {
 	var pressed = {};
 
+	var blocked = false;
+	var whiteListedKeys = null;
+
 	var Keyboard = require('delegate').extend({
 		init: function() {
 			this._super();
@@ -161,23 +164,52 @@ define(function(require) {
 		 */
 		isKeyDown: function(keyCode) {
 			return pressed[keyCode];	
-		}
+		},
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>setBlock</strong></p>
+		 *
+		 * @param {Boolean} value   The state of the the block, can be true or false
+		 * @param {Array=null} whiteList Keys that should not be blocked
+		 */
+		setBlock: function(value, whiteList) {
+			blocked = value; 
+			whiteListedKeys = whiteList || null;
+		}
 	});
 
 	var keyboard = new Keyboard();
+
+	var preventKeyboardEvent = function(keyCode) {
+		if (blocked) {
+			if(whiteListedKeys) {
+				if(whiteListedKeys.indexOf(keyCode) == -1) {
+					return true;
+				}
+			} else {
+				return true;
+			}
+		}
+
+		return false;
+	}
 
 	// ### Actual registering with the windown keyboard events.
 	window.addEventListener('keyup', function(event) {
 		delete pressed[event.keyCode];
 
+		if(preventKeyboardEvent(event.keyCode)) return; 
+		
 		keyboard.execute('keyup' + event.keyCode.toString(), event);
 	}, false);
 
 	window.addEventListener('keydown', function(event){
 		if(pressed[event.keyCode]) return;
+
+		if(preventKeyboardEvent(event.keyCode)) return;
 
 		pressed[event.keyCode] = true;
 		keyboard.execute('keydown' + event.keyCode.toString(), event);

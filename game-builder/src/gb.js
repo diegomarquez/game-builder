@@ -11,7 +11,8 @@
  * [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html) 
  * [reclaimer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html) 
  * [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html) 
- * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html) 	
+ * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html)
+ * [json-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/json-cache.html) 	
  *
  * A [requireJS](http://requirejs.org/) module.
  * 
@@ -27,8 +28,8 @@
 /**
  * --------------------------------
  */
-define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool'], 
-	function(game, root, layers, assembler, reclaimer, gameObjectPool, componentPool) {
+define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool', 'json-cache'], 
+	function(game, root, layers, assembler, reclaimer, gameObjectPool, componentPool, jsonCache) {
 		return {
 			game: game,
 			root: root,
@@ -39,6 +40,7 @@ define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 
 
 			goPool:gameObjectPool,
 			coPool:componentPool,
+			jsonCache: jsonCache,
 
 			/**
 			 * A reference to the main canvas object in index.html. 
@@ -63,6 +65,18 @@ define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 
 				var go = this.layers.get(layerName).add(this.assembler.get(goId));
 				go.start();	
 				return go;
+			},
+			/**
+			 * --------------------------------
+			 */
+			
+			/**
+			 * <p style='color:#AD071D'><strong>assetMap</strong></p>
+			 *
+			 * @return {Object} Cached object in the 'asset-map' key of the [json-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/json-cache.html) module
+			 */
+			assetMap: function() {
+				return this.jsonCache.get('asset-map')
 			}
 			/**
 			 * --------------------------------

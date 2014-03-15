@@ -58,8 +58,8 @@ define(function(require) {
 
 			this.componentPool.createPool("Bitmap_Renderer", bitmap_renderer);
 			
-			this.componentPool.createConfiguration("Pear_1", 'Bitmap_Renderer').args({ offset:'center', path: '../common_assets/images/80343865.jpg'});
-			this.componentPool.createConfiguration("Pear_2", 'Bitmap_Renderer').args({ path:'../common_assets/images/80343865.jpg'});
+			this.componentPool.createConfiguration("Pear_1", 'Bitmap_Renderer').args({ offset:'center', path: this.assetMap['80343865.JPG']});
+			this.componentPool.createConfiguration("Pear_2", 'Bitmap_Renderer').args({ path: this.assetMap['80343865.JPG']});
 
 			this.gameObjectPool.createPool("Base", basic_game_object, 3); 
 

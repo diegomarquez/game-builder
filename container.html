@@ -17,10 +17,15 @@
 
             <div class="row iframeWrap">
               <iframe id="frame" scrolling="no" width="400" height="300"></iframe>
+              <div id="additionalControls"></div>
             </div>
-  
+   
             <div class="row top-padding">
                 <a class="start btn btn-large btn-block btn-primary">Click to Start</a>
+            </div>
+
+            <div class="row top-padding">
+                <div id="details" class="left-padding right-padding text-center"></div>
             </div>
 
             <hr>
@@ -52,11 +57,30 @@
             var url = window.location.toString();
             var exampleName = url.substring(url.indexOf('=')+1);
 
-            $('#frame').attr("src", 'examples/' + exampleName + '/index.html');
+            var iframe = $('#frame');
+
+            iframe.attr("src", 'examples/' + exampleName + '/index.html');
+
             $('.demoTitle').text(S(exampleName).humanize().s);
             $('.github').attr('href', 'https://github.com/diegomarquez/game-builder-examples/tree/master/examples/' + exampleName);
             $('.docs').attr('href', 'examples-docs/' + exampleName + '/README.html');
-            
+
+            $('#details').load('examples-instructions/' + exampleName + '.html #instructions');
+            $('#additionalControls').load('examples-instructions/' + exampleName + '.html #additionalControls', function() {
+                // This is balls
+                if($('#resize')){
+                    $('#resize').on('click', function(event) { 
+                        if(iframe.width() == 800) {
+                            iframe.width(400);
+                            iframe.height(300);
+                        } else {
+                            iframe.width(800);
+                            iframe.height(600);                  
+                        }
+                    });
+                }
+            });
+
             $('.start').on('click', function(event) {
               $('#frame').trigger('focus');
             });
