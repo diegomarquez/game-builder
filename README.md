@@ -12,10 +12,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Extensions 2
-    - Keyboard extension, block keyboard keys when pausing the game
-        - Add functionality to keyboard example to iron out bugs
-
 - Tag latest version of game-builder
 
 - Deploy gh-pages
