@@ -6,19 +6,25 @@ These are some files I decided to extract from a previous javascript project. Th
 
 By itself this repository is kind of useless, as it is nothing more than a collection of requirejs modules. You could try and figure out how to use them, though. 
 
-For better results it is better to use it in conjuction with [generator-game-builder][generator], a [Yeoman][yeoman] generator that generates(dur) the basic setup to start working with this stuff. 
+For better results it is better to use it in conjuction with [generator-game-builder][generator], a [Yeoman][yeoman] generator that generates(dur) the basic setup to start working with this stuff. Or you could just copy/paste stuff like crazy, your call.
 
 -----------------------------------
 
 ###### TODO List:
 
-- Tag latest version of game-builder
+- Examples v5 
+    - In-demo feedback
+        - Sound
+        - Fixed State Machine
+        - Loose State Machine
+        - Put relevant text in all examples that need it
+            - Review all examples
+
+- Replace w3schools.com links :P
+
+- Extension to pause all sound.
 
 - Deploy gh-pages
-
--Examples v4
-    - Use HTML to add some on screen explanation of what is going on
-    - Some feed back on what to do
 
 - Spike Performance Boost
     - Canvas caching
@@ -37,7 +43,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Annoying tasks
     - sound-player.js
-        - Be able to set channels appart for a specific task, so that they don't need to be reloaded each time
+        - Be able to set channels appart for a specific task, so that they don't need to be reloaded each time. The prototype basically crawls when it plays sound.
     - Rename delegate.js to broadcaster.js
     - Test garbage collection
         - Test delegate.js destroy method properly

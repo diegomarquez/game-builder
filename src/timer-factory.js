@@ -169,6 +169,26 @@ define(function(require) {
 		});
 	}
 
+	// Some convenience methods to convert milliseconds to human friendly formats
+	TimerFactory.prototype.toMins = function(ms) { return parseInt(ms/(1000*60)); }
+	TimerFactory.prototype.toSecs = function(ms) { return parseInt((ms/1000));	}
+	TimerFactory.prototype.toMillisFraction = function(ms) { return parseInt((ms%1000)/100); }
+	
+	TimerFactory.prototype.formatMinutes = function(ms) { 
+		var mins = this.toMins(ms) % 60;
+    	return (mins < 10) ? "0" + mins : mins;
+	}
+
+	TimerFactory.prototype.formatSeconds = function(ms) {
+		var fms = this.toMillisFraction(ms);
+		var secs = this.toSecs(ms) % 60;
+    	return ((secs < 10) ? "0" + secs : secs) + '.' + fms;
+	}
+
+	TimerFactory.prototype.formatMinutesSeconds = function(ms) {
+		return this.formatMinutes(ms) + ':' + this.formatSeconds(ms);
+	}
+
 	var timerFactory = new TimerFactory();
 
 	var applyChangeToTimersIfTrue = function(state, condition) {
@@ -177,7 +197,7 @@ define(function(require) {
 		for(var i=this.length-1; i>=0; i--) {
 			timer = this[i];
 
-			if(condition(timer, index, this)) {
+			if(condition(timer, i, this)) {
 				timer[state]();		
 			}
 		}
@@ -302,7 +322,7 @@ define(function(require) {
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Function} callback Function you want to execute
 		 * @param  {Boolean} [removeOnExecute=false] The function will be removed from the corresponding list, after executing it once
-		 * @param  {Boolean} [single=false] Do not add function if there is already one with the s
+		 * @param  {Boolean} [single=false] Do not add function if there is already one registered
 		 */
 		on: function(name, callback, removeOnComplete, single) {
 			this._super(name, this.owner, callback, removeOnComplete, false, false, single);
@@ -516,8 +536,6 @@ define(function(require) {
 		remove: function() {
 			this.stop();
 
-			console.log(this.propertyName)
-
 			this.owner[this.propertyName] = null;
 			delete this.owner[this.propertyName];
 			this.owner = null;
@@ -546,7 +564,7 @@ define(function(require) {
 		 * @return {Object} Itself
 		 */
 		Delay: function(d) {
-			canModify()
+			canModify();
 
 			this._delay = d;
 			this.initDelay = d;
@@ -569,7 +587,7 @@ define(function(require) {
 		 * @return {Object} Itself
 		 */
 		RepeateCount: function(r) {
-			canModify()
+			canModify();
 
 			this.repeateCount = r;
 			this.initRepeatCount = r;
@@ -593,7 +611,7 @@ define(function(require) {
 		 * @return {Object} Itself
 		 */
 		RemoveOnComplete: function(r) {
-			canModify()
+			canModify();
 
 			this.removeOnComplete = r;
 			return this;
