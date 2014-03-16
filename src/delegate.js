@@ -188,7 +188,9 @@ define(["util", "class"], function(util) {
 
 			if (!this.list) return;
 
-			for (var i = 0; i < this.list.length; i++) {
+			var callbackCount = this.list.length;
+
+			for (var i = 0; i < callbackCount; i++) {
 				var callbackObject = this.list[i];
 
 				if (!callbackObject) continue;
