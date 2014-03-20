@@ -54,7 +54,7 @@ define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 
 			 * <p style='color:#AD071D'><strong>addToLayer</strong></p>
 			 * 
 			 * Wraps all the steps needed to add a <a href=@@game-object@@>game-object</a>
-			 * into a <a href=@@layer>layer</a>. 
+			 * into a <a href=@@layer@@>layer</a>. 
 			 * 
 			 * @param {String} layerName Id of the layer to add the [game-object](@@game-object@@) to. View [layers](@@layers@@), for more details.
 			 * @param {String} goId      Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
