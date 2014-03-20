@@ -9,7 +9,7 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module's main concern is try and make [**setTimeout**](http://www.w3schools.com/js/js_timing.asp) a bit more usefull. 
+ * This module's main concern is try and make [**setTimeout**](https://developer.mozilla.org/en-US/docs/Web/API/Window.setTimeout) a bit more usefull. 
  * 
  * For that purpose it has 2 main responsibilities:
  * 
@@ -20,10 +20,10 @@
  * 
  * ### **2. Provide a Timer object**
  * 
- * The timer object uses [**setTimeout**](http://www.w3schools.com/js/js_timing.asp) under the hood and adds 
+ * The timer object uses [**setTimeout**](https://developer.mozilla.org/en-US/docs/Web/API/Window.setTimeout) under the hood and adds 
  * a few things to it. The main feature is that it handles recording the timeout id, so that stopping it
  * is more intuitive, with a **stop** method. Another cool feature is being able to pause the timer, 
- * something which [**setTimeout**](http://www.w3schools.com/js/js_timing.asp) simply does not do.
+ * something which [**setTimeout**](https://developer.mozilla.org/en-US/docs/Web/API/Window.setTimeout) simply does not do.
  *
  * ### The Timer object extends [delegate](@@delegate@@) so it provides a few events to hook into:
  *

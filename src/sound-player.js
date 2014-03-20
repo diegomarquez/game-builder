@@ -79,7 +79,7 @@ define(['timer-factory'], function(timerFactory) {
 	 * <p style='color:#AD071D'><strong>createChannels</strong></p>
 	 *
 	 * This will create the specified amount
-	 * of channels. A channel is an instance of the <a href="http://www.w3schools.com/html/html5_audio.asp">HTML5 Audio Object</a>.
+	 * of channels. A channel is an instance of the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio">HTML5 Audio Object</a>.
 	 * Created channels are stored in an array so they can be re-used when idle.
 	 * 
 	 * @param  {Number} amount The amount of channels to create 

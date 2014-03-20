@@ -13,7 +13,7 @@
  *
  * It does so by using [request animation frame](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/)
  *
- * It also hooks into the focus and blur events of [window](http://www.w3schools.com/jsref/obj_window.asp), 
+ * It also hooks into the focus and blur events of [window](https://developer.mozilla.org/en-US/docs/Web/API/window), 
  * in order to be able to pause and resume the application if needed.
  *
  * It's main behaviour can be extended by the use of [extensions](@@extension@@)
@@ -122,7 +122,7 @@ define(["delegate"], function(Delegate) {
 		 * to setup the update loop.
 		 * 
 		 * @param  {ElementObject} mainContainer The Dom element that contains the canvas
-		 * @param  {Canvas} canvas A [Canvas](http://www.w3schools.com/html/html5_canvas.asp) object
+		 * @param  {Canvas} canvas A [Canvas](https://developer.mozilla.org/en-US/docs/HTML/Canvas) object
 		 */
 		create: function(mainContainer, canvas) {
 			this.mainContainer = mainContainer;
