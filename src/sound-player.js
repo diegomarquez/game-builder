@@ -90,6 +90,11 @@ define(['timer-factory'], function(timerFactory) {
 
 			timerFactory.get(channel, 'sound_' + i, 'timer');
 
+			// Shorthand methods to access the state of the timer used in each channel.
+			channel.Paused = function() { return channel.timer.Paused; }
+			channel.Playing = function() { return channel.timer.Running; }
+			channel.Stopped = function() { return channel.timer.Stopped; }			
+
 			this.pooledChannels.push(channel);
 		}
 	};
@@ -252,6 +257,27 @@ define(['timer-factory'], function(timerFactory) {
 	 * --------------------------------
 	 */
 
+	var setProperty = function(channel, index, args) {
+		channel[args[0]] = args[1];
+	}
+
+	/**
+	 * <p style='color:#AD071D'><strong>setProperty</strong></p>
+	 *
+	 * Use this method to add or set a property in all or a subset of the active channels
+	 *
+	 * @param {String} [property] Name of the property
+	 * @param {Any} [value] Value of the property to add or set
+	 * 
+	 * @return {Object} A control object with methods to determine which sounds should be paused
+	 */
+	SoundPlayer.prototype.setPropertyToAll = function(property, value) {
+		return bulkControl(setProperty, property, value);
+	}
+	/**
+	 * --------------------------------
+	 */
+
 	var pauseChannel = function(channel) {
 		channel.timer.pause();
 		channel.pause();
@@ -269,7 +295,7 @@ define(['timer-factory'], function(timerFactory) {
 			var channel = this.activeChannels[i];
 
 			if (channel.id == id) {
-				pauseChannel(channel);
+				pauseChannel.call(this, channel);
 			}
 		}
 	};
@@ -281,11 +307,11 @@ define(['timer-factory'], function(timerFactory) {
 	 * <p style='color:#AD071D'><strong>pauseAll</strong></p>
 	 *
 	 * Pauses all playing channels registered with the player.
+	 *
+	 * @return {Object} A control object with methods to determine which sounds should be paused
 	 */
 	SoundPlayer.prototype.pauseAll = function() {
-		for (var i = 0; i < this.activeChannels.length; i++) {
-			pauseChannel(this.activeChannels[i]);
-		}
+		return bulkControl(pauseChannel);
 	};
 	/**
 	 * --------------------------------
@@ -327,11 +353,11 @@ define(['timer-factory'], function(timerFactory) {
 	 * <p style='color:#AD071D'><strong>stopAll</strong></p>
 	 *
 	 * Stops all channels registered with the player.
+	 *
+	 * @return {Object} A control object with methods to determine which sounds should be stopped
 	 */
 	SoundPlayer.prototype.stopAll = function() {
-		for (var i = this.activeChannels.length - 1; i >= 0; i--) {
-			stopChannel.call(this, this.activeChannels[i], i);
-		}
+		return bulkControl(stopChannel);
 	};
 	/**
 	 * --------------------------------
@@ -354,7 +380,7 @@ define(['timer-factory'], function(timerFactory) {
 			var channel = this.activeChannels[i];
 
 			if (channel.id == id) {
-				resumeChannel(channel);
+				resumeChannel.call(this, channel);
 			}
 		}
 	};
@@ -366,15 +392,44 @@ define(['timer-factory'], function(timerFactory) {
 	 * <p style='color:#AD071D'><strong>resumeAll</strong></p>
 	 *
 	 * Resumes all paused channels.
+	 *
+	 * @return {Object} A control object with methods to determine which sounds should be resumed
 	 */
 	SoundPlayer.prototype.resumeAll = function() {
-		for (var i = 0; i < this.activeChannels.length; i++) {
-			resumeChannel(this.activeChannels[i]);
-		}
+		return bulkControl(resumeChannel);
 	};
 	/**
 	 * --------------------------------
 	 */
+	
+	// This object is returned by the **pauseAll**, **stopAll** and **resumeAll** 
+	// methods and is used to determine to which channels the specified action whould be applied.
+	var bulkControl = function(method) {
+		var channel = null;
+
+		var args = Array.prototype.slice.call(arguments).shift();
+
+		// The callback function is executed for each active channel
+		// If it return true the action is applied. The callback received a channel as argument
+		which: function(func) {
+			for (var i = this.activeChannels.length-1; i >=0 ; i--) {
+				channel = this, this.activeChannels[i];
+
+				if(func(channel)) {
+					method.call(this, channel, i, args);
+				}
+			}
+		},
+
+		// Use this method to execute the specified action in all the active channels
+		now: function() {
+			for (var i = this.activeChannels.length-1; i >=0 ; i--) {
+				channel = this, this.activeChannels[i];
+
+				method.call(this, channel, i, args);
+			}
+		}
+	}
 
 	return new SoundPlayer();
 });
