@@ -12,17 +12,10 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Examples v5 
-    - In-demo feedback
-        - Sound
-        - Fixed State Machine
-        - Loose State Machine
-        - Put relevant text in all examples that need it
-            - Review all examples
-
-- Replace w3schools.com links :P
-
 - Extension to pause all sound.
+    - Test extension in sound example.
+
+- Tag latest version of game-builder
 
 - Deploy gh-pages
 
