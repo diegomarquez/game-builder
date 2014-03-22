@@ -32,6 +32,7 @@ require.config({
     "keyboard-lock": "../../game-builder/src/game_canvas/extensions/keyboard-lock",
     pause: "../../game-builder/src/game_canvas/extensions/pause",
     resume: "../../game-builder/src/game_canvas/extensions/resume",
+    "sound-control": "../../game-builder/src/game_canvas/extensions/sound-control",
     "timers-control": "../../game-builder/src/game_canvas/extensions/timers-control",
     game: "../../game-builder/src/game_canvas/game",
     gb: "../../game-builder/src/gb",

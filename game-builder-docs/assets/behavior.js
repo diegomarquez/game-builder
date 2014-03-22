@@ -1125,6 +1125,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "foldPrefix": "^",
                       "name": "JavaScript"
                     },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/sound-control.js",
+                    "projectPath": "work/game-builder/src/game_canvas/extensions/sound-control.js",
+                    "targetPath": "src/game_canvas/extensions/sound-control",
+                    "pageTitle": "src/game_canvas/extensions/sound-control",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "sound-control.js",
+                        "slug": "sound-controljs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Pause and Resume all sound channels",
+                            "slug": "pause-and-resume-all-sound-channels"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "sound-control.js"
+                  },
+                  "depth": 4,
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Pause and Resume all sound channels",
+                        "slug": "pause-and-resume-all-sound-channels"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
                     "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/timers-control.js",
                     "projectPath": "work/game-builder/src/game_canvas/extensions/timers-control.js",
                     "targetPath": "src/game_canvas/extensions/timers-control",

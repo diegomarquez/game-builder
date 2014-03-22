@@ -6,27 +6,24 @@
 
 <p>By itself this repository is kind of useless, as it is nothing more than a collection of requirejs modules. You could try and figure out how to use them, though. </p>
 
-<p>For better results it is better to use it in conjuction with <a href="https://github.com/diegomarquez/generator-game-builder">generator-game-builder</a>, a <a href="http://yeoman.io/">Yeoman</a> generator that generates(dur) the basic setup to start working with this stuff. </p>
+<p>For better results it is better to use it in conjuction with <a href="https://github.com/diegomarquez/generator-game-builder">generator-game-builder</a>, a <a href="http://yeoman.io/">Yeoman</a> generator that generates(dur) the basic setup to start working with this stuff. Or you could just copy/paste stuff like crazy, your call.</p>
 
 <hr />
 
 <h6 id="todo-list">TODO List:</h6>
 
 <ul>
+<li><p>Extension to pause all sound.</p>
+
+<ul><li>Test extension in sound example.</li></ul></li>
 <li><p>Tag latest version of game-builder</p></li>
 <li><p>Deploy gh-pages</p></li>
-</ul>
-
-<p>-Examples v4
-    - Use HTML to add some on screen explanation of what is going on
-    - Some feed back on what to do</p>
-
-<ul>
 <li><p>Spike Performance Boost</p>
 
 <ul><li>Canvas caching
 <ul><li>Cache static drawings (Drawing Renderer, NEW)</li>
-<li>Cache Images (Bitmap renderer)       </li></ul></li></ul></li>
+<li>Cache Images (Bitmap renderer)</li>
+<li>https://github.com/jakesgordon/bin-packing/blob/master/js/packer.js       </li></ul></li></ul></li>
 <li><p>Tag latest version of game-builder</p></li>
 <li><p>Sub state machine state. Special state which contains a state machine. Used for branching paths</p></li>
 <li><p>Tag latest version of game-builder</p></li>
@@ -35,13 +32,20 @@
 <li><p>Annoying tasks</p>
 
 <ul><li>sound-player.js
-<ul><li>Be able to set channels appart for a specific task, so that they don't need to be reloaded each time</li></ul></li>
+<ul><li>Be able to set channels appart for a specific task, so that they don't need to be reloaded each time. The prototype basically crawls when it plays sound.</li></ul></li>
 <li>Rename delegate.js to broadcaster.js</li>
 <li>Test garbage collection
 <ul><li>Test delegate.js destroy method properly</li></ul></li>
 <li>Links to explanations of known errors, like requireJS
 <ul><li>Single page in the website</li></ul></li>
 <li>Premade renderer to draw rectangles, circles lines and triangles.</li></ul></li>
+<li><p>Examples v6 </p>
+
+<ul><li>Add feedback about the internals of each example
+<ul><li>Pooled Objects</li>
+<li>Active Objects</li>
+<li>Pooled Sound Channels</li>
+<li>Active Sound Channels</li></ul></li></ul></li>
 <li><p>Figure out how to use r.js</p></li>
 <li><p>Do a simple game and get this over with for fucks sake!</p></li>
 </ul>

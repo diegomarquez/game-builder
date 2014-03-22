@@ -54,7 +54,7 @@ define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 
 			 * <p style='color:#AD071D'><strong>addToLayer</strong></p>
 			 * 
 			 * Wraps all the steps needed to add a <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html>game-object</a>
-			 * into a <a href=@@layer>layer</a>. 
+			 * into a <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layer.html>layer</a>. 
 			 * 
 			 * @param {String} layerName Id of the layer to add the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to. View [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html), for more details.
 			 * @param {String} goId      Id of [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to add. View [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html), for more details.

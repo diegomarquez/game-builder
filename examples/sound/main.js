@@ -23,6 +23,8 @@ define(function(require){
 	var sound_player = require('sound-player');
 	var keyboard = require('keyboard');
 
+	game.add_extension(require("sound-control"));
+
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {
 		console.log("Welcome to Game-Builder!");
@@ -72,7 +74,13 @@ define(function(require){
 			});
 
 			keyboard.onKeyDown(keyboard.X, this, function() {
-				sound_player.stopAll();
+				sound_player.stopAll().now();
+			});
+
+			var soundPaused = false;
+			keyboard.onKeyDown(keyboard.P, this, function() {
+				soundPaused ? sound_player.resumeAll().now() : sound_player.pauseAll().now();
+				soundPaused = !soundPaused;
 			});
 		});
 	});

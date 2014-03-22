@@ -49,6 +49,8 @@ it should use the <strong>change</strong> event to pass control to another state
     <span class="nx">state</span><span class="p">.</span><span class="nx">addStartAction</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">){</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Entering State 3&quot;</span><span class="p">);</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
+
+      <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;label_3&#39;</span><span class="p">).</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s1">&#39;CURRENT STATE: STATE 3&#39;</span><span class="p">;</span>
     <span class="p">});</span>
 
     <span class="nx">state</span><span class="p">.</span><span class="nx">addStartAction</span><span class="p">(</span><span class="nx">setupKeyboardCallbacks</span><span class="p">);</span>

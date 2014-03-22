@@ -24,6 +24,15 @@ define(function(require){
 	var stateMachineFactory = require('state-machine');
 	var keyboard = require('keyboard');
 
+	var state_1_label = document.getElementById('label_1');
+	var state_2_label = document.getElementById('label_2');
+	var state_3_label = document.getElementById('label_3');
+	var currentState = document.getElementById('label_4');
+
+	state_1_label.style.color = '#ffffff';
+	state_2_label.style.color = '#aaaaaa';
+	state_3_label.style.color = '#aaaaaa';
+	
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {
 		console.log("Welcome to Game-Builder!");
@@ -48,6 +57,12 @@ define(function(require){
 		state_1.addStartAction(function(args) { 
 			console.log('State 1 just started');
 			console.log(args);
+
+			currentState.innerText = 'CURRENT STATE: STATE 1';
+
+			state_1_label.style.color = '#ffffff';
+			state_2_label.style.color = '#aaaaaa';
+			state_3_label.style.color = '#aaaaaa';
 		});
 		state_1.addCompleteAction(function(args) { 
 			console.log('State 1 just completed'); 
@@ -57,6 +72,12 @@ define(function(require){
 		state_2.addStartAction(function(args) { 
 			console.log('State 2 just started');
 			console.log(args); 
+
+			currentState.innerText = 'CURRENT STATE: STATE 2';
+
+			state_2_label.style.color = '#ffffff';
+			state_1_label.style.color = '#aaaaaa';
+			state_3_label.style.color = '#aaaaaa';
 		});
 		state_2.addCompleteAction(function(args) { 
 			console.log('State 2 just completed'); 
@@ -66,6 +87,12 @@ define(function(require){
 		state_3.addStartAction(function(args) { 
 			console.log('State 3 just started');
 			console.log(args); 
+
+			currentState.innerText = 'CURRENT STATE: STATE 3';
+
+			state_3_label.style.color = '#ffffff';
+			state_2_label.style.color = '#aaaaaa';
+			state_1_label.style.color = '#aaaaaa';
 		});
 
 		state_3.addCompleteAction(function(args) { 
@@ -74,9 +101,7 @@ define(function(require){
 		});
 
 		// Wiring up some really crud state change logic
-		// Note that only the currently executing state 
-		// can signal the state machine to change state.
-
+		// Note that only the currently executing state can signal the state machine to change state.
 		// If some other state does so, because of nefarious code, such as this example, nothing will happen.
 		keyboard.onKeyUp(keyboard.A, this, function() {
 			state_1.execute('change', {next:'state_2_name', nextInitArgs:'Hello from state 1', lastCompleteArgs:'Good bye state 1'});
@@ -90,7 +115,7 @@ define(function(require){
 			state_3.execute('change', {next:'state_1_name', nextInitArgs:'Hello from state 3', lastCompleteArgs:'Good bye state 3'});
 		});
 
-		// Finally this will add the states the into the state machine.
+		// Finally this will add the states into the state machine.
 		looseStateMachine.add(state_1);
 		looseStateMachine.add(state_2);
 		looseStateMachine.add(state_3);

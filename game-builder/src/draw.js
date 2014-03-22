@@ -9,7 +9,7 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This is a collection of methods to ease the pain of using HTML5's [Canvas drawing API](http://www.w3schools.com/tags/ref_canvas.asp). 
+ * This is a collection of methods to ease the pain of using HTML5's [Canvas drawing API](https://developer.mozilla.org/en-US/docs/HTML/Canvas). 
  * Not by much though, it's still pretty painfull. Believe me, I did I wrote a whole game only relaying
  * on it for graphics [SHAMELESS SELF PUBLICITY](http://www.treintipollo.com/tirador/index.html)
  *
@@ -41,8 +41,8 @@ define(function() {
 	 * @param  {Number} x           X coordinate of the registration point
 	 * @param  {Number} y           Y coordinate of the registration point
 	 * @param  {Number} radius      Radius of the circle
-	 * @param  {String|Number} [fillColor=null the circle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
-	 * @param  {String|Number} [strokeColor=null the circle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number
+	 * @param  {String|Number} [fillColor=null the circle can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number (If you are into that kind of bullshit)
+	 * @param  {String|Number} [strokeColor=null the circle can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number
 	 * @param  {Number} [lineWidth=null] Line widt             	
 	 */
 	DrawUtils.prototype.circle = function(context, x, y, radius, fillColor, strokeColor, lineWidth) {
@@ -71,8 +71,8 @@ define(function() {
 	  * @param  {Number} y           Y coordinate of the registration point
 	  * @param  {Number} width       Width of the rectangle
 	  * @param  {Number} height      Height of the rectangle
-	  * @param  {String|Number} [fillColor=null]   Fill color for the rectangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
-	  * @param  {String|Number} [strokeColor=null] Stroke color for the rectangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
+	  * @param  {String|Number} [fillColor=null]   Fill color for the rectangle can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number (If you are into that kind of bullshit)
+	  * @param  {String|Number} [strokeColor=null] Stroke color for the rectangle can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number (If you are into that kind of bullshit)
 	  * @param  {Number} [lineWidth=null]   Line width            
 	  */
 	DrawUtils.prototype.rectangle = function(context, x, y, width, height, fillColor, strokeColor, lineWidth) {
@@ -105,8 +105,8 @@ define(function() {
 	  * @param  {Number} y2          Y coordinate of the second vertex
 	  * @param  {Number} x3          X coordinate of the third vertex
 	  * @param  {Number} y3          Y coordinate of the third vertex
-	  * @param  {String|Number} [fillColor=null]   Fill color for the triangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
-	  * @param  {String|Number} [strokeColor=null] Stroke color for the triangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
+	  * @param  {String|Number} [fillColor=null]   Fill color for the triangle can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number (If you are into that kind of bullshit)
+	  * @param  {String|Number} [strokeColor=null] Stroke color for the triangle can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number (If you are into that kind of bullshit)
 	  * @param  {Number} [lineWidth=null]   Line width
 	  * @param  {Number} [scale=1] Scale of the triangle. This can be usefull to avoid recalculating vertex position             
 	  */
@@ -167,8 +167,8 @@ define(function() {
 	  * @param  {Number} y1          Y coordinate of the third vertex
 	  * @param  {Number} ax1         X coordinate of the third vertex's anchor point
 	  * @param  {Number} ay1         Y coordinate of the third vertex's anchor point
-	  * @param  {String|Number} [fillColor=null]   Fill color for the triangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
-	  * @param  {String|Number} [strokeColor=null] Stroke color for the triangle can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
+	  * @param  {String|Number} [fillColor=null]   Fill color for the triangle can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number (If you are into that kind of bullshit)
+	  * @param  {String|Number} [strokeColor=null] Stroke color for the triangle can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number (If you are into that kind of bullshit)
 	  * @param  {Number} [lineWidth=null]   Line width
 	  * @param  {Number} [scale=1] Scale of the triangle. This can be usefull to avoid recalculating vertex position
 	  */
@@ -230,8 +230,8 @@ define(function() {
 	  * @param  {Number} x           X coordinate registration point. All the points of the polygon are relative to this
 	  * @param  {Number} y           Y coordinate registration point. All the points of the polygon are relative to this
 	  * @param  {Array} points       An array of objects with the following form, {x:x, y:y}
-	  * @param  {String|Number} [fillColor=null]   Fill color for the polygon can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
-	  * @param  {String|Number} [strokeColor=null] Stroke color for the polygon can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
+	  * @param  {String|Number} [fillColor=null]   Fill color for the polygon can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number (If you are into that kind of bullshit)
+	  * @param  {String|Number} [strokeColor=null] Stroke color for the polygon can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number (If you are into that kind of bullshit)
 	  * @param  {Number} [lineWidth=null]   Line width
 	  * @param  {Number} [scale=1] Scale of the polygon. This can be usefull to avoid recalculating vertex position
 	  */
@@ -268,8 +268,8 @@ define(function() {
 	  * @param  {Number} x           X coordinate registration point. All the points of the polygon are relative to this
 	  * @param  {Number} y           Y coordinate registration point. All the points of the polygon are relative to this
 	  * @param  {String} points      An array of objects with the following form, {x:x, y:y}. Note that since lines are quadratic curves, you need to provide anchor anchor points in between each pair of vertexes  
-	  * @param  {String|Number} [fillColor=null]   Fill color for the polygon can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
-	  * @param  {String|Number} [strokeColor=null] Stroke color for the polygon can be a [hex string](http://www.w3schools.com/html/html_colors.asp) or a number (If you are into that kind of bullshit)
+	  * @param  {String|Number} [fillColor=null]   Fill color for the polygon can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number (If you are into that kind of bullshit)
+	  * @param  {String|Number} [strokeColor=null] Stroke color for the polygon can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number (If you are into that kind of bullshit)
 	  * @param  {Number} [lineWidth=null]   Line width
 	  * @param  {Number} [scale=1] Scale of the polygon. This can be usefull to avoid recalculating vertex position
 	  */

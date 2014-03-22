@@ -18,6 +18,7 @@
   "keyboard-lock@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/keyboard-lock.html",
   "pause@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/pause.html",
   "resume@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/resume.html",
+  "sound-control@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/sound-control.html",
   "timers-control@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/timers-control.html",
   "game@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html",
   "gb@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html",

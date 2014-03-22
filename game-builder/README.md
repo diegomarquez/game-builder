@@ -6,24 +6,24 @@ These are some files I decided to extract from a previous javascript project. Th
 
 By itself this repository is kind of useless, as it is nothing more than a collection of requirejs modules. You could try and figure out how to use them, though. 
 
-For better results it is better to use it in conjuction with [generator-game-builder][generator], a [Yeoman][yeoman] generator that generates(dur) the basic setup to start working with this stuff. 
+For better results it is better to use it in conjuction with [generator-game-builder][generator], a [Yeoman][yeoman] generator that generates(dur) the basic setup to start working with this stuff. Or you could just copy/paste stuff like crazy, your call.
 
 -----------------------------------
 
 ###### TODO List:
 
+- Extension to pause all sound.
+    - Test extension in sound example.
+
 - Tag latest version of game-builder
 
 - Deploy gh-pages
 
--Examples v4
-    - Use HTML to add some on screen explanation of what is going on
-    - Some feed back on what to do
-
 - Spike Performance Boost
     - Canvas caching
         * Cache static drawings (Drawing Renderer, NEW)
-        * Cache Images (Bitmap renderer)       
+        * Cache Images (Bitmap renderer)
+        * https://github.com/jakesgordon/bin-packing/blob/master/js/packer.js       
 
 - Tag latest version of game-builder
 
@@ -37,13 +37,20 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Annoying tasks
     - sound-player.js
-        - Be able to set channels appart for a specific task, so that they don't need to be reloaded each time
+        - Be able to set channels appart for a specific task, so that they don't need to be reloaded each time. The prototype basically crawls when it plays sound.
     - Rename delegate.js to broadcaster.js
     - Test garbage collection
         - Test delegate.js destroy method properly
     - Links to explanations of known errors, like requireJS
         - Single page in the website
     - Premade renderer to draw rectangles, circles lines and triangles.
+
+- Examples v6 
+    - Add feedback about the internals of each example
+        - Pooled Objects
+        - Active Objects
+        - Pooled Sound Channels
+        - Active Sound Channels
 
 - Figure out how to use r.js
 

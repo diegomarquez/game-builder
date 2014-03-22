@@ -54,6 +54,8 @@ define(function(require) {
 		state.addStartAction(function(args){
 			console.log("Entering State 2");
 			console.log(args);
+
+			document.getElementById('label_3').innerText = 'CURRENT STATE: STATE 2';
 		});
 
 		state.addStartAction(setupKeyboardCallbacks);

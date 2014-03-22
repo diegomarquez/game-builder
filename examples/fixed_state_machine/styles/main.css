@@ -1,3 +1,40 @@
+@import url(http://fonts.googleapis.com/css?family=Press+Start+2P);
+
+div {
+  font-family: 'Press Start 2P';
+}
+
 #game {
 	background-color: #000000;
+}
+
+#main {
+	position: fixed;
+}
+
+#labels {
+	color: #fff;
+	position: relative;
+}
+
+.label {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+
+#label_1 {
+	top: -210px;
+	left: 0px;
+}
+
+#label_2 {
+	top: -190px;
+	left: 0px;
+}
+
+#label_3 {
+	color: #0f0;
+	top: -120px;
+	left: 0px;
 }
