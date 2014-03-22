@@ -22,7 +22,8 @@ For better results it is better to use it in conjuction with [generator-game-bui
 - Spike Performance Boost
     - Canvas caching
         * Cache static drawings (Drawing Renderer, NEW)
-        * Cache Images (Bitmap renderer)       
+        * Cache Images (Bitmap renderer)
+        * https://github.com/jakesgordon/bin-packing/blob/master/js/packer.js       
 
 - Tag latest version of game-builder
 
@@ -43,6 +44,13 @@ For better results it is better to use it in conjuction with [generator-game-bui
     - Links to explanations of known errors, like requireJS
         - Single page in the website
     - Premade renderer to draw rectangles, circles lines and triangles.
+
+- Examples v6 
+    - Add feedback about the internals of each example
+        - Pooled Objects
+        - Active Objects
+        - Pooled Sound Channels
+        - Active Sound Channels
 
 - Figure out how to use r.js
 

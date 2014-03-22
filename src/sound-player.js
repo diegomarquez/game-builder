@@ -272,7 +272,7 @@ define(['timer-factory'], function(timerFactory) {
 	 * @return {Object} A control object with methods to determine which sounds should be paused
 	 */
 	SoundPlayer.prototype.setPropertyToAll = function(property, value) {
-		return bulkControl(setProperty, property, value);
+		return bulkControl.call(this, setProperty, property, value);
 	}
 	/**
 	 * --------------------------------
@@ -311,7 +311,7 @@ define(['timer-factory'], function(timerFactory) {
 	 * @return {Object} A control object with methods to determine which sounds should be paused
 	 */
 	SoundPlayer.prototype.pauseAll = function() {
-		return bulkControl(pauseChannel);
+		return bulkControl.call(this, pauseChannel);
 	};
 	/**
 	 * --------------------------------
@@ -357,7 +357,7 @@ define(['timer-factory'], function(timerFactory) {
 	 * @return {Object} A control object with methods to determine which sounds should be stopped
 	 */
 	SoundPlayer.prototype.stopAll = function() {
-		return bulkControl(stopChannel);
+		return bulkControl.call(this, stopChannel);
 	};
 	/**
 	 * --------------------------------
@@ -396,7 +396,7 @@ define(['timer-factory'], function(timerFactory) {
 	 * @return {Object} A control object with methods to determine which sounds should be resumed
 	 */
 	SoundPlayer.prototype.resumeAll = function() {
-		return bulkControl(resumeChannel);
+		return bulkControl.call(this, resumeChannel);
 	};
 	/**
 	 * --------------------------------
@@ -407,26 +407,28 @@ define(['timer-factory'], function(timerFactory) {
 	var bulkControl = function(method) {
 		var channel = null;
 
-		var args = Array.prototype.slice.call(arguments).shift();
+		var args = Array.prototype.slice.call(arguments).splice(1)
+		var self = this;
 
-		// The callback function is executed for each active channel
-		// If it return true the action is applied. The callback received a channel as argument
-		which: function(func) {
-			for (var i = this.activeChannels.length-1; i >=0 ; i--) {
-				channel = this, this.activeChannels[i];
+		return {
+			// The callback function is executed for each active channel
+			// If it return true the action is applied. The callback received a channel as argument
+			which: function(func) {
+				for (var i = self.activeChannels.length-1; i >=0 ; i--) {
+					channel = self.activeChannels[i];
 
-				if(func(channel)) {
-					method.call(this, channel, i, args);
+					if(func(channel)) {
+						method.call(self, channel, i, args);
+					}
 				}
-			}
-		},
+			},
 
-		// Use this method to execute the specified action in all the active channels
-		now: function() {
-			for (var i = this.activeChannels.length-1; i >=0 ; i--) {
-				channel = this, this.activeChannels[i];
-
-				method.call(this, channel, i, args);
+			// Use this method to execute the specified action in all the active channels
+			now: function() {
+				for (var i = self.activeChannels.length-1; i >=0 ; i--) {
+					channel = self.activeChannels[i];
+					method.call(self, channel, i, args);
+				}
 			}
 		}
 	}
