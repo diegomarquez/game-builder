@@ -12,17 +12,12 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Extension to pause all sound.
-    - Test extension in sound example.
-
-- Tag latest version of game-builder
-
-- Deploy gh-pages
-
 - Spike Performance Boost
     - Canvas caching
         * Cache static drawings (Drawing Renderer, NEW)
+            - drawing-cache.js
         * Cache Images (Bitmap renderer)
+            - image-cache.js
         * https://github.com/jakesgordon/bin-packing/blob/master/js/packer.js       
 
 - Tag latest version of game-builder
@@ -32,6 +27,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 - Tag latest version of game-builder
 
 - Text
+    - Caching
 
 - Tag latest version of game-builder
 

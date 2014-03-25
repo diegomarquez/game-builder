@@ -49,7 +49,10 @@
 /**
  * --------------------------------
  */
-define(["component"], function(Component) {
+define(["component", 'image-cache'], function(Component, ImageCache) {
+
+	var image = null;
+
 	var Renderer = Component.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>init</strong></p>
@@ -60,8 +63,6 @@ define(["component"], function(Component) {
 		 */
 		init: function() {
 			this._super()
-
-			this.image = new Image();
 
 			this.offsetX = 0;
 			this.offsetY = 0;
@@ -77,8 +78,17 @@ define(["component"], function(Component) {
 		 * and it will set the **src** property of the **image** to what
 		 * was specified during configuration.
 		 */
-		start: function() {
-			this.image.src = this.path;
+		start: function() {	
+			// if (!ImageCache.isStored(this.path)) {
+			// 	this.image.src = this.path;
+
+			// 	this.image.addEvenListener('complete', function() {
+			// 		ImageCache.store(this.image);
+			// 	});				
+			// }
+			// 
+	
+			ImageCache.cache(this.path);
 		},
 		/**
 		 * --------------------------------
@@ -95,20 +105,28 @@ define(["component"], function(Component) {
 		draw: function(context) {
 			var w, h;
 
-			if(this.width && this.height) {
+			image = ImageCache.get(this.path);
+
+			if (this.width && this.height) {
 				w = this.width;
 				h = this.height;
-			}else {
-				w = this.image.width;
-				h = this.image.height;
+			} else {
+				w = image.width;
+				h = image.height;
 			}
 
-			if(this.offset == 'center'){
-				context.drawImage(this.image, -w/2, -h/2, w, h);	
+			if (this.offset == 'center'){
+				context.drawImage(image, -w/2, -h/2, w, h);	
+			} else{
+				context.drawImage(image, this.offsetX, this.offsetY, w, h);		
 			}
-			else{
-				context.drawImage(this.image, this.offsetX, this.offsetY, w, h);		
-			}
+
+		  	// var coord = ImageCache.getCoordinates(this.path)
+			// if (this.offset == 'center'){
+			// 	context.drawImage(ImageCache.getImage(this.path), coord.x, coord.y, coord.w, coord.h, -w/2, -h/2, w, h);	
+			// } else{
+			// 	context.drawImage(ImageCache.getImage(this.path), coord.x, coord.y, coord.w, coord.h, this.offsetX, this.offsetY, w, h);		
+			// }
 		}
 		/**
 		 * --------------------------------
