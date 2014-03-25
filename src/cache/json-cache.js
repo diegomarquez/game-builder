@@ -15,6 +15,11 @@
  */
 
 /**
+ * Cache JSON and other Objects
+ * --------------------------------
+ */
+
+/**
  * --------------------------------
  */
 define(function() {
@@ -31,6 +36,9 @@ define(function() {
 	JSONCache.prototype.parse = function(id, string) {
 		cache[id] = JSON.parse(string);
 	};
+	/**
+	 * --------------------------------
+	 */
 
 	/**
 	 * <p style='color:#AD071D'><strong>cache</strong></p>
@@ -41,6 +49,9 @@ define(function() {
 	JSONCache.prototype.cache = function(id, object) {
 		cache[id] = object;
 	};
+	/**
+	 * --------------------------------
+	 */
 
 	/**
 	 * <p style='color:#AD071D'><strong>get</strong></p>
@@ -52,6 +63,9 @@ define(function() {
 	JSONCache.prototype.get = function(id) {
 		return cache[id];
 	};
+	/**
+	 * --------------------------------
+	 */
 
 	/**
 	 * <p style='color:#AD071D'><strong>clear</strong></p>
@@ -61,6 +75,9 @@ define(function() {
 	JSONCache.prototype.clear = function(id) {
 		delete cache[id];
 	};
+	/**
+	 * --------------------------------
+	 */
 
 	/**
 	 * <p style='color:#AD071D'><strong>clearAll</strong></p>
@@ -70,6 +87,9 @@ define(function() {
 			delete cache[k];
 		}
 	};
+	/**
+	 * --------------------------------
+	 */
 
 	return new JSONCache();
 });

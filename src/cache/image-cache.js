@@ -18,6 +18,11 @@
  */
 
 /**
+ * Cache Images
+ * --------------------------------
+ */
+
+/**
  * --------------------------------
  */
 define(function() {
@@ -28,7 +33,7 @@ define(function() {
 	/**
 	 * <p style='color:#AD071D'><strong>cache</strong></p>
 	 *
-	 * @param  {String} id     Path to the image to load, can be a local or remote url
+	 * @param  {String} id     Path to the image asset to load, can be a local or remote url
 	 */
 	ImageCache.prototype.cache = function(path) {
 		if (cache[path]) {
@@ -41,26 +46,35 @@ define(function() {
 	
 		cache[path] = image;
 	};
+	/**
+	 * --------------------------------
+	 */
 
 	/**
 	 * <p style='color:#AD071D'><strong>get</strong></p>
 	 *
-	 * @param  {String} id Path used to load an image
+	 * @param  {String} id Path used to retrieve a cached [HTMLImageElements](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement)
 	 *
 	 * @return {Object}    Cached [HTMLImageElements](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement)
 	 */
-	ImageCache.prototype.get = function(id) {
+	ImageCache.prototype.get = function(path) {
 		return cache[id];
 	};
+	/**
+	 * --------------------------------
+	 */
 
 	/**
 	 * <p style='color:#AD071D'><strong>clear</strong></p>
 	 *
-	 * @param  {String} id Path of image to clear from cache
+	 * @param  {String} id Path to the [HTMLImageElements](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) to clear from the cache
 	 */
-	ImageCache.prototype.clear = function(id) {
+	ImageCache.prototype.clear = function(path) {
 		delete cache[id];
 	};
+	/**
+	 * --------------------------------
+	 */
 
 	/**
 	 * <p style='color:#AD071D'><strong>clearAll</strong></p>
@@ -70,6 +84,9 @@ define(function() {
 			delete cache[k];
 		}
 	};
+	/**
+	 * --------------------------------
+	 */
 
 	return new ImageCache();
 });
