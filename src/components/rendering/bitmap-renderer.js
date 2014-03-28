@@ -5,7 +5,7 @@
  *
  * Inherits from: [component](@@component@@)
  *
- * Depends of:
+ * Depends of: [image-cache](@@image-cache@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -18,6 +18,7 @@
  * gb.coPool.createConfiguration("Bitmap", 'Bitmap_Renderer')
  	.args({ 
  		//Path to the image you want to draw. This is required
+ 		//This is required
 		path: 'some/path/to/image.jpg',
 
  		//Use this if you want the registration point of the image to be the center
@@ -53,13 +54,9 @@ define(["component", 'image-cache'], function(Component, ImageCache) {
 
 	var image = null;
 
-	var Renderer = Component.extend({
+	var BitmapRenderer = Component.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>init</strong></p>
-		 * 
-		 * Constructor.
-		 * 
-		 * It create an Image object to be used later by the renderer.
 		 */
 		init: function() {
 			this._super()
@@ -74,20 +71,10 @@ define(["component", 'image-cache'], function(Component, ImageCache) {
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
-		 * This is called by the [game-object](@@game-object@@) using this renderer
-		 * and it will set the **src** property of the **image** to what
-		 * was specified during configuration.
+		 * This is called by the [game-object](@@game-object@@) using this renderer.
+		 * It sends the path configured to the [image-cache](@@image-cache@@) module.
 		 */
 		start: function() {	
-			// if (!ImageCache.isStored(this.path)) {
-			// 	this.image.src = this.path;
-
-			// 	this.image.addEvenListener('complete', function() {
-			// 		ImageCache.store(this.image);
-			// 	});				
-			// }
-			// 
-	
 			ImageCache.cache(this.path);
 		},
 		/**
@@ -97,7 +84,7 @@ define(["component", 'image-cache'], function(Component, ImageCache) {
 		/**
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
-		 * Draws the image into the canvas. Applying configured properties,
+		 * Draws the image into the canvas, applying configured properties,
 		 * like **width**, **height** and **offsets**
 		 * 
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
@@ -120,18 +107,11 @@ define(["component", 'image-cache'], function(Component, ImageCache) {
 			} else{
 				context.drawImage(image, this.offsetX, this.offsetY, w, h);		
 			}
-
-		  	// var coord = ImageCache.getCoordinates(this.path)
-			// if (this.offset == 'center'){
-			// 	context.drawImage(ImageCache.getImage(this.path), coord.x, coord.y, coord.w, coord.h, -w/2, -h/2, w, h);	
-			// } else{
-			// 	context.drawImage(ImageCache.getImage(this.path), coord.x, coord.y, coord.w, coord.h, this.offsetX, this.offsetY, w, h);		
-			// }
 		}
 		/**
 		 * --------------------------------
 		 */
 	});
 
-	return Renderer;
+	return BitmapRenderer;
 });

@@ -18,7 +18,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
             - drawing-cache.js
         * Cache Images (Bitmap renderer)
             - image-cache.js
-        * https://github.com/jakesgordon/bin-packing/blob/master/js/packer.js       
+    - Examples of the caching methods
 
 - Tag latest version of game-builder
 
@@ -51,6 +51,8 @@ For better results it is better to use it in conjuction with [generator-game-bui
 - Figure out how to use r.js
 
 - Do a simple game and get this over with for fucks sake!
+
+- Animation System
 
 ### [This is the prototype game][tirador] which spurred the creation of this project.
 
