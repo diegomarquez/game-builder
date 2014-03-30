@@ -58,7 +58,7 @@ define(function() {
 	 * @return {Object}    Cached [HTMLImageElements](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement)
 	 */
 	ImageCache.prototype.get = function(path) {
-		return cache[id];
+		return cache[path];
 	};
 	/**
 	 * --------------------------------
@@ -70,7 +70,7 @@ define(function() {
 	 * @param  {String} id Path to the [HTMLImageElements](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) to clear from the cache
 	 */
 	ImageCache.prototype.clear = function(path) {
-		delete cache[id];
+		delete cache[path];
 	};
 	/**
 	 * --------------------------------
@@ -83,6 +83,28 @@ define(function() {
 		for(var k in cache) {
 			delete cache[k];
 		}
+	};
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>toString</strong></p>
+	 *
+	 * String representation of the cache
+	 */
+	ImageCache.prototype.toString = function() {
+		var r = {}
+
+		r['cachedImages'] = cache.keys().length;
+		r['images'] = [];
+		
+
+		for(var k in cache) {
+			r['images'].push(k);			
+		}
+
+		return JSON.stringify(r, null, 2);
 	};
 	/**
 	 * --------------------------------

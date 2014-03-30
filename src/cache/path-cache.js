@@ -51,7 +51,7 @@ define(function() {
 		var context = canvas.getContext('2d');
 		context.clearRect(0, 0, canvas.width, canvas.height);
 		drawingFunction(context);
-		cache[path] = canvas;
+		cache[id] = canvas;
 	};
 	/**
 	 * --------------------------------
@@ -111,6 +111,28 @@ define(function() {
 		for(var k in cache) {
 			delete cache[k];
 		}
+	};
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>toString</strong></p>
+	 *
+	 * String representation of the cache
+	 */
+	PathCache.prototype.toString = function() {
+		var r = {}
+
+		r['cachedPaths'] = cache.keys().length;
+		r['paths'] = [];
+		
+
+		for(var k in cache) {
+			r['paths'].push(k);			
+		}
+
+		return JSON.stringify(r, null, 2);
 	};
 	/**
 	 * --------------------------------

@@ -26,9 +26,13 @@
 		name: 'RendererName',
 
 		//These set the total width and height of the path
-		//These are required
+		//This argument is only required if the renderer does not provide it. 
 		pathWidth: 100,
 		pathHeight: 100,
+
+		//Use this to define the path this renderer will draw
+		//This argument is only required if the renderer does not provide it. 
+		drawPath: function(context) { 'path definition goes here' }
 
  		//Use this if you want the registration point of the image to be the center
  		//This is optional
@@ -39,14 +43,10 @@
 		offsetX:0,
 		offsetY:0, 
 		
-		//Use these to override the dimentions default dimentions.
+		//Use these to override the dimentions of the path.
 		//These are optional
 		width: 20, 
 		height: 20,
-
-		//Use this to define the path this renderer will draw
-		//This argument is only required if the renderer does not provide it. 
-		drawPath: function(context) { 'path definition goes here' }
  *	});
  * ```
  * <strong>Note: The snippet uses the reference to the <a href=@@component-pool@@>component-pool</a>
@@ -56,7 +56,7 @@
  */
 
 /**
- * Draw Images
+ * Cache Paths
  * --------------------------------
  */
 
@@ -127,7 +127,7 @@ define(["component", 'path-cache'], function(Component, PathCache) {
 		draw: function(context) {
 			var w, h;
 
-			canvas = PathCache.get(this.path);
+			canvas = PathCache.get(this.name);
 
 			if (this.width && this.height) {
 				w = this.width;

@@ -12,13 +12,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Spike Performance Boost
-    - Canvas caching
-        * Cache static drawings (Drawing Renderer, NEW)
-            - drawing-cache.js
-        * Cache Images (Bitmap renderer)
-            - image-cache.js
-    - Examples of the caching methods
+- Shared Renderers, mainly for partlicles
 
 - Tag latest version of game-builder
 
@@ -30,6 +24,11 @@ For better results it is better to use it in conjuction with [generator-game-bui
     - Caching
 
 - Tag latest version of game-builder
+
+- New Stuff on generator
+    - Text
+    - State Machine
+    - Renderers
 
 - Annoying tasks
     - sound-player.js
@@ -47,6 +46,8 @@ For better results it is better to use it in conjuction with [generator-game-bui
         - Active Objects
         - Pooled Sound Channels
         - Active Sound Channels
+        - Cached Images
+        - Cached Paths
 
 - Figure out how to use r.js
 
