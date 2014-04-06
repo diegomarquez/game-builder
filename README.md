@@ -12,23 +12,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Update all examples 
-    - new index.html
-    - font-data.js
-- Update Seed
-    - new index.html
-    - font-data.js
-
-- Update website documentation
-    - font-data.js
-
-- Tag latest version of game-builder
-
-- New Stuff on generator
-    - Text
-        - index.html
-        - font-data.js
-    - Renderers
+- Update Generator
 
 - Annoying tasks
     - sound-player.js
@@ -53,7 +37,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 -----------------------------------
 
-###### After First game:
+###### After Game:
 
 - Frame Animation System
 - Shared Renderers. Share logic which does not need to keep state.
