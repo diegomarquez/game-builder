@@ -24,29 +24,30 @@ define(function(require) {
     /**
      * <p style='color:#AD071D'><strong>start</strong></p>
      *
-     * @param  {String} version A string with the version of webfont.js to download from [Google](https://developers.google.com/speed/libraries/).
-     * @param  {Object} data An object with font data, refer to [Web font loader](https://github.com/typekit/webfontloader)
-     *                       for details on how it shoulf look like.
+     * @param  {Object} webfontsConfig A configuration object. See [font-data](@@font-data@@) for more details.
      * @param {Funtion} onLoad This is called when all fonts have been downloaded.
      *                         It recieves and boolean argument stating wether the specified fonts where downloaded successfuly or not.
      */
-    FontLoader.prototype.start = function(version, data, onLoad) {
-    	var self = this;
+    FontLoader.prototype.start = function(config, onLoad) {
+    	if (!config.loadFonts) {
+            onLoad(false); 
+            return;
+        }
 
-    	if(onLoad) { 
-	    	data.active = function() {
-	    		onLoad(true);	
-	    	};
+        var self = this;
 
-	    	data.inactive = function() {
-	    		onLoad(false);	
-	    	};
-    	}
-		
+    	config.data.active = function() {
+    		onLoad(true);	
+    	};
+
+    	config.data.inactive = function() {
+    		onLoad(false);	
+    	};
+    	
     	var protocol = document.location.protocol === 'https:' ? 'https' : 'http';
 
-		require([ protocol + '://ajax.googleapis.com/ajax/libs/webfont/' + version + '/webfont.js'], function(){
-	        WebFont.load(data);
+		require([protocol + '://ajax.googleapis.com/ajax/libs/webfont/' + config.version + '/webfont.js'], function() {
+	        WebFont.load(config.data);
 	    });
     }
     /**
