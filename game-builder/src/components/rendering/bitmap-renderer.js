@@ -5,7 +5,7 @@
  *
  * Inherits from: [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html)
  *
- * Depends of:
+ * Depends of: [image-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -17,7 +17,8 @@
  * ``` javascript
  * gb.coPool.createConfiguration("Bitmap", 'Bitmap_Renderer')
  	.args({ 
- 		//Path to the image you want to draw. This is required
+ 		//Path to the image you want to draw.
+ 		//This is required
 		path: 'some/path/to/image.jpg',
 
  		//Use this if you want the registration point of the image to be the center
@@ -49,19 +50,16 @@
 /**
  * --------------------------------
  */
-define(["component"], function(Component) {
-	var Renderer = Component.extend({
+define(["component", 'image-cache'], function(Component, ImageCache) {
+
+	var image = null;
+
+	var BitmapRenderer = Component.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>init</strong></p>
-		 * 
-		 * Constructor.
-		 * 
-		 * It create an Image object to be used later by the renderer.
 		 */
 		init: function() {
 			this._super()
-
-			this.image = new Image();
 
 			this.offsetX = 0;
 			this.offsetY = 0;
@@ -73,12 +71,11 @@ define(["component"], function(Component) {
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
-		 * This is called by the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this renderer
-		 * and it will set the **src** property of the **image** to what
-		 * was specified during configuration.
+		 * This is called by the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this renderer.
+		 * It sends the path configured to the [image-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html) module.
 		 */
-		start: function() {
-			this.image.src = this.path;
+		start: function() {	
+			ImageCache.cache(this.path);
 		},
 		/**
 		 * --------------------------------
@@ -87,7 +84,7 @@ define(["component"], function(Component) {
 		/**
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
-		 * Draws the image into the canvas. Applying configured properties,
+		 * Draws the image into the canvas, applying configured properties,
 		 * like **width**, **height** and **offsets**
 		 * 
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
@@ -95,19 +92,20 @@ define(["component"], function(Component) {
 		draw: function(context) {
 			var w, h;
 
-			if(this.width && this.height) {
+			image = ImageCache.get(this.path);
+
+			if (this.width && this.height) {
 				w = this.width;
 				h = this.height;
-			}else {
-				w = this.image.width;
-				h = this.image.height;
+			} else {
+				w = image.width;
+				h = image.height;
 			}
 
-			if(this.offset == 'center'){
-				context.drawImage(this.image, -w/2, -h/2, w, h);	
-			}
-			else{
-				context.drawImage(this.image, this.offsetX, this.offsetY, w, h);		
+			if (this.offset == 'center'){
+				context.drawImage(image, -w/2, -h/2, w, h);	
+			} else{
+				context.drawImage(image, this.offsetX, this.offsetY, w, h);		
 			}
 		}
 		/**
@@ -115,5 +113,5 @@ define(["component"], function(Component) {
 		 */
 	});
 
-	return Renderer;
+	return BitmapRenderer;
 });

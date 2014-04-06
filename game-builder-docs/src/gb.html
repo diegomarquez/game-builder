@@ -12,7 +12,7 @@
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html">reclaimer</a> 
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> 
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/json-cache.html">json-cache</a>     </p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/json-cache.html">json-cache</a>     </p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module.</p>
 
@@ -45,9 +45,27 @@ into a <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/
         <span class="kd">var</span> <span class="nx">go</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">layerName</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">assembler</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">goId</span><span class="p">));</span>
         <span class="nx">go</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span> 
         <span class="k">return</span> <span class="nx">go</span><span class="p">;</span>
+      <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">      </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addTextToLayer</strong></p>
+
+<p>This method is basically the same as <strong>addToLayer</strong> but it is used with <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> that have a 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/text-renderer.html">text-renderer</a> attached to them. </p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>layerName must be a String.</strong><br/>(Id of the layer to add the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to. View <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html">layers</a>, for more details.)</p></li>
+<li><p><strong>goId must be a String.</strong><br/>(Id of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to add. View <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>, for more details.)</p></li>
+<li><p><strong>text must be a String.</strong><br/>(String to initialize the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/text-renderer.html">text-renderer</a> with.)</p></li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> that was just assembled.)</p></div></div><div class="code"><div class="wrapper">      <span class="nx">addTextToLayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">layerName</span><span class="p">,</span> <span class="nx">goId</span><span class="p">,</span> <span class="nx">text</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">go</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">layerName</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">assembler</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">goId</span><span class="p">));</span>
+        <span class="nx">go</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">text</span> <span class="o">=</span> <span class="nx">text</span><span class="p">;</span>
+        <span class="nx">go</span><span class="p">.</span><span class="nx">start</span><span class="p">();</span> 
+        <span class="k">return</span> <span class="nx">go</span><span class="p">;</span>
       <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">      </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>assetMap</strong></p>
 
-<p><strong>Returns an Object</strong><br/>(Cached object in the 'asset-map' key of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/json-cache.html">json-cache</a> module)</p></div></div><div class="code"><div class="wrapper">      <span class="nx">assetMap</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p><strong>Returns an Object</strong><br/>(Cached object in the 'asset-map' key of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/json-cache.html">json-cache</a> module)</p></div></div><div class="code"><div class="wrapper">      <span class="nx">assetMap</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">jsonCache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;asset-map&#39;</span><span class="p">)</span>
       <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    <span class="p">}</span>
   <span class="p">}</span>

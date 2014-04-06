@@ -31,6 +31,11 @@ define(function(require){
 		gb.addToLayer('Middle', 'Base_1');
 		gb.addToLayer('Middle', 'Base_2');
 		gb.addToLayer('Middle', 'Base_3');
+		gb.addToLayer('Middle', 'Base_4');
+
+		gb.addTextToLayer('Middle', 'Text_1', 'Text');
+		gb.addTextToLayer('Middle', 'Text_2', 'Another Text');
+		gb.addTextToLayer('Middle', 'Text_3', 'adsfjfghjsd');
 	});
 
 	// This is called when the canvas looses focus

@@ -10,6 +10,13 @@
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
  * This module takes care of parsing json strings and caching the result so they are easily injectable into other modules.
+ *
+ * It can also be used to cache regular objects.
+ */
+
+/**
+ * Cache JSON and other Objects
+ * --------------------------------
  */
 
 /**
@@ -29,6 +36,9 @@ define(function() {
 	JSONCache.prototype.parse = function(id, string) {
 		cache[id] = JSON.parse(string);
 	};
+	/**
+	 * --------------------------------
+	 */
 
 	/**
 	 * <p style='color:#AD071D'><strong>cache</strong></p>
@@ -39,6 +49,9 @@ define(function() {
 	JSONCache.prototype.cache = function(id, object) {
 		cache[id] = object;
 	};
+	/**
+	 * --------------------------------
+	 */
 
 	/**
 	 * <p style='color:#AD071D'><strong>get</strong></p>
@@ -50,6 +63,33 @@ define(function() {
 	JSONCache.prototype.get = function(id) {
 		return cache[id];
 	};
+	/**
+	 * --------------------------------
+	 */
+
+	/**
+	 * <p style='color:#AD071D'><strong>clear</strong></p>
+	 *
+	 * @param  {String} id Id of the cached object to remove
+	 */
+	JSONCache.prototype.clear = function(id) {
+		delete cache[id];
+	};
+	/**
+	 * --------------------------------
+	 */
+
+	/**
+	 * <p style='color:#AD071D'><strong>clearAll</strong></p>
+	 */
+	JSONCache.prototype.clearAll = function() {
+		for(var k in cache) {
+			delete cache[k];
+		}
+	};
+	/**
+	 * --------------------------------
+	 */
 
 	return new JSONCache();
 });

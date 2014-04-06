@@ -15,17 +15,63 @@
 
 <p>This is an example on how to encapsulate the logic needed to setup the <a href="@@game-object-pool@@">game-object-pool</a>
 and the <a href="@@component-pool@@">component-pool</a></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">game_object</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;game-object&#39;</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">basic_game_object</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;basic-game-object&#39;</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">bitmap_renderer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;bitmap-renderer&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">path_renderer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path-renderer&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">text_renderer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;text-renderer&#39;</span><span class="p">);</span>
 
   <span class="kd">var</span> <span class="nx">RenderingBundle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;bundle&#39;</span><span class="p">).</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">componentPool</span><span class="p">.</span><span class="nx">createPool</span><span class="p">(</span><span class="s2">&quot;Bitmap_Renderer&quot;</span><span class="p">,</span> <span class="nx">bitmap_renderer</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">componentPool</span><span class="p">.</span><span class="nx">createPool</span><span class="p">(</span><span class="s2">&quot;Path_Renderer&quot;</span><span class="p">,</span> <span class="nx">path_renderer</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">componentPool</span><span class="p">.</span><span class="nx">createPool</span><span class="p">(</span><span class="s2">&quot;Text_Renderer&quot;</span><span class="p">,</span> <span class="nx">text_renderer</span><span class="p">);</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">componentPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Pear_1&quot;</span><span class="p">,</span> <span class="s1">&#39;Bitmap_Renderer&#39;</span><span class="p">).</span><span class="nx">args</span><span class="p">({</span> <span class="nx">offset</span><span class="o">:</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="nx">path</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">assetMap</span><span class="p">[</span><span class="s1">&#39;80343865.JPG&#39;</span><span class="p">]});</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">componentPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Pear_2&quot;</span><span class="p">,</span> <span class="s1">&#39;Bitmap_Renderer&#39;</span><span class="p">).</span><span class="nx">args</span><span class="p">({</span> <span class="nx">path</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">assetMap</span><span class="p">[</span><span class="s1">&#39;80343865.JPG&#39;</span><span class="p">]});</span>
+      
+      <span class="k">this</span><span class="p">.</span><span class="nx">componentPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Path_1&quot;</span><span class="p">,</span> <span class="s1">&#39;Path_Renderer&#39;</span><span class="p">).</span><span class="nx">args</span><span class="p">({</span> 
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Path&#39;</span><span class="p">,</span>
+        <span class="nx">pathWidth</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="nx">pathHeight</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="nx">offset</span><span class="o">:</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="nx">drawPath</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">context</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="s2">&quot;#FF0000&quot;</span><span class="p">;</span>
+          <span class="nx">context</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">});</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span><span class="p">.</span><span class="nx">createPool</span><span class="p">(</span><span class="s2">&quot;Base&quot;</span><span class="p">,</span> <span class="nx">basic_game_object</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> 
+      <span class="k">this</span><span class="p">.</span><span class="nx">componentPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Text_1&quot;</span><span class="p">,</span> <span class="s1">&#39;Text_Renderer&#39;</span><span class="p">).</span><span class="nx">args</span><span class="p">({</span> 
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;SomeText_1&#39;</span><span class="p">,</span>
+        <span class="nx">font</span><span class="o">:</span> <span class="s1">&#39;Gafata&#39;</span><span class="p">,</span>
+        <span class="nx">size</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="nx">fillColor</span><span class="o">:</span> <span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span>
+        <span class="nx">strokeColor</span><span class="o">:</span> <span class="s1">&#39;#FF0000&#39;</span><span class="p">,</span>
+        <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Default Text 1&#39;</span><span class="p">,</span>
+        <span class="nx">backgroundColor</span><span class="o">:</span> <span class="s1">&#39;#000000&#39;</span>
+      <span class="p">});</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">componentPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Text_2&quot;</span><span class="p">,</span> <span class="s1">&#39;Text_Renderer&#39;</span><span class="p">).</span><span class="nx">args</span><span class="p">({</span> 
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;SomeText_2&#39;</span><span class="p">,</span>
+        <span class="nx">font</span><span class="o">:</span> <span class="s1">&#39;Audiowide&#39;</span><span class="p">,</span>
+        <span class="nx">size</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="nx">fillColor</span><span class="o">:</span> <span class="s1">&#39;#00FF00&#39;</span><span class="p">,</span>
+        <span class="nx">strokeColor</span><span class="o">:</span> <span class="s1">&#39;#00FF00&#39;</span><span class="p">,</span>
+        <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Default Text 2&#39;</span>
+      <span class="p">});</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">componentPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Text_3&quot;</span><span class="p">,</span> <span class="s1">&#39;Text_Renderer&#39;</span><span class="p">).</span><span class="nx">args</span><span class="p">({</span> 
+        <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;SomeText_3&#39;</span><span class="p">,</span>
+        <span class="nx">font</span><span class="o">:</span> <span class="s1">&#39;Miltonian Tattoo&#39;</span><span class="p">,</span>
+        <span class="nx">size</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="nx">fillColor</span><span class="o">:</span> <span class="s1">&#39;#0000FF&#39;</span><span class="p">,</span>
+        <span class="nx">strokeColor</span><span class="o">:</span> <span class="s1">&#39;#0000FF&#39;</span><span class="p">,</span>
+        <span class="nx">text</span><span class="o">:</span> <span class="s1">&#39;Default Text 3&#39;</span>
+      <span class="p">});</span>
+
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span><span class="p">.</span><span class="nx">createPool</span><span class="p">(</span><span class="s2">&quot;Base&quot;</span><span class="p">,</span> <span class="nx">basic_game_object</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span><span class="p">.</span><span class="nx">createPool</span><span class="p">(</span><span class="s2">&quot;Text&quot;</span><span class="p">,</span> <span class="nx">game_object</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> 
 
       <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Base_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Base&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">args</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">100</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nx">rotation_speed</span><span class="o">:</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="nx">scaleX</span><span class="o">:</span> <span class="mi">2</span><span class="p">})</span>
@@ -38,6 +84,22 @@ and the <a href="@@component-pool@@">component-pool</a></p></div></div></div><di
       <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Base_3&quot;</span><span class="p">,</span> <span class="s2">&quot;Base&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">args</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">100</span><span class="p">,</span> <span class="nx">rotation_speed</span><span class="o">:</span> <span class="mi">1</span><span class="p">})</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>BONUS: you can override the configuration of a component/renderer or just add additional parameters.
 The object after the ID will be merged with the one set through createConfiguration</p></div></div><div class="code"><div class="wrapper">        <span class="p">.</span><span class="nx">setRenderer</span><span class="p">(</span><span class="s1">&#39;Pear_1&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">width</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">height</span><span class="o">:</span> <span class="mi">20</span> <span class="p">});</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Base_4&quot;</span><span class="p">,</span> <span class="s2">&quot;Base&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">args</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nx">rotation_speed</span><span class="o">:</span> <span class="mi">3</span><span class="p">})</span>
+        <span class="p">.</span><span class="nx">setRenderer</span><span class="p">(</span><span class="s1">&#39;Path_1&#39;</span><span class="p">);</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Text_1&quot;</span><span class="p">,</span> <span class="s2">&quot;Text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">args</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">20</span><span class="p">})</span>
+        <span class="p">.</span><span class="nx">setRenderer</span><span class="p">(</span><span class="s1">&#39;Text_1&#39;</span><span class="p">);</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Text_2&quot;</span><span class="p">,</span> <span class="s2">&quot;Text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">args</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">40</span><span class="p">})</span>
+        <span class="p">.</span><span class="nx">setRenderer</span><span class="p">(</span><span class="s1">&#39;Text_2&#39;</span><span class="p">);</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Text_3&quot;</span><span class="p">,</span> <span class="s2">&quot;Text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">args</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">60</span><span class="p">})</span>
+        <span class="p">.</span><span class="nx">setRenderer</span><span class="p">(</span><span class="s1">&#39;Text_3&#39;</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">});</span>
 

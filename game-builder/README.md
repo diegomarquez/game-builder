@@ -12,38 +12,21 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Extension to pause all sound.
-    - Test extension in sound example.
-
 - Tag latest version of game-builder
 
-- Deploy gh-pages
+- Deploy website
+    - Update docs
+    - Update Examples
 
-- Spike Performance Boost
-    - Canvas caching
-        * Cache static drawings (Drawing Renderer, NEW)
-        * Cache Images (Bitmap renderer)
-        * https://github.com/jakesgordon/bin-packing/blob/master/js/packer.js       
-
-- Tag latest version of game-builder
-
-- Sub state machine state. Special state which contains a state machine. Used for branching paths
-
-- Tag latest version of game-builder
-
-- Text
-
-- Tag latest version of game-builder
+- Update Generator
 
 - Annoying tasks
     - sound-player.js
         - Be able to set channels appart for a specific task, so that they don't need to be reloaded each time. The prototype basically crawls when it plays sound.
-    - Rename delegate.js to broadcaster.js
-    - Test garbage collection
-        - Test delegate.js destroy method properly
+    - Rename delegate.js to broadcaster.js (think about a proper name)
     - Links to explanations of known errors, like requireJS
+        - Normalize Error format. Maybe a little module to do so, it should recieve an object type and a message and with that build an error message
         - Single page in the website
-    - Premade renderer to draw rectangles, circles lines and triangles.
 
 - Examples v6 
     - Add feedback about the internals of each example
@@ -51,10 +34,20 @@ For better results it is better to use it in conjuction with [generator-game-bui
         - Active Objects
         - Pooled Sound Channels
         - Active Sound Channels
+        - Cached Images
+        - Cached Paths
 
 - Figure out how to use r.js
 
 - Do a simple game and get this over with for fucks sake!
+
+-----------------------------------
+
+###### After Game:
+
+- Frame Animation System
+- Shared Renderers. Share logic which does not need to keep state.
+- Proper Tests
 
 ### [This is the prototype game][tirador] which spurred the creation of this project.
 

@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="en"><head><title>src/cache/text-cache</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/cache/text-cache"><meta name="groc-project-path" content="work/game-builder/src/cache/text-cache.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/cache/text-cache.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="text-cachejs">text-cache.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttptreintipollocom">By <a href="http://treintipollo.com/">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from: </p>
+
+<p>Depends of:</p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This module is very similar to <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html">image-cache</a>, but instead of caching 
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement">Images</a> it caches text drawn to a 
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">Canvas</a>. Drawing text is quite taxing on the CPU, so drawing it once and then
+keeping the rastered image can be a pretty good time saver.</p>
+
+<p>The module will cache dynamically generated <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">canvases</a>. A given canvas could
+then be used to draw onto it to cache text for later use.</p>
+
+<p>A few downsides are:</p>
+
+<ol>
+<li>If for whatever reason your text is going to change alot, you are better not caching. Infact caching would
+be detrimental in this case.</li>
+<li>Rendering text in a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">Canvas</a> is rather slow,
+so consider using HTML for your text needs. After all, rendering text is the main activity in any browser, so they are very good at it.</li>
+</ol></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{};</span>
+
+  <span class="kd">var</span> <span class="nx">TextCache</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>cache</strong></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>id must be a String.</strong><br/>(Id that will be used to retrieve the cached canvas)</p></li>
+<li><p><strong>textAttributes must be an Object.</strong><br/>(Attributes of the piece of text to cache)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nx">TextCache</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">cache</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">textAttributes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Create a canvas for this ID if it doesn't exist yet</p></div></div><div class="code"><div class="wrapper">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;canvas&#39;</span><span class="p">);</span>
+    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Set the string that describes a font. Currently only size and font family are supported.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">textAttributes</span><span class="p">.</span><span class="nx">font</span> <span class="o">=</span> <span class="nx">textAttributes</span><span class="p">.</span><span class="nx">size</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nx">textAttributes</span><span class="p">.</span><span class="nx">fontFamily</span><span class="p">;</span>
+    </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Will be using this div to get the correct width and height of the string.
+That way the cached canvas will have the exact size.</p></div></div><div class="code"><div class="wrapper">    <span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)</span>
+    <span class="nx">div</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">visibility</span> <span class="o">=</span> <span class="s1">&#39;hidden&#39;</span><span class="p">;</span>
+    <span class="nx">div</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">font</span> <span class="o">=</span> <span class="nx">textAttributes</span><span class="p">.</span><span class="nx">font</span><span class="p">;</span>
+    <span class="nx">div</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="s1">&#39;absolute&#39;</span><span class="p">;</span>
+    <span class="nx">div</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="s1">&#39;auto&#39;</span><span class="p">;</span>
+    <span class="nx">div</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="s1">&#39;auto&#39;</span><span class="p">;</span>
+    <span class="nx">div</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">textAttributes</span><span class="p">.</span><span class="nx">text</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Append the div to document to get it's width and height</p></div></div><div class="code"><div class="wrapper">    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">div</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Set the canvas dimentions</p></div></div><div class="code"><div class="wrapper">    <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">div</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">;</span>
+    <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">div</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Discard the div</p></div></div><div class="code"><div class="wrapper">    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">div</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">context</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+    </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Clear the canvas</p></div></div><div class="code"><div class="wrapper">    <span class="nx">context</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+        
+    <span class="nx">context</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">textAttributes</span><span class="p">.</span><span class="nx">background</span><span class="p">;</span> 
+    <span class="nx">context</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Set text drawing properties</p></div></div><div class="code"><div class="wrapper">    <span class="nx">context</span><span class="p">.</span><span class="nx">textBaseline</span> <span class="o">=</span> <span class="s2">&quot;top&quot;</span><span class="p">;</span>
+    <span class="nx">context</span><span class="p">.</span><span class="nx">textAlign</span> <span class="o">=</span> <span class="nx">textAttributes</span><span class="p">.</span><span class="nx">align</span><span class="p">;</span>
+    <span class="nx">context</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="nx">textAttributes</span><span class="p">.</span><span class="nx">lineWidth</span><span class="p">;</span>
+    <span class="nx">context</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">textAttributes</span><span class="p">.</span><span class="nx">fill</span><span class="p">;</span>
+    <span class="nx">context</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="nx">textAttributes</span><span class="p">.</span><span class="nx">stroke</span><span class="p">;</span>
+    <span class="nx">context</span><span class="p">.</span><span class="nx">font</span> <span class="o">=</span> <span class="nx">textAttributes</span><span class="p">.</span><span class="nx">font</span><span class="p">;</span>
+    </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Draw the text</p></div></div><div class="code"><div class="wrapper">    <span class="nx">context</span><span class="p">.</span><span class="nx">fillText</span><span class="p">(</span><span class="nx">textAttributes</span><span class="p">.</span><span class="nx">text</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="nx">context</span><span class="p">.</span><span class="nx">strokeText</span><span class="p">(</span><span class="nx">textAttributes</span><span class="p">.</span><span class="nx">text</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Cache the canvas for later use</p></div></div><div class="code"><div class="wrapper">    <span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>get</strong></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>id must be a String.</strong><br/>(Id of a cached <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">Canvas</a>)</li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(Cached <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">Canvas</a>)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">TextCache</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">get</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>clear</strong></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>id must be a String.</strong><br/>(Id of <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">Canvas</a> to remove from cache)</li>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nx">TextCache</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">clear</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">delete</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>clearAll</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">TextCache</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">clearAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="nx">cache</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">delete</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">k</span><span class="p">];</span>
+    <span class="p">}</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>toString</strong></p>
+
+<p>String representation of the cache</p></div></div><div class="code"><div class="wrapper">  <span class="nx">TextCache</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="nx">r</span><span class="p">[</span><span class="s1">&#39;cachedTexts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">keys</span><span class="p">().</span><span class="nx">length</span><span class="p">;</span>
+    <span class="nx">r</span><span class="p">[</span><span class="s1">&#39;texts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
+    
+
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="nx">cache</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">r</span><span class="p">[</span><span class="s1">&#39;texts&#39;</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">k</span><span class="p">);</span>     
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="k">return</span> <span class="k">new</span> <span class="nx">TextCache</span><span class="p">();</span>
+<span class="p">});</span></div></div></div></div></body></html>

@@ -29,6 +29,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "slug": "todo-list"
           },
           "depth": 6
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 6,
+            "title": "After Game:",
+            "slug": "after-game"
+          },
+          "depth": 6
         }
       ]
     }, {
@@ -40,6 +48,178 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       "depth": 1,
       "children": [
         {
+          "type": "folder",
+          "data": {
+            "path": "src/cache",
+            "title": "cache"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/cache/image-cache.js",
+                "projectPath": "work/game-builder/src/cache/image-cache.js",
+                "targetPath": "src/cache/image-cache",
+                "pageTitle": "src/cache/image-cache",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "image-cache.js",
+                    "slug": "image-cachejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Cache Images",
+                        "slug": "cache-images"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "image-cache.js"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Cache Images",
+                    "slug": "cache-images"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/cache/json-cache.js",
+                "projectPath": "work/game-builder/src/cache/json-cache.js",
+                "targetPath": "src/cache/json-cache",
+                "pageTitle": "src/cache/json-cache",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "json-cache.js",
+                    "slug": "json-cachejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Cache JSON and other Objects",
+                        "slug": "cache-json-and-other-objects"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "json-cache.js"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Cache JSON and other Objects",
+                    "slug": "cache-json-and-other-objects"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/cache/path-cache.js",
+                "projectPath": "work/game-builder/src/cache/path-cache.js",
+                "targetPath": "src/cache/path-cache",
+                "pageTitle": "src/cache/path-cache",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "path-cache.js",
+                    "slug": "path-cachejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "path-cache.js"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/cache/text-cache.js",
+                "projectPath": "work/game-builder/src/cache/text-cache.js",
+                "targetPath": "src/cache/text-cache",
+                "pageTitle": "src/cache/text-cache",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "text-cache.js",
+                    "slug": "text-cachejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "text-cache.js"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
           "type": "file",
           "data": {
             "language": {
@@ -537,6 +717,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "foldPrefix": "^",
                       "name": "JavaScript"
                     },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/rendering/path-renderer.js",
+                    "projectPath": "work/game-builder/src/components/rendering/path-renderer.js",
+                    "targetPath": "src/components/rendering/path-renderer",
+                    "pageTitle": "src/components/rendering/path-renderer",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "path-renderer.js",
+                        "slug": "path-rendererjs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Cache Paths",
+                            "slug": "cache-paths"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "path-renderer.js"
+                  },
+                  "depth": 4,
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Cache Paths",
+                        "slug": "cache-paths"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
                     "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/rendering/renderer.js",
                     "projectPath": "work/game-builder/src/components/rendering/renderer.js",
                     "targetPath": "src/components/rendering/renderer",
@@ -574,6 +805,79 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "slug": "an-interface-for-renderers"
                       },
                       "depth": 2
+                    }
+                  ]
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/rendering/text-renderer.js",
+                    "projectPath": "work/game-builder/src/components/rendering/text-renderer.js",
+                    "targetPath": "src/components/rendering/text-renderer",
+                    "pageTitle": "src/components/rendering/text-renderer",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "text-renderer.js",
+                        "slug": "text-rendererjs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Draw Text",
+                            "slug": "draw-text"
+                          },
+                          "depth": 2,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 3,
+                                "title": "Setters that will trigger a re-cache of the text.",
+                                "slug": "setters-that-will-trigger-a-re-cache-of-the-text"
+                              },
+                              "depth": 3
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "title": "text-renderer.js"
+                  },
+                  "depth": 4,
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Draw Text",
+                        "slug": "draw-text"
+                      },
+                      "depth": 2,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Setters that will trigger a re-cache of the text.",
+                            "slug": "setters-that-will-trigger-a-re-cache-of-the-text"
+                          },
+                          "depth": 3
+                        }
+                      ]
                     }
                   ]
                 }
@@ -739,6 +1043,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "level": 2,
                 "title": "Doodling time",
                 "slug": "doodling-time"
+              },
+              "depth": 2
+            }
+          ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/font-loader.js",
+            "projectPath": "work/game-builder/src/font-loader.js",
+            "targetPath": "src/font-loader",
+            "pageTitle": "src/font-loader",
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "font-loader.js",
+                "slug": "font-loaderjs",
+                "isFileHeader": true
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Load Fonts",
+                    "slug": "load-fonts"
+                  },
+                  "depth": 2
+                }
+              ]
+            },
+            "title": "font-loader.js"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Load Fonts",
+                "slug": "load-fonts"
               },
               "depth": 2
             }
@@ -1777,36 +2132,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               ]
             }
           ]
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/json-cache.js",
-            "projectPath": "work/game-builder/src/json-cache.js",
-            "targetPath": "src/json-cache",
-            "pageTitle": "src/json-cache",
-            "firstHeader": {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "json-cache.js",
-                "slug": "json-cachejs",
-                "isFileHeader": true
-              },
-              "depth": 1
-            },
-            "title": "json-cache.js"
-          },
-          "depth": 2,
-          "outline": []
         }, {
           "type": "folder",
           "data": {

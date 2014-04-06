@@ -13,6 +13,10 @@
     <span class="s2">&quot;state-1&quot;</span><span class="o">:</span> <span class="s2">&quot;../common_src/state-1&quot;</span><span class="p">,</span>
     <span class="s2">&quot;state-2&quot;</span><span class="o">:</span> <span class="s2">&quot;../common_src/state-2&quot;</span><span class="p">,</span>
     <span class="s2">&quot;state-3&quot;</span><span class="o">:</span> <span class="s2">&quot;../common_src/state-3&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;image-cache&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/cache/image-cache&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;json-cache&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/cache/json-cache&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;path-cache&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/cache/path-cache&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;text-cache&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/cache/text-cache&quot;</span><span class="p">,</span>
     <span class="kr">class</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/class&quot;</span><span class="p">,</span>
     <span class="s2">&quot;circle-collider&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/collision/circle-collider&quot;</span><span class="p">,</span>
     <span class="s2">&quot;collision-component&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/collision/collision-component&quot;</span><span class="p">,</span>
@@ -22,16 +26,20 @@
     <span class="nx">sat</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/collision/sat&quot;</span><span class="p">,</span>
     <span class="nx">component</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/components/component&quot;</span><span class="p">,</span>
     <span class="s2">&quot;bitmap-renderer&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/components/rendering/bitmap-renderer&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;path-renderer&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/components/rendering/path-renderer&quot;</span><span class="p">,</span>
     <span class="nx">renderer</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/components/rendering/renderer&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;text-renderer&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/components/rendering/text-renderer&quot;</span><span class="p">,</span>
     <span class="s2">&quot;game-object-debug-draw&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/debug/game-object-debug-draw&quot;</span><span class="p">,</span>
     <span class="nx">delegate</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/delegate&quot;</span><span class="p">,</span>
     <span class="nx">draw</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/draw&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;font-loader&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/font-loader&quot;</span><span class="p">,</span>
     <span class="s2">&quot;aspect-ratio-resize&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/game_canvas/extensions/aspect-ratio-resize&quot;</span><span class="p">,</span>
     <span class="s2">&quot;basic-layer-setup&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/game_canvas/extensions/basic-layer-setup&quot;</span><span class="p">,</span>
     <span class="nx">extension</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/game_canvas/extensions/extension&quot;</span><span class="p">,</span>
     <span class="s2">&quot;keyboard-lock&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/game_canvas/extensions/keyboard-lock&quot;</span><span class="p">,</span>
     <span class="nx">pause</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/game_canvas/extensions/pause&quot;</span><span class="p">,</span>
     <span class="nx">resume</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/game_canvas/extensions/resume&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sound-control&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/game_canvas/extensions/sound-control&quot;</span><span class="p">,</span>
     <span class="s2">&quot;timers-control&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/game_canvas/extensions/timers-control&quot;</span><span class="p">,</span>
     <span class="nx">game</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/game_canvas/game&quot;</span><span class="p">,</span>
     <span class="nx">gb</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/gb&quot;</span><span class="p">,</span>
@@ -41,7 +49,6 @@
     <span class="nx">layers</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/hierarchy/layers&quot;</span><span class="p">,</span>
     <span class="nx">root</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/hierarchy/root&quot;</span><span class="p">,</span>
     <span class="nx">keyboard</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/input/keyboard&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;json-cache&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/json-cache&quot;</span><span class="p">,</span>
     <span class="s2">&quot;matrix-3x3&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/math/matrix-3x3&quot;</span><span class="p">,</span>
     <span class="s2">&quot;vector-2D&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/math/vector-2D&quot;</span><span class="p">,</span>
     <span class="nx">assembler</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/pools/assembler&quot;</span><span class="p">,</span>

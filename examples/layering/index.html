@@ -34,15 +34,22 @@
 		<script src="config.js"></script>
 		<!-- Object with local and remote asset paths -->
 		<script src="asset-map.js"></script>
+		<!-- Object with font data and version of webfonts.js to use -->
+		<script src="font-data.js"></script>
 		<script>
 			// This waits for the DOM to be ready before doing anything. It loads the json-cache module.
-			require(["domReady!", "json-cache"], function(doc, jsonCache) {
+			require(["domReady!", "json-cache", "font-loader"], function(doc, jsonCache, fontLoader) {
 				// Cache the asset map loaded from asset-map.js . Later it will be available through the json-cache module, 
 				// using the 'asset-map' id.
 				jsonCache.cache("asset-map", assetMap);
-				// Up until now it has been boilerplate, from now on it's all magic. That is, your magic.
-				// When the main module is loaded, it's definition function is executed and things start getting crazy.
-				require(["main"], function(main){})
+	
+				// Start loading configured fonts
+				fontLoader.start(webfonts, function() {
+					// Now all fonts are loaded, and FOUT has been avoided.
+					
+					// Create main module
+					require(["main"], function(main){});
+				});
 			});
 		</script>
 	</body>
