@@ -17,7 +17,7 @@
  * ``` javascript
  * gb.coPool.createConfiguration("Bitmap", 'Bitmap_Renderer')
  	.args({ 
- 		//Path to the image you want to draw. This is required
+ 		//Path to the image you want to draw.
  		//This is required
 		path: 'some/path/to/image.jpg',
 

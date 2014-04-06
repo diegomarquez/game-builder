@@ -12,19 +12,22 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Sub state machine state. Special state which contains a state machine. Used for branching paths
+- Update all examples 
+    - new index.html
+    - font-data.js
+- Update Seed
+    - new index.html
+    - font-data.js
 
-- Tag latest version of game-builder
-
-- Text
-    - Renderer 
-    - Caching
+- Update website documentation
+    - font-data.js
 
 - Tag latest version of game-builder
 
 - New Stuff on generator
     - Text
-    - State Machine
+        - index.html
+        - font-data.js
     - Renderers
 
 - Annoying tasks
@@ -34,7 +37,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
     - Links to explanations of known errors, like requireJS
         - Normalize Error format. Maybe a little module to do so, it should recieve an object type and a message and with that build an error message
         - Single page in the website
-    - Premade renderer to draw rectangles, circles lines and triangles.
 
 - Examples v6 
     - Add feedback about the internals of each example

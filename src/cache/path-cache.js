@@ -14,7 +14,7 @@
  * [Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas). Paths are quite taxing on the CPU, so drawing it once and then
  * keeping the rastered image can be a pretty good time saver.
  *
- * The module will cache dynamically generated [canvases](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas). a given canvas could
+ * The module will cache dynamically generated [canvases](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas). A given canvas could
  * then be used to draw onto it to cache a path for later use.
  * 
  * A few downsides are:
@@ -36,7 +36,10 @@ define(function() {
 	/**
 	 * <p style='color:#AD071D'><strong>cache</strong></p>
 	 *
-	 * @param  {String} id Id that will be used to retrieve the cached canvas
+	 * @param {String} id Id that will be used to retrieve the cached canvas
+	 * @param {Number} width Maximun width of the canvas to cache
+	 * @param {Number} height Maximun Height of the canvas to cache
+	 * @param {Function} drawingFunction Drawing commands to cache
 	 */
 	PathCache.prototype.cache = function(id, width, height, drawingFunction) {
 		var canvas = cache[id];
@@ -63,7 +66,8 @@ define(function() {
 	 * This method does not clear the cached [Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas)
 	 * it just draws more things into it
 	 * 
-	 * @param  {String} id Id of a cached [Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) to draw to
+	 * @param {String} id Id of a cached [Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) to draw to
+	 * @param {Function} drawingFunction Drawing to command to add on top of the cached canvas 
 	 */
 	PathCache.prototype.draw = function(id, drawingFunction) {
 		var canvas = cache[id];

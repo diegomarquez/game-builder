@@ -71,6 +71,28 @@ define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 
 			 */
 			
 			/**
+			 * <p style='color:#AD071D'><strong>addTextToLayer</strong></p>
+			 * 
+			 * This method is basically the same as **addToLayer** but it is used with [game-objects](@@game-object@@) that have a 
+			 * [text-renderer](@@text-renderer@@) attached to them. 
+			 * 
+			 * @param {String} layerName Id of the layer to add the [game-object](@@game-object@@) to. View [layers](@@layers@@), for more details.
+			 * @param {String} goId      Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
+			 * @param {String} text      String to initialize the [text-renderer](@@text-renderer@@) with.
+			 *
+			 * @return {Object} The [game-object](@@game-object@@) that was just assembled.
+			 */
+			addTextToLayer: function(layerName, goId, text) {
+				var go = this.layers.get(layerName).add(this.assembler.get(goId));
+				go.renderer.text = text;
+				go.start();	
+				return go;
+			},
+			/**
+			 * --------------------------------
+			 */
+			
+			/**
 			 * <p style='color:#AD071D'><strong>assetMap</strong></p>
 			 *
 			 * @return {Object} Cached object in the 'asset-map' key of the [json-cache](@@json-cache@@) module

@@ -19,7 +19,7 @@
  * when setting it up in the [component-pool](@@component-pool@@). ej.
  *
  * ``` javascript
- * gb.coPool.createConfiguration("Bitmap", 'Bitmap_Renderer')
+ * gb.coPool.createConfiguration("Path", 'Path_Renderer')
  	.args({ 
  		//This name is used to identify the cached drawing
  		//This is required
