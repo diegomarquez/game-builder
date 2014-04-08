@@ -12,7 +12,10 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Update Generator
+- Copy template files to seed project
+- Update Website instructions
+
+- Tag
 
 - Annoying tasks
     - sound-player.js
@@ -21,6 +24,13 @@ For better results it is better to use it in conjuction with [generator-game-bui
     - Links to explanations of known errors, like requireJS
         - Normalize Error format. Maybe a little module to do so, it should recieve an object type and a message and with that build an error message
         - Single page in the website
+    - Consolidate file generation into single file with a single task
+        - asset-map.js
+        - config.js
+        - font-data.js
+
+- Tag
+- Deploy Website
 
 - Examples v6 
     - Add feedback about the internals of each example
@@ -30,8 +40,12 @@ For better results it is better to use it in conjuction with [generator-game-bui
         - Active Sound Channels
         - Cached Images
         - Cached Paths
+        - Cached Text
+        - Loaded Sounds
+        - Assigned Channels
 
-- Figure out how to use r.js
+- Tag
+- Deploy Website
 
 - Do a simple game and get this over with for fucks sake!
 
@@ -39,8 +53,15 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### After Game:
 
-- Frame Animation System
+- Figure out how to use r.js
+
 - Shared Renderers. Share logic which does not need to keep state.
+- 2D Camera
+- Frame Animation System
+
+- Animation Capturing Tool
+- Visual Editor
+
 - Proper Tests
 
 ### [This is the prototype game][tirador] which spurred the creation of this project.
