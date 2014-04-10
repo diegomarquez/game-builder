@@ -12,10 +12,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Copy template files to seed project
-- Update Website instructions
-
-- Tag
+- Deploy Website
 
 - Annoying tasks
     - sound-player.js
@@ -43,6 +40,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
         - Cached Text
         - Loaded Sounds
         - Assigned Channels
+    - Module to add that information to all examples
 
 - Tag
 - Deploy Website
