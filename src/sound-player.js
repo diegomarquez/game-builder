@@ -45,34 +45,91 @@ define(['timer-factory'], function(timerFactory) {
 		this.pooledChannels = [];
 		this.activeChannels = [];
 
+		this.preAssignedChannels = {};
+
 		this.currentTime = new Date();
 	};
 
-	var setUpChannel = function(id, onMetadata) {
+	var getPooledChannel = function(fromList) {
+		if (fromList.length == 0) return;
+		return fromList.pop();
+	}
+
+	var loadChannel = function(id, channel, onReady) {
 		var audio = this.audioTags[id];
 
-		if (this.pooledChannels.length == 0) { return; }
-		
-		if (!audio) { return; }
+		if (!audio) return;
 
-		if (audio.readyState != 4) { return; }
+		var load = function() {
+			var onMD = function() {
+				this.removeEventListener('loadedmetadata', onMD);
 
-		var channel = this.pooledChannels.pop();
+				if (onReady) {
+					onReady(this);
+				}
+			}
 
-		this.activeChannels.push(channel);
+			channel.addEventListener('loadedmetadata', onMD);
 
-		var onMD = function() {
-			this.removeEventListener('loadedmetadata', onMD);
-			onMetadata(this);
+			channel.id = id;
+			channel.src = audio.src;
+			channel.time = audio.duration;
+
+			channel.load();
 		}
 
-		channel.addEventListener('loadedmetadata', onMD);
+		if (audio.readyState != 4) {
+			audio.addEventListener('canplaythrough', load);
+		} else {
+			load();
+		}
+	}
 
-		channel.id = id;
-		channel.src = audio.src;
-		channel.time = audio.duration;
+	var playChannelSingle = function(channel, originList, onComplete) {
+		var self = this;
 
-		channel.load();
+		self.activeChannels.push(channel);
+
+		channel.timer.on('complete', function() {
+			channel.currentTime = 0;
+			channel.pause();
+
+			originList.push(channel);
+			self.activeChannels.splice(self.activeChannels.indexOf(channel), 1);
+
+			if (onComplete) {
+				onComplete(channel.id);
+			}
+		}, true);
+
+		channel.timer
+			.Delay(channel.time * 1000)
+			.RepeateCount(1)
+			.RemoveOnComplete(false)
+			.reset();
+
+		channel.play();
+	}
+
+	var playChannelLoop = function(channel) {
+		var self = this;
+
+		if (channel.readyState != 4) return;
+
+		self.activeChannels.push(channel);
+
+		channel.timer.on('repeate', function() {
+			channel.currentTime = 0;
+			channel.play();
+		});
+
+		channel.timer
+			.Delay(channel.time * 1000)
+			.RepeateCount(-1)
+			.RemoveOnComplete(false)
+			.reset();
+
+		channel.play();
 	}
 
 	/**
@@ -117,6 +174,44 @@ define(['timer-factory'], function(timerFactory) {
 	/**
 	 * --------------------------------
 	 */
+
+	 /**
+	  * <p style='color:#AD071D'><strong>assignChannels</strong></p>
+	  *
+	  *	Assign a number of channels that will be set apart to be used for a specific sound.
+	  *	Doing this avoids the need of going through the logic of changing the source attribute of an audio tag
+	  *	each time a sound is played.
+	  * 
+	  * @param  {String} id     Id of the sound that will get channels assigned
+	  * @param  {Number} amount Amount of channels to set appart for the given sound
+	  */
+	 SoundPlayer.prototype.assignChannels = function(id, amount) {
+	 	var channels = this.pooledChannels.splice(0, amount);
+
+	 	for(var i=0; i<channels.length; i++) {
+			loadChannel.call(this, id, channels[i]);
+	 	}
+
+	 	if (!this.preAssignedChannels[id]) {
+	 		this.preAssignedChannels[id] = [];
+	 	}
+
+	 	this.preAssignedChannels[id] = this.preAssignedChannels[id].concat(channels);
+	 };
+
+	 /**
+	  * <p style='color:#AD071D'><strong>clearAssignedChannels</strong></p>
+	  *
+	  *	Clear the channels asigned to a sound id. Those channels become part of the main pool again and can be used
+	  *	to dynamically load any other registered sound.
+	  * 
+	  * @param  {String} id     Id of the sound that has channels assigned
+	  */
+	 SoundPlayer.prototype.clearAssignedChannels = function(id) {
+	 	if (!this.preAssignedChannels[id]) return;	
+	 	this.pooledChannels = this.pooledChannels.concat(this.preAssignedChannels[id]);
+	 	this.preAssignedChannels[id] = null;
+	 }
 
 	/**
 	 * <p style='color:#AD071D'><strong>loadAll</strong></p>
@@ -204,27 +299,19 @@ define(['timer-factory'], function(timerFactory) {
 	SoundPlayer.prototype.playSingle = function(id, onComplete) {
 		var self = this;
 
-		setUpChannel.call(this, id, function(channel) {
-			channel.timer.on('complete', function() {
-				channel.currentTime = 0;
-				channel.pause();
-				
-				self.pooledChannels.push(channel);
-				self.activeChannels.splice(self.activeChannels.indexOf(channel), 1);
+		var soundList = this.preAssignedChannels[id] ? this.preAssignedChannels[id] : this.pooledChannels;
+		
+		if (soundList.length == 0) return;
 
-				if(onComplete) {
-					onComplete(id);
-				}
-			}, true);
+		var channel = getPooledChannel(soundList);
 
-			channel.timer
-				.Delay(channel.time * 1000)
-				.RepeateCount(1)
-				.RemoveOnComplete(false)
-				.reset();
-
-			channel.play();
-		});
+		if(this.preAssignedChannels[id]) {
+			playChannelSingle.call(self, channel, soundList, onComplete);
+		} else {
+			loadChannel.call(self, id, channel, function (channel) {
+				playChannelSingle.call(self, channel, soundList, onComplete);
+			});
+		}
 	};
 	/**
 	 * --------------------------------
@@ -238,20 +325,21 @@ define(['timer-factory'], function(timerFactory) {
 	 * @param  {String} id Id of the sound to play
 	 */
 	SoundPlayer.prototype.playLoop = function(id) {
-		setUpChannel.call(this, id, function(channel) {
-			channel.timer.on('repeate', function() {
-				channel.currentTime = 0;
-				channel.play();
+		var self = this;
+
+		var soundList = this.preAssignedChannels[id] ? this.preAssignedChannels[id] : this.pooledChannels;
+		
+		if (soundList.length == 0) return;
+
+		var channel = getPooledChannel(soundList);
+
+		if(this.preAssignedChannels[id]) {
+			playChannelLoop.call(self, channel);
+		} else {
+			loadChannel.call(self, id, channel, function (channel) {
+				playChannelLoop.call(self, channel);
 			});
-
-			channel.timer
-				.Delay(channel.time * 1000)
-				.RepeateCount(-1)
-				.RemoveOnComplete(false)
-				.reset();
-
-			channel.play();
-		});
+		}
 	};
 	/**
 	 * --------------------------------
@@ -318,15 +406,20 @@ define(['timer-factory'], function(timerFactory) {
 	 */
 
 	var stopChannel = function(channel, index) {
+		if(this.preAssignedChannels[channel.id]) {
+			this.preAssignedChannels[channel.id].push(channel);
+		} else {
+			this.pooledChannels.push(channel);
+		}
+
+		this.activeChannels.splice(index, 1);
+
 		channel.currentTime = 0;
 		channel.pause();
 		channel.timer.stop();
 		channel.id = 'none';
 
 		channel.timer.hardCleanUp();
-
-		this.pooledChannels.push(channel);
-		this.activeChannels.splice(index, 1);
 	};
 
 	/**
@@ -412,7 +505,7 @@ define(['timer-factory'], function(timerFactory) {
 
 		return {
 			// The callback function is executed for each active channel
-			// If it return true the action is applied. The callback received a channel as argument
+			// If it returns true the action is applied. The callback receives a channel as argument
 			which: function(func) {
 				for (var i = self.activeChannels.length-1; i >=0 ; i--) {
 					channel = self.activeChannels[i];

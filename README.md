@@ -12,11 +12,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Deploy Website
-
 - Annoying tasks
-    - sound-player.js
-        - Be able to set channels appart for a specific task, so that they don't need to be reloaded each time. The prototype basically crawls when it plays sound.
     - Rename delegate.js to broadcaster.js (think about a proper name)
     - Links to explanations of known errors, like requireJS
         - Normalize Error format. Maybe a little module to do so, it should recieve an object type and a message and with that build an error message
