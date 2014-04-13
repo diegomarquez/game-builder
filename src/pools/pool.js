@@ -5,7 +5,9 @@
  *
  * Inherits from: [class](@@class@@)
  *
- * Depends of: [util](@@util@@)
+ * Depends of: 
+ * [util](@@util@@)
+ * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -49,7 +51,7 @@
 /**
  * --------------------------------
  */
-define(["util", "class"], function(util) {
+define(["util", "error-printer", "class"], function(Util, ErrorPrinter) {
 	var Pool = Class.extend({
 		init: function() {
 			this.pools = {};
@@ -172,16 +174,16 @@ define(["util", "class"], function(util) {
 		 * [component-pool](@@component-pool@@) for implementations.
 		 */
 		getName: function() {
-			throw new Error('Pool: This method must be overriden');
+			ErrorPrinter.mustOverrideError('Pool');
 		},
 		addInitialObjectsToPool: function(amount) {
-			throw new Error('Pool: This method must be overriden');
+			ErrorPrinter.mustOverrideError('Pool');
 		},
 		createConfiguration: function(alias, type) {
-			throw new Error('Pool: This method must be overriden');
+			ErrorPrinter.mustOverrideError('Pool');
 		},
 		getConfiguration: function(name, nestedCall) {
-			throw new Error('Pool: This method must be overriden');
+			ErrorPrinter.mustOverrideError('Pool');
 		},
 		/**
 		 * --------------------------------
@@ -243,7 +245,7 @@ define(["util", "class"], function(util) {
 				var pool = this.pools[k].objects;
 
 				while (pool.length > 0){
-					util.destroyObject(pool.pop());
+					Util.destroyObject(pool.pop());
 				}
 			}
 
@@ -251,12 +253,12 @@ define(["util", "class"], function(util) {
 				var active = this.active[k];
 
 				while (active.length > 0){
-					util.destroyObject(active.pop());
+					Util.destroyObject(active.pop());
 				}
 			}
 
 			for(k in this.configurations) {
-				util.destroyObject(this.configurations[k]);
+				Util.destroyObject(this.configurations[k]);
 			}
 
 			this.pools = {};

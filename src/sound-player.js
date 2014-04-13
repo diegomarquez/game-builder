@@ -5,7 +5,9 @@
  *
  * Inherits from:
  *
- * Depends of: [timer-factory](@@timer-factory@@)
+ * Depends of: 
+ * [timer-factory](@@timer-factory@@)
+ * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -33,7 +35,7 @@
 /**
  * --------------------------------
  */
-define(['timer-factory'], function(timerFactory) {
+define(['timer-factory', 'error-printer'], function(TimerFactory, ErrorPrinter) {
 	var isLoading = false;
 
 	var SoundPlayer = function() {
@@ -144,7 +146,7 @@ define(['timer-factory'], function(timerFactory) {
 		for (var i = 0; i < amount; i++) {
 			var channel = new Audio();
 
-			timerFactory.get(channel, 'sound_' + i, 'timer');
+			TimerFactory.get(channel, 'sound_' + i, 'timer');
 
 			// Shorthand methods to access the state of the timer used in each channel.
 			channel.Paused = function() { return channel.timer.Paused; }
@@ -223,7 +225,7 @@ define(['timer-factory'], function(timerFactory) {
 	 */
 	SoundPlayer.prototype.loadAll = function(onComplete) {
 		if (isLoading) {
-			throw new Error('Sound Player: Still loading resources. Wait till everything is complete, before loading more.');
+			ErrorPrinter.printError('Sound Player', 'Still loading resources. Wait till everything is complete, before loading more');
 		}
 
 		isLoading = true;
@@ -271,7 +273,7 @@ define(['timer-factory'], function(timerFactory) {
 	SoundPlayer.prototype.load = function(id, path) {
 		// If an audio tag with this id already exists, do nothing.
 		if (this.audioTags[id]) {
-			throw new Error('Sound Player: Id is already in use.');
+			ErrorPrinter.printError('Sound Player', 'Id is already in use');
 		}
 
 		var audio = document.createElement("audio");

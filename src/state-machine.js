@@ -8,6 +8,7 @@
  * Depends of: 
  * [delegate](@@delegate@@)
  * [class](@@class@@)
+ * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -53,7 +54,7 @@
 /**
  * --------------------------------
  */
-define(["delegate", "class"], function(Delegate) {
+define(["delegate", "error-printer", "class"], function(Delegate, ErrorPrinter) {
 	/**
 	 * ## **StateMachine**
 	 */
@@ -365,7 +366,7 @@ define(["delegate", "class"], function(Delegate) {
 		try {
 			this.states[stateId][action](args);	
 		} catch(e) {
-			throw new Error("Error setting new state: " + e.message);
+			ErrorPrinter.printError('State', 'State with id: ' + stateId + ' caused an un expected error.', e);
 		}
 
 		this.currentStateId = stateId;

@@ -8,6 +8,7 @@
  * Depends of: 
  * [game-object-pool](@@game-object-pool@@)
  * [component-pool](@@component-pool@@)
+ * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -29,7 +30,7 @@
 /**
  * --------------------------------
  */
-define(['game-object-pool', 'component-pool'], function(GameObjectPool, ComponentPool) {
+define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObjectPool, ComponentPool, ErrorPrinter) {
 	var Reclaimer = function() {};
 
 	/**
@@ -41,10 +42,12 @@ define(['game-object-pool', 'component-pool'], function(GameObjectPool, Componen
 	 * 
 	 * @param  {Object} go [game-object](@@game-object@@) to recycle
 	 * @param  {String} id Id assigned to the [game-object](@@game-object@@) in [game-object-pool](@@game-object-pool@@)
+	 *
+	 * @throws {Error} If the id argument is missing.
 	 */
 	Reclaimer.prototype.claim = function(go, id) {
 		if(!id) {
-			throw new Error('Reclaimer: ' + 'id argument is: ' + id);
+			ErrorPrinter.missingArgumentError('Reclaimer', 'id');
 		}
 
 		if(go.typeId == id || go.poolId == id) {

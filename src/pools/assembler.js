@@ -9,6 +9,7 @@
  * [game-object-pool](@@game-object-pool@@)
  * [component-pool](@@component-pool@@)
  * [util](@@util@@)
+ * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -34,7 +35,7 @@
 /**
  * --------------------------------
  */
-define(['game-object-pool', 'component-pool', 'util'], function(GameObjectPool, ComponentPool, Util) {
+define(['game-object-pool', 'component-pool', 'util', 'error-printer'], function(GameObjectPool, ComponentPool, Util, ErrorPrinter) {
 	var Assembler = function() {};
 
 	var addComponent = function(component, pooledObject, addMethod) {
@@ -95,7 +96,7 @@ define(['game-object-pool', 'component-pool', 'util'], function(GameObjectPool, 
 			var childId = configuration.childs[i].childId;
 
 			if (!pooledObject.add) {
-				throw new Error('Game Object with type: ' + configuration.type + ' is not a container, can not add childs to it');
+				ErrorPrinter.printError('Assembler', 'Game Object with type: ' + configuration.type + ' is not a container, can not add childs to it')
 			}
 
 			pooledObject.add(this.get(childId, configuration.childs[i].args, true));

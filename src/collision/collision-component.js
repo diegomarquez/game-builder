@@ -8,6 +8,7 @@
  * Depends of:
  * [component](@@component@@)
  * [collision-resolver](@@collision-resolver@@)
+ * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -29,7 +30,7 @@
 /**
  * --------------------------------
  */
-define(['component', 'collision-resolver'], function(Component, CollisionResolver) {
+define(['component', 'collision-resolver', 'error-printer'], function(Component, CollisionResolver, ErrorPrinter) {
 
 	var collisionList = null;
 	var collisionOpponent = null;
@@ -52,8 +53,9 @@ define(['component', 'collision-resolver'], function(Component, CollisionResolve
 
 			CollisionResolver.addToCollisionList(this);
 
-			if(!this.parent.onCollide)
-				throw new Error("GameObject with typeId: " + this.parent.typeId + ", needs to define an onCollide method, yo.");
+			if(!this.parent.onCollide) {
+				ErrorPrinter.printError('Collision Component', "GameObject with typeId: " + this.parent.typeId + ", needs to define an onCollide method, yo.");
+			}
 		},
 		/**
 		 * --------------------------------

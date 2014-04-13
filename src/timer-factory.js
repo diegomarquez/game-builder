@@ -5,7 +5,9 @@
  *
  * Inherits from:
  *
- * Depends of: [delegate](@@delegate@@)
+ * Depends of: 
+ * [delegate](@@delegate@@)
+ * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -87,6 +89,9 @@
  * --------------------------------
  */
 define(function(require) {
+
+	var ErrorPrinter = require('error-printer');
+
 	/**
 	 * ## **TimerFactory**
 	 */
@@ -112,12 +117,19 @@ define(function(require) {
 	 */
 	TimerFactory.prototype.get = function(owner, name, propertyName) {
 		if(owner.hasOwnProperty(propertyName)) {
-			throw new Error('This owner is already using this property, assigning it again with a timer might cause your program to go ape shit.')	
+			ErrorPrinter.printError('Timer Factory', 'This owner is already using this property, assigning it again with a timer might cause your program to go ape shit.');
 		}else{
+			if (!owner) { 
+				ErrorPrinter.printError('Timer Factory', 'Timer must have an owner, if unsure just send in "this"');
+			}
 
-			if (!owner) { throw new Error('Timer must have an owner, if unsure just send in "this"') }
-			if (!name) { throw new Error('Timer must have an name to identify it later') }
-			if (!propertyName) { throw new Error('Timer must have a propertyName to be refered with from its owners scope') }
+			if (!name) { 
+				ErrorPrinter.printError('Timer Factory', 'Timer must have an name to identify it later');
+			}
+			
+			if (!propertyName) { 
+				ErrorPrinter.printError('Timer Factory', 'Timer must have a propertyName to be refered with from its owners scope');
+			}
 
 			var timeout = new Timer(owner, name, propertyName);
 			this.timeOuts.push(timeout);
@@ -623,7 +635,7 @@ define(function(require) {
 
 	var canModify = function() {
 		if (this.isRunning || this.isPaused) { 
-			throw new Error("Can't modify timer while it is running")
+			ErrorPrinter.printError('Timer', "Can't modify timer while it is running");
 		}		
 	}
 

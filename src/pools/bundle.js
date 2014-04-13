@@ -5,7 +5,9 @@
  *
  * Inherits from:
  *
- * Depends of: [gb](@@gb@@)
+ * Depends of: 
+ * [gb](@@gb@@)
+ * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -48,7 +50,7 @@ define(function(require) {
 		 * @param  {Object} [args=null] 
 		 */
 		create: function(args) {
-			throw new Error('Bundle: This method must be overriden');
+			require('error-printer').mustOverrideError('Bundle');
 		}
 		/**
 		 * --------------------------------

@@ -3,9 +3,12 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [component](@@component@@)
+ * Inherits from: 
+ * [component](@@component@@)
  *
- * Depends of: [path-cache](@@path-cache@@)
+ * Depends of: 
+ * [path-cache](@@path-cache@@)
+ * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -63,7 +66,7 @@
 /**
  * --------------------------------
  */
-define(["component", 'path-cache'], function(Component, PathCache) {
+define(["component", 'path-cache', 'error-printer'], function(Component, PathCache, ErrorPrinter) {
 
 	var canvas = null;
 
@@ -91,7 +94,7 @@ define(["component", 'path-cache'], function(Component, PathCache) {
 		 */
 		start: function() {	
 			if (!this.pathWidth && !this.pathHeight) {
-				throw new Error('Path Renderer: must configure pathWidth and pathHeight')
+				ErrorPrinter.missingArgumentError('Path Renderer', 'pathWidth', 'pathHeight')
 			}
 
 			PathCache.cache(this.name, this.pathWidth, this.pathHeight, this.drawPath);
@@ -110,7 +113,7 @@ define(["component", 'path-cache'], function(Component, PathCache) {
 		 * @throws {Error} If it is not overriden by child classes
 		 */
 		drawPath: function(context) {
-			throw new Error('Path Renderer: This method must be overriden');
+			ErrorPrinter.mustOverrideError('Path Renderer');
 		},
 		/**
 		 * --------------------------------

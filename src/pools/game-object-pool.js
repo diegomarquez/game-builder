@@ -3,9 +3,11 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [pool](@@pool@@)
+ * Inherits from: 
+ * [pool](@@pool@@)
  *
  * Depends of:
+ * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -71,6 +73,8 @@ define(function(require) {
 			args: args
 		}
 	}
+
+	var ErrorPrinter = require('error-printer');
 
 	var GameObjectPool = require('pool').extend({
 		
@@ -193,14 +197,14 @@ define(function(require) {
 			var pool = this.pools[configuration.type];
 
 			if(!nestedCall && !pool.maxAmount) {
-				throw new Error('Game Object with type: ' + configuration.type + ' does not have a value for maxAmount. It can not be requested explicitly');
+				ErrorPrinter.printError('Game Object Pool', 'Game Object with type: ' + configuration.type + ' does not have a value for maxAmount. It can not be requested explicitly')
 			}
 
 			if (pool.objects.length <= 0) {
 				var ok = this.createNewIfNeeded(configuration.type);
 				
 				if(!ok) {
-					throw new Error('Game Object with type: ' + configuration.type + ' is not available');
+					ErrorPrinter.printError('Game Object Pool', 'Game Object with type: ' + configuration.type + ' is not available');
 				}
 			}
 
@@ -218,11 +222,14 @@ define(function(require) {
 		 * @param  {String} alias      Id of the [game-object](@@game-object@@) requested
 		 *
 		 * @throws {Error} If the id provided does not match with any existing one
+		 * 
 		 * @return {Object} The configuration object requested
 		 */
 		getConfigurationObject: function(alias) {
-			if(!alias) {
-				throw new Error('Game Object Pool: ' + 'alias argument is: ' + alias);
+			var configuration = this.configurations[alias]
+
+			if(!configuration) {
+				ErrorPrinter.printError('Game Object Pool', 'Configuration with id: '  + alias + ' does not exist');
 			}
 
 			return this.configurations[alias];

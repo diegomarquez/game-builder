@@ -3,9 +3,11 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [class](@@class@@)
+ * Inherits from: 
+ * [class](@@class@@)
  *
  * Depends of:
+ * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -41,24 +43,28 @@
 /**
  * --------------------------------
  */
-define(["class"], function() {
+define(["error-printer" "class"], function(ErrorPrinter) {
 	var Extension = Class.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>type</strong></p>
 		 *
-		 * Sets the type of the extensions.
+		 * Sets the type of the extensions. This is an abstract method and must be overriden.
+		 *
+		 * @throws {Error} Always
 		 */
 		type: function() {
-			throw new Error("Extensions is not meant to be instantiated directly");
+			ErrorPrinter.mustOverrideError('Extension');
 		},
 
 		/**
 		 * <p style='color:#AD071D'><strong>execute</strong></p>
 		 *
-		 * This is whatever the extensions should do.
+		 * This is whatever the extensions should do. This is an abstract method and must be overriden.
+		 *
+		 * @throws {Error} Always
 		 */
 		execute: function() {
-			throw new Error("Extensions is not meant to be instantiated directly");
+			ErrorPrinter.mustOverrideError('Extension');
 		}
 	});
 

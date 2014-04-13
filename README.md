@@ -14,9 +14,33 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Annoying tasks
     - Links to explanations of known errors (like requireJS)
-        - Normalize Error format. 
-            Module to do so, it should recieve an object type and a message and with that build an error message with a link to the corresponding page.
         - Single page in the website
+            - Reclaimer 
+                -Missing game-object id
+            - Game Object Pool 
+                Game Object can only not be instantiated explicitly because it does not have a maximun amount, hence it can only be a child.
+                Game Object is not available
+                Configuration group does not exist
+            - Component Pool
+                Game Object is not available
+            - Assembler
+                Game object is not a container, can not have children
+            - Path Renderer
+                Missing width and height of path
+            - Collision Component
+                Parent Game Object needs to define an OnCollide method
+            - Timer Factory
+            - Timer
+                Can't modify timer
+            - State
+                - Error in state logic
+            - Sound
+                - Already loading
+                - Sound id already used
+            - Font Loader
+                - Font could not be loaded
+            - Common, must be overriden
+
     - Consolidate file generation into single file with a single task
         - asset-map.js
         - config.js

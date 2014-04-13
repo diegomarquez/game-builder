@@ -8,6 +8,7 @@
  * Depends of: 
  * [root](@@root@@)
  * [layer](@@layer@@)
+ * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -26,7 +27,7 @@
 /**
  * --------------------------------
  */
-define(["root", "layer"], function(root, Layer) {
+define(["root", "layer", "error-printer"], function(Root, Layer, ErrorPrinter) {
 
 	var LayerContainer = function() {
 		this.layers = {};
@@ -49,7 +50,7 @@ define(["root", "layer"], function(root, Layer) {
 	LayerContainer.prototype.add = function(name) {
 		var layer = new Layer();
 
-		root.add(layer).start();
+		Root.add(layer).start();
 		this.layers[name] = layer;
 
 		return layer;
@@ -72,7 +73,7 @@ define(["root", "layer"], function(root, Layer) {
 	LayerContainer.prototype.remove = function(name) {
 		this.layers[name].clear();
 		delete this.layers[name];
-		root.remove(this.layers[name]);
+		Root.remove(this.layers[name]);
 	};
 	/**
 	 * --------------------------------
@@ -99,11 +100,13 @@ define(["root", "layer"], function(root, Layer) {
 	 * 
 	 * @param  {String} name Id of the layer to get a reference to.
 	 *
+	 * @throws {Error} If the provided name does not match any [layer](@@layer@@)
+	 * 
 	 * @return {Layer} The specified layer.    
 	 */
 	LayerContainer.prototype.get = function(name) { 
 		if (!this.layers[name]) {
-			throw new Error('Layer ' + '"' + name + '"' + ' does not exist.');
+			ErrorPrinter.printError('Layers', 'Layer with id:' + name + ' does not exist.')
 		}
 
 		return this.layers[name]; 

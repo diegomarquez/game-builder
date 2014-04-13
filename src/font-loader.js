@@ -2,6 +2,11 @@
  * # font-loader.js
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  *
+ * * Inherits from:
+ *
+ * Depends of: 
+ * [error-printer](@@error-printer@@)
+ * 
  * A [requireJS](http://requirejs.org/) module.
  * 
  * This module wraps [Web font loader](https://github.com/typekit/webfontloader), it's main purpose is to avoid
@@ -63,11 +68,12 @@ define(function(require) {
     	};
 
     	config.data.inactive = function() {
+            require('error-printer').printError('Font Loader', 'No fonts are available');
     		onLoad();	
     	};
 
         config.data.fontinactive = function(familyName) {
-            throw new Error('Font Loader: Font ' + familyName + 'could not be loaded');   
+            require('error-printer').printError('Font Loader', 'Font: ' + familyName + ' could not be loaded');   
         };
     	
     	var protocol = document.location.protocol === 'https:' ? 'https' : 'http';
