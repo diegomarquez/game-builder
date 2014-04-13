@@ -325,7 +325,7 @@ define(function(require) {
 		 * @param  {Boolean} [single=false] Do not add function if there is already one registered
 		 */
 		on: function(name, callback, removeOnComplete, single) {
-			this._super(name, this.owner, callback, removeOnComplete, false, false, single);
+			this._super(name, this.owner, callback, removeOnComplete, false, single);
 		},
 		/**
 		 * --------------------------------

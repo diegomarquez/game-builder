@@ -9,12 +9,10 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
- * If you are a software engineer, the name of this file will sound outrageous to you, because
- * it's not really a delegate. It's more of a container for delegates. If you keep stretching, it 
- * actually is more like an event emitter. But there is no notion of events 
- * in [Game-Builder](http://diegomarquez.github.io/game-builder), so I have no idea what to call it.
+ * This module defines a container of callbacks. Add the callbacks and later execute all the registered functions under
+ * a given id.
  *
- * It works fine and is very usefull. The basic workflow is the following:
+ * The basic workflow is the following:
  * 
  * Add functions using <strong>on</strong>, always providing an id and a scope for each function.
  * At some point in the future call the method <strong>execute</strong>, passing an id. 
@@ -48,17 +46,12 @@ define(["util", "class"], function(util) {
 		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'
 		 * @param  {Function} callback Function you want to execute
 		 * @param  {Boolean} [removeOnExecute=false] The function will be removed from the corresponding list, after executing it once
-		 * @param  {Boolean} [inmediate=false] Execute function inmediatelly after adding it
 		 * @param  {Boolean} [keepOnCleanUp=false] Save the function when executing the **softCleanUp**
 		 * @param  {Boolean} [single=false] Do not add function if there is already one with the same id
 		 */
-		on: function(name, scope, callback, removeOnExecute, inmediate, keepOnCleanUp, single) {
+		on: function(name, scope, callback, removeOnExecute, keepOnCleanUp, single) {
 			if (!this.callbackList[name]) {
 				this.callbackList[name] = [];
-			}
-
-			if (inmediate) {
-				callback();
 			}
 
 			if (single) {

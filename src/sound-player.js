@@ -17,11 +17,10 @@
  * this will dictate the amount of sounds that can be played simultaneously. Of course more sound channels means
  * a bigger memory foot print.
  *
- * After creating the channels, it is a matter of adding some sounds files, using the **add** method. After doing that, a call
- * to **loadAll** will trigger loading. **loadAll** has an callback that is triggered when all the specified sounds are loaded.
- *
- * During loading, no new files can be loaded. You should take that into account when using this module.
- *
+ * After creating the channels, it is a matter of adding some sounds files, using the **load** method. After doing that. After
+ * doing that the **playSingle** and **playLoop** methods will play sound given an id, provided the sound file has already been loaded,
+ * otherwise nothing will happen.
+ * 
  * The rest of the methods do what they say on the tin, it should be pretty easy for you, a master coder, 
  * to figure out how to use them.
  */
