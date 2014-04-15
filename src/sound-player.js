@@ -234,6 +234,7 @@ define(['timer-factory', 'error-printer'], function(TimerFactory, ErrorPrinter) 
 
 		for (var id in this.audioAssetPaths) {
 			if (this.audioTags[id]) {
+				ErrorPrinter.printError('Sound Player', 'Id: ' + id + ' is already in use');
 				soundAssetCount--;
 				continue;
 			}
@@ -273,7 +274,7 @@ define(['timer-factory', 'error-printer'], function(TimerFactory, ErrorPrinter) 
 	SoundPlayer.prototype.load = function(id, path) {
 		// If an audio tag with this id already exists, do nothing.
 		if (this.audioTags[id]) {
-			ErrorPrinter.printError('Sound Player', 'Id is already in use');
+			ErrorPrinter.printError('Sound Player', 'Id: ' + id + ' is already in use');
 		}
 
 		var audio = document.createElement("audio");

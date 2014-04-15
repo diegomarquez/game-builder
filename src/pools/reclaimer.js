@@ -46,6 +46,10 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	 * @throws {Error} If the id argument is missing.
 	 */
 	Reclaimer.prototype.claim = function(go, id) {
+		if(!go) {
+			ErrorPrinter.missingArgumentError('Reclaimer', 'go');
+		}
+
 		if(!id) {
 			ErrorPrinter.missingArgumentError('Reclaimer', 'id');
 		}

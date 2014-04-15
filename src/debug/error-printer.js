@@ -58,7 +58,7 @@ define(function() {
 	 * @throws {Error} Always
 	 */
 	ErrorPrinter.prototype.mustOverrideError = function(origin) {
-		throw new Error(origin + ' => ' + 'This method must be overriden' + '\nhttp://diegomarquez.github.io/game-builder/errors.html#Common');
+		throw new Error(origin + ' => ' + 'This method must be overriden' + '\nhttp://diegomarquez.github.io/game-builder/errors.html#common');
 	};
 	/**
 	 * --------------------------------
@@ -77,7 +77,7 @@ define(function() {
 		var args = Array.prototype.slice.call(arguments, 1);
 
 		for(var i=0; i<args.length; i++) {
-			throw new Error(origin + ' => ' + 'Missing argument:' + args[0] + '\nhttp://diegomarquez.github.io/game-builder/errors.html#' + origin);
+			throw new Error(origin + ' => ' + 'Missing argument:' + args[i] + '\nhttp://diegomarquez.github.io/game-builder/errors.html#' + origin.replace('', '-'));
 		}
 	};
 	/**
