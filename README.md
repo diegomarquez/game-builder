@@ -12,7 +12,23 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
+- fix error printer anchor generation
+- Assembler, error when trying to use Game Object without a renderer
+
+- Try out all examples
+- Generator Templates to extend path renderer and bitmap-renderer
+- Make generator more flexible, be hable to send parent class and dependencies on creation
+
+- Remove grunt and bower from dependencies
+    - Examples
+    - Seed
+    - Generator
+    - Add installation instructions in website
+
 - Annoying tasks
+    - Generate Errors page with mastache template, include all data in a JSON file.
+    - Generate links to corresponding documentation (titles and red text) while processing the template.
+
     - Consolidate file generation into single file with a single task
         - asset-map.js
         - config.js

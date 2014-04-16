@@ -103,7 +103,9 @@ define(['game-object-pool', 'component-pool', 'util', 'error-printer'], function
 		}
 
 		//Adding the renderer configured for this object type		
-		addComponent.call(this, configuration.renderer, pooledObject, 'setRenderer');
+		if (configuration.renderer) {
+			addComponent.call(this, configuration.renderer, pooledObject, 'setRenderer');
+		}
 
 		//When this object is 'recycled' it returns to it's respective pool
 		pooledObject.on('recycle', this, function(go) {
