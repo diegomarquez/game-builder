@@ -13,7 +13,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### TODO List:
 
 - fix error printer anchor generation
-- Assembler, error when trying to use Game Object without a renderer
 
 - Try out all examples
 - Generator Templates to extend path renderer and bitmap-renderer
