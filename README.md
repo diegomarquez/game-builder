@@ -12,9 +12,8 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- fix error printer anchor generation
+- website error anchors
 
-- Try out all examples
 - Generator Templates to extend path renderer and bitmap-renderer
 - Make generator more flexible, be hable to send parent class and dependencies on creation
 
@@ -23,6 +22,8 @@ For better results it is better to use it in conjuction with [generator-game-bui
     - Seed
     - Generator
     - Add installation instructions in website
+
+- Try out all examples
 
 - Annoying tasks
     - Generate Errors page with mastache template, include all data in a JSON file.
