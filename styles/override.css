@@ -58,6 +58,10 @@ body {
   color: #428bca;
 }
 
+.orange-text {
+  color: #F0A61D;
+}
+
 .red-text {
   color: #ca4247;
 }
@@ -99,6 +103,10 @@ body {
 .iframeWrap {
   margin: 0 auto;
   text-align:center
+}
+
+.divider {
+  width: 50%;
 }
 
 iframe {

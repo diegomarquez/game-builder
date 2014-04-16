@@ -1,0 +1,222 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Common Game-Builder Errors</title>
+        <link rel="stylesheet" type="text/css" href="styles/override.css">
+    </head>
+   <body>
+   		<div class="container">
+            <div class="jumbotron">
+                <h1 class="text-center" class="page-header">Errors
+                    <hr>
+                    <small>Common errors thrown by <a href="index.html" >GAME-BUILDER</a> and explanations on why you are seeing them</small>
+                </h1>
+            </div>
+                
+            <div class='blue-background'>
+                <hr>
+                <div class="row">
+                    <a name="common"><h4 class="text-center col-md-6 col-md-offset-3">Common</h4></a> 
+                </div>
+                <div class="row">   
+                  <p class="left-padding right-padding text-center"><small> Errors that can be thrown by any module</small></p>
+                </div>
+                <hr>
+            </div>
+
+            <p class="left-padding right-padding text-center orange-text">"This method must be overriden"</p>
+            <p class="left-padding right-padding">This one is pretty simple, it means that a method in a parent object was not overriden when extending it.</p>
+
+            <div class='blue-background'>
+                <hr>
+                <div class="row">
+                    <a name="reclaimer"><h4 class="text-center col-md-6 col-md-offset-3">Reclaimer</h4></a> 
+                </div>
+                <hr>
+            </div>
+
+            <p class="left-padding right-padding text-center orange-text">"Reclaimer => Missing argument: 'go'"</p>
+            <p class="left-padding right-padding">This error is thrown when calling the <strong class="red-text">claim()</strong> method and the first argument is not provided. Make sure to send in a <strong class="red-text">Game Object</strong>.</p>
+
+            <hr class="divider">
+
+            <p class="left-padding right-padding text-center orange-text">"Reclaimer => Missing argument: 'id'"</p>
+            <p class="left-padding right-padding">This error is thrown when calling the <strong class="red-text">claim()</strong> method and the second argument is not provided. Make sure to send in either the <strong class="red-text">typeId</strong> or the <strong class="red-text">poolId</strong> of the <strong class="red-text">Game Object</strong> you are trying to recycle.</p>
+
+            <div class='blue-background'>
+                <hr>
+                <div class="row">
+                    <a name="game_object_pool"><h4 class="text-center col-md-6 col-md-offset-3">Game Object Pool</h4></a> 
+                </div>
+                <hr>
+            </div>
+
+            <p class="left-padding right-padding text-center orange-text">"Game Object Pool => Game Object with type: 'X' does not have a value for maxAmount. It can not be requested explicitly"</p>
+            <p class="left-padding right-padding">When setting up the <strong class="red-text">Game Object Pool</strong> you need to specify the maximun amount of objects of a given type that will be available. Any object type that does not provide that information is assumed to only be able to exist as a child of another type. Child objects can not be requested explicitly. If you need to do that, you need to specify an amount to use in the <strong class="red-text">Game Object Pool</strong>.</p>
+
+            <hr class="divider">
+            
+            <p class="left-padding right-padding text-center orange-text">"Game Object Pool => Game Object with type: 'X' is not available"</p>
+            <p class="left-padding right-padding">The whole idea behind the <strong class="red-text">Game Object Pool</strong> is pooling object to avoid excesive creation and destruction of objects. If you see this error it just means the pool run out of objects of the type you requested.</p>
+
+            <p class="left-padding right-padding">This can mean that you either need more objects of that type in the pool, or that your logic is not behaiving properly.</p>
+
+            <hr class="divider">
+
+            <p class="left-padding right-padding text-center orange-text">"Game Object Pool => Configuration with id: 'X' does not exist"</p>
+            <p class="left-padding right-padding">This error should not be seen under normal circumstances. If you are seeing it, it is probably a nasty bug.</p>
+
+            <div class='blue-background'>
+                <hr>
+                <div class="row">
+                    <a name="Component-Pool"><h4 class="text-center col-md-6 col-md-offset-3">Component Pool</h4></a> 
+                </div>
+                <hr>
+            </div>
+
+            <p class="left-padding right-padding text-center orange-text">"Component Pool => Component with id: 'X' is not available"</p>
+            <p class="left-padding right-padding">The whole idea behind the <strong class="red-text">Component Pool</strong> is pooling object to avoid excesive creation and destruction of objects. If you see this error it just means the pool run out of objects of the type you requested.</p>
+
+            <p class="left-padding right-padding">This can mean that you either need more objects of that type in the pool, or that your logic is not behaiving properly.</p>
+
+            <div class='blue-background'>
+                <hr>
+                <div class="row">
+                    <a name="assembler"><h4 class="text-center col-md-6 col-md-offset-3">Assembler</h4></a> 
+                </div>
+                <hr>
+            </div>
+
+            <p class="left-padding right-padding text-center orange-text">"Assembler => Game Object with type: 'X' is not a container, can not add childs to it"</p>
+            <p class="left-padding right-padding">If while configuring the <strong class="red-text">Game Object Pool</strong> a regular <strong class="red-text">Game Object</strong> was set to have children, this error will be thrown when trying to activate it. Too fix it define, it as a <strong class="red-text">Game Object Container</strong>.</p>
+
+            <div class='blue-background'>
+                <hr>
+                <div class="row">
+                    <a name="path_renderer"><h4 class="text-center col-md-6 col-md-offset-3">Path Renderer</h4></a> 
+                </div>
+                <hr>
+            </div>
+
+            <p class="left-padding right-padding text-center orange-text">"Path Renderer => Missing argument: 'pathWidth'"</p>
+            <p class="left-padding right-padding"><strong class="red-text">pathWidth</strong> is a required argument to use a <strong class="red-text">Path Renderer</strong>.</p>
+
+            <hr class="divider">
+
+            <p class="left-padding right-padding text-center orange-text">"Path Renderer => Missing argument: 'pathHeight'"</p>
+            <p class="left-padding right-padding"><strong class="red-text">pathHeight</strong> is a required argument to use a <strong class="red-text">Path Renderer</strong>.</p>
+
+            <div class='blue-background'>
+                <hr>
+                <div class="row">
+                    <a name="collision_component"><h4 class="text-center col-md-6 col-md-offset-3">Collision Component</h4></a> 
+                </div>
+                <hr>
+            </div>
+
+            <p class="left-padding right-padding text-center orange-text">"Collision Component => GameObject with typeId: 'X', needs to define an onCollide method, yo."</p>
+            <p class="left-padding right-padding">A <strong class="red-text">Game Object</strong> defined to use a <strong class="red-text">Collision Component</strong> must define an <strong class="red-text">onCollide(other)</strong> method. If you see this error, that is probably what you are missing.</p>
+
+            <div class='blue-background'>
+                <hr>
+                <div class="row">
+                    <a name="timer_factory"><h4 class="text-center col-md-6 col-md-offset-3">Timer Factory</h4></a> 
+                </div>
+                <hr>
+            </div>
+      
+            <p class="left-padding right-padding text-center orange-text">"Timer Factory => This owner is already using this property, assigning it again with a timer might cause your program to go ape shit."</p>
+            <p class="left-padding right-padding"> When creating a <strong class="red-text">Timer</strong> you have to specify a property name to which that <strong class="red-text">Timer</strong> will be binded in the owner scope. If that property name is already in use in the owner scope, this error will be thrown to alert about incoming undefined behaviour.</p>
+
+            <hr class="divider">
+
+            <p class="left-padding right-padding text-center orange-text">"Timer Factory => Timer must have an owner, if unsure just send in 'this'."</p>
+            <p class="left-padding right-padding"><strong class="red-text">owner</strong> is a required argument to use a <strong class="red-text">Timer</strong>. As the error indicates, if unsure just pass in 'this'.</p>
+
+            <hr class="divider">
+
+            <p class="left-padding right-padding text-center orange-text">"Timer Factory => Timer must have an name to identify it later."</p>
+            <p class="left-padding right-padding"><strong class="red-text">name</strong> is a required argument to use a <strong class="red-text">Timer</strong>. The is used later to apply commands to a specific timer, or to many timers at once.</p>
+
+            <hr class="divider">
+
+            <p class="left-padding right-padding text-center orange-text">"Timer Factory => Timer must have a propertyName to be refered with from its owners scope."</p>
+            <p class="left-padding right-padding"><strong class="red-text">propertyName</strong> is a required argument to use a <strong class="red-text">Timer</strong>. The owner scope gets access to the newly created <strong class="red-text">Timer</strong> through this name. The <strong class="red-text">Timer Factory</strong> makes use of this property to clear the timer from the owner scope when needed.</p>
+
+            <div class='blue-background'>
+                <hr>
+                <div class="row">
+                    <a name="timer"><h4 class="text-center col-md-6 col-md-offset-3">Timer</h4></a> 
+                </div>
+                <hr>
+            </div>
+
+            <p class="left-padding right-padding text-center orange-text">"Timer => Can't modify timer while it is running."</p>
+            <p class="left-padding right-padding">This error is thrown when trying to modify the properties of a <strong class="red-text">Timer</strong> while it is running.</p>
+
+            <div class='blue-background'>
+                <hr>
+                <div class="row">
+                    <a name="state"><h4 class="text-center col-md-6 col-md-offset-3">State</h4></a> 
+                </div>
+                <hr>
+            </div>
+
+            <p class="left-padding right-padding text-center orange-text">"State => State with id: 'X' caused an un expected error."</p>
+            <p class="left-padding right-padding">This error is thrown by <strong class="red-text">State</strong> objects while attempting a transition. The code is executed in a 'try, catch' block, so any errors in the state code are caught.</p>
+
+            <div class='blue-background'>
+                <hr>
+                <div class="row">
+                    <a name="sound_player"><h4 class="text-center col-md-6 col-md-offset-3">Sound Player</h4></a> 
+                </div>
+                <hr>
+            </div>
+
+            <p class="left-padding right-padding text-center orange-text">"Sound Player => Still loading resources. Wait till everything is complete, before loading more."</p>
+            <p class="left-padding right-padding">This error is thrown by the <strong class="red-text">loadAll()</strong> method when attempting to call it before it has finished loading the previous batch of resources.</p>
+
+            <hr class="divider">
+
+            <p class="left-padding right-padding text-center orange-text">"Sound Player => Id: 'id' is already in use."</p>
+            <p class="left-padding right-padding">Attempting to use the same id twice will result in this error. Just use different ids for different sound resources.</p>
+
+            <div class='blue-background'>
+                <hr>
+                <div class="row">
+                    <a name="font_loader"><h4 class="text-center col-md-6 col-md-offset-3">Font Loader</h4></a> 
+                </div>
+                <hr>
+            </div>
+
+            <p class="left-padding right-padding text-center orange-text">"Font Loader => No fonts are available."</p>
+            <p class="left-padding right-padding">For whatever reason no fonts are available, if the resources are remote. There is not much to be done about it.</p>
+
+            <hr class="divider">
+
+            <p class="left-padding right-padding text-center orange-text">"Font Loader => 'Font: 'X' could not be loaded'."</p>
+            <p class="left-padding right-padding">A specific remote font is not available, not much to do about it.</p>
+
+            <div class='blue-background'>
+                <hr>
+                <div class="row">
+                    <a name="layers"><h4 class="text-center col-md-6 col-md-offset-3">Layers</h4></a>
+                </div>
+                <hr>
+            </div>
+
+            <p class="left-padding right-padding text-center orange-text">"Layer => Layer with id: 'X' does not exist."</p>
+            <p class="left-padding right-padding">Tried to access a <strong class="red-text">Layer</strong> which does not exist. Maybe the id is wrong, or maybe the <strong class="red-text">Layer</strong> was deleted un intentionally.</p>
+
+            <hr>
+            <h6 class="left-padding right-padding footer text-center">Hopefully this is usefull information.</h6>
+            <hr>
+
+            <div class="left-padding right-padding footer text-center">
+                <p>A project by 
+                    <a href="https://github.com/diegomarquez">Diego Enrique Marquez<a>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
