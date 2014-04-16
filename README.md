@@ -12,19 +12,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- website error anchors
-
-- Generator Templates to extend path renderer and bitmap-renderer
-- Make generator more flexible, be hable to send parent class and dependencies on creation
-
-- Remove grunt and bower from dependencies
-    - Examples
-    - Seed
-    - Generator
-    - Add installation instructions in website
-
-- Try out all examples
-
 - Annoying tasks
     - Generate Errors page with mastache template, include all data in a JSON file.
     - Generate links to corresponding documentation (titles and red text) while processing the template.
@@ -33,6 +20,13 @@ For better results it is better to use it in conjuction with [generator-game-bui
         - asset-map.js
         - config.js
         - font-data.js
+        - Include a simple server.js to be able to run a local webserver avoiding cross-domain policy errors.
+        - Use the web server to load 'local' JSON files for the various configuration options
+    
+    - Generator Templates to extend path renderer and bitmap-renderer
+    - Make generators more flexible, be hable to send parent class and dependencies on creation
+
+- Try out all examples
 
 - Tag
 - Deploy Website
