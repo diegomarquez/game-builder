@@ -13,6 +13,7 @@
   ],
   "dependencies": {
     "bootstrap": "~3.0.3",
-    "stringjs": "~1.8.0"
+    "stringjs": "~1.8.0",
+    "mustache": "~0.8.1"
   }
 }

@@ -1,0 +1,171 @@
+{
+	"errors": [
+		{
+			"name": "common",
+			"docLink": "",
+			"entries": [
+				{
+					"title": "This method must be overriden",
+					"description": "This one is pretty simple, it means that a method in a parent object was not overriden when extending it."
+				}
+			] 
+		},
+		{
+			"name": "reclaimer",
+			"docLink": "reclaimer@@",
+			"entries": [
+				{
+					"title": "Missing argument: 'go'",
+					"description": "This error is thrown when calling the claim() method is called and the first argument is not provided. Make sure to send in a game-object@@."
+				},
+				{
+					"title": "Missing argument: 'id'",
+					"description": "This error is thrown when calling the claim() method and the second argument is not provided. Make sure to send in either the typeId or the poolId of the game-object@@ you are trying to recycle."
+				}
+			]
+		},
+		{
+			"name": "game_object_pool",
+			"docLink": "game-object-pool@@",
+			"entries": [
+				{
+					"title": "game-object@@ with type: 'X' does not have a value for maxAmount. It can not be requested explicitly",
+					"description": "When setting up the game-object-pool@@ you need to specify the maximun amount of objects of a given type that will be available. Any object type that does not provide that information is assumed to only be able to exist as a child of another type. Child objects can not be requested explicitly. If you need to do that, you need to specify an amount to use in the game-object-pool@@."
+				},
+				{
+					"title": "game-object@@ with type: 'X' is not available",
+					"description": "The whole idea behind the game-object-pool@@ is pooling object to avoid excesive creation and destruction of objects. If you see this error it just means the pool run out of objects of the type you requested. This can mean that you either need more objects of that type in the pool, or that your logic is not behaiving properly."
+				},
+				{
+					"title": "Configuration with id: 'X' does not exist",
+					"description": "This error is thrown when requesting a configuration which does not exist."
+				}
+			]
+		},
+		{
+			"name": "component_pool",
+			"docLink": "component-pool@@",
+			"entries": [
+				{
+					"title": "component@@ with id: 'X' is not available",
+					"description": "The whole idea behind the component-pool@@ is pooling object to avoid excesive creation and destruction of objects. If you see this error it just means the pool run out of objects of the type you requested. This can mean that you either need more objects of that type in the pool, or that your logic is not behaiving properly."
+				}
+			]
+		},
+		{
+			"name": "assembler",
+			"docLink": "assembler@@",
+			"entries": [
+				{
+					"title": "game-object@@ with type: 'X' is not a container, can not add childs to it",
+					"description": "If while configuring the game-object-pool@@ a regular game-object@@ was set to have children, this error will be thrown when trying to activate it. Too fix it define, it as a game-object-container@@."
+				}
+			]
+		},
+		{
+			"name": "path_renderer",
+			"docLink": "path-renderer@@",
+			"entries": [
+				{
+					"title": "Missing argument: 'pathWidth'",
+					"description": "This one is pretty simple, it means that a method in a parent object was not overriden when extending it."
+				},
+				{
+					"title": "Missing argument: 'pathHeight'",
+					"description": "This one is pretty simple, it means that a method in a parent object was not overriden when extending it."
+				}
+			]
+		},
+		{
+			"name": "collision_component",
+			"docLink": "collision-component@@",
+			"entries": [
+				{
+					"title": "GameObject with typeId: 'X', needs to define an onCollide method, yo",
+					"description": "A game-object@@ defined to use a collision-component@@ must define an onCollide(other) method. If you see this error, that is probably what you are missing."
+				}
+			]
+		},
+		{
+			"name": "timer_factory", 
+			"docLink": "timer-factory@@",
+			"entries": [
+				{
+					"title": "This owner is already using this property, assigning it again with a timer might cause your program to go ape shit",
+					"description": "When creating a Timer you have to specify a property name to which that Timer will be binded in the owner scope. If that property name is already in use in the owner scope, this error will be thrown to alert about incoming undefined behaviour."
+				},
+				{
+					"title": "Timer must have an owner, if unsure just send in 'this'",
+					"description": "'owner' is a required argument to use a @@timer. As the error indicates, if unsure just pass in 'this'."
+				},
+				{
+					"title": "Timer must have an name to identify it later",
+					"description": "'name' is a required argument to use a Timer. The is used later to apply commands to a specific Timer, or to many timers at once."
+				},
+				{
+					"title": "Timer must have a propertyName to be refered with from its owners scope",
+					"description": "'propertyName' is a required argument to use a Timer. The owner scope gets access to the newly created Timer through this name. The timer-factory@@ makes use of this property to clear the timer from the owner scope when needed."
+				}
+			]
+		},
+		{
+			"name": "timer", 
+			"docLink": "",
+			"entries": [
+				{
+					"title": "Can't modify timer while it is running",
+					"description": "This error is thrown when trying to modify the properties of a Timer while it is running."
+				}
+			]
+		},
+		{
+			"name": "state",
+			"docLink": "",
+			"entries": [
+				{
+					"title": "State with id: 'X' caused an un expected error",
+					"description": "This error is thrown by state objects while attempting a transition. The code is executed in a 'try, catch' block, so any errors in the state code are caught."
+				}
+			]
+		},
+		{
+			"name": "sound_player",
+			"docLink": "sound-player@@",
+			"entries": [
+				{
+					"title": "Still loading resources. Wait till everything is complete, before loading more",
+					"description": "This error is thrown by the loadAll() method when attempting to call it before it has finished loading the previous batch of resources."
+				},
+				{
+					"title": "Id: 'id' is already in use",
+					"description": "Attempting to use the same id twice will result in this error. Just use different ids for different sound resources."
+				}
+			]
+		},
+		{
+			"name": "font_loader",
+			"docLink": "font-loader@@",
+			"entries": [
+				{
+					"title": "No fonts are available",
+					"description": "For whatever reason no fonts are available, if the resources are remote. There is not much to be done about it."
+				},
+				{
+					"title": "Font: 'X' could not be loaded'",
+					"description": "A specific remote font is not available, not much to do about it."
+				}
+			]
+		},
+		{
+			"name": "layers",
+			"docLink": "layers@@",
+			"entries": [
+				{
+					"title": "Layer with id: 'X' does not exist",
+					"description": "Tried to access a layer@@ which does not exist. Maybe the id is wrong, or maybe the layer@@ was deleted un intentionally."
+				}
+			]
+		}
+	]
+}
+
