@@ -13,18 +13,18 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### TODO List:
 
 - Annoying tasks
-    - Generate Errors page with mastache template, include all data in a JSON file.
-    - Generate links to corresponding documentation (titles and red text) while processing the template.
-
     - Consolidate file generation into single file with a single task
         - asset-map.js
         - config.js
         - font-data.js
         - Include a simple server.js to be able to run a local webserver avoiding cross-domain policy errors.
         - Use the web server to load 'local' JSON files for the various configuration options
+        - http://www.html5rocks.com/en/tutorials/file/dndfiles/
     
     - Generator Templates to extend path renderer and bitmap-renderer
     - Make generators more flexible, be hable to send parent class and dependencies on creation
+    - Split Timer Factory and Timer, update errors.html
+    - Split State Machine and Stae, update errors.html
 
 - Try out all examples
 
