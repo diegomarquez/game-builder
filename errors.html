@@ -36,6 +36,10 @@
                 {{/entries}}    
             {{/errors}}
         </script>
+
+        <script id="linkTemplate" type="x-tmpl-mustache">
+            <a href='{{url}}'><strong class='red-text'>{{linkText}}</strong></a>
+        </script>
     </head>
    <body>
         <div class="container">
@@ -46,9 +50,8 @@
                 </h1>
             </div>
                 
-            <div id="template">
+            <div id="errorsContainer">
             </div>
-
 
             <hr>
             <h6 class="left-padding right-padding footer text-center">Hopefully this is usefull information.</h6>
@@ -64,35 +67,42 @@
         <script>
             $(function() {
                 var template = $('#template').html();
-                Mustache.parse(template); 
+                var linkTemplate = $(linkTemplate).html();
 
-                $.getJSON("error.json", function(data) {
-                    $.getJSON("game-builder-dictionary.json", function(links) {
-                        for(var i=0; i<data.errors.length; i++) {            
-                            var error = data.errors[i];
+                Mustache.parse(template);
+                Mustache.parse(linkTemplate); 
 
-                            error.humanName = S(error.name).humanize().s;
+                var jsonRequests = [];
 
-                            if(error.docLink != "") {
-                                error.docLink = error.docLink.replace(error.docLink, links[error.docLink]);
-                            }
+                jsonRequests.push($.getJSON("errors.json"));
+                jsonRequests.push($.getJSON("game-builder-dictionary.json"));
 
-                            for(var j=0; j<error.entries.length; j++) {
-                                entry = error.entries[j];
-                                entry.divider = j < error.entries.length - 1;
-                            }
+                $.when.apply(this, jsonRequests).then(function(errorData, linksData) {
+                    for(var i=0; i<errorData[0].errors.length; i++) {            
+                        var error = errorData[0].errors[i];
+
+                        error.humanName = S(error.name).humanize().s;
+
+                        if(error.docLink != "") {
+                            error.docLink = error.docLink.replace(error.docLink, linksData[0][error.docLink]);
                         }
 
-                        var rendered = Mustache.render(template, data);
-                        
-                        for(var k in links) {
-                            rendered = rendered.replace(new RegExp(k, 'g'), "<a href='" + links[k] + "'><strong class='red-text'>" + S(k.replace("@@", "")).humanize().s + "</strong></a>");
+                        for(var j=0; j<error.entries.length; j++) {
+                            entry = error.entries[j];
+                            entry.divider = j < error.entries.length - 1;
                         }
+                    }
 
-                        $('div#template').html(S(rendered).trim().s);
-                    });
+                    var rendered = Mustache.render(template, errorData[0]);
+                    
+                    for(var k in linksData[0]) {
+                        var htmlLink = Mustache.render(linkTemplate, {url:linksData[0][k], linkText:S(k.replace("@@", "")).humanize().s});    
+                        rendered = rendered.replace(new RegExp(k, 'g'), htmlLink);
+                    }
+
+                    $('#errorsContainer').html(S(rendered).trim().s);
                 });
-            })
+            });
         </script>
     </body>
 </html>
