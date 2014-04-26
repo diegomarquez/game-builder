@@ -66,38 +66,39 @@
                 <li>The main generator setups a fresh empty project. The first thing you need to do after the scaffolding is complete is run
                   <em class="red-text">grunt</em> in the project folder</li>
               </ul>
-              <li><em class="red-text">yo game-builder:bundle</em> "bundle name"</li>
+              <li><em class="red-text">yo game-builder:bundle</em> "bundle name" "module to extend"</li>
               <ul class="description left-padding list-unstyled">
-                <li>This sub-generator setups an empty bundle file</li>
+                <li>This sub-generator setups an empty bundle file with name "bundle name". It extends the module with "module to extend". Subsequent arguments are added as dependencies.</li>
+                <li><em class="orange-text">Ej. yo game-builder:bundle 'my bundle' 'bundle' 'draw' 'util'</em></li>
               </ul>
-              <li><em class="red-text">yo game-builder:component</em>  "component name"</li>
+              <li><em class="red-text">yo game-builder:component</em> "component name" "module to extend"</li>
               <ul class="description left-padding list-unstyled">
-                <li>This sub-generator setups an empty component file</li>
-              </ul>
-
-              <li><em class="red-text">yo game-builder:container</em>  "container name"</li>
-              <ul class="description left-padding list-unstyled">
-                <li>This sub-generator setups an empty container file</li>
+                <li>This sub-generator setups an empty component file with name "component name". It extends the module with "module to extend". Subsequent arguments are added as dependencies.</li>
+                <li><em class="orange-text">Ej. yo game-builder:bundle 'my component' 'component' 'draw' 'util'</em></li>
               </ul>
 
               <li><em class="red-text">yo game-builder:extension</em>  "extension name"</li>
               <ul class="description left-padding list-unstyled">
-                <li>This sub-generator setups an empty extension file</li>
+                <li>This sub-generator setups an empty extension file with name "extension name". Subsequent arguments are added as dependencies.</li>
+                <li><em class="orange-text">Ej. yo game-builder:bundle 'my extension' 'draw' 'util'</em></li>
               </ul>
 
-              <li><em class="red-text">yo game-builder:game-object</em>  "game-object name"</li>
+              <li><em class="red-text">yo game-builder:game-object</em>  "game-object name" "module to extend"</li>
               <ul class="description left-padding list-unstyled">
-                <li>This sub-generator setups an empty game-object file</li>
+                <li>This sub-generator setups an empty game-object file with name "game-object name". It extends the module with "module to extend".Subsequent arguments are added as dependencies.</li>
+                <li><em class="orange-text">Ej. yo game-builder:bundle 'my game object' 'game-object' 'draw' 'util'</em></li>
               </ul>
 
-              <li><em class="red-text">yo game-builder:renderer</em>  "renderer name"</li>
+              <li><em class="red-text">yo game-builder:renderer</em>  "renderer name" "module to extend"</li>
               <ul class="description left-padding list-unstyled">
-                <li>This sub-generator setups an empty renderer file</li>
+                <li>This sub-generator setups an empty renderer file with name "renderer name". It extends the module with "module to extend".Subsequent arguments are added as dependencies.</li>
+                <li><em class="orange-text">Ej. yo game-builder:bundle 'my renderer' 'renderer' 'draw' 'util'</em></li>
               </ul>
 
               <li><em class="red-text">yo game-builder:state</em>  "state name"</li>
               <ul class="description left-padding list-unstyled">
-                <li>This sub-generator setups an empty state file</li>
+                <li>This sub-generator setups an empty state file with name "state name". Subsequent arguments are added as dependencies.</li>
+                <li><em class="orange-text">Ej. yo game-builder:bundle 'my state' 'draw' 'util'</em></li>
               </ul>
             </ol>
 
