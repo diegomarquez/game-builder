@@ -101,6 +101,12 @@
                     }
 
                     $('#errorsContainer').html(S(rendered).trim().s);
+
+                    if (location.href.match('#')) {
+                        var hashSplit = location.href.split('#');
+                        var curHash= hashSplit[1];
+                        window.location.hash = curHash;
+                    }
                 });
             });
         </script>
