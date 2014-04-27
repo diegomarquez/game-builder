@@ -92,39 +92,39 @@
 			"entries": [
 				{
 					"title": "This owner is already using this property, assigning it again with a timer might cause your program to go ape shit",
-					"description": "When creating a Timer you have to specify a property name to which that Timer will be binded in the owner scope. If that property name is already in use in the owner scope, this error will be thrown to alert about incoming undefined behaviour."
+					"description": "When creating a timer@@ you have to specify a property name to which that timer@@ will be binded in the owner scope. If that property name is already in use in the owner scope, this error will be thrown to alert about incoming undefined behaviour."
 				},
 				{
-					"title": "Timer must have an owner, if unsure just send in 'this'",
-					"description": "'owner' is a required argument to use a @@timer. As the error indicates, if unsure just pass in 'this'."
+					"title": "timer must have an owner, if unsure just send in 'this'",
+					"description": "'owner' is a required argument to use a timer@@. As the error indicates, if unsure just pass in 'this'."
 				},
 				{
-					"title": "Timer must have an name to identify it later",
-					"description": "'name' is a required argument to use a Timer. The is used later to apply commands to a specific Timer, or to many timers at once."
+					"title": "timer must have an name to identify it later",
+					"description": "'name' is a required argument to use a timer@@. The is used later to apply commands to a specific timer@@, or to many timer@@s at once."
 				},
 				{
-					"title": "Timer must have a propertyName to be refered with from its owners scope",
-					"description": "'propertyName' is a required argument to use a Timer. The owner scope gets access to the newly created Timer through this name. The timer-factory@@ makes use of this property to clear the timer from the owner scope when needed."
+					"title": "timer must have a propertyName to be refered with from its owners scope",
+					"description": "'propertyName' is a required argument to use a timer@@. The owner scope gets access to the newly created timer@@ through this name. The timer-factory@@ makes use of this property to clear the timer@@ from the owner scope when needed."
 				}
 			]
 		},
 		{
 			"name": "timer", 
-			"docLink": "",
+			"docLink": "timer@@",
 			"entries": [
 				{
 					"title": "Can't modify timer while it is running",
-					"description": "This error is thrown when trying to modify the properties of a Timer while it is running."
+					"description": "This error is thrown when trying to modify the properties of a timer@@ while it is running."
 				}
 			]
 		},
 		{
 			"name": "state",
-			"docLink": "",
+			"docLink": "state@@",
 			"entries": [
 				{
 					"title": "State with id: 'X' caused an un expected error",
-					"description": "This error is thrown by state objects while attempting a transition. The code is executed in a 'try, catch' block, so any errors in the state code are caught."
+					"description": "This error is thrown by a state@@ object while attempting a transition. The code is executed in a 'try, catch' block, so any errors in the state code are caught."
 				}
 			]
 		},
