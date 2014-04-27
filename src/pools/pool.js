@@ -51,7 +51,7 @@
 /**
  * --------------------------------
  */
-define(["util", "error-printer", "class"], function(Util, ErrorPrinter) {
+define(["class", "util", "error-printer"], function(Class, Util, ErrorPrinter) {
 	var Pool = Class.extend({
 		init: function() {
 			this.pools = {};

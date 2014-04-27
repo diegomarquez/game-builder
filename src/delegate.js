@@ -27,7 +27,7 @@
 /**
  * --------------------------------
  */
-define(["util", "class"], function(util) {
+define(["class", "util"], function(Class, Util) {
 	var Delegate = Class.extend({
 		init: function() {
 			this.callbackList = {};
@@ -162,7 +162,7 @@ define(["util", "class"], function(util) {
 		 * Gets ready for garbage collection.
 		 */
 		destroy: function() {
-			util.destroyObject(this);
+			Util.destroyObject(this);
 		},
 		/**
 		 * --------------------------------

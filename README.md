@@ -12,15 +12,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Annoying tasks
-    - Split Timer Factory and Timer (DONE)
-        - website errors (DONE)
-    - Split State Machine and State (DONE)
-        - website errors (DONE)
-        - Update state generator
- 
-- Make requireJS module out of class.js
-
 - Try out all examples
 
 - Tag

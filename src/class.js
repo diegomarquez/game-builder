@@ -1,36 +1,43 @@
 /* 
  * # class.js
  * 
- * ### By [John Resig](http://ejohn.org/)
- * # MIT Licensed.
+ * ### By [Diego Enrique Marquez](http://treintipollo.com/)
+ * ### [Find me on Github](https://github.com/diegomarquez)
+ * 
+ * Inherits from:
+ * 
+ * Depends of:
  *
+ * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
+ *
+ * This is just a straight port into a requireJS module of this [file](http://stackoverflow.com/questions/15050816/is-john-resigs-javascript-inheritance-snippet-deprecated),
+ * which in turn is an adaptation of [this](http://ejohn.org/blog/simple-javascript-inheritance/)
+ * 
  * This is at the core of everything [Game-Builder](http://diegomarquez.github.io/game-builder). 
  * The main feature it provides as opposed to more crud inheritance implementations in Javascript,
  * is a **_super** method, which is extremely usefull. 
- *
- * Inspired by [base2](https://code.google.com/p/base2/) and [Prototype](http://prototypejs.org/)
  */
 
 /**
  * Simple JavaScript Inheritance
  * --------------------------------
  */
-(function(){
-  var initializing = false, fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
- 
-  // The base Class implementation (does nothing)
-  this.Class = function(){};
- 
+define(function() {
+  var initializing = false; 
+  var fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
+
+  var Class = function() {};
+
   // Create a new Class that inherits from this class
   Class.extend = function(prop) {
     var _super = this.prototype;
-   
+
     // Instantiate a base class (but only create the instance,
     // don't run the init constructor)
     initializing = true;
-    var prototype = new this();
+    var prototype = Object.create(_super);
     initializing = false;
-   
+
     // Copy the properties over onto the new prototype
     for (var name in prop) {
       // Check if we're overwriting an existing function
@@ -54,23 +61,25 @@
         })(name, prop[name]) :
         prop[name];
     }
-   
+
     // The dummy class constructor
-    function Class() {
+    function DummyClass() {
       // All construction is actually done in the init method
       if ( !initializing && this.init )
         this.init.apply(this, arguments);
     }
-   
+
     // Populate our constructed prototype object
-    Class.prototype = prototype;
-   
+    DummyClass.prototype = prototype;
+
     // Enforce the constructor to be what we expect
-    Class.prototype.constructor = Class;
- 
+    DummyClass.prototype.constructor = DummyClass;
+
     // And make this class extendable
-    Class.extend = arguments.callee;
-   
-    return Class;
-  };
-})();
+    DummyClass.extend = Class.extend;
+
+    return DummyClass;
+  }
+
+  return Class;
+});

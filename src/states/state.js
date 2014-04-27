@@ -7,7 +7,6 @@
  *
  * Depends of: 
  * [delegate](@@delegate@@)
- * [class](@@class@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -32,7 +31,7 @@
 /**
  * --------------------------------
  */
-define(["delegate", "class"], function(Delegate) {
+define(["delegate"], function(Delegate) {
 	var State = Delegate.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>init</strong></p>

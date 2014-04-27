@@ -22,7 +22,7 @@
 /**
  * --------------------------------
  */
-define(['draw'], function(draw) {
+define(['draw'], function(Draw) {
 	var p = null;
 	var m = null;
 
@@ -45,7 +45,7 @@ define(['draw'], function(draw) {
 			context.translate(p.x, p.y);
 
 			// Draw the center of the object
-			draw.circle(context, 0, 0, 3, null, "#FF00FF", 2);
+			Draw.circle(context, 0, 0, 3, null, "#FF00FF", 2);
 
 			context.restore();
 

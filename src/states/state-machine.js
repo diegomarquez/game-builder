@@ -36,7 +36,7 @@
 /**
  * --------------------------------
  */
-define(["state", "error-printer", "class"], function(State, ErrorPrinter) {
+define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter) {
 	var StateMachine = Class.extend({
 		init: function() {
 			this.stateIds = {}

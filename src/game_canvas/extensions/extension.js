@@ -43,7 +43,7 @@
 /**
  * --------------------------------
  */
-define(["error-printer" "class"], function(ErrorPrinter) {
+define(["class", "error-printer"], function(Class, ErrorPrinter) {
 	var Extension = Class.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>type</strong></p>
