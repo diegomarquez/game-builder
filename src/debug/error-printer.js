@@ -25,6 +25,10 @@
 define(function() {
 	var ErrorPrinter = function() {}
 
+	var getAnchor = function(origin) {
+		return '#' + origin.toLowerCase().trim().replace(/ /g, '_');
+	};
+
 	/**
 	 * <p style='color:#AD071D'><strong>printError</strong></p>
 	 *
@@ -38,7 +42,7 @@ define(function() {
 	 * @throws {Error} Always
 	 */
 	ErrorPrinter.prototype.printError = function(origin, message, e) {
-		throw new Error(origin + ' => ' + message + '\nhttp://diegomarquez.github.io/game-builder/errors.html#' + origin);
+		throw new Error(origin + ' => ' + message + '\nhttp://diegomarquez.github.io/game-builder/errors.html' + getAnchor(origin));
 
 		if (e) {
 			throw e	
@@ -77,7 +81,7 @@ define(function() {
 		var args = Array.prototype.slice.call(arguments, 1);
 
 		for(var i=0; i<args.length; i++) {
-			throw new Error(origin + ' => ' + 'Missing argument:' + args[i] + '\nhttp://diegomarquez.github.io/game-builder/errors.html#' + origin.toLowerCase().replace('', '_'));
+			throw new Error(origin + ' => ' + 'Missing argument:' + args[i] + '\nhttp://diegomarquez.github.io/game-builder/errors.html' + getAnchor(origin));
 		}
 	};
 	/**
