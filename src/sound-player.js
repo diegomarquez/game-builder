@@ -115,8 +115,6 @@ define(['timer-factory', 'error-printer'], function(TimerFactory, ErrorPrinter) 
 	var playChannelLoop = function(channel) {
 		var self = this;
 
-		if (channel.readyState != 4) return;
-
 		self.activeChannels.push(channel);
 
 		channel.timer.on('repeate', function() {

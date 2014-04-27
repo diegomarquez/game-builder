@@ -66,7 +66,9 @@ define(function(require) {
 				ErrorPrinter.printError('Timer Factory', 'Timer must have a propertyName to be refered with from its owners scope');
 			}
 
-			var timeout = new Timer(owner, name, propertyName);
+			var timerConstructor = require('timer');
+
+			var timeout = new timerConstructor(owner, name, propertyName);
 			this.timeOuts.push(timeout);
 			owner[propertyName] = timeout;	
 
