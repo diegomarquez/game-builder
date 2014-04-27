@@ -50,7 +50,7 @@
 /**
  * --------------------------------
  */
-define(["component", 'image-cache'], function(Component, ImageCache) {
+define(["component", "image-cache"], function(Component, ImageCache) {
 
 	var image = null;
 
@@ -74,7 +74,7 @@ define(["component", 'image-cache'], function(Component, ImageCache) {
 		 * This is called by the [game-object](@@game-object@@) using this renderer.
 		 * It sends the path configured to the [image-cache](@@image-cache@@) module.
 		 */
-		start: function() {	
+		start: function(parent) {	
 			ImageCache.cache(this.path);
 		},
 		/**

@@ -54,7 +54,7 @@
  * ```
  * <strong>Note: The snippet uses the reference to the <a href=@@component-pool@@>component-pool</a>
  * found in the <a href=@@gb@@>gb</a> module. 
- * The way you get a hold to a reference to the <a href=@@component-pool@@>component-pool</a>
+ * The way you get a hold to a reference to the <a href=@@csomponent-pool@@>component-pool</a>
  * may vary.</strong>
  */
 
@@ -66,7 +66,7 @@
 /**
  * --------------------------------
  */
-define(["component", 'path-cache', 'error-printer'], function(Component, PathCache, ErrorPrinter) {
+define(["component", "path-cache", "error-printer"], function(Component, PathCache, ErrorPrinter) {
 
 	var canvas = null;
 
@@ -92,7 +92,7 @@ define(["component", 'path-cache', 'error-printer'], function(Component, PathCac
 		 *
 		 * @throws {Error} If pathWidth and pathHeight properties are not set
 		 */
-		start: function() {	
+		start: function(parent) {	
 			if (!this.pathWidth && !this.pathHeight) {
 				ErrorPrinter.missingArgumentError('Path Renderer', 'pathWidth', 'pathHeight')
 			}

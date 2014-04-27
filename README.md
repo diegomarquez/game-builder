@@ -13,23 +13,18 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### TODO List:
 
 - Annoying tasks
-    - Consolidate file generation into single file with a single task
-        - asset-map.js
-        - config.js
-        - font-data.js
-        - Include a simple server.js to be able to run a local webserver avoiding cross-domain policy errors.
-        - Use the web server to load 'local' JSON files for the various configuration options
-        - http://www.html5rocks.com/en/tutorials/file/dndfiles/
-    
-    - Generator Templates to extend path renderer and bitmap-renderer
-    - Make generators more flexible, be hable to send parent class and dependencies on creation
-    - Split Timer Factory and Timer, update errors.html
-    - Split State Machine and Stae, update errors.html
-
+    - Split Timer Factory and Timer (DONE)
+        - website errors
+    - Split State Machine and State
+        - website errors
+        - Update state generator
+    - Split Sound Player and Sound
+ 
 - Try out all examples
 
 - Tag
 - Deploy Website
+    - Generate docs
 
 - Examples v6 
     - Add feedback about the internals of each example
