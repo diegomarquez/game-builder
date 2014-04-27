@@ -14,12 +14,13 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Annoying tasks
     - Split Timer Factory and Timer (DONE)
-        - website errors
-    - Split State Machine and State
-        - website errors
+        - website errors (DONE)
+    - Split State Machine and State (DONE)
+        - website errors (DONE)
         - Update state generator
-    - Split Sound Player and Sound
  
+- Make requireJS module out of class.js
+
 - Try out all examples
 
 - Tag
