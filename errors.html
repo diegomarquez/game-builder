@@ -103,7 +103,7 @@
                     $('#errorsContainer').html(S(rendered).trim().s);
 
                     if (window.location.href.match('#')) {
-                        window.location.hash = window.location.href.split('#')[1];
+                        window.location.href = '#' + window.location.href.split('#')[1];
                     }
                 });
             });
