@@ -31,7 +31,7 @@
  * --------------------------------
  */
 define(function(require) {
-	var Bundle = Class.extend({
+	var Bundle = require('class').extend({
 		init: function() {
 			var gb = require('gb');
 			
