@@ -12,8 +12,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Try out all examples
-
 - Tag
 - Deploy Website
     - Generate docs
