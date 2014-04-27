@@ -3,9 +3,11 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/pool.html)
+ * Inherits from: 
+ * [pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/pool.html)
  *
  * Depends of:
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -134,7 +136,7 @@ define(function(require) {
 				var ok = this.createNewIfNeeded(configuration.componentId);
 
 				if(!ok) {
-					throw new Error('Component with id: ' + configuration.componentId + ' is not available');
+					require('error-printer').printError('Component Pool', 'Component with id: ' + configuration.componentId + ' is not available');
 				}
 			}
 

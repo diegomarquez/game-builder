@@ -10,7 +10,7 @@
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
  * This module defines to interact with the keyboard. 
- * In similar fashion to [timer-factory](http://diegomarquez.github.io/game-builder/game-builder-docs/src/timer-factory.html),
+ * In similar fashion to [timer-factory](http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer-factory.html),
  * this module extends on existing behaviour to make it less annoying.
  */
 

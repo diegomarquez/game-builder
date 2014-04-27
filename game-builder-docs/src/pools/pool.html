@@ -6,7 +6,9 @@
 
 <p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html">class</a></p>
 
-<p>Depends of: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html">util</a></p>
+<p>Depends of: 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html">util</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
@@ -39,7 +41,7 @@ by the Garbage Collector doing it's thing. Which is good.</p>
 
 <p>Pooling objects is good and all, but it is probably not a good idea to pool absolutely everything
 you will need in the entire life span of an application, unless it is a small one. For that reason
-it is possible to clear and repopulate pools.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="pooling">Pooling</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;util&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">util</span><span class="p">)</span> <span class="p">{</span>
+it is possible to clear and repopulate pools.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="pooling">Pooling</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;util&quot;</span><span class="p">,</span> <span class="s2">&quot;error-printer&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Class</span><span class="p">,</span> <span class="nx">Util</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">Pool</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">pools</span> <span class="o">=</span> <span class="p">{};</span>
@@ -124,16 +126,16 @@ recycled to send it back to it's corresponding pool for reuse.</p>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Methods to be overriden by objects extending this one
 View <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a> for implementations.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getName</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Pool: This method must be overriden&#39;</span><span class="p">);</span>
+      <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">mustOverrideError</span><span class="p">(</span><span class="s1">&#39;Pool&#39;</span><span class="p">);</span>
     <span class="p">},</span>
     <span class="nx">addInitialObjectsToPool</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">amount</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Pool: This method must be overriden&#39;</span><span class="p">);</span>
+      <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">mustOverrideError</span><span class="p">(</span><span class="s1">&#39;Pool&#39;</span><span class="p">);</span>
     <span class="p">},</span>
     <span class="nx">createConfiguration</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">,</span> <span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Pool: This method must be overriden&#39;</span><span class="p">);</span>
+      <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">mustOverrideError</span><span class="p">(</span><span class="s1">&#39;Pool&#39;</span><span class="p">);</span>
     <span class="p">},</span>
     <span class="nx">getConfiguration</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">nestedCall</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Pool: This method must be overriden&#39;</span><span class="p">);</span>
+      <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">mustOverrideError</span><span class="p">(</span><span class="s1">&#39;Pool&#39;</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>createNewIfNeeded</strong></p>
 
 <p>Dynamically creates an instance of the type specified. This
@@ -179,7 +181,7 @@ used by the <a href="http://diegomarquez.github.io/game-builder/game-builder-doc
         <span class="kd">var</span> <span class="nx">pool</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">pools</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">objects</span><span class="p">;</span>
 
         <span class="k">while</span> <span class="p">(</span><span class="nx">pool</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
-          <span class="nx">util</span><span class="p">.</span><span class="nx">destroyObject</span><span class="p">(</span><span class="nx">pool</span><span class="p">.</span><span class="nx">pop</span><span class="p">());</span>
+          <span class="nx">Util</span><span class="p">.</span><span class="nx">destroyObject</span><span class="p">(</span><span class="nx">pool</span><span class="p">.</span><span class="nx">pop</span><span class="p">());</span>
         <span class="p">}</span>
       <span class="p">}</span>
 
@@ -187,12 +189,12 @@ used by the <a href="http://diegomarquez.github.io/game-builder/game-builder-doc
         <span class="kd">var</span> <span class="nx">active</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">active</span><span class="p">[</span><span class="nx">k</span><span class="p">];</span>
 
         <span class="k">while</span> <span class="p">(</span><span class="nx">active</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
-          <span class="nx">util</span><span class="p">.</span><span class="nx">destroyObject</span><span class="p">(</span><span class="nx">active</span><span class="p">.</span><span class="nx">pop</span><span class="p">());</span>
+          <span class="nx">Util</span><span class="p">.</span><span class="nx">destroyObject</span><span class="p">(</span><span class="nx">active</span><span class="p">.</span><span class="nx">pop</span><span class="p">());</span>
         <span class="p">}</span>
       <span class="p">}</span>
 
       <span class="k">for</span><span class="p">(</span><span class="nx">k</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">configurations</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">util</span><span class="p">.</span><span class="nx">destroyObject</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">configurations</span><span class="p">[</span><span class="nx">k</span><span class="p">]);</span>
+        <span class="nx">Util</span><span class="p">.</span><span class="nx">destroyObject</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">configurations</span><span class="p">[</span><span class="nx">k</span><span class="p">]);</span>
       <span class="p">}</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">pools</span> <span class="o">=</span> <span class="p">{};</span>

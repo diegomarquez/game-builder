@@ -10,16 +10,14 @@
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>If you are a software engineer, the name of this file will sound outrageous to you, because
-it's not really a delegate. It's more of a container for delegates. If you keep stretching, it 
-actually is more like an event emitter. But there is no notion of events 
-in <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a>, so I have no idea what to call it.</p>
+<p>This module defines a container of callbacks. Add the callbacks and later execute all the registered functions under
+a given id.</p>
 
-<p>It works fine and is very usefull. The basic workflow is the following:</p>
+<p>The basic workflow is the following:</p>
 
 <p>Add functions using <strong>on</strong>, always providing an id and a scope for each function.
 At some point in the future call the method <strong>execute</strong>, passing an id. 
-All the functions registered under the id provided will be executed in the order they were added.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="totally-usefull">Totally usefull</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;util&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">util</span><span class="p">)</span> <span class="p">{</span>
+All the functions registered under the id provided will be executed in the order they were added.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="totally-usefull">Totally usefull</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;util&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Class</span><span class="p">,</span> <span class="nx">Util</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">Delegate</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">callbackList</span> <span class="o">=</span> <span class="p">{};</span>
@@ -35,16 +33,11 @@ All the functions registered under the id provided will be executed in the order
 <li><p><strong>scope must be an Object.</strong><br/>(Scope of the function, most of the time you will be passing 'this')</p></li>
 <li><p><strong>callback must be a Function.</strong><br/>(Function you want to execute)</p></li>
 <li><p><strong>removeOnExecute is optional, must be a Boolean, and has a default value of false.</strong><br/>(The function will be removed from the corresponding list, after executing it once)</p></li>
-<li><p><strong>inmediate is optional, must be a Boolean, and has a default value of false.</strong><br/>(Execute function inmediatelly after adding it)</p></li>
 <li><p><strong>keepOnCleanUp is optional, must be a Boolean, and has a default value of false.</strong><br/>(Save the function when executing the <strong>softCleanUp</strong>)</p></li>
 <li><p><strong>single is optional, must be a Boolean, and has a default value of false.</strong><br/>(Do not add function if there is already one with the same id)</p></li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">on</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">scope</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">removeOnExecute</span><span class="p">,</span> <span class="nx">inmediate</span><span class="p">,</span> <span class="nx">keepOnCleanUp</span><span class="p">,</span> <span class="nx">single</span><span class="p">)</span> <span class="p">{</span>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">on</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">scope</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="nx">removeOnExecute</span><span class="p">,</span> <span class="nx">keepOnCleanUp</span><span class="p">,</span> <span class="nx">single</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">callbackList</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">callbackList</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
-      <span class="p">}</span>
-
-      <span class="k">if</span> <span class="p">(</span><span class="nx">inmediate</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">callback</span><span class="p">();</span>
       <span class="p">}</span>
 
       <span class="k">if</span> <span class="p">(</span><span class="nx">single</span><span class="p">)</span> <span class="p">{</span>
@@ -123,7 +116,7 @@ except for the ones that were configured to be kept in <strong>on</strong>.</p><
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>destroy</strong></p>
 
 <p>Gets ready for garbage collection.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">util</span><span class="p">.</span><span class="nx">destroyObject</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+      <span class="nx">Util</span><span class="p">.</span><span class="nx">destroyObject</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>execute</strong></p>
 
 <p>Use this to call all the methods registered using <strong>on</strong>.</p>

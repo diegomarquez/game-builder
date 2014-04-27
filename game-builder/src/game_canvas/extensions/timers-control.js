@@ -6,7 +6,7 @@
  * Inherits from: [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
  * Depends of: 
- * [timer-factory](http://diegomarquez.github.io/game-builder/game-builder-docs/src/timer-factory.html)
+ * [timer-factory](http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer-factory.html)
  * [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
  * [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
  *

@@ -49,7 +49,7 @@
  * --------------------------------
  */
 define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw'],
-	function(CollisionComponent, SAT, CollisionResolver, Vector2D, draw){
+	function(CollisionComponent, SAT, CollisionResolver, Vector2D, Draw){
 
 	var p = {};
 	var m = null;
@@ -108,7 +108,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			context.setTransform(1, 0, 0, 1, 0, 0);			
 			context.translate(p.x, p.y);
 
-			draw.circle(context, 0, 0, this.radius, null, this.debugColor, 2);
+			Draw.circle(context, 0, 0, this.radius, null, this.debugColor, 2);
 
 			context.restore();
 

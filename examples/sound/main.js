@@ -32,56 +32,53 @@ define(function(require){
 		// This sets the amount of different channels that can be played at the same time
 		sound_player.createChannels(4);
 
-		// Add the sound resources that will be available
-		sound_player.add('Sound_1', assetMap['BIRD.MP3']);
-		sound_player.add('Sound_2', assetMap['HORSE.MP3']);
-		sound_player.add('Sound_3', assetMap['SHEEP.MP3']);
-		sound_player.add('Sound_4', assetMap['ELEVATOR.MP3']);
+		// Load a sound resources, as soon as they are loaded they can be played.
+		sound_player.load('BIRD_SOUND', assetMap['BIRD.MP3']);
+		sound_player.load('HORSE_SOUND', assetMap['HORSE.MP3']);
+		sound_player.load('SHEEP_SOUND', assetMap['SHEEP.MP3']);
+		sound_player.load('ELEVATOR_MUSIC', assetMap['ELEVATOR.MP3']);
+		sound_player.load('CROW_SOUND', assetMap['CROW.WAV']);
 
-		sound_player.load('Sound_5', assetMap['CROW.WAV']);
+		// Out of the channels created, this line sets apart 2 channels to be used by the sound with id BIRD_SOUND
+		// Playing sound like this is slightly faster because the logic of loading a sound is skipped.
+		sound_player.assignChannels('BIRD_SOUND', 2);		
 
-		keyboard.onKeyDown(keyboard.C, this, function() {
-			sound_player.playSingle('Sound_5');
+		keyboard.onKeyDown(keyboard.A, this, function() {
+			sound_player.playSingle('BIRD_SOUND', function(id) {
+				console.log('Sound complete. Id: ' + id);
+			});
 		});
 
-		// Call loadAll to load all the resources, the callback gets executed once everything is loaded.
-		
-		// Note: This method can not be called again until
-		// it has completed downloading all previous resources.
-		sound_player.loadAll(function() {
-			console.log('Sound load complete')
-
-			keyboard.onKeyDown(keyboard.A, this, function() {
-				sound_player.playSingle('Sound_1', function(id) {
-					console.log('Sound complete. Id: ' + id);
-				});
+		keyboard.onKeyDown(keyboard.S, this, function() {
+			sound_player.playSingle('HORSE_SOUND', function(id) {
+				console.log('Sound complete. Id: ' + id);
 			});
+		});
 
-			keyboard.onKeyDown(keyboard.S, this, function() {
-				sound_player.playSingle('Sound_2', function(id) {
-					console.log('Sound complete. Id: ' + id);
-				});
+		keyboard.onKeyDown(keyboard.D, this, function() {
+			sound_player.playSingle('SHEEP_SOUND', function(id) {
+				console.log('Sound complete. Id: ' + id);
 			});
+		});	
 
-			keyboard.onKeyDown(keyboard.D, this, function() {
-				sound_player.playSingle('Sound_3', function(id) {
-					console.log('Sound complete. Id: ' + id);
-				});
-			});	
-
-			keyboard.onKeyDown(keyboard.Z, this, function() {
-				sound_player.playLoop('Sound_4');
+		keyboard.onKeyDown(keyboard.C, this, function() {
+			sound_player.playSingle('CROW_SOUND', function(id) {
+				console.log('Sound complete. Id: ' + id);
 			});
+		});
 
-			keyboard.onKeyDown(keyboard.X, this, function() {
-				sound_player.stopAll().now();
-			});
+		keyboard.onKeyDown(keyboard.Z, this, function() {
+			sound_player.playLoop('ELEVATOR_MUSIC');
+		});
 
-			var soundPaused = false;
-			keyboard.onKeyDown(keyboard.P, this, function() {
-				soundPaused ? sound_player.resumeAll().now() : sound_player.pauseAll().now();
-				soundPaused = !soundPaused;
-			});
+		keyboard.onKeyDown(keyboard.X, this, function() {
+			sound_player.stopAll().now();
+		});
+
+		var soundPaused = false;
+		keyboard.onKeyDown(keyboard.P, this, function() {
+			soundPaused ? sound_player.resumeAll().now() : sound_player.pauseAll().now();
+			soundPaused = !soundPaused;
 		});
 	});
 

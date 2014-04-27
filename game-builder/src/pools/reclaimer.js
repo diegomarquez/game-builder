@@ -8,6 +8,7 @@
  * Depends of: 
  * [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
  * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -29,7 +30,7 @@
 /**
  * --------------------------------
  */
-define(['game-object-pool', 'component-pool'], function(GameObjectPool, ComponentPool) {
+define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObjectPool, ComponentPool, ErrorPrinter) {
 	var Reclaimer = function() {};
 
 	/**
@@ -41,10 +42,16 @@ define(['game-object-pool', 'component-pool'], function(GameObjectPool, Componen
 	 * 
 	 * @param  {Object} go [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to recycle
 	 * @param  {String} id Id assigned to the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) in [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
+	 *
+	 * @throws {Error} If the id argument is missing.
 	 */
 	Reclaimer.prototype.claim = function(go, id) {
+		if(!go) {
+			ErrorPrinter.missingArgumentError('Reclaimer', 'go');
+		}
+
 		if(!id) {
-			throw new Error('Reclaimer: ' + 'id argument is: ' + id);
+			ErrorPrinter.missingArgumentError('Reclaimer', 'id');
 		}
 
 		if(go.typeId == id || go.poolId == id) {

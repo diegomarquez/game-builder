@@ -4,18 +4,20 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a></p>
+<p>Inherits from: 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a></p>
 
-<p>Depends of:</p>
+<p>Depends of:
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module only exists to make the interface for a renderer explicit.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="an-interface-for-renderers">An Interface for renderers</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;component&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Component</span><span class="p">)</span> <span class="p">{</span>
+<p>This module only exists to make the interface for a renderer explicit.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="an-interface-for-renderers">An Interface for renderers</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;component&quot;</span><span class="p">,</span> <span class="s2">&quot;error-printer&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">Renderer</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>draw</strong></p>
 
 <p>Drawing logic.</p>
 
-<p>This method is overriden my objects extending this one.</p>
+<p>This is an abstract method and must be overriden.</p>
 
 <p>Parameters:</p>
 
@@ -23,8 +25,8 @@
 <li><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</li>
 </ul>
 
-<p><strong>Can throw an Error</strong><br/>(If called)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&quot;Renderer is not meant to be instantiated directly&quot;</span><span class="p">)</span>
+<p><strong>Can throw an Error</strong><br/>(Always)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">mustOverrideError</span><span class="p">(</span><span class="s1">&#39;Renderer&#39;</span><span class="p">);</span>
     <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
 
   <span class="k">return</span> <span class="nx">Renderer</span><span class="p">;</span>

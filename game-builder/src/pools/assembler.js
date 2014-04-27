@@ -9,6 +9,7 @@
  * [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
  * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html)
  * [util](http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -34,7 +35,7 @@
 /**
  * --------------------------------
  */
-define(['game-object-pool', 'component-pool', 'util'], function(GameObjectPool, ComponentPool, Util) {
+define(['game-object-pool', 'component-pool', 'util', 'error-printer'], function(GameObjectPool, ComponentPool, Util, ErrorPrinter) {
 	var Assembler = function() {};
 
 	var addComponent = function(component, pooledObject, addMethod) {
@@ -95,14 +96,16 @@ define(['game-object-pool', 'component-pool', 'util'], function(GameObjectPool, 
 			var childId = configuration.childs[i].childId;
 
 			if (!pooledObject.add) {
-				throw new Error('Game Object with type: ' + configuration.type + ' is not a container, can not add childs to it');
+				ErrorPrinter.printError('Assembler', 'Game Object with type: ' + configuration.type + ' is not a container, can not add childs to it')
 			}
 
 			pooledObject.add(this.get(childId, configuration.childs[i].args, true));
 		}
 
 		//Adding the renderer configured for this object type		
-		addComponent.call(this, configuration.renderer, pooledObject, 'setRenderer');
+		if (configuration.renderer) {
+			addComponent.call(this, configuration.renderer, pooledObject, 'setRenderer');
+		}
 
 		//When this object is 'recycled' it returns to it's respective pool
 		pooledObject.on('recycle', this, function(go) {

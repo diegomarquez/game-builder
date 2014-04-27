@@ -54,7 +54,7 @@
  * --------------------------------
  */
 define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw'],
-	function(CollisionComponent, SAT, CollisionResolver, Vector2D, draw) {
+	function(CollisionComponent, SAT, CollisionResolver, Vector2D, Draw) {
 
 		var p = {};
 		var m = null;
@@ -118,7 +118,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 			 */
 			debug_draw: function(context) {
-				draw.polygon(context, 0, 0, this.pointsCopy, null, this.debugColor, 2);
+				Draw.polygon(context, 0, 0, this.pointsCopy, null, this.debugColor, 2);
 
 				this._super();
 			}

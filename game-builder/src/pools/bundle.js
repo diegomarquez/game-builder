@@ -5,7 +5,9 @@
  *
  * Inherits from:
  *
- * Depends of: [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
+ * Depends of: 
+ * [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -29,7 +31,7 @@
  * --------------------------------
  */
 define(function(require) {
-	var Bundle = Class.extend({
+	var Bundle = require('class').extend({
 		init: function() {
 			var gb = require('gb');
 			
@@ -48,7 +50,7 @@ define(function(require) {
 		 * @param  {Object} [args=null] 
 		 */
 		create: function(args) {
-			throw new Error('Bundle: This method must be overriden');
+			require('error-printer').mustOverrideError('Bundle');
 		}
 		/**
 		 * --------------------------------

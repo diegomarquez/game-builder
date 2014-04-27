@@ -2,6 +2,13 @@
 
 <h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
 
+<ul>
+<li>Inherits from:</li>
+</ul>
+
+<p>Depends of: 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+
 <p>A <a href="http://requirejs.org/">requireJS</a> module.</p>
 
 <p>This module wraps <a href="https://github.com/typekit/webfontloader">Web font loader</a>, it's main purpose is to avoid
@@ -49,11 +56,12 @@ once the loading is complete. The configuration object looks like this:</p>
       <span class="p">};</span>
 
       <span class="nx">config</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">inactive</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;error-printer&#39;</span><span class="p">).</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Font Loader&#39;</span><span class="p">,</span> <span class="s1">&#39;No fonts are available&#39;</span><span class="p">);</span>
         <span class="nx">onLoad</span><span class="p">();</span> 
       <span class="p">};</span>
 
         <span class="nx">config</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">fontinactive</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">familyName</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Font Loader: Font &#39;</span> <span class="o">+</span> <span class="nx">familyName</span> <span class="o">+</span> <span class="s1">&#39;could not be loaded&#39;</span><span class="p">);</span>   
+            <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;error-printer&#39;</span><span class="p">).</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Font Loader&#39;</span><span class="p">,</span> <span class="s1">&#39;Font: &#39;</span> <span class="o">+</span> <span class="nx">familyName</span> <span class="o">+</span> <span class="s1">&#39; could not be loaded&#39;</span><span class="p">);</span>   
         <span class="p">};</span>
       
       <span class="kd">var</span> <span class="nx">protocol</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">===</span> <span class="s1">&#39;https:&#39;</span> <span class="o">?</span> <span class="s1">&#39;https&#39;</span> <span class="o">:</span> <span class="s1">&#39;http&#39;</span><span class="p">;</span>

@@ -8,10 +8,8 @@
   "lib": "../../lib",
   "frameworkTag": "latest",
   "dependencies": {
-    "grunt": "~0.4.2",
     "grunt-shell": "~0.6.4",
     "grunt-open": "~0.2.2",
-    "bower": "~1.2.8",
     "grunt-bower-requirejs": "~0.8.4",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-merge-json": "~0.9.4",

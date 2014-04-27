@@ -8,7 +8,8 @@
 
 <p>Depends of:
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
@@ -19,7 +20,7 @@ is saying it should collide against.</p>
 <p>When setting up the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a> with collider components, be sure
 to checkout the documentation for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/circle-collider.html">circle-collider</a>, <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/polygon-collider.html">polygon-collider</a>
 and <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/fixed-polygon-collider.html">fixed-polygon-collider</a> to see what kind of object they expect as an argument
-to be properly configured.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="collisions">Collisions</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;component&#39;</span><span class="p">,</span> <span class="s1">&#39;collision-resolver&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">CollisionResolver</span><span class="p">)</span> <span class="p">{</span>
+to be properly configured.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="collisions">Collisions</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;component&#39;</span><span class="p">,</span> <span class="s1">&#39;collision-resolver&#39;</span><span class="p">,</span> <span class="s1">&#39;error-printer&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">CollisionResolver</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="kd">var</span> <span class="nx">collisionList</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">collisionOpponent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -38,8 +39,9 @@ adds itself to the <a href="http://diegomarquez.github.io/game-builder/game-buil
 
       <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">addToCollisionList</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 
-      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">onCollide</span><span class="p">)</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&quot;GameObject with typeId: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">typeId</span> <span class="o">+</span> <span class="s2">&quot;, needs to define an onCollide method, yo.&quot;</span><span class="p">);</span>
+      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">onCollide</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Collision Component&#39;</span><span class="p">,</span> <span class="s2">&quot;GameObject with typeId: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">typeId</span> <span class="o">+</span> <span class="s2">&quot;, needs to define an onCollide method, yo.&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>update</strong></p>
 
 <p>Here is where the magic happens.</p>

@@ -6,7 +6,8 @@
  * Inherits from: 
  *
  * Depends of: 
- * [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
+ * [state](http://diegomarquez.github.io/game-builder/game-builder-docs/src/states/state.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  * [class](http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
@@ -15,13 +16,7 @@
  * It's a pretty useful pattern in game development, as it's a rather easy way to organize and coordinate different
  * pieces of code without abusing _'if'_ statements.
  * 
- * This module has three main responsibilities:
- *
- * ### **1. Provide a factory for creating state machines and their states**
- *
- * The factory is what this module actually exposes, nothing special about it.
- * 
- * ### **2. Provides 2 types of state machines**
+ * The module provides 2 types of **state machines**
  *
  * The first **"loose"** type, allows you to just go from state to state, with no restriction. 
  * It's pretty usefull, but states need to know about the other states in order to change control flow to them. 
@@ -31,18 +26,6 @@
  * nothing about other states, which is a good thing. On it's insides, it just says it wants to go to the next state,
  * and stuff happens. No need to know identifiers of any sort. It's a bit more rigid, but could save some headaches if used in the proper
  * situation.
- *
- * ### **3. Provides a base class from which to extend your own states**
- * 
- * **States** have three main phases. **Initialization**, **Completion** and **Update**.
- * The first two are functions executed when entering and exiting a state. **Update** must be called in a loop.
- * All phases are optional. Ofcourse, having a state with no phases is a bit on the dumb side.
- *
- * <p style='color:#AD071D'>Note: State machines may throw a custom error when trying to 
- * execute <strong>Initialization</strong> and <strong>Completion</strong> actions. 
- * This is because those methods are enclosed in a _'try_ _catch'_ block. 
- * This means if you see this illusive error, there is something wrong in the callbacks registered with the
- * state machine rather than the state machine itself.</p> 
  */
 
 /**
@@ -53,10 +36,7 @@
 /**
  * --------------------------------
  */
-define(["delegate", "class"], function(Delegate) {
-	/**
-	 * ## **StateMachine**
-	 */
+define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter) {
 	var StateMachine = Class.extend({
 		init: function() {
 			this.stateIds = {}
@@ -291,60 +271,6 @@ define(["delegate", "class"], function(Delegate) {
 	});
 
 	/**
-	 * ## **State** extends [**delegate**](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
-	 */
-	var State = Delegate.extend({
-		/**
-		 * <p style='color:#AD071D'><strong>init</strong> Constructor method</p>
-		 * @param  {Object} scope Scope to be used by all the callbacks registered with this state
-		 * @param  {String} name  Name to later be able to retrieve a reference to the state if needed
-		 */
-		init: function(scope, name) { 
-			this._super(); 
-			this.scope = scope;
-			this.name = name;
-		},
-
-		// Use these methods to add callbacks to each of the three phases of a state.
-		// These method are really just wrappers to the [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) this object is extending.
-		// Just a way to type less stuff when adding callbacks.
-		addStartAction: function(callback) { this.on('start', this.scope, callback); },
-		addUpdateAction: function(callback) { this.on('update', this.scope, callback); },
-		addCompleteAction: function(callback) { this.on('complete', this.scope, callback); },
-
-		// Use these methods to remove callbacks from each of the three phases of a state.
-		// These method are really just wrappers to the [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) this object is extending.
-		// Just a way to type less stuff when adding callbacks.
-		removeStartAction: function(callback) { this.remove('start', this.scope, callback); },
-		removeUpdateAction: function(callback) { this.remove('update', this.scope, callback); },
-		removeCompleteAction: function(callback) { this.remove('complete', this.scope, callback); },
-
-		// You can use these methods to execute the actions associated with a state's phase,
-		// usually you leave that to the state machine.
-		// These method are really just wrappers to the [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) this object is extending.
-		// Just a way to type less stuff when adding callbacks.
-		start: function(args) { this.execute('start', args); },
-		update: function(args) { this.execute('update', args); },
-		complete: function(args) { this.execute('complete', args); },
-	});
-	/**
-	 * --------------------------------
-	 */
-	
-	// ### Getters for the types of events a State can fire to change control flow 
-	// If State fires an event that does not correspond to the type of state machine it is part off,
-	// nothing will happen.
-	
-	// **next** and **previous** must be used when a state is part of a **"fixed"** state machine 
-	Object.defineProperty(State.prototype, "NEXT", { get: function() { return 'next'; } });
-	Object.defineProperty(State.prototype, "PREVIOUS", { get: function() { return 'previous'; } });
-	// **change** must be used when a state is part of a **"loose"** state machine 
-	Object.defineProperty(State.prototype, "CHANGE", { get: function() { return 'change'; } });
-	/**
-	 * --------------------------------
-	 */
-
-	/**
 	 * ## **State Machine Factory** 
 	 */
 	var StateMachineFactory = {
@@ -365,7 +291,7 @@ define(["delegate", "class"], function(Delegate) {
 		try {
 			this.states[stateId][action](args);	
 		} catch(e) {
-			throw new Error("Error setting new state: " + e.message);
+			ErrorPrinter.printError('State', 'State with id: ' + stateId + ' caused an un expected error.', e);
 		}
 
 		this.currentStateId = stateId;

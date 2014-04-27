@@ -3,9 +3,12 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html)
+ * Inherits from: 
+ * [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html)
  *
- * Depends of: [path-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/path-cache.html)
+ * Depends of: 
+ * [path-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/path-cache.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -51,7 +54,7 @@
  * ```
  * <strong>Note: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
  * found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
- * The way you get a hold to a reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+ * The way you get a hold to a reference to the <a href=@@csomponent-pool@@>component-pool</a>
  * may vary.</strong>
  */
 
@@ -63,7 +66,7 @@
 /**
  * --------------------------------
  */
-define(["component", 'path-cache'], function(Component, PathCache) {
+define(["component", "path-cache", "error-printer"], function(Component, PathCache, ErrorPrinter) {
 
 	var canvas = null;
 
@@ -89,9 +92,9 @@ define(["component", 'path-cache'], function(Component, PathCache) {
 		 *
 		 * @throws {Error} If pathWidth and pathHeight properties are not set
 		 */
-		start: function() {	
+		start: function(parent) {	
 			if (!this.pathWidth && !this.pathHeight) {
-				throw new Error('Path Renderer: must configure pathWidth and pathHeight')
+				ErrorPrinter.missingArgumentError('Path Renderer', 'pathWidth', 'pathHeight')
 			}
 
 			PathCache.cache(this.name, this.pathWidth, this.pathHeight, this.drawPath);
@@ -110,7 +113,7 @@ define(["component", 'path-cache'], function(Component, PathCache) {
 		 * @throws {Error} If it is not overriden by child classes
 		 */
 		drawPath: function(context) {
-			throw new Error('Path Renderer: This method must be overriden');
+			ErrorPrinter.mustOverrideError('Path Renderer');
 		},
 		/**
 		 * --------------------------------

@@ -6,7 +6,9 @@
 
 <p>Inherits from:</p>
 
-<p>Depends of: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a></p>
+<p>Depends of: 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
@@ -19,7 +21,7 @@ to configure the pools in there. That way you can reuse that code in different p
 <p>It's not really needed but it will make things a bit more tidy.
 Because it has <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a> as a dependency it already has references to the pools
 and the canvas, so you don't have to require those in the modules extending this one.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="bundle-up">Bundle up!</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">Bundle</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="kd">var</span> <span class="nx">Bundle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">).</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">gb</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gb&#39;</span><span class="p">);</span>
       
@@ -38,7 +40,7 @@ and the canvas, so you don't have to require those in the modules extending this
 </ul>
 
 <p><strong>Can throw an Error</strong><br/>(If it is not overriden)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Bundle: This method must be overriden&#39;</span><span class="p">);</span>
+      <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;error-printer&#39;</span><span class="p">).</span><span class="nx">mustOverrideError</span><span class="p">(</span><span class="s1">&#39;Bundle&#39;</span><span class="p">);</span>
     <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
 
   <span class="k">return</span> <span class="nx">Bundle</span><span class="p">;</span>

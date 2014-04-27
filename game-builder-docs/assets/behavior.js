@@ -243,19 +243,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "slug": "classjs",
                 "isFileHeader": true
               },
-              "depth": 1
-            },
-            "title": "class.js"
-          },
-          "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 1,
-                "title": "MIT Licensed.",
-                "slug": "mit-licensed"
-              },
               "depth": 1,
               "children": [
                 {
@@ -268,6 +255,19 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "depth": 2
                 }
               ]
+            },
+            "title": "class.js"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Simple JavaScript Inheritance",
+                "slug": "simple-javascript-inheritance"
+              },
+              "depth": 2
             }
           ]
         }, {
@@ -893,6 +893,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/debug/error-printer.js",
+                "projectPath": "work/game-builder/src/debug/error-printer.js",
+                "targetPath": "src/debug/error-printer",
+                "pageTitle": "src/debug/error-printer",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "error-printer.js",
+                    "slug": "error-printerjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Error Printing",
+                        "slug": "error-printing"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "error-printer.js"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Error Printing",
+                    "slug": "error-printing"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -2591,31 +2642,65 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/state-machine.js",
-            "projectPath": "work/game-builder/src/state-machine.js",
-            "targetPath": "src/state-machine",
-            "pageTitle": "src/state-machine",
-            "firstHeader": {
-              "type": "heading",
+            "path": "src/states",
+            "title": "states"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
               "data": {
-                "level": 1,
-                "title": "state-machine.js",
-                "slug": "state-machinejs",
-                "isFileHeader": true
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/states/state.js",
+                "projectPath": "work/game-builder/src/states/state.js",
+                "targetPath": "src/states/state",
+                "pageTitle": "src/states/state",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "state.js",
+                    "slug": "statejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Encapsulation is good",
+                        "slug": "encapsulation-is-good"
+                      },
+                      "depth": 2,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Getters for the types of events a state can fire to change control flow",
+                            "slug": "getters-for-the-types-of-events-a-state-can-fire-to-change-control-flow"
+                          },
+                          "depth": 3
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "title": "state.js"
               },
-              "depth": 1,
-              "children": [
+              "depth": 3,
+              "outline": [
                 {
                   "type": "heading",
                   "data": {
@@ -2629,7 +2714,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "Getters for the types of events a State can fire to change control flow",
+                        "title": "Getters for the types of events a state can fire to change control flow",
                         "slug": "getters-for-the-types-of-events-a-state-can-fire-to-change-control-flow"
                       },
                       "depth": 3
@@ -2637,58 +2722,119 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   ]
                 }
               ]
-            },
-            "title": "state-machine.js"
-          },
-          "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
+            }, {
+              "type": "file",
               "data": {
-                "level": 2,
-                "title": "Encapsulation is good",
-                "slug": "encapsulation-is-good"
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/states/state-machine.js",
+                "projectPath": "work/game-builder/src/states/state-machine.js",
+                "targetPath": "src/states/state-machine",
+                "pageTitle": "src/states/state-machine",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "state-machine.js",
+                    "slug": "state-machinejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Encapsulation is good",
+                        "slug": "encapsulation-is-good"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "state-machine.js"
               },
-              "depth": 2,
-              "children": [
+              "depth": 3,
+              "outline": [
                 {
                   "type": "heading",
                   "data": {
-                    "level": 3,
-                    "title": "Getters for the types of events a State can fire to change control flow",
-                    "slug": "getters-for-the-types-of-events-a-state-can-fire-to-change-control-flow"
+                    "level": 2,
+                    "title": "Encapsulation is good",
+                    "slug": "encapsulation-is-good"
                   },
-                  "depth": 3
+                  "depth": 2
                 }
               ]
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/timer-factory.js",
-            "projectPath": "work/game-builder/src/timer-factory.js",
-            "targetPath": "src/timer-factory",
-            "pageTitle": "src/timer-factory",
-            "firstHeader": {
-              "type": "heading",
+            "path": "src/timers",
+            "title": "timers"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
               "data": {
-                "level": 1,
-                "title": "timer-factory.js",
-                "slug": "timer-factoryjs",
-                "isFileHeader": true
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/timers/timer.js",
+                "projectPath": "work/game-builder/src/timers/timer.js",
+                "targetPath": "src/timers/timer",
+                "pageTitle": "src/timers/timer",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "timer.js",
+                    "slug": "timerjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Time, time, time, time, TIME!",
+                        "slug": "time-time-time-time-time"
+                      },
+                      "depth": 2,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Getters for all the types of events a Timer can hook into",
+                            "slug": "getters-for-all-the-types-of-events-a-timer-can-hook-into"
+                          },
+                          "depth": 3
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "title": "timer.js"
               },
-              "depth": 1,
-              "children": [
+              "depth": 3,
+              "outline": [
                 {
                   "type": "heading",
                   "data": {
@@ -2710,28 +2856,55 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   ]
                 }
               ]
-            },
-            "title": "timer-factory.js"
-          },
-          "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
+            }, {
+              "type": "file",
               "data": {
-                "level": 2,
-                "title": "Time, time, time, time, TIME!",
-                "slug": "time-time-time-time-time"
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/timers/timer-factory.js",
+                "projectPath": "work/game-builder/src/timers/timer-factory.js",
+                "targetPath": "src/timers/timer-factory",
+                "pageTitle": "src/timers/timer-factory",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "timer-factory.js",
+                    "slug": "timer-factoryjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Manage Timers",
+                        "slug": "manage-timers"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "timer-factory.js"
               },
-              "depth": 2,
-              "children": [
+              "depth": 3,
+              "outline": [
                 {
                   "type": "heading",
                   "data": {
-                    "level": 3,
-                    "title": "Getters for all the types of events a Timer can hook into",
-                    "slug": "getters-for-all-the-types-of-events-a-timer-can-hook-into"
+                    "level": 2,
+                    "title": "Manage Timers",
+                    "slug": "manage-timers"
                   },
-                  "depth": 3
+                  "depth": 2
                 }
               ]
             }

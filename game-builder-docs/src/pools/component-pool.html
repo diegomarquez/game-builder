@@ -4,9 +4,11 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/pool.html">pool</a></p>
+<p>Inherits from: 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/pool.html">pool</a></p>
 
-<p>Depends of:</p>
+<p>Depends of:
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
@@ -97,7 +99,7 @@ contain the arguments that this configuration will apply</p></div></div><div cla
         <span class="kd">var</span> <span class="nx">ok</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">createNewIfNeeded</span><span class="p">(</span><span class="nx">configuration</span><span class="p">.</span><span class="nx">componentId</span><span class="p">);</span>
 
         <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Component with id: &#39;</span> <span class="o">+</span> <span class="nx">configuration</span><span class="p">.</span><span class="nx">componentId</span> <span class="o">+</span> <span class="s1">&#39; is not available&#39;</span><span class="p">);</span>
+          <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;error-printer&#39;</span><span class="p">).</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Component Pool&#39;</span><span class="p">,</span> <span class="s1">&#39;Component with id: &#39;</span> <span class="o">+</span> <span class="nx">configuration</span><span class="p">.</span><span class="nx">componentId</span> <span class="o">+</span> <span class="s1">&#39; is not available&#39;</span><span class="p">);</span>
         <span class="p">}</span>
       <span class="p">}</span>
 
