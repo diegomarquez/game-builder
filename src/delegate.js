@@ -70,6 +70,72 @@ define(["class", "util"], function(Class, Util) {
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>on</strong></p>
+		 *
+		 * Use to register functions under the given id. This method is a shorthand for
+		 *
+		 * ``` javascript  
+		 * delegate.on(name, scope, callback, true);
+		 * ``` 
+		 *
+		 * The function will be removed from the corresponding list upon execution.
+		 * 
+		 * @param  {String} name Id that the function will be associated with
+		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'
+		 * @param  {Function} callback Function you want to execute
+		 */
+		once: function(name, scope, callback) {
+			this.on(name, scope, callback, true);
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>on</strong></p>
+		 *
+		 * Use to register functions under the given id. This method is a shorthand for
+		 *
+		 * ``` javascript  
+		 * delegate.on(name, scope, callback, false, true, false);
+		 * ``` 
+		 *
+		 * The function will not be removed from the corresponding list, if the **softCleanUp** method is called.
+		 * 
+		 * @param  {String} name Id that the function will be associated with
+		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'
+		 * @param  {Function} callback Function you want to execute
+		 */
+		persist: function(name, scope, callback) {
+			this.on(name, scope, callback, false, true, false);
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>on</strong></p>
+		 *
+		 * Use to register functions under the given id. This method is a shorthand for
+		 *
+		 * ``` javascript  
+		 * delegate.on(name, scope, callback, false, false, true);
+		 * ``` 
+		 *
+		 * Only a single function is added to the corresponding list, even if the method is called many times.
+		 * 
+		 * @param  {String} name Id that the function will be associated with
+		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'
+		 * @param  {Function} callback Function you want to execute
+		 */
+		single: function(name, scope, callback) {
+			this.on(name, scope, callback, false, false, true);
+		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>remove</strong></p>
