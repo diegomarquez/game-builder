@@ -3,7 +3,7 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [class](@@class@@)
+ * Inherits from: [delegate](@@delegate@@)
  *
  * Depends of: 
  * [util](@@util@@)
@@ -51,9 +51,11 @@
 /**
  * --------------------------------
  */
-define(["class", "util", "error-printer"], function(Class, Util, ErrorPrinter) {
-	var Pool = Class.extend({
+define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrinter) {
+	var Pool = Delegate.extend({
 		init: function() {
+			this._super();
+
 			this.pools = {};
 			this.configurations = {};
 			this.active = {};
@@ -85,6 +87,8 @@ define(["class", "util", "error-printer"], function(Class, Util, ErrorPrinter) {
 			}
 
 			this.addInitialObjectsToPool(amount, alias);
+
+			this.execute(this.INIT);
 		},
 		/**
 		 * --------------------------------
@@ -118,6 +122,46 @@ define(["class", "util", "error-printer"], function(Class, Util, ErrorPrinter) {
 		 */
 		getPoolSize: function(alias) {
 			this.pools[alias].objects.length;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>getTotalPooledObjectsCount</strong></p>
+		 *
+		 * Get the total amount of pooled objects
+		 *
+		 * @return {Number} Amount of pooled objects
+		 */
+		getTotalPooledObjectsCount: function() {
+			var result = 0;
+
+			for (var k in this.pools) {
+				result += this.pools[k].objects.length;
+			}
+
+			return result;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>getTotalActiveObjectsCount</strong></p>
+		 *
+		 * Get the total amount of active objects
+		 *
+		 * @return {Number} Amount of active objects
+		 */
+		getTotalActiveObjectsCount: function() {
+			var result = 0;
+
+			for (var k in this.active) {
+				result += this.active[k].length;
+			}
+
+			return result;
 		},
 		/**
 		 * --------------------------------
@@ -161,6 +205,9 @@ define(["class", "util", "error-printer"], function(Class, Util, ErrorPrinter) {
 		 */
 		returnToPool: function(o) {
 			if (!o.poolId) return;
+
+			this.execute(this.RETURN);
+
 			this.pools[o.poolId].objects.push(o);
 			this.active[o.poolId].splice(this.active[o.poolId].indexOf(o), 1);
 		},
@@ -224,6 +271,8 @@ define(["class", "util", "error-printer"], function(Class, Util, ErrorPrinter) {
 		 * @return {Object}
 		 */
 		getPooledObject: function(type) {
+			this.execute(this.GET);
+
 			var o = this.pools[type].objects.pop();
 			this.active[type].push(o);
 			return o;
@@ -264,6 +313,8 @@ define(["class", "util", "error-printer"], function(Class, Util, ErrorPrinter) {
 			this.pools = {};
 			this.configurations = {};
 			this.active = {};	
+
+			this.execute(this.CLEAR);
 		},
 		/**
 		 * --------------------------------
@@ -301,6 +352,15 @@ define(["class", "util", "error-printer"], function(Class, Util, ErrorPrinter) {
 		 * --------------------------------
 		 */
 	});
+
+	// ### Getters for all the types of events a Pool can hook into
+	Object.defineProperty(Pool.prototype, "INIT", { get: function() { return 'init'; } }); 
+	Object.defineProperty(Pool.prototype, "GET", { get: function() { return 'get'; } });
+	Object.defineProperty(Pool.prototype, "RETURN", { get: function() { return 'return'; } });
+	Object.defineProperty(Pool.prototype, "CLEAR", { get: function() { return 'clear'; } });
+	/**
+	 * --------------------------------
+	 */
 
 	return Pool;
 });
