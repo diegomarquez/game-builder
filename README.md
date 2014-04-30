@@ -12,22 +12,26 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Tag
-- Deploy Website
-    - Generate docs
-
 - Examples v6 
     - Add feedback about the internals of each example
-        - Pooled Objects
-        - Active Objects
+        - Pooled Objects (DONE)
+        - Active Objects (DOE)
         - Pooled Sound Channels
         - Active Sound Channels
+        - Loaded Sounds
+        - Assigned Channels
         - Cached Images
         - Cached Paths
         - Cached Text
-        - Loaded Sounds
-        - Assigned Channels
+        - Cached Objects (DONE)
     - Module to add that information to all examples
+        - debug folder (DONE)
+        - Add to all examples
+    - Style
+    - Interface for all Caches
+
+- Fix CSS on examples, they are not alligned properly when putting them in an iFrame
+    - Checkout renderers examples
 
 - Tag
 - Deploy Website
