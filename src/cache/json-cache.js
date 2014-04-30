@@ -3,7 +3,7 @@
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
  * ### [Find me on Github](https://github.com/diegomarquez)
  * 
- * Inherits from: 
+ * Inherits from: [delegate](@@delegate@@)
  * 
  * Depends of:
  *
@@ -22,71 +22,94 @@
 /**
  * --------------------------------
  */
-define(function() {
+define(function(require) {
 	var cache = {};
 
-	var JSONCache = function() {};
+	JSONCache = require('delegate').extend({
+		init: function() {
+			this._super();
+		},
 
-	/**
-	 * <p style='color:#AD071D'><strong>parse</strong></p>
-	 *
-	 * @param  {String} id     Id to retrived the cached object later
-	 * @param  {String} string A JSON string
-	 */
-	JSONCache.prototype.parse = function(id, string) {
-		cache[id] = JSON.parse(string);
-	};
-	/**
-	 * --------------------------------
-	 */
+		/**
+		 * <p style='color:#AD071D'><strong>parse</strong></p>
+		 *
+		 * @param  {String} id     Id to retrived the cached object later
+		 * @param  {String} string A JSON string
+		 */
+		parse: function(id, string) {
+			cache[id] = JSON.parse(string);
+			this.execute(this.CACHE, cache[id]);
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>cache</strong></p>
+		 *
+		 * @param  {String} id     Id to retrived the cached object later
+		 * @param  {Object} object Object to cache
+		 */
+		cache: function(id, object) {
+			cache[id] = object;
+			this.execute(this.CACHE, cache[id]);
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>get</strong></p>
+		 *
+		 * @param  {String} id Id of the object to retrieve
+		 *
+		 * @return {Object}    Cached JSON object
+		 */
+		get: function(id) {
+			return cache[id];
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>getTotalCount</strong></p>
+		 *
+		 * @return {Number}    Total amount of objects in the cache
+		 */
+		getTotalCount: function() {
+			return Object.keys(cache).length;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>clear</strong></p>
+		 *
+		 * @param  {String} id Id of the cached object to remove
+		 */
+		clear: function(id) {
+			this.execute(this.CLEAR, cache[id]);
+			delete cache[id];
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		clearAll: function() {
+			for(var k in cache) {
+				delete cache[k];
+			}
 
-	/**
-	 * <p style='color:#AD071D'><strong>cache</strong></p>
-	 *
-	 * @param  {String} id     Id to retrived the cached object later
-	 * @param  {Object} object Object to cache
-	 */
-	JSONCache.prototype.cache = function(id, object) {
-		cache[id] = object;
-	};
-	/**
-	 * --------------------------------
-	 */
-
-	/**
-	 * <p style='color:#AD071D'><strong>get</strong></p>
-	 *
-	 * @param  {String} id Id of the object to retrieve
-	 *
-	 * @return {Object}    Cached JSON object
-	 */
-	JSONCache.prototype.get = function(id) {
-		return cache[id];
-	};
-	/**
-	 * --------------------------------
-	 */
-
-	/**
-	 * <p style='color:#AD071D'><strong>clear</strong></p>
-	 *
-	 * @param  {String} id Id of the cached object to remove
-	 */
-	JSONCache.prototype.clear = function(id) {
-		delete cache[id];
-	};
-	/**
-	 * --------------------------------
-	 */
-
-	/**
-	 * <p style='color:#AD071D'><strong>clearAll</strong></p>
-	 */
-	JSONCache.prototype.clearAll = function() {
-		for(var k in cache) {
-			delete cache[k];
+			this.execute(this.CLEAR_ALL);
 		}
-	};
+	});
+
+	// ### Getters for all the types of events the JSON cache can  hook into
+	Object.defineProperty(JSONCache.prototype, "CACHE", { get: function() { return 'cache'; } }); 
+	Object.defineProperty(JSONCache.prototype, "CLEAR", { get: function() { return 'clear'; } });
+	Object.defineProperty(JSONCache.prototype, "CLEAR_ALL", { get: function() { return 'clear_all'; } });
 	/**
 	 * --------------------------------
 	 */
