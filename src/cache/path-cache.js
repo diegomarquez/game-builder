@@ -28,119 +28,70 @@
 /**
  * --------------------------------
  */
-define(function() {
-	var cache = {};
-
-	var PathCache = function() {};
-
-	/**
-	 * <p style='color:#AD071D'><strong>cache</strong></p>
-	 *
-	 * @param {String} id Id that will be used to retrieve the cached canvas
-	 * @param {Number} width Maximun width of the canvas to cache
-	 * @param {Number} height Maximun Height of the canvas to cache
-	 * @param {Function} drawingFunction Drawing commands to cache
-	 */
-	PathCache.prototype.cache = function(id, width, height, drawingFunction) {
-		var canvas = cache[id];
-
-		if (!canvas) {
-			canvas = document.createElement('canvas');
-		}
-
-		canvas.width = width;
-		canvas.height = height;
-
-		var context = canvas.getContext('2d');
-		context.clearRect(0, 0, canvas.width, canvas.height);
-		drawingFunction(context);
-		cache[id] = canvas;
-	};
-	/**
-	 * --------------------------------
-	 */
-	
-	/**
-	 * <p style='color:#AD071D'><strong>draw</strong></p>
-	 *
-	 * This method does not clear the cached [Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas)
-	 * it just draws more things into it
-	 * 
-	 * @param {String} id Id of a cached [Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) to draw to
-	 * @param {Function} drawingFunction Drawing to command to add on top of the cached canvas 
-	 */
-	PathCache.prototype.draw = function(id, drawingFunction) {
-		var canvas = cache[id];
-
-		if (!canvas) {
-			return;
-		}
+define(function(require) {
+	var PathCache = require('cache').extend({
+		/**
+		 * <p style='color:#AD071D'><strong>name</strong></p>
+		 *
+		 * @return {String} The name of the cache
+		 */
+		name: function() {
+			return 'Path Cache';
+		},
+		/**
+		 * --------------------------------
+		 */
 		
-		drawingFunction(canvas.getContext('2d'));
-	};
-	/**
-	 * --------------------------------
-	 */
+		/**
+		 * <p style='color:#AD071D'><strong>cache</strong></p>
+		 *
+		 * @param {String} id Id that will be used to retrieve the cached canvas
+		 * @param {Number} width Maximun width of the canvas to cache
+		 * @param {Number} height Maximun Height of the canvas to cache
+		 * @param {Function} drawingFunction Drawing commands to cache
+		 */
+		cache: function(id, width, height, drawingFunction) {
+			var canvas = this.cacheObject[id];
 
-	/**
-	 * <p style='color:#AD071D'><strong>get</strong></p>
-	 *
-	 * @param  {String} id Id of a cached [Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas)
-	 *
-	 * @return {Object}    Cached [Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas)
-	 */
-	PathCache.prototype.get = function(id) {
-		return cache[id];
-	};
-	/**
-	 * --------------------------------
-	 */
+			if (!canvas) {
+				canvas = document.createElement('canvas');
+			}
 
-	/**
-	 * <p style='color:#AD071D'><strong>clear</strong></p>
-	 *
-	 * @param  {String} id Id of [Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) to remove from cache
-	 */
-	PathCache.prototype.clear = function(id) {
-		delete cache[id];
-	};
-	/**
-	 * --------------------------------
-	 */
+			canvas.width = width;
+			canvas.height = height;
 
-	/**
-	 * <p style='color:#AD071D'><strong>clearAll</strong></p>
-	 */
-	PathCache.prototype.clearAll = function() {
-		for(var k in cache) {
-			delete cache[k];
-		}
-	};
-	/**
-	 * --------------------------------
-	 */
-	
-	/**
-	 * <p style='color:#AD071D'><strong>toString</strong></p>
-	 *
-	 * String representation of the cache
-	 */
-	PathCache.prototype.toString = function() {
-		var r = {}
+			var context = canvas.getContext('2d');
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			drawingFunction(context);
+			this.cacheObject[id] = canvas;
 
-		r['cachedPaths'] = cache.keys().length;
-		r['paths'] = [];
+			this.execute(this.CACHE, this.cacheObject[id]);
+		},
+		/**
+		 * --------------------------------
+		 */
 		
+		/**
+		 * <p style='color:#AD071D'><strong>draw</strong></p>
+		 *
+		 * This method does not clear the cached [Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas)
+		 * it just draws more things into it
+		 * 
+		 * @param {String} id Id of a cached [Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) to draw to
+		 * @param {Function} drawingFunction Drawing to command to add on top of the cached canvas 
+		 */
+		draw: function(id, drawingFunction) {
+			var canvas = this.cacheObject[id];
 
-		for(var k in cache) {
-			r['paths'].push(k);			
+			if (!canvas) {
+				return;
+			}
+			
+			drawingFunction(canvas.getContext('2d'));
+
+			this.execute(this.CACHE, this.cacheObject[id]);
 		}
-
-		return JSON.stringify(r, null, 2);
-	};
-	/**
-	 * --------------------------------
-	 */
+ 	});
 
 	return new PathCache();
 });
