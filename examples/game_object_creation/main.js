@@ -36,6 +36,7 @@ define(function(require){
 	// Each layer is on top of the previous one.
 	// If your project needs more layers, you can replace this extension with one of your own.
 	game.add_extension(require('basic-layer-setup'));
+	game.add_extension(require("activity-display"));
 	
 	// Getting the prototype for [basic-game-object](http://diegomarquez.github.io/game-builder/examples-docs/common_src/basic-game-object.html)
 	var basic_game_object = require('basic-game-object'); 

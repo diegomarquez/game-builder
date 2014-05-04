@@ -52,6 +52,57 @@ All the functions registered under the id provided will be executed in the order
         <span class="nx">removeOnExecute</span><span class="o">:</span> <span class="nx">removeOnExecute</span><span class="p">,</span>
         <span class="nx">keep</span><span class="o">:</span> <span class="nx">keepOnCleanUp</span>
       <span class="p">});</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>on</strong></p>
+
+<p>Use to register functions under the given id. This method is a shorthand for</p>
+
+<pre><code class=" javascript  ">delegate.on(name, scope, callback, true);
+</code></pre>
+
+<p>The function will be removed from the corresponding list upon execution.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>name must be a String.</strong><br/>(Id that the function will be associated with)</p></li>
+<li><p><strong>scope must be an Object.</strong><br/>(Scope of the function, most of the time you will be passing 'this')</p></li>
+<li><p><strong>callback must be a Function.</strong><br/>(Function you want to execute)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">once</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">scope</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">scope</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>on</strong></p>
+
+<p>Use to register functions under the given id. This method is a shorthand for</p>
+
+<pre><code class=" javascript  ">delegate.on(name, scope, callback, false, true, false);
+</code></pre>
+
+<p>The function will not be removed from the corresponding list, if the <strong>softCleanUp</strong> method is called.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>name must be a String.</strong><br/>(Id that the function will be associated with)</p></li>
+<li><p><strong>scope must be an Object.</strong><br/>(Scope of the function, most of the time you will be passing 'this')</p></li>
+<li><p><strong>callback must be a Function.</strong><br/>(Function you want to execute)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">persist</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">scope</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">scope</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>on</strong></p>
+
+<p>Use to register functions under the given id. This method is a shorthand for</p>
+
+<pre><code class=" javascript  ">delegate.on(name, scope, callback, false, false, true);
+</code></pre>
+
+<p>Only a single function is added to the corresponding list, even if the method is called many times.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>name must be a String.</strong><br/>(Id that the function will be associated with)</p></li>
+<li><p><strong>scope must be an Object.</strong><br/>(Scope of the function, most of the time you will be passing 'this')</p></li>
+<li><p><strong>callback must be a Function.</strong><br/>(Function you want to execute)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">single</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">scope</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">scope</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>remove</strong></p>
 
 <p>Removes the specified function from the array it is in.</p>

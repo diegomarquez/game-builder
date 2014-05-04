@@ -1,4 +1,5 @@
 {
+  "cache@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/cache.html",
   "image-cache@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html",
   "json-cache@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/json-cache.html",
   "path-cache@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/path-cache.html",
@@ -15,6 +16,7 @@
   "path-renderer@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/path-renderer.html",
   "renderer@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html",
   "text-renderer@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/text-renderer.html",
+  "activity-display@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/activity-display.html",
   "error-printer@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html",
   "game-object-debug-draw@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/game-object-debug-draw.html",
   "delegate@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html",

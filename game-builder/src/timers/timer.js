@@ -183,6 +183,8 @@ define(function(require) {
 
 			var to = this;
 
+			this.execute(this.START);
+
 			this.id = setTimeout(function() {
 				if (to.Running) {
 					to.execute(to.REPEATE, to.repeates)
@@ -449,6 +451,7 @@ define(function(require) {
 	});
 
 	// ### Getters for all the types of events a Timer can hook into
+	Object.defineProperty(Timer.prototype, "START", { get: function() { return 'start'; } });
 	Object.defineProperty(Timer.prototype, "REPEATE", { get: function() { return 'repeate'; } });
 	Object.defineProperty(Timer.prototype, "COMPLETE", { get: function() { return 'complete'; } });
 	Object.defineProperty(Timer.prototype, "STOP", { get: function() { return 'stop'; } });

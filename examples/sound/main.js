@@ -24,6 +24,7 @@ define(function(require){
 	var keyboard = require('keyboard');
 
 	game.add_extension(require("sound-control"));
+	game.add_extension(require("activity-display"));
 
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {

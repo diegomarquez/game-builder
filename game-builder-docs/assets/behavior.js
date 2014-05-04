@@ -67,6 +67,79 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/cache/cache.js",
+                "projectPath": "work/game-builder/src/cache/cache.js",
+                "targetPath": "src/cache/cache",
+                "pageTitle": "src/cache/cache",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "cache.js",
+                    "slug": "cachejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Cache Interface",
+                        "slug": "cache-interface"
+                      },
+                      "depth": 2,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Getters for all the types of events a cache can hook into",
+                            "slug": "getters-for-all-the-types-of-events-a-cache-can-hook-into"
+                          },
+                          "depth": 3
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "title": "cache.js"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Cache Interface",
+                    "slug": "cache-interface"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Getters for all the types of events a cache can hook into",
+                        "slug": "getters-for-all-the-types-of-events-a-cache-can-hook-into"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/cache/image-cache.js",
                 "projectPath": "work/game-builder/src/cache/image-cache.js",
                 "targetPath": "src/cache/image-cache",
@@ -893,6 +966,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/debug/activity-display.js",
+                "projectPath": "work/game-builder/src/debug/activity-display.js",
+                "targetPath": "src/debug/activity-display",
+                "pageTitle": "src/debug/activity-display",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "activity-display.js",
+                    "slug": "activity-displayjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Activity display",
+                        "slug": "activity-display"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "activity-display.js"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Activity display",
+                    "slug": "activity-display"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -2519,7 +2643,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "title": "Pooling",
                         "slug": "pooling"
                       },
-                      "depth": 2
+                      "depth": 2,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Getters for all the types of events a Pool can hook into",
+                            "slug": "getters-for-all-the-types-of-events-a-pool-can-hook-into"
+                          },
+                          "depth": 3
+                        }
+                      ]
                     }
                   ]
                 },
@@ -2534,7 +2669,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "title": "Pooling",
                     "slug": "pooling"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Getters for all the types of events a Pool can hook into",
+                        "slug": "getters-for-all-the-types-of-events-a-pool-can-hook-into"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             }, {
@@ -2623,7 +2769,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "title": "Play it loud!",
                     "slug": "play-it-loud"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Getters for all the types of events the sound player can hook into",
+                        "slug": "getters-for-all-the-types-of-events-the-sound-player-can-hook-into"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             },
@@ -2638,7 +2795,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "title": "Play it loud!",
                 "slug": "play-it-loud"
               },
-              "depth": 2
+              "depth": 2,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 3,
+                    "title": "Getters for all the types of events the sound player can hook into",
+                    "slug": "getters-for-all-the-types-of-events-the-sound-player-can-hook-into"
+                  },
+                  "depth": 3
+                }
+              ]
             }
           ]
         }, {
@@ -2889,7 +3057,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "title": "Manage Timers",
                         "slug": "manage-timers"
                       },
-                      "depth": 2
+                      "depth": 2,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 3,
+                            "title": "Getters for all the types of events the sound player can hook into",
+                            "slug": "getters-for-all-the-types-of-events-the-sound-player-can-hook-into"
+                          },
+                          "depth": 3
+                        }
+                      ]
                     }
                   ]
                 },
@@ -2904,7 +3083,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "title": "Manage Timers",
                     "slug": "manage-timers"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Getters for all the types of events the sound player can hook into",
+                        "slug": "getters-for-all-the-types-of-events-the-sound-player-can-hook-into"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             }

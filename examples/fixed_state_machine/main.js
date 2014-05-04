@@ -24,6 +24,8 @@ define(function(require){
 
 	var stateMachineFactory = require('state-machine');
 
+	game.add_extension(require("activity-display"));
+
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {
 		console.log("Welcome to Game-Builder!");

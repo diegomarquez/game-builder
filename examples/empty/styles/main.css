@@ -13,17 +13,16 @@ div {
 }
 
 #labels {
-	color: #fff;
+	color: #f00;
 	position: relative;
 }
 
 .label {
 	position: absolute;
 	text-align: center;
-	width: 100%;
+	width: 400px;
 }
 
 #label_1 {
 	top: -150px;
-	left: 0px;
 }

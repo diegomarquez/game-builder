@@ -21,6 +21,7 @@ define(function(require){
 	var reclaimer = gb.reclaimer;
 
 	game.add_extension(require('basic-layer-setup'));
+	game.add_extension(require("activity-display"));
 
 	var keyboard = require('keyboard');
 

@@ -19,6 +19,8 @@ define(function(require){
 	var game = gb.game;
 	var root = gb.root;
 
+	game.add_extension(require("activity-display"));
+
 	// The first thing to do is get a hold to a reference to the state-machine_factory.
 	// This thing will let you instantiate different kinds of state machines and their states.
 	var stateMachineFactory = require('state-machine');

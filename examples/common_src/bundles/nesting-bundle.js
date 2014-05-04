@@ -35,7 +35,7 @@ define(function(require) {
 
 			// Create a 'container' components pool and give it the id 'Container'
 			// For this example we will be using 1 container.
-			this.gameObjectPool.createPool("Container", container, 2);
+			this.gameObjectPool.createPool("Container", container, 1);
 
 			// Here we can see that the x and y properties of a game-object are relative to 
 			// the respective parent. In the previous example since the parent was the root,

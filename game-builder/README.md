@@ -12,24 +12,12 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Try out all examples
+- Fix CSS on examples, they are not alligned properly when putting them in an iFrame
+    - Checkout renderers examples
 
-- Tag
-- Deploy Website
-    - Generate docs
+- Agregar una propiedad a los canales para ver cuando terminaron de cargar, porque readyState es basura.
 
-- Examples v6 
-    - Add feedback about the internals of each example
-        - Pooled Objects
-        - Active Objects
-        - Pooled Sound Channels
-        - Active Sound Channels
-        - Cached Images
-        - Cached Paths
-        - Cached Text
-        - Loaded Sounds
-        - Assigned Channels
-    - Module to add that information to all examples
+- Add missing event information of caches, sound-player and timer-factory to their respective docs
 
 - Tag
 - Deploy Website
@@ -48,8 +36,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Animation Capturing Tool
 - Visual Editor
-
-- Proper Tests
 
 ### [This is the prototype game][tirador] which spurred the creation of this project.
 

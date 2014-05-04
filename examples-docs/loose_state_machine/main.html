@@ -11,7 +11,9 @@
   <span class="kd">var</span> <span class="nx">gb</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gb&#39;</span><span class="p">);</span>
   
   <span class="kd">var</span> <span class="nx">game</span> <span class="o">=</span> <span class="nx">gb</span><span class="p">.</span><span class="nx">game</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">gb</span><span class="p">.</span><span class="nx">root</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The first thing to do is get a hold to a reference to the state-machine_factory.
+  <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">gb</span><span class="p">.</span><span class="nx">root</span><span class="p">;</span>
+
+  <span class="nx">game</span><span class="p">.</span><span class="nx">add_extension</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;activity-display&quot;</span><span class="p">));</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The first thing to do is get a hold to a reference to the state-machine_factory.
 This thing will let you instantiate different kinds of state machines and their states.</p></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">stateMachineFactory</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;state-machine&#39;</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">keyboard</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;keyboard&#39;</span><span class="p">);</span>
 

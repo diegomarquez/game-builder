@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="en"><head><title>src/debug/activity-display</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/debug/activity-display"><meta name="groc-project-path" content="work/game-builder/src/debug/activity-display.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/debug/activity-display.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="activity-displayjs">activity-display.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from:
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a></p>
+
+<p>Depends of: 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/json-cache.html">json-cache</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html">image-cache</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/path-cache.html">path-cache</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/text-cache.html">text-cache</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/sound-player.html">sound-player</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer-factory.html">timer-factory</a></p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This module displays information on everything that is pooled and cached in <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="activity-display">Activity display</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">gb</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gb&#39;</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">gameObjectPool</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;game-object-pool&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">componentPool</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;component-pool&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">jsonCache</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;json-cache&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">imageCache</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;image-cache&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">pathCache</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path-cache&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">textCache</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;text-cache&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">soundPlayer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;sound-player&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">timerFactory</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;timer-factory&#39;</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">displayElement</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">displays</span> <span class="o">=</span> <span class="p">[];</span>
+
+  <span class="kd">var</span> <span class="nx">getDisplay</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="nx">listener</span><span class="p">,</span> <span class="nx">trigger</span><span class="p">,</span> <span class="nx">events</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">object</span><span class="o">:</span> <span class="nx">object</span><span class="p">,</span>
+      <span class="nx">listener</span><span class="o">:</span> <span class="nx">listener</span><span class="p">,</span>
+      <span class="nx">trigger</span><span class="o">:</span> <span class="nx">trigger</span><span class="p">,</span>
+      <span class="nx">events</span><span class="o">:</span> <span class="nx">events</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="kd">var</span> <span class="nx">createDisplay</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">display</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+    <span class="nx">display</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="nx">id</span><span class="p">);</span> 
+    <span class="nx">display</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">fontSize</span> <span class="o">=</span> <span class="s1">&#39;8px&#39;</span><span class="p">;</span>
+    <span class="nx">display</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;#fff&#39;</span><span class="p">;</span>
+    <span class="nx">display</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">margin</span> <span class="o">=</span> <span class="s1">&#39;1px&#39;</span><span class="p">;</span>
+    <span class="nx">display</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">padding</span> <span class="o">=</span> <span class="s1">&#39;1px&#39;</span><span class="p">;</span>
+
+    <span class="nx">container</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">display</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="kd">var</span> <span class="nx">positionInfoButton</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">element</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">gb</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">clientTop</span> <span class="o">+</span> <span class="nx">gb</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">clientHeight</span> <span class="o">-</span> <span class="nx">element</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">;</span>
+
+    <span class="nx">displayElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="nx">y</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">;</span>
+    <span class="nx">displayElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">+</span> <span class="s1">&#39;px&#39;</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="kd">var</span> <span class="nx">updatePool</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">pool</span><span class="p">,</span> <span class="nx">displayId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">display</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">displayId</span><span class="p">);</span>
+
+      <span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; =&gt; &#39;</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="nx">pool</span><span class="p">.</span><span class="nx">getTotalActiveObjectsCount</span><span class="p">(),</span> <span class="nx">pool</span><span class="p">.</span><span class="nx">getTotalPooledObjectsCount</span><span class="p">()];</span>
+
+      <span class="nx">display</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="nx">text</span> <span class="o">+</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; / &#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="kd">var</span> <span class="nx">updateCache</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">cache</span><span class="p">,</span> <span class="nx">displayId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">display</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">displayId</span><span class="p">);</span>
+
+      <span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; =&gt; &#39;</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">getTotalCount</span><span class="p">();</span>
+
+      <span class="nx">display</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="nx">text</span> <span class="o">+</span> <span class="nx">numbers</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="kd">var</span> <span class="nx">updateSoundDisplay</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">display</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;soundPlayerDisplay&#39;</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;Sound Player =&gt; &#39;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="nx">soundPlayer</span><span class="p">.</span><span class="nx">getPooledCount</span><span class="p">(),</span> <span class="nx">soundPlayer</span><span class="p">.</span><span class="nx">getActiveCount</span><span class="p">(),</span> <span class="nx">soundPlayer</span><span class="p">.</span><span class="nx">getAssignedCount</span><span class="p">(),</span> <span class="nx">soundPlayer</span><span class="p">.</span><span class="nx">getPooledCount</span><span class="p">()</span> <span class="o">+</span> <span class="nx">soundPlayer</span><span class="p">.</span><span class="nx">getActiveCount</span><span class="p">()</span> <span class="o">+</span> <span class="nx">soundPlayer</span><span class="p">.</span><span class="nx">getAssignedCount</span><span class="p">()];</span>
+
+    <span class="nx">display</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="nx">text</span> <span class="o">+</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="kd">var</span> <span class="nx">updateTimerDisplay</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">display</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;timerFactoryDisplay&#39;</span><span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;Timer Factory =&gt; &#39;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="nx">timerFactory</span><span class="p">.</span><span class="nx">getRunningCount</span><span class="p">(),</span> <span class="nx">timerFactory</span><span class="p">.</span><span class="nx">getPausedCount</span><span class="p">(),</span> <span class="nx">timerFactory</span><span class="p">.</span><span class="nx">getStoppedCount</span><span class="p">(),</span> <span class="nx">timerFactory</span><span class="p">.</span><span class="nx">getTotalCount</span><span class="p">()];</span>
+
+    <span class="nx">display</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="nx">text</span> <span class="o">+</span> <span class="nx">numbers</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="nx">displays</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">getDisplay</span><span class="p">(</span><span class="nx">gameObjectPool</span><span class="p">,</span> <span class="nx">updatePool</span><span class="p">(</span><span class="s1">&#39;Game Object Pool&#39;</span><span class="p">,</span> <span class="nx">gameObjectPool</span><span class="p">,</span> <span class="s1">&#39;goPoolDisplay&#39;</span><span class="p">),</span> <span class="s1">&#39;init&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;INIT&#39;</span><span class="p">,</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;RETURN&#39;</span><span class="p">,</span> <span class="s1">&#39;CLEAR&#39;</span><span class="p">]));</span>
+  <span class="nx">displays</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">getDisplay</span><span class="p">(</span><span class="nx">componentPool</span><span class="p">,</span> <span class="nx">updatePool</span><span class="p">(</span><span class="s1">&#39;Component Pool&#39;</span><span class="p">,</span> <span class="nx">componentPool</span><span class="p">,</span> <span class="s1">&#39;coPoolDisplay&#39;</span><span class="p">),</span> <span class="s1">&#39;init&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;INIT&#39;</span><span class="p">,</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span> <span class="s1">&#39;RETURN&#39;</span><span class="p">,</span> <span class="s1">&#39;CLEAR&#39;</span><span class="p">]));</span>
+  <span class="nx">displays</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">getDisplay</span><span class="p">(</span><span class="nx">jsonCache</span><span class="p">,</span> <span class="nx">updateCache</span><span class="p">(</span><span class="s1">&#39;Json Cache&#39;</span><span class="p">,</span> <span class="nx">jsonCache</span><span class="p">,</span> <span class="s1">&#39;jsonCacheDisplay&#39;</span><span class="p">),</span> <span class="s1">&#39;cache&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;CACHE&#39;</span><span class="p">,</span> <span class="s1">&#39;CLEAR&#39;</span><span class="p">,</span> <span class="s1">&#39;CLEAR_ALL&#39;</span><span class="p">]));</span>
+  <span class="nx">displays</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">getDisplay</span><span class="p">(</span><span class="nx">imageCache</span><span class="p">,</span> <span class="nx">updateCache</span><span class="p">(</span><span class="s1">&#39;Image Cache&#39;</span><span class="p">,</span> <span class="nx">imageCache</span><span class="p">,</span> <span class="s1">&#39;imageCacheDisplay&#39;</span><span class="p">),</span> <span class="s1">&#39;cache&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;CACHE&#39;</span><span class="p">,</span> <span class="s1">&#39;CLEAR&#39;</span><span class="p">,</span> <span class="s1">&#39;CLEAR_ALL&#39;</span><span class="p">]));</span>
+  <span class="nx">displays</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">getDisplay</span><span class="p">(</span><span class="nx">pathCache</span><span class="p">,</span> <span class="nx">updateCache</span><span class="p">(</span><span class="s1">&#39;Path Cache&#39;</span><span class="p">,</span> <span class="nx">pathCache</span><span class="p">,</span> <span class="s1">&#39;pathCacheDisplay&#39;</span><span class="p">),</span> <span class="s1">&#39;cache&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;CACHE&#39;</span><span class="p">,</span> <span class="s1">&#39;CLEAR&#39;</span><span class="p">,</span> <span class="s1">&#39;CLEAR_ALL&#39;</span><span class="p">]));</span>
+  <span class="nx">displays</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">getDisplay</span><span class="p">(</span><span class="nx">textCache</span><span class="p">,</span> <span class="nx">updateCache</span><span class="p">(</span><span class="s1">&#39;Text Cache&#39;</span><span class="p">,</span> <span class="nx">textCache</span><span class="p">,</span> <span class="s1">&#39;textCacheDisplay&#39;</span><span class="p">),</span> <span class="s1">&#39;cache&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;CACHE&#39;</span><span class="p">,</span> <span class="s1">&#39;CLEAR&#39;</span><span class="p">,</span> <span class="s1">&#39;CLEAR_ALL&#39;</span><span class="p">]));</span>
+  <span class="nx">displays</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">getDisplay</span><span class="p">(</span><span class="nx">soundPlayer</span><span class="p">,</span> <span class="nx">updateSoundDisplay</span><span class="p">,</span> <span class="s1">&#39;play_single&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;ON_LOAD_ALL_COMPLETE&#39;</span><span class="p">,</span> <span class="s1">&#39;ON_LOAD_COMPLETE&#39;</span><span class="p">,</span> <span class="s1">&#39;CHANNELS_ASSIGN&#39;</span><span class="p">,</span> <span class="s1">&#39;CHANNELS_REVOKE&#39;</span><span class="p">,</span> <span class="s1">&#39;SINGLE_COMPLETE&#39;</span><span class="p">,</span> <span class="s1">&#39;PLAY_SINGLE&#39;</span><span class="p">,</span> <span class="s1">&#39;PLAY_LOOP&#39;</span><span class="p">,</span> <span class="s1">&#39;PAUSE&#39;</span><span class="p">,</span> <span class="s1">&#39;RESUME&#39;</span><span class="p">,</span> <span class="s1">&#39;STOP&#39;</span><span class="p">]));</span>
+  <span class="nx">displays</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">getDisplay</span><span class="p">(</span><span class="nx">timerFactory</span><span class="p">,</span> <span class="nx">updateTimerDisplay</span><span class="p">,</span> <span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;CREATE&#39;</span><span class="p">,</span> <span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPLETE&#39;</span><span class="p">,</span> <span class="s1">&#39;REPEATE&#39;</span><span class="p">,</span> <span class="s1">&#39;START&#39;</span><span class="p">,</span> <span class="s1">&#39;PAUSE&#39;</span><span class="p">,</span> <span class="s1">&#39;RESUME&#39;</span><span class="p">,</span> <span class="s1">&#39;RESET&#39;</span><span class="p">,</span> <span class="s1">&#39;STOP&#39;</span><span class="p">]));</span>
+
+  <span class="kd">var</span> <span class="nx">ActivityDisplay</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;extension&#39;</span><span class="p">).</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{},</span>
+
+    <span class="nx">type</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">gb</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">CREATE</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="nx">execute</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">displayElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+
+      <span class="kd">var</span> <span class="nx">infoContainer</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+
+      <span class="kd">var</span> <span class="nx">infoButton</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">);</span>
+      <span class="nx">infoButton</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s1">&#39;Show Info&#39;</span><span class="p">;</span>
+
+      <span class="nx">infoButton</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">==</span> <span class="s1">&#39;Show Info&#39;</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s1">&#39;Hide Info&#39;</span><span class="p">;</span>
+          <span class="nx">infoContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;block&#39;</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s1">&#39;Show Info&#39;</span><span class="p">;</span>
+          <span class="nx">infoContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nx">positionInfoButton</span><span class="p">(</span><span class="nx">displayElement</span><span class="p">);</span>
+      <span class="p">});</span>
+
+      <span class="nx">createDisplay</span><span class="p">(</span><span class="s1">&#39;goPoolDisplay&#39;</span><span class="p">,</span> <span class="nx">infoContainer</span><span class="p">);</span>
+      <span class="nx">createDisplay</span><span class="p">(</span><span class="s1">&#39;coPoolDisplay&#39;</span><span class="p">,</span> <span class="nx">infoContainer</span><span class="p">);</span>
+      <span class="nx">createDisplay</span><span class="p">(</span><span class="s1">&#39;jsonCacheDisplay&#39;</span><span class="p">,</span> <span class="nx">infoContainer</span><span class="p">);</span>
+      <span class="nx">createDisplay</span><span class="p">(</span><span class="s1">&#39;imageCacheDisplay&#39;</span><span class="p">,</span> <span class="nx">infoContainer</span><span class="p">);</span>
+      <span class="nx">createDisplay</span><span class="p">(</span><span class="s1">&#39;pathCacheDisplay&#39;</span><span class="p">,</span> <span class="nx">infoContainer</span><span class="p">);</span>
+      <span class="nx">createDisplay</span><span class="p">(</span><span class="s1">&#39;textCacheDisplay&#39;</span><span class="p">,</span> <span class="nx">infoContainer</span><span class="p">);</span>
+      <span class="nx">createDisplay</span><span class="p">(</span><span class="s1">&#39;soundPlayerDisplay&#39;</span><span class="p">,</span> <span class="nx">infoContainer</span><span class="p">);</span>
+      <span class="nx">createDisplay</span><span class="p">(</span><span class="s1">&#39;timerFactoryDisplay&#39;</span><span class="p">,</span> <span class="nx">infoContainer</span><span class="p">);</span>
+
+      <span class="nx">displayElement</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">infoButton</span><span class="p">);</span>
+      <span class="nx">displayElement</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">infoContainer</span><span class="p">);</span>
+      
+      <span class="nx">infoContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
+      <span class="nx">displayElement</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="s1">&#39;fixed&#39;</span><span class="p">;</span>
+
+      <span class="nx">gb</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">mainContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">displayElement</span><span class="p">);</span>
+    
+      <span class="nx">positionInfoButton</span><span class="p">(</span><span class="nx">displayElement</span><span class="p">);</span>
+
+      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">displays</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">displays</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+        <span class="kd">var</span> <span class="nx">events</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">events</span><span class="p">;</span>
+
+        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">events</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">p</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">single</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">object</span><span class="p">[</span><span class="nx">events</span><span class="p">[</span><span class="nx">j</span><span class="p">]],</span> <span class="k">this</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">listener</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="nx">p</span><span class="p">.</span><span class="nx">object</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">trigger</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="nx">ActivityDisplay</span><span class="p">;</span>
+<span class="p">});</span></div></div></div></div></body></html>

@@ -23,6 +23,7 @@ define(function(require){
 	var keyboard = require('keyboard');
 	
 	game.add_extension(require("timers-control"));
+	game.add_extension(require("activity-display"));
 
 	var domTimer1 = document.getElementById('timer_1');
 	var domTimer2 = document.getElementById('timer_2');

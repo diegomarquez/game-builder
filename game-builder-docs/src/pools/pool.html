@@ -4,7 +4,7 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html">class</a></p>
+<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Depends of: 
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html">util</a>
@@ -41,9 +41,11 @@ by the Garbage Collector doing it's thing. Which is good.</p>
 
 <p>Pooling objects is good and all, but it is probably not a good idea to pool absolutely everything
 you will need in the entire life span of an application, unless it is a small one. For that reason
-it is possible to clear and repopulate pools.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="pooling">Pooling</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;util&quot;</span><span class="p">,</span> <span class="s2">&quot;error-printer&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Class</span><span class="p">,</span> <span class="nx">Util</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">Pool</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+it is possible to clear and repopulate pools.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="pooling">Pooling</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;delegate&quot;</span><span class="p">,</span> <span class="s2">&quot;util&quot;</span><span class="p">,</span> <span class="s2">&quot;error-printer&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">,</span> <span class="nx">Util</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">Pool</span> <span class="o">=</span> <span class="nx">Delegate</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
+
       <span class="k">this</span><span class="p">.</span><span class="nx">pools</span> <span class="o">=</span> <span class="p">{};</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">configurations</span> <span class="o">=</span> <span class="p">{};</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">active</span> <span class="o">=</span> <span class="p">{};</span>
@@ -69,6 +71,8 @@ of the type of the objects it contains.</p></div></div><div class="code"><div cl
       <span class="p">}</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">addInitialObjectsToPool</span><span class="p">(</span><span class="nx">amount</span><span class="p">,</span> <span class="nx">alias</span><span class="p">);</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">INIT</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>createPooledObject</strong></p>
 
 <p>Creates a pooled object.</p>
@@ -94,6 +98,30 @@ of the type of the objects it contains.</p></div></div><div class="code"><div cl
 <li><strong>alias must be a String.</strong><br/>(Id corresponding to an object type)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">getPoolSize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">pools</span><span class="p">[</span><span class="nx">alias</span><span class="p">].</span><span class="nx">objects</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getTotalPooledObjectsCount</strong></p>
+
+<p>Get the total amount of pooled objects</p>
+
+<p><strong>Returns a Number</strong><br/>(Amount of pooled objects)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getTotalPooledObjectsCount</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">pools</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">result</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="nx">pools</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">objects</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getTotalActiveObjectsCount</strong></p>
+
+<p>Get the total amount of active objects</p>
+
+<p><strong>Returns a Number</strong><br/>(Amount of active objects)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getTotalActiveObjectsCount</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">active</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">result</span> <span class="o">+=</span> <span class="k">this</span><span class="p">.</span><span class="nx">active</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getActiveObjects</strong></p>
 
 <p>Gets the amount of objects in a given pool, that are active.</p>
@@ -121,8 +149,11 @@ recycled to send it back to it's corresponding pool for reuse.</p>
 <li><strong>o must be an Object.</strong><br/>(Returning object)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">returnToPool</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">o</span><span class="p">.</span><span class="nx">poolId</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
       <span class="k">this</span><span class="p">.</span><span class="nx">pools</span><span class="p">[</span><span class="nx">o</span><span class="p">.</span><span class="nx">poolId</span><span class="p">].</span><span class="nx">objects</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">active</span><span class="p">[</span><span class="nx">o</span><span class="p">.</span><span class="nx">poolId</span><span class="p">].</span><span class="nx">splice</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">active</span><span class="p">[</span><span class="nx">o</span><span class="p">.</span><span class="nx">poolId</span><span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">o</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+      
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">RETURN</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Methods to be overriden by objects extending this one
 View <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a> for implementations.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getName</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -170,6 +201,8 @@ module when putting together <a href="http://diegomarquez.github.io/game-builder
 <p><strong>Returns an Object</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">getPooledObject</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">pools</span><span class="p">[</span><span class="nx">type</span><span class="p">].</span><span class="nx">objects</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">active</span><span class="p">[</span><span class="nx">type</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span>
+      
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">GET</span><span class="p">);</span>
       <span class="k">return</span> <span class="nx">o</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>clear</strong></p>
 
@@ -200,6 +233,8 @@ used by the <a href="http://diegomarquez.github.io/game-builder/game-builder-doc
       <span class="k">this</span><span class="p">.</span><span class="nx">pools</span> <span class="o">=</span> <span class="p">{};</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">configurations</span> <span class="o">=</span> <span class="p">{};</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">active</span> <span class="o">=</span> <span class="p">{};</span> 
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CLEAR</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>toString</strong></p>
 
 <p>Return a string representation of the pool. For debugging purposes.</p>
@@ -224,7 +259,8 @@ used by the <a href="http://diegomarquez.github.io/game-builder/game-builder-doc
       <span class="nx">r</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">total</span><span class="p">;</span>
 
       <span class="k">return</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
-
-  <span class="k">return</span> <span class="nx">Pool</span><span class="p">;</span>
+    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="getters-for-all-the-types-of-events-a-pool-can-hook-into">Getters for all the types of events a Pool can hook into</h3></div></div></div><div class="segment"><div class="code"><div class="wrapper">  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Pool</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;INIT&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;init&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span> 
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Pool</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;get&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Pool</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;RETURN&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;return&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Pool</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CLEAR&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;clear&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="k">return</span> <span class="nx">Pool</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

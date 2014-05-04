@@ -25,10 +25,12 @@ then be used to draw onto it to cache a path for later use.</p>
 be detrimental in this case.</li>
 <li>A width and a height for the rectangle enclosing the drawing need to be specified. This is because there is no easy way of determining the
 size of a path. A pretty small downside, but a downside non the less.</li>
-</ol></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{};</span>
+</ol></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">PathCache</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;cache&#39;</span><span class="p">).</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>name</strong></p>
 
-  <span class="kd">var</span> <span class="nx">PathCache</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>cache</strong></p>
+<p><strong>Returns a String</strong><br/>(The name of the cache)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">name</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;Path Cache&#39;</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>cache</strong></p>
 
 <p>Parameters:</p>
 
@@ -37,21 +39,23 @@ size of a path. A pretty small downside, but a downside non the less.</li>
 <li><p><strong>width must be a Number.</strong><br/>(Maximun width of the canvas to cache)</p></li>
 <li><p><strong>height must be a Number.</strong><br/>(Maximun Height of the canvas to cache)</p></li>
 <li><p><strong>drawingFunction must be a Function.</strong><br/>(Drawing commands to cache)</p></li>
-</ul></div></div><div class="code"><div class="wrapper">  <span class="nx">PathCache</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">cache</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">drawingFunction</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">cache</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">drawingFunction</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;canvas&#39;</span><span class="p">);</span>
-    <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;canvas&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
 
-    <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
-    <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">height</span><span class="p">;</span>
+      <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
+      <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">height</span><span class="p">;</span>
 
-    <span class="kd">var</span> <span class="nx">context</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
-    <span class="nx">context</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
-    <span class="nx">drawingFunction</span><span class="p">(</span><span class="nx">context</span><span class="p">);</span>
-    <span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">;</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>draw</strong></p>
+      <span class="kd">var</span> <span class="nx">context</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+      <span class="nx">context</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+      <span class="nx">drawingFunction</span><span class="p">(</span><span class="nx">context</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CACHE</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">]);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>draw</strong></p>
 
 <p>This method does not clear the cached <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">Canvas</a>
 it just draws more things into it</p>
@@ -61,49 +65,18 @@ it just draws more things into it</p>
 <ul>
 <li><p><strong>id must be a String.</strong><br/>(Id of a cached <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">Canvas</a> to draw to)</p></li>
 <li><p><strong>drawingFunction must be a Function.</strong><br/>(Drawing to command to add on top of the cached canvas )</p></li>
-</ul></div></div><div class="code"><div class="wrapper">  <span class="nx">PathCache</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">draw</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">drawingFunction</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">drawingFunction</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span>
+      
+      <span class="nx">drawingFunction</span><span class="p">(</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">));</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CACHE</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">]);</span>
     <span class="p">}</span>
-    
-    <span class="nx">drawingFunction</span><span class="p">(</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">));</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>get</strong></p>
+  <span class="p">});</span>
 
-<p>Parameters:</p>
-
-<ul>
-<li><strong>id must be a String.</strong><br/>(Id of a cached <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">Canvas</a>)</li>
-</ul>
-
-<p><strong>Returns an Object</strong><br/>(Cached <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">Canvas</a>)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">PathCache</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">get</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>clear</strong></p>
-
-<p>Parameters:</p>
-
-<ul>
-<li><strong>id must be a String.</strong><br/>(Id of <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">Canvas</a> to remove from cache)</li>
-</ul></div></div><div class="code"><div class="wrapper">  <span class="nx">PathCache</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">clear</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">delete</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>clearAll</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">PathCache</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">clearAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="nx">cache</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">delete</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">k</span><span class="p">];</span>
-    <span class="p">}</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>toString</strong></p>
-
-<p>String representation of the cache</p></div></div><div class="code"><div class="wrapper">  <span class="nx">PathCache</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">{}</span>
-
-    <span class="nx">r</span><span class="p">[</span><span class="s1">&#39;cachedPaths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">.</span><span class="nx">keys</span><span class="p">().</span><span class="nx">length</span><span class="p">;</span>
-    <span class="nx">r</span><span class="p">[</span><span class="s1">&#39;paths&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[];</span>
-    
-
-    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="nx">cache</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">r</span><span class="p">[</span><span class="s1">&#39;paths&#39;</span><span class="p">].</span><span class="nx">push</span><span class="p">(</span><span class="nx">k</span><span class="p">);</span>     
-    <span class="p">}</span>
-
-    <span class="k">return</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="k">return</span> <span class="k">new</span> <span class="nx">PathCache</span><span class="p">();</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">PathCache</span><span class="p">();</span>
 <span class="p">});</span></div></div></div></div></body></html>
