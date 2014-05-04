@@ -68,11 +68,11 @@ define(function(require) {
 	};
 
 	var positionInfoButton = function (element) {
-		var x = gb.canvas.clientLeft + gb.canvas.clientWidth;
-		var y = (gb.canvas.clientTop + gb.canvas.clientHeight) - element.clientHeight;
+		var x = gb.game.mainContainer.offsetLeft;
+		var y = (gb.canvas.clientTop + gb.canvas.clientHeight) - element.clientHeight + gb.game.mainContainer.offsetTop;
 
 		displayElement.style.top = y + 'px';
-		displayElement.style.left = 0 + 'px';
+		displayElement.style.left = x + 'px';
 	};
 
 	var updatePool = function(name, pool, displayId) {
@@ -82,7 +82,7 @@ define(function(require) {
 			var text = name + ' => ';
 			var numbers = [pool.getTotalActiveObjectsCount(), pool.getTotalPooledObjectsCount()];
 
-			display.innerText = text + numbers.join('/');
+			display.innerText = text + numbers.join(' / ');
 		}
 	};
 
@@ -163,7 +163,7 @@ define(function(require) {
 			displayElement.appendChild(infoContainer);
 			
 			infoContainer.style.display = 'none';
-			displayElement.style.position = 'absolute';
+			displayElement.style.position = 'fixed';
 
 			gb.game.mainContainer.appendChild(displayElement);
 		
