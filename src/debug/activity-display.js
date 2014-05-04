@@ -68,8 +68,8 @@ define(function(require) {
 	};
 
 	var positionInfoButton = function (element) {
-		var x = gb.game.mainContainer.offsetLeft;
-		var y = (gb.canvas.clientTop + gb.canvas.clientHeight) - element.clientHeight + gb.game.mainContainer.offsetTop;
+		var x = "";
+		var y = gb.canvas.clientTop + gb.canvas.clientHeight - element.clientHeight;
 
 		displayElement.style.top = y + 'px';
 		displayElement.style.left = x + 'px';
@@ -138,6 +138,7 @@ define(function(require) {
 
 			var infoButton = document.createElement('button');
 			infoButton.innerText = 'Show Info';
+
 			infoButton.addEventListener('click', function() {
 				if (this.innerText == 'Show Info') {
 					this.innerText = 'Hide Info';
