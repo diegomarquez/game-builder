@@ -89,7 +89,35 @@ define(function(require) {
 					index = self.timeOuts.indexOf(this);
 					self.timeOuts.splice(index, 1);
 
-					self.execute(self.REMOVE, timeout);
+					self.execute(self.REMOVE, this);
+				});
+
+				timeout.on(timeout.START, function() {
+					self.execute(self.START, this);
+				});
+
+				timeout.on(timeout.COMPLETE, function() {
+					self.execute(self.COMPLETE, this);
+				});
+
+				timeout.on(timeout.REPEATE, function() {
+					self.execute(self.REPEATE, this);
+				});
+
+				timeout.on(timeout.PAUSE, function() {
+					self.execute(self.PAUSE, this);
+				});
+
+				timeout.on(timeout.RESUME, function() {
+					self.execute(self.RESUME, this);
+				});
+
+				timeout.on(timeout.RESET, function() {
+					self.execute(self.RESET, this);
+				});
+
+				timeout.on(timeout.STOP, function() {
+					self.execute(self.STOP, this);
 				});
 			}
 		},
@@ -289,6 +317,13 @@ define(function(require) {
 	// ### Getters for all the types of events the sound player can hook into
 	Object.defineProperty(TimerFactory.prototype, "CREATE", { get: function() { return 'create'; } });
 	Object.defineProperty(TimerFactory.prototype, "REMOVE", { get: function() { return 'remove'; } });
+	Object.defineProperty(TimerFactory.prototype, "COMPLETE", { get: function() { return 'complete'; } });
+	Object.defineProperty(TimerFactory.prototype, "REPEATE", { get: function() { return 'repeate'; } });
+	Object.defineProperty(TimerFactory.prototype, "START", { get: function() { return 'start'; } });
+	Object.defineProperty(TimerFactory.prototype, "PAUSE", { get: function() { return 'pause'; } });
+	Object.defineProperty(TimerFactory.prototype, "RESUME", { get: function() { return 'resume'; } });
+	Object.defineProperty(TimerFactory.prototype, "RESET", { get: function() { return 'reset'; } });
+	Object.defineProperty(TimerFactory.prototype, "STOP", { get: function() { return 'stop'; } });
 	/**
 	 * --------------------------------
 	 */
