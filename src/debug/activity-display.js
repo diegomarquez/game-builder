@@ -101,7 +101,7 @@ define(function(require) {
 		var display = document.getElementById('soundPlayerDisplay');
 
 		var text = 'Sound Player => ';
-		var numbers = [soundPlayer.getPooledCount(), soundPlayer.getActiveCount(), soundPlayer.getAssignedCount(), soundPlayer.getPooledCount() + soundPlayer.getActiveCount()];
+		var numbers = [soundPlayer.getPooledCount(), soundPlayer.getActiveCount(), soundPlayer.getAssignedCount(), soundPlayer.getPooledCount() + soundPlayer.getActiveCount() + soundPlayer.getAssignedCount()];
 
 		display.innerText = text + numbers.join('/');
 	};
@@ -122,7 +122,7 @@ define(function(require) {
 	displays.push(getDisplay(pathCache, updateCache('Path Cache', pathCache, 'pathCacheDisplay'), 'cache', ['CACHE', 'CLEAR', 'CLEAR_ALL']));
 	displays.push(getDisplay(textCache, updateCache('Text Cache', textCache, 'textCacheDisplay'), 'cache', ['CACHE', 'CLEAR', 'CLEAR_ALL']));
 	displays.push(getDisplay(soundPlayer, updateSoundDisplay, 'play_single', ['ON_LOAD_ALL_COMPLETE', 'ON_LOAD_COMPLETE', 'CHANNELS_ASSIGN', 'CHANNELS_REVOKE', 'SINGLE_COMPLETE', 'PLAY_SINGLE', 'PLAY_LOOP', 'PAUSE', 'RESUME', 'STOP']));
-	displays.push(getDisplay(timerFactory, updateTimerDisplay, 'create', ['CREATE', 'REMOVE']));
+	displays.push(getDisplay(timerFactory, updateTimerDisplay, 'create', ['CREATE', 'REMOVE', 'COMPLETE', 'REPEATE', 'START', 'PAUSE', 'RESUME', 'RESET', 'STOP']));
 
 	var ActivityDisplay = require('extension').extend({
 		init: function() {},
