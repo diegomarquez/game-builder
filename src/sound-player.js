@@ -456,7 +456,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 		return fromList.pop();
 	};
 
-	var loadAudioTag = function(path, id, onComplete) {
+	var loadAudioTag = function(id, path, onComplete) {
 		var audio = document.createElement("audio");
 
 		audio.setAttribute("src", path);
