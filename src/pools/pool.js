@@ -206,10 +206,10 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 		returnToPool: function(o) {
 			if (!o.poolId) return;
 
-			this.execute(this.RETURN);
-
 			this.pools[o.poolId].objects.push(o);
 			this.active[o.poolId].splice(this.active[o.poolId].indexOf(o), 1);
+			
+			this.execute(this.RETURN);
 		},
 		/**
 		 * --------------------------------
@@ -271,10 +271,10 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 		 * @return {Object}
 		 */
 		getPooledObject: function(type) {
-			this.execute(this.GET);
-
 			var o = this.pools[type].objects.pop();
 			this.active[type].push(o);
+			
+			this.execute(this.GET);
 			return o;
 		},
 		/**
