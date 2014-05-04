@@ -13,25 +13,15 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### TODO List:
 
 - Examples v6 
-    - Add feedback about the internals of each example
-        - Pooled Objects (DONE)
-        - Active Objects (DOE)
-        - Pooled Sound Channels
-        - Active Sound Channels
-        - Loaded Sounds
-        - Assigned Channels
-        - Cached Images
-        - Cached Paths
-        - Cached Text
-        - Cached Objects (DONE)
-    - Module to add that information to all examples
-        - debug folder (DONE)
-        - Add to all examples
-    - Style
-    - Interface for all Caches
+    - Activity Display
+        - Module to add that information to all examples
+            - Add to all examples
 
 - Fix CSS on examples, they are not alligned properly when putting them in an iFrame
     - Checkout renderers examples
+
+- Agregar una propiedad a los canales para ver cuando terminaron de cargar, porque readyState es basura.
+- Review how each examples looks with the activity display
 
 - Tag
 - Deploy Website
