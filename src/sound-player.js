@@ -303,10 +303,10 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 			var channel = getPooledChannel(soundList);
 
 			if(this.preAssignedChannels[id]) {
-				playChannelLoop.call(self, channel);
+				playChannelLoop.call(self, channel, soundList);
 			} else {
 				loadChannel.call(self, id, channel, function (channel) {
-					playChannelLoop.call(self, channel);
+					playChannelLoop.call(self, channel, soundList);
 				});
 			}
 		},
@@ -474,9 +474,13 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 
 		if (!audio) return;
 
+		channel.loaded = false;
+
 		var load = function() {
 			var onMD = function() {
 				this.removeEventListener('loadedmetadata', onMD);
+
+				channel.loaded = true;
 
 				if (onReady) {
 					onReady(this);
@@ -502,7 +506,9 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 	var playChannelSingle = function(channel, originList) {
 		var self = this;
 
-		self.activeChannels.push(channel);
+		if (!canPlay.call(self, channel, originList)) {
+			return;
+		}
 
 		channel.timer.on('complete', function() {
 			channel.currentTime = 0;
@@ -525,10 +531,12 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 		channel.play();
 	};
 
-	var playChannelLoop = function(channel) {
+	var playChannelLoop = function(channel, originList) {
 		var self = this;
 
-		self.activeChannels.push(channel);
+		if (!canPlay.call(self, channel, originList)) {
+			return;
+		}
 
 		channel.timer.on('repeate', function() {
 			channel.currentTime = 0;
@@ -547,6 +555,17 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 
 		channel.play();
 	};
+
+	var canPlay = function(channel, originList) {
+		if (!channel.loaded) {
+			originList.push(channel);
+			return false;
+		}
+
+		this.activeChannels.push(channel);
+
+		return true;
+	}
 
 	// This object is returned by the **pauseAll**, **stopAll** and **resumeAll** 
 	// methods and is used to determine to which channels the specified action whould be applied.

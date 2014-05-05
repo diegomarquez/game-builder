@@ -12,7 +12,9 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Agregar una propiedad a los canales para ver cuando terminaron de cargar, porque readyState es basura.
+- Do something to generalize the creation of events
+    - Something in delegate.js
+    - A method to get all the events associated with a delegate
 
 - Add missing event information of caches, sound-player and timer-factory to their respective docs
 
