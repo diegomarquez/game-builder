@@ -132,6 +132,12 @@ define(["delegate"], function(Delegate) {
 			var mainLoop;
 			var self = this;
 
+			// This styling puts the canvas at the top left
+			mainContainer.style.top  	= 0;
+    		mainContainer.style.left 	= 0;
+			mainContainer.style.margin  = 0;
+			mainContainer.style.padding = 0;
+
 			// When this is called the application has trully started.
 			var setupUpdateLoop = function() {
 				self.initialized = true;
