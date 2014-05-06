@@ -102,7 +102,7 @@ body {
 
 .iframeWrap {
   margin: 0 auto;
-  text-align:center
+  text-align: center;
 }
 
 .divider {
@@ -111,7 +111,9 @@ body {
 
 iframe {
   overflow:hidden;
-  display:inline-block
+  display:inline-block;
+  border-width: 0px;
+  outline: 2px solid #ffffff;
 }
 
 .btn {
