@@ -26,10 +26,10 @@ define(function() {
   var initializing = false; 
   var fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
 
-  var Class = function() {};
+  var _class = function() {};
 
   // Create a new Class that inherits from this class
-  Class.extend = function(prop) {
+  _class.extend = function(prop) {
     var _super = this.prototype;
 
     // Instantiate a base class (but only create the instance,
@@ -63,23 +63,23 @@ define(function() {
     }
 
     // The dummy class constructor
-    function DummyClass() {
+    function Class() {
       // All construction is actually done in the init method
       if ( !initializing && this.init )
         this.init.apply(this, arguments);
     }
 
     // Populate our constructed prototype object
-    DummyClass.prototype = prototype;
+    Class.prototype = prototype;
 
     // Enforce the constructor to be what we expect
-    DummyClass.prototype.constructor = DummyClass;
+    Class.prototype.constructor = Class;
 
     // And make this class extendable
-    DummyClass.extend = Class.extend;
+    Class.extend = _class.extend;
 
-    return DummyClass;
+    return Class;
   }
 
-  return Class;
+  return _class;
 });

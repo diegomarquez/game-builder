@@ -18,9 +18,16 @@
  *
  * ### The Timer object extends [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
  *
+ * ### **start**
+ * When a timer starts. 
+ *
+ * ``` javascript  
+ * timer.on(component.START, function() {});
+ * ```
+ * 
  * ### **repeate** 
  * Each time a timer is repeated. 
- * 
+ *
  * Registered callbacks get the amount of repeats left as argument. 
  * ``` javascript  
  * timer.on(timer.REPEATE, function(repeatsLeft) {});

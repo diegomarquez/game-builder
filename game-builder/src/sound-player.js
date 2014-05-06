@@ -26,6 +26,83 @@
  * 
  * The rest of the methods do what they say on the tin, it should be pretty easy for you, a master coder, 
  * to figure out how to use them.
+ *
+ * ### The Sound Player object extends [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
+ *
+ * ### **on_all_load_complete**
+ * When loading of resources through the **loadAll** method is complete. 
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.ON_LOAD_ALL_COMPLETE, function() {});
+ * ```
+ * 
+ * ### **load_complete** 
+ * When the loading of a single resource is complete. 
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.ON_LOAD_COMPLETE, function(soundId) {});
+ * ```
+ *
+ * ### **channels_assign** 
+ * When channels are assigned to a specific sound 
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.CHANNELS_ASSIGN, function(data) {
+ * 	// Sound Id
+ * 		data.id
+ * 	// Amount of assigned channels
+ * 		data.amount
+ * });
+ * ```
+ * 
+ * ### **channels_revoke** 
+ * When dedicated channels are removed from a sound
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.CHANNELS_REVOKE, function(soundId) {});
+ * ```
+ *
+ * ### **single_complete** 
+ * When a **playSingle** call finished playing it's sound
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.SINGLE_COMPLETE, function(soundId) {});
+ * ```
+ *
+ * ### **play_single** 
+ * When a **playSingle** call starts playback
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.PLAY_SINGLE, function(soundId) {});
+ * ```
+ *
+ * ### **play_loop** 
+ * When a **playLoop** call starts playback
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.PLAY_LOOP, function(soundId) {});
+ * ```
+ *
+ * ### **pause** 
+ * When a sound is paused 
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.PAUSE, function(soundId) {});
+ * ```
+ *
+ * ### **resume** 
+ * When a sound is resumed
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.RESUME, function(soundId) {});
+ * ```
+ *
+ * ### **stop** 
+ * When a sound is stopped 
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.STOP, function(soundId) {});
+ * ```
  */
 
 /**
@@ -303,10 +380,10 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 			var channel = getPooledChannel(soundList);
 
 			if(this.preAssignedChannels[id]) {
-				playChannelLoop.call(self, channel);
+				playChannelLoop.call(self, channel, soundList);
 			} else {
 				loadChannel.call(self, id, channel, function (channel) {
-					playChannelLoop.call(self, channel);
+					playChannelLoop.call(self, channel, soundList);
 				});
 			}
 		},
@@ -474,9 +551,13 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 
 		if (!audio) return;
 
+		channel.loaded = false;
+
 		var load = function() {
 			var onMD = function() {
 				this.removeEventListener('loadedmetadata', onMD);
+
+				channel.loaded = true;
 
 				if (onReady) {
 					onReady(this);
@@ -502,7 +583,9 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 	var playChannelSingle = function(channel, originList) {
 		var self = this;
 
-		self.activeChannels.push(channel);
+		if (!canPlay.call(self, channel, originList)) {
+			return;
+		}
 
 		channel.timer.on('complete', function() {
 			channel.currentTime = 0;
@@ -525,10 +608,12 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 		channel.play();
 	};
 
-	var playChannelLoop = function(channel) {
+	var playChannelLoop = function(channel, originList) {
 		var self = this;
 
-		self.activeChannels.push(channel);
+		if (!canPlay.call(self, channel, originList)) {
+			return;
+		}
 
 		channel.timer.on('repeate', function() {
 			channel.currentTime = 0;
@@ -547,6 +632,17 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 
 		channel.play();
 	};
+
+	var canPlay = function(channel, originList) {
+		if (!channel.loaded) {
+			originList.push(channel);
+			return false;
+		}
+
+		this.activeChannels.push(channel);
+
+		return true;
+	}
 
 	// This object is returned by the **pauseAll**, **stopAll** and **resumeAll** 
 	// methods and is used to determine to which channels the specified action whould be applied.

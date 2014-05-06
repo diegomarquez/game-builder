@@ -26,7 +26,84 @@ doing that the <strong>playSingle</strong> and <strong>playLoop</strong> methods
 otherwise nothing will happen.</p>
 
 <p>The rest of the methods do what they say on the tin, it should be pretty easy for you, a master coder, 
-to figure out how to use them.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="play-it-loud">Play it loud!</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;delegate&#39;</span><span class="p">,</span> <span class="s1">&#39;timer-factory&#39;</span><span class="p">,</span> <span class="s1">&#39;error-printer&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">,</span> <span class="nx">TimerFactory</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
+to figure out how to use them.</p>
+
+<h3 id="thesoundplayerobjectextendsdelegatehttpdiegomarquezgithubiogamebuildergamebuilderdocssrcdelegatehtmlsoitprovidesafeweventstohookinto">The Sound Player object extends <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</h3>
+
+<h3 id="on_all_load_complete"><strong>on<em>all</em>load_complete</strong></h3>
+
+<p>When loading of resources through the <strong>loadAll</strong> method is complete. </p>
+
+<pre><code class=" javascript  ">soundPlayer.on(soundPlayer.ON_LOAD_ALL_COMPLETE, function() {});
+</code></pre>
+
+<h3 id="load_complete"><strong>load_complete</strong></h3>
+
+<p>When the loading of a single resource is complete. </p>
+
+<pre><code class=" javascript  ">soundPlayer.on(soundPlayer.ON_LOAD_COMPLETE, function(soundId) {});
+</code></pre>
+
+<h3 id="channels_assign"><strong>channels_assign</strong></h3>
+
+<p>When channels are assigned to a specific sound </p>
+
+<pre><code class=" javascript  ">soundPlayer.on(soundPlayer.CHANNELS_ASSIGN, function(data) {
+    // Sound Id
+        data.id
+    // Amount of assigned channels
+        data.amount
+});
+</code></pre>
+
+<h3 id="channels_revoke"><strong>channels_revoke</strong></h3>
+
+<p>When dedicated channels are removed from a sound</p>
+
+<pre><code class=" javascript  ">soundPlayer.on(soundPlayer.CHANNELS_REVOKE, function(soundId) {});
+</code></pre>
+
+<h3 id="single_complete"><strong>single_complete</strong></h3>
+
+<p>When a <strong>playSingle</strong> call finished playing it's sound</p>
+
+<pre><code class=" javascript  ">soundPlayer.on(soundPlayer.SINGLE_COMPLETE, function(soundId) {});
+</code></pre>
+
+<h3 id="play_single"><strong>play_single</strong></h3>
+
+<p>When a <strong>playSingle</strong> call starts playback</p>
+
+<pre><code class=" javascript  ">soundPlayer.on(soundPlayer.PLAY_SINGLE, function(soundId) {});
+</code></pre>
+
+<h3 id="play_loop"><strong>play_loop</strong></h3>
+
+<p>When a <strong>playLoop</strong> call starts playback</p>
+
+<pre><code class=" javascript  ">soundPlayer.on(soundPlayer.PLAY_LOOP, function(soundId) {});
+</code></pre>
+
+<h3 id="pause"><strong>pause</strong></h3>
+
+<p>When a sound is paused </p>
+
+<pre><code class=" javascript  ">soundPlayer.on(soundPlayer.PAUSE, function(soundId) {});
+</code></pre>
+
+<h3 id="resume"><strong>resume</strong></h3>
+
+<p>When a sound is resumed</p>
+
+<pre><code class=" javascript  ">soundPlayer.on(soundPlayer.RESUME, function(soundId) {});
+</code></pre>
+
+<h3 id="stop"><strong>stop</strong></h3>
+
+<p>When a sound is stopped </p>
+
+<pre><code class=" javascript  ">soundPlayer.on(soundPlayer.STOP, function(soundId) {});
+</code></pre></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="play-it-loud">Play it loud!</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;delegate&#39;</span><span class="p">,</span> <span class="s1">&#39;timer-factory&#39;</span><span class="p">,</span> <span class="s1">&#39;error-printer&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">,</span> <span class="nx">TimerFactory</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">SoundPlayer</span> <span class="o">=</span> <span class="nx">Delegate</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>init</strong></p>
 
 <p>Constructor</p></div></div><div class="code"><div class="wrapper">    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -225,10 +302,10 @@ when all the loading is complete a callback is executed.</p>
       <span class="kd">var</span> <span class="nx">channel</span> <span class="o">=</span> <span class="nx">getPooledChannel</span><span class="p">(</span><span class="nx">soundList</span><span class="p">);</span>
 
       <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">preAssignedChannels</span><span class="p">[</span><span class="nx">id</span><span class="p">])</span> <span class="p">{</span>
-        <span class="nx">playChannelLoop</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">channel</span><span class="p">);</span>
+        <span class="nx">playChannelLoop</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">channel</span><span class="p">,</span> <span class="nx">soundList</span><span class="p">);</span>
       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="nx">loadChannel</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">channel</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">channel</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">playChannelLoop</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">channel</span><span class="p">);</span>
+          <span class="nx">playChannelLoop</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">channel</span><span class="p">,</span> <span class="nx">soundList</span><span class="p">);</span>
         <span class="p">});</span>
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>pause</strong></p>
@@ -344,9 +421,13 @@ when all the loading is complete a callback is executed.</p>
 
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">audio</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
+    <span class="nx">channel</span><span class="p">.</span><span class="nx">loaded</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
     <span class="kd">var</span> <span class="nx">load</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">onMD</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">removeEventListener</span><span class="p">(</span><span class="s1">&#39;loadedmetadata&#39;</span><span class="p">,</span> <span class="nx">onMD</span><span class="p">);</span>
+
+        <span class="nx">channel</span><span class="p">.</span><span class="nx">loaded</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="nx">onReady</span><span class="p">)</span> <span class="p">{</span>
           <span class="nx">onReady</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
@@ -372,7 +453,9 @@ when all the loading is complete a callback is executed.</p>
   <span class="kd">var</span> <span class="nx">playChannelSingle</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">originList</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-    <span class="nx">self</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">channel</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">canPlay</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">channel</span><span class="p">,</span> <span class="nx">originList</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
 
     <span class="nx">channel</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;complete&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="nx">channel</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -395,10 +478,12 @@ when all the loading is complete a callback is executed.</p>
     <span class="nx">channel</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
   <span class="p">};</span>
 
-  <span class="kd">var</span> <span class="nx">playChannelLoop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">playChannelLoop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">originList</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
-    <span class="nx">self</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">channel</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">canPlay</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">channel</span><span class="p">,</span> <span class="nx">originList</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
 
     <span class="nx">channel</span><span class="p">.</span><span class="nx">timer</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;repeate&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="nx">channel</span><span class="p">.</span><span class="nx">currentTime</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -416,7 +501,18 @@ when all the loading is complete a callback is executed.</p>
     <span class="nx">self</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">PLAY_LOOP</span><span class="p">,</span> <span class="nx">channel</span><span class="p">.</span><span class="nx">id</span><span class="p">);</span>
 
     <span class="nx">channel</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>This object is returned by the <strong>pauseAll</strong>, <strong>stopAll</strong> and <strong>resumeAll</strong> 
+  <span class="p">};</span>
+
+  <span class="kd">var</span> <span class="nx">canPlay</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">channel</span><span class="p">,</span> <span class="nx">originList</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">channel</span><span class="p">.</span><span class="nx">loaded</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">originList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">channel</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">activeChannels</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">channel</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>This object is returned by the <strong>pauseAll</strong>, <strong>stopAll</strong> and <strong>resumeAll</strong> 
 methods and is used to determine to which channels the specified action whould be applied.</p></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">bulkControl</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">method</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">channel</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 

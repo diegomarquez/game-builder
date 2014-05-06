@@ -14,7 +14,72 @@
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a> </p>
 
 <p>This module provides a factory to create <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer.html">timer</a> objects. Asides from creating them it provides methods
-to manipulate them in bulk.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="manage-timers">Manage Timers</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+to manipulate them in bulk.</p>
+
+<h3 id="thetimerfactoryobjectextendsdelegatehttpdiegomarquezgithubiogamebuildergamebuilderdocssrcdelegatehtmlsoitprovidesafeweventstohookinto">The Timer Factory object extends <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</h3>
+
+<h3 id="create"><strong>create</strong></h3>
+
+<p>When a timer is created and added to the factory registry</p>
+
+<pre><code class=" javascript  ">timerFactory.on(timerFactory.CREATE, function(timer) {});
+</code></pre>
+
+<h3 id="remove"><strong>remove</strong></h3>
+
+<p>When a timer is removed from the factory registry</p>
+
+<pre><code class=" javascript  ">timerFactory.on(timerFactory.REMOVE, function(timer) {});
+</code></pre>
+
+<h3 id="complete"><strong>complete</strong></h3>
+
+<p>When a timer completes</p>
+
+<pre><code class=" javascript  ">timerFactory.on(timerFactory.COMPLETE, function(timer) {});
+</code></pre>
+
+<h3 id="repeate"><strong>repeate</strong></h3>
+
+<p>When a timer repeates</p>
+
+<pre><code class=" javascript  ">timerFactory.on(timerFactory.REPEATE, function(timer) {});
+</code></pre>
+
+<h3 id="start"><strong>start</strong></h3>
+
+<p>When a timer starts</p>
+
+<pre><code class=" javascript  ">timerFactory.on(timerFactory.START, function(timer) {});
+</code></pre>
+
+<h3 id="pause"><strong>pause</strong></h3>
+
+<p>When a timer pauses</p>
+
+<pre><code class=" javascript  ">timerFactory.on(timerFactory.PAUSE, function(timer) {});
+</code></pre>
+
+<h3 id="resume"><strong>resume</strong></h3>
+
+<p>When a timer resumes</p>
+
+<pre><code class=" javascript  ">timerFactory.on(timerFactory.RESUME, function(timer) {});
+</code></pre>
+
+<h3 id="reset"><strong>reset</strong></h3>
+
+<p>When a timer is reset</p>
+
+<pre><code class=" javascript  ">timerFactory.on(timerFactory.RESET, function(timer) {});
+</code></pre>
+
+<h3 id="stop"><strong>stop</strong></h3>
+
+<p>When a timer is stops</p>
+
+<pre><code class=" javascript  ">timerFactory.on(timerFactory.STOP, function(timer) {});
+</code></pre></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="manage-timers">Manage Timers</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="kd">var</span> <span class="nx">ErrorPrinter</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;error-printer&#39;</span><span class="p">);</span>
 
