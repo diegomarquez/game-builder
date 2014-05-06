@@ -26,6 +26,83 @@
  * 
  * The rest of the methods do what they say on the tin, it should be pretty easy for you, a master coder, 
  * to figure out how to use them.
+ *
+ * ### The Sound Player object extends [delegate](@@delegate@@) so it provides a few events to hook into:
+ *
+ * ### **on_all_load_complete**
+ * When loading of resources through the **loadAll** method is complete. 
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.ON_LOAD_ALL_COMPLETE, function() {});
+ * ```
+ * 
+ * ### **load_complete** 
+ * When the loading of a single resource is complete. 
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.ON_LOAD_COMPLETE, function(soundId) {});
+ * ```
+ *
+ * ### **channels_assign** 
+ * When channels are assigned to a specific sound 
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.CHANNELS_ASSIGN, function(data) {
+ * 	// Sound Id
+ * 		data.id
+ * 	// Amount of assigned channels
+ * 		data.amount
+ * });
+ * ```
+ * 
+ * ### **channels_revoke** 
+ * When dedicated channels are removed from a sound
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.CHANNELS_REVOKE, function(soundId) {});
+ * ```
+ *
+ * ### **single_complete** 
+ * When a **playSingle** call finished playing it's sound
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.SINGLE_COMPLETE, function(soundId) {});
+ * ```
+ *
+ * ### **play_single** 
+ * When a **playSingle** call starts playback
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.PLAY_SINGLE, function(soundId) {});
+ * ```
+ *
+ * ### **play_loop** 
+ * When a **playLoop** call starts playback
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.PLAY_LOOP, function(soundId) {});
+ * ```
+ *
+ * ### **pause** 
+ * When a sound is paused 
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.PAUSE, function(soundId) {});
+ * ```
+ *
+ * ### **resume** 
+ * When a sound is resumed
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.RESUME, function(soundId) {});
+ * ```
+ *
+ * ### **stop** 
+ * When a sound is stopped 
+ *
+ * ``` javascript  
+ * soundPlayer.on(soundPlayer.STOP, function(soundId) {});
+ * ```
  */
 
 /**

@@ -14,6 +14,71 @@
  * 
  * This module provides a factory to create [timer](@@timer@@) objects. Asides from creating them it provides methods
  * to manipulate them in bulk.
+ *
+ * ### The Timer Factory object extends [delegate](@@delegate@@) so it provides a few events to hook into:
+ * 
+ * ### **create** 
+ * When a timer is created and added to the factory registry
+ *
+ * ``` javascript  
+ * timerFactory.on(timerFactory.CREATE, function(timer) {});
+ * ```
+ *
+ * ### **remove** 
+ * When a timer is removed from the factory registry
+ *
+ * ``` javascript  
+ * timerFactory.on(timerFactory.REMOVE, function(timer) {});
+ * ```
+ *
+ * ### **complete** 
+ * When a timer completes
+ *
+ * ``` javascript  
+ * timerFactory.on(timerFactory.COMPLETE, function(timer) {});
+ * ```
+ *
+ * ### **repeate** 
+ * When a timer repeates
+ *
+ * ``` javascript  
+ * timerFactory.on(timerFactory.REPEATE, function(timer) {});
+ * ```
+ *
+ * ### **start** 
+ * When a timer starts
+ *
+ * ``` javascript  
+ * timerFactory.on(timerFactory.START, function(timer) {});
+ * ```
+ *
+ * ### **pause** 
+ * When a timer pauses
+ *
+ * ``` javascript  
+ * timerFactory.on(timerFactory.PAUSE, function(timer) {});
+ * ```
+ *
+ * ### **resume** 
+ * When a timer resumes
+ *
+ * ``` javascript  
+ * timerFactory.on(timerFactory.RESUME, function(timer) {});
+ * ```
+ *
+ * ### **reset** 
+ * When a timer is reset
+ *
+ * ``` javascript  
+ * timerFactory.on(timerFactory.RESET, function(timer) {});
+ * ```
+ *
+ * ### **stop** 
+ * When a timer is stops
+ *
+ * ``` javascript  
+ * timerFactory.on(timerFactory.STOP, function(timer) {});
+ * ```
  */
 
 /**

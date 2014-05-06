@@ -10,6 +10,29 @@
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
  * This module defines a common interface for objects that behaive like a cache.
+ *
+ * ### The Cache object extends [delegate](@@delegate@@) so it provides a few events to hook into:
+ * 
+ * ### **cache** 
+ * When something is registered in the cache
+ *
+ * ``` javascript  
+ * cache.on(cache.CACHE, function(data) {});
+ * ```
+ *
+ * ### **clear** 
+ * When something is removed from the cache
+ *
+ * ``` javascript  
+ * cache.on(cache.CLEAR, function(data) {});
+ * ```
+ *
+ * ### **clear_all** 
+ * When everything is removed from the cache
+ *
+ * ``` javascript  
+ * cache.on(cache.CLEAR_ALL, function() {});
+ * ```
  */
 
 /**
@@ -86,8 +109,8 @@ define(function(require) {
 		 * @param  {String} id Id of the cached object to remove
 		 */
 		clear: function(id) {
-			this.execute(this.CLEAR, this.cacheObject[id]);
 			delete this.cacheObject[id];
+			this.execute(this.CLEAR, this.cacheObject[id]);
 		},
 		/**
 		 * --------------------------------
