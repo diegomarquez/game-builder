@@ -137,6 +137,7 @@ define(["delegate"], function(Delegate) {
     		mainContainer.style.left 	= 0;
 			mainContainer.style.margin  = 0;
 			mainContainer.style.padding = 0;
+			mainContainer.style.position = 'fixed';
 
 			// When this is called the application has trully started.
 			var setupUpdateLoop = function() {

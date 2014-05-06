@@ -12,9 +12,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Tag
-- Deploy Website
-
 - Do a simple game and get this over with for fucks sake!
 
 -----------------------------------
