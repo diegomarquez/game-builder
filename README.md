@@ -12,7 +12,49 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
+- 2D Camera
+	- Cameras.js Camera container
+		- Each camera clears it's viewing region.
+			- The camera manager takes care of deciding what part the view needs to be cleared in each viewport
+			- Mainly for overlapping viewports
+	- Basic Culling strategy
+		1. When the root draws to a viewport, it sends the information about the viewport to all the game-objects, so they can decide
+        if they are in the region of the viewport
+
+- Modify gb.js method to add things
+
+- Rename the current layer.js and layers.js to group.js and groups.js. 
+    - group.js will be basically the same (DONE)
+    - groups.js will do the same thing (DONE)
+    - rename all the places where it is a dependency. This requires trying out every example.
+    - Rename in documentation where needed
+
+- Rename basic-layer-setup.js to basic-display-setup.js
+    - Add the short hand methods to add things to the viewports and groups in the extension
+    - All the examples need reviewing after this change
+
+- Document viewport.js and viewports.js
+- Document view/layer.js
+- Document new transform and draw methods
+    - root.js
+    - game-object.js
+    - game-object-container.js
+
+- Add errors to website
+    - Rename heriarchy folders errors (Layer -> Group)
+
+- Delete old files
+
+- Adapt examples where needed
+
+- Add alpha to matrix_3x3.js    
+- Update root.js description
+- Move repeated code from every main.js into game.js
+
+- Shared Renderers. Share logic which does not need to keep state.
+
 - Do a simple game and get this over with for fucks sake!
+    - Something like Galaga, with a boss.
 
 -----------------------------------
 
@@ -20,10 +62,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Figure out how to use r.js
 
-- Shared Renderers. Share logic which does not need to keep state.
-- 2D Camera
 - Frame Animation System
-
 - Animation Capturing Tool
 - Visual Editor
 

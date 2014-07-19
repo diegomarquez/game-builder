@@ -51,7 +51,7 @@ define(['game-object-pool', 'component-pool', 'util', 'error-printer'], function
 		componentIntance.configure( Util.shallow_merge(config.componentArgs, component.args) );
 
 		//When a component is 'recycled' it returns to it's respective pool
-		componentIntance.on('recycle', this, function(c) {
+		componentIntance.on(componentIntance.RECYCLE, this, function(c) {
 			ComponentPool.returnToPool(c);
 		}, true);
 
@@ -108,7 +108,7 @@ define(['game-object-pool', 'component-pool', 'util', 'error-printer'], function
 		}
 
 		//When this object is 'recycled' it returns to it's respective pool
-		pooledObject.on('recycle', this, function(go) {
+		pooledObject.on(pooledObject.RECYCLE, this, function(go) {
 			GameObjectPool.returnToPool(go);
 		}, true);
 

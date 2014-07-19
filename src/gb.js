@@ -28,18 +28,19 @@
 /**
  * --------------------------------
  */
-define(['game', 'root', 'layers', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool', 'json-cache'], 
-	function(game, root, layers, assembler, reclaimer, gameObjectPool, componentPool, jsonCache) {
+define(['game', 'root', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool', 'json-cache'], 
+	function(game, root, groups, viewports, assembler, reclaimer, gameObjectPool, componentPool, jsonCache) {
 		return {
 			game: game,
 			root: root,
-			layers:layers,
+			groups:groups,
+			viewports: viewports,
 
 			assembler: assembler,
 			reclaimer: reclaimer,
 
-			goPool:gameObjectPool,
-			coPool:componentPool,
+			goPool: gameObjectPool,
+			coPool: componentPool,
 			jsonCache: jsonCache,
 
 			/**

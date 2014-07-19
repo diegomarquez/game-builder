@@ -256,8 +256,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * <p style='color:#AD071D'><strong>addComponent</strong></p>
 		 *
-		 * Adds a component and notifies it, 
-		 * it was added through the **onAdded** callback.
+		 * Adds a component and notifies it was added through the **onAdded** callback.
 		 * 
 		 * @param {Object} component [component](@@component@@) added
 		 */
@@ -315,25 +314,18 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * --------------------------------
 		 */
+		
+		transform: function() {
+			this.getMatrix(this.matrix);
+		},
 
-		/**
-		 * <p style='color:#AD071D'><strong>transformAndDraw</strong></p>
-		 *
-		 * Concatenates the matrix of the current game object to the canvas context,
-		 * after doing that it draws what ever the renderer says it should be drawn. This results
-		 * in game objects nested in [game-object-container](@@game-object-container@@) objects
-		 * to adjust their position to follow their parents. This happens because those
-		 * parents are concatenating their own matrixes to the context before this one.
-		 *
-		 * This affects, translation, rotation and scaling.
-		 *
-		 * Alpha is applied individually for each game object.
-		 * 
-		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
-		 */
-		transformAndDraw: function(context) {
-			this.matrix.identity().appendTransform(this.x, this.y, this.scaleX, this.scaleY, this.rotation, this.centerX, this.centerY);
+		draw: function(context, viewX, viewY, viewOffsetX, viewOffsetY, viewWidth, viewHeight) {
+			if (!this.canDraw) return;
+
+			context.save();
+
 			context.transform(this.matrix.a, this.matrix.b, this.matrix.c, this.matrix.d, this.matrix.tx, this.matrix.ty);
+
 			context.globalAlpha *= this.alpha;
 
 			if(this.renderer) {
@@ -341,10 +333,17 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			}
 
 			DebugDraw.call(this, context);
+
+			context.restore();
 		},
-		/**
-		 * --------------------------------
-		 */
+
+		hide: function() {
+			this.canDraw = false;
+		},
+
+		show: function() {
+			this.canDraw = true;
+		},
 
 		/**
 		 * <p style='color:#AD071D'><strong>clear</strong></p>
@@ -374,13 +373,13 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * Sets all the properties of the game object to the specified values,
 		 * assuming defaults if not specified.
 		 * 
-		 * @param  {[type]} x        Local X coordinate
-		 * @param  {[type]} y        Local Y coordinate
-		 * @param  {[type]} scaleX   Scale on the X axis
-		 * @param  {[type]} scaleY   Scale on the Y axis
-		 * @param  {[type]} rotation Rotation in degrees
-		 * @param  {[type]} centerX  Registration point X coordinate. This value is added to the x coordinate.
-		 * @param  {[type]} centerY  Registration point Y coordinate. This value is added to the x coordinate.
+		 * @param  {Number} x        Local X coordinate
+		 * @param  {Number} y        Local Y coordinate
+		 * @param  {Number} scaleX   Scale on the X axis
+		 * @param  {Number} scaleY   Scale on the Y axis
+		 * @param  {Number} rotation Rotation in degrees
+		 * @param  {Number} centerX  Registration point X coordinate. This value is added to the x coordinate.
+		 * @param  {Number} centerY  Registration point Y coordinate. This value is added to the x coordinate.
 		 */
 		resetTransform: function(x, y, scaleX, scaleY, rotation, centerX, centerY) {
 			this.x = x || 0;
@@ -401,13 +400,13 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * Sets all the properties of the game object to the specified values,
 		 * ommiting unspecified properties 
 		 * 
-		 * @param  {[type]} x        Local X coordinate
-		 * @param  {[type]} y        Local Y coordinate
-		 * @param  {[type]} scaleX   Scale on the X axis
-		 * @param  {[type]} scaleY   Scale on the Y axis
-		 * @param  {[type]} rotation Rotation in degrees
-		 * @param  {[type]} centerX  Registration point X coordinate. This value is added to the x coordinate.
-		 * @param  {[type]} centerY  Registration point Y coordinate. This value is added to the x coordinate.
+		 * @param  {Number} x        Local X coordinate
+		 * @param  {Number} y        Local Y coordinate
+		 * @param  {Number} scaleX   Scale on the X axis
+		 * @param  {Number} scaleY   Scale on the Y axis
+		 * @param  {Number} rotation Rotation in degrees
+		 * @param  {Number} centerX  Registration point X coordinate. This value is added to the x coordinate.
+		 * @param  {Number} centerY  Registration point Y coordinate. This value is added to the x coordinate.
 		 */
 		setTransform: function(x, y, scaleX, scaleY, rotation, centerX, centerY) {
 			if (x) this.x = x;
@@ -462,7 +461,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * at any given point.
 		 * 
 		 * @param  {Object} [r=new Object()] On object into which to put the result of this operation.
-		 * @param  {Object} [m=new Matrix()] A matrix object into which put result.
+		 * @param  {Object} [m=new Matrix()] A matrix object into which put the result.
 		 *
 		 * @return {Object} Contains the individual properties of a trandformation. ej. x, y, rotation, scale
 		 */

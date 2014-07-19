@@ -1,5 +1,5 @@
 /**
- * # layer.js
+ * # group.js
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
@@ -11,8 +11,7 @@
  * 
  * This module defines a special kind of [game-object-container](@@game-object-container@@).
  *
- * It's only purpose it be used by [layers](@@layers@@) as a way to organize visual
- * elements in a way that makes sense.
+ * It's only purpose it be used by [groups](@@groups@@) as a way to organize the updating loop
  *
  * It behaives exactly like a [game-object-container](@@game-object-container@@) except
  * for the fact it redefines the **clear** method so that it only removes all children.
@@ -27,12 +26,12 @@
  * --------------------------------
  */
 define(["game-object-container"], function(Container){
-	var Layer = Container.extend({
+	var Group = Container.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>clear</strong></p>
 		 *
-		 * This is normally called through [layers](@@layers@@) to empty a 
-		 * layer, but it could be called manually, assuming you can get a hold
+		 * This is normally called through [groups](@@groups@@) to empty a 
+		 * group, but it could be called manually, assuming you can get a hold
 		 * of a reference.
 		 */
 		clear: function() {
@@ -49,5 +48,5 @@ define(["game-object-container"], function(Container){
 		}
 	});
 
-	return Layer;
+	return Group;
 });

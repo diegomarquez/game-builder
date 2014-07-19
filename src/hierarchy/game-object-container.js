@@ -59,7 +59,7 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>add</strong></p>
 		 *
-		 * Adds a child [game-object](@@game-object@@) to this container.
+		 * Adds the specified child [game-object](@@game-object@@) to this container.
 		 * If the child already is part of another parent, it is removed from it
 		 * and added to this one.
 		 * 
@@ -87,7 +87,7 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>remove</strong></p>
 		 *
-		 * Removed a child from this container.
+		 * Removes the specified child [game-object](@@game-object@@) from this container.
 		 * 
 		 * @param {Object} The child [game-object](@@game-object@@) to remove
 		 */
@@ -112,6 +112,8 @@ define(["game-object"], function(GameObject){
 		 * @param  {Number} delta Time ellapsed since the last update
 		 */
 		update: function(delta) {
+			this.transform();
+
 			if(!this.childs) return;
 
 			var child = null
@@ -122,40 +124,29 @@ define(["game-object"], function(GameObject){
 				if(!child.canUpdate) continue;
 
 				child.update(delta);
-
-				if(!child.components)  continue;
-
-				for(var k=0; k<child.components.length; k++) {
-					if(child.components[k].update) {
-						child.components[k].update(delta);
-					}
-				}	
+				
+				if(!child.components) {
+					child.transform();	
+				} else {
+					for(var k=0; k<child.components.length; k++) {
+						if(child.components[k].update) {
+							child.components[k].update(delta);
+						}
+					}	
+					
+					child.transform();
+				}
 			}
 		},
 		/**
 		 * --------------------------------
 		 */
 
-		/**
-		 * <p style='color:#AD071D'><strong>transformAndDraw</strong></p>
-		 *
-		 * Same as the **transformAndDraw** in [game-object](@@game-object@@)
-		 * but it also calls the method for all of it's children.
-		 *
-		 * It does so after drawing itself.
-		 * 
-		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
-		 */
-		transformAndDraw: function(context) {
-			context.save();
-			
+		draw: function(context) {			
 			this._super(context);
 
-			if(!this.childs) {
-				context.restore();
-				return;
-			} 
-				
+			if(!this.childs) return;
+						
 			var child = null;
 
 			for(var i=0; i<this.childs.length; i++){
@@ -163,16 +154,29 @@ define(["game-object"], function(GameObject){
 
 				if(!child.canDraw) continue;
 
-				context.save();
-				child.transformAndDraw(context);
-				context.restore();
+				child.draw(context);	
 			}
-
-			context.restore();
 		},
-		/**
-		 * --------------------------------
-		 */
+
+		hide: function() {
+			this._super();
+
+			if(!this.childs) return;
+		
+			for(var i=0; i<this.childs.length; i++){
+				this.childs[i].hide();
+			}
+		},
+
+		show: function() {
+			this._super();
+
+			if(!this.childs) return;
+
+			for(var i=0; i<this.childs.length; i++){
+				this.childs[i].show();
+			}
+		},
 		
 		/**
 		 * <p style='color:#AD071D'><strong>recycle</strong></p>
