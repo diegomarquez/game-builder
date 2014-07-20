@@ -43,6 +43,8 @@ define(['game', 'root', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-o
 			coPool: componentPool,
 			jsonCache: jsonCache,
 
+			viewportsAliases: {},
+
 			/**
 			 * A reference to the main canvas object in index.html. 
 			 */
@@ -50,6 +52,21 @@ define(['game', 'root', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-o
 			/**
 			 * --------------------------------
 			 */
+
+			/**
+			 * <p style='color:#AD071D'><strong>setViewportShortCut</strong></p>
+			 * 
+			 * Store commonly used [viewport](@@viewport@@) + [layer](@@layer@@) setups
+			 * 
+			 * @param {String} goId Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
+			 * @param {String} groupId Id of the group to add the [game-object](@@game-object@@) to. View [groups](@@groups@@), for more details.
+			 * @param {Array} vports An array specifying viewports and corresponding layers the [game-object](@@game-object@@) should be added to.
+			 *
+			 * @return {Object} The [game-object](@@game-object@@) that was just assembled.
+			 */
+			setViewportShortCut: function(alias, vports) {
+				this.viewportsAliases[alias] = vports;
+			},
 
 			/**
 			 * <p style='color:#AD071D'><strong>addToLayer</strong></p>
@@ -65,9 +82,17 @@ define(['game', 'root', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-o
 			add: function (goId, groupId, vports) {
 				var go = assembler.get(goId);
 				groups.get(groupId).add(go);
-				
-				for (var i=0; i<vports.length; i++) {
-					viewports.get(vports[i].viewport).addGameObject(vports[i].layer, go);
+			
+				var v;
+
+				if (typeof vports == 'string') {
+					v = this.viewportsAliases[vports]
+				} else {
+					v = vports;
+				}
+
+				for (var i=0; i<v.length; i++) {
+					viewports.get(v[i].viewport).addGameObject(v[i].layer, go);
 				}
 			
 				go.start();

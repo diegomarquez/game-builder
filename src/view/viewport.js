@@ -116,11 +116,11 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		},
 
 		showLayer: function(name) {
-			findLayer.call(this, layerName).show();
+			findLayer.call(this, name).show();
 		},
 
-		hideLayer: function() {
-			findLayer.call(this, layerName).hide();
+		hideLayer: function(name) {
+			findLayer.call(this, name).hide();
 		}
 	});
 

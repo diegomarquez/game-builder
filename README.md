@@ -21,17 +21,11 @@ For better results it is better to use it in conjuction with [generator-game-bui
 		1. When the root draws to a viewport, it sends the information about the viewport to all the game-objects, so they can decide
         if they are in the region of the viewport
 
-- Modify gb.js method to add things
-
 - Rename the current layer.js and layers.js to group.js and groups.js. 
     - group.js will be basically the same (DONE)
     - groups.js will do the same thing (DONE)
     - rename all the places where it is a dependency. This requires trying out every example.
     - Rename in documentation where needed
-
-- Rename basic-layer-setup.js to basic-display-setup.js
-    - Add the short hand methods to add things to the viewports and groups in the extension
-    - All the examples need reviewing after this change
 
 - Document viewport.js and viewports.js
 - Document view/layer.js
@@ -42,6 +36,9 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Add errors to website
     - Rename heriarchy folders errors (Layer -> Group)
+
+- Example than demonstrates multiple viewports
+- Add game-objects in each viewport to activity display
 
 - Delete old files
 
