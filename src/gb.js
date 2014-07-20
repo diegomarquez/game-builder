@@ -13,6 +13,7 @@
  * [game-object-pool](@@game-object-pool@@) 
  * [component-pool](@@component-pool@@)
  * [json-cache](@@json-cache@@) 	
+ * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module.
  * 
@@ -28,8 +29,27 @@
 /**
  * --------------------------------
  */
-define(['game', 'root', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool', 'json-cache'], 
+define(['game', 'root', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool', 'json-cache', 'error-printer'], 
 	function(game, root, groups, viewports, assembler, reclaimer, gameObjectPool, componentPool, jsonCache) {
+		
+		var addToViewPorts = function(go, vports) {
+			var v;
+
+			if (typeof vports == 'string') {
+				if (this.viewportsAliases[vports]) {
+					v = this.viewportsAliases[vports];
+				} else {
+					ErrorPrinter.printError('Gb', 'Viewport shortcut ' + vports + ' does not exist.');					
+				}
+			} else {
+				v = vports;
+			}
+
+			for (var i=0; i<v.length; i++) {
+				viewports.get(v[i].viewport).addGameObject(v[i].layer, go);
+			}
+		};
+
 		return {
 			game: game,
 			root: root,
@@ -74,46 +94,44 @@ define(['game', 'root', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-o
 			 * Wraps all the steps needed to start rendering a <a href=@@game-object@@>game-object</a>
 			 * 
 			 * @param {String} goId Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
-			 * @param {String} groupId Id of the group to add the [game-object](@@game-object@@) to. View [groups](@@groups@@), for more details.
-			 * @param {Array} vports An array specifying viewports and corresponding layers the [game-object](@@game-object@@) should be added to.
+			 * @param {String} groupId Id of the [group](@@group@@) to add the [game-object](@@game-object@@) to. View [groups](@@groups@@), for more details.
+			 * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@) 
+			 *                              the [game-object](@@game-object@@) should be added to. 
+			 *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
 			 *
 			 * @return {Object} The [game-object](@@game-object@@) that was just assembled.
 			 */
 			add: function (goId, groupId, vports) {
 				var go = assembler.get(goId);
 				groups.get(groupId).add(go);
-			
-				var v;
-
-				if (typeof vports == 'string') {
-					v = this.viewportsAliases[vports]
-				} else {
-					v = vports;
-				}
-
-				for (var i=0; i<v.length; i++) {
-					viewports.get(v[i].viewport).addGameObject(v[i].layer, go);
-				}
-			
+				addToViewPorts.call(this, go, vports);			
 				go.start();
+
+				return go;
 			},
 			
 			/**
 			 * <p style='color:#AD071D'><strong>addTextToLayer</strong></p>
 			 * 
-			 * This method is basically the same as **addToLayer** but it is used with [game-objects](@@game-object@@) that have a 
+			 * This method is basically the same as **add** but it is used with [game-objects](@@game-object@@) that have a 
 			 * [text-renderer](@@text-renderer@@) attached to them. 
 			 * 
-			 * @param {String} layerName Id of the layer to add the [game-object](@@game-object@@) to. View [layers](@@layers@@), for more details.
-			 * @param {String} goId      Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
-			 * @param {String} text      String to initialize the [text-renderer](@@text-renderer@@) with.
+			 * @param {String} goId Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
+			 * @param {String} groupId Id of the [group](@@group@@) to add the [game-object](@@game-object@@) to. View [groups](@@groups@@), for more details.		 
+			 * @param {String} text  String to initialize the [text-renderer](@@text-renderer@@) with.
+			 * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@) 
+			 *                              the [game-object](@@game-object@@) should be added to. 
+			 *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
 			 *
 			 * @return {Object} The [game-object](@@game-object@@) that was just assembled.
 			 */
-			addTextToLayer: function(layerName, goId, text) {
-				var go = this.layers.get(layerName).add(this.assembler.get(goId));
+			addText: function(goId, groupId, text, vports) {
+				var go = assembler.get(goId);
+				groups.get(groupId).add(go);
+				addToViewPorts.call(this, go, vports);
 				go.renderer.text = text;
-				go.start();	
+				go.start();
+
 				return go;
 			},
 			/**

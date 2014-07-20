@@ -39,6 +39,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 - Example than demonstrates multiple viewports
 - Add game-objects in each viewport to activity display
+- Add gb.js error to error page
 
 - Delete old files
 
