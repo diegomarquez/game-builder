@@ -54,22 +54,24 @@ define(['game', 'root', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-o
 			/**
 			 * <p style='color:#AD071D'><strong>addToLayer</strong></p>
 			 * 
-			 * Wraps all the steps needed to add a <a href=@@game-object@@>game-object</a>
-			 * into a <a href=@@layer@@>layer</a>. 
+			 * Wraps all the steps needed to start rendering a <a href=@@game-object@@>game-object</a>
 			 * 
-			 * @param {String} layerName Id of the layer to add the [game-object](@@game-object@@) to. View [layers](@@layers@@), for more details.
-			 * @param {String} goId      Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
+			 * @param {String} goId Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
+			 * @param {String} groupId Id of the group to add the [game-object](@@game-object@@) to. View [groups](@@groups@@), for more details.
+			 * @param {Array} vports An array specifying viewports and corresponding layers the [game-object](@@game-object@@) should be added to.
 			 *
 			 * @return {Object} The [game-object](@@game-object@@) that was just assembled.
 			 */
-			addToLayer: function(layerName, goId) {
-				var go = this.layers.get(layerName).add(this.assembler.get(goId));
-				go.start();	
-				return go;
+			add: function (goId, groupId, vports) {
+				var go = assembler.get(goId);
+				groups.get(groupId).add(go);
+				
+				for (var i=0; i<vports.length; i++) {
+					viewports.get(vports[i].viewport).addGameObject(vports[i].layer, go);
+				}
+			
+				go.start();
 			},
-			/**
-			 * --------------------------------
-			 */
 			
 			/**
 			 * <p style='color:#AD071D'><strong>addTextToLayer</strong></p>

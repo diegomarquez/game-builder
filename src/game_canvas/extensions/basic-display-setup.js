@@ -41,9 +41,7 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 			Groups.add("Second");
 			Groups.add("Third");
 
-			var viewport = Viewports.add("Main", Gb.canvas.width - 20, Gb.canvas.height - 20, 10, 10);
-
-			viewport.setStroke(1, "#000000");
+			var viewport = Viewports.add("Main", Gb.canvas.width, Gb.canvas.height, 0, 0);
 
 			viewport.addLayer("Back");
 			viewport.addLayer("Middle");
