@@ -15,16 +15,12 @@
  *
  * In any given [Game-Builder](http://diegomarquez.github.io/game-builder) application
  * this is is the only [game-object-container](@@game-object-container@@) that is updated
- * explicitly in the main update loop. As it is updated and rendered, it will update and render all of its 
- * children, who will in turn update and render their children, until everything has been updated
- * and renderered.
+ * explicitly in the main update loop. As it is updated, it will update all of its 
+ * children, who will in turn update their children, until everything has been updated.
  *
- * If you where wondering, this is where the screen is cleared before each update cycle. 
- * It is possible to manipulate this object as any other [game-object](@@game-object@@), 
- * but that is probably not a good idea :P
- *
- * Asides from that, there isn't anything else noteworthy about this module, inspite of being at the
- * very begenning of the hierarchical structure.
+ * Rendering is also executed in this module. The code takes care of setting up the context for each
+ * registered [viewport](@@viewport@@). In between setups, all the [game-objects](@@game-object@@) for a given
+ * [viewport](@@viewport@@) are rendered.
  */
 
 /**

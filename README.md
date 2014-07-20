@@ -12,19 +12,20 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- 2D Camera
-	- Cameras.js Camera container
+- Refactor examples to use viewports
+
+- Viewports
+	- Concerns
 		- Each camera clears it's viewing region.
 			- The camera manager takes care of deciding what part the view needs to be cleared in each viewport
 			- Mainly for overlapping viewports
 	- Basic Culling strategy
-		1. When the root draws to a viewport, it sends the information about the viewport to all the game-objects, so they can decide
+		- When the root draws to a viewport, it sends the information about the viewport to all the game-objects, so they can decide
         if they are in the region of the viewport
+        - All renderers must define a region so they can calculate if they are in the viewport or not 
 
 - Rename the current layer.js and layers.js to group.js and groups.js. 
-    - group.js will be basically the same (DONE)
-    - groups.js will do the same thing (DONE)
-    - rename all the places where it is a dependency. This requires trying out every example.
+    - Rename all the places where it is a dependency. This requires trying out every example.
     - Rename in documentation where needed
 
 - Document viewport.js and viewports.js
@@ -38,15 +39,13 @@ For better results it is better to use it in conjuction with [generator-game-bui
     - Rename heriarchy folders errors (Layer -> Group)
 
 - Example than demonstrates multiple viewports
+    - Don't forget to try out collision between different game-objects in different viewports
 - Add game-objects in each viewport to activity display
 - Add gb.js error to error page
 
 - Delete old files
 
-- Adapt examples where needed
-
 - Add alpha to matrix_3x3.js    
-- Update root.js description
 - Move repeated code from every main.js into game.js
 
 - Shared Renderers. Share logic which does not need to keep state.
