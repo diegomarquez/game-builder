@@ -56,6 +56,10 @@ define(["delegate"], function(Delegate){
 
 		hide: function() { 
 			this.visible = false; 
+		},
+
+		isVisible: function() { 
+			return this.visible; 
 		}
 	});
 

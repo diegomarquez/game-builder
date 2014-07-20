@@ -6,13 +6,16 @@
  * Inherits from: [extension](@@extension@@)
  *
  * Depends of: 
- * [layers](@@layers@@)
+ * [groups](@@groups@@)
+ * [viewports](@@viewports@@)
  * [gb](@@gb@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines an extension that uses [layers](@@layers@@) to resume all update activity
+ * This module defines an extension that uses [groups](@@groups@@) to resume all update activity
  * when the application gains focus.
+ *
+ * It also uses [viewports](@@viewports@@) check that any [layers](@@layer@@) hidden before pausing, remain hidden.
  *
  * The extension also adds a **resume** method to [game](@@game@@), to be able to resume the application
  * manually after pausing.
@@ -36,7 +39,7 @@
  * --------------------------------
  */
 
-define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
+define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, Gb, Extension) {
 	var game = Gb.game;
 
 	var Resume = Extension.extend({
@@ -47,18 +50,31 @@ define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
 		},
 
 		execute: function() {
-			Layers.all('resume', 'update');
+			Groups.all('resume');
 
-			for (var k in Layers.layers) { 
-				if (Layers.layers[k].drawAlreadyStopped) {
-					Layers.stop_draw(k);			
+			for (var k in Groups.groups) { 
+				if (Groups.groups[k].drawAlreadyStopped) {
+					Groups.stop_draw(k);			
 				} 
-				if (Layers.layers[k].updateAlreadyStopped) {
-					Layers.stop_update(k);
+
+				if (Groups.groups[k].updateAlreadyStopped) {
+					Groups.stop_update(k);
 				}
 
-				Layers.layers[k].drawAlreadyStopped = false;
-				Layers.layers[k].updateAlreadyStopped = false;
+				Groups.groups[k].drawAlreadyStopped = false;
+				Groups.groups[k].updateAlreadyStopped = false;
+			}
+
+			var viewports = Viewports.all();
+
+			for (var v in viewports) {
+				for (var l in v.layers) {
+					if (l.alreadyHidden) {
+						l.hide();	
+					}
+
+					l.alreadyHidden = false;					
+				}
 			}
 		}
 	});

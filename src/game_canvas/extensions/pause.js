@@ -6,14 +6,18 @@
  * Inherits from: [extension](@@extension@@)
  *
  * Depends of: 
- * [layers](@@layers@@)
+ * [groups](@@groups@@)
+ * [viewports](@@viewports@@)
  * [gb](@@gb@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines an extension that uses [layers](@@layers@@) to halt all update activity
+ * This module defines an extension that uses [groups](@@groups@@) to halt all update activity
  * when the application looses focus.
  *
+ * It also uses [viewports](@@viewports@@) to check if there were any [layers](@@layer@@) already hiding before pausing.
+ * The extension needs to check that so that things that were hiding before pausing, remain hiding after resuming.
+ * 
  * The extension also adds a **pause** method to [game](@@game@@) to be able to pause the application
  * manually.
  *
@@ -35,7 +39,7 @@
 /**
  * --------------------------------
  */
-define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
+define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, Gb, Extension) {
 	var game = Gb.game;
 
 	var Pause = Extension.extend({
@@ -46,12 +50,20 @@ define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
 		},
 
 		execute: function() {
-			for (var k in Layers.layers) { 
-				Layers.layers[k].drawAlreadyStopped = !Layers.layers[k].canDraw;
-				Layers.layers[k].updateAlreadyStopped = !Layers.layers[k].canUpdate;
+			for (var k in Groups.groups) { 
+				Groups.groups[k].drawAlreadyStopped = !Groups.groups[k].canDraw;
+				Groups.groups[k].updateAlreadyStopped = !Groups.groups[k].canUpdate;
 			}
 
-			Layers.all('stop', 'update');
+			var viewports = Viewports.all();
+
+			for (var v in viewports) {
+				for (var l in v.layers) {
+					l.alreadyHidden = !l.isVisible();					
+				}
+			}
+
+			Groups.all('stop', 'update');
 		}
 	});
 
