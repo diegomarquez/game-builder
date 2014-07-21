@@ -6,7 +6,6 @@
  * Inherits from: [extension](@@extension@@)
  *
  * Depends of: 
- * [layers](@@layers@@)
  * [gb](@@gb@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
@@ -23,7 +22,7 @@
 /**
  * --------------------------------
  */
-define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
+define(["gb", "extension"], function(Gb, Extension) {
 	var AspectRatioResize = Extension.extend({
 		type: function() {
 			// Notice the use of the constant CREATE defined in [game](@@game@@),
