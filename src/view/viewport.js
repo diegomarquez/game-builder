@@ -244,7 +244,7 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		 */
 		isVisible: function() { 
 			return this.visible; 
-		}
+		},
 		/**
 		 * --------------------------------
 		 */

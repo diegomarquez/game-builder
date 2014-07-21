@@ -31,12 +31,14 @@
 /**
  * --------------------------------
  */
-define(["game-object-container", "viewports", "gb"], function(Container, Viewports, Gb){
+define(["game-object-container", "viewports"], function(Container, Viewports){
 	var Root = Container.extend({
 
 		init: function() {
 			this._super();
 			this.allViewports = Viewports.all();
+
+			this.canvas = document.getElementById('game');
 		},
 
 		/**
@@ -53,7 +55,7 @@ define(["game-object-container", "viewports", "gb"], function(Container, Viewpor
 			// Reset context transformation
 			context.setTransform(1, 0, 0, 1, 0, 0);
 			// Clear the viewport drawing area
-			context.clearRect(0, 0, Gb.canvas.width, Gb.canvas.height);
+			context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
 			for (var k in this.allViewports) {
 				var v = this.allViewports[k];
