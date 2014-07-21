@@ -26,7 +26,7 @@
 define(["sound-player", "gb", "extension"], function(SoundPlayer, Gb, Extension) {
 	var game = Gb.game;
 
-	var TimersControl = Extension.extend({
+	var SoundControl = Extension.extend({
 		type: function() {
 			// Notice the use of the constant CREATE defined in [game](@@game@@)
 			// to define this extension should be executed on creation.
@@ -57,5 +57,5 @@ define(["sound-player", "gb", "extension"], function(SoundPlayer, Gb, Extension)
 		}
 	});
 
-	return TimersControl;
+	return SoundControl;
 });
