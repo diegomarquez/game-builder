@@ -31,7 +31,7 @@
 /**
  * --------------------------------
  */
-define(["game-object-container", "viewports"], function(Container, Viewports){
+define(["game-object-container", "viewports", "gb"], function(Container, Viewports, Gb){
 	var Root = Container.extend({
 
 		init: function() {
@@ -50,12 +50,19 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 */
 		draw: function(context) {
+			// Reset context transformation
+			context.setTransform(1, 0, 0, 1, 0, 0);
+			// Clear the viewport drawing area
+			context.clearRect(0, 0, Gb.canvas.width, Gb.canvas.height);
+
 			for (var k in this.allViewports) {
+				var v = this.allViewports[k];
+
+				if (!v.isVisible()) return;
+
 				// Reset context transformation
 				context.setTransform(1, 0, 0, 1, 0, 0);
 				
-				var v = this.allViewports[k];
-
 				// Set the clipping area
 				context.beginPath();
 	        	context.rect(v.offsetX, v.offsetY, v.width, v.height);
@@ -68,9 +75,6 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 	        	 	        	
 	        	context.clip();
 				context.closePath();
-
-				// Clear the viewport drawing area
-				context.clearRect(v.offsetX, v.offsetY, v.width, v.height);
 
 				// Move to the area that will be drawn
 	    		context.translate(v.x, v.y);

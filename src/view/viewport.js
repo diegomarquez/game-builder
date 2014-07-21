@@ -218,6 +218,36 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>hide</strong></p>
+		 *
+		 * Make all the [layers](@@layer@@) in the viewport invisible
+		 */
+		hide: function() {
+			this.visible = false;
+
+			for (var i = 0; i < this.layers.length; i++) {
+				this.layers[i].hide();
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>isVisible</strong></p>
+		 *
+		 * Wether the layer is visible or not
+		 *
+		 * @return {Boolean}
+		 */
+		isVisible: function() { 
+			return this.visible; 
+		}
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>showLayer</strong></p>
