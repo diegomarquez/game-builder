@@ -326,8 +326,6 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 
 			context.transform(this.matrix.a, this.matrix.b, this.matrix.c, this.matrix.d, this.matrix.tx, this.matrix.ty);
 
-			context.globalAlpha *= this.alpha;
-
 			if(this.renderer) {
 				this.renderer.draw(context);
 			}

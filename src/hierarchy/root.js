@@ -40,12 +40,12 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 		},
 
 		/**
-		 * <p style='color:#AD071D'><strong>transformAndDraw</strong></p>
+		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
-		 * Clears the screen, and then proceeds to update and render all of
-		 * it's children, which will in turn do the same for their children.
+		 * Performs the rendering of all the [viewports](@@viewport@@) registered in the [viewports](@@viewports@@) object.
 		 *
-		 * The transformations needed to view a specific part of the world are applied here
+		 * The process includes, clearing the rectangle belonging to each viewport, modifying the context and drawing all
+		 * the corresponding [game-objects](@@game-object@@)
 		 * 
 		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 */
