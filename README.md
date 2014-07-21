@@ -12,12 +12,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Document viewport.js and viewports.js
-- Document view/layer.js
-- Document new transform and draw methods
-    - game-object.js
-    - game-object-container.js
-
 - Example than demonstrates multiple viewports
     - Don't forget to try out collision between different game-objects in different viewports
     - Viewports
