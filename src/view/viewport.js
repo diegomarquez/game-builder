@@ -88,7 +88,7 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 
 			go.on(go.RECYCLE, this, function(g) { 
 				layer.remove(g); 
-			});
+			}, true);
 		},
 
 		removeAllGameObjects: function() {
