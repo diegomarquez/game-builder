@@ -52,18 +52,19 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 */
 		draw: function(context) {
-			// Reset context transformation
-			context.setTransform(1, 0, 0, 1, 0, 0);
-			// Clear the viewport drawing area
+			// // Reset context transformation
+			// context.setTransform(1, 0, 0, 1, 0, 0);
+			// Clear the canvas
 			context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
 			for (var k in this.allViewports) {
 				var v = this.allViewports[k];
 
+				// Skip everything if the viewport is not visible
 				if (!v.isVisible()) return;
 
-				// Reset context transformation
-				context.setTransform(1, 0, 0, 1, 0, 0);
+				// Save state for current viewport
+				context.save();
 				
 				// Set the clipping area
 				context.beginPath();
@@ -78,11 +79,15 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 	        	context.clip();
 				context.closePath();
 
-				// Move to the area that will be drawn
-	    		context.translate(v.x, v.y);
+				// make all the drawings relative to the viewport's visible area
+	    		context.translate(v.x + v.offsetX, v.y + v.offsetY);
 	    		context.scale(v.scaleX, v.scaleY);
 				
+				// Draw all the game objects associated with this viewport
 	    		v.draw(context, v.x, v.y, v.offsetX, v.offsetY, v.width, v.height);
+
+	    		// Go back to previous state for the next viewport
+	    		context.restore();
 			}
 		}
 	});

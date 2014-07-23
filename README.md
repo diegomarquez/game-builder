@@ -13,12 +13,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### TODO List:
 
 - Example than demonstrates multiple viewports
-    - Don't forget to try out collision between different game-objects in different viewports
     - Viewports
-        - Concerns
-            - Each camera clears it's viewing region.
-                - The camera manager takes care of deciding what part the view needs to be cleared in each viewport
-                - Mainly for overlapping viewports
         - Basic Culling strategy
             - When the root draws to a viewport, it sends the information about the viewport to all the game-objects, so they can decide
             if they are in the region of the viewport
@@ -28,12 +23,16 @@ For better results it is better to use it in conjuction with [generator-game-bui
     - Rename heriarchy folders errors (Layer -> Group)
     - Add gb.js error to error page
 
-- Add game-objects in each viewport to activity display
-
 - Add alpha to matrix_3x3.js    
+
 - Move repeated code from every main.js into game.js
 
-- Shared Renderers. Share logic which does not need to keep state.
+- Shared Renderers and components. Share logic which does not need to keep state.
+- Different renderers on different viewports
+
+- Update main.js template in generator
+
+- Build docs, tag, deploy website
 
 - Do a simple game and get this over with for fucks sake!
     - Something like Galaga, with a boss.

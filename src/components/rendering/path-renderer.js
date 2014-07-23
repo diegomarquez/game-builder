@@ -93,6 +93,8 @@ define(["component", "path-cache", "error-printer"], function(Component, PathCac
 		 * @throws {Error} If pathWidth and pathHeight properties are not set
 		 */
 		start: function(parent) {	
+			if (this.skipCache) return;
+
 			if (!this.pathWidth && !this.pathHeight) {
 				ErrorPrinter.missingArgumentError('Path Renderer', 'pathWidth', 'pathHeight')
 			}
@@ -128,22 +130,26 @@ define(["component", "path-cache", "error-printer"], function(Component, PathCac
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 */
 		draw: function(context) {
-			var w, h;
-
-			canvas = PathCache.get(this.name);
-
-			if (this.width && this.height) {
-				w = this.width;
-				h = this.height;
+			if (this.skipCache) {
+				this.drawPath(context);
 			} else {
-				w = canvas.width;
-				h = canvas.height;
-			}
+				var w, h;
 
-			if (this.offset == 'center'){
-				context.drawImage(canvas, -w/2, -h/2, w, h);	
-			} else{
-				context.drawImage(canvas, this.offsetX, this.offsetY, w, h);		
+				canvas = PathCache.get(this.name);
+
+				if (this.width && this.height) {
+					w = this.width;
+					h = this.height;
+				} else {
+					w = canvas.width;
+					h = canvas.height;
+				}
+
+				if (this.offset == 'center'){
+					context.drawImage(canvas, -w/2, -h/2, w, h);	
+				} else{
+					context.drawImage(canvas, this.offsetX, this.offsetY, w, h);		
+				}
 			}
 		}
 		/**
