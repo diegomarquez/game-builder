@@ -318,7 +318,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * <p style='color:#AD071D'><strong>transform</strong></p>
 		 *
-		 * Generates the concatenated [matrix-3x3](@@matrix-3x3@@) used to itself in the proper place
+		 * Generates the concatenated [matrix-3x3](@@matrix-3x3@@) used to draw itself in the proper place
 		 */
 		transform: function() {
 			this.getMatrix(this.matrix);
@@ -512,10 +512,19 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			}
 
 			return m.decompose(r);
-		}
+		},
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>isContainer</strong></p>
+		 *
+		 * @return {Boolean} Wheter it is a container object or not
+		 */
+		isContainer: function() {
+			return false;
+		}
 	});
 
 	// ### Getters for all the types of events a GameObject can hook into
