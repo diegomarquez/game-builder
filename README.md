@@ -13,15 +13,14 @@ For better results it is better to use it in conjuction with [generator-game-bui
 ###### TODO List:
 
 - Example than demonstrates multiple viewports
-    - Viewports
-        - Basic Culling strategy
-            - When the root draws to a viewport, it sends the information about the viewport to all the game-objects, so they can decide
-            if they are in the region of the viewport
-            - All renderers must define a region so they can calculate if they are in the viewport or not 
+    - Try out the code to make sure game objects outside of a viewport are not rendered    
+    - Add text explaining controls for the example
+    - Add example to the website
 
 - Add errors to website
     - Rename heriarchy folders errors (Layer -> Group)
     - Add gb.js error to error page
+    - path-renderer.js
 
 - Add alpha to matrix_3x3.js    
 
@@ -31,8 +30,9 @@ For better results it is better to use it in conjuction with [generator-game-bui
 - Different renderers on different viewports
 
 - Update main.js template in generator
+- Update renderer.js template in generator
 
-- Build docs, tag, deploy website
+- Try out examples, Build docs, tag, deploy website
 
 - Do a simple game and get this over with for fucks sake!
     - Something like Galaga, with a boss.

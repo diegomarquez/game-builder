@@ -50,8 +50,8 @@
 		
 		//Use these to override the dimentions of the cached text.
 		//These are optional
-		width: 20, 
-		height: 20
+		scaleX: 1, 
+		scaleY: 1
  *	});
  * ```
  * <strong>Note: The snippet uses the reference to the <a href=@@component-pool@@>component-pool</a>
@@ -70,22 +70,9 @@
  */
 define(["component", 'text-cache'], function(Component, TextCache) {
 
-	var image = null;
+	var image, w, h;
 
 	var TextRenderer = Component.extend({
-		/**
-		 * <p style='color:#AD071D'><strong>init</strong></p>
-		 */
-		init: function() {
-			this._super()
-
-			this.offsetX = 0;
-			this.offsetY = 0;
-		},
-		/**
-		 * --------------------------------
-		 */
-
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -116,24 +103,37 @@ define(["component", 'text-cache'], function(Component, TextCache) {
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 */
 		draw: function(context) {
-			var w, h;
-
 			image = TextCache.get(this.name);
 
-			if (this.width && this.height) {
-				w = this.width;
-				h = this.height;
-			} else {
-				w = image.width;
-				h = image.height;
-			}
+			w = this.rendererWidth();
+			h = this.rendererHeight();
 
 			if (this.offset == 'center'){
 				context.drawImage(image, -w/2, -h/2, w, h);	
 			} else{
-				context.drawImage(image, this.offsetX, this.offsetY, w, h);		
+				context.drawImage(image, this.rendererOffsetX(), this.rendererOffsetY(), w, h);		
 			}
 		}
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>rendererWidth</strong></p>
+		 *
+		 * @return {Number} The width of the renderer
+		 */
+		rendererWidth: function() { return TextCache.get(this.name).width * this.scaleX; }
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererHeight</strong></p>
+		 *
+		 * @return {Number} The height of the renderer
+		 */
+		rendererHeight: function() { return TextCache.get(this.name).height * this.scaleY; }
 		/**
 		 * --------------------------------
 		 */

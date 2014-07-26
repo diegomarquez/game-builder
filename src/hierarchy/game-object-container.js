@@ -150,14 +150,8 @@ define(["game-object"], function(GameObject){
 		 * Then it draws all of it's children
 		 * 
 		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
-		 * @param  {Number} viewX       X position of the [viewport](@@viewport@@) the layer belongs to
-		 * @param  {Number} viewY       Y position of the [viewport](@@viewport@@) the layer belongs to
-		 * @param  {Number} viewOffsetX X offset of the [viewport](@@viewport@@) the layer belongs to
-		 * @param  {Number} viewOffsetY Y offset of the [viewport](@@viewport@@) the layer belongs to
-		 * @param  {Number} viewWidth   Width of the [viewport](@@viewport@@) the layer belongs to
-		 * @param  {Number} viewHeight  Height of the [viewport](@@viewport@@) the layer belongs to
 		 */
-		draw: function(context, viewX, viewY, viewOffsetX, viewOffsetY, viewWidth, viewHeight) {			
+		draw: function(context) {			
 			this._super(context);
 
 			if(!this.childs) return;

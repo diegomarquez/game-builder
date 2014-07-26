@@ -30,6 +30,11 @@
  * --------------------------------
  */
 define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPrinter){
+	var p = {};
+	var r = null;
+	var m = null;
+	var topLeft, topRight, bottomLeft, bottomRight;
+
 	var Viewport = Delegate.extend({
 
 		/**
@@ -83,11 +88,8 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		 * @param {String} name Id of the new [layer](@@layer@@)
 		 */
 		addLayer: function(name) {
-			var layer = new Layer();
-			layer.name = name;
-
+			var layer = new Layer(name, this);
 			this.layers.push(layer);
-
 			return layer;
 		},
 		/**
@@ -180,7 +182,7 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 			if (!this.visible) return;
 
 			for (var i = 0; i < this.layers.length; i++) {
-				this.layers[i].draw(context, this.x, this.y, this.offsetX, this.offsetY, this.width, this.height);
+				this.layers[i].draw(context);
 			}
 		},
 		/**
@@ -248,6 +250,43 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>isGameObjectInside</strong></p>
+		 *
+		 * @param  {Object}  go [game-object](@@game-object@@) to test
+		 *
+		 * @return {Boolean} Whether the [game-object](@@game-object@@) is in the visible area of the viewport or not
+		 */
+		isGameObjectInside: function(go) {
+			if (!go.renderer) return;
+
+			r = go.renderer;
+			m = go.matrix;
+
+			topLeft     = m.transformPoint(r.rendererOffsetX(), r.rendererOffsetY(), p);
+			bottomRight = m.transformPoint(r.rendererOffsetX() + r.rendererWidth(), r.rendererOffsetY() + r.rendererHeight(), p);
+
+			topLeft.x *= this.scaleX;
+			topLeft.y *= this.scaleY;
+			
+			bottomRight.x *= this.scaleX;
+			bottomRight.y *= this.scaleY;
+
+			if (topLeft.x > this.x + this.offsetX && topLeft.x < this.x + this.offsetX + this.width) {
+				if (topLeft.y > this.y + this.offsetY && topLeft.y < this.y + this.offsetY + this.height) {
+					return true;
+				}
+			}
+
+			if (bottomRight.x > this.x + this.offsetX && bottomRight.x < this.x + this.offsetX + this.width) {
+				if (bottomRight.y > this.y + this.offsetY && bottomRight.y < this.y + this.offsetY + this.height) {
+					return true;
+				}
+			}
+
+			return false;
+		}
 
 		/**
 		 * <p style='color:#AD071D'><strong>showLayer</strong></p>

@@ -25,18 +25,71 @@
 define(["component", "error-printer"], function(Component, ErrorPrinter) {
 	var Renderer = Component.extend({
 		/**
-		 * <p style='color:#AD071D'><strong>draw</strong></p>
+		 * <p style='color:#AD071D'><strong>init</strong></p>
 		 *
-		 * Drawing logic.
+		 * Constructor
+		 */
+		init: function() {
+			this.offsetX = 0;
+			this.offsetY = 0;
+
+			this.scaleX = 1;
+			this.scaleY = 1;
+		}
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 * 
 		 * This is an abstract method and must be overriden.
 		 * 
-		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 * @throws {Error} Always
 		 */
 		draw: function(context) {
 			ErrorPrinter.mustOverrideError('Renderer');
 		}
+		/**
+		 * --------------------------------
+		 */
+		
+		 /**
+		 * <p style='color:#AD071D'><strong>rendererWidth</strong></p>
+		 *
+		 * @return {Number} The width of the renderer
+		 */
+		rendererWidth: function() { return this.width * this.scaleX; }
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererHeight</strong></p>
+		 *
+		 * @return {Number} The height of the renderer
+		 */
+		rendererHeight: function() { return this.height * this.scaleY; }
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererOffsetX</strong></p>
+		 *
+		 * @return {Number} The offset in the X axis of the renderer
+		 */
+		rendererOffsetX: function() { return this.offsetX * this.scaleX; }
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererOffsetY</strong></p>
+		 *
+		 * @return {Number} The offset in the Y axis of the renderer
+		 */
+		rendererOffsetY: function() { return this.offsetY * this.scaleY; }
 		/**
 		 * --------------------------------
 		 */

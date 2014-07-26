@@ -333,12 +333,6 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * Draws the game-object into the specified Context 2D, using it's [matrix-3x3](@@matrix-3x3@@)
 		 * 
 		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
-		 * @param  {Number} viewX       X position of the [viewport](@@viewport@@) the layer belongs to
-		 * @param  {Number} viewY       Y position of the [viewport](@@viewport@@) the layer belongs to
-		 * @param  {Number} viewOffsetX X offset of the [viewport](@@viewport@@) the layer belongs to
-		 * @param  {Number} viewOffsetY Y offset of the [viewport](@@viewport@@) the layer belongs to
-		 * @param  {Number} viewWidth   Width of the [viewport](@@viewport@@) the layer belongs to
-		 * @param  {Number} viewHeight  Height of the [viewport](@@viewport@@) the layer belongs to
 		 */
 		draw: function(context, viewX, viewY, viewOffsetX, viewOffsetY, viewWidth, viewHeight) {
 			if (!this.canDraw) return;

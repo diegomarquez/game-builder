@@ -30,8 +30,12 @@
 
 		//These set the total width and height of the path
 		//This argument is only required if the renderer does not provide it. 
-		pathWidth: 100,
-		pathHeight: 100,
+		width: 100,
+		height: 100,
+	
+		//This determines if the path is cached or not, by default it is cached
+		//Skipping caching is adviced for dynamic drawing
+		skipCache: true
 
 		//Use this to define the path this renderer will draw
 		//This argument is only required if the renderer does not provide it. 
@@ -48,8 +52,8 @@
 		
 		//Use these to override the dimentions of the path.
 		//These are optional
-		width: 20, 
-		height: 20,
+		scaleX: 1, 
+		scaleY: 1,
  *	});
  * ```
  * <strong>Note: The snippet uses the reference to the <a href=@@component-pool@@>component-pool</a>
@@ -68,22 +72,9 @@
  */
 define(["component", "path-cache", "error-printer"], function(Component, PathCache, ErrorPrinter) {
 
-	var canvas = null;
+	var canvas, w, h;
 
 	var PathRenderer = Component.extend({
-		/**
-		 * <p style='color:#AD071D'><strong>init</strong></p>
-		 */
-		init: function() {
-			this._super()
-
-			this.offsetX = 0;
-			this.offsetY = 0;
-		},
-		/**
-		 * --------------------------------
-		 */
-
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -95,11 +86,11 @@ define(["component", "path-cache", "error-printer"], function(Component, PathCac
 		start: function(parent) {	
 			if (this.skipCache) return;
 
-			if (!this.pathWidth && !this.pathHeight) {
-				ErrorPrinter.missingArgumentError('Path Renderer', 'pathWidth', 'pathHeight')
+			if (!this.width && !this.height) {
+				ErrorPrinter.missingArgumentError('Path Renderer', 'width', 'height')
 			}
 
-			PathCache.cache(this.name, this.pathWidth, this.pathHeight, this.drawPath);
+			PathCache.cache(this.name, this.width, this.height, this.drawPath);
 		},
 		/**
 		 * --------------------------------
@@ -125,7 +116,7 @@ define(["component", "path-cache", "error-printer"], function(Component, PathCac
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
 		 * Draws the cached path into the canvas, applying configured properties,
-		 * like **width**, **height** and **offsets**
+		 * like **scaleX**, **scaleY** and **offsets**
 		 * 
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 */
@@ -133,22 +124,15 @@ define(["component", "path-cache", "error-printer"], function(Component, PathCac
 			if (this.skipCache) {
 				this.drawPath(context);
 			} else {
-				var w, h;
-
 				canvas = PathCache.get(this.name);
 
-				if (this.width && this.height) {
-					w = this.width;
-					h = this.height;
-				} else {
-					w = canvas.width;
-					h = canvas.height;
-				}
+				w = this.rendererWidth();
+				h = this.rendererHeight();
 
 				if (this.offset == 'center'){
 					context.drawImage(canvas, -w/2, -h/2, w, h);	
 				} else{
-					context.drawImage(canvas, this.offsetX, this.offsetY, w, h);		
+					context.drawImage(canvas, this.rendererOffsetX(), this.rendererOffsetY(), w, h);		
 				}
 			}
 		}

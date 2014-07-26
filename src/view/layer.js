@@ -29,11 +29,15 @@ define(["delegate"], function(Delegate){
 		 * <p style='color:#AD071D'><strong>init</strong></p>
 		 *
 		 * Constructor
+		 *
+		 * @param {String} name The name of the layer
+		 * @param {Viewport} viewport The [viewport](@@viewport@@) the layer belongs to
 		 */
-		init: function() {
-			this.name = "";
+		init: function(name, viewport) {
+			this.name = name;
 			this.gameObjects = [];
 			this.visible = true;
+			this.viewport = viewport;
 		},
 		/**
 		 * --------------------------------
@@ -84,18 +88,18 @@ define(["delegate"], function(Delegate){
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
 		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
-		 * @param  {Number} x       X position of the [viewport](@@viewport@@) the layer belongs to
-		 * @param  {Number} y       Y position of the [viewport](@@viewport@@) the layer belongs to
-		 * @param  {Number} offsetX X offset of the [viewport](@@viewport@@) the layer belongs to
-		 * @param  {Number} offsetY Y offset of the [viewport](@@viewport@@) the layer belongs to
-		 * @param  {Number} width   Width of the [viewport](@@viewport@@) the layer belongs to
-		 * @param  {Number} height  Height of the [viewport](@@viewport@@) the layer belongs to
 		 */
-		draw: function(context, x, y, offsetX, offsetY, width, height) {
+		draw: function(context) {
 			if (!this.visible) return;
 
+			var go;
+
 			for (var i = 0; i < this.gameObjects.length; i++) {
-				this.gameObjects[i].draw(context, x, y, offsetX, offsetY, width, height);
+				go = this.gameObjects[i];
+
+				if (this.viewport.isGameObjectInside(go)) {
+					go.draw(context);
+				}
 			}
 		},
 		/**
