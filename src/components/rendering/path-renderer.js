@@ -4,7 +4,7 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
- * [component](@@component@@)
+ * * Inherits from: [renderer](@@renderer@@)
  *
  * Depends of: 
  * [path-cache](@@path-cache@@)
@@ -70,11 +70,11 @@
 /**
  * --------------------------------
  */
-define(["component", "path-cache", "error-printer"], function(Component, PathCache, ErrorPrinter) {
+define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache, ErrorPrinter) {
 
 	var canvas, w, h;
 
-	var PathRenderer = Component.extend({
+	var PathRenderer = Renderer.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *

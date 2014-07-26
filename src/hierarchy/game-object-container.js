@@ -126,7 +126,9 @@ define(["game-object"], function(GameObject){
 				child.update(delta);
 				
 				if(!child.components) {
-					child.transform();	
+					if (!child.isContainer()) {
+						child.transform();	
+					}
 				} else {
 					for(var k=0; k<child.components.length; k++) {
 						if(child.components[k].update) {
@@ -134,7 +136,9 @@ define(["game-object"], function(GameObject){
 						}
 					}	
 					
-					child.transform();
+					if (!child.isContainer()) {
+						child.transform();	
+					}
 				}
 			}
 		},
@@ -245,10 +249,19 @@ define(["game-object"], function(GameObject){
 			}
 
 			this._super();
-		}
+		},
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>isContainer</strong></p>
+		 *
+		 * @return {Boolean} Wheter it is a container object or not
+		 */
+		isContainer: function() {
+			return true;
+		}
 	});
 
 	return GameObjectContainer;

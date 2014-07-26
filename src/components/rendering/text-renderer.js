@@ -2,8 +2,8 @@
  * # text-renderer.js
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
- *
- * Inherits from: [component](@@component@@)
+ * 
+ * Inherits from: [renderer](@@renderer@@)
  *
  * Depends of: [text-cache](@@text-cache@@)
  *
@@ -68,11 +68,11 @@
 /**
  * --------------------------------
  */
-define(["component", 'text-cache'], function(Component, TextCache) {
+define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 
 	var image, w, h;
 
-	var TextRenderer = Component.extend({
+	var TextRenderer = Renderer.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -113,7 +113,7 @@ define(["component", 'text-cache'], function(Component, TextCache) {
 			} else{
 				context.drawImage(image, this.rendererOffsetX(), this.rendererOffsetY(), w, h);		
 			}
-		}
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -123,7 +123,7 @@ define(["component", 'text-cache'], function(Component, TextCache) {
 		 *
 		 * @return {Number} The width of the renderer
 		 */
-		rendererWidth: function() { return TextCache.get(this.name).width * this.scaleX; }
+		rendererWidth: function() { return TextCache.get(this.name).width * this.scaleX; },
 		/**
 		 * --------------------------------
 		 */

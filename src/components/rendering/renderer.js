@@ -30,12 +30,14 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 * Constructor
 		 */
 		init: function() {
+			this._super();
+
 			this.offsetX = 0;
 			this.offsetY = 0;
 
 			this.scaleX = 1;
 			this.scaleY = 1;
-		}
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -49,7 +51,7 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 */
 		draw: function(context) {
 			ErrorPrinter.mustOverrideError('Renderer');
-		}
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -59,7 +61,7 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 *
 		 * @return {Number} The width of the renderer
 		 */
-		rendererWidth: function() { return this.width * this.scaleX; }
+		rendererWidth: function() { return this.width * this.scaleX; },
 		/**
 		 * --------------------------------
 		 */
@@ -69,7 +71,7 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 *
 		 * @return {Number} The height of the renderer
 		 */
-		rendererHeight: function() { return this.height * this.scaleY; }
+		rendererHeight: function() { return this.height * this.scaleY; },
 		/**
 		 * --------------------------------
 		 */
@@ -79,7 +81,7 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 *
 		 * @return {Number} The offset in the X axis of the renderer
 		 */
-		rendererOffsetX: function() { return this.offsetX * this.scaleX; }
+		rendererOffsetX: function() { return this.offsetX * this.scaleX; },
 		/**
 		 * --------------------------------
 		 */

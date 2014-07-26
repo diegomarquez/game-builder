@@ -3,7 +3,8 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [component](@@component@@)
+ * Inherits from: 
+ * [renderer](@@renderer@@)
  *
  * Depends of: [image-cache](@@image-cache@@)
  *
@@ -50,11 +51,11 @@
 /**
  * --------------------------------
  */
-define(["component", "image-cache"], function(Component, ImageCache) {
+define(["renderer", "image-cache"], function(Renderer, ImageCache) {
 
 	var image, w, h;
 
-	var BitmapRenderer = Component.extend({
+	var BitmapRenderer = Renderer.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -87,7 +88,7 @@ define(["component", "image-cache"], function(Component, ImageCache) {
 			} else{
 				context.drawImage(image, this.rendererOffsetX(), this.rendererOffsetY(), w, h);		
 			}
-		}
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -97,7 +98,7 @@ define(["component", "image-cache"], function(Component, ImageCache) {
 		 *
 		 * @return {Number} The width of the renderer
 		 */
-		rendererWidth: function() { return ImageCache.get(this.path).width * this.scaleX; }
+		rendererWidth: function() { return ImageCache.get(this.path).width * this.scaleX; },
 		/**
 		 * --------------------------------
 		 */
