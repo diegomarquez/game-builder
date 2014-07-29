@@ -112,12 +112,14 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			 *
 			 * Draw the polygon collider.
 			 * 
-			 * This method is only executed if the **debug** property of the parent [game-object](@@game-object@@)
-			 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
+			 * This method is only executed if the **debug** property of the parent [gb](@@gb@@)
+		 	 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
 			 * 
-			 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+			 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+			 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
+			 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
 			 */
-			debug_draw: function(context) {
+			debug_draw: function(context, viewport, draw) {
 				Draw.polygon(context, 0, 0, this.pointsCopy, null, this.debugColor, 2);
 
 				this._super();

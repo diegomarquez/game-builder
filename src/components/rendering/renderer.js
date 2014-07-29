@@ -8,6 +8,7 @@
  *
  * Depends of:
  * [error-printer](@@error-printer@@)
+ * [draw](@@draw@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -23,6 +24,8 @@
  * --------------------------------
  */
 define(["component", "error-printer"], function(Component, ErrorPrinter) {
+	var r = {}
+
 	var Renderer = Component.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>init</strong></p>
@@ -37,6 +40,8 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 
 			this.scaleX = 1;
 			this.scaleY = 1;
+
+			this.debugColor = "#FFFF00";
 		},
 		/**
 		 * --------------------------------
@@ -91,11 +96,40 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 *
 		 * @return {Number} The offset in the Y axis of the renderer
 		 */
-		rendererOffsetY: function() { return this.offsetY * this.scaleY; }
+		rendererOffsetY: function() { return this.offsetY * this.scaleY; },
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
+		 *
+		 * This method is only executed if the **debug** property of the parent [gb](@@gb@@)
+		 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
+		 * 
+		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
+		 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
+		 */
+		debug_draw: function(context, viewport, draw) {
+			// Top Left
+			drawVertex.call(this, context, viewport, draw, this.rendererOffsetX(), this.rendererOffsetY());
+			// Top Right
+			drawVertex.call(this, context, viewport, draw, this.rendererOffsetX() + this.rendererWidth(), this.rendererOffsetY());
+			// Bottom Left
+			drawVertex.call(this, context, viewport, draw, this.rendererOffsetX(), this.rendererOffsetY() + this.rendererHeight());
+			// Bottom Right
+			drawVertex.call(this, context, viewport, draw, this.rendererOffsetX() + this.rendererWidth(), this.rendererOffsetY() + this.rendererHeight());
+		}
 		/**
 		 * --------------------------------
 		 */
 	});
+
+	var drawVertex = function(context, viewport, draw, offsetX, offsetY) {
+		r = this.parent.matrix.transformPoint(offsetX, offsetY, r);		
+		draw.circle(context, r.x, r.y, 1, null, this.debugColor, 2);
+	}
 
 	return Renderer;
 });

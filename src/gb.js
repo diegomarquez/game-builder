@@ -63,6 +63,8 @@ define(['game', 'root', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-o
 			coPool: componentPool,
 			jsonCache: jsonCache,
 
+			debug: false,
+
 			viewportsAliases: {},
 
 			/**

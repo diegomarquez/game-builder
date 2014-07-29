@@ -5,8 +5,10 @@
  *
  * Inherits from:
  *
- * Depends of: [draw](@@draw@@)
- *
+ * Depends of: 
+ * [draw](@@draw@@)
+ * [gb](@@gb@@)
+ * 
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
  * This is  used in [game-object](@@game-object@@) to call the **debug_draw** method
@@ -22,9 +24,10 @@
 /**
  * --------------------------------
  */
-define(['draw'], function(Draw) {
-	var p = null;
-	var m = null;
+define(function(require){
+	var r = {};
+
+	var DebugDraw = {}
 
 	/**
 	 * <p style='color:#AD071D'><strong>debugDraw</strong></p>
@@ -35,31 +38,45 @@ define(['draw'], function(Draw) {
 	 * the [game-object](@@game-object@@) making the call.
 	 * 
 	 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+	 * @param  {Object} viewport The [viewport](@@viewport@@) the [game-object](@@game-object@@) is drawn too
 	 */
-	var debugDraw = function(context) {
-		if(this.debug) {
-			p = this.getTransform(p, m);
+	DebugDraw.gameObject = function(context, viewport) {
+		var gb = require('gb');
+		
+		if(gb.debug) {
 
+			// Store current context
 			context.save();
+			// Reset transformation
 			context.setTransform(1, 0, 0, 1, 0, 0);			
-			context.translate(p.x, p.y);
+			// Translate to adjust for the current [viewport](@@viewport@@)
+			context.translate(viewport.x + viewport.offsetX, viewport.y + viewport.offsetY);
+			// Scale to adjust for the current [viewport](@@viewport@@)
+	    	context.scale(viewport.scaleX, viewport.scaleY);
+	    	// Translate to the center of the [game-object](@@game-object@@)
+			
+			// Draw what ever the [game-object](@@game-object@@) wants to show in debug mode
+	    	this.debug_draw(context, viewport, require('draw'))
 
-			// Draw the center of the object
-			Draw.circle(context, 0, 0, 3, null, "#FF00FF", 2);
+	    	// Draw what ever the [renderer](@@renderer@@) wants to show in debug mode
+	    	if (this.renderer) {
+	    		this.renderer.debug_draw(context, viewport, require('draw'));
+	    	}
 
-			context.restore();
-
-			if (!this.components) return;
-
-			// Draw whatever the components want to draw
-			for(var i=0; i<this.components.length; i++){
-				this.components[i].debug_draw(context)
+			if (this.components) {
+				// Draw whatever the [components](@@component@@) want to draw in debug mode
+				for(var i=0; i<this.components.length; i++) {
+					this.components[i].debug_draw(context, viewport, require('draw'))
+				}
 			}
+
+			// Restore original context
+			context.restore();
 		}
 	}
 	/**
 	 * --------------------------------
 	 */
 
-	return debugDraw;
+	return DebugDraw;
 });

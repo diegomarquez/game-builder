@@ -97,8 +97,8 @@ define(["delegate"], function(Delegate){
 			for (var i = 0; i < this.gameObjects.length; i++) {
 				go = this.gameObjects[i];
 
-				if (this.viewport.isGameObjectInside(go)) {
-					go.draw(context);
+				if (this.viewport.isGameObjectInside(go, context)) {
+					go.draw(context, this.viewport);
 				}
 			}
 		},

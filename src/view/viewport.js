@@ -33,7 +33,8 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 	var p = {};
 	var r = null;
 	var m = null;
-	var topLeft, topRight, bottomLeft, bottomRight;
+	var rOffsetX, rOffsetY, rWidth, rHeight;
+	var x, y, w, h;
 
 	var Viewport = Delegate.extend({
 
@@ -222,22 +223,6 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		 */
 		
 		/**
-		 * <p style='color:#AD071D'><strong>hide</strong></p>
-		 *
-		 * Make all the [layers](@@layer@@) in the viewport invisible
-		 */
-		hide: function() {
-			this.visible = false;
-
-			for (var i = 0; i < this.layers.length; i++) {
-				this.layers[i].hide();
-			}
-		},
-		/**
-		 * --------------------------------
-		 */
-		
-		/**
 		 * <p style='color:#AD071D'><strong>isVisible</strong></p>
 		 *
 		 * Wether the layer is visible or not
@@ -258,35 +243,52 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		 *
 		 * @return {Boolean} Whether the [game-object](@@game-object@@) is in the visible area of the viewport or not
 		 */
-		isGameObjectInside: function(go) {
+		isGameObjectInside: function(go, context) {
 			if (!go.renderer) return;
 
 			r = go.renderer;
 			m = go.matrix;
 
-			topLeft     = m.transformPoint(r.rendererOffsetX(), r.rendererOffsetY(), p);
-			bottomRight = m.transformPoint(r.rendererOffsetX() + r.rendererWidth(), r.rendererOffsetY() + r.rendererHeight(), p);
+			rOffsetX = r.rendererOffsetX();
+			rOffsetY = r.rendererOffsetY();
+			rWidth = r.rendererWidth();
+			rHeight = r.rendererHeight();
+			x = this.x + this.offsetX;
+			y = this.y + this.offsetY;
+			w = this.offsetX + this.width;
+			h = this.offsetY + this.height;
 
-			topLeft.x *= this.scaleX;
-			topLeft.y *= this.scaleY;
+			// Top Left
+			p = m.transformPoint(rOffsetX, rOffsetY, p);
+			p.x = (p.x * this.scaleX) + x;
+			p.y = (p.y * this.scaleY) + y;
+
+			if ( (p.x > this.offsetX && p.x < w) && (p.y > this.offsetY && p.y < h) ) return true;
 			
-			bottomRight.x *= this.scaleX;
-			bottomRight.y *= this.scaleY;
+			// Top Right
+			p = m.transformPoint(rOffsetX + rWidth, rOffsetY, p);
+			p.x = (p.x * this.scaleX) + x;
+			p.y = (p.y * this.scaleY) + y;
 
-			if (topLeft.x > this.x + this.offsetX && topLeft.x < this.x + this.offsetX + this.width) {
-				if (topLeft.y > this.y + this.offsetY && topLeft.y < this.y + this.offsetY + this.height) {
-					return true;
-				}
-			}
+			if ( (p.x > this.offsetX && p.x < w) && (p.y > this.offsetY && p.y < h) ) return true;
+			
+			// Bottom Left
+			p = m.transformPoint(rOffsetX, rOffsetY + rHeight, p);
+			p.x = (p.x * this.scaleX) + x;
+			p.y = (p.y * this.scaleY) + y;
 
-			if (bottomRight.x > this.x + this.offsetX && bottomRight.x < this.x + this.offsetX + this.width) {
-				if (bottomRight.y > this.y + this.offsetY && bottomRight.y < this.y + this.offsetY + this.height) {
-					return true;
-				}
-			}
+			if ( (p.x > this.offsetX && p.x < w) && (p.y > this.offsetY && p.y < h) ) return true;
+			
+			// Bottom Right
+			p = m.transformPoint(rOffsetX + rWidth, rOffsetY + rHeight, p);
+			p.x = (p.x * this.scaleX) + x;
+			p.y = (p.y * this.scaleY) + y;
 
+			if ( (p.x > this.offsetX && p.x < w) && (p.y > this.offsetY && p.y < h) ) return true;
+
+			// Reaching this point means the object is outside the viewport's sight
 			return false;
-		}
+		},
 
 		/**
 		 * <p style='color:#AD071D'><strong>showLayer</strong></p>

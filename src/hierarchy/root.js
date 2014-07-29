@@ -84,7 +84,7 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 	    		context.scale(v.scaleX, v.scaleY);
 				
 				// Draw all the game objects associated with this viewport
-	    		v.draw(context, v.x, v.y, v.offsetX, v.offsetY, v.width, v.height);
+	    		v.draw(context);
 
 	    		// Go back to previous state for the next viewport
 	    		context.restore();

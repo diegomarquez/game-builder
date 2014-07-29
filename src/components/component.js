@@ -203,12 +203,14 @@ define(["delegate"], function(Delegate) {
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 		 *
-		 * This method is only executed if the **debug** property of the parent [game-object](@@game-object@@)
+		 * This method is only executed if the **debug** property of the parent [gb](@@gb@@)
 		 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
 		 * 
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
+		 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
 		 */
-		debug_draw: function(context) {},
+		debug_draw: function(context, viewport, draw) {}
 		/**
 		 * --------------------------------
 		 */

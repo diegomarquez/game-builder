@@ -12,8 +12,7 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Example than demonstrates multiple viewports
-    - Try out the code to make sure game objects outside of a viewport are not rendered    
+- Example that demonstrates multiple viewports
     - Add text explaining controls for the example
     - Add example to the website
 
@@ -21,6 +20,12 @@ For better results it is better to use it in conjuction with [generator-game-bui
     - Rename heriarchy folders errors (Layer -> Group)
     - Add gb.js error to error page
     - path-renderer.js
+
+- Do not generate transformation matrix 
+    - colliders
+    - game-object-debug-draw
+
+- Consider root as a stand alone object, so that gb does not have to load game-object during initialization
 
 - Add alpha to matrix_3x3.js    
 

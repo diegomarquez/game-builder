@@ -154,9 +154,10 @@ define(["game-object"], function(GameObject){
 		 * Then it draws all of it's children
 		 * 
 		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Object} viewport The [viewport](@@viewport@@) this objects is being drawn too
 		 */
-		draw: function(context) {			
-			this._super(context);
+		draw: function(context, viewport) {			
+			this._super(context, viewport);
 
 			if(!this.childs) return;
 						
@@ -167,7 +168,7 @@ define(["game-object"], function(GameObject){
 
 				if(!child.canDraw) continue;
 
-				child.draw(context, viewX, viewY, viewOffsetX, viewOffsetY, viewWidth, viewHeight);	
+				child.draw(context, viewport);	
 			}
 		},
 		/**
