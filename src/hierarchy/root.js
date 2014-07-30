@@ -52,8 +52,6 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 */
 		draw: function(context) {
-			// // Reset context transformation
-			// context.setTransform(1, 0, 0, 1, 0, 0);
 			// Clear the canvas
 			context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -66,19 +64,25 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 				// Save state for current viewport
 				context.save();
 				
+				// This simulates a strokes that grows outwards
+	        	if (v.strokeWidth || v.strokeColor) {
+					context.save();
+					context.fillStyle = v.strokeColor;
+
+		        	context.fillRect(v.offsetX-v.strokeWidth, v.offsetY-v.strokeWidth, v.width+(v.strokeWidth*2), v.strokeWidth);
+		        	context.fillRect(v.offsetX-v.strokeWidth, v.offsetY+v.height, v.width+(v.strokeWidth*2), v.strokeWidth);
+		        	context.fillRect(v.offsetX-v.strokeWidth, v.offsetY-v.strokeWidth, v.strokeWidth, v.height+(v.strokeWidth*2));
+		        	context.fillRect(v.offsetX+v.width, v.offsetY-v.strokeWidth, v.strokeWidth, v.height+(v.strokeWidth*2));
+
+					context.restore();	        	
+	        	}
+
 				// Set the clipping area
 				context.beginPath();
 	        	context.rect(v.offsetX, v.offsetY, v.width, v.height);
-	        	
-	        	if (v.strokeWidth || v.strokeColor) {
-	        		context.lineWidth = v.strokeWidth;
-	        		context.strokeStyle = v.strokeColor;
-	        		context.stroke();
-	        	}
-	        	 	        	
 	        	context.clip();
 				context.closePath();
-
+	        	
 				// make all the drawings relative to the viewport's visible area
 	    		context.translate(v.x + v.offsetX, v.y + v.offsetY);
 	    		context.scale(v.scaleX, v.scaleY);
