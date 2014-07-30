@@ -21,21 +21,16 @@ For better results it is better to use it in conjuction with [generator-game-bui
     - Add gb.js error to error page
     - path-renderer.js
 
-- Do not generate transformation matrix 
-    - colliders
-    - game-object-debug-draw
-
+- Refactor debug debug draw in colliders
 - Consider root as a stand alone object, so that gb does not have to load game-object during initialization
-
 - Add alpha to matrix_3x3.js    
-
 - Move repeated code from every main.js into game.js
-
-- Shared Renderers and components. Share logic which does not need to keep state.
-- Different renderers on different viewports
 
 - Update main.js template in generator
 - Update renderer.js template in generator
+
+- Shared Renderers and components. Share logic which does not need to keep state.
+- Different renderers on different viewports
 
 - Try out examples, Build docs, tag, deploy website
 
