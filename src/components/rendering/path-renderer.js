@@ -72,7 +72,7 @@
  */
 define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache, ErrorPrinter) {
 
-	var canvas, w, h;
+	var canvas;
 
 	var PathRenderer = Renderer.extend({
 		/**

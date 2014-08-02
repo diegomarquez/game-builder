@@ -53,7 +53,7 @@
  */
 define(["renderer", "image-cache"], function(Renderer, ImageCache) {
 
-	var image, w, h;
+	var image;
 
 	var BitmapRenderer = Renderer.extend({
 		/**

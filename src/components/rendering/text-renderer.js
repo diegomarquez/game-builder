@@ -70,7 +70,7 @@
  */
 define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 
-	var image, w, h;
+	var image;
 
 	var TextRenderer = Renderer.extend({
 		/**

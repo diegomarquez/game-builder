@@ -12,9 +12,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Update main.js template in generator
-- Update renderer.js template in generator
-
 - Shared Renderers and components. Share logic which does not need to keep state.
 - Different renderers on different viewports
 - Add matrix transformation to viewport layers before drawing game objects

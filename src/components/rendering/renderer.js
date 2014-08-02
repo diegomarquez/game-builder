@@ -66,7 +66,13 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 *
 		 * @return {Number} The width of the renderer
 		 */
-		rendererWidth: function() { return this.width * this.scaleX; },
+		rendererWidth: function() { 
+			if (!this.width) {
+				ErrorPrinter.missingArgumentError('Renderer', 'width');
+			}
+
+			return this.width * this.scaleX; 
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -76,7 +82,13 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 *
 		 * @return {Number} The height of the renderer
 		 */
-		rendererHeight: function() { return this.height * this.scaleY; },
+		rendererHeight: function() { 
+			if (!this.height) {
+				ErrorPrinter.missingArgumentError('Renderer', 'height');
+			}
+
+			return this.height * this.scaleY; 
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -86,7 +98,9 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 *
 		 * @return {Number} The offset in the X axis of the renderer
 		 */
-		rendererOffsetX: function() { return this.offsetX * this.scaleX; },
+		rendererOffsetX: function() { 
+			return this.offsetX * this.scaleX; 
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -96,7 +110,9 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 *
 		 * @return {Number} The offset in the Y axis of the renderer
 		 */
-		rendererOffsetY: function() { return this.offsetY * this.scaleY; },
+		rendererOffsetY: function() { 
+			return this.offsetY * this.scaleY; 
+		},
 		/**
 		 * --------------------------------
 		 */
