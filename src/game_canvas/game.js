@@ -61,7 +61,10 @@
  * --------------------------------
  */
 define(function(require) {
-	var Game = require("delegate").extend({
+	var delegate = require("delegate");
+	var root = require("root");
+
+	var Game = delegate.extend({
 		init: function() {
 			this._super();
 
@@ -140,8 +143,6 @@ define(function(require) {
 			mainContainer.style.margin  = 0;
 			mainContainer.style.padding = 0;
 			mainContainer.style.position = 'fixed';
-
-			var root = require('root');
 
 			// When this is called the application has trully started.
 			var setupUpdateLoop = function() {

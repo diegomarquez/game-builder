@@ -5,8 +5,7 @@
  * Inherits from:
  *
  * Depends of: 
- * [game](@@game@@) 
- * [root](@@root@@) 
+ * [game](@@game@@)  
  * [layers](@@layers@@) 
  * [assembler](@@assembler@@) 
  * [reclaimer](@@reclaimer@@) 
@@ -29,8 +28,8 @@
 /**
  * --------------------------------
  */
-define(['game', 'root', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool', 'json-cache', 'error-printer'], 
-	function(game, root, groups, viewports, assembler, reclaimer, gameObjectPool, componentPool, jsonCache) {
+define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool', 'json-cache', 'error-printer'], 
+	function(game, groups, viewports, assembler, reclaimer, gameObjectPool, componentPool, jsonCache) {
 		
 		var addToViewPorts = function(go, vports) {
 			var v;
@@ -52,7 +51,6 @@ define(['game', 'root', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-o
 
 		return {
 			game: game,
-			root: root,
 			groups:groups,
 			viewports: viewports,
 
