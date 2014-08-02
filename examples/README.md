@@ -30,6 +30,7 @@ In no specific order:
 - [Loose state machine][loose_state_machine]
 - [Fixed state machine][fixed_state_machine]
 - [Extensions][extensions]
+- [Viewports][viewports]
 
 
 [game-builder]: http://diegomarquez.github.io/game-builder
@@ -48,3 +49,4 @@ In no specific order:
 [loose_state_machine]: ./loose_state_machine/main.html
 [fixed_state_machine]: ./fixed_state_machine/main.html
 [extensions]: ./extensions/main.html
+[viewports]: ./viewports/main.html

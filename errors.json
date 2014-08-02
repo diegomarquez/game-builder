@@ -67,12 +67,12 @@
 			"docLink": "path-renderer@@",
 			"entries": [
 				{
-					"title": "Missing argument: 'pathWidth'",
-					"description": "This one is pretty simple, it means that a method in a parent object was not overriden when extending it."
+					"title": "Missing argument: 'width'",
+					"description": "path-renderer@@ objects require that a 'width' property is defined in their configuration"
 				},
 				{
-					"title": "Missing argument: 'pathHeight'",
-					"description": "This one is pretty simple, it means that a method in a parent object was not overriden when extending it."
+					"title": "Missing argument: 'height'",
+					"description": "path-renderer@@ objects require that a 'height' property is defined in their configuration"
 				}
 			]
 		},
@@ -157,12 +157,22 @@
 			]
 		},
 		{
-			"name": "layers",
-			"docLink": "layers@@",
+			"name": "groups",
+			"docLink": "groups@@",
 			"entries": [
 				{
-					"title": "Layer with id: 'X' does not exist",
-					"description": "Tried to access a layer@@ which does not exist. Maybe the id is wrong, or maybe the layer@@ was deleted un intentionally."
+					"title": "Group with id: 'X' does not exist",
+					"description": "Tried to access a group@@ which does not exist. Maybe the id is wrong, or maybe the group@@ was deleted un intentionally."
+				}
+			]
+		},
+		{
+			"name": "gb",
+			"docLink": "gb@@",
+			"entries": [
+				{
+					"title": "'Viewport shortcut 'X' does not exist'",
+					"description": "Tried adding a game-object@@ to a viewport@@ that does not exist"
 				}
 			]
 		}
