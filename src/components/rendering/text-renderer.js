@@ -104,20 +104,44 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 		 */
 		draw: function(context) {
 			image = TextCache.get(this.name);
-
-			w = this.rendererWidth();
-			h = this.rendererHeight();
-
-			if (this.offset == 'center'){
-				context.drawImage(image, -w/2, -h/2, w, h);	
-			} else{
-				context.drawImage(image, this.rendererOffsetX(), this.rendererOffsetY(), w, h);		
-			}
+			context.drawImage(image, this.rendererOffsetX(), this.rendererOffsetY(), this.rendererWidth(), this.rendererHeight());	
 		},
 		/**
 		 * --------------------------------
 		 */
 		
+		/**
+		 * <p style='color:#AD071D'><strong>rendererOffsetX</strong></p>
+		 *
+		 * @return {Number} The offset in the X axis of the renderer
+		 */
+		rendererOffsetX: function() { 
+			if (this.offset == 'center') {
+				return -this.rendererWidth()/2 * this.scaleX;
+			} else {
+				return this.offsetX * this.scaleX; 
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererOffsetY</strong></p>
+		 *
+		 * @return {Number} The offset in the Y axis of the renderer
+		 */
+		rendererOffsetY: function() { 
+			if (this.offset == 'center') {
+				return -this.rendererHeight()/2  * this.scaleY;
+			} else {
+				return this.offsetY * this.scaleY;  
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
 		/**
 		 * <p style='color:#AD071D'><strong>rendererWidth</strong></p>
 		 *

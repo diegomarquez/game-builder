@@ -12,10 +12,9 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Move repeated code from every main.js into game.js
+- Refactor debug debug draw in colliders
 - Consider root as a stand alone object, so that gb does not have to load game-object during initialization
 - Add alpha to matrix_3x3.js    
-- Refactor debug debug draw in colliders
 
 - Update main.js template in generator
 - Update renderer.js template in generator
