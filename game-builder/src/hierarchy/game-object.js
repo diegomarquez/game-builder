@@ -346,7 +346,13 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 
 			context.transform(this.matrix.a, this.matrix.b, this.matrix.c, this.matrix.d, this.matrix.tx, this.matrix.ty);
 			
-			if(this.renderer) this.renderer.draw(context);
+			if (this.matrix.alpha != 1) {
+				 context.globalAlpha *= this.matrix.alpha;
+			}
+
+			if (this.matrix.alpha > 0) {
+				if(this.renderer) this.renderer.draw(context);
+			}
 			
 			DebugDraw.gameObject.call(this, context, viewport);
 
@@ -478,7 +484,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			go = this;
 
 			while (go != null) {
-				m.prependTransform(go.x, go.y, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY);
+				m.prependTransform(go.x, go.y, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
 				go = go.parent;
 			}
 
@@ -510,7 +516,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			go = this;
 
 			while (go != null) {
-				m.prependTransform(go.x, go.y, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY);
+				m.prependTransform(go.x, go.y, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
 				go = go.parent;
 			}
 

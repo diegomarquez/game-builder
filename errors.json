@@ -175,6 +175,20 @@
 					"description": "Tried adding a game-object@@ to a viewport@@ that does not exist"
 				}
 			]
+		},
+		{
+			"name": "renderer",
+			"docLink": "renderer@@",
+			"entries": [
+				{
+					"title": "Missing argument: 'width'",
+					"description": "The renderer@@ needs to define the width property"
+				},
+				{
+					"title": "Missing argument: 'height'",
+					"description": "The renderer@@ needs to define the height property"
+				}
+			]
 		}
 	]
 }

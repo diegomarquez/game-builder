@@ -32,8 +32,8 @@
  */
 
 define(function() {
-	var matrix_3x3 = function(a, b, c, d, tx, ty) {
-		this.initialize(a, b, c, d, tx, ty);
+	var matrix_3x3 = function(a, b, c, d, tx, ty, alpha) {
+		this.initialize(a, b, c, d, tx, ty, alpha);
 	};
 
 	var p = matrix_3x3.prototype;
@@ -47,7 +47,9 @@ define(function() {
 	p.tx = 0;
 	p.ty = 0;
 
-	p.initialize = function(a, b, c, d, tx, ty) {
+	p.alpha = 1;
+
+	p.initialize = function(a, b, c, d, tx, ty, alpha) {
 		if (a != null) {
 			this.a = a;
 		}
@@ -58,6 +60,8 @@ define(function() {
 		}
 		this.tx = tx || 0;
 		this.ty = ty || 0;
+
+		this.ty = alpha || 1;
 		return this;
 	};
 
@@ -91,7 +95,7 @@ define(function() {
 		return this;
 	};
 
-	p.prependTransform = function(x, y, scaleX, scaleY, rotation, regX, regY) {
+	p.prependTransform = function(x, y, scaleX, scaleY, rotation, regX, regY, alpha) {
 		if (rotation % 360) {
 			var r = rotation * matrix_3x3.DEG_TO_RAD;
 			var cos = Math.cos(r);
@@ -108,10 +112,12 @@ define(function() {
 
 		this.prepend(cos * scaleX, sin * scaleX, -sin * scaleY, cos * scaleY, x, y);
 
+		this.alpha *= alpha;
+
 		return this;
 	};
 
-	p.appendTransform = function(x, y, scaleX, scaleY, rotation, regX, regY) {
+	p.appendTransform = function(x, y, scaleX, scaleY, rotation, regX, regY, alpha) {
 		if (rotation % 360) {
 			var r = rotation * matrix_3x3.DEG_TO_RAD;
 			var cos = Math.cos(r);
@@ -127,6 +133,9 @@ define(function() {
 			this.tx -= regX * this.a + regY * this.c;
 			this.ty -= regX * this.b + regY * this.d;
 		}
+
+		this.alpha *= alpha;
+
 		return this;
 	};
 
@@ -164,8 +173,9 @@ define(function() {
 	};
 
 	p.identity = function() {
-		this.a = this.d = 1;
+		this.a = this.d = this.alpha = 1;
 		this.b = this.c = this.tx = this.ty = 0;
+
 		return this;
 	};
 
@@ -201,7 +211,7 @@ define(function() {
 	};
 
 	p.clone = function() {
-		return new matrix_3x3(this.a, this.b, this.c, this.d, this.tx, this.ty);
+		return new matrix_3x3(this.a, this.b, this.c, this.d, this.tx, this.ty, this.alpha);
 	};
 
 	return matrix_3x3

@@ -62,7 +62,7 @@ found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-doc
 The way you get a hold to a reference to the <a href=@@csomponent-pool@@>component-pool</a>
 may vary.</strong></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="cache-paths">Cache Paths</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;renderer&quot;</span><span class="p">,</span> <span class="s2">&quot;path-cache&quot;</span><span class="p">,</span> <span class="s2">&quot;error-printer&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Renderer</span><span class="p">,</span> <span class="nx">PathCache</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
 
-  <span class="kd">var</span> <span class="nx">canvas</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">canvas</span><span class="p">;</span>
 
   <span class="kd">var</span> <span class="nx">PathRenderer</span> <span class="o">=</span> <span class="nx">Renderer</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>start</strong></p>
 
@@ -103,17 +103,25 @@ like <strong>scaleX</strong>, <strong>scaleY</strong> and <strong>offsets</stron
         <span class="k">this</span><span class="p">.</span><span class="nx">drawPath</span><span class="p">(</span><span class="nx">context</span><span class="p">);</span>
       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
         <span class="nx">canvas</span> <span class="o">=</span> <span class="nx">PathCache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
-
-        <span class="nx">w</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererWidth</span><span class="p">();</span>
-        <span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererHeight</span><span class="p">();</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">offset</span> <span class="o">==</span> <span class="s1">&#39;center&#39;</span><span class="p">){</span>
-          <span class="nx">context</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="o">-</span><span class="nx">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="nx">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">);</span>  
-        <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
-          <span class="nx">context</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetX</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetY</span><span class="p">(),</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">);</span>    
-        <span class="p">}</span>
+        <span class="nx">context</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetX</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetY</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererWidth</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererHeight</span><span class="p">());</span> 
       <span class="p">}</span>
-    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
+    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererOffsetX</strong></p>
+
+<p><strong>Returns a Number</strong><br/>(The offset in the X axis of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererOffsetX</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">offset</span> <span class="o">==</span> <span class="s1">&#39;center&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererWidth</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleX</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleX</span><span class="p">;</span> 
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererOffsetY</strong></p>
+
+<p><strong>Returns a Number</strong><br/>(The offset in the Y axis of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererOffsetY</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">offset</span> <span class="o">==</span> <span class="s1">&#39;center&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererHeight</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span>  <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleY</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleY</span><span class="p">;</span>  
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
 
   <span class="k">return</span> <span class="nx">PathRenderer</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

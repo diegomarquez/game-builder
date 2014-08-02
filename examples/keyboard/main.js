@@ -5,7 +5,6 @@
  * Depends of:
  * [gb](@@gb@@),
  * [game](@@game@@),
- * [root](@@root@@),
  * [basic-display-setup](@@basic-display-setup@@),
  * [input-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/input-bundle.html),
  * [keyboard](@@keyboard@@),
@@ -19,7 +18,6 @@ define(function(require){
 	var gb = require('gb');
 	
 	var game = gb.game;
-	var root = gb.root;
 	var canvas = gb.canvas;
 	
 	var keyboard = require('keyboard');
@@ -87,11 +85,10 @@ define(function(require){
 
 	// This is the main update loop
 	game.on(game.UPDATE, this, function() {
-		// Updates ALL the things.
-		root.update(game.delta);
-		// Draws ALL the things.
-		root.draw(game.context);
-
+		// Do stuff here that needs constant updating
+		
+		// this.delta => Time delta between updates
+		// this.context => 2D Context where stuff is drawn
 		if(keyboard.isKeyDown(keyboard.A)){ console.log('A is down') }
 		if(keyboard.isKeyDown(keyboard.S)){ console.log('S is down') }
 		if(keyboard.isKeyDown(keyboard.D)){ console.log('D is down') }

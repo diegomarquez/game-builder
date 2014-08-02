@@ -3,9 +3,11 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
+ * Inherits from: 
+ * [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  *
  * Depends of:
+ * [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -58,8 +60,11 @@
 /**
  * --------------------------------
  */
-define(["delegate"], function(Delegate) {
-	var Game = Delegate.extend({
+define(function(require) {
+	var delegate = require("delegate");
+	var root = require("root");
+
+	var Game = delegate.extend({
 		init: function() {
 			this._super();
 
@@ -142,19 +147,27 @@ define(["delegate"], function(Delegate) {
 			// When this is called the application has trully started.
 			var setupUpdateLoop = function() {
 				self.initialized = true;
+				// Execute all create extensions
 				self.execute_extensions(self.CREATE);
+				// Execute all create events
 				self.execute(self.CREATE);
 
 				var now;
 
 				mainLoop = function() {
 					now = Date.now();
-					this.delta = (now - self.lastUpdate) / 1000;
+					self.delta = (now - self.lastUpdate) / 1000;
 					self.lastUpdate = now;
 
+					// Execute all update extensions
 					self.execute_extensions(self.UPDATE);
+					// Update all [game-objects](@@game-objects@@)
+					root.update(self.delta);
+					// Draw to all the [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
+					root.draw(self.context);
+					// Execute all update events
 					self.execute(self.UPDATE);
-
+					
 					window.requestAnimationFrame(mainLoop);
 				}
 
@@ -177,6 +190,8 @@ define(["delegate"], function(Delegate) {
 					};
 				}
 
+				self.lastUpdate = Date.now();
+
 				window.requestAnimationFrame(mainLoop);
 			};
 
@@ -193,7 +208,9 @@ define(["delegate"], function(Delegate) {
 					self.focus = true;
 
 					if (!blur) {
+						// Execute all blur state extensions
 						self.execute_extensions(self.BLUR);	
+						// Execute all blur events
 						self.execute(self.BLUR);
 
 						blur = true;
@@ -216,7 +233,9 @@ define(["delegate"], function(Delegate) {
 						self.focus = false;
 
 						if (blur) {
+							// Execute all focus state extensions
 							self.execute_extensions(self.FOCUS);
+							// Execute all blur events
 							self.execute(self.FOCUS);
 
 							blur = false;

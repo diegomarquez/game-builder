@@ -5,7 +5,7 @@
  * Depends of:
  * [gb](@@gb@@),
  * [game](@@game@@),
- * [root](@@root@@),
+ * [world](@@world@@),
  * [complex-display-setup](http://diegomarquez.github.io/game-builder/examples-docs/common_src/complex-display-setup.html),
  * [input-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/input-bundle.html),
  */
@@ -18,8 +18,6 @@ define(function(require){
 
 	// Storing some references to avoid excesive typing
 	var game = gb.game;
-	var root = gb.root;
-
 	var keyboard = require('keyboard');
 	var util = require('util');
 
@@ -105,10 +103,10 @@ define(function(require){
 
 	// This is the main update loop
 	game.on(game.UPDATE, this, function() {
-		// Updates ALL the things.
-		root.update(game.delta);
-		// Draws ALL the things.
-		root.draw(game.context);
+		// Do stuff here that needs constant updating
+		
+		// this.delta => Time delta between updates
+		// this.context => 2D Context where stuff is drawn
 	});
 
 	// This is the main setup that kicks off the whole thing

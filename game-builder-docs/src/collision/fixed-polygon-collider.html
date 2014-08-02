@@ -94,10 +94,11 @@ is set to true. It is better to leave the drawing to the <a href="http://diegoma
         <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">getTransform</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">m</span><span class="p">);</span>
 
         <span class="nx">context</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
         <span class="nx">context</span><span class="p">.</span><span class="nx">setTransform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>     
         <span class="nx">context</span><span class="p">.</span><span class="nx">translate</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
-
         <span class="nx">Draw</span><span class="p">.</span><span class="nx">polygon</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">pointsCopy</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+        
         <span class="nx">context</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span>
 
         <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>

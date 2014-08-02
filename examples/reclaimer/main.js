@@ -5,7 +5,6 @@
  * Depends of:
  * [gb](@@gb@@),
  * [game](@@game@@),
- * [root](@@root@@),
  * [basic-display-setup](@@basic-display-setup@@),
  * [layering-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/layering-bundle.html)
  */
@@ -17,7 +16,6 @@ define(function(require){
 	var gb = require('gb');
 	
 	var game = gb.game;
-	var root = gb.root;
 	var reclaimer = gb.reclaimer;
 
 	game.add_extension(require('basic-display-setup'));
@@ -86,10 +84,10 @@ define(function(require){
 
 	// This is the main update loop
 	game.on(game.UPDATE, this, function() {
-		// Updates ALL the things.
-		root.update(game.delta);
-		// Draws ALL the things.
-		root.draw(game.context);
+		// Do stuff here that needs constant updating
+		
+		// this.delta => Time delta between updates
+		// this.context => 2D Context where stuff is drawn
 	});
 
 	// This is the main setup that kicks off the whole thing

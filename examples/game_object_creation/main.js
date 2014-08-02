@@ -5,7 +5,6 @@
  * Depends of:
  * [game](@@game@@),
  * [gb](@@gb@@),
- * [root](@@root@@),
  * [game-object-pool](@@game-object-pool@@),
  * [component-pool](@@component-pool@@),
  * [assembler](@@assembler@@),
@@ -24,7 +23,6 @@ define(function(require){
 	
 	// Storing some references to avoid excesive typing
 	var game = gb.game;
-	var root = gb.root;
 	var assembler = gb.assembler;
 	var gameObjectPool = gb.goPool;
 	var componentPool = gb.coPool;
@@ -103,10 +101,10 @@ define(function(require){
 
 	// This is the main update loop
 	game.on(game.UPDATE, this, function() {
-		// Updates ALL the things.
-		root.update(game.delta);
-		// Draws ALL the things.
-		root.draw(game.context);
+		// Do stuff here that needs constant updating
+		
+		// this.delta => Time delta between updates
+		// this.context => 2D Context where stuff is drawn
 	});
 
 	// This is the main setup that kicks off the whole thing
