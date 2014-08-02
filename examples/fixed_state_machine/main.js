@@ -8,9 +8,9 @@
  * [root](@@root@@),
  * [state-machine](@@state-machine@@),
  * [keyboard](@@keyboard@@),
- * [state-1](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/state-1.html),
- * [state-2](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/state-2.html),
- * [state-3](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/state-3.html)
+ * [state-1](http://diegomarquez.github.io/game-builder/examples-docs/common_src/state-1.html),
+ * [state-2](http://diegomarquez.github.io/game-builder/examples-docs/common_src/state-2.html),
+ * [state-3](http://diegomarquez.github.io/game-builder/examples-docs/common_src/state-3.html)
  */
 
 /**

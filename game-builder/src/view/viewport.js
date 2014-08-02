@@ -3,21 +3,21 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [game-object-container](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object-container.html)
+ * Inherits from: [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html)
  *
  * Inherits from:
- * [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html) 
+ * [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) 
  * 
  * Depends of:
- * [layer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html)
- * [error-printer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/error-printer.html)
+ * [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
  * This module defines a viewport, it has an offset in relation to the top left of the screen, a width and height, and the position
  * of the world it is viewing. It is a rectangle.
  *
- * Aside from that it holds an array of [layer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html) objects each with the [game-objetcs](@@game-objetc@@) that this 
+ * Aside from that it holds an array of [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) objects each with the [game-objetcs](@@game-objetc@@) that this 
  * viewport should draw.
  */
 
@@ -84,9 +84,9 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		/**
 		 * <p style='color:#AD071D'><strong>addLayer</strong></p>
 		 *
-		 * Adds a new [layer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html) to the viewport
+		 * Adds a new [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) to the viewport
 		 * 
-		 * @param {String} name Id of the new [layer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html)
+		 * @param {String} name Id of the new [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html)
 		 */
 		addLayer: function(name) {
 			var layer = new Layer(name, this);
@@ -100,9 +100,9 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		/**
 		 * <p style='color:#AD071D'><strong>removeLayer</strong></p>
 		 *
-		 * Removes the specified [layer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html) from the viewport
+		 * Removes the specified [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) from the viewport
 		 * 
-		 * @param  {String} name Id of the [layer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html) to remove
+		 * @param  {String} name Id of the [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) to remove
 		 *
 		 * @throws {Error} If the specified id does not exist
 		 */
@@ -123,7 +123,7 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		/**
 		 * <p style='color:#AD071D'><strong>removeAllLayers</strong></p>
 		 *
-		 * Remove all [layers](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html) from the viewport
+		 * Remove all [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) from the viewport
 		 */
 		removeAllLayers: function() {
 			var layer;
@@ -140,10 +140,10 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		/**
 		 * <p style='color:#AD071D'><strong>addGameObject</strong></p>
 		 *
-		 * Add a [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) to the specified [layer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html) of the viewport
+		 * Add a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to the specified [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) of the viewport
 		 * 
-		 * @param {String} layerName Id of the layer to add the [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) to
-		 * @param {Object} go        [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) to add
+		 * @param {String} layerName Id of the layer to add the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to
+		 * @param {Object} go        [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to add
 		 */
 		addGameObject: function(layerName, go) {
 			var layer = findLayer.call(this, layerName);
@@ -161,7 +161,7 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		/**
 		 * <p style='color:#AD071D'><strong>removeAllGameObjects</strong></p>
 		 *
-		 * Remove all [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) from the viewport
+		 * Remove all [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) from the viewport
 		 */
 		removeAllGameObjects: function() {
 			for (var i = 0; i < this.layers.length; i++) {
@@ -175,7 +175,7 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		/**
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
-		 * Draw all the [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) in the viewport
+		 * Draw all the [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) in the viewport
 		 * 
 		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/) 
 		 */
@@ -193,7 +193,7 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		/**
 		 * <p style='color:#AD071D'><strong>show</strong></p>
 		 *
-		 * Make all the [layers](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html) in the viewport visible
+		 * Make all the [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) in the viewport visible
 		 */
 		show: function() {
 			this.visible = true;
@@ -209,7 +209,7 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		/**
 		 * <p style='color:#AD071D'><strong>hide</strong></p>
 		 *
-		 * Make all the [layers](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html) in the viewport invisible
+		 * Make all the [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) in the viewport invisible
 		 */
 		hide: function() {
 			this.visible = false;
@@ -239,9 +239,9 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		/**
 		 * <p style='color:#AD071D'><strong>isGameObjectInside</strong></p>
 		 *
-		 * @param  {Object}  go [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) to test
+		 * @param  {Object}  go [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to test
 		 *
-		 * @return {Boolean} Whether the [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) is in the visible area of the viewport or not
+		 * @return {Boolean} Whether the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) is in the visible area of the viewport or not
 		 */
 		isGameObjectInside: function(go, context) {
 			if (!go.renderer) return;
@@ -293,9 +293,9 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		/**
 		 * <p style='color:#AD071D'><strong>showLayer</strong></p>
 		 *
-		 * Makes the specified [layer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html) visible
+		 * Makes the specified [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) visible
 		 * 
-		 * @param  {String} name Id of an existing [layer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html)
+		 * @param  {String} name Id of an existing [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html)
 		 */
 		showLayer: function(name) {
 			findLayer.call(this, name).show();
@@ -307,9 +307,9 @@ define(["delegate", "layer", "error-printer"], function(Delegate, Layer, ErrorPr
 		/**
 		 * <p style='color:#AD071D'><strong>hideLayer</strong></p>
 		 *
-		 * Makes the specified [layer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html) invisible
+		 * Makes the specified [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) invisible
 		 * 
-		 * @param  {String} name Id of an existing [layer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html)
+		 * @param  {String} name Id of an existing [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html)
 		 */
 		hideLayer: function(name) {
 			findLayer.call(this, name).hide();

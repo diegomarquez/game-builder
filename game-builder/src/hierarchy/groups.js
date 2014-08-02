@@ -6,15 +6,15 @@
  * Inherits from:
  *
  * Depends of: 
- * [root](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/root.html)
- * [group](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html)
- * [error-printer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/error-printer.html)
+ * [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html)
+ * [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines an object to contain and work with [group](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html) objects.
+ * This module defines an object to contain and work with [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) objects.
  *
- * It also acts as a wrapper for interacting with [root](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/root.html).
+ * It also acts as a wrapper for interacting with [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html).
  * 
  * Not much else needs to be said about this module, it's not very complex.
  */
@@ -37,11 +37,11 @@ define(["root", "group", "error-printer"], function(Root, Group, ErrorPrinter) {
 	 * <p style='color:#AD071D'><strong>add</strong></p>
 	 *
 	 * Adds a new group. The group is managed in this object, but
-	 * it also is added to [root](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/root.html), which is what will make it update.
+	 * it also is added to [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html), which is what will make it update.
 	 *
 	 * On that subject, it is important to note that if you re-arrange the elements
 	 * of the array that the group is added to, nothing will happen to the order of
-	 * updating or rendering, as that is controlled by the [root](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/root.html), which has
+	 * updating or rendering, as that is controlled by the [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html), which has
 	 * a list of childs of it's own.
 	 * 
 	 * @param {String} name Id of the group, used later to refer to the group.
@@ -61,10 +61,10 @@ define(["root", "group", "error-printer"], function(Root, Group, ErrorPrinter) {
 	/**
 	 * <p style='color:#AD071D'><strong>remove</strong></p>
 	 *
-	 * Removes a group from the array in this object, and also from the [root](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/root.html).
-	 * Prior to removing the group it also clears it from any [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html)
+	 * Removes a group from the array in this object, and also from the [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html).
+	 * Prior to removing the group it also clears it from any [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 	 *
-	 * A removed group can not be used again, if you wish to just remove all [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html)
+	 * A removed group can not be used again, if you wish to just remove all [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 	 * from a group you might want to use the **clear** method.
 	 * 
 	 * @param  {String} name Id of the group to remove
@@ -81,7 +81,7 @@ define(["root", "group", "error-printer"], function(Root, Group, ErrorPrinter) {
 	/**
 	 * <p style='color:#AD071D'><strong>clear</strong></p>
 	 *
-	 * Clears a group from all [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html)
+	 * Clears a group from all [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 	 *
 	 * A cleared group can still be used to add more things to it.
 	 */
@@ -99,9 +99,9 @@ define(["root", "group", "error-printer"], function(Root, Group, ErrorPrinter) {
 	 * 
 	 * @param  {String} name Id of the group to get a reference to.
 	 *
-	 * @throws {Error} If the provided name does not match any [group](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html)
+	 * @throws {Error} If the provided name does not match any [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html)
 	 * 
-	 * @return {Group} The specified [group](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html).    
+	 * @return {Group} The specified [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html).    
 	 */
 	GroupContainer.prototype.get = function(name) { 
 		if (!this.groups[name]) {
@@ -117,7 +117,7 @@ define(["root", "group", "error-printer"], function(Root, Group, ErrorPrinter) {
 	/**
 	 * <p style='color:#AD071D'><strong>stop</strong></p>
 	 *
-	 * Stops updating and rendering everythin in the requested [group](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html).
+	 * Stops updating and rendering everythin in the requested [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html).
 	 * For practical purposes this method pauses and makes invisible all the contents
 	 * of a group.
 	 * 
@@ -134,9 +134,9 @@ define(["root", "group", "error-printer"], function(Root, Group, ErrorPrinter) {
 	/**
 	 * <p style='color:#AD071D'><strong>resume</strong></p>
 	 *
-	 * Resumes all activity in the specified [group](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html).
+	 * Resumes all activity in the specified [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html).
 	 * 
-	 * @param  {String} name Id of the [group](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html) to resume activity in 
+	 * @param  {String} name Id of the [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) to resume activity in 
 	 */
 	GroupContainer.prototype.resume = function(name) { 
 		this.resume_update(name);
@@ -149,9 +149,9 @@ define(["root", "group", "error-printer"], function(Root, Group, ErrorPrinter) {
 	/**
 	 * <p style='color:#AD071D'><strong>stop_draw</strong></p>
 	 *
-	 * Stops rendering of the specified [group](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html). Effectively making everything in it invisible.
+	 * Stops rendering of the specified [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html). Effectively making everything in it invisible.
 	 * 
-	 * @param  {String} name Id of the [group](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html) that should stop rendering
+	 * @param  {String} name Id of the [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) that should stop rendering
 	 */
 	GroupContainer.prototype.stop_draw = function(name) { this.groups[name].hide(); };
 	/**
@@ -161,9 +161,9 @@ define(["root", "group", "error-printer"], function(Root, Group, ErrorPrinter) {
 	/**
 	 * <p style='color:#AD071D'><strong>resume_draw</strong></p>
 	 *
-	 * Resumes rendering of the specified [group](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html). 
+	 * Resumes rendering of the specified [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html). 
 	 *
-	 * @param  {String} name Id of the [group](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html) that should resume rendering
+	 * @param  {String} name Id of the [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) that should resume rendering
 	 */
 	GroupContainer.prototype.resume_draw = function(name) { this.groups[name].show(); };
 	/**
@@ -173,9 +173,9 @@ define(["root", "group", "error-printer"], function(Root, Group, ErrorPrinter) {
 	/**
 	 * <p style='color:#AD071D'><strong>stop_update</strong></p>
 	 *
-	 * Stops updating of the specified [group](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html). Effectively pausing everything in it.
+	 * Stops updating of the specified [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html). Effectively pausing everything in it.
 	 * 
-	 * @param  {String} name Id of the [group](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html) that should stop updating
+	 * @param  {String} name Id of the [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) that should stop updating
 	 */
 	GroupContainer.prototype.stop_update = function(name) { this.groups[name].canUpdate = false; };
 	/**
@@ -185,9 +185,9 @@ define(["root", "group", "error-printer"], function(Root, Group, ErrorPrinter) {
 	/**
 	 * <p style='color:#AD071D'><strong>resume_update</strong></p>
 	 *
-	 * Resumes updating of the specified [group](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html). 
+	 * Resumes updating of the specified [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html). 
 	 *
-	 * @param  {String} name Id of the [group](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html) that should resume updating
+	 * @param  {String} name Id of the [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) that should resume updating
 	 */
 	GroupContainer.prototype.resume_update = function(name) { this.groups[name].canUpdate = true; };
 	/**

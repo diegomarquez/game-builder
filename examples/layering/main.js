@@ -8,7 +8,7 @@
  * [root](@@root@@),
  * [groups](@@groups@@),
  * [basic-display-setup](@@basic-display-setup@@),
- * [layering-bundle](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/bundles/nesting-bundle.html),
+ * [layering-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/nesting-bundle.html),
  * [keyboard](@@keyboard@@)
  */
 

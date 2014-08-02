@@ -3,7 +3,7 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html)
+ * Inherits from: [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  *
  * Depends of:
  *
@@ -16,9 +16,9 @@
  * It also hooks into the focus and blur events of [window](https://developer.mozilla.org/en-US/docs/Web/API/window), 
  * in order to be able to pause and resume the application if needed.
  *
- * It's main behaviour can be extended by the use of [extensions](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/extension.html)
+ * It's main behaviour can be extended by the use of [extensions](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
- * ### Game extends [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
+ * ### Game extends [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
  *
  * ### **create** 
  * On application startup 
@@ -98,7 +98,7 @@ define(["delegate"], function(Delegate) {
 		 *
 		 * Use this to add extensions.
 		 * 
-		 * @param {[extension](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/extension.html)} extensionMoudle A module that extends [extension](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/extension.html)
+		 * @param {[extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)} extensionMoudle A module that extends [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
 		 */
 		add_extension: function(extensionMoudle) {
 			var ex = new extensionMoudle();
@@ -228,7 +228,7 @@ define(["delegate"], function(Delegate) {
 			}
 
 			// References to the blur and focus callbacks
-			// The [pause](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/pause.html) and [resume](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/resume.html)
+			// The [pause](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/pause.html) and [resume](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/resume.html)
 			// extensions use these.
 			this.blurAction = onBlur;
 			this.focusAction = onFocus;

@@ -4,7 +4,7 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from:
- * [class](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/class.html)
+ * [class](http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html)
  *
  * Depends of: 
  *
@@ -64,9 +64,9 @@ define(["class"], function(Class) {
 		/**
 		 * <p style='color:#AD071D'><strong>scaleViewportToFit</strong></p>
 		 *
-		 * Make the specified [viewport](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html) scale so it can show all the world
+		 * Make the specified [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) scale so it can show all the world
 		 * 
-		 * @param  {Object} viewport The [viewport](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html) to scale
+		 * @param  {Object} viewport The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to scale
 		 */
 		scaleViewportToFit: function(viewport) {
 			viewport.scaleX = 1;
@@ -79,9 +79,9 @@ define(["class"], function(Class) {
 		/**
 		 * <p style='color:#AD071D'><strong>scaleViewportProportionaly</strong></p>
 		 *
-		 * Make the specified [viewport](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html) scale by the specified factor
+		 * Make the specified [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) scale by the specified factor
 		 * 
-		 * @param  {Object} viewport The [viewport](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html) to scale
+		 * @param  {Object} viewport The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to scale
 		 * @param  {[type]} factor   Amount to scale by
 		 */
 		scaleViewportProportionaly: function(viewport, factor) {

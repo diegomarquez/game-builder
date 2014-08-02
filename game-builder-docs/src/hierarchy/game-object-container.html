@@ -4,15 +4,15 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a></p>
+<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a></p>
 
 <p>Depends of:</p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This modules defines a container for <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>, which in turn
-is a <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a> itself. Being a parent means that all of it's child
-<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> will follow it according to it's transformation matrix.</p>
+<p>This modules defines a container for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>, which in turn
+is a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> itself. Being a parent means that all of it's child
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> will follow it according to it's transformation matrix.</p>
 
 <p>It's a pretty usefull behaviour to form more complex displays out of smaller, more manageable 
 pieces. </p>
@@ -20,7 +20,7 @@ pieces. </p>
 <p>A note on drawing: A container will execute it's renderer code, and then the rendering code
 of it's children. This means that the parent drawing will show up, below it's children's.</p>
 
-<p>Asides from that, a container is no different to a regular <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a>,
+<p>Asides from that, a container is no different to a regular <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>,
 so go look at that part of the documentation for more details on every method here.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="nesting-ftw">Nesting FTW!</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;game-object&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">){</span>
 
   <span class="kd">var</span> <span class="nx">GameObjectContainer</span> <span class="o">=</span> <span class="nx">GameObject</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
@@ -38,14 +38,14 @@ so go look at that part of the documentation for more details on every method he
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong></p>
 
-<p>Adds the specified child <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to this container.
+<p>Adds the specified child <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to this container.
 If the child already is part of another parent, it is removed from it
 and added to this one.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>The must be an Object.</strong><br/>(child <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to add)</li>
+<li><strong>The must be an Object.</strong><br/>(child <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to add)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">add</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">child</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
@@ -62,12 +62,12 @@ and added to this one.</p>
       <span class="k">return</span> <span class="nx">child</span><span class="p">;</span> 
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>remove</strong></p>
 
-<p>Removes the specified child <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a> from this container.</p>
+<p>Removes the specified child <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> from this container.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>The must be an Object.</strong><br/>(child <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to remove)</li>
+<li><strong>The must be an Object.</strong><br/>(child <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to remove)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">remove</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">child</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
@@ -116,7 +116,7 @@ and added to this one.</p>
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>draw</strong></p>
 
-<p>Draws the game-object into the specified Context 2D, using it's <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a></p>
+<p>Draws the game-object into the specified Context 2D, using it's <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a></p>
 
 <p>Then it draws all of it's children</p>
 
@@ -124,7 +124,7 @@ and added to this one.</p>
 
 <ul>
 <li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</p></li>
-<li><p><strong>viewport must be an Object.</strong><br/>(The <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html">viewport</a> this objects is being drawn too)</p></li>
+<li><p><strong>viewport must be an Object.</strong><br/>(The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> this objects is being drawn too)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">)</span> <span class="p">{</span>     
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>
 

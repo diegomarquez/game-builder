@@ -7,7 +7,7 @@
  * [game](@@game@@),
  * [root](@@root@@),
  * [basic-display-setup](@@basic-display-setup@@),
- * [colliders-bundle](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/bundles/colliders-bundle.html),
+ * [colliders-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/colliders-bundle.html),
  * [collision-resolver](@@collision-resolver@@)
  */
 

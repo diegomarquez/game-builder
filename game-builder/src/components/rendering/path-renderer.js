@@ -4,22 +4,22 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
- * * Inherits from: [renderer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html)
+ * * Inherits from: [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html)
  *
  * Depends of: 
- * [path-cache](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/cache/path-cache.html)
- * [error-printer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/error-printer.html)
+ * [path-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/path-cache.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
- * This renderer is similar to [bitmap-renderer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/bitmap-renderer.html) but instead of drawing an external image
+ * This renderer is similar to [bitmap-renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/bitmap-renderer.html) but instead of drawing an external image
  * it receives a function that defines a path to draw on a [canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/).
  * 
  * The module will take care of caching the drawing into a separate canvas and drawing from there, instead of executing all the path instructions
  * each frame. 
  * 
  * This renderer can receive a bunch of configuration options
- * when setting it up in the [component-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html). ej.
+ * when setting it up in the [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html). ej.
  *
  * ``` javascript
  * gb.coPool.createConfiguration("Path", 'Path_Renderer')
@@ -56,8 +56,8 @@
 		scaleY: 1,
  *	});
  * ```
- * <strong>Note: The snippet uses the reference to the <a href=file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html>component-pool</a>
- * found in the <a href=file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/gb.html>gb</a> module. 
+ * <strong>Note: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+ * found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
  * The way you get a hold to a reference to the <a href=@@csomponent-pool@@>component-pool</a>
  * may vary.</strong>
  */
@@ -78,7 +78,7 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
-		 * This is called by the [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) using this renderer.
+		 * This is called by the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this renderer.
 		 * It caches the results of executing the **drawPath** method.
 		 *
 		 * @throws {Error} If pathWidth and pathHeight properties are not set

@@ -3,9 +3,9 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  * 
- * Inherits from: [renderer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html)
+ * Inherits from: [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html)
  *
- * Depends of: [text-cache](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/cache/text-cache.html)
+ * Depends of: [text-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/text-cache.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -54,9 +54,9 @@
 		scaleY: 1
  *	});
  * ```
- * <strong>Note: The snippet uses the reference to the <a href=file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html>component-pool</a>
- * found in the <a href=file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/gb.html>gb</a> module. 
- * The way you get a hold to a reference to the <a href=file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+ * <strong>Note: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+ * found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
+ * The way you get a hold to a reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
  * may vary.</strong>
  */
 
@@ -76,8 +76,8 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
-		 * This is called by the [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) using this renderer.
-		 * It sends the text configured to the [text-cache](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/cache/text-cache.html) module.
+		 * This is called by the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this renderer.
+		 * It sends the text configured to the [text-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/text-cache.html) module.
 		 */
 		start: function() {	
 			this.align      = this.align           || "start";

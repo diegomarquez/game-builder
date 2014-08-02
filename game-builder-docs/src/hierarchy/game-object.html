@@ -4,11 +4,11 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html">delegate</a></p>
+<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Depends of:
-<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>
-<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/game-object-debug-draw.html">game-object-debug-draw</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/game-object-debug-draw.html">game-object-debug-draw</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
@@ -17,13 +17,13 @@ that you do will most likely be an extension of this, or something that creates 
 
 <h3 id="main-features-are">Main features are:</h3>
 
-<p>Attaching <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">component</a> objects and a <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html">renderer</a>
+<p>Attaching <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> objects and a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a>
 object. Why only one renderer? Because honestly, how many times do you need to add more than one
 thing to be rendered by the same entity?</p>
 
-<p>Support for affine transformations thanks to the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a> module.</p>
+<p>Support for affine transformations thanks to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a> module.</p>
 
-<h3 id="theseobjectsextenddelegatefilelocalhostusersjohndoegamebuilderghpagesgamebuilderdocssrcdelegatehtmlsotheyprovideafeweventstohookinto">These objects extend <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html">delegate</a> so they provide a few events to hook into:</h3>
+<h3 id="theseobjectsextenddelegatehttpdiegomarquezgithubiogamebuildergamebuilderdocssrcdelegatehtmlsotheyprovideafeweventstohookinto">These objects extend <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a> so they provide a few events to hook into:</h3>
 
 <h3 id="start"><strong>start</strong></h3>
 
@@ -56,7 +56,7 @@ This happens after destroying properties in the object.</p>
   <span class="kd">var</span> <span class="nx">GameObject</span> <span class="o">=</span> <span class="nx">Delegate</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="game-objects-have-a-bunch-of-properties">Game Objects have a bunch of properties</h3></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Any of the following properties can be set when configuring the
-<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>, like so:</p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>, like so:</p>
 
 <pre><code class=" javascript">gb.goPool.createConfiguration("GameObject_1", "GameObject")
     .args({
@@ -69,8 +69,8 @@ This happens after destroying properties in the object.</p>
 object can also be set in the same way.</p>
 
 <p>You can also choose not to do that, and set the properties after
-requesting a game object to the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/assembler.html">assembler</a> module.</p></div></div><div class="code"><div class="wrapper"> </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The parent <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">parent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a> used to control affine transformations.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Matrix</span><span class="p">();</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>List of <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">components</a> attached.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">components</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html">renderer</a> attached.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Pair of local coordinates. This coordinates are relative to the
-parent <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+requesting a game object to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html">assembler</a> module.</p></div></div><div class="code"><div class="wrapper"> </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">parent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a> used to control affine transformations.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Matrix</span><span class="p">();</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>List of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> attached.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">components</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a> attached.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Pair of local coordinates. This coordinates are relative to the
+parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Registration point. Ussually 0, 0 means top left corner.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">centerX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">centerY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Rotation.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">rotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
       <span class="c1">//Scale.</span>
@@ -78,14 +78,14 @@ parent <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builde
       <span class="k">this</span><span class="p">.</span><span class="nx">scaleY</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
       <span class="c1">//Alpha / Opacity.</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">alpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The type id, is the id of the configuration that was used to put together this game object.
-Set in the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>.
+Set in the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>.
 Very usefull to identify game objects</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">typeId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The pool id, is the id of the pool this game object came from. Not so usefull</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">poolId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>These two properties are used by <a href="@@layers@@">layers</a> to turn on and off activity
-on a given <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html">layer</a>.</p></div></div><div class="code"><div class="wrapper">      </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If this is true the game object will update.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">canUpdate</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>if this is true the game object will render.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">canDraw</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Color that will be used to draw a little shape to outline the position if the <strong>debug</strong>
-property of <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/gb.html">gb</a> is set to true;</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span> <span class="o">=</span> <span class="s2">&quot;#FF00FF&quot;</span><span class="p">;</span>
+on a given <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a>.</p></div></div><div class="code"><div class="wrapper">      </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If this is true the game object will update.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">canUpdate</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>if this is true the game object will render.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">canDraw</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Color that will be used to draw a little shape to outline the position if the <strong>debug</strong>
+property of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a> is set to true;</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span> <span class="o">=</span> <span class="s2">&quot;#FF00FF&quot;</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>reset</strong></p>
 
 <p>Not so interesting mehtod, it just resets some properties right
-before the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/assembler.html">assembler</a> module starts putting together
+before the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html">assembler</a> module starts putting together
 a game object.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">reset</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">rotation</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">scaleX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -125,7 +125,7 @@ All the logic concerning clearing references should go in here.</p></div></div><
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>configure</strong></p>
 
 <p>Sets up the properties that were previously configured 
-in the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a></p>
+in the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a></p>
 
 <p>Parameters:</p>
 
@@ -141,13 +141,13 @@ in the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builde
       <span class="k">this</span><span class="p">.</span><span class="nx">args</span> <span class="o">=</span> <span class="nx">args</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>setRenderer</strong></p>
 
-<p>Sets the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html">renderer</a> and notifies it, through the <strong>onAdded</strong>
+<p>Sets the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a> and notifies it, through the <strong>onAdded</strong>
 callback.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>renderer must be an Object.</strong><br/>(<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html">renderer</a> added)</li>
+<li><strong>renderer must be an Object.</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a> added)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">setRenderer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">renderer</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">renderer</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
@@ -155,7 +155,7 @@ callback.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">onAdded</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>removeRenderer</strong></p>
 
-<p>Removes the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html">renderer</a>, and notifies it through the <strong>onRemove</strong>
+<p>Removes the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a>, and notifies it through the <strong>onRemove</strong>
 and <strong>onRecycled</strong> callbacks.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeRenderer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
@@ -169,7 +169,7 @@ and <strong>onRecycled</strong> callbacks.</p></div></div><div class="code"><div
 <p>Parameters:</p>
 
 <ul>
-<li><strong>component must be an Object.</strong><br/>(<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">component</a> added)</li>
+<li><strong>component must be an Object.</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> added)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">addComponent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">component</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">components</span> <span class="o">=</span> <span class="p">[];</span>
@@ -183,13 +183,13 @@ and <strong>onRecycled</strong> callbacks.</p></div></div><div class="code"><div
       <span class="nx">component</span><span class="p">.</span><span class="nx">onAdded</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removeComponent</strong></p>
 
-<p>Removes a <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">component</a>, and notifies it, 
+<p>Removes a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a>, and notifies it, 
 it was removed through the <strong>onRemoved</strong> callback.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>component must be an Object.</strong><br/>(<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">component</a> to remove)</li>
+<li><strong>component must be an Object.</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> to remove)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">removeComponent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">component</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
@@ -210,17 +210,17 @@ it was removed through the <strong>onRemoved</strong> callback.</p>
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>transform</strong></p>
 
-<p>Generates the concatenated <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a> used to draw itself in the proper place</p></div></div><div class="code"><div class="wrapper">    <span class="nx">transform</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Generates the concatenated <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a> used to draw itself in the proper place</p></div></div><div class="code"><div class="wrapper">    <span class="nx">transform</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">getMatrix</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>draw</strong></p>
 
-<p>Draws the game-object into the specified Context 2D, using it's <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a></p>
+<p>Draws the game-object into the specified Context 2D, using it's <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a></p>
 
 <p>Parameters:</p>
 
 <ul>
 <li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</p></li>
-<li><p><strong>viewport must be an Object.</strong><br/>(The <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html">viewport</a> this objects is being drawn too)</p></li>
+<li><p><strong>viewport must be an Object.</strong><br/>(The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> this objects is being drawn too)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">canDraw</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
@@ -244,7 +244,7 @@ it was removed through the <strong>onRemoved</strong> callback.</p>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>clear</strong></p>
 
 <p>This is called to send back a game object and all of it's parts to their
-respective pools. This method is used by the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/reclaimer.html">reclaimer</a> module.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">clear</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+respective pools. This method is used by the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html">reclaimer</a> module.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">clear</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">recycle</span><span class="p">();</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CLEAR</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
@@ -306,7 +306,7 @@ ommiting unspecified properties </p>
       <span class="k">if</span> <span class="p">(</span><span class="nx">centerY</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">centerY</span> <span class="o">=</span> <span class="nx">centerY</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getMatrix</strong></p>
 
-<p>Get's the complete concatenated <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a> of the game object.</p>
+<p>Get's the complete concatenated <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a> of the game object.</p>
 
 <p>Parameters:</p>
 
@@ -314,7 +314,7 @@ ommiting unspecified properties </p>
 <li><strong>m must be an Object and has a default value of new.</strong><br/>(Matrix()] A matrix object into which to put result.)</li>
 </ul>
 
-<p><strong>Returns an Object</strong><br/>(The concatenated <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getMatrix</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
+<p><strong>Returns an Object</strong><br/>(The concatenated <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getMatrix</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">m</span><span class="p">.</span><span class="nx">identity</span><span class="p">();</span>
       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -331,7 +331,7 @@ ommiting unspecified properties </p>
       <span class="k">return</span> <span class="nx">m</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getTransform</strong></p>
 
-<p>This will get an object with the properties that the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>
+<p>This will get an object with the properties that the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>
 is describing. This is usefull to get the absolute position of a game object
 at any given point.</p>
 
@@ -363,15 +363,15 @@ at any given point.</p>
       <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>debug_draw</strong></p>
 
-<p>This method is only executed if the <strong>debug</strong> property of the parent <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/gb.html">gb</a>
-is set to true. It is better to leave the drawing to the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html">renderer</a> components.</p>
+<p>This method is only executed if the <strong>debug</strong> property of the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a>
+is set to true. It is better to leave the drawing to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a> components.</p>
 
 <p>Parameters:</p>
 
 <ul>
 <li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</p></li>
-<li><p><strong>viewport must be an Object.</strong><br/>(A reference to the current <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html">viewport</a>)</p></li>
-<li><p><strong>draw must be an Object.</strong><br/>(A reference to the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/draw.html">draw</a> module)</p></li>
+<li><p><strong>viewport must be an Object.</strong><br/>(A reference to the current <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a>)</p></li>
+<li><p><strong>draw must be an Object.</strong><br/>(A reference to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html">draw</a> module)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">debug_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">,</span> <span class="nx">draw</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">r</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">decompose</span><span class="p">(</span><span class="nx">r</span><span class="p">);</span>
         </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Draw the center of the object</p></div></div><div class="code"><div class="wrapper">      <span class="nx">context</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>

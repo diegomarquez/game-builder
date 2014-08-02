@@ -6,9 +6,9 @@
  * Inherits from: 
  *
  * Depends of: 
- * [state](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/states/state.html)
- * [error-printer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/error-printer.html)
- * [class](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/class.html)
+ * [state](http://diegomarquez.github.io/game-builder/game-builder-docs/src/states/state.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
+ * [class](http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *

@@ -5,35 +5,35 @@
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
 <p>Inherits from: 
-<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/pool.html">pool</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/pool.html">pool</a></p>
 
 <p>Depends of:
-<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module defines the component pool. All the required instances of <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">component</a>
+<p>This module defines the component pool. All the required instances of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a>
 objects are held in here. </p>
 
-<p>As <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> are assembled by <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/assembler.html">assembler</a>, 
-<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">component</a> objects might be needed, at that point they are instantiated.
+<p>As <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> are assembled by <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html">assembler</a>, 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> objects might be needed, at that point they are instantiated.
 When they are not needed anymore, instead of destroying the instance, they are sent back to this
 pool for later usage. </p>
 
 <p>When the pool reaches the maximun amount of objects, of a certain type, it can handle, it will not create
 anymore if it is requested. Instead it will throw an error
-saying that there are no more <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">components</a> of that type available.</p>
+saying that there are no more <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> of that type available.</p>
 
-<p>Unlike <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>, <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">components</a> don't make sense by themselves, so
-you don't specify the maximun amount of them you want, like you do with the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>. 
-Instead <a href="@@components@@">components</a> will be created as needed. Since <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">components</a>,
-can not exists outside of a <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a>, when the cap on <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
-is reached, naturally, no more <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">components</a> will be created.</p>
+<p>Unlike <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>, <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> don't make sense by themselves, so
+you don't specify the maximun amount of them you want, like you do with the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>. 
+Instead <a href="@@components@@">components</a> will be created as needed. Since <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a>,
+can not exists outside of a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>, when the cap on <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
+is reached, naturally, no more <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> will be created.</p>
 
-<p>From that point, if a <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a> is recycled all of it's <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">components</a> will
-be recycled aswell, freeing them to be used in another <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a> if needed.</p>
+<p>From that point, if a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> is recycled all of it's <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> will
+be recycled aswell, freeing them to be used in another <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> if needed.</p>
 
-<p>This pool also stores configurations for <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">component</a> instances. 
+<p>This pool also stores configurations for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> instances. 
 That means that you can be having a single pooled
 object, but with three different configurations, for example. ej.</p>
 
@@ -60,13 +60,13 @@ for any of those configurations at the moment it is requested.</p>
 <li><p><strong>type must be a String.</strong><br/>(With this id the configuration has the information needed to know to which pool of objects it refers to)</p></li>
 </ul>
 
-<p><strong>Returns an Object</strong><br/>(A configuration object. Nothing too fancy)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">createConfiguration</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">,</span> <span class="nx">type</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Configurations objects for <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">components</a>
+<p><strong>Returns an Object</strong><br/>(A configuration object. Nothing too fancy)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">createConfiguration</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">,</span> <span class="nx">type</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Configurations objects for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a>
 contain the arguments that this configuration will apply</p></div></div><div class="code"><div class="wrapper">      <span class="kd">var</span> <span class="nx">configuration</span> <span class="o">=</span> <span class="p">{</span>
         <span class="nx">componentId</span><span class="o">:</span> <span class="nx">type</span><span class="p">,</span>
         <span class="nx">componentArgs</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Returns the id of the pool this configuration refers to</p></div></div><div class="code"><div class="wrapper">        <span class="nx">typeId</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
           <span class="k">return</span> <span class="nx">type</span><span class="p">;</span>
         <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Set which arguments this configuration will apply to a
-<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">component</a></p></div></div><div class="code"><div class="wrapper">        <span class="nx">args</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a></p></div></div><div class="code"><div class="wrapper">        <span class="nx">args</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
           <span class="k">this</span><span class="p">.</span><span class="nx">componentArgs</span> <span class="o">=</span> <span class="nx">args</span><span class="p">;</span>
           <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
         <span class="p">}</span>
@@ -83,12 +83,12 @@ contain the arguments that this configuration will apply</p></div></div><div cla
       <span class="k">return</span> <span class="s1">&#39;Component Pool&#39;</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    <span class="nx">addInitialObjectsToPool</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">amount</span><span class="p">,</span> <span class="nx">alias</span><span class="p">)</span> <span class="p">{},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getConfiguration</strong></p>
 
-<p>Gets a configuration for the requested <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">component</a>.</p>
+<p>Gets a configuration for the requested <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a>.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>alias must be a String.</strong><br/>(Id of the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">component</a> requested)</li>
+<li><strong>alias must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> requested)</li>
 </ul>
 
 <p><strong>Can throw an Error</strong><br/>(If the corresponding pool has no available objects)<br/><strong>and</strong> <strong>Returns an Object</strong><br/>(The configuration object requested)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getConfiguration</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">,</span> <span class="nx">nestedCall</span><span class="p">)</span> <span class="p">{</span>

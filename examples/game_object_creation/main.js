@@ -12,8 +12,8 @@
  * [groups](@@groups@@)
  * [viewports](@@viewports@@)
  * [basic-display-setup](@@basic-display-setup@@),
- * [basic-game-object](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/basic-game-object.html),
- * [box-renderer](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/box-renderer.html)
+ * [basic-game-object](http://diegomarquez.github.io/game-builder/examples-docs/common_src/basic-game-object.html),
+ * [box-renderer](http://diegomarquez.github.io/game-builder/examples-docs/common_src/box-renderer.html)
  */
 
 /**
@@ -39,15 +39,15 @@ define(function(require){
 	game.add_extension(require('basic-display-setup'));
 	game.add_extension(require("activity-display"));
 	
-	// Getting the prototype for [basic-game-object](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/basic-game-object.html)
+	// Getting the prototype for [basic-game-object](http://diegomarquez.github.io/game-builder/examples-docs/common_src/basic-game-object.html)
 	var basic_game_object = require('basic-game-object'); 
-	// Getting the prototype for [box-renderer](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/box-renderer.html) component
+	// Getting the prototype for [box-renderer](http://diegomarquez.github.io/game-builder/examples-docs/common_src/box-renderer.html) component
 	var box_renderer = require('box-renderer');
 
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {
 		console.log('Welcome to Game-Builder!');
-		// Create a pool of [box-renderer](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/box-renderer.html) objects and give it the id **Box_Renderer**.
+		// Create a pool of [box-renderer](http://diegomarquez.github.io/game-builder/examples-docs/common_src/box-renderer.html) objects and give it the id **Box_Renderer**.
 		// This is later used to create configurations for this type of objects.
 		componentPool.createPool('Box_Renderer', box_renderer);
 		
@@ -64,7 +64,7 @@ define(function(require){
 				height: 100,
 			  });
 
-		// Create a [basic-game-object](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/basic-game-object.html) pool and give it the id **Base**.
+		// Create a [basic-game-object](http://diegomarquez.github.io/game-builder/examples-docs/common_src/basic-game-object.html) pool and give it the id **Base**.
 		// The last arguments specifies the amount of objects to create in the pool. In this case 1.
 		gameObjectPool.createPool('Base', basic_game_object, 1);
 

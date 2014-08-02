@@ -3,11 +3,11 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html)
+ * Inherits from: [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  * 
  * Depends of:
- * [matrix-3x3](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html)
- * [game-object-debug-draw](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/game-object-debug-draw.html)
+ * [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
+ * [game-object-debug-draw](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/game-object-debug-draw.html)
  * 
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -16,13 +16,13 @@
  *
  * ### Main features are: 
  * 
- * Attaching [component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html) objects and a [renderer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html)
+ * Attaching [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) objects and a [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html)
  * object. Why only one renderer? Because honestly, how many times do you need to add more than one
  * thing to be rendered by the same entity?
  *
- * Support for affine transformations thanks to the [matrix-3x3](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html) module.
+ * Support for affine transformations thanks to the [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html) module.
  * 
- * ### These objects extend [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html) so they provide a few events to hook into:
+ * ### These objects extend [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so they provide a few events to hook into:
  *
  * ### **start** 
  * When the game object is started 
@@ -68,7 +68,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 
 			/*
 			 * Any of the following properties can be set when configuring the
-			 * [game-object-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/game-object-pool.html), like so:
+			 * [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html), like so:
 			 * 
 			 * ``` javascript
 			 * gb.goPool.createConfiguration("GameObject_1", "GameObject")
@@ -82,20 +82,20 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			 * object can also be set in the same way.
 			 *
 			 * You can also choose not to do that, and set the properties after
-			 * requesting a game object to the [assembler](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/assembler.html) module.
+			 * requesting a game object to the [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html) module.
 			 */ 
 
-			// The parent [game-object-container](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object-container.html).
+			// The parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html).
 			this.parent = null;
-			// [matrix-3x3](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html) used to control affine transformations.
+			// [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html) used to control affine transformations.
 			this.matrix = new Matrix();
-			// List of [components](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html) attached.
+			// List of [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) attached.
 			this.components = null;
-			// The [renderer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html) attached.
+			// The [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) attached.
 			this.renderer = null;
 
 			// Pair of local coordinates. This coordinates are relative to the
-			// parent [game-object-container](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object-container.html).
+			// parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html).
 			this.x = 0;
 			this.y = 0;
 			// Registration point. Ussually 0, 0 means top left corner.
@@ -110,14 +110,14 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			this.alpha = 1;
 
 			// The type id, is the id of the configuration that was used to put together this game object.
-			// Set in the [game-object-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/game-object-pool.html).
+			// Set in the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html).
 			// Very usefull to identify game objects
 			this.typeId = null;
 			// The pool id, is the id of the pool this game object came from. Not so usefull
 			this.poolId = null;
 
 			// These two properties are used by [layers](@@layers@@) to turn on and off activity
-			// on a given [layer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html).
+			// on a given [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html).
 			
 			// If this is true the game object will update.
 			this.canUpdate = false;
@@ -125,7 +125,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			this.canDraw = false;
 
 			// Color that will be used to draw a little shape to outline the position if the **debug**
-			// property of [gb](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/gb.html) is set to true;
+			// property of [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html) is set to true;
 			this.debugColor = "#FF00FF";
 		},
 		/**
@@ -136,7 +136,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * <p style='color:#AD071D'><strong>reset</strong></p>
 		 *
 		 * Not so interesting mehtod, it just resets some properties right
-		 * before the [assembler](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/assembler.html) module starts putting together
+		 * before the [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html) module starts putting together
 		 * a game object.
 		 */
 		reset: function() {
@@ -205,7 +205,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * <p style='color:#AD071D'><strong>configure</strong></p>
 		 *
 		 * Sets up the properties that were previously configured 
-		 * in the [game-object-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/game-object-pool.html)
+		 * in the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
 		 * 
 		 * @param  {Object} args Object which properties will be used to set values on this game object
 		 */
@@ -225,10 +225,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * <p style='color:#AD071D'><strong>setRenderer</strong></p>
 		 *
-		 * Sets the [renderer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html) and notifies it, through the **onAdded**
+		 * Sets the [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) and notifies it, through the **onAdded**
 		 * callback.
 		 *
-		 * @param {Object} renderer [renderer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html) added
+		 * @param {Object} renderer [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) added
 		 */
 		setRenderer: function(renderer) {
 			if(!renderer) return;
@@ -243,7 +243,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * <p style='color:#AD071D'><strong>removeRenderer</strong></p>
 		 *
-		 * Removes the [renderer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html), and notifies it through the **onRemove**
+		 * Removes the [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html), and notifies it through the **onRemove**
 		 * and **onRecycled** callbacks.
 		 */
 		removeRenderer: function() {
@@ -262,7 +262,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 *
 		 * Adds a component and notifies it was added through the **onAdded** callback.
 		 * 
-		 * @param {Object} component [component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html) added
+		 * @param {Object} component [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) added
 		 */
 		addComponent: function(component) {
 			if (!this.components) {
@@ -283,10 +283,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * <p style='color:#AD071D'><strong>removeComponent</strong></p>
 		 *
-		 * Removes a [component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html), and notifies it, 
+		 * Removes a [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html), and notifies it, 
 		 * it was removed through the **onRemoved** callback.
 		 * 
-		 * @param  {Object} component [component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html) to remove
+		 * @param  {Object} component [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) to remove
 		 */
 		removeComponent: function(component) {
 			if (!this.components) return;
@@ -322,7 +322,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * <p style='color:#AD071D'><strong>transform</strong></p>
 		 *
-		 * Generates the concatenated [matrix-3x3](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html) used to draw itself in the proper place
+		 * Generates the concatenated [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html) used to draw itself in the proper place
 		 */
 		transform: function() {
 			this.getMatrix(this.matrix);
@@ -334,10 +334,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
-		 * Draws the game-object into the specified Context 2D, using it's [matrix-3x3](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html)
+		 * Draws the game-object into the specified Context 2D, using it's [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
 		 * 
 		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
-		 * @param  {Object} viewport The [viewport](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html) this objects is being drawn too
+		 * @param  {Object} viewport The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) this objects is being drawn too
 		 */
 		draw: function(context, viewport) {
 			if (!this.canDraw) return;
@@ -384,7 +384,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * <p style='color:#AD071D'><strong>clear</strong></p>
 		 *
 		 * This is called to send back a game object and all of it's parts to their
-		 * respective pools. This method is used by the [reclaimer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/reclaimer.html) module.
+		 * respective pools. This method is used by the [reclaimer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html) module.
 		 */
 		clear: function() {
 			this.recycle();
@@ -462,11 +462,11 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * <p style='color:#AD071D'><strong>getMatrix</strong></p>
 		 *
-		 * Get's the complete concatenated [matrix-3x3](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html) of the game object.
+		 * Get's the complete concatenated [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html) of the game object.
 		 * 
 		 * @param  {Object} [m=new Matrix()] A matrix object into which to put result.
 		 *
-		 * @return {Object} The concatenated [matrix-3x3](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html)
+		 * @return {Object} The concatenated [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
 		 */
 		getMatrix: function(m) {
 			if (m) {
@@ -491,7 +491,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * <p style='color:#AD071D'><strong>getTransform</strong></p>
 		 *
-		 * This will get an object with the properties that the [matrix-3x3](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html)
+		 * This will get an object with the properties that the [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
 		 * is describing. This is usefull to get the absolute position of a game object
 		 * at any given point.
 		 * 
@@ -532,12 +532,12 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 		 *
-		 * This method is only executed if the **debug** property of the parent [gb](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/gb.html)
-		 * is set to true. It is better to leave the drawing to the [renderer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html) components.
+		 * This method is only executed if the **debug** property of the parent [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
+		 * is set to true. It is better to leave the drawing to the [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) components.
 		 * 
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
-		 * @param  {Object} viewport A reference to the current [viewport](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html)
-		 * @param  {Object} draw     A reference to the [draw](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/draw.html) module
+		 * @param  {Object} viewport A reference to the current [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
+		 * @param  {Object} draw     A reference to the [draw](http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html) module
 		 */
 		debug_draw: function(context, viewport, draw) {
 			r = this.matrix.decompose(r);

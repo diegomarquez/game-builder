@@ -4,7 +4,7 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html">delegate</a></p>
+<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Depends of:</p>
 
@@ -17,9 +17,9 @@
 <p>It also hooks into the focus and blur events of <a href="https://developer.mozilla.org/en-US/docs/Web/API/window">window</a>, 
 in order to be able to pause and resume the application if needed.</p>
 
-<p>It's main behaviour can be extended by the use of <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/extension.html">extensions</a></p>
+<p>It's main behaviour can be extended by the use of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extensions</a></p>
 
-<h3 id="gameextendsdelegatefilelocalhostusersjohndoegamebuilderghpagesgamebuilderdocssrcdelegatehtmlsoitprovidesafeweventstohookinto">Game extends <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</h3>
+<h3 id="gameextendsdelegatehttpdiegomarquezgithubiogamebuildergamebuilderdocssrcdelegatehtmlsoitprovidesafeweventstohookinto">Game extends <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</h3>
 
 <h3 id="create"><strong>create</strong></h3>
 
@@ -78,7 +78,7 @@ in order to be able to pause and resume the application if needed.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><strong>extensionMoudle must be a <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>.</strong><br/>(A module that extends <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>)</li>
+<li><strong>extensionMoudle must be a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>.</strong><br/>(A module that extends <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">add_extension</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">extensionMoudle</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">ex</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">extensionMoudle</span><span class="p">();</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">[</span><span class="nx">ex</span><span class="p">.</span><span class="nx">type</span><span class="p">()].</span><span class="nx">push</span><span class="p">(</span><span class="nx">ex</span><span class="p">);</span>
@@ -189,7 +189,7 @@ for the first time, it is created here.</p></div></div><div class="code"><div cl
 
         <span class="k">return</span> <span class="nx">oldFocus</span><span class="p">;</span>
       <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>References to the blur and focus callbacks
-The <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/pause.html">pause</a> and <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/resume.html">resume</a>
+The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/pause.html">pause</a> and <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/resume.html">resume</a>
 extensions use these.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">blurAction</span> <span class="o">=</span> <span class="nx">onBlur</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">focusAction</span> <span class="o">=</span> <span class="nx">onFocus</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Actually setting up the listener to the events 
 window dispatches.</p></div></div><div class="code"><div class="wrapper">      <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;blur&quot;</span><span class="p">,</span> <span class="nx">onBlur</span><span class="p">);</span>

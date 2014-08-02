@@ -3,7 +3,7 @@
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
  * ### [Find me on Github](https://github.com/diegomarquez)
  * 
- * Inherits from: [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html)
+ * Inherits from: [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  * 
  * Depends of:
  *
@@ -11,7 +11,7 @@
  *
  * This module defines a common interface for objects that behaive like a cache.
  *
- * ### The Cache object extends [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
+ * ### The Cache object extends [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
  * 
  * ### **cache** 
  * When something is registered in the cache

@@ -4,11 +4,11 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
- * [component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html)
+ * [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html)
  *
  * Depends of:
- * [error-printer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/error-printer.html)
- * [draw](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/draw.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
+ * [draw](http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -104,12 +104,12 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 		 *
-		 * This method is only executed if the **debug** property of the parent [gb](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/gb.html)
-		 * is set to true. It is better to leave the drawing to the [renderer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html) components.
+		 * This method is only executed if the **debug** property of the parent [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
+		 * is set to true. It is better to leave the drawing to the [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) components.
 		 * 
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
-		 * @param  {Object} viewport A reference to the current [viewport](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html)
-		 * @param  {Object} draw     A reference to the [draw](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/draw.html) module
+		 * @param  {Object} viewport A reference to the current [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
+		 * @param  {Object} draw     A reference to the [draw](http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html) module
 		 */
 		debug_draw: function(context, viewport, draw) {
 			// Top Left

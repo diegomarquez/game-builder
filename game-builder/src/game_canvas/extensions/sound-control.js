@@ -3,12 +3,12 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [extension](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/extension.html)
+ * Inherits from: [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
  * Depends of: 
- * [sound-player](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/sound-player.html)
- * [gb](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/gb.html)
- * [extension](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/extension.html)
+ * [sound-player](http://diegomarquez.github.io/game-builder/game-builder-docs/src/sound-player.html)
+ * [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
+ * [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -28,7 +28,7 @@ define(["sound-player", "gb", "extension"], function(SoundPlayer, Gb, Extension)
 
 	var SoundControl = Extension.extend({
 		type: function() {
-			// Notice the use of the constant CREATE defined in [game](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/game.html)
+			// Notice the use of the constant CREATE defined in [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html)
 			// to define this extension should be executed on creation.
 			return Gb.game.CREATE;
 		},

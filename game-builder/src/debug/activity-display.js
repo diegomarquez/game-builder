@@ -4,18 +4,18 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from:
- * [extension](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/extension.html)
+ * [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
  * Depends of: 
- * [gb](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/gb.html)
- * [game-object-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/game-object-pool.html)
- * [component-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html)
- * [json-cache](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/cache/json-cache.html)
- * [image-cache](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/cache/image-cache.html)
- * [path-cache](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/cache/path-cache.html)
- * [text-cache](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/cache/text-cache.html)
- * [sound-player](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/sound-player.html)
- * [timer-factory](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/timers/timer-factory.html)
+ * [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
+ * [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
+ * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html)
+ * [json-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/json-cache.html)
+ * [image-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html)
+ * [path-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/path-cache.html)
+ * [text-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/text-cache.html)
+ * [sound-player](http://diegomarquez.github.io/game-builder/game-builder-docs/src/sound-player.html)
+ * [timer-factory](http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer-factory.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 

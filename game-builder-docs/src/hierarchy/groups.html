@@ -7,15 +7,15 @@
 <p>Inherits from:</p>
 
 <p>Depends of: 
-<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/root.html">root</a>
-<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html">group</a>
-<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html">root</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module defines an object to contain and work with <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html">group</a> objects.</p>
+<p>This module defines an object to contain and work with <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> objects.</p>
 
-<p>It also acts as a wrapper for interacting with <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/root.html">root</a>.</p>
+<p>It also acts as a wrapper for interacting with <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html">root</a>.</p>
 
 <p>Not much else needs to be said about this module, it's not very complex.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="group-management">Group management</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="s2">&quot;error-printer&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Root</span><span class="p">,</span> <span class="nx">Group</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
 
@@ -24,11 +24,11 @@
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong></p>
 
 <p>Adds a new group. The group is managed in this object, but
-it also is added to <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/root.html">root</a>, which is what will make it update.</p>
+it also is added to <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html">root</a>, which is what will make it update.</p>
 
 <p>On that subject, it is important to note that if you re-arrange the elements
 of the array that the group is added to, nothing will happen to the order of
-updating or rendering, as that is controlled by the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/root.html">root</a>, which has
+updating or rendering, as that is controlled by the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html">root</a>, which has
 a list of childs of it's own.</p>
 
 <p>Parameters:</p>
@@ -44,10 +44,10 @@ a list of childs of it's own.</p>
     <span class="k">return</span> <span class="nx">group</span><span class="p">;</span>
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>remove</strong></p>
 
-<p>Removes a group from the array in this object, and also from the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/root.html">root</a>.
-Prior to removing the group it also clears it from any <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p>
+<p>Removes a group from the array in this object, and also from the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html">root</a>.
+Prior to removing the group it also clears it from any <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p>
 
-<p>A removed group can not be used again, if you wish to just remove all <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
+<p>A removed group can not be used again, if you wish to just remove all <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
 from a group you might want to use the <strong>clear</strong> method.</p>
 
 <p>Parameters:</p>
@@ -60,7 +60,7 @@ from a group you might want to use the <strong>clear</strong> method.</p>
     <span class="nx">Root</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">]);</span>
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>clear</strong></p>
 
-<p>Clears a group from all <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p>
+<p>Clears a group from all <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p>
 
 <p>A cleared group can still be used to add more things to it.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">clear</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> 
     <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">clear</span><span class="p">();</span> 
@@ -74,7 +74,7 @@ from a group you might want to use the <strong>clear</strong> method.</p>
 <li><strong>name must be a String.</strong><br/>(Id of the group to get a reference to.)</li>
 </ul>
 
-<p><strong>Can throw an Error</strong><br/>(If the provided name does not match any <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html">group</a>)<br/><strong>and</strong> <strong>Returns a Group</strong><br/>(The specified <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html">group</a>. )</p></div></div><div class="code"><div class="wrapper">  <span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">get</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> 
+<p><strong>Can throw an Error</strong><br/>(If the provided name does not match any <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>)<br/><strong>and</strong> <strong>Returns a Group</strong><br/>(The specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>. )</p></div></div><div class="code"><div class="wrapper">  <span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">get</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> 
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="p">{</span>
       <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Groups&#39;</span><span class="p">,</span> <span class="s1">&#39;group with id:&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; does not exist.&#39;</span><span class="p">)</span>
     <span class="p">}</span>
@@ -82,7 +82,7 @@ from a group you might want to use the <strong>clear</strong> method.</p>
     <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span> 
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>stop</strong></p>
 
-<p>Stops updating and rendering everythin in the requested <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html">group</a>.
+<p>Stops updating and rendering everythin in the requested <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>.
 For practical purposes this method pauses and makes invisible all the contents
 of a group.</p>
 
@@ -95,47 +95,47 @@ of a group.</p>
     <span class="k">this</span><span class="p">.</span><span class="nx">stop_draw</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>   
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resume</strong></p>
 
-<p>Resumes all activity in the specified <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html">group</a>.</p>
+<p>Resumes all activity in the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html">group</a> to resume activity in )</li>
+<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> to resume activity in )</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">resume</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> 
     <span class="k">this</span><span class="p">.</span><span class="nx">resume_update</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">resume_draw</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>   
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>stop_draw</strong></p>
 
-<p>Stops rendering of the specified <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html">group</a>. Effectively making everything in it invisible.</p>
+<p>Stops rendering of the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>. Effectively making everything in it invisible.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html">group</a> that should stop rendering)</li>
+<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> that should stop rendering)</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">stop_draw</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">hide</span><span class="p">();</span> <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resume_draw</strong></p>
 
-<p>Resumes rendering of the specified <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html">group</a>. </p>
+<p>Resumes rendering of the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>. </p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html">group</a> that should resume rendering)</li>
+<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> that should resume rendering)</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">resume_draw</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">show</span><span class="p">();</span> <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>stop_update</strong></p>
 
-<p>Stops updating of the specified <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html">group</a>. Effectively pausing everything in it.</p>
+<p>Stops updating of the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>. Effectively pausing everything in it.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html">group</a> that should stop updating)</li>
+<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> that should stop updating)</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">stop_update</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">canUpdate</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resume_update</strong></p>
 
-<p>Resumes updating of the specified <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html">group</a>. </p>
+<p>Resumes updating of the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>. </p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/group.html">group</a> that should resume updating)</li>
+<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> that should resume updating)</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">resume_update</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">canUpdate</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>all</strong></p>
 
 <p>Performs a given action on all the groups. The two arguments

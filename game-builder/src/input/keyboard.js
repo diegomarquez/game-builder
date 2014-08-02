@@ -3,14 +3,14 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html)
+ * Inherits from: [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  *
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
  * This module defines to interact with the keyboard. 
- * In similar fashion to [timer-factory](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/timers/timer-factory.html),
+ * In similar fashion to [timer-factory](http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer-factory.html),
  * this module extends on existing behaviour to make it less annoying.
  */
 
@@ -85,7 +85,7 @@ define(function(require) {
 		 *
 		 * Register a callback to be executed when a key is pressed.
 		 *
-		 * This wraps the extended [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html)
+		 * This wraps the extended [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
 		 * 
 		 * @param  {Number}   keyCode  Key code to listen to
 		 * @param  {Object}   scope    Scope of the callback function
@@ -103,7 +103,7 @@ define(function(require) {
 		 *
 		 * Register a callback to be executed when a key is released.
 		 *
-		 * This wraps the extended [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html)
+		 * This wraps the extended [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
 		 * 
 		 * @param  {Number}   keyCode  Key code to listen to
 		 * @param  {Object}   scope    Scope of the callback function
@@ -121,7 +121,7 @@ define(function(require) {
 		 *
 		 * Removes a registered callback for a key press.
 		 *
-		 * This wraps the extended [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html)
+		 * This wraps the extended [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
 		 * 
 		 * @param  {Number}   keyCode  Key code to stop listening to
 		 * @param  {Object}   scope    Scope of the callback function to remove
@@ -139,7 +139,7 @@ define(function(require) {
 		 *
 		 * Removes a registered callback for a key release.
 		 *
-		 * This wraps the extended [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html)
+		 * This wraps the extended [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
 		 * 
 		 * @param  {Number}   keyCode  Key code to stop listening to
 		 * @param  {Object}   scope    Scope of the callback function to remove

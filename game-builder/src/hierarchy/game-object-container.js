@@ -3,15 +3,15 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html)
+ * Inherits from: [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
  *
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This modules defines a container for [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html), which in turn
- * is a [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) itself. Being a parent means that all of it's child
- * [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) will follow it according to it's transformation matrix.
+ * This modules defines a container for [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html), which in turn
+ * is a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) itself. Being a parent means that all of it's child
+ * [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) will follow it according to it's transformation matrix.
  *
  * It's a pretty usefull behaviour to form more complex displays out of smaller, more manageable 
  * pieces. 
@@ -19,7 +19,7 @@
  * A note on drawing: A container will execute it's renderer code, and then the rendering code
  * of it's children. This means that the parent drawing will show up, below it's children's.
  *
- * Asides from that, a container is no different to a regular [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html),
+ * Asides from that, a container is no different to a regular [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html),
  * so go look at that part of the documentation for more details on every method here.
  */
 
@@ -59,11 +59,11 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>add</strong></p>
 		 *
-		 * Adds the specified child [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) to this container.
+		 * Adds the specified child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to this container.
 		 * If the child already is part of another parent, it is removed from it
 		 * and added to this one.
 		 * 
-		 * @param {Object} The child [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) to add
+		 * @param {Object} The child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to add
 		 */
 		add: function(child) {
 			if(!child) return;
@@ -87,9 +87,9 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>remove</strong></p>
 		 *
-		 * Removes the specified child [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) from this container.
+		 * Removes the specified child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) from this container.
 		 * 
-		 * @param {Object} The child [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) to remove
+		 * @param {Object} The child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to remove
 		 */
 		remove: function(child) {
 			if(!child) return;
@@ -149,12 +149,12 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
-		 * Draws the game-object into the specified Context 2D, using it's [matrix-3x3](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/matrix-3x3.html)
+		 * Draws the game-object into the specified Context 2D, using it's [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
 		 *
 		 * Then it draws all of it's children
 		 * 
 		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
-		 * @param  {Object} viewport The [viewport](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html) this objects is being drawn too
+		 * @param  {Object} viewport The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) this objects is being drawn too
 		 */
 		draw: function(context, viewport) {			
 			this._super(context, viewport);

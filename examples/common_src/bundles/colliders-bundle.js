@@ -7,7 +7,7 @@
  * [bundle](@@bundle@@)
  *
  * Depends of:
- * [basic-game-object](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/basic-game-object.html)
+ * [basic-game-object](http://diegomarquez.github.io/game-builder/examples-docs/common_src/basic-game-object.html)
  * [bitmap-renderer](@@bitmap-renderer@@)
  * [circle-collider](@@circle-collider@@)
  * [polygon-collider](@@polygon-collider@@)

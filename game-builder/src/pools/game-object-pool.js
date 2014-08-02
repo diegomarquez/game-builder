@@ -4,28 +4,28 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
- * [pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/pool.html)
+ * [pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/pool.html)
  *
  * Depends of:
- * [error-printer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/error-printer.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines the game object pool. All the required instances of [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html), 
+ * This module defines the game object pool. All the required instances of [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html), 
  * at a certain point in the application, are held here. 
  * 
  * The pool can be configured with the types it should hold, and with the maximun amount of each type
- * it can hold. Note that [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) that are only configured to be childs, do
+ * it can hold. Note that [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) that are only configured to be childs, do
  * not need to have a maximun amount specified, as they will be created as needed.
  *
- * Only [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) which are going to be requested explicitly need to specify a 
+ * Only [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) which are going to be requested explicitly need to specify a 
  * maximum amount. They will be created dynamically until the maximun is reached.
  *
  * When the pool reaches the maximun amount of objects it can handle, it will not create
  * anymore if it is requested. Instead it will throw an error
- * saying that there are no more [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) of that type available.
+ * saying that there are no more [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) of that type available.
  *
- * This pool also stores configurations for [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) instances. 
+ * This pool also stores configurations for [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) instances. 
  * That means that you can be having a single pooled
  * object, but with three different configurations, for example. ej.
  *
@@ -44,17 +44,17 @@
  *
  * This is usefull to avoid having too many idling instances at the same time.
  *
- * Unlike [components](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html), there is a bit more to the configuration of a 
- * [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html).
- * A configuration might specify, [components](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html) to attach, child [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html),
- * a [renderer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html), aswell as initialization arguments.
+ * Unlike [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html), there is a bit more to the configuration of a 
+ * [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html).
+ * A configuration might specify, [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) to attach, child [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html),
+ * a [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html), aswell as initialization arguments.
  *
  * The main idea is to provide 
  * a way to centralize the different configurations for
- * all the [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) in a given section of an application. 
+ * all the [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) in a given section of an application. 
  * 
  * The good thing of clearly separating configuration from actual usage, is that the code
- * which will end up using the [assembler](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/assembler.html) module to make [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html)
+ * which will end up using the [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html) module to make [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
  * appear on screen, is extremly short.
  */
 
@@ -90,7 +90,7 @@ define(function(require) {
 		 * @return {Object}       A configuration object. This objects have a lot of information
 		 */
 		createConfiguration: function(alias, type) {
-			// Configuration objects for [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html)
+			// Configuration objects for [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 			// contain the arguments that this configuration will apply
 			var configuration = {
 				type: type,
@@ -105,13 +105,13 @@ define(function(require) {
 				},
 
 				// Set which arguments this configuration will apply to a
-				// [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html)
+				// [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 				args: function(args) {
 					this.hardArguments = args;
 					return this;
 				},
 				// Add a child, specifying
-				// an existing [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html)
+				// an existing [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 				// configuration id, and arguments the child will take when initialized
 				addChild: function(childId, args) {
 					this.childs.push({
@@ -120,15 +120,15 @@ define(function(require) {
 					});
 					return this;
 				},
-				// Add a [component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html), specifying an existing 
-				// [component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html) configuration id,
+				// Add a [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html), specifying an existing 
+				// [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) configuration id,
 				// and arguments the component will take when initialized
 				addComponent: function(componentId, args) {
 					this.components.push(getComponentDescription(componentId, args));
 					return this;
 				},
 				// Set a renderer, specifying an existing 
-				// [component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html) configuration id, and arguments the
+				// [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) configuration id, and arguments the
 				// renderer will take when initialized
 				setRenderer: function(rendererId, args) {
 					this.renderer = getComponentDescription(rendererId, args);
@@ -162,7 +162,7 @@ define(function(require) {
 		 * <p style='color:#AD071D'><strong>addInitialObjectsToPool</strong></p>
 		 *
 		 * Create initial amount of objects of a given type the pool will hold. This
-		 * is also the maximun amount of [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) of this type
+		 * is also the maximun amount of [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) of this type
 		 * that can be requested explicitly.
 		 * 
 		 * @param {Number} amount Amount of intances to create
@@ -184,12 +184,12 @@ define(function(require) {
 		/**
 		 * <p style='color:#AD071D'><strong>getConfiguration</strong></p>
 		 *
-		 * Gets a configuration for the requested [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html).
+		 * Gets a configuration for the requested [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html).
 		 *
-		 * @param  {String} alias      Id of the [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) requested
+		 * @param  {String} alias      Id of the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) requested
 		 *
 		 * @throws {Error} If the corresponding pool has no available objects
-		 * @throws {Error} If a [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) type which did not specified a maximun amount is requested explicitly
+		 * @throws {Error} If a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) type which did not specified a maximun amount is requested explicitly
 		 * @return {Object} The configuration object requested
 		 */
 		getConfiguration: function(alias, nestedCall) {
@@ -219,7 +219,7 @@ define(function(require) {
 		 *
 		 * Gets the requested configuration. It doesn't perform any type of validations.
 		 * 
-		 * @param  {String} alias      Id of the [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) requested
+		 * @param  {String} alias      Id of the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) requested
 		 *
 		 * @throws {Error} If the id provided does not match with any existing one
 		 * 

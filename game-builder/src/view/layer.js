@@ -4,14 +4,14 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
- * [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html)
+ * [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  *
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
- * This is the type of objects that [videport](@@videport@@) uses to determine the order in which [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html)
- * should be drawn. Each [viewport](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html) has an array of this type of objects.
+ * This is the type of objects that [videport](@@videport@@) uses to determine the order in which [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
+ * should be drawn. Each [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) has an array of this type of objects.
  */
 
 /**
@@ -31,7 +31,7 @@ define(["delegate"], function(Delegate){
 		 * Constructor
 		 *
 		 * @param {String} name The name of the layer
-		 * @param {Viewport} viewport The [viewport](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html) the layer belongs to
+		 * @param {Viewport} viewport The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) the layer belongs to
 		 */
 		init: function(name, viewport) {
 			this.name = name;
@@ -49,7 +49,7 @@ define(["delegate"], function(Delegate){
 		 *
 		 * Add a [game-obejct](@@game-obejct@@) to layer for rendering
 		 * 
-		 * @param {Object} go The [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) to add
+		 * @param {Object} go The [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to add
 		 */
 		add: function(go) { 
 			this.gameObjects.push(go); 
@@ -61,9 +61,9 @@ define(["delegate"], function(Delegate){
 		/**
 		 * <p style='color:#AD071D'><strong>remove</strong></p>
 		 *
-		 * Remove a [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) from the layer
+		 * Remove a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) from the layer
 		 * 
-		 * @param {Object} go The [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) to remove
+		 * @param {Object} go The [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to remove
 		 */
 		remove: function(go) { 
 			this.gameObjects.splice(this.gameObjects.indexOf(go), 1); 
@@ -75,7 +75,7 @@ define(["delegate"], function(Delegate){
 		/**
 		 * <p style='color:#AD071D'><strong>removeAll</strong></p>
 		 *
-		 * Removes all the [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) from the layer
+		 * Removes all the [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) from the layer
 		 */
 		removeAll: function() { 
 			this.gameObjects = []; 

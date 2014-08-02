@@ -7,7 +7,7 @@
  * [game](@@game@@),
  * [root](@@root@@),
  * [basic-display-setup](@@basic-display-setup@@),
- * [logic-bundle](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/bundles/logic-bundle.html)
+ * [logic-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/logic-bundle.html)
  */
 
 /**

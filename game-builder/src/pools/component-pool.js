@@ -4,35 +4,35 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
- * [pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/pool.html)
+ * [pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/pool.html)
  *
  * Depends of:
- * [error-printer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/error-printer.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines the component pool. All the required instances of [component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html)
+ * This module defines the component pool. All the required instances of [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html)
  * objects are held in here. 
  * 
- * As [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) are assembled by [assembler](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/assembler.html), 
- * [component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html) objects might be needed, at that point they are instantiated.
+ * As [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) are assembled by [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html), 
+ * [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) objects might be needed, at that point they are instantiated.
  * When they are not needed anymore, instead of destroying the instance, they are sent back to this
  * pool for later usage. 
  *
  * When the pool reaches the maximun amount of objects, of a certain type, it can handle, it will not create
  * anymore if it is requested. Instead it will throw an error
- * saying that there are no more [components](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html) of that type available.
+ * saying that there are no more [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) of that type available.
  *
- * Unlike [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html), [components](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html) don't make sense by themselves, so
- * you don't specify the maximun amount of them you want, like you do with the [game-object-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/game-object-pool.html). 
- * Instead [components](@@components@@) will be created as needed. Since [components](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html),
- * can not exists outside of a [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html), when the cap on [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html)
- * is reached, naturally, no more [components](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html) will be created.
+ * Unlike [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html), [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) don't make sense by themselves, so
+ * you don't specify the maximun amount of them you want, like you do with the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html). 
+ * Instead [components](@@components@@) will be created as needed. Since [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html),
+ * can not exists outside of a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html), when the cap on [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
+ * is reached, naturally, no more [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) will be created.
  *
- * From that point, if a [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) is recycled all of it's [components](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html) will
- * be recycled aswell, freeing them to be used in another [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) if needed.
+ * From that point, if a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) is recycled all of it's [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) will
+ * be recycled aswell, freeing them to be used in another [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) if needed.
  *
- * This pool also stores configurations for [component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html) instances. 
+ * This pool also stores configurations for [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) instances. 
  * That means that you can be having a single pooled
  * object, but with three different configurations, for example. ej.
  *
@@ -75,7 +75,7 @@ define(function(require) {
 		 */
 		createConfiguration: function(alias, type) {
 
-			// Configurations objects for [components](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html)
+			// Configurations objects for [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html)
 			// contain the arguments that this configuration will apply
 			var configuration = {
 				componentId: type,
@@ -87,7 +87,7 @@ define(function(require) {
 				},
 
 				// Set which arguments this configuration will apply to a
-				// [component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html)
+				// [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html)
 				args: function(args) {
 					this.componentArgs = args;
 					return this;
@@ -121,9 +121,9 @@ define(function(require) {
 		/**
 		 * <p style='color:#AD071D'><strong>getConfiguration</strong></p>
 		 *
-		 * Gets a configuration for the requested [component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html).
+		 * Gets a configuration for the requested [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html).
 		 *
-		 * @param  {String} alias      Id of the [component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html) requested
+		 * @param  {String} alias      Id of the [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) requested
 		 *
 		 * @throws {Error} If the corresponding pool has no available objects
 		 * @return {Object} The configuration object requested
