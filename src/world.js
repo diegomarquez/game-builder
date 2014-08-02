@@ -82,7 +82,7 @@ define(["class"], function(Class) {
 		 * Make the specified [viewport](@@viewport@@) scale by the specified factor
 		 * 
 		 * @param  {Object} viewport The [viewport](@@viewport@@) to scale
-		 * @param  {[type]} factor   Amount to scale by
+		 * @param  {Number} factor   Amount to scale by
 		 */
 		scaleViewportProportionaly: function(viewport, factor) {
 			viewport.scaleX = 1;
