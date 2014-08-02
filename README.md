@@ -12,16 +12,8 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
-- Example that demonstrates multiple viewports
-    - Add example to the website
-
-- Add errors to website
-    - Rename heriarchy folders errors (Layer -> Group)
-    - Add gb.js error to error page
-    - path-renderer.js
-
-- Consider root as a stand alone object, so that gb does not have to load game-object during initialization
 - Move repeated code from every main.js into game.js
+- Consider root as a stand alone object, so that gb does not have to load game-object during initialization
 - Add alpha to matrix_3x3.js    
 - Refactor debug debug draw in colliders
 

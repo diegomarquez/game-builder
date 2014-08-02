@@ -80,8 +80,8 @@ define(["renderer", "image-cache"], function(Renderer, ImageCache) {
 		draw: function(context) {
 			image = ImageCache.get(this.path);
 
-			w = rendererWidth();
-			h = rendererHeight();
+			w = this.rendererWidth();
+			h = this.rendererHeight();
 
 			if (this.offset == 'center'){
 				context.drawImage(image, -w/2, -h/2, w, h);	
