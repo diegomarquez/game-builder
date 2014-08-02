@@ -120,10 +120,11 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 				this.parent.getTransform(p, m);
 
 				context.save();
+
 				context.setTransform(1, 0, 0, 1, 0, 0);			
 				context.translate(p.x, p.y);
-
 				Draw.polygon(context, 0, 0, this.pointsCopy, null, this.debugColor, 2);
+				
 				context.restore();
 
 				this._super();

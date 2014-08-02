@@ -120,7 +120,15 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
 			 */
 			debug_draw: function(context, viewport, draw) {
+				var m = this.parent.matrix;
+
+				context.save();
+
+				context.setTransform(1, 0, 0, 1, 0, 0);			
+				context.transform(m.a, m.b, m.c, m.d, m.tx, m.ty);
 				Draw.polygon(context, 0, 0, this.pointsCopy, null, this.debugColor, 2);
+				
+				context.restore();
 
 				this._super();
 			}
