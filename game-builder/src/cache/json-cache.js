@@ -3,7 +3,7 @@
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
  * ### [Find me on Github](https://github.com/diegomarquez)
  * 
- * Inherits from: [cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/cache.html)
+ * Inherits from: [cache](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/cache/cache.html)
  * 
  * Depends of:
  *

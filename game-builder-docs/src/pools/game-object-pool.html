@@ -5,28 +5,28 @@
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
 <p>Inherits from: 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/pool.html">pool</a></p>
+<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/pool.html">pool</a></p>
 
 <p>Depends of:
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module defines the game object pool. All the required instances of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>, 
+<p>This module defines the game object pool. All the required instances of <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a>, 
 at a certain point in the application, are held here. </p>
 
 <p>The pool can be configured with the types it should hold, and with the maximun amount of each type
-it can hold. Note that <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> that are only configured to be childs, do
+it can hold. Note that <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> that are only configured to be childs, do
 not need to have a maximun amount specified, as they will be created as needed.</p>
 
-<p>Only <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> which are going to be requested explicitly need to specify a 
+<p>Only <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> which are going to be requested explicitly need to specify a 
 maximum amount. They will be created dynamically until the maximun is reached.</p>
 
 <p>When the pool reaches the maximun amount of objects it can handle, it will not create
 anymore if it is requested. Instead it will throw an error
-saying that there are no more <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> of that type available.</p>
+saying that there are no more <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> of that type available.</p>
 
-<p>This pool also stores configurations for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> instances. 
+<p>This pool also stores configurations for <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a> instances. 
 That means that you can be having a single pooled
 object, but with three different configurations, for example. ej.</p>
 
@@ -43,17 +43,17 @@ for any of those configurations at the moment it is requested.</p>
 
 <p>This is usefull to avoid having too many idling instances at the same time.</p>
 
-<p>Unlike <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a>, there is a bit more to the configuration of a 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>.
-A configuration might specify, <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> to attach, child <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>,
-a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a>, aswell as initialization arguments.</p>
+<p>Unlike <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">components</a>, there is a bit more to the configuration of a 
+<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>.
+A configuration might specify, <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">components</a> to attach, child <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>,
+a <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html">renderer</a>, aswell as initialization arguments.</p>
 
 <p>The main idea is to provide 
 a way to centralize the different configurations for
-all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> in a given section of an application. </p>
+all the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> in a given section of an application. </p>
 
 <p>The good thing of clearly separating configuration from actual usage, is that the code
-which will end up using the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html">assembler</a> module to make <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
+which will end up using the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/assembler.html">assembler</a> module to make <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
 appear on screen, is extremly short.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="pooling">Pooling</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">getComponentDescription</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="p">{</span>
@@ -76,7 +76,7 @@ appear on screen, is extremly short.</p></div></div></div><div class="segment"><
 <li><p><strong>type must be a String.</strong><br/>(With this id the configuration has the information needed to know to which pool of objects it refers to)</p></li>
 </ul>
 
-<p><strong>Returns an Object</strong><br/>(A configuration object. This objects have a lot of information)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">createConfiguration</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">,</span> <span class="nx">type</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Configuration objects for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
+<p><strong>Returns an Object</strong><br/>(A configuration object. This objects have a lot of information)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">createConfiguration</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">,</span> <span class="nx">type</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Configuration objects for <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
 contain the arguments that this configuration will apply</p></div></div><div class="code"><div class="wrapper">      <span class="kd">var</span> <span class="nx">configuration</span> <span class="o">=</span> <span class="p">{</span>
         <span class="nx">type</span><span class="o">:</span> <span class="nx">type</span><span class="p">,</span>
         <span class="nx">hardArguments</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
@@ -85,24 +85,24 @@ contain the arguments that this configuration will apply</p></div></div><div cla
         <span class="nx">renderer</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Returns the id of the pool this configuration refers to</p></div></div><div class="code"><div class="wrapper">        <span class="nx">typeId</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
           <span class="k">return</span> <span class="nx">type</span><span class="p">;</span>
         <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Set which arguments this configuration will apply to a
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a></p></div></div><div class="code"><div class="wrapper">        <span class="nx">args</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a></p></div></div><div class="code"><div class="wrapper">        <span class="nx">args</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
           <span class="k">this</span><span class="p">.</span><span class="nx">hardArguments</span> <span class="o">=</span> <span class="nx">args</span><span class="p">;</span>
           <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
         <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Add a child, specifying
-an existing <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>
+an existing <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a>
 configuration id, and arguments the child will take when initialized</p></div></div><div class="code"><div class="wrapper">        <span class="nx">addChild</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">childId</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
           <span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
             <span class="nx">childId</span><span class="o">:</span> <span class="nx">childId</span><span class="p">,</span>
             <span class="nx">args</span><span class="o">:</span> <span class="nx">args</span>
           <span class="p">});</span>
           <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
-        <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Add a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a>, specifying an existing 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> configuration id,
+        <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Add a <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">component</a>, specifying an existing 
+<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">component</a> configuration id,
 and arguments the component will take when initialized</p></div></div><div class="code"><div class="wrapper">        <span class="nx">addComponent</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">componentId</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
           <span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">getComponentDescription</span><span class="p">(</span><span class="nx">componentId</span><span class="p">,</span> <span class="nx">args</span><span class="p">));</span>
           <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
         <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Set a renderer, specifying an existing 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> configuration id, and arguments the
+<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html">component</a> configuration id, and arguments the
 renderer will take when initialized</p></div></div><div class="code"><div class="wrapper">        <span class="nx">setRenderer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">rendererId</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
           <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span> <span class="o">=</span> <span class="nx">getComponentDescription</span><span class="p">(</span><span class="nx">rendererId</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
           <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
@@ -121,7 +121,7 @@ renderer will take when initialized</p></div></div><div class="code"><div class=
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addInitialObjectsToPool</strong></p>
 
 <p>Create initial amount of objects of a given type the pool will hold. This
-is also the maximun amount of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> of this type
+is also the maximun amount of <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> of this type
 that can be requested explicitly.</p>
 
 <p>Parameters:</p>
@@ -139,15 +139,15 @@ that can be requested explicitly.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">pools</span><span class="p">[</span><span class="nx">alias</span><span class="p">].</span><span class="nx">maxAmount</span> <span class="o">=</span> <span class="nx">amount</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getConfiguration</strong></p>
 
-<p>Gets a configuration for the requested <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>.</p>
+<p>Gets a configuration for the requested <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a>.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>alias must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> requested)</li>
+<li><strong>alias must be a String.</strong><br/>(Id of the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a> requested)</li>
 </ul>
 
-<p><strong>Can throw an Error</strong><br/>(If the corresponding pool has no available objects)<br/><strong>and</strong> <strong>Can throw an Error</strong><br/>(If a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> type which did not specified a maximun amount is requested explicitly)<br/><strong>and</strong> <strong>Returns an Object</strong><br/>(The configuration object requested)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getConfiguration</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">,</span> <span class="nx">nestedCall</span><span class="p">)</span> <span class="p">{</span>
+<p><strong>Can throw an Error</strong><br/>(If the corresponding pool has no available objects)<br/><strong>and</strong> <strong>Can throw an Error</strong><br/>(If a <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a> type which did not specified a maximun amount is requested explicitly)<br/><strong>and</strong> <strong>Returns an Object</strong><br/>(The configuration object requested)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getConfiguration</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">,</span> <span class="nx">nestedCall</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">configuration</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getConfigurationObject</span><span class="p">(</span><span class="nx">alias</span><span class="p">);</span>
       <span class="kd">var</span> <span class="nx">pool</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">pools</span><span class="p">[</span><span class="nx">configuration</span><span class="p">.</span><span class="nx">type</span><span class="p">];</span>
 
@@ -171,7 +171,7 @@ that can be requested explicitly.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><strong>alias must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> requested)</li>
+<li><strong>alias must be a String.</strong><br/>(Id of the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a> requested)</li>
 </ul>
 
 <p><strong>Can throw an Error</strong><br/>(If the id provided does not match with any existing one)<br/><strong>and</strong> <strong>Returns an Object</strong><br/>(The configuration object requested)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getConfigurationObject</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">)</span> <span class="p">{</span>

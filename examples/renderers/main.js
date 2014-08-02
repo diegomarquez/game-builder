@@ -6,9 +6,8 @@
  * [gb](@@gb@@),
  * [game](@@game@@),
  * [root](@@root@@),
- * [layers](@@layers@@),
- * [basic-layer-setup](@@basic-layer-setup@@),
- * [rendering-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/rendering-bundle.html)
+ * [basic-display-setup](@@basic-display-setup@@),
+ * [rendering-bundle](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/bundles/rendering-bundle.html)
  */
 
 /**
@@ -20,7 +19,7 @@ define(function(require){
 	var game = gb.game;
 	var root = gb.root;
 	
-	game.add_extension(require('basic-layer-setup'));
+	game.add_extension(require('basic-display-setup'));
 	game.add_extension(require("activity-display"));
 
 	// This is the main initialization function
@@ -29,14 +28,14 @@ define(function(require){
 
 		require('rendering-bundle').create();
 
-		gb.addToLayer('Middle', 'Base_1');
-		gb.addToLayer('Middle', 'Base_2');
-		gb.addToLayer('Middle', 'Base_3');
-		gb.addToLayer('Middle', 'Base_4');
+		gb.add('Base_1', 'First', 'MainMiddle');
+		gb.add('Base_2', 'First', 'MainMiddle');
+		gb.add('Base_3', 'First', 'MainMiddle');
+		gb.add('Base_4', 'First', 'MainMiddle');
 
-		gb.addTextToLayer('Middle', 'Text_1', 'Text');
-		gb.addTextToLayer('Middle', 'Text_2', 'Another Text');
-		gb.addTextToLayer('Middle', 'Text_3', 'adsfjfghjsd');
+		gb.addText('Text_1', 'First', 'Text', 'MainMiddle');
+		gb.addText('Text_2', 'First', 'Another text', 'MainMiddle');
+		gb.addText('Text_3', 'First', 'Yet more text', 'MainMiddle');
 	});
 
 	// This is called when the canvas looses focus
@@ -54,7 +53,7 @@ define(function(require){
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.
-		root.transformAndDraw(game.context);
+		root.draw(game.context);
 	});
 
 	// This is the main setup that kicks off the whole thing

@@ -6,8 +6,8 @@
  * [gb](@@gb@@),
  * [game](@@game@@),
  * [root](@@root@@),
- * [basic-layer-setup](@@basic-layer-setup@@),
- * [input-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/input-bundle.html),
+ * [basic-display-setup](@@basic-display-setup@@),
+ * [input-bundle](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/bundles/input-bundle.html),
  * [keyboard](@@keyboard@@),
  * [util](@@util@@)
  */
@@ -20,14 +20,12 @@ define(function(require){
 	
 	var game = gb.game;
 	var root = gb.root;
-	var layers = gb.layers;
-	var assembler = gb.assembler;
 	var canvas = gb.canvas;
 	
 	var keyboard = require('keyboard');
 	var util = require('util');
 
-	game.add_extension(require('basic-layer-setup'));
+	game.add_extension(require('basic-display-setup'));
 	game.add_extension(require("keyboard-lock"));
 	game.add_extension(require("pause"));
 	game.add_extension(require("resume"));
@@ -44,9 +42,9 @@ define(function(require){
 			console.log("A was pressed");
 
 			// Adding the [game-object](@@game-object@@)
-			var go = gb.addToLayer('Middle', 'Base_2');
+			var go = gb.add('Base_2', 'First', 'MainMiddle');
 
-			// Modifying the [game-object](@@game-object@@) right after adding it to a layer.
+			// Modifying the [game-object](@@game-object@@) right after adding it to a [layer](@@layer@@).
 			go.x = util.rand_f(20, canvas.width-20);
 			go.y = util.rand_f(20, canvas.height-20);
 			// In this case I know that the renderer I am using has a 'color' property.
@@ -92,7 +90,7 @@ define(function(require){
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.
-		root.transformAndDraw(game.context);
+		root.draw(game.context);
 
 		if(keyboard.isKeyDown(keyboard.A)){ console.log('A is down') }
 		if(keyboard.isKeyDown(keyboard.S)){ console.log('S is down') }

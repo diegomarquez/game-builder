@@ -7,8 +7,8 @@
  * [bundle](@@bundle@@)
  *
  * Depends of:
- * [basic-game-object](http://diegomarquez.github.io/game-builder/examples-docs/common_src/basic-game-object.html)
- * [box-renderer](http://diegomarquez.github.io/game-builder/examples-docs/common_src/box-renderer.html)
+ * [basic-game-object](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/basic-game-object.html)
+ * [box-renderer](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/box-renderer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -37,8 +37,8 @@ define(function(require) {
 			
 			this.componentPool.createConfiguration("Path_1", 'Path_Renderer').args({ 
 				name: 'Path',
-				pathWidth: 10,
-				pathHeight: 10,
+				width: 10,
+				height: 10,
 				offset:'center',
 				drawPath: function(context) {
 					context.fillStyle = "#FF0000";

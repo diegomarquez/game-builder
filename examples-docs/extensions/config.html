@@ -9,6 +9,8 @@
     <span class="s2">&quot;logic-bundle&quot;</span><span class="o">:</span> <span class="s2">&quot;../common_src/bundles/logic-bundle&quot;</span><span class="p">,</span>
     <span class="s2">&quot;nesting-bundle&quot;</span><span class="o">:</span> <span class="s2">&quot;../common_src/bundles/nesting-bundle&quot;</span><span class="p">,</span>
     <span class="s2">&quot;rendering-bundle&quot;</span><span class="o">:</span> <span class="s2">&quot;../common_src/bundles/rendering-bundle&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;viewports-bundle&quot;</span><span class="o">:</span> <span class="s2">&quot;../common_src/bundles/viewports-bundle&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;complex-display-setup&quot;</span><span class="o">:</span> <span class="s2">&quot;../common_src/complex-display-setup&quot;</span><span class="p">,</span>
     <span class="s2">&quot;component-1&quot;</span><span class="o">:</span> <span class="s2">&quot;../common_src/component-1&quot;</span><span class="p">,</span>
     <span class="s2">&quot;state-1&quot;</span><span class="o">:</span> <span class="s2">&quot;../common_src/state-1&quot;</span><span class="p">,</span>
     <span class="s2">&quot;state-2&quot;</span><span class="o">:</span> <span class="s2">&quot;../common_src/state-2&quot;</span><span class="p">,</span>
@@ -37,7 +39,7 @@
     <span class="nx">draw</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/draw&quot;</span><span class="p">,</span>
     <span class="s2">&quot;font-loader&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/font-loader&quot;</span><span class="p">,</span>
     <span class="s2">&quot;aspect-ratio-resize&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/game_canvas/extensions/aspect-ratio-resize&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;basic-layer-setup&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/game_canvas/extensions/basic-layer-setup&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;basic-display-setup&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/game_canvas/extensions/basic-display-setup&quot;</span><span class="p">,</span>
     <span class="nx">extension</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/game_canvas/extensions/extension&quot;</span><span class="p">,</span>
     <span class="s2">&quot;keyboard-lock&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/game_canvas/extensions/keyboard-lock&quot;</span><span class="p">,</span>
     <span class="nx">pause</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/game_canvas/extensions/pause&quot;</span><span class="p">,</span>
@@ -48,8 +50,8 @@
     <span class="nx">gb</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/gb&quot;</span><span class="p">,</span>
     <span class="s2">&quot;game-object-container&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/hierarchy/game-object-container&quot;</span><span class="p">,</span>
     <span class="s2">&quot;game-object&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/hierarchy/game-object&quot;</span><span class="p">,</span>
-    <span class="nx">layer</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/hierarchy/layer&quot;</span><span class="p">,</span>
-    <span class="nx">layers</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/hierarchy/layers&quot;</span><span class="p">,</span>
+    <span class="nx">group</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/hierarchy/group&quot;</span><span class="p">,</span>
+    <span class="nx">groups</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/hierarchy/groups&quot;</span><span class="p">,</span>
     <span class="nx">root</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/hierarchy/root&quot;</span><span class="p">,</span>
     <span class="nx">keyboard</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/input/keyboard&quot;</span><span class="p">,</span>
     <span class="s2">&quot;matrix-3x3&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/math/matrix-3x3&quot;</span><span class="p">,</span>
@@ -66,6 +68,10 @@
     <span class="s2">&quot;timer-factory&quot;</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/timers/timer-factory&quot;</span><span class="p">,</span>
     <span class="nx">timer</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/timers/timer&quot;</span><span class="p">,</span>
     <span class="nx">util</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/util&quot;</span><span class="p">,</span>
+    <span class="nx">layer</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/view/layer&quot;</span><span class="p">,</span>
+    <span class="nx">viewport</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/view/viewport&quot;</span><span class="p">,</span>
+    <span class="nx">viewports</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/view/viewports&quot;</span><span class="p">,</span>
+    <span class="nx">world</span><span class="o">:</span> <span class="s2">&quot;../../game-builder/src/world&quot;</span><span class="p">,</span>
     <span class="nx">domReady</span><span class="o">:</span> <span class="s2">&quot;../../lib/requirejs-domready/domReady&quot;</span><span class="p">,</span>
     <span class="nx">require</span><span class="o">:</span> <span class="s2">&quot;../../lib/requirejs/require&quot;</span><span class="p">,</span>
     <span class="s2">&quot;requirejs-domready&quot;</span><span class="o">:</span> <span class="s2">&quot;../../lib/requirejs-domready/domReady&quot;</span><span class="p">,</span>

@@ -3,21 +3,25 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
+ * Inherits from: [extension](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
  * Depends of: 
- * [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html)
- * [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
+ * [groups](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/groups.html)
+ * [viewports](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewports.html)
+ * [gb](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/gb.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines an extension that uses [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html) to halt all update activity
+ * This module defines an extension that uses [groups](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/groups.html) to halt all update activity
  * when the application looses focus.
  *
- * The extension also adds a **pause** method to [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html) to be able to pause the application
+ * It also uses [viewports](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewports.html) to check if there were any [layers](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html) already hiding before pausing.
+ * The extension needs to check that so that things that were hiding before pausing, remain hiding after resuming.
+ * 
+ * The extension also adds a **pause** method to [game](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/game.html) to be able to pause the application
  * manually.
  *
- * ### This Extension adds an event [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html) can hook into: 
+ * ### This Extension adds an event [game](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/game.html) can hook into: 
  *
  * ### **pause** 
  * When the application is paused manually
@@ -35,23 +39,31 @@
 /**
  * --------------------------------
  */
-define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
+define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, Gb, Extension) {
 	var game = Gb.game;
 
 	var Pause = Extension.extend({
 		type: function() {
-			// Notice the use of the constant BLUR defined in [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html)
+			// Notice the use of the constant BLUR defined in [game](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/game.html)
 			// to define this extension should be executed on creation.
 			return game.BLUR;
 		},
 
 		execute: function() {
-			for (var k in Layers.layers) { 
-				Layers.layers[k].drawAlreadyStopped = !Layers.layers[k].canDraw;
-				Layers.layers[k].updateAlreadyStopped = !Layers.layers[k].canUpdate;
+			for (var k in Groups.groups) { 
+				Groups.groups[k].drawAlreadyStopped = !Groups.groups[k].canDraw;
+				Groups.groups[k].updateAlreadyStopped = !Groups.groups[k].canUpdate;
 			}
 
-			Layers.all('stop', 'update');
+			var viewports = Viewports.all();
+
+			for (var v in viewports) {
+				for (var l in v.layers) {
+					l.alreadyHidden = !l.isVisible();					
+				}
+			}
+
+			Groups.all('stop', 'update');
 		}
 	});
 

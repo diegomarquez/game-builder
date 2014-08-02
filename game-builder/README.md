@@ -12,20 +12,30 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 ###### TODO List:
 
+- Example that demonstrates multiple viewports
+    - Add example to the website
+
+- Add errors to website
+    - Rename heriarchy folders errors (Layer -> Group)
+    - Add gb.js error to error page
+    - path-renderer.js
+
+- Consider root as a stand alone object, so that gb does not have to load game-object during initialization
+- Move repeated code from every main.js into game.js
+- Add alpha to matrix_3x3.js    
+- Refactor debug debug draw in colliders
+
+- Update main.js template in generator
+- Update renderer.js template in generator
+
+- Shared Renderers and components. Share logic which does not need to keep state.
+- Different renderers on different viewports
+- Add matrix transformation to viewport layers before drawing game objects
+
+- Try out examples, Build docs, tag, deploy website
+
 - Do a simple game and get this over with for fucks sake!
-
------------------------------------
-
-###### After Game:
-
-- Figure out how to use r.js
-
-- Shared Renderers. Share logic which does not need to keep state.
-- 2D Camera
-- Frame Animation System
-
-- Animation Capturing Tool
-- Visual Editor
+    - Something like Galaga, with a boss.
 
 ### [This is the prototype game][tirador] which spurred the creation of this project.
 

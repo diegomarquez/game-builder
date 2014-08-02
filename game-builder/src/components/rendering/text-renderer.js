@@ -2,10 +2,10 @@
  * # text-renderer.js
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
+ * 
+ * Inherits from: [renderer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html)
  *
- * Inherits from: [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html)
- *
- * Depends of: [text-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/text-cache.html)
+ * Depends of: [text-cache](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/cache/text-cache.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -50,13 +50,13 @@
 		
 		//Use these to override the dimentions of the cached text.
 		//These are optional
-		width: 20, 
-		height: 20
+		scaleX: 1, 
+		scaleY: 1
  *	});
  * ```
- * <strong>Note: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
- * found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
- * The way you get a hold to a reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+ * <strong>Note: The snippet uses the reference to the <a href=file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+ * found in the <a href=file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/gb.html>gb</a> module. 
+ * The way you get a hold to a reference to the <a href=file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html>component-pool</a>
  * may vary.</strong>
  */
 
@@ -68,29 +68,16 @@
 /**
  * --------------------------------
  */
-define(["component", 'text-cache'], function(Component, TextCache) {
+define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 
-	var image = null;
+	var image, w, h;
 
-	var TextRenderer = Component.extend({
-		/**
-		 * <p style='color:#AD071D'><strong>init</strong></p>
-		 */
-		init: function() {
-			this._super()
-
-			this.offsetX = 0;
-			this.offsetY = 0;
-		},
-		/**
-		 * --------------------------------
-		 */
-
+	var TextRenderer = Renderer.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
-		 * This is called by the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this renderer.
-		 * It sends the text configured to the [text-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/text-cache.html) module.
+		 * This is called by the [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) using this renderer.
+		 * It sends the text configured to the [text-cache](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/cache/text-cache.html) module.
 		 */
 		start: function() {	
 			this.align      = this.align           || "start";
@@ -116,24 +103,37 @@ define(["component", 'text-cache'], function(Component, TextCache) {
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 */
 		draw: function(context) {
-			var w, h;
-
 			image = TextCache.get(this.name);
 
-			if (this.width && this.height) {
-				w = this.width;
-				h = this.height;
-			} else {
-				w = image.width;
-				h = image.height;
-			}
+			w = this.rendererWidth();
+			h = this.rendererHeight();
 
 			if (this.offset == 'center'){
 				context.drawImage(image, -w/2, -h/2, w, h);	
 			} else{
-				context.drawImage(image, this.offsetX, this.offsetY, w, h);		
+				context.drawImage(image, this.rendererOffsetX(), this.rendererOffsetY(), w, h);		
 			}
-		}
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>rendererWidth</strong></p>
+		 *
+		 * @return {Number} The width of the renderer
+		 */
+		rendererWidth: function() { return TextCache.get(this.name).width * this.scaleX; },
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererHeight</strong></p>
+		 *
+		 * @return {Number} The height of the renderer
+		 */
+		rendererHeight: function() { return TextCache.get(this.name).height * this.scaleY; }
 		/**
 		 * --------------------------------
 		 */

@@ -142,7 +142,7 @@ define(function(require){
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.
-		root.transformAndDraw(game.context);
+		root.draw(game.context);
 	});
 
 	// This is the main setup that kicks off the whole thing

@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"><head><title>src/world</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="src/world"><meta name="groc-project-path" content="work/game-builder/src/world.js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/world.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="worldjs">world.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from:
+<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/class.html">class</a></p>
+
+<p>Depends of: </p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This module serves as an abstraction for the rectangle that defines the 2D world of the game. Useful to
+have those values available to everyone, instead of hardcoded some where.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="game-world">Game World</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Class</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">World</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>init</strong></p>
+
+<p>Constructor</p></div></div><div class="code"><div class="wrapper">    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>create</strong></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>w must be a Number.</strong><br/>(Width of the world)</p></li>
+<li><p><strong>h must be a Number.</strong><br/>(Height of the world)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="nx">w</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="nx">h</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">getWidth</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+        <span class="k">return</span> <span class="nx">width</span><span class="p">;</span> 
+      <span class="p">};</span>
+      
+      <span class="k">this</span><span class="p">.</span><span class="nx">getHeight</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+        <span class="k">return</span> <span class="nx">height</span><span class="p">;</span> 
+      <span class="p">};</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">setWidth</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="nx">width</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span> 
+      <span class="p">};</span>
+      
+      <span class="k">this</span><span class="p">.</span><span class="nx">setHeight</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="nx">height</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span> 
+      <span class="p">};</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>scaleViewportToFit</strong></p>
+
+<p>Make the specified <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html">viewport</a> scale so it can show all the world</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>viewport must be an Object.</strong><br/>(The <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html">viewport</a> to scale)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">scaleViewportToFit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">viewport</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleY</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleX</span> <span class="o">/=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getWidth</span><span class="p">()</span> <span class="o">/</span> <span class="nx">viewport</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleY</span> <span class="o">/=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getHeight</span><span class="p">()</span> <span class="o">/</span> <span class="nx">viewport</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>scaleViewportProportionaly</strong></p>
+
+<p>Make the specified <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html">viewport</a> scale by the specified factor</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>viewport must be an Object.</strong><br/>(The <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewport.html">viewport</a> to scale)</p></li>
+<li><p><strong>factor must be a [type].</strong><br/>(Amount to scale by)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">scaleViewportProportionaly</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">viewport</span><span class="p">,</span> <span class="nx">factor</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleY</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleX</span> <span class="o">*=</span> <span class="nx">factor</span><span class="p">;</span>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleY</span> <span class="o">*=</span> <span class="nx">factor</span><span class="p">;</span>
+    <span class="p">}</span>
+
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">World</span><span class="p">();</span>
+<span class="p">});</span></div></div></div></div></body></html>

@@ -491,6 +491,87 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/bundles/viewports-bundle.js",
+                "projectPath": "work/examples/common_src/bundles/viewports-bundle.js",
+                "targetPath": "common_src/bundles/viewports-bundle",
+                "pageTitle": "common_src/bundles/viewports-bundle",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "input-bundle.js",
+                    "slug": "input-bundlejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "input-bundle.js"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/common_src/complex-display-setup.js",
+            "projectPath": "work/examples/common_src/complex-display-setup.js",
+            "targetPath": "common_src/complex-display-setup",
+            "pageTitle": "common_src/complex-display-setup",
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "complex-display-setup.js",
+                "slug": "complex-display-setupjs",
+                "isFileHeader": true
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Setup display",
+                    "slug": "setup-display"
+                  },
+                  "depth": 2
+                }
+              ]
+            },
+            "title": "complex-display-setup.js"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Setup display",
+                "slug": "setup-display"
+              },
+              "depth": 2
             }
           ]
         }, {
@@ -2765,6 +2846,172 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "projectPath": "work/examples/timers/tasks/local-assets.js",
                 "targetPath": "timers/tasks/local-assets",
                 "pageTitle": "timers/tasks/local-assets",
+                "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }
+      ]
+    }, {
+      "type": "folder",
+      "data": {
+        "path": "viewports",
+        "title": "viewports"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/README.md",
+            "projectPath": "work/examples/viewports/README.md",
+            "targetPath": "viewports/README",
+            "pageTitle": "viewports/README",
+            "title": "README"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "# viewports",
+                "slug": "-viewports"
+              },
+              "depth": 2
+            }
+          ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/asset-map.js",
+            "projectPath": "work/examples/viewports/asset-map.js",
+            "targetPath": "viewports/asset-map",
+            "pageTitle": "viewports/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/config.js",
+            "projectPath": "work/examples/viewports/config.js",
+            "targetPath": "viewports/config",
+            "pageTitle": "viewports/config",
+            "title": "config"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/font-data.js",
+            "projectPath": "work/examples/viewports/font-data.js",
+            "targetPath": "viewports/font-data",
+            "pageTitle": "viewports/font-data",
+            "title": "font-data"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/main.js",
+            "projectPath": "work/examples/viewports/main.js",
+            "targetPath": "viewports/main",
+            "pageTitle": "viewports/main",
+            "title": "main"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "folder",
+          "data": {
+            "path": "viewports/tasks",
+            "title": "tasks"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/tasks/create-config.js",
+                "projectPath": "work/examples/viewports/tasks/create-config.js",
+                "targetPath": "viewports/tasks/create-config",
+                "pageTitle": "viewports/tasks/create-config",
+                "title": "create-config"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/tasks/local-assets.js",
+                "projectPath": "work/examples/viewports/tasks/local-assets.js",
+                "targetPath": "viewports/tasks/local-assets",
+                "pageTitle": "viewports/tasks/local-assets",
                 "title": "local-assets"
               },
               "depth": 3,

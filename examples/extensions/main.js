@@ -7,10 +7,10 @@
  * [game](@@game@@),
  * [root](@@root@@),
  * [aspect-ratio-resize](@@aspect-ratio-resize@@),
- * [basic-layer-setup](@@basic-layer-setup@@),
+ * [basic-display-setup](@@basic-display-setup@@),
  * [pause](@@pause@@),
  * [resume](@@resume@@),
- * [layering-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/layering-bundle.html),
+ * [layering-bundle](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/bundles/layering-bundle.html),
  */
 
 /**
@@ -24,7 +24,7 @@ define(function(require){
 
 	// These extensions add some punch to the basic setup
 	game.add_extension(require("aspect-ratio-resize"));
-	game.add_extension(require("basic-layer-setup"));
+	game.add_extension(require("basic-display-setup"));
 	game.add_extension(require("pause"));
 	game.add_extension(require("resume"));
 	game.add_extension(require("activity-display"));
@@ -35,9 +35,9 @@ define(function(require){
 
 		require('layering-bundle').create();
 
-		gb.addToLayer('Front', 'Base_3');
-		gb.addToLayer('Middle', 'Base_2');
-		gb.addToLayer('Back', 'Base_1');
+		gb.add('Base_3', 'First', 'MainFront');
+		gb.add('Base_2', 'First', 'MainMiddle');
+		gb.add('Base_1', 'First', 'MainBack');
 	});
 
 	// This is called when the canvas looses focus
@@ -67,7 +67,7 @@ define(function(require){
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.
-		root.transformAndDraw(game.context);
+		root.draw(game.context);
 	});
 
 	// This is the main setup that kicks off the whole thing

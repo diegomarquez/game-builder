@@ -3,16 +3,16 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
+ * Inherits from: [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html)
  *
  * Depends of: 
- * [util](http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html)
- * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
+ * [util](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/util.html)
+ * [error-printer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines the base object from which [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html) and
- * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html) are extended from.
+ * This module defines the base object from which [game-object-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/game-object-pool.html) and
+ * [component-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html) are extended from.
  *
  * These pools create objects dynamically when requested. When one of those objects is 
  * not needed in it's current state anymore,
@@ -23,8 +23,8 @@
  * From then on, if the pool does not have available objects, it throws an error if it is requested
  * something.
  *
- * One of the key features of both [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html) and
- * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html) is that you not only can define collections of 
+ * One of the key features of both [game-object-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/game-object-pool.html) and
+ * [component-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html) is that you not only can define collections of 
  * instances, but also configurations for those instances. A configuration defines a set
  * of arguments, to be applied on an instance. This allows to have configurations that would
  * otherwise be sprinckled all over a project, centralized in the same place, or the same handfull
@@ -184,9 +184,9 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 		/**
 		 * <p style='color:#AD071D'><strong>getAllActiveObjects</strong></p>
 		 *
-		 * Gets all the active [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) instances.
+		 * Gets all the active [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) instances.
 		 * 
-		 * @return {Object} All the different types of active [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
+		 * @return {Object} All the different types of active [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html)
 		 */
 		getAllActiveObjects: function() {
 			return this.active;
@@ -198,7 +198,7 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 		/**
 		 * <p style='color:#AD071D'><strong>returnToPool</strong></p>
 		 *
-		 * This method is used in [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html) when an object is
+		 * This method is used in [assembler](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/assembler.html) when an object is
 		 * recycled to send it back to it's corresponding pool for reuse.
 		 * 
 		 * @param  {Object} o Returning object
@@ -217,8 +217,8 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 
 		/**
 		 * Methods to be overriden by objects extending this one
-		 * View [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html) and
-		 * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html) for implementations.
+		 * View [game-object-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/game-object-pool.html) and
+		 * [component-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html) for implementations.
 		 */
 		getName: function() {
 			ErrorPrinter.mustOverrideError('Pool');
@@ -263,8 +263,8 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 		 * <p style='color:#AD071D'><strong>getPooledObject</strong></p>
 		 *
 		 * Get a pooled object, the object to be returned is added to the collection
-		 * of active objects. This method is mainly used by the [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html)
-		 * module when putting together [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html).
+		 * of active objects. This method is mainly used by the [assembler](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/assembler.html)
+		 * module when putting together [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html).
 		 * 
 		 * @param  {String} type id of the type of object to retrieve
 		 *
@@ -285,7 +285,7 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 		 * <p style='color:#AD071D'><strong>clear</strong></p>
 		 *
 		 * Clear a pool out of everything. This method is
-		 * used by the [reclaimer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html) module.
+		 * used by the [reclaimer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/reclaimer.html) module.
 		 */
 		clear: function() {
 			var k;

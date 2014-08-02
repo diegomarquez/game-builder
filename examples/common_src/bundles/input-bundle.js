@@ -7,8 +7,8 @@
  * [bundle](@@bundle@@)
  *
  * Depends of:
- * [basic-game-object](http://diegomarquez.github.io/game-builder/examples-docs/common_src/basic-game-object.html)
- * [box-renderer](http://diegomarquez.github.io/game-builder/examples-docs/common_src/box-renderer.html)
+ * [basic-game-object](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/basic-game-object.html)
+ * [box-renderer](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/box-renderer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -20,8 +20,10 @@
  * --------------------------------
  */
 define(function(require) {
-	var basic_game_object = require('basic-game-object'); 
+	var basic_game_object = require('basic-game-object');
 	var box_renderer = require('box-renderer');
+	
+	var gb = require('gb');
 
 	var CollidersBundle = require('bundle').extend({
 		create: function() {

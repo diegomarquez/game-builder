@@ -4,48 +4,64 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a></p>
+<p>Inherits from: <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a></p>
 
 <p>Depends of: 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html">layers</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a></p>
+<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/groups.html">groups</a>
+<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewports.html">viewports</a>
+<a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/gb.html">gb</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module defines an extension that uses <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html">layers</a> to resume all update activity
+<p>This module defines an extension that uses <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/groups.html">groups</a> to resume all update activity
 when the application gains focus.</p>
 
-<p>The extension also adds a <strong>resume</strong> method to <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html">game</a>, to be able to resume the application
+<p>It also uses <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewports.html">viewports</a> check that any <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html">layers</a> hidden before pausing, remain hidden.</p>
+
+<p>The extension also adds a <strong>resume</strong> method to <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/game.html">game</a>, to be able to resume the application
 manually after pausing.</p>
 
-<h3 id="thisextensionaddsaneventgamehttpdiegomarquezgithubiogamebuildergamebuilderdocssrcgame_canvasgamehtmlcanhookinto">This Extension adds an event <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html">game</a> can hook into:</h3>
+<h3 id="thisextensionaddsaneventgamefilelocalhostusersjohndoegamebuilderghpagesgamebuilderdocssrcgame_canvasgamehtmlcanhookinto">This Extension adds an event <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/game.html">game</a> can hook into:</h3>
 
 <h3 id="resume"><strong>resume</strong></h3>
 
 <p>When the application is resumed manually</p>
 
 <pre><code class=" javascript  ">game.on(game.RESUME, function() {});
-</code></pre></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="resume-activity">Resume activity</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;layers&quot;</span><span class="p">,</span> <span class="s2">&quot;gb&quot;</span><span class="p">,</span> <span class="s2">&quot;extension&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Layers</span><span class="p">,</span> <span class="nx">Gb</span><span class="p">,</span> <span class="nx">Extension</span><span class="p">)</span> <span class="p">{</span>
+</code></pre></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="resume-activity">Resume activity</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;groups&quot;</span><span class="p">,</span> <span class="s2">&quot;viewports&quot;</span><span class="p">,</span> <span class="s2">&quot;gb&quot;</span><span class="p">,</span> <span class="s2">&quot;extension&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Groups</span><span class="p">,</span> <span class="nx">Viewports</span><span class="p">,</span> <span class="nx">Gb</span><span class="p">,</span> <span class="nx">Extension</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">game</span> <span class="o">=</span> <span class="nx">Gb</span><span class="p">.</span><span class="nx">game</span><span class="p">;</span>
 
   <span class="kd">var</span> <span class="nx">Resume</span> <span class="o">=</span> <span class="nx">Extension</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-    <span class="nx">type</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Notice the use of the constant FOCUS defined in <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html">game</a>
+    <span class="nx">type</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Notice the use of the constant FOCUS defined in <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/game.html">game</a>
 to define this extension should be executed on creation.</p></div></div><div class="code"><div class="wrapper">      <span class="k">return</span> <span class="nx">Gb</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">FOCUS</span><span class="p">;</span>
     <span class="p">},</span>
 
     <span class="nx">execute</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">Layers</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;resume&#39;</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">);</span>
+      <span class="nx">Groups</span><span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="s1">&#39;resume&#39;</span><span class="p">);</span>
 
-      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="nx">Layers</span><span class="p">.</span><span class="nx">layers</span><span class="p">)</span> <span class="p">{</span> 
-        <span class="k">if</span> <span class="p">(</span><span class="nx">Layers</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">drawAlreadyStopped</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">Layers</span><span class="p">.</span><span class="nx">stop_draw</span><span class="p">(</span><span class="nx">k</span><span class="p">);</span>      
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="nx">Groups</span><span class="p">.</span><span class="nx">groups</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="k">if</span> <span class="p">(</span><span class="nx">Groups</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">drawAlreadyStopped</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">Groups</span><span class="p">.</span><span class="nx">stop_draw</span><span class="p">(</span><span class="nx">k</span><span class="p">);</span>      
         <span class="p">}</span> 
-        <span class="k">if</span> <span class="p">(</span><span class="nx">Layers</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">updateAlreadyStopped</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">Layers</span><span class="p">.</span><span class="nx">stop_update</span><span class="p">(</span><span class="nx">k</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">Groups</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">updateAlreadyStopped</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">Groups</span><span class="p">.</span><span class="nx">stop_update</span><span class="p">(</span><span class="nx">k</span><span class="p">);</span>
         <span class="p">}</span>
 
-        <span class="nx">Layers</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">drawAlreadyStopped</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-        <span class="nx">Layers</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">updateAlreadyStopped</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="nx">Groups</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">drawAlreadyStopped</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="nx">Groups</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">updateAlreadyStopped</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="kd">var</span> <span class="nx">viewports</span> <span class="o">=</span> <span class="nx">Viewports</span><span class="p">.</span><span class="nx">all</span><span class="p">();</span>
+
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">v</span> <span class="k">in</span> <span class="nx">viewports</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">l</span> <span class="k">in</span> <span class="nx">v</span><span class="p">.</span><span class="nx">layers</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">l</span><span class="p">.</span><span class="nx">alreadyHidden</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">l</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span> 
+          <span class="p">}</span>
+
+          <span class="nx">l</span><span class="p">.</span><span class="nx">alreadyHidden</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>          
+        <span class="p">}</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">});</span>

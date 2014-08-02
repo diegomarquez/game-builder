@@ -6,25 +6,25 @@
  * Inherits from:
  *
  * Depends of: 
- * [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
- * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html)
- * [util](http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html)
- * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
+ * [game-object-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/game-object-pool.html)
+ * [component-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html)
+ * [util](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/util.html)
+ * [error-printer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
  * This module defines a very important module for [Game-Builder](http://diegomarquez.github.io/game-builder).
  *
- * The assembler module takes care of putting together the [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) with their
- * [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) as they were configured in the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
- * and [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html) respectively. 
+ * The assembler module takes care of putting together the [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) with their
+ * [components](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/component.html) as they were configured in the [game-object-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/game-object-pool.html)
+ * and [component-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html) respectively. 
  *
  * In addition you are able to override the configured arguments, or add new ones when you
- * request a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html). When a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) is
+ * request a [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html). When a [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) is
  * put together the necessary callbacks are setup so that it and it's components return to their
  * respective pools for reuse when they are no longer needed.
  *
- * The object responsible for recycling [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) is [reclaimer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html).
+ * The object responsible for recycling [game-objects](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) is [reclaimer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/reclaimer.html).
  */
 
 /**
@@ -51,7 +51,7 @@ define(['game-object-pool', 'component-pool', 'util', 'error-printer'], function
 		componentIntance.configure( Util.shallow_merge(config.componentArgs, component.args) );
 
 		//When a component is 'recycled' it returns to it's respective pool
-		componentIntance.on('recycle', this, function(c) {
+		componentIntance.on(componentIntance.RECYCLE, this, function(c) {
 			ComponentPool.returnToPool(c);
 		}, true);
 
@@ -62,16 +62,16 @@ define(['game-object-pool', 'component-pool', 'util', 'error-printer'], function
 	/**
 	 * <p style='color:#AD071D'><strong>get</strong></p>
 	 *
-	 * The only method in the module. It returns a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
+	 * The only method in the module. It returns a [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html)
 	 * ready to be started.
 	 * 
-	 * @param  {String} name       Id of the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) we want assembled. It should be an existing configured id on the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
+	 * @param  {String} name       Id of the [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) we want assembled. It should be an existing configured id on the [game-object-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/game-object-pool.html)
 	 * @param  {Object} [args=null]       All the properties in this object will be copied to the assembled object. 
 	 * @param  {Boolean} [nestedCall=false] This argument is reserved for internal use. It defaults to false, but you can see what happens if you set it to true :P 
 	 *
-	 * @throws {Error} If a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) was configured to have childs. Only [game-object-containers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html) can have nested childs
+	 * @throws {Error} If a [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) was configured to have childs. Only [game-object-containers](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object-container.html) can have nested childs
 	 * 
-	 * @return {Object} A [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) ready to be used
+	 * @return {Object} A [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) ready to be used
 	 */
 	Assembler.prototype.get = function(name, args, nestedCall) {
 		var configuration = GameObjectPool.getConfiguration(name, nestedCall);
@@ -108,7 +108,7 @@ define(['game-object-pool', 'component-pool', 'util', 'error-printer'], function
 		}
 
 		//When this object is 'recycled' it returns to it's respective pool
-		pooledObject.on('recycle', this, function(go) {
+		pooledObject.on(pooledObject.RECYCLE, this, function(go) {
 			GameObjectPool.returnToPool(go);
 		}, true);
 

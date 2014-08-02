@@ -8,15 +8,17 @@
 <a href="@@bundle@@">bundle</a></p>
 
 <p>Depends of:
-<a href="http://diegomarquez.github.io/game-builder/examples-docs/common_src/basic-game-object.html">basic-game-object</a>
-<a href="http://diegomarquez.github.io/game-builder/examples-docs/common_src/box-renderer.html">box-renderer</a></p>
+<a href="file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/basic-game-object.html">basic-game-object</a>
+<a href="file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/box-renderer.html">box-renderer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
 <p>This is an example on how to encapsulate the logic needed to setup the <a href="@@game-object-pool@@">game-object-pool</a>
 and the <a href="@@component-pool@@">component-pool</a></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">basic_game_object</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;basic-game-object&#39;</span><span class="p">);</span> 
+  <span class="kd">var</span> <span class="nx">basic_game_object</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;basic-game-object&#39;</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">box_renderer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;box-renderer&#39;</span><span class="p">);</span>
+  
+  <span class="kd">var</span> <span class="nx">gb</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gb&#39;</span><span class="p">);</span>
 
   <span class="kd">var</span> <span class="nx">CollidersBundle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;bundle&#39;</span><span class="p">).</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>

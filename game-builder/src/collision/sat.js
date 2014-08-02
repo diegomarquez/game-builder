@@ -5,7 +5,7 @@
  *
  * Inherits from:
  *
- * Depends of: [vector-2D](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/vector-2D.html)
+ * Depends of: [vector-2D](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/math/vector-2D.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 

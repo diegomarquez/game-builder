@@ -6,8 +6,8 @@
  * [gb](@@gb@@),
  * [game](@@game@@),
  * [root](@@root@@),
- * [basic-layer-setup](@@basic-layer-setup@@),
- * [nesting-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/nesting-bundle.html)
+ * [basic-display-setup](@@basic-display-setup@@),
+ * [nesting-bundle](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/bundles/nesting-bundle.html)
  */
 
 /**
@@ -19,7 +19,7 @@ define(function(require){
 	var game = gb.game;
 	var root = gb.root;
 
-	game.add_extension(require('basic-layer-setup'));
+	game.add_extension(require('basic-display-setup'));
 	game.add_extension(require("activity-display"));
 
 	// This is the main initialization function
@@ -31,11 +31,8 @@ define(function(require){
 		require('nesting-bundle').create();
 
 		// This helper method will add a [game-object](@@game-object@@) 
-		// with the id specified in the second argument
-		// to the layer specified in the first argument. It also calls the start method of the game object.
-		// 
-		// This method makes calls to [layers](@@layers@@) and [assembler](@@assembler@@)
-		gb.addToLayer('Middle', 'Container_1');
+		// to the specified [group](@@group@@) and add it for rendering in the specified [viewports](@@viewport@@) 
+		gb.add('Container_1', 'First', [{viewport:'Main', layer:'Back'}]);
 	});
 
 	// This is called when the canvas looses focus
@@ -53,7 +50,7 @@ define(function(require){
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.
-		root.transformAndDraw(game.context);
+		root.draw(game.context);
 	});
 
 	// This is the main setup that kicks off the whole thing

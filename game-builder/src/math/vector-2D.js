@@ -10,7 +10,7 @@
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *  
  * Another module made of [stolen code](https://github.com/jriecken/sat-js)!
- * In the original you can see that the [sat](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html) and this module where originally
+ * In the original you can see that the [sat](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/collision/sat.html) and this module where originally
  * a single file, but I though It would be a good idea to make a standalone module
  * out of the Vector2D implementation, as it is a very usefull thing to have laying around.
  * 

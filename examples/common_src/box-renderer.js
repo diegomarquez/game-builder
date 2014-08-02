@@ -23,7 +23,7 @@ define(["renderer", "draw"], function(Renderer, Draw) {
 
 	//context property is the context of the canvas we are using, somehow it becomes available here.
 	var BoxRenderer = Renderer.extend({
-		draw: function(context) {
+		draw: function(context, viewport) {
 			Draw.rectangle(context, this.offsetX, this.offsetY, this.width, this.height, this.color, this.color, 1);
 		}
 	});

@@ -6,8 +6,8 @@
  * [gb](@@gb@@),
  * [game](@@game@@),
  * [root](@@root@@),
- * [basic-layer-setup](@@basic-layer-setup@@),
- * [layering-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/layering-bundle.html)
+ * [basic-display-setup](@@basic-display-setup@@),
+ * [layering-bundle](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/bundles/layering-bundle.html)
  */
 
 /**
@@ -20,7 +20,7 @@ define(function(require){
 	var root = gb.root;
 	var reclaimer = gb.reclaimer;
 
-	game.add_extension(require('basic-layer-setup'));
+	game.add_extension(require('basic-display-setup'));
 	game.add_extension(require("activity-display"));
 
 	var keyboard = require('keyboard');
@@ -31,18 +31,18 @@ define(function(require){
 		
 		require('layering-bundle').create();
 
-		gb.addToLayer('Front', 'Base_1');
-		gb.addToLayer('Middle', 'Base_2');
-		gb.addToLayer('Back', 'Base_3');
+		gb.add('Base_1', 'First', 'MainFront');
+		gb.add('Base_2', 'First', 'MainMiddle');
+		gb.add('Base_3', 'First', 'MainBack');
 
 		//These are used to add back the stuff to the layers if you
 		//remove them while trying out the example.
 		keyboard.onKeyDown(keyboard.A, this, function() {
 			reclaimer.claimAll();
 
-			gb.addToLayer('Front', 'Base_1');
-			gb.addToLayer('Middle', 'Base_2');
-			gb.addToLayer('Back', 'Base_3');
+			gb.add('Base_1', 'First', 'MainFront');
+			gb.add('Base_2', 'First', 'MainMiddle');
+			gb.add('Base_3', 'First', 'MainBack');
 		});
 
 		keyboard.onKeyDown(keyboard.S, this, function() {
@@ -89,7 +89,7 @@ define(function(require){
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.
-		root.transformAndDraw(game.context);
+		root.draw(game.context);
 	});
 
 	// This is the main setup that kicks off the whole thing

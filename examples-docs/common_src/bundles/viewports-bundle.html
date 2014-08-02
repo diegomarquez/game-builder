@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="en"><head><title>common_src/bundles/viewports-bundle</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="common_src/bundles/viewports-bundle"><meta name="groc-project-path" content="work/examples/common_src/bundles/viewports-bundle.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/examples/common_src/bundles/viewports-bundle.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="input-bundlejs">input-bundle.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from:
+<a href="@@bundle@@">bundle</a></p>
+
+<p>Depends of:
+<a href="@@game-object@@">game-object</a>
+<a href="@@path-renderer@@">path-renderer</a></p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This is an example on how to encapsulate the logic needed to setup the <a href="@@game-object-pool@@">game-object-pool</a>
+and the <a href="@@component-pool@@">component-pool</a></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">game_object</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;game-object&#39;</span><span class="p">);</span> 
+  <span class="kd">var</span> <span class="nx">path_renderer</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path-renderer&#39;</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">viewports</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;viewports&#39;</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">CollidersBundle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;bundle&#39;</span><span class="p">).</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">componentPool</span><span class="p">.</span><span class="nx">createPool</span><span class="p">(</span><span class="s2">&quot;path-renderer&quot;</span><span class="p">,</span> <span class="nx">path_renderer</span><span class="p">);</span>
+      
+      <span class="k">this</span><span class="p">.</span><span class="nx">componentPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Large_box&quot;</span><span class="p">,</span> <span class="s1">&#39;path-renderer&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">args</span><span class="p">({</span>
+          <span class="nx">skipCache</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span> 
+          <span class="nx">width</span><span class="o">:</span> <span class="nx">viewports</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Main&#39;</span><span class="p">).</span><span class="nx">width</span><span class="p">,</span>
+          <span class="nx">height</span><span class="o">:</span> <span class="nx">viewports</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;Main&#39;</span><span class="p">).</span><span class="nx">height</span><span class="p">,</span>
+          <span class="nx">drawPath</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">context</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+
+            <span class="nx">context</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
+                <span class="nx">context</span><span class="p">.</span><span class="nx">rect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+                <span class="nx">context</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+                <span class="nx">context</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="s2">&quot;#FFFFFF&quot;</span><span class="p">;</span>
+                <span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>         
+            <span class="nx">context</span><span class="p">.</span><span class="nx">closePath</span><span class="p">();</span>
+            
+            <span class="nx">context</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span>
+          <span class="p">}</span>
+        <span class="p">});</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span><span class="p">.</span><span class="nx">createPool</span><span class="p">(</span><span class="s2">&quot;FrameBase&quot;</span><span class="p">,</span> <span class="nx">game_object</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+      
+      <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="s2">&quot;Frame&quot;</span><span class="p">,</span> <span class="s2">&quot;FrameBase&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">args</span><span class="p">({</span><span class="nx">x</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">y</span><span class="o">:</span> <span class="mi">0</span><span class="p">})</span>
+        <span class="p">.</span><span class="nx">setRenderer</span><span class="p">(</span><span class="s1">&#39;Large_box&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">CollidersBundle</span><span class="p">();</span>
+<span class="p">});</span>
+  </div></div></div></div></body></html>

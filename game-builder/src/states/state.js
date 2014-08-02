@@ -6,7 +6,7 @@
  * Inherits from: 
  *
  * Depends of: 
- * [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
+ * [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -48,7 +48,7 @@ define(["delegate"], function(Delegate) {
 		},
 
 		// Use these methods to add callbacks to each of the three phases of a state.
-		// These method are really just wrappers to the [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) this object is extending.
+		// These method are really just wrappers to the [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html) this object is extending.
 		// Just a way to type less stuff when adding callbacks.
 		addStartAction: function(callback) { this.on('start', this.scope, callback); },
 		addUpdateAction: function(callback) { this.on('update', this.scope, callback); },
@@ -58,7 +58,7 @@ define(["delegate"], function(Delegate) {
 		 */
 
 		// Use these methods to remove callbacks from each of the three phases of a state.
-		// These method are really just wrappers to the [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) this object is extending.
+		// These method are really just wrappers to the [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html) this object is extending.
 		// Just a way to type less stuff when adding callbacks.
 		removeStartAction: function(callback) { this.remove('start', this.scope, callback); },
 		removeUpdateAction: function(callback) { this.remove('update', this.scope, callback); },
@@ -69,7 +69,7 @@ define(["delegate"], function(Delegate) {
 
 		// You can use these methods to execute the actions associated with a state's phase,
 		// usually you leave that to the state machine.
-		// These method are really just wrappers to the [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) this object is extending.
+		// These method are really just wrappers to the [delegate](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/delegate.html) this object is extending.
 		// Just a way to type less stuff when adding callbacks.
 		start: function(args) { this.execute('start', args); },
 		update: function(args) { this.execute('update', args); },

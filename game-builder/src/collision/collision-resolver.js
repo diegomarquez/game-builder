@@ -6,7 +6,7 @@
  * Inherits from:
  *
  * Depends of: 
- * [sat](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html)
+ * [sat](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/collision/sat.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -48,7 +48,7 @@ define(['sat'], function(SAT) {
 	 * 
 	 * The component is added to the correponding lists, depending on it's collision id.
 	 * 
-	 * @param {Object} collisionComponent An object extending [collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html)
+	 * @param {Object} collisionComponent An object extending [collision-component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/collision/collision-component.html)
 	 */
 	CollisionResolver.prototype.addToCollisionList = function(collisionComponent) {
 		var indexes = this.toCollideCache[collisionComponent.id];
@@ -70,7 +70,7 @@ define(['sat'], function(SAT) {
 	 * 
 	 * The component is removed from the corresponding lists, depending on it's collision id.
 	 * 
-	 * @param {Obejct} collisionComponent An object extending [collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html)
+	 * @param {Obejct} collisionComponent An object extending [collision-component](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/collision/collision-component.html)
 	 */
 	CollisionResolver.prototype.removeFromCollisionList = function(collisionComponent) {
 		var indexes = this.toCollideCache[collisionComponent.id];

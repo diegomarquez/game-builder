@@ -3,21 +3,24 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
+ * Inherits from: [extension](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
  * Depends of: 
- * [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html)
- * [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
+ * [groups](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/groups.html)
+ * [viewports](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewports.html)
+ * [gb](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/gb.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines an extension that uses [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/layers.html) to resume all update activity
+ * This module defines an extension that uses [groups](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/groups.html) to resume all update activity
  * when the application gains focus.
  *
- * The extension also adds a **resume** method to [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html), to be able to resume the application
+ * It also uses [viewports](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/viewports.html) check that any [layers](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/view/layer.html) hidden before pausing, remain hidden.
+ *
+ * The extension also adds a **resume** method to [game](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/game.html), to be able to resume the application
  * manually after pausing.
  *
- * ### This Extension adds an event [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html) can hook into:
+ * ### This Extension adds an event [game](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/game.html) can hook into:
  *
  * ### **resume** 
  * When the application is resumed manually
@@ -36,29 +39,42 @@
  * --------------------------------
  */
 
-define(["layers", "gb", "extension"], function(Layers, Gb, Extension) {
+define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, Gb, Extension) {
 	var game = Gb.game;
 
 	var Resume = Extension.extend({
 		type: function() {
-			// Notice the use of the constant FOCUS defined in [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html)
+			// Notice the use of the constant FOCUS defined in [game](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/game.html)
 			// to define this extension should be executed on creation.
 			return Gb.game.FOCUS;
 		},
 
 		execute: function() {
-			Layers.all('resume', 'update');
+			Groups.all('resume');
 
-			for (var k in Layers.layers) { 
-				if (Layers.layers[k].drawAlreadyStopped) {
-					Layers.stop_draw(k);			
+			for (var k in Groups.groups) { 
+				if (Groups.groups[k].drawAlreadyStopped) {
+					Groups.stop_draw(k);			
 				} 
-				if (Layers.layers[k].updateAlreadyStopped) {
-					Layers.stop_update(k);
+
+				if (Groups.groups[k].updateAlreadyStopped) {
+					Groups.stop_update(k);
 				}
 
-				Layers.layers[k].drawAlreadyStopped = false;
-				Layers.layers[k].updateAlreadyStopped = false;
+				Groups.groups[k].drawAlreadyStopped = false;
+				Groups.groups[k].updateAlreadyStopped = false;
+			}
+
+			var viewports = Viewports.all();
+
+			for (var v in viewports) {
+				for (var l in v.layers) {
+					if (l.alreadyHidden) {
+						l.hide();	
+					}
+
+					l.alreadyHidden = false;					
+				}
 			}
 		}
 	});

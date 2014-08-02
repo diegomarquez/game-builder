@@ -18,7 +18,7 @@ specified when setting up the <a href="@@component-pool@@">component-pool</a></p
 
   <span class="c1">//context property is the context of the canvas we are using, somehow it becomes available here.</span>
   <span class="kd">var</span> <span class="nx">BoxRenderer</span> <span class="o">=</span> <span class="nx">Renderer</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">Draw</span><span class="p">.</span><span class="nx">rectangle</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">});</span>

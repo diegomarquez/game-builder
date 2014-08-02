@@ -4,20 +4,20 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
- * [class](http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html)
+ * [class](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/class.html)
  *
  * Depends of:
- * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
+ * [error-printer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
  * This module only exists to make the interface for an extension explicit.
  *
- * Extensions works with [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html). They provide functionality that is common enough
- * to be executed by [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html), but not so common to make it part of the core
+ * Extensions works with [game](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/game.html). They provide functionality that is common enough
+ * to be executed by [game](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/game.html), but not so common to make it part of the core
  * of [Game-Builder](http://diegomarquez.github.io/game-builder).
  *
- * # Extensions can be hooked into 4 parts of [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html):
+ * # Extensions can be hooked into 4 parts of [game](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/game.html):
  * ### Initialization
  * These extensions return the string **'create'** for their type.
  * They are executed once on the initialization of the application
@@ -36,7 +36,7 @@
  */
 
 /**
- * Extend functionality of [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html)
+ * Extend functionality of [game](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/game_canvas/game.html)
  * --------------------------------
  */
 

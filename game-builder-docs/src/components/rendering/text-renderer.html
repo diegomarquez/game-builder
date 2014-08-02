@@ -4,9 +4,9 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a></p>
+<p>Inherits from: <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html">renderer</a></p>
 
-<p>Depends of: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/text-cache.html">text-cache</a></p>
+<p>Depends of: <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/cache/text-cache.html">text-cache</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
@@ -50,27 +50,22 @@ through HTML, because this whole text rendering thing, is not the fastest thing 
 
         //Use these to override the dimentions of the cached text.
         //These are optional
-        width: 20, 
-        height: 20
+        scaleX: 1, 
+        scaleY: 1
 });
 </code></pre>
 
-<p><strong>Note: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
-found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
-The way you get a hold to a reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
-may vary.</strong></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="draw-text">Draw Text</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;component&quot;</span><span class="p">,</span> <span class="s1">&#39;text-cache&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">TextCache</span><span class="p">)</span> <span class="p">{</span>
+<p><strong>Note: The snippet uses the reference to the <a href=file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+found in the <a href=file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/gb.html>gb</a> module. 
+The way you get a hold to a reference to the <a href=file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+may vary.</strong></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="draw-text">Draw Text</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;renderer&quot;</span><span class="p">,</span> <span class="s1">&#39;text-cache&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Renderer</span><span class="p">,</span> <span class="nx">TextCache</span><span class="p">)</span> <span class="p">{</span>
 
-  <span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">image</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">;</span>
 
-  <span class="kd">var</span> <span class="nx">TextRenderer</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>init</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">()</span>
+  <span class="kd">var</span> <span class="nx">TextRenderer</span> <span class="o">=</span> <span class="nx">Renderer</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>start</strong></p>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>start</strong></p>
-
-<p>This is called by the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> using this renderer.
-It sends the text configured to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/text-cache.html">text-cache</a> module.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+<p>This is called by the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html">game-object</a> using this renderer.
+It sends the text configured to the <a href="file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/cache/text-cache.html">text-cache</a> module.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
       <span class="k">this</span><span class="p">.</span><span class="nx">align</span>      <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">align</span>           <span class="o">||</span> <span class="s2">&quot;start&quot;</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">lineWidth</span>  <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">lineWidth</span>       <span class="o">||</span> <span class="mi">1</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">fill</span>       <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">fillColor</span>       <span class="o">||</span> <span class="s2">&quot;#000000&quot;</span><span class="p">;</span>
@@ -90,24 +85,21 @@ like <strong>width</strong>, <strong>height</strong> and <strong>offsets</strong
 <ul>
 <li><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">;</span>
-
       <span class="nx">image</span> <span class="o">=</span> <span class="nx">TextCache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
 
-      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">w</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
-        <span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
-      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nx">w</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
-        <span class="nx">h</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
-      <span class="p">}</span>
+      <span class="nx">w</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererWidth</span><span class="p">();</span>
+      <span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererHeight</span><span class="p">();</span>
 
       <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">offset</span> <span class="o">==</span> <span class="s1">&#39;center&#39;</span><span class="p">){</span>
         <span class="nx">context</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span> <span class="o">-</span><span class="nx">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="nx">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">);</span> 
       <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
-        <span class="nx">context</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">);</span>   
+        <span class="nx">context</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetX</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetY</span><span class="p">(),</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">);</span>   
       <span class="p">}</span>
-    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="setters-that-will-trigger-a-re-cache-of-the-text">Setters that will trigger a re-cache of the text.</h3></div></div></div><div class="segment"><div class="code"><div class="wrapper">  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">TextRenderer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;Align&quot;</span><span class="p">,</span> <span class="p">{</span> 
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererWidth</strong></p>
+
+<p><strong>Returns a Number</strong><br/>(The width of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererWidth</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">TextCache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">).</span><span class="nx">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleX</span><span class="p">;</span> <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererHeight</strong></p>
+
+<p><strong>Returns a Number</strong><br/>(The height of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererHeight</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">TextCache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">).</span><span class="nx">height</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleY</span><span class="p">;</span> <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="setters-that-will-trigger-a-re-cache-of-the-text">Setters that will trigger a re-cache of the text.</h3></div></div></div><div class="segment"><div class="code"><div class="wrapper">  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">TextRenderer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;Align&quot;</span><span class="p">,</span> <span class="p">{</span> 
     <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span> 
       <span class="k">this</span><span class="p">.</span><span class="nx">align</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
       <span class="nx">TextCache</span><span class="p">.</span><span class="nx">cache</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>

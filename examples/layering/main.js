@@ -6,9 +6,9 @@
  * [gb](@@gb@@),
  * [game](@@game@@),
  * [root](@@root@@),
- * [layers](@@layers@@),
- * [basic-layer-setup](@@basic-layer-setup@@),
- * [layering-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/nesting-bundle.html),
+ * [groups](@@groups@@),
+ * [basic-display-setup](@@basic-display-setup@@),
+ * [layering-bundle](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/bundles/nesting-bundle.html),
  * [keyboard](@@keyboard@@)
  */
 
@@ -21,11 +21,11 @@ define(function(require){
 	// Storing some references to avoid excesive typing
 	var game = gb.game;
 	var root = gb.root;
-	var layers = gb.layers;
+	var groups = gb.groups;
 
 	var keyboard = require('keyboard');
 
-	game.add_extension(require('basic-layer-setup'));
+	game.add_extension(require('basic-display-setup'));
 	game.add_extension(require("activity-display"));
 
 	// This is the main initialization function
@@ -34,48 +34,48 @@ define(function(require){
 
 		require('layering-bundle').create();
 
-		// Each [game-object](@@game-object@@) is added to a different [layer](@@layer@@)
-		gb.addToLayer('Front', 'Base_3');
-		gb.addToLayer('Middle', 'Base_2');
-		gb.addToLayer('Back', 'Base_1');
+		// Each [game-object](@@game-object@@) is added to a different updating
+		// [group](@@group@@) and to a different [layer](@@layer@@) of the same [viewport](@@viewport@@)
+		// The third argument is defined in [basic-display-setup](@@basic-display-setup@@)
+		gb.add('Base_3', 'First', 'MainBack');
+		gb.add('Base_2', 'Second', 'MainMiddle');
+		gb.add('Base_1', 'Third', 'MainFront');
 
-		// These are used to add back the stuff to the layers if you
+		// These are used to add back the stuff for update and rendering if you
 		// remove them while trying out the example.
 		// Check out the errors that are printed on console when there are no more [game-objects](@@game-object@@)
-		// available in the pools. These won't break the app by themselves, but if you see them
+		// available in the [pools](@@pool@@). These won't break the app by themselves, but if you see them
 		// in your own work, there probably is something fishy going on.
 		keyboard.onKeyDown(keyboard.NUM_1, this, function() {
-			gb.addToLayer('Front', 'Base_3');
+			gb.add('Base_3', 'First', 'MainBack');
 		});
 
 		keyboard.onKeyDown(keyboard.NUM_2, this, function() {
-			gb.addToLayer('Middle', 'Base_2');
+			gb.add('Base_2', 'Second', 'MainMiddle');
 		});
 
 		keyboard.onKeyDown(keyboard.NUM_3, this, function() {
-			gb.addToLayer('Back', 'Base_1');
+			gb.add('Base_1', 'Third', 'MainFront');
 		});
 
 		keyboard.onKeyDown(keyboard.A, this, function() {
-			// Stop calling update method on game objects on the 'Front' layer
-			// Effectively pausing that layer.
-			layers.stop_update('Front');
+			// Stop calling update method on [game-objects](@@game-object@@) on the 'Third' [group](@@group@@)
+			groups.stop_update('Third');
 		});
 
 		keyboard.onKeyDown(keyboard.S, this, function() {
-			// Stop calling draw method on game objects on the 'Front' layer
-			// Effectively making the layer invisible.
-			layers.stop_draw('Front');
+			// Stop calling draw method on [game-objects](@@game-object@@) on the 'Third' [group](@@group@@)
+			groups.stop_draw('Third');
 		});
 
 		keyboard.onKeyDown(keyboard.D, this, function() {
-			// Resume all activity on the 'Front'  layer
-			layers.resume('Front');
+			// Resume all activity on the 'Third' [group](@@group@@)
+			groups.resume('Third');
 		});
 
 		keyboard.onKeyDown(keyboard.Z, this, function() {
 			// Clear all layers of game objects
-			layers.all('clear');
+			groups.all('clear');
 		});
 
 		// When a layer is removed it is gone for good, trying to add things
@@ -83,7 +83,7 @@ define(function(require){
 		// things to any of the layers after calling this method.
 		keyboard.onKeyDown(keyboard.X, this, function() {
 			// Remove all layers entirely. You will need to add more layers after doing this.
-			layers.all('remove');
+			groups.all('remove');
 		});
 	});
 
@@ -102,7 +102,7 @@ define(function(require){
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.
-		root.transformAndDraw(game.context);
+		root.draw(game.context);
 	});
 
 	// This is the main setup that kicks off the whole thing

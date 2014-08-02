@@ -6,8 +6,8 @@
  * [gb](@@gb@@),
  * [game](@@game@@),
  * [root](@@root@@),
- * [basic-layer-setup](@@basic-layer-setup@@),
- * [logic-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/logic-bundle.html)
+ * [basic-display-setup](@@basic-display-setup@@),
+ * [logic-bundle](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/bundles/logic-bundle.html)
  */
 
 /**
@@ -19,7 +19,7 @@ define(function(require){
 	var game = gb.game;
 	var root = gb.root;
 
-	game.add_extension(require('basic-layer-setup'));
+	game.add_extension(require('basic-display-setup'));
 	game.add_extension(require("activity-display"));
 	
 	// This is the main initialization function
@@ -28,9 +28,9 @@ define(function(require){
 
 		require('logic-bundle').create();
 
-		gb.addToLayer('Middle', 'Base_1');
-		gb.addToLayer('Middle', 'Base_2');
-		gb.addToLayer('Middle', 'Base_3');
+		gb.add('Base_1', 'First', 'MainMiddle');
+		gb.add('Base_2', 'First', 'MainMiddle');
+		gb.add('Base_3', 'First', 'MainMiddle');
 	});
 
 	// This is called when the canvas looses focus
@@ -48,7 +48,7 @@ define(function(require){
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.
-		root.transformAndDraw(game.context);
+		root.draw(game.context);
 	});
 
 	// This is the main setup that kicks off the whole thing

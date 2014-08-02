@@ -4,22 +4,22 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
- * [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html)
+ * * Inherits from: [renderer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/renderer.html)
  *
  * Depends of: 
- * [path-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/path-cache.html)
- * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
+ * [path-cache](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/cache/path-cache.html)
+ * [error-printer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
- * This renderer is similar to [bitmap-renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/bitmap-renderer.html) but instead of drawing an external image
+ * This renderer is similar to [bitmap-renderer](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/components/rendering/bitmap-renderer.html) but instead of drawing an external image
  * it receives a function that defines a path to draw on a [canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/).
  * 
  * The module will take care of caching the drawing into a separate canvas and drawing from there, instead of executing all the path instructions
  * each frame. 
  * 
  * This renderer can receive a bunch of configuration options
- * when setting it up in the [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html). ej.
+ * when setting it up in the [component-pool](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html). ej.
  *
  * ``` javascript
  * gb.coPool.createConfiguration("Path", 'Path_Renderer')
@@ -30,8 +30,12 @@
 
 		//These set the total width and height of the path
 		//This argument is only required if the renderer does not provide it. 
-		pathWidth: 100,
-		pathHeight: 100,
+		width: 100,
+		height: 100,
+	
+		//This determines if the path is cached or not, by default it is cached
+		//Skipping caching is adviced for dynamic drawing
+		skipCache: true
 
 		//Use this to define the path this renderer will draw
 		//This argument is only required if the renderer does not provide it. 
@@ -48,12 +52,12 @@
 		
 		//Use these to override the dimentions of the path.
 		//These are optional
-		width: 20, 
-		height: 20,
+		scaleX: 1, 
+		scaleY: 1,
  *	});
  * ```
- * <strong>Note: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
- * found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
+ * <strong>Note: The snippet uses the reference to the <a href=file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+ * found in the <a href=file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/gb.html>gb</a> module. 
  * The way you get a hold to a reference to the <a href=@@csomponent-pool@@>component-pool</a>
  * may vary.</strong>
  */
@@ -66,38 +70,27 @@
 /**
  * --------------------------------
  */
-define(["component", "path-cache", "error-printer"], function(Component, PathCache, ErrorPrinter) {
+define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache, ErrorPrinter) {
 
-	var canvas = null;
+	var canvas, w, h;
 
-	var PathRenderer = Component.extend({
-		/**
-		 * <p style='color:#AD071D'><strong>init</strong></p>
-		 */
-		init: function() {
-			this._super()
-
-			this.offsetX = 0;
-			this.offsetY = 0;
-		},
-		/**
-		 * --------------------------------
-		 */
-
+	var PathRenderer = Renderer.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
-		 * This is called by the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this renderer.
+		 * This is called by the [game-object](file://localhost/Users/johndoe/game-builder-gh-pages/game-builder-docs/src/hierarchy/game-object.html) using this renderer.
 		 * It caches the results of executing the **drawPath** method.
 		 *
 		 * @throws {Error} If pathWidth and pathHeight properties are not set
 		 */
 		start: function(parent) {	
-			if (!this.pathWidth && !this.pathHeight) {
-				ErrorPrinter.missingArgumentError('Path Renderer', 'pathWidth', 'pathHeight')
+			if (this.skipCache) return;
+
+			if (!this.width && !this.height) {
+				ErrorPrinter.missingArgumentError('Path Renderer', 'width', 'height')
 			}
 
-			PathCache.cache(this.name, this.pathWidth, this.pathHeight, this.drawPath);
+			PathCache.cache(this.name, this.width, this.height, this.drawPath);
 		},
 		/**
 		 * --------------------------------
@@ -123,27 +116,24 @@ define(["component", "path-cache", "error-printer"], function(Component, PathCac
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
 		 * Draws the cached path into the canvas, applying configured properties,
-		 * like **width**, **height** and **offsets**
+		 * like **scaleX**, **scaleY** and **offsets**
 		 * 
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 */
 		draw: function(context) {
-			var w, h;
-
-			canvas = PathCache.get(this.name);
-
-			if (this.width && this.height) {
-				w = this.width;
-				h = this.height;
+			if (this.skipCache) {
+				this.drawPath(context);
 			} else {
-				w = canvas.width;
-				h = canvas.height;
-			}
+				canvas = PathCache.get(this.name);
 
-			if (this.offset == 'center'){
-				context.drawImage(canvas, -w/2, -h/2, w, h);	
-			} else{
-				context.drawImage(canvas, this.offsetX, this.offsetY, w, h);		
+				w = this.rendererWidth();
+				h = this.rendererHeight();
+
+				if (this.offset == 'center'){
+					context.drawImage(canvas, -w/2, -h/2, w, h);	
+				} else{
+					context.drawImage(canvas, this.rendererOffsetX(), this.rendererOffsetY(), w, h);		
+				}
 			}
 		}
 		/**

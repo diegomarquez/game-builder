@@ -29,14 +29,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "slug": "todo-list"
           },
           "depth": 6
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 6,
-            "title": "After Game:",
-            "slug": "after-game"
-          },
-          "depth": 6
         }
       ]
     }, {
@@ -1352,16 +1344,16 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "foldPrefix": "^",
                       "name": "JavaScript"
                     },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/basic-layer-setup.js",
-                    "projectPath": "work/game-builder/src/game_canvas/extensions/basic-layer-setup.js",
-                    "targetPath": "src/game_canvas/extensions/basic-layer-setup",
-                    "pageTitle": "src/game_canvas/extensions/basic-layer-setup",
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/basic-display-setup.js",
+                    "projectPath": "work/game-builder/src/game_canvas/extensions/basic-display-setup.js",
+                    "targetPath": "src/game_canvas/extensions/basic-display-setup",
+                    "pageTitle": "src/game_canvas/extensions/basic-display-setup",
                     "firstHeader": {
                       "type": "heading",
                       "data": {
                         "level": 1,
-                        "title": "basic-layer-setup.js",
-                        "slug": "basic-layer-setupjs",
+                        "title": "basic-display-setup.js",
+                        "slug": "basic-display-setupjs",
                         "isFileHeader": true
                       },
                       "depth": 1,
@@ -1370,14 +1362,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                           "type": "heading",
                           "data": {
                             "level": 2,
-                            "title": "Define layers",
-                            "slug": "define-layers"
+                            "title": "Setup display",
+                            "slug": "setup-display"
                           },
                           "depth": 2
                         }
                       ]
                     },
-                    "title": "basic-layer-setup.js"
+                    "title": "basic-display-setup.js"
                   },
                   "depth": 4,
                   "outline": [
@@ -1385,8 +1377,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 2,
-                        "title": "Define layers",
-                        "slug": "define-layers"
+                        "title": "Setup display",
+                        "slug": "setup-display"
                       },
                       "depth": 2
                     }
@@ -2049,16 +2041,16 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/layer.js",
-                "projectPath": "work/game-builder/src/hierarchy/layer.js",
-                "targetPath": "src/hierarchy/layer",
-                "pageTitle": "src/hierarchy/layer",
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/group.js",
+                "projectPath": "work/game-builder/src/hierarchy/group.js",
+                "targetPath": "src/hierarchy/group",
+                "pageTitle": "src/hierarchy/group",
                 "firstHeader": {
                   "type": "heading",
                   "data": {
                     "level": 1,
-                    "title": "layer.js",
-                    "slug": "layerjs",
+                    "title": "group.js",
+                    "slug": "groupjs",
                     "isFileHeader": true
                   },
                   "depth": 1,
@@ -2074,7 +2066,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     }
                   ]
                 },
-                "title": "layer.js"
+                "title": "group.js"
               },
               "depth": 3,
               "outline": [
@@ -2100,16 +2092,16 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
-                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/layers.js",
-                "projectPath": "work/game-builder/src/hierarchy/layers.js",
-                "targetPath": "src/hierarchy/layers",
-                "pageTitle": "src/hierarchy/layers",
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/groups.js",
+                "projectPath": "work/game-builder/src/hierarchy/groups.js",
+                "targetPath": "src/hierarchy/groups",
+                "pageTitle": "src/hierarchy/groups",
                 "firstHeader": {
                   "type": "heading",
                   "data": {
                     "level": 1,
-                    "title": "layers.js",
-                    "slug": "layersjs",
+                    "title": "groups.js",
+                    "slug": "groupsjs",
                     "isFileHeader": true
                   },
                   "depth": 1,
@@ -2118,14 +2110,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 2,
-                        "title": "Layer management",
-                        "slug": "layer-management"
+                        "title": "Group management",
+                        "slug": "group-management"
                       },
                       "depth": 2
                     }
                   ]
                 },
-                "title": "layers.js"
+                "title": "groups.js"
               },
               "depth": 3,
               "outline": [
@@ -2133,8 +2125,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "Layer management",
-                    "slug": "layer-management"
+                    "title": "Group management",
+                    "slug": "group-management"
                   },
                   "depth": 2
                 }
@@ -3146,6 +3138,220 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "level": 2,
                 "title": "Miscelaneous methods",
                 "slug": "miscelaneous-methods"
+              },
+              "depth": 2
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
+            "path": "src/view",
+            "title": "view"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/view/layer.js",
+                "projectPath": "work/game-builder/src/view/layer.js",
+                "targetPath": "src/view/layer",
+                "pageTitle": "src/view/layer",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "layer.js",
+                    "slug": "layerjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Visual organization",
+                        "slug": "visual-organization"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "layer.js"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Visual organization",
+                    "slug": "visual-organization"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/view/viewport.js",
+                "projectPath": "work/game-builder/src/view/viewport.js",
+                "targetPath": "src/view/viewport",
+                "pageTitle": "src/view/viewport",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "viewport.js",
+                    "slug": "viewportjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "A little window",
+                        "slug": "a-little-window"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "viewport.js"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "A little window",
+                    "slug": "a-little-window"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/view/viewports.js",
+                "projectPath": "work/game-builder/src/view/viewports.js",
+                "targetPath": "src/view/viewports",
+                "pageTitle": "src/view/viewports",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "viewports.js",
+                    "slug": "viewportsjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Viewport management",
+                        "slug": "viewport-management"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "viewports.js"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Viewport management",
+                    "slug": "viewport-management"
+                  },
+                  "depth": 2
+                }
+              ]
+            }
+          ]
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/world.js",
+            "projectPath": "work/game-builder/src/world.js",
+            "targetPath": "src/world",
+            "pageTitle": "src/world",
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "world.js",
+                "slug": "worldjs",
+                "isFileHeader": true
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Game World",
+                    "slug": "game-world"
+                  },
+                  "depth": 2
+                }
+              ]
+            },
+            "title": "world.js"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Game World",
+                "slug": "game-world"
               },
               "depth": 2
             }

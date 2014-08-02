@@ -7,7 +7,7 @@
  * [bundle](@@bundle@@)
  *
  * Depends of:
- * [basic-game-object](http://diegomarquez.github.io/game-builder/examples-docs/common_src/basic-game-object.html)
+ * [basic-game-object](file://localhost/Users/johndoe/game-builder-gh-pages/examples-docs/common_src/basic-game-object.html)
  * [bitmap-renderer](@@bitmap-renderer@@)
  * [circle-collider](@@circle-collider@@)
  * [polygon-collider](@@polygon-collider@@)
@@ -63,23 +63,18 @@ define(function(require) {
 
 			this.gameObjectPool.createPool("Base", basic_game_object, 3); 
 
-			// When adding a collider component to a game-object, the game-object will need to define an onCollide method
-			// Otherwise, you will get an error.
-			// Might change in the future, haven't figured out what is the best way to do this yet
-			
-			// The 'debug' property of game-object will draw the colliders so it is easier to understand what is going on. It is false by default
 			this.gameObjectPool.createConfiguration("Base_1", "Base")
-				.args({x: this.canvas.width/2 + 50, y: this.canvas.height/2 - 50, rotation_speed: -2, scaleX: 2, debug: true})
+				.args({x: this.canvas.width/2 + 50, y: this.canvas.height/2 - 50, rotation_speed: -2, scaleX: 2})
 				.addComponent('Circle_1')
 				.setRenderer('Pear_1');
 
 			this.gameObjectPool.createConfiguration("Base_2", "Base")
-				.args({x: this.canvas.width/2 + 100, y: this.canvas.height/2, rotation_speed: 2, debug: true})
+				.args({x: this.canvas.width/2 + 100, y: this.canvas.height/2, rotation_speed: 2})
 				.addComponent('Polygon_1')
 				.setRenderer('Pear_2');
 
 			this.gameObjectPool.createConfiguration("Base_3", "Base")
-				.args({x: this.canvas.width/2 + 50, y: this.canvas.height/2 + 50, rotation_speed: 1, debug: true})
+				.args({x: this.canvas.width/2 + 50, y: this.canvas.height/2 + 50, rotation_speed: 1})
 				.addComponent('Fixed_Polygon_1')
 				.setRenderer('Pear_1', { width: 20, height: 20 });
 		}

@@ -111,7 +111,7 @@ define(function(require){
 		// Updates ALL the things.
 		root.update(game.delta);
 		// Draws ALL the things.
-		root.transformAndDraw(game.context);
+		root.draw(game.context);
 
 		domTimer1.innerText = 'TIMER 1: ' + timer_factory.formatMinutesSeconds(this.my_timer_1.rest());
 		domTimer2.innerText = 'TIMER 2: ' + timer_factory.formatMinutesSeconds(this.my_timer_2.rest());
