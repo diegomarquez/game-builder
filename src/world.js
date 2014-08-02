@@ -24,8 +24,22 @@
  */
 define(["class"], function(Class) {
 	var World = Class.extend({
+		/**
+		 * <p style='color:#AD071D'><strong>init</strong></p>
+		 *
+		 * Constructor
+		 */
 		init: function() {},
+		/**
+		 * --------------------------------
+		 */
 
+		/**
+		 * <p style='color:#AD071D'><strong>create</strong></p>
+		 *
+		 * @param  {Number} w Width of the world
+		 * @param  {Number} h Height of the world
+		 */
 		create: function(w, h) {
 			var width = w;
 			var height = h;
@@ -47,6 +61,13 @@ define(["class"], function(Class) {
 			};
 		},
 
+		/**
+		 * <p style='color:#AD071D'><strong>scaleViewportToFit</strong></p>
+		 *
+		 * Make the specified [viewport](@@viewport@@) scale so it can show all the world
+		 * 
+		 * @param  {Object} viewport The [viewport](@@viewport@@) to scale
+		 */
 		scaleViewportToFit: function(viewport) {
 			viewport.scaleX = 1;
 			viewport.scaleY = 1;
@@ -55,6 +76,14 @@ define(["class"], function(Class) {
 			viewport.scaleY /= this.getHeight() / viewport.height;
 		},
 
+		/**
+		 * <p style='color:#AD071D'><strong>scaleViewportProportionaly</strong></p>
+		 *
+		 * Make the specified [viewport](@@viewport@@) scale by the specified factor
+		 * 
+		 * @param  {Object} viewport The [viewport](@@viewport@@) to scale
+		 * @param  {[type]} factor   Amount to scale by
+		 */
 		scaleViewportProportionaly: function(viewport, factor) {
 			viewport.scaleX = 1;
 			viewport.scaleY = 1;
