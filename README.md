@@ -10,17 +10,6 @@ For better results it is better to use it in conjuction with [generator-game-bui
 
 -----------------------------------
 
-###### TODO List:
-
-- Shared Renderers and components. Share logic which does not need to keep state.
-- Different renderers on different viewports
-- Add matrix transformation to viewport layers before drawing game objects
-
-- Try out examples, Build docs, tag, deploy website
-
-- Do a simple game and get this over with for fucks sake!
-    - Something like Galaga, with a boss.
-
 ### [This is the prototype game][tirador] which spurred the creation of this project.
 
 [game]: http://diegomarquez.github.io/game-builder/Galaga.png
