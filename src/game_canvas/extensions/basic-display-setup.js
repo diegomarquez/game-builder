@@ -32,7 +32,7 @@
 /**
  * --------------------------------
  */
-define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, Gb, Extension) {
+define(["groups", "viewports", "gb", "world", "extension"], function(Groups, Viewports, Gb, World, Extension) {
 	var BasicLayerSetup = Extension.extend({
 		type: function() {
 			// Notice the use of the constant CREATE defined in [game](@@game@@)
@@ -41,6 +41,10 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 		},
 
 		execute: function() {
+			// Configure the [world](@@world@@) object. 
+			// For simplicity's sake it is the same size as the canvas
+			World.create(Gb.canvas.width, Gb.canvas.height);
+
 			// Set a few update [groups](@@group@@)
 			Groups.add("First");
 			Groups.add("Second");
