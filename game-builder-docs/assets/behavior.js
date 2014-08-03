@@ -20,17 +20,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "title": "index"
       },
       "depth": 1,
-      "outline": [
-        {
-          "type": "heading",
-          "data": {
-            "level": 6,
-            "title": "TODO List:",
-            "slug": "todo-list"
-          },
-          "depth": 6
-        }
-      ]
+      "outline": []
     }, {
       "type": "folder",
       "data": {

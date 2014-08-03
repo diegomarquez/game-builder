@@ -127,7 +127,7 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 				canvas = PathCache.get(this.name);
 				context.drawImage(canvas, this.rendererOffsetX(), this.rendererOffsetY(), this.rendererWidth(), this.rendererHeight());	
 			}
-		}
+		},
 		/**
 		 * --------------------------------
 		 */
