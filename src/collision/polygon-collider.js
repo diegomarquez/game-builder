@@ -90,7 +90,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			 * The collider follows it's parent along every matrix transformation.
 			 */
 			update: function() {
-				m = this.parent.getMatrix(m);
+				m = this.parent.matrix;
 
 				for(var i=0; i<this.pointCount; i++) {
 					p = m.transformPoint(this.pointsCopy[i].x, this.pointsCopy[i].y, p);
@@ -120,7 +120,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 			 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
 			 */
 			debug_draw: function(context, viewport, draw) {
-				var m = this.parent.matrix;
+				m = this.parent.matrix;
 
 				context.save();
 

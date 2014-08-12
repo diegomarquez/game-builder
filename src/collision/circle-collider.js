@@ -52,7 +52,6 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 	function(CollisionComponent, SAT, CollisionResolver, Vector2D, Draw){
 
 	var p = {};
-	var m = null;
 	
 	var Component = CollisionComponent.extend({
 		/**
@@ -80,7 +79,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 		 * The collider follows the position of it's parent.
 		 */
 		update: function() {
-			this.parent.getTransform(p, m);
+			p = this.parent.matrix.transformPoint(0, 0, p);	
 
 			this.collider.pos.x = p.x;
 			this.collider.pos.y = p.y;
@@ -101,16 +100,8 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 		 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
 		 */
 		debug_draw: function(context, viewport, draw) {
-			this.parent.getTransform(p, m);
-
-			context.save();
-
-			context.setTransform(1, 0, 0, 1, 0, 0);			
-			context.translate(p.x, p.y);
-			Draw.circle(context, 0, 0, this.radius, null, this.debugColor, 2);
-
-			context.restore();
-
+			p = this.parent.matrix.transformPoint(0, 0, p);		
+			Draw.circle(context, p.x, p.y, this.radius, null, this.debugColor, 2);
 			this._super();
 		} 
 		/**
