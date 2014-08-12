@@ -87,10 +87,16 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 			if (this.skipCache) return;
 
 			if (!this.width && !this.height) {
-				ErrorPrinter.missingArgumentError('Path Renderer', 'width', 'height')
+				ErrorPrinter.missingArgumentError('Path Renderer', 'width', 'height');
 			}
 
-			PathCache.cache(this.name, this.width, this.height, this.drawPath);
+			if (!this.name) {
+				ErrorPrinter.missingArgumentError('Path Renderer', 'name');
+			}
+
+			PathCache.cache(this.name, this.width, this.height, function(context) {
+				this.drawPath(context);	
+			}.bind(this));
 		},
 		/**
 		 * --------------------------------
