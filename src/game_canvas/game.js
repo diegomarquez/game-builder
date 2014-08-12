@@ -163,10 +163,10 @@ define(function(require) {
 					self.execute_extensions(self.UPDATE);
 					// Update all [game-objects](@@game-objects@@)
 					root.update(self.delta);
-					// Draw to all the [viewports](@@viewport@@)
-					root.draw(self.context);
 					// Execute all update events
 					self.execute(self.UPDATE);
+					// Draw to all the [viewports](@@viewport@@)
+					root.draw(self.context);
 					
 					window.requestAnimationFrame(mainLoop);
 				}
