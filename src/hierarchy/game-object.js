@@ -108,6 +108,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			this.scaleY = 1;
 			//Alpha / Opacity.
 			this.alpha = 1;
+			// Offset to the corresponding [viewport](@@viewport@@)
+			this.viewportOffsetX = 0;
+			this.viewportOffsetY = 0;
 
 			// The type id, is the id of the configuration that was used to put together this game object.
 			// Set in the [game-object-pool](@@game-object-pool@@).
@@ -144,6 +147,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			this.scaleX = 1;
 			this.scaleY = 1;
 			this.alpha = 1;
+			this.viewportOffsetX = 0;
+			this.viewportOffsetY = 0;
+			this.centerX = 0;
+			this.centerY = 0;
 		},
 		/**
 		 * --------------------------------
@@ -469,12 +476,22 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * <p style='color:#AD071D'><strong>getMatrix</strong></p>
 		 *
 		 * Get's the complete concatenated [matrix-3x3](@@matrix-3x3@@) of the game object.
+		 *
+		 * options argument if provided should look like this
+		 *
+		 * ``` javascript
+		 	{
+		 		// Setting this to true will get the concatenated matrix, with out taking into account the viewportOffset variables
+				noViewportOffsets: true
+		 	}	  
+		 * ```
 		 * 
 		 * @param  {Object} [m=new Matrix()] A matrix object into which to put result.
+		 * @param  {Object} [options=newObject()] Options to apply when concatenating the matrix. 
 		 *
 		 * @return {Object} The concatenated [matrix-3x3](@@matrix-3x3@@)
 		 */
-		getMatrix: function(m) {
+		getMatrix: function(m, options) {
 			if (m) {
 				m.identity();
 			} else {
@@ -484,7 +501,15 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			go = this;
 
 			while (go != null) {
-				m.prependTransform(go.x, go.y, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
+				if (options) {
+					if (options.noViewportOffsets) {
+						m.prependTransform(go.x, go.y, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
+						go = go.parent;
+						continue;
+					} 
+				} 
+				
+				m.prependTransform(go.x + go.viewportOffsetX, go.y + go.viewportOffsetY, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
 				go = go.parent;
 			}
 
@@ -500,13 +525,23 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * This will get an object with the properties that the [matrix-3x3](@@matrix-3x3@@)
 		 * is describing. This is usefull to get the absolute position of a game object
 		 * at any given point.
+		 *
+		 * options argument if provided should look like this
+		 *
+		 * ``` javascript
+		 	{
+		 		// Setting this to true will get the concatenated matrix, with out taking into account the viewportOffset variables
+				noViewportOffsets: true
+		 	}	  
+		 * ```
 		 * 
 		 * @param  {Object} [r=new Object()] On object into which to put the result of this operation.
 		 * @param  {Object} [m=new Matrix()] A matrix object into which put the result.
+		 * @param  {Object} [options=newObject()] Options to apply when concatenating the matrix.
 		 *
 		 * @return {Object} Contains the individual properties of a trandformation. ej. x, y, rotation, scale
 		 */
-		getTransform: function(r, m) {
+		getTransform: function(r, m, options) {
 			if (m) {
 				m.identity();
 			} else {
@@ -516,7 +551,15 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			go = this;
 
 			while (go != null) {
-				m.prependTransform(go.x, go.y, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
+				if (options) {
+					if (options.noViewportOffsets) {
+						m.prependTransform(go.x, go.y, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
+						go = go.parent;
+						continue;
+					} 
+				} 
+				
+				m.prependTransform(go.x + go.viewportOffsetX, go.y + go.viewportOffsetY, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
 				go = go.parent;
 			}
 
@@ -558,6 +601,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * --------------------------------
 		 */
 	});
+
+	Object.defineProperty(GameObject.prototype, "X", { get: function() { return this.x + this.viewportOffsetX; } });
+	Object.defineProperty(GameObject.prototype, "Y", { get: function() { return this.y + this.viewportOffsetY; } });
 
 	// ### Getters for all the types of events a GameObject can hook into
 	Object.defineProperty(GameObject.prototype, "START", { get: function() { return 'start'; } });
