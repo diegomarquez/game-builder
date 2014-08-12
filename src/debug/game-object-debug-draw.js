@@ -53,11 +53,7 @@ define(function(require){
 			context.translate(viewport.x + viewport.offsetX, viewport.y + viewport.offsetY);
 			// Scale to adjust for the current [viewport](@@viewport@@)
 	    	context.scale(viewport.scaleX, viewport.scaleY);
-	    	// Translate to the center of the [game-object](@@game-object@@)
-			
-			// Draw what ever the [game-object](@@game-object@@) wants to show in debug mode
-	    	this.debug_draw(context, viewport, require('draw'))
-
+	    	
 	    	// Draw what ever the [renderer](@@renderer@@) wants to show in debug mode
 	    	if (this.renderer) {
 	    		this.renderer.debug_draw(context, viewport, require('draw'));
@@ -69,6 +65,9 @@ define(function(require){
 					this.components[i].debug_draw(context, viewport, require('draw'))
 				}
 			}
+			
+			// Draw what ever the [game-object](@@game-object@@) wants to show in debug mode
+	    	this.debug_draw(context, viewport, require('draw'))
 
 			// Restore original context
 			context.restore();
