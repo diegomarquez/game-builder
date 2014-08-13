@@ -3,7 +3,7 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: 
+ * Inherits from:
  * [delegate](@@delegate@@)
  *
  * Depends of:
@@ -23,127 +23,127 @@
  * --------------------------------
  */
 define(["delegate"], function(Delegate){
-	var Layer = Delegate.extend({
-		
-		/**
-		 * <p style='color:#AD071D'><strong>init</strong></p>
-		 *
-		 * Constructor
-		 *
-		 * @param {String} name The name of the layer
-		 * @param {Viewport} viewport The [viewport](@@viewport@@) the layer belongs to
-		 */
-		init: function(name, viewport) {
-			this.name = name;
-			this.gameObjects = [];
-			this.visible = true;
-			this.viewport = viewport;
-		},
-		/**
-		 * --------------------------------
-		 */
+  var Layer = Delegate.extend({
+
+    /**
+     * <p style='color:#AD071D'><strong>init</strong></p>
+     *
+     * Constructor
+     *
+     * @param {String} name The name of the layer
+     * @param {Viewport} viewport The [viewport](@@viewport@@) the layer belongs to
+     */
+    init: function(name, viewport) {
+      this.name = name;
+      this.gameObjects = [];
+      this.visible = true;
+      this.viewport = viewport;
+    },
+    /**
+     * --------------------------------
+     */
 
 
-		/**
-		 * <p style='color:#AD071D'><strong>add</strong></p>
-		 *
-		 * Add a [game-obejct](@@game-obejct@@) to layer for rendering
-		 * 
-		 * @param {Object} go The [game-object](@@game-object@@) to add
-		 */
-		add: function(go) { 
-			this.gameObjects.push(go); 
-		},
-		/**
-		 * --------------------------------
-		 */
+    /**
+     * <p style='color:#AD071D'><strong>add</strong></p>
+     *
+     * Add a [game-obejct](@@game-obejct@@) to layer for rendering
+     *
+     * @param {Object} go The [game-object](@@game-object@@) to add
+     */
+    add: function(go) {
+      this.gameObjects.push(go);
+    },
+    /**
+     * --------------------------------
+     */
 
-		/**
-		 * <p style='color:#AD071D'><strong>remove</strong></p>
-		 *
-		 * Remove a [game-object](@@game-object@@) from the layer
-		 * 
-		 * @param {Object} go The [game-object](@@game-object@@) to remove
-		 */
-		remove: function(go) { 
-			this.gameObjects.splice(this.gameObjects.indexOf(go), 1); 
-		},
-		/**
-		 * --------------------------------
-		 */
+    /**
+     * <p style='color:#AD071D'><strong>remove</strong></p>
+     *
+     * Remove a [game-object](@@game-object@@) from the layer
+     *
+     * @param {Object} go The [game-object](@@game-object@@) to remove
+     */
+    remove: function(go) {
+      this.gameObjects.splice(this.gameObjects.indexOf(go), 1);
+    },
+    /**
+     * --------------------------------
+     */
 
-		/**
-		 * <p style='color:#AD071D'><strong>removeAll</strong></p>
-		 *
-		 * Removes all the [game-objects](@@game-object@@) from the layer
-		 */
-		removeAll: function() { 
-			this.gameObjects = []; 
-		},
-		/**
-		 * --------------------------------
-		 */
+    /**
+     * <p style='color:#AD071D'><strong>removeAll</strong></p>
+     *
+     * Removes all the [game-objects](@@game-object@@) from the layer
+     */
+    removeAll: function() {
+      this.gameObjects = [];
+    },
+    /**
+     * --------------------------------
+     */
 
-		/**
-		 * <p style='color:#AD071D'><strong>draw</strong></p>
-		 *
-		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
-		 */
-		draw: function(context) {
-			if (!this.visible) return;
+    /**
+     * <p style='color:#AD071D'><strong>draw</strong></p>
+     *
+     * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+     */
+    draw: function(context) {
+      if (!this.visible) return;
 
-			var go;
+      var go;
 
-			for (var i = 0; i < this.gameObjects.length; i++) {
-				go = this.gameObjects[i];
+      for (var i = 0; i < this.gameObjects.length; i++) {
+        go = this.gameObjects[i];
 
-				if (this.viewport.isGameObjectInside(go, context)) {
-					go.draw(context, this.viewport);
-				}
-			}
-		},
-		/**
-		 * --------------------------------
-		 */
+        if (this.viewport.isGameObjectInside(go)) {
+          go.draw(context, this.viewport);
+        }
+      }
+    },
+    /**
+     * --------------------------------
+     */
 
-		/**
-		 * <p style='color:#AD071D'><strong>show</strong></p>
-		 *
-		 * Make the layer visible
-		 */
-		show: function() { 
-			this.visible = true; 
-		},
-		/**
-		 * --------------------------------
-		 */
+    /**
+     * <p style='color:#AD071D'><strong>show</strong></p>
+     *
+     * Make the layer visible
+     */
+    show: function() {
+      this.visible = true;
+    },
+    /**
+     * --------------------------------
+     */
 
-		/**
-		 * <p style='color:#AD071D'><strong>hide</strong></p>
-		 *
-		 * Make the layer invisible
-		 */
-		hide: function() { 
-			this.visible = false; 
-		},
-		/**
-		 * --------------------------------
-		 */
+    /**
+     * <p style='color:#AD071D'><strong>hide</strong></p>
+     *
+     * Make the layer invisible
+     */
+    hide: function() {
+      this.visible = false;
+    },
+    /**
+     * --------------------------------
+     */
 
-		/**
-		 * <p style='color:#AD071D'><strong>isVisible</strong></p>
-		 *
-		 * Wether the layer is visible or not
-		 *
-		 * @return {Boolean}
-		 */
-		isVisible: function() { 
-			return this.visible; 
-		}
-		/**
-		 * --------------------------------
-		 */
-	});
+    /**
+     * <p style='color:#AD071D'><strong>isVisible</strong></p>
+     *
+     * Wether the layer is visible or not
+     *
+     * @return {Boolean}
+     */
+    isVisible: function() {
+      return this.visible;
+    }
+    /**
+     * --------------------------------
+     */
+  });
 
-	return Layer;
+  return Layer;
 });
