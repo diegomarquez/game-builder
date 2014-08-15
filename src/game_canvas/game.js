@@ -3,43 +3,43 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: 
+ * Inherits from:
  * [delegate](@@delegate@@)
  *
  * Depends of:
  * [root](@@root@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This module defines the object which is responsible for the main update loop of the application.
  *
  * It does so by using [request animation frame](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/)
  *
- * It also hooks into the focus and blur events of [window](https://developer.mozilla.org/en-US/docs/Web/API/window), 
+ * It also hooks into the focus and blur events of [window](https://developer.mozilla.org/en-US/docs/Web/API/window),
  * in order to be able to pause and resume the application if needed.
  *
  * It's main behaviour can be extended by the use of [extensions](@@extension@@)
  *
  * ### Game extends [delegate](@@delegate@@) so it provides a few events to hook into:
  *
- * ### **create** 
- * On application startup 
- * 
- * ``` javascript  
+ * ### **create**
+ * On application startup
+ *
+ * ``` javascript
  * game.on(game.CREATE, function(repeatsLeft) {});
- * ``` 
+ * ```
  *
  * ### **blur**
- * When the application looses focus 
- * 
- * ``` javascript  
+ * When the application looses focus
+ *
+ * ``` javascript
  * game.on(game.BLUR, function() {});
  * ```
  *
  * ### **focus**
  * When the application gains focus
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * game.on(game.FOCUS, function() {});
  * ```
  *
@@ -47,7 +47,7 @@
  * On each update cycle
  *
  * The delta time between update cycles is sent to registered callbacks
- * ``` javascript  
+ * ``` javascript
  * game.on(game.UPDATE, function(delta) {});
  * ```
  */
@@ -61,229 +61,229 @@
  * --------------------------------
  */
 define(function(require) {
-	var delegate = require("delegate");
-	var root = require("root");
+  var delegate = require("delegate");
+  var root = require("root");
 
-	var Game = delegate.extend({
-		init: function() {
-			this._super();
+  var Game = delegate.extend({
+    init: function() {
+      this._super();
 
-			this.focus = true;
-			this.blur = true;
-			this.initialized = false;
-			this.lastUpdate = Date.now();
-			this.delta = null;
+      this.focus = true;
+      this.blur = true;
+      this.initialized = false;
+      this.lastUpdate = Date.now();
+      this.delta = null;
 
-			// A reference to the main div in the corresponding index.html file
-			this.mainContainer = null;
-			// A reference to the canvas
-			this.canvas = null;
-			// A reference to the context of the canvas
-			this.context = null;			
-		},
+      // A reference to the main div in the corresponding index.html file
+      this.mainContainer = null;
+      // A reference to the canvas
+      this.canvas = null;
+      // A reference to the context of the canvas
+      this.context = null;
+    },
 
-		/**
-		 * <p style='color:#AD071D'><strong>execute_extensions</strong></p>
-		 *
-		 * Executes all the extensions for the given state of the application
-		 * 
-		 * @param  {String} state The state of the application. ej. 'create'
-		 */
-		execute_extensions: function(state) {
-			for(var i=0; i<this.extensions[state].length; i++){
-				this.extensions[state][i].execute();
-			}
-		},
-		/**
-		 * --------------------------------
-		 */
+    /**
+     * <p style='color:#AD071D'><strong>execute_extensions</strong></p>
+     *
+     * Executes all the extensions for the given state of the application
+     *
+     * @param  {String} state The state of the application. ej. 'create'
+     */
+    execute_extensions: function(state) {
+      for(var i=0; i<this.extensions[state].length; i++){
+        this.extensions[state][i].execute();
+      }
+    },
+    /**
+     * --------------------------------
+     */
 
-		/**
-		 * <p style='color:#AD071D'><strong>add_extension</strong></p>
-		 *
-		 * Use this to add extensions.
-		 * 
-		 * @param {[extension](@@extension@@)} extensionMoudle A module that extends [extension](@@extension@@)
-		 */
-		add_extension: function(extensionMoudle) {
-			var ex = new extensionMoudle();
-			this.extensions[ex.type()].push(ex);
-		},
-		/**
-		 * --------------------------------
-		 */
+    /**
+     * <p style='color:#AD071D'><strong>add_extension</strong></p>
+     *
+     * Use this to add extensions.
+     *
+     * @param {[extension](@@extension@@)} extensionMoudle A module that extends [extension](@@extension@@)
+     */
+    add_extension: function(extensionMoudle) {
+      var ex = new extensionMoudle();
+      this.extensions[ex.type()].push(ex);
+    },
+    /**
+     * --------------------------------
+     */
 
-		/**
-		 * <p style='color:#AD071D'><strong>create</strong></p>
-		 *
-		 * The main method that will kick start everything.
-		 * 
-		 * This method does a bunch of things. The main one being setting up the update loop
-		 * using [request animation frame](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/)
-		 *
-		 * The focus and blur events are also setup here.
-		 *
-		 * If the application does not have focus as soon as it starts, it waits until it has focus 
-		 * to setup the update loop.
-		 * 
-		 * @param  {ElementObject} mainContainer The Dom element that contains the canvas
-		 * @param  {Canvas} canvas A [Canvas](https://developer.mozilla.org/en-US/docs/HTML/Canvas) object
-		 */
-		create: function(mainContainer, canvas) {
-			this.mainContainer = mainContainer;
-			this.canvas = canvas;
-			this.context = this.canvas.getContext("2d");
+    /**
+     * <p style='color:#AD071D'><strong>create</strong></p>
+     *
+     * The main method that will kick start everything.
+     *
+     * This method does a bunch of things. The main one being setting up the update loop
+     * using [request animation frame](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/)
+     *
+     * The focus and blur events are also setup here.
+     *
+     * If the application does not have focus as soon as it starts, it waits until it has focus
+     * to setup the update loop.
+     *
+     * @param  {ElementObject} mainContainer The Dom element that contains the canvas
+     * @param  {Canvas} canvas A [Canvas](https://developer.mozilla.org/en-US/docs/HTML/Canvas) object
+     */
+    create: function(mainContainer, canvas) {
+      this.mainContainer = mainContainer;
+      this.canvas = canvas;
+      this.context = this.canvas.getContext("2d");
 
-			var mainLoop;
-			var self = this;
+      var mainLoop;
+      var self = this;
 
-			// This styling puts the canvas at the top left
-			mainContainer.style.top  	= 0;
-    		mainContainer.style.left 	= 0;
-			mainContainer.style.margin  = 0;
-			mainContainer.style.padding = 0;
-			mainContainer.style.position = 'fixed';
+      // This styling puts the canvas at the top left
+      mainContainer.style.top   = 0;
+      mainContainer.style.left  = 0;
+      mainContainer.style.margin  = 0;
+      mainContainer.style.padding = 0;
+      mainContainer.style.position = 'fixed';
 
-			// When this is called the application has trully started.
-			var setupUpdateLoop = function() {
-				self.initialized = true;
-				// Execute all create extensions
-				self.execute_extensions(self.CREATE);
-				// Execute all create events
-				self.execute(self.CREATE);
+      // When this is called the application has trully started.
+      var setupUpdateLoop = function() {
+        self.initialized = true;
+        // Execute all create extensions
+        self.execute_extensions(self.CREATE);
+        // Execute all create events
+        self.execute(self.CREATE);
 
-				var now;
+        var now;
 
-				mainLoop = function() {
-					now = Date.now();
-					self.delta = (now - self.lastUpdate) / 1000;
-					self.lastUpdate = now;
+        mainLoop = function() {
+          now = Date.now();
+          self.delta = (now - self.lastUpdate) / 1000;
+          self.lastUpdate = now;
 
-					// Execute all update extensions
-					self.execute_extensions(self.UPDATE);
-					// Update all [game-objects](@@game-objects@@)
-					root.update(self.delta);
-					// Execute all update events
-					self.execute(self.UPDATE);
-					// Draw to all the [viewports](@@viewport@@)
-					root.draw(self.context);
-					
-					window.requestAnimationFrame(mainLoop);
-				}
+          // Execute all update extensions
+          self.execute_extensions(self.UPDATE);
+          // Update all [game-objects](@@game-objects@@)
+          root.update(self.delta);
+          // Execute all update events
+          self.execute(self.UPDATE);
+          // Draw to all the [viewports](@@viewport@@)
+          root.draw(self.context);
 
-				var vendors = ['ms', 'moz', 'webkit', 'o'];
+          window.requestAnimationFrame(mainLoop);
+        }
 
-				for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-					window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
-					window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
-				}
+        var vendors = ['ms', 'moz', 'webkit', 'o'];
 
-				if (!window.requestAnimationFrame) {
-					window.requestAnimationFrame = function(callback) {
-						return window.setTimeout(callback, 1000 / 60);;
-					};
-				}
+        for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+          window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+          window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+        }
 
-				if (!window.cancelAnimationFrame) {
-					window.cancelAnimationFrame = function(id) {
-						clearTimeout(id);
-					};
-				}
+        if (!window.requestAnimationFrame) {
+          window.requestAnimationFrame = function(callback) {
+            return window.setTimeout(callback, 1000 / 60);;
+          };
+        }
 
-				self.lastUpdate = Date.now();
+        if (!window.cancelAnimationFrame) {
+          window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+          };
+        }
 
-				window.requestAnimationFrame(mainLoop);
-			};
+        self.lastUpdate = Date.now();
 
-			// The blur and focus event callbacks
-			// Plus additional logic so that they don't get executed
-			// more than needed. 
-			var blur = false;
-			
-			var onBlur = function() {
-				var oldBlur = self.blur;
+        window.requestAnimationFrame(mainLoop);
+      };
 
-				if (self.blur) {
-					self.blur = false;
-					self.focus = true;
+      // The blur and focus event callbacks
+      // Plus additional logic so that they don't get executed
+      // more than needed.
+      var blur = false;
 
-					if (!blur) {
-						// Execute all blur state extensions
-						self.execute_extensions(self.BLUR);	
-						// Execute all blur events
-						self.execute(self.BLUR);
+      var onBlur = function() {
+        var oldBlur = self.blur;
 
-						blur = true;
-					}
-				}
+        if (self.blur) {
+          self.blur = false;
+          self.focus = true;
 
-				return oldBlur;
-			};
+          if (!blur) {
+            // Execute all blur state extensions
+            self.execute_extensions(self.BLUR);
+            // Execute all blur events
+            self.execute(self.BLUR);
 
-			var onFocus = function() {
-				var oldFocus = self.focus;
+            blur = true;
+          }
+        }
 
-				// In the case the game is not already created when the document gains focus 
-				// for the first time, it is created here.
-				if (!self.initialized) {
-					setupUpdateLoop();
-				} else {
-					if (self.focus) {
-						self.blur = true;
-						self.focus = false;
+        return oldBlur;
+      };
 
-						if (blur) {
-							// Execute all focus state extensions
-							self.execute_extensions(self.FOCUS);
-							// Execute all blur events
-							self.execute(self.FOCUS);
+      var onFocus = function() {
+        var oldFocus = self.focus;
 
-							blur = false;
-						}
-					}
-				}
+        // In the case the game is not already created when the document gains focus
+        // for the first time, it is created here.
+        if (!self.initialized) {
+          setupUpdateLoop();
+        } else {
+          if (self.focus) {
+            self.blur = true;
+            self.focus = false;
 
-				return oldFocus;
-			}
+            if (blur) {
+              // Execute all focus state extensions
+              self.execute_extensions(self.FOCUS);
+              // Execute all blur events
+              self.execute(self.FOCUS);
 
-			// References to the blur and focus callbacks
-			// The [pause](@@pause@@) and [resume](@@resume@@)
-			// extensions use these.
-			this.blurAction = onBlur;
-			this.focusAction = onFocus;
+              blur = false;
+            }
+          }
+        }
 
-			// Actually setting up the listener to the events 
-			// window dispatches.
-			window.addEventListener("blur", onBlur);
-			window.addEventListener("focus", onFocus);
+        return oldFocus;
+      }
 
-			// Making sure we have focus setting up the update loop.
-			// If there is no focus, wait until it is gained to setup the update loop.
-			if (document.hasFocus()) {
-				setupUpdateLoop();
-			}
-		}
-		/**
-		 * --------------------------------
-		 */
-	});
+      // References to the blur and focus callbacks
+      // The [pause](@@pause@@) and [resume](@@resume@@)
+      // extensions use these.
+      this.blurAction = onBlur;
+      this.focusAction = onFocus;
 
-	// ### Getters for all the types of events game can hook into
-	Object.defineProperty(Game.prototype, "CREATE", { get: function() { return 'create'; } });
-	Object.defineProperty(Game.prototype, "UPDATE", { get: function() { return 'update'; } });
-	Object.defineProperty(Game.prototype, "FOCUS", { get: function() { return 'focus'; } });
-	Object.defineProperty(Game.prototype, "BLUR", { get: function() { return 'blur'; } });
+      // Actually setting up the listener to the events
+      // window dispatches.
+      window.addEventListener("blur", onBlur);
+      window.addEventListener("focus", onFocus);
 
-	var game = new Game();
+      // Making sure we have focus setting up the update loop.
+      // If there is no focus, wait until it is gained to setup the update loop.
+      if (document.hasFocus()) {
+        setupUpdateLoop();
+      }
+    }
+    /**
+     * --------------------------------
+     */
+  });
 
-	game.prototype = Game.prototype;
+  // ### Getters for all the types of events game can hook into
+  Object.defineProperty(Game.prototype, "CREATE", { get: function() { return 'create'; } });
+  Object.defineProperty(Game.prototype, "UPDATE", { get: function() { return 'update'; } });
+  Object.defineProperty(Game.prototype, "FOCUS", { get: function() { return 'focus'; } });
+  Object.defineProperty(Game.prototype, "BLUR", { get: function() { return 'blur'; } });
 
-	game.extensions = {
-		'create': [],
-		'update': [],
-		'focus': [],
-		'blur': []
-	};
+  var game = new Game();
 
-	return game;
+  game.prototype = Game.prototype;
+
+  game.extensions = {
+    'create': [],
+    'update': [],
+    'focus': [],
+    'blur': []
+  };
+
+  return game;
 });
