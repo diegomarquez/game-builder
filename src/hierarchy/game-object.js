@@ -440,6 +440,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 
 			this.removeRenderer();
 			this.removeComponents();
+			this.hardCleanUp();
 
 			this.canUpdate = false;
 			this.canDraw = false;
