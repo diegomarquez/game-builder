@@ -324,6 +324,27 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
     },
 
     /**
+     * <p style='color:#AD071D'><strong>isPointInside</strong></p>
+     *
+     * @param  {Number}  x X coordinate
+     * @param  {Number}  y Y coordinate
+     *
+     * @return {Boolean}   Whether the coordinates given are inside the viewport or not
+     */
+    isPointInside: function(x, y) {
+      if (x >= this.offsetX && x <= this.offsetX + this.width) {
+        if (y >= this.offsetY && y <= this.offsetY + this.height) {
+          return true;
+        }  
+      }
+
+      return false;
+    },    
+    /**
+     * --------------------------------
+     */
+    
+    /**
      * <p style='color:#AD071D'><strong>showLayer</strong></p>
      *
      * Makes the specified [layer](@@layer@@) visible
