@@ -56,12 +56,15 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      *
      * Constructor
      *
+     * @param  {String} name   Name of the viewport
      * @param  {Number} width   Width of the viewport
      * @param  {Number} height  Height of the viewport
      * @param  {Number} offsetX X offset relative to the top left corner of the screen
      * @param  {Number} offsetY Y offset relative to the top left corner of the screen
      */
-    init: function(width, height, offsetX, offsetY) {
+    init: function(name, width, height, offsetX, offsetY) {
+      this.name = name;
+
       this.x = 0;
       this.y = 0;
 
