@@ -394,10 +394,34 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
     /**
      * --------------------------------
      */
+
+    /**
+     * <p style='color:#AD071D'><strong>canvasToLocalCoordinates</strong></p>
+     *
+     * Convert the given canvas coordinates to viewport coordinates
+     *
+     * @param {Number} x X coordinate in Canvas space
+     * @param {Number} y Y coordinate in Canvas space
+     * @param {Object} [r=null] Object to put the result in, if none is passed a new Object is created
+     * 
+     * @return {[type]} [description]
+     */
+    canvasToLocalCoordinates: function(x, y, r) {
+      var m = this.getMatrix();
+      m.invert();
+      m.append(1, 0, 0, 1, x, y);
+
+      r = r || {};
+
+      r.x = m.tx;
+      r.y = m.ty;
+      
+      return r;
     }
     /**
      * --------------------------------
      */
+    
   });
 
   var findLayer = function(name) {
@@ -412,3 +436,4 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
 
   return Viewport;
 });
+
