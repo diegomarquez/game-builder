@@ -41,12 +41,12 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
 
   var viewportCollider = new SAT.FixedSizePolygon(
     new Vector2D(),
-    [ new Vector2D(),new Vector2D(),new Vector2D(),new Vector2D() ]
+    [ new Vector2D(), new Vector2D(), new Vector2D(), new Vector2D() ]
   );
 
   var gameObjectCollider = new SAT.FixedSizePolygon(
     new Vector2D(),
-    [ new Vector2D(),new Vector2D(),new Vector2D(),new Vector2D() ]
+    [ new Vector2D(), new Vector2D(), new Vector2D(), new Vector2D() ]
   );
 
   var Viewport = Delegate.extend({
