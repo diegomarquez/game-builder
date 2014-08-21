@@ -82,6 +82,7 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
       this.matrix = new Matrix();
       
       this.visible = true;
+      this.registerMouseEvents = true;
     },
 
     /**
@@ -250,6 +251,18 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      */
     isVisible: function() {
       return this.visible;
+    },
+    /**
+     * --------------------------------
+     */
+    
+    /**
+     * <p style='color:#AD071D'><strong>mouseEnabled</strong></p>
+     *
+     * @returns {Boolean} Wether or not this viewport responds to mouse events
+     */
+    mouseEnabled: function() {
+      return this.registerMouseEvents;
     },
     /**
      * --------------------------------
