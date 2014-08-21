@@ -78,6 +78,9 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
       this.height = height;
 
       this.layers = [];
+
+      this.matrix = new Matrix();
+      
       this.visible = true;
     },
 
@@ -330,6 +333,26 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      */
     hideLayer: function(name) {
       findLayer.call(this, name).hide();
+    },
+    /**
+     * --------------------------------
+     */
+    
+    /**
+     * <p style='color:#AD071D'><strong>getMatrix</strong></p>
+     *
+     * Get the concatenated [matrix-3x3](@@matrix-3x3@@) for this viewport
+     * 
+     * @return {Object} The concatenated [matrix-3x3](@@matrix-3x3@@)
+     */
+    getMatrix: function() {
+      this.matrix.identity();
+      this.matrix.prependTransform(this.x + this.offsetX, this.y + this.offsetY, this.scaleX, this.scaleY, 0, 0, 0, 1);
+      return this.matrix;
+    },
+    /**
+     * --------------------------------
+     */
     }
     /**
      * --------------------------------
