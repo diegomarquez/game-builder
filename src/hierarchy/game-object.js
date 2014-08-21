@@ -127,6 +127,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			// if this is true the game object will render.
 			this.canDraw = false;
 
+			// This object can be queried to tell whether this game-object is visible in a [viewport](@@viewport@@) or not
+			// It's values are set in the method isGameObjectInside of the [viewport](@@viewport@@) module.
+			this.viewportVisibility = {}
+
 			// Color that will be used to draw a little shape to outline the position if the **debug**
 			// property of [gb](@@gb@@) is set to true;
 			this.debugColor = "#FF00FF";
@@ -388,6 +392,36 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 */
 		show: function() {
 			this.canDraw = true;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>setViewportVisibility</strong></p>
+		 *
+		 * Set the visible state of the game-object in the specified viewport
+		 * This is for checking purposes only, it doesn't actually affect the rendering
+		 * 
+		 * @param {String} viewportName The name of the [viewport](@@viewport@@) to associate visibility with
+		 * @param {Boolean} visible Wheter the game-object is visible or not in the specified [viewport](@@viewport@@)
+		 */
+		setViewportVisibility: function(viewportName, visible) {
+			this.viewportVisibility[viewportName] = visible;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>getViewportVisibility</strong></p>
+		 *
+		 * @param {String} viewportName The name of the [viewport](@@viewport@@) to get the visibility state from
+		 *
+		 * @return {Boolean} Wheter the game-object is visible or not in the specified [viewport](@@viewport@@)
+		 */
+		getViewportVisibility: function(viewportName) {
+			return this.viewportVisibility[viewportName];
 		},
 		/**
 		 * --------------------------------
