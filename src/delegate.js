@@ -221,6 +221,30 @@ define(["class", "util"], function(Class, Util) {
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>isRegistered</strong></p>
+		 *
+		 * @param  {String} name Id of the group of functions 
+		 *
+		 * @return {Boolean} Returns true if the given id has any callbacks registered
+		 */
+		isRegistered: function(name) {
+			var list = this.callbackList[name];
+
+			if (!list) return false;
+
+			for (var i = 0; i < list.length; i++) {
+				if (list[i]) {
+					return true;
+				}
+			}
+
+			return false;
+		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>destroy</strong></p>
