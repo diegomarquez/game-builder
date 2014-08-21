@@ -320,8 +320,15 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
       viewportCollider.recalc();
       gameObjectCollider.recalc();
 
-      return SAT.testPolygonPolygon(viewportCollider, gameObjectCollider);
+      var inside = SAT.testPolygonPolygon(viewportCollider, gameObjectCollider);
+
+      go.setViewportVisibility(this.name, inside);
+
+      return inside;
     },
+    /**
+     * --------------------------------
+     */
 
     /**
      * <p style='color:#AD071D'><strong>isPointInside</strong></p>
