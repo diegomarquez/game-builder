@@ -36,7 +36,7 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 
 		init: function() {
 			this._super();
-			this.allViewports = Viewports.all();
+			this.allViewports = Viewports.allAsArray();
 
 			this.canvas = document.getElementById('game');
 		},
@@ -82,7 +82,7 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 	        	context.rect(v.offsetX, v.offsetY, v.width, v.height);
 	        	context.clip();
 				context.closePath();
-	        	
+
 				// make all the drawings relative to the viewport's visible area
 	    		context.translate(v.x + v.offsetX, v.y + v.offsetY);
 	    		context.scale(v.scaleX, v.scaleY);
