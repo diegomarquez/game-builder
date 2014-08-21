@@ -28,6 +28,7 @@ define(['vector-2D'], function(Vector) {
     T_ARRAYS.push([]);
   }
 
+
   var Circle = function(pos, r) {
     this['pos'] = this.pos = pos || new Vector();
     this['r'] = this.r = r || 0;
@@ -389,6 +390,19 @@ define(['vector-2D'], function(Vector) {
     return true;
   };
 
+  var UNIT_SQUARE = new Polygon(new Vector(), [new Vector(0,0), new Vector(1,0), new Vector(1,1), new Vector(0,1)]);
+  var T_RESPONSE = new Response();
+
+  var pointInPolygon = function(p, poly) {
+    UNIT_SQUARE['pos'].copy(p);
+    T_RESPONSE.clear();
+    var result = testPolygonPolygon(UNIT_SQUARE, poly, T_RESPONSE);
+    if (result) {
+      result = T_RESPONSE['aInB'];
+    }
+    return result;
+  };
+
   var SAT = {}
 
   SAT['Circle']           = Circle;
@@ -400,6 +414,8 @@ define(['vector-2D'], function(Vector) {
   SAT['testPolygonCircle']  = testPolygonCircle;
   SAT['testCirclePolygon']  = testCirclePolygon;
   SAT['testPolygonPolygon'] = testPolygonPolygon;
+  
+  SAT['pointInPolygon'] = pointInPolygon;
 
   return SAT;
 });
