@@ -25,6 +25,7 @@
 define(["viewport", "error-printer"], function(Viewport, ErrorPrinter) {
 
 	var viewports = {};
+	var viewportsArray = [];
 	
 	var ViewportContainer = function() {};
 
@@ -35,15 +36,20 @@ define(["viewport", "error-printer"], function(Viewport, ErrorPrinter) {
 	 * 
 	 * @param {String} name    Id of the new [viewport](@@viewport@@)
 	 * @param {Number} width   Width of the new [viewport](@@viewport@@)
-	 * @param {Number} height  Hidth of the new [viewport](@@viewport@@)
+	 * @param {Number} height  Height of the new [viewport](@@viewport@@)
 	 * @param {Number} offsetX X offset relative to the top corner of the screen
 	 * @param {Number} offsetY Y offset relative to the top corner of the screen
 	 *
 	 * @return {Object} The newly created [viewport](@@viewport@@)
 	 */
 	ViewportContainer.prototype.add = function(name, width, height, offsetX, offsetY) {		
-		viewports[name] = new Viewport(width, height, offsetX, offsetY);
-		return viewports[name];
+		if (!viewports[name]) {
+			viewports[name] = new Viewport(name, width, height, offsetX, offsetY);
+			
+			viewportsArray.push(viewports[name]);
+			
+			return viewports[name];
+		}
 	};
 	/**
 	 * --------------------------------
@@ -112,10 +118,22 @@ define(["viewport", "error-printer"], function(Viewport, ErrorPrinter) {
 	/**
 	 * <p style='color:#AD071D'><strong>all</strong></p>
 	 *
-	 * Get a reference to the underlaying object containing all the created [viewports](@@viewports@@)
+	 * Get a reference to an object containing all the created [viewports](@@viewport@@)
 	 */
 	ViewportContainer.prototype.all = function() { 
 		return viewports; 
+	};
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>allAsArray</strong></p>
+	 *
+	 * A reference to an array containing all the created [viewports](@@viewport@@)
+	 */
+	ViewportContainer.prototype.allAsArray = function() { 
+		return viewportsArray; 
 	};
 	/**
 	 * --------------------------------
