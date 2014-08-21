@@ -29,7 +29,7 @@
 /**
  * --------------------------------
  */
-define(["delegate", "layer", "sat", "vector-2D", "error-printer"], function(Delegate, Layer, SAT, Vector2D, ErrorPrinter){
+define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"], function(Delegate, Layer, Matrix, SAT, Vector2D, ErrorPrinter){
   var p1 = {};
   var p2 = {};
   var p3 = {};
