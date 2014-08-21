@@ -49,6 +49,7 @@ define(function(require) {
 			this.ESC = 27;
 			this.SPACE = 32;
 
+			this.W = 87;
 			this.A = 65;
 			this.S = 83;
 			this.D = 68;
