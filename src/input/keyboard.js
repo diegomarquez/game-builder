@@ -229,12 +229,6 @@ define(function(require) {
 			event.keyCode == keyboard.ALT ||
 			event.keyCode == keyboard.ESC ||
 			event.keyCode == keyboard.SPACE ||
-			event.keyCode == keyboard.A ||
-			event.keyCode == keyboard.S ||
-			event.keyCode == keyboard.D ||
-			event.keyCode == keyboard.Z ||
-			event.keyCode == keyboard.X ||
-			event.keyCode == keyboard.C ||
 			event.keyCode == keyboard.NUM_0 ||
 			event.keyCode == keyboard.NUM_1 ||
 			event.keyCode == keyboard.NUM_2 ||
@@ -254,12 +248,6 @@ define(function(require) {
 			event.keyCode == keyboard.ALT ||
 			event.keyCode == keyboard.ESC ||
 			event.keyCode == keyboard.SPACE ||
-			event.keyCode == keyboard.A ||
-			event.keyCode == keyboard.S ||
-			event.keyCode == keyboard.D ||
-			event.keyCode == keyboard.Z ||
-			event.keyCode == keyboard.X ||
-			event.keyCode == keyboard.C ||
 			event.keyCode == keyboard.NUM_0 ||
 			event.keyCode == keyboard.NUM_1 ||
 			event.keyCode == keyboard.NUM_2 ||
