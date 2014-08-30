@@ -227,14 +227,7 @@ define(function(require) {
 			event.keyCode == keyboard.DOWN ||
 			event.keyCode == keyboard.CTRL ||
 			event.keyCode == keyboard.ALT ||
-			event.keyCode == keyboard.ESC ||
-			event.keyCode == keyboard.SPACE ||
-			event.keyCode == keyboard.NUM_0 ||
-			event.keyCode == keyboard.NUM_1 ||
-			event.keyCode == keyboard.NUM_2 ||
-			event.keyCode == keyboard.NUM_3 ||
-			event.keyCode == keyboard.NUM_4 ||
-			event.keyCode == keyboard.NUM_5) {
+			event.keyCode == keyboard.ESC) {
 			event.preventDefault();
 		}
 	}
@@ -246,14 +239,7 @@ define(function(require) {
 			event.keyCode == keyboard.DOWN ||
 			event.keyCode == keyboard.CTRL ||
 			event.keyCode == keyboard.ALT ||
-			event.keyCode == keyboard.ESC ||
-			event.keyCode == keyboard.SPACE ||
-			event.keyCode == keyboard.NUM_0 ||
-			event.keyCode == keyboard.NUM_1 ||
-			event.keyCode == keyboard.NUM_2 ||
-			event.keyCode == keyboard.NUM_3 ||
-			event.keyCode == keyboard.NUM_4 ||
-			event.keyCode == keyboard.NUM_5) {
+			event.keyCode == keyboard.ESC) {
 			event.preventDefault();
 		}
 	}
