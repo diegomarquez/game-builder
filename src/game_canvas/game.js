@@ -138,11 +138,16 @@ define(function(require) {
       var self = this;
 
       // This styling puts the canvas at the top left
-      mainContainer.style.top   = 0;
-      mainContainer.style.left  = 0;
-      mainContainer.style.margin  = 0;
-      mainContainer.style.padding = 0;
-      mainContainer.style.position = 'fixed';
+      mainContainer.style.position = 'relative';
+
+      document.querySelector('html').style.margin = 0;
+      document.querySelector('html').style.padding = 0;
+      document.querySelector('body').style.margin = 0;
+      document.querySelector('body').style.padding = 0;
+      document.querySelector('div').style.margin = 0;
+      document.querySelector('div').style.padding = 0;
+      document.querySelector('canvas').style.margin = 0;
+      document.querySelector('canvas').style.padding = 0;
 
       // When this is called the application has trully started.
       var setupUpdateLoop = function() {
