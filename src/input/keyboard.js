@@ -219,30 +219,32 @@ define(function(require) {
 	 * --------------------------------
 	 */
 
-	// ### Prevent default behaviour of keys in the browser
-	document.onkeydown = function(event) {
-		if (event.keyCode == keyboard.LEFT ||
-			event.keyCode == keyboard.UP ||
-			event.keyCode == keyboard.RIGHT ||
-			event.keyCode == keyboard.DOWN ||
-			event.keyCode == keyboard.CTRL ||
-			event.keyCode == keyboard.ALT ||
-			event.keyCode == keyboard.ESC) {
-			event.preventDefault();
-		}
-	}
+	// TODO: Hacer que esto sea configurable desde el exterior
 
-	document.onkeypress = function(event) {
-		if (event.keyCode == keyboard.LEFT ||
-			event.keyCode == keyboard.UP ||
-			event.keyCode == keyboard.RIGHT ||
-			event.keyCode == keyboard.DOWN ||
-			event.keyCode == keyboard.CTRL ||
-			event.keyCode == keyboard.ALT ||
-			event.keyCode == keyboard.ESC) {
-			event.preventDefault();
-		}
-	}
+	// ### Prevent default behaviour of keys in the browser
+	// document.onkeydown = function(event) {
+	// 	if (event.keyCode == keyboard.LEFT ||
+	// 		event.keyCode == keyboard.UP ||
+	// 		event.keyCode == keyboard.RIGHT ||
+	// 		event.keyCode == keyboard.DOWN ||
+	// 		event.keyCode == keyboard.CTRL ||
+	// 		event.keyCode == keyboard.ALT ||
+	// 		event.keyCode == keyboard.ESC) {
+	// 		event.preventDefault();
+	// 	}
+	// }
+
+	// document.onkeypress = function(event) {
+	// 	if (event.keyCode == keyboard.LEFT ||
+	// 		event.keyCode == keyboard.UP ||
+	// 		event.keyCode == keyboard.RIGHT ||
+	// 		event.keyCode == keyboard.DOWN ||
+	// 		event.keyCode == keyboard.CTRL ||
+	// 		event.keyCode == keyboard.ALT ||
+	// 		event.keyCode == keyboard.ESC) {
+	// 		event.preventDefault();
+	// 	}
+	// }
 
 	return keyboard;
 });
