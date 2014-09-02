@@ -69,11 +69,11 @@ define(["class"], function(Class) {
 		 * @param  {Object} viewport The [viewport](@@viewport@@) to scale
 		 */
 		scaleViewportToFit: function(viewport) {
-			viewport.scaleX = 1;
-			viewport.scaleY = 1;
+			viewport.ScaleX = 1;
+			viewport.ScaleY = 1;
 
-			viewport.scaleX /= this.getWidth() / viewport.Width;
-			viewport.scaleY /= this.getHeight() / viewport.Height;
+			viewport.ScaleX /= this.getWidth() / viewport.Width;
+			viewport.ScaleY /= this.getHeight() / viewport.Height;
 		},
 
 		/**
@@ -85,11 +85,11 @@ define(["class"], function(Class) {
 		 * @param  {Number} factor   Amount to scale by
 		 */
 		scaleViewportProportionaly: function(viewport, factor) {
-			viewport.scaleX = 1;
-			viewport.scaleY = 1;
+			viewport.ScaleX = 1;
+			viewport.ScaleY = 1;
 
-			viewport.scaleX *= factor;
-			viewport.scaleY *= factor;
+			viewport.ScaleX *= factor;
+			viewport.ScaleY *= factor;
 		}
 
 	});

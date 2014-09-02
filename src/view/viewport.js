@@ -68,8 +68,8 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
       this.x = 0;
       this.y = 0;
 
-      this.scaleX = 1;
-      this.scaleY = 1;
+      this.ScaleX = 1;
+      this.ScaleY = 1;
 
       this.OffsetX = offsetX;
       this.OffsetY = offsetY;
@@ -355,17 +355,17 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
       p4 = m.transformPoint(rOffsetX, rOffsetY + rHeight, p4);
 
       // Game Object collider
-      gameObjectCollider.points[0].x = p1.x * this.scaleX;
-      gameObjectCollider.points[0].y = p1.y * this.scaleY;
+      gameObjectCollider.points[0].x = p1.x * this.ScaleX;
+      gameObjectCollider.points[0].y = p1.y * this.ScaleY;
 
-      gameObjectCollider.points[1].x = p2.x * this.scaleX;
-      gameObjectCollider.points[1].y = p2.y * this.scaleY;
+      gameObjectCollider.points[1].x = p2.x * this.ScaleX;
+      gameObjectCollider.points[1].y = p2.y * this.ScaleY;
 
-      gameObjectCollider.points[2].x = p3.x * this.scaleX;
-      gameObjectCollider.points[2].y = p3.y * this.scaleY;
+      gameObjectCollider.points[2].x = p3.x * this.ScaleX;
+      gameObjectCollider.points[2].y = p3.y * this.ScaleY;
 
-      gameObjectCollider.points[3].x = p4.x * this.scaleX;
-      gameObjectCollider.points[3].y = p4.y * this.scaleY;
+      gameObjectCollider.points[3].x = p4.x * this.ScaleX;
+      gameObjectCollider.points[3].y = p4.y * this.ScaleY;
 
       viewportCollider.recalc();
       gameObjectCollider.recalc();
@@ -438,7 +438,7 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      */
     getMatrix: function() {
       this.matrix.identity();
-      this.matrix.prependTransform(this.x + this.OffsetX, this.y + this.OffsetY, this.scaleX, this.scaleY, 0, 0, 0, 1);
+      this.matrix.prependTransform(this.x + this.OffsetX, this.y + this.OffsetY, this.ScaleX, this.ScaleY, 0, 0, 0, 1);
       return this.matrix;
     },
     /**
@@ -456,7 +456,7 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
       // Translate to adjust for the current [viewport](@@viewport@@)
       context.translate(this.x + this.OffsetX, this.y + this.OffsetY);
       // Scale to adjust for the current [viewport](@@viewport@@)
-      context.scale(this.scaleX, this.scaleY);
+      context.scale(this.ScaleX, this.ScaleY);
     },
     /**
      * --------------------------------
@@ -492,43 +492,33 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
   });
 
   Object.defineProperty(Viewport.prototype, "Width", { 
-    get: function() { 
-      return Number(this.width); 
-    },
-
-    set: function(value) { 
-      this.width = value; 
-    } 
+    get: function() { return Number(this.width); },
+    set: function(value) { this.width = value; } 
   });
 
   Object.defineProperty(Viewport.prototype, "Height", { 
-    get: function() { 
-      return Number(this.height);
-    },
-
-    set: function(value) { 
-      this.height = value;
-    } 
+    get: function() { return Number(this.height); },
+    set: function(value) { this.height = value; } 
   });
 
   Object.defineProperty(Viewport.prototype, "OffsetX", { 
-    get: function() { 
-      return Number(this.offsetX); 
-    },
-
-    set: function(value) { 
-      this.offsetX = value; 
-    } 
+    get: function() { return Number(this.offsetX); },
+    set: function(value) { this.offsetX = value; } 
   });
 
   Object.defineProperty(Viewport.prototype, "OffsetY", { 
-    get: function() { 
-      return Number(this.offsetY);
-    },
+    get: function() { return Number(this.offsetY); },
+    set: function(value) { this.offsetY = value; } 
+  });
 
-    set: function(value) { 
-      this.offsetY = value;
-    } 
+  Object.defineProperty(Viewport.prototype, "ScaleX", { 
+    get: function() { return Number(this.scaleX); },
+    set: function(value) { this.scaleX = value; } 
+  });
+
+  Object.defineProperty(Viewport.prototype, "ScaleY", { 
+    get: function() { return Number(this.scaleY); },
+    set: function(value) { this.scaleY = value; } 
   });
 
   var findLayer = function(name) {
