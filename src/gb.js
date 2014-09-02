@@ -29,7 +29,7 @@
  * --------------------------------
  */
 define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool', 'json-cache', 'error-printer'],
-  function(game, groups, viewports, assembler, reclaimer, gameObjectPool, componentPool, jsonCache) {
+  function(game, groups, viewports, assembler, reclaimer, gameObjectPool, componentPool, jsonCache, ErrorPrinter) {
 
     var addToViewPorts = function(go, vports) {
       var v;
