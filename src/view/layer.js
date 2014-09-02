@@ -50,9 +50,14 @@ define(["delegate"], function(Delegate){
      * Add a [game-obejct](@@game-obejct@@) to layer for rendering
      *
      * @param {Object} go The [game-object](@@game-object@@) to add
+     *
+     * @return {Object} The [game-object](@@game-object@@) that was just added
      */
     add: function(go) {
       this.gameObjects.push(go);
+      go.viewports.push(this.viewport.name);
+
+      return go;
     },
     /**
      * --------------------------------
@@ -64,9 +69,14 @@ define(["delegate"], function(Delegate){
      * Remove a [game-object](@@game-object@@) from the layer
      *
      * @param {Object} go The [game-object](@@game-object@@) to remove
+     *
+     * @return {Object} The [game-object](@@game-object@@) that was just removed
      */
     remove: function(go) {
       this.gameObjects.splice(this.gameObjects.indexOf(go), 1);
+      go.viewports.splice(go.viewports.indexOf(this.viewport.name), 1);
+
+      return go;
     },
     /**
      * --------------------------------
@@ -76,9 +86,20 @@ define(["delegate"], function(Delegate){
      * <p style='color:#AD071D'><strong>removeAll</strong></p>
      *
      * Removes all the [game-objects](@@game-object@@) from the layer
+     *
+     * @return {Array} All the [game-objects](@@game-object@@) that were just removed
      */
     removeAll: function() {
+      for (var i = 0; i < this.gameObjects.length; i++) {
+        go = this.gameObjects[i];
+        go.viewports.splice(go.viewports.indexOf(this.viewport.name), 1);
+      }
+
+      var gos = this.gameObjects;
+
       this.gameObjects = [];
+
+      return gos;
     },
     /**
      * --------------------------------

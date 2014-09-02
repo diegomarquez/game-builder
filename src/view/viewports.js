@@ -54,6 +54,31 @@ define(["viewport", "error-printer"], function(Viewport, ErrorPrinter) {
 	/**
 	 * --------------------------------
 	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>add</strong></p>
+	 *
+	 * Removes the specified [viewport](@@viewport@@)
+	 * 
+	 * @param {String} name    Id of the [viewport](@@viewport@@) to remove
+	 *
+	 * @return {Array} with all the [game-objects](@@game-object@@) this viewport was showing
+	 */
+	ViewportContainer.prototype.remove = function(name) {
+		if (!viewports[name]) {
+			ErrorPrinter.printError('Viewports', 'Viewport with id:' + name + ' does not exist.');
+		}
+
+		var viewport = viewports[name];
+
+		viewports[name] = null;
+		viewportsArray.splice(viewportsArray.indexOf(viewport), 1);
+
+		return viewport.destroy()
+	};
+	/**
+	 * --------------------------------
+	 */
 
 	/**
 	 * <p style='color:#AD071D'><strong>show</strong></p>
@@ -114,11 +139,27 @@ define(["viewport", "error-printer"], function(Viewport, ErrorPrinter) {
 	/**
 	 * --------------------------------
 	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>exists</strong></p>
+	 * 
+	 * @param  {String} name Id of the [viewport](@@viewport@@) to check
+	 *
+	 * @throws {Boolean} Whether the [viewport](@@viewport@@) exists or not
+	 */
+	ViewportContainer.prototype.exists = function(name) { 
+		return viewports[name]; 
+	};
+	/**
+	 * --------------------------------
+	 */
 
 	/**
 	 * <p style='color:#AD071D'><strong>all</strong></p>
 	 *
 	 * Get a reference to an object containing all the created [viewports](@@viewport@@)
+	 *
+	 * @return {Object} An object with all the [viewport](@@viewport@@) objects
 	 */
 	ViewportContainer.prototype.all = function() { 
 		return viewports; 
@@ -131,6 +172,8 @@ define(["viewport", "error-printer"], function(Viewport, ErrorPrinter) {
 	 * <p style='color:#AD071D'><strong>allAsArray</strong></p>
 	 *
 	 * A reference to an array containing all the created [viewports](@@viewport@@)
+	 *
+	 * @return {Array} An array with all the [viewport](@@viewport@@) objects
 	 */
 	ViewportContainer.prototype.allAsArray = function() { 
 		return viewportsArray; 

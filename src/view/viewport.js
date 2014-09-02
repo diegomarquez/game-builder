@@ -71,11 +71,11 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
       this.scaleX = 1;
       this.scaleY = 1;
 
-      this.offsetX = offsetX;
-      this.offsetY = offsetY;
+      this.OffsetX = offsetX;
+      this.OffsetY = offsetY;
 
-      this.width = width;
-      this.height = height;
+      this.Width = width;
+      this.Height = height;
 
       this.layers = [];
 
@@ -94,8 +94,30 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      * @param {Number} color Color of the stroke
      */
     setStroke: function(width, color) {
-      this.strokeWidth = width;
-      this.strokeColor = color;
+      if (width) {
+        this.strokeWidth = width;
+      }
+
+      if (color) {
+        this.strokeColor = color;
+      }
+    },
+    /**
+     * --------------------------------
+     */
+    
+    /**
+     * <p style='color:#AD071D'><strong>getStroke</strong></p>
+     *
+     * Get the stroke attributes of the viewport
+     *
+     * @return {Object} with stroke color and width
+     */
+    getStroke: function() {
+      return {
+        width: this.strokeWidth,
+        color: this.strokeColor
+      }
     },
     /**
      * --------------------------------
@@ -144,14 +166,21 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      * <p style='color:#AD071D'><strong>removeAllLayers</strong></p>
      *
      * Remove all [layers](@@layer@@) from the viewport
+     *
+     * @return {Array} The [game-objets](@@game-objet@@) that were just removed
      */
     removeAllLayers: function() {
       var layer;
 
+      var gos = [];
+
       for (var i = 0; i < this.layers.length; i++) {
         layer = this.layers.pop();
-        layer.removeAll();
+
+        gos = gos.concat(layer.removeAll());
       }
+
+      return gos;
     },
     /**
      * --------------------------------
@@ -169,7 +198,7 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
       var layer = findLayer.call(this, layerName);
 
       layer.add(go);
-
+      
       go.on(go.RECYCLE, this, function(g) {
         layer.remove(g);
       }, true);
@@ -182,11 +211,32 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      * <p style='color:#AD071D'><strong>removeAllGameObjects</strong></p>
      *
      * Remove all [game-objects](@@game-object@@) from the viewport
+     *
+     * @return {Array} The [game-objets](@@game-objet@@) that were just removed
      */
     removeAllGameObjects: function() {
+      var gos = [];
+
       for (var i = 0; i < this.layers.length; i++) {
-        this.layers[i].removeAll();
+        gos = gos.concat(this.layers[i].removeAll());
       }
+
+      return gos;
+    },
+    /**
+     * --------------------------------
+     */
+    
+    /**
+     * <p style='color:#AD071D'><strong>destroy</strong></p>
+     *
+     * Destroys everything inside the viewport
+     *
+     * @return {Array} The [game-objets](@@game-objet@@) that were just removed
+     */
+    destroy: function() {
+      this.matrix = null;
+      return this.removeAllLayers();
     },
     /**
      * --------------------------------
@@ -290,14 +340,14 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
       viewportCollider.points[0].x = -this.x;
       viewportCollider.points[0].y = -this.y;
 
-      viewportCollider.points[1].x = -this.x + this.width;
+      viewportCollider.points[1].x = -this.x + this.Width;
       viewportCollider.points[1].y = -this.y;
 
-      viewportCollider.points[2].x = -this.x + this.width;
-      viewportCollider.points[2].y = -this.y + this.height;
+      viewportCollider.points[2].x = -this.x + this.Width;
+      viewportCollider.points[2].y = -this.y + this.Height;
 
       viewportCollider.points[3].x = -this.x;
-      viewportCollider.points[3].y = -this.y + this.height;
+      viewportCollider.points[3].y = -this.y + this.Height;
 
       p1 = m.transformPoint(rOffsetX, rOffsetY, p1);
       p2 = m.transformPoint(rOffsetX + rWidth, rOffsetY, p2);
@@ -339,8 +389,8 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      * @return {Boolean}   Whether the coordinates given are inside the viewport or not
      */
     isPointInside: function(x, y) {
-      if (x >= this.offsetX && x <= this.offsetX + this.width) {
-        if (y >= this.offsetY && y <= this.offsetY + this.height) {
+      if (x >= this.OffsetX && x <= this.OffsetX + this.Width) {
+        if (y >= this.OffsetY && y <= this.OffsetY + this.Height) {
           return true;
         }  
       }
@@ -388,13 +438,30 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      */
     getMatrix: function() {
       this.matrix.identity();
-      this.matrix.prependTransform(this.x + this.offsetX, this.y + this.offsetY, this.scaleX, this.scaleY, 0, 0, 0, 1);
+      this.matrix.prependTransform(this.x + this.OffsetX, this.y + this.OffsetY, this.scaleX, this.scaleY, 0, 0, 0, 1);
       return this.matrix;
     },
     /**
      * --------------------------------
      */
-
+    
+    /**
+     * <p style='color:#AD071D'><strong>transformContext</strong></p>
+     *
+     * Applies the transformations this viewport defines to the current context
+     * 
+     * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+     */
+    transformContext: function(context) {
+      // Translate to adjust for the current [viewport](@@viewport@@)
+      context.translate(this.x + this.OffsetX, this.y + this.OffsetY);
+      // Scale to adjust for the current [viewport](@@viewport@@)
+      context.scale(this.scaleX, this.scaleY);
+    },
+    /**
+     * --------------------------------
+     */
+    
     /**
      * <p style='color:#AD071D'><strong>canvasToLocalCoordinates</strong></p>
      *
@@ -422,6 +489,46 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      * --------------------------------
      */
     
+  });
+
+  Object.defineProperty(Viewport.prototype, "Width", { 
+    get: function() { 
+      return Number(this.width); 
+    },
+
+    set: function(value) { 
+      this.width = value; 
+    } 
+  });
+
+  Object.defineProperty(Viewport.prototype, "Height", { 
+    get: function() { 
+      return Number(this.height);
+    },
+
+    set: function(value) { 
+      this.height = value;
+    } 
+  });
+
+  Object.defineProperty(Viewport.prototype, "OffsetX", { 
+    get: function() { 
+      return Number(this.offsetX); 
+    },
+
+    set: function(value) { 
+      this.offsetX = value; 
+    } 
+  });
+
+  Object.defineProperty(Viewport.prototype, "OffsetY", { 
+    get: function() { 
+      return Number(this.offsetY);
+    },
+
+    set: function(value) { 
+      this.offsetY = value;
+    } 
   });
 
   var findLayer = function(name) {

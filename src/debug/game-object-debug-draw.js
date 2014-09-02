@@ -49,11 +49,9 @@ define(function(require){
 			context.save();
 			// Reset transformation
 			context.setTransform(1, 0, 0, 1, 0, 0);			
-			// Translate to adjust for the current [viewport](@@viewport@@)
-			context.translate(viewport.x + viewport.offsetX, viewport.y + viewport.offsetY);
-			// Scale to adjust for the current [viewport](@@viewport@@)
-	    	context.scale(viewport.scaleX, viewport.scaleY);
-	    	
+			// Apply transformations for the current [viewport](@@viewport@@)
+			viewport.transformContext(context);
+
 	    	// Draw what ever the [renderer](@@renderer@@) wants to show in debug mode
 	    	if (this.renderer) {
 	    		this.renderer.debug_draw(context, viewport, require('draw'));

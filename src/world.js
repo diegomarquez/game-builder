@@ -72,8 +72,8 @@ define(["class"], function(Class) {
 			viewport.scaleX = 1;
 			viewport.scaleY = 1;
 
-			viewport.scaleX /= this.getWidth() / viewport.width;
-			viewport.scaleY /= this.getHeight() / viewport.height;
+			viewport.scaleX /= this.getWidth() / viewport.Width;
+			viewport.scaleY /= this.getHeight() / viewport.Height;
 		},
 
 		/**

@@ -130,6 +130,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			// This object can be queried to tell whether this game-object is visible in a [viewport](@@viewport@@) or not
 			// It's values are set in the method isGameObjectInside of the [viewport](@@viewport@@) module.
 			this.viewportVisibility = {}
+			// An array with the names of all the viewports this game objects is being renderer in.
+			// This property is set by the [layer](@@layer@@) objects held by [viewports](@@viewport@@)
+			this.viewports = [];
 
 			// Color that will be used to draw a little shape to outline the position if the **debug**
 			// property of [gb](@@gb@@) is set to true;
@@ -155,6 +158,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			this.viewportOffsetY = 0;
 			this.centerX = 0;
 			this.centerY = 0;
+			this.viewportVisibility = {}
+			this.viewports = [];
 		},
 		/**
 		 * --------------------------------
@@ -323,7 +328,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			if (!this.components) return;
 
 			for (var i=this.components.length-1; i>=0; i--) {
-				removeComponent(this.components[i]);
+				this.removeComponent(this.components[i]);
 			}
 		},
 		/**
@@ -392,6 +397,20 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 */
 		show: function() {
 			this.canDraw = true;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>hasViewport</strong></p>
+		 *
+		 * Wheter or not this game-object is part of any viewport or not
+		 * 
+		 * @return {Boolean}
+		 */
+		hasViewport: function() {
+			return this.viewports.length > 0; 
 		},
 		/**
 		 * --------------------------------

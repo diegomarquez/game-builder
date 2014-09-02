@@ -69,27 +69,25 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 					context.save();
 					context.fillStyle = v.strokeColor;
 
-		        	context.fillRect(v.offsetX-v.strokeWidth, v.offsetY-v.strokeWidth, v.width+(v.strokeWidth*2), v.strokeWidth);
-		        	context.fillRect(v.offsetX-v.strokeWidth, v.offsetY+v.height, v.width+(v.strokeWidth*2), v.strokeWidth);
-		        	context.fillRect(v.offsetX-v.strokeWidth, v.offsetY-v.strokeWidth, v.strokeWidth, v.height+(v.strokeWidth*2));
-		        	context.fillRect(v.offsetX+v.width, v.offsetY-v.strokeWidth, v.strokeWidth, v.height+(v.strokeWidth*2));
+		        	context.fillRect(v.OffsetX-v.strokeWidth, v.OffsetY-v.strokeWidth, v.Width+(v.strokeWidth*2), v.strokeWidth);
+		        	context.fillRect(v.OffsetX-v.strokeWidth, v.OffsetY+v.Height, v.Width+(v.strokeWidth*2), v.strokeWidth);
+		        	context.fillRect(v.OffsetX-v.strokeWidth, v.OffsetY-v.strokeWidth, v.strokeWidth, v.Height+(v.strokeWidth*2));
+		        	context.fillRect(v.OffsetX+v.Width, v.OffsetY-v.strokeWidth, v.strokeWidth, v.Height+(v.strokeWidth*2));
 
 					context.restore();	        	
 	        	}
 
 				// Set the clipping area
 				context.beginPath();
-	        	context.rect(v.offsetX, v.offsetY, v.width, v.height);
+	        	context.rect(v.OffsetX, v.OffsetY, v.Width, v.Height);
+
 	        	context.clip();
 				context.closePath();
 
-				// make all the drawings relative to the viewport's visible area
-	    		context.translate(v.x + v.offsetX, v.y + v.offsetY);
-	    		context.scale(v.scaleX, v.scaleY);
-				
+				// Make all the drawings relative to the viewport's visible area
+				v.transformContext(context)
 				// Draw all the game objects associated with this viewport
 	    		v.draw(context);
-
 	    		// Go back to previous state for the next viewport
 	    		context.restore();
 			}
