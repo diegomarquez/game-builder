@@ -42,9 +42,9 @@ define(["viewport", "error-printer"], function(Viewport, ErrorPrinter) {
 	 *
 	 * @return {Object} The newly created [viewport](@@viewport@@)
 	 */
-	ViewportContainer.prototype.add = function(name, width, height, offsetX, offsetY) {		
+	ViewportContainer.prototype.add = function(name, width, height, offsetX, offsetY, scaleX, scaleY) {		
 		if (!viewports[name]) {
-			viewports[name] = new Viewport(name, width, height, offsetX, offsetY);
+			viewports[name] = new Viewport(name, width, height, offsetX, offsetY, scaleX, scaleY);
 			
 			viewportsArray.push(viewports[name]);
 			
@@ -57,6 +57,30 @@ define(["viewport", "error-printer"], function(Viewport, ErrorPrinter) {
 	
 	/**
 	 * <p style='color:#AD071D'><strong>add</strong></p>
+	 *
+	 * Creates a new [viewport](@@viewport@@) and adds it to the container.
+	 * 
+	 * @param {Object} viewport An object with all the properties needed to create a [viewport](@@viewport@@)
+	 *
+	 * @return {Object} The newly created [viewport](@@viewport@@)
+	 */
+	ViewportContainer.prototype.addFromObject = function(viewport) {
+		var name = viewport.name;
+
+		if (!viewports[name]) {
+			viewports[name] = new Viewport(name, viewport.width, viewport.height, viewport.offsetX, viewport.offsetY, viewport.scaleX, viewport.scaleY);		
+			viewports[name].setStroke(viewport.stroke.width, viewport.stroke.color);
+			viewportsArray.push(viewports[name]);
+			
+			return viewports[name];
+		}
+	};
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>remove</strong></p>
 	 *
 	 * Removes the specified [viewport](@@viewport@@)
 	 * 
@@ -74,7 +98,23 @@ define(["viewport", "error-printer"], function(Viewport, ErrorPrinter) {
 		viewports[name] = null;
 		viewportsArray.splice(viewportsArray.indexOf(viewport), 1);
 
-		return viewport.destroy()
+		return viewport.destroy();
+	};
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>removeAll</strong></p>
+	 *
+	 * Destroys all the [viewports](@@viewport@@)
+	 */
+	ViewportContainer.prototype.removeAll = function() {
+		while (viewportsArray.length > 0) {
+			var viewport = viewportsArray.pop();	
+			viewports[viewport.name] = null;	
+			viewport.destroy();
+		}
 	};
 	/**
 	 * --------------------------------

@@ -61,28 +61,29 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      * @param  {Number} height  Height of the viewport
      * @param  {Number} offsetX X offset relative to the top left corner of the screen
      * @param  {Number} offsetY Y offset relative to the top left corner of the screen
+     * @param  {Number} scaleX X scale of the viewport relative to the [world](@@world@@) size
+     * @param  {Number} scaleY Y scale of the viewport relative to the [world](@@world@@) size
      */
-    init: function(name, width, height, offsetX, offsetY) {
+    init: function(name, width, height, offsetX, offsetY, scaleX, scaleY) {
       this.name = name;
 
       this.x = 0;
       this.y = 0;
 
-      this.ScaleX = 1;
-      this.ScaleY = 1;
-
-      this.OffsetX = offsetX;
-      this.OffsetY = offsetY;
-
       this.Width = width;
       this.Height = height;
 
-      this.layers = [];
+      this.ScaleX = scaleX || 1;
+      this.ScaleY = scaleY || 1;
 
-      this.matrix = new Matrix();
-      
+      this.OffsetX = offsetX || 0;
+      this.OffsetY = offsetY || 0;
+
       this.visible = true;
       this.registerMouseEvents = true;
+      
+      this.layers = [];
+      this.matrix = new Matrix();
     },
 
     /**
