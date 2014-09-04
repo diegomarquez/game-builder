@@ -229,7 +229,7 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
     createConfiguration: function(alias, type) {
       ErrorPrinter.mustOverrideError('Pool');
     },
-    getConfiguration: function(name, nestedCall) {
+    getConfiguration: function(name, nestedCall, createNew) {
       ErrorPrinter.mustOverrideError('Pool');
     },
     /**
@@ -243,11 +243,17 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
      * method will only create instances of types that do not specify
      * a maximun amount when created.
      *
-     * @param  {String} type id of the type of object to create
+     * @param  {String} type Id of the type of object to create
+     * @param  {Boolean} force Set to true to force the creation of a new object
      *
      * @return {Boolean}      True or false depending if an object was created or not
      */
-    createNewIfNeeded: function(type) {
+    createNewIfNeeded: function(type, force) {
+      if (force) {
+        this.createPooledObject(type);
+        return true;
+      }
+
       if(!this.pools[type].maxAmount) {
         this.createPooledObject(type);
         return true;

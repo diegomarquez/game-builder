@@ -106,7 +106,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       },
 
       /**
-       * <p style='color:#AD071D'><strong>addToLayer</strong></p>
+       * <p style='color:#AD071D'><strong>add</strong></p>
        *
        * Wraps all the steps needed to start rendering a <a href=@@game-object@@>game-object</a>
        *
@@ -120,6 +120,30 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        */
       add: function (goId, groupId, vports) {
         var go = assembler.get(goId);
+        groups.get(groupId).add(go);
+        addToViewPorts.call(this, go, vports);
+        go.start();
+
+        return go;
+      },
+
+      /**
+       * <p style='color:#AD071D'><strong>create</strong></p>
+       *
+       * Wraps all the steps needed to start rendering a <a href=@@game-object@@>game-object</a>
+       * This method will create a new object if the corresponding [game-object-pool](@@game-object-pool@@) doesn't
+       * have any available
+       *
+       * @param {String} goId Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
+       * @param {String} groupId Id of the [group](@@group@@) to add the [game-object](@@game-object@@) to. View [groups](@@groups@@), for more details.
+       * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
+       *                              the [game-object](@@game-object@@) should be added to.
+       *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
+       *
+       * @return {Object} The [game-object](@@game-object@@) that was just assembled.
+       */
+      create: function (goId, groupId, vports) {
+        var go = assembler.create(goId);
         groups.get(groupId).add(go);
         addToViewPorts.call(this, go, vports);
         go.start();

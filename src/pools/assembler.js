@@ -59,22 +59,8 @@ define(['game-object-pool', 'component-pool', 'util', 'error-printer'], function
 		pooledObject[addMethod](componentIntance); 
 	}
 
-	/**
-	 * <p style='color:#AD071D'><strong>get</strong></p>
-	 *
-	 * The only method in the module. It returns a [game-object](@@game-object@@)
-	 * ready to be started.
-	 * 
-	 * @param  {String} name       Id of the [game-object](@@game-object@@) we want assembled. It should be an existing configured id on the [game-object-pool](@@game-object-pool@@)
-	 * @param  {Object} [args=null]       All the properties in this object will be copied to the assembled object. 
-	 * @param  {Boolean} [nestedCall=false] This argument is reserved for internal use. It defaults to false, but you can see what happens if you set it to true :P 
-	 *
-	 * @throws {Error} If a [game-object](@@game-object@@) was configured to have childs. Only [game-object-containers](@@game-object-container@@) can have nested childs
-	 * 
-	 * @return {Object} A [game-object](@@game-object@@) ready to be used
-	 */
-	Assembler.prototype.get = function(name, args, nestedCall) {
-		var configuration = GameObjectPool.getConfiguration(name, nestedCall);
+	var assemble = function(name, args, nestedCall, createNew) {
+		var configuration = GameObjectPool.getConfiguration(name, nestedCall, createNew);
 
 		//Get one object from the pool
 		var pooledObject = GameObjectPool.getPooledObject(configuration.type);
@@ -113,6 +99,44 @@ define(['game-object-pool', 'component-pool', 'util', 'error-printer'], function
 		}, true);
 
 		return pooledObject;
+	}
+
+	/**
+	 * <p style='color:#AD071D'><strong>get</strong></p>
+	 *
+	 * It returns a [game-object](@@game-object@@) ready to be started.
+	 * 
+	 * @param  {String} name       Id of the [game-object](@@game-object@@) we want assembled. It should be an existing configured id on the [game-object-pool](@@game-object-pool@@)
+	 * @param  {Object} [args=null]       All the properties in this object will be copied to the assembled object. 
+	 * @param  {Boolean} [nestedCall=false] This argument is reserved for internal use. It defaults to false, but you can see what happens if you set it to true :P   
+	 * 
+	 * @throws {Error} If a [game-object](@@game-object@@) was configured to have childs. Only [game-object-containers](@@game-object-container@@) can have nested childs
+	 * 
+	 * @return {Object} A [game-object](@@game-object@@) ready to be used
+	 */
+	Assembler.prototype.get = function(name, args, nestedCall) {
+		return assemble.call(this, name, args, nestedCall, false);
+	};
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>create</strong></p>
+	 *
+	 * It returns a [game-object](@@game-object@@) ready to be started. If the object is not available in the [game-object-pool](@@game-object-pool@@)
+	 * it will be created every time.
+	 * 
+	 * @param  {String} name                Id of the [game-object](@@game-object@@) we want assembled. It should be an existing configured id on the [game-object-pool](@@game-object-pool@@)
+	 * @param  {Object} [args=null]         All the properties in this object will be copied to the assembled object. 
+	 * @param  {Boolean} [nestedCall=false] This argument is reserved for internal use. It defaults to false, but you can see what happens if you set it to true :P   
+	 * 
+	 * @throws {Error} If a [game-object](@@game-object@@) was configured to have childs. Only [game-object-containers](@@game-object-container@@) can have nested childs
+	 * 
+	 * @return {Object} A [game-object](@@game-object@@) ready to be used
+	 */
+	Assembler.prototype.create = function(name, args, nestedCall) {
+		return assemble.call(this, name, args, nestedCall, true);
 	};
 	/**
 	 * --------------------------------

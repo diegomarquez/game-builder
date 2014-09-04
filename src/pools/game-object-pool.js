@@ -187,12 +187,14 @@ define(function(require) {
 		 * Gets a configuration for the requested [game-object](@@game-object@@).
 		 *
 		 * @param  {String} alias      Id of the [game-object](@@game-object@@) requested
+		 * @param  {Boolean} nestedCall
+		 * @param  {Boolean} createNew 
 		 *
 		 * @throws {Error} If the corresponding pool has no available objects
 		 * @throws {Error} If a [game-object](@@game-object@@) type which did not specified a maximun amount is requested explicitly
 		 * @return {Object} The configuration object requested
 		 */
-		getConfiguration: function(alias, nestedCall) {
+		getConfiguration: function(alias, nestedCall, createNew) {
 			var configuration = this.getConfigurationObject(alias);
 			var pool = this.pools[configuration.type];
 
@@ -201,7 +203,7 @@ define(function(require) {
 			}
 
 			if (pool.objects.length <= 0) {
-				var ok = this.createNewIfNeeded(configuration.type);
+				var ok = this.createNewIfNeeded(configuration.type, createNew);
 				
 				if(!ok) {
 					ErrorPrinter.printError('Game Object Pool', 'Game Object with type: ' + configuration.type + ' is not available');

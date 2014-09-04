@@ -124,6 +124,7 @@ define(function(require) {
 		 * Gets a configuration for the requested [component](@@component@@).
 		 *
 		 * @param  {String} alias      Id of the [component](@@component@@) requested
+		 * @param  {Boolean} nestedCall
 		 *
 		 * @throws {Error} If the corresponding pool has no available objects
 		 * @return {Object} The configuration object requested
