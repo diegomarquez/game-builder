@@ -130,11 +130,33 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      * Adds a new [layer](@@layer@@) to the viewport
      *
      * @param {String} name Id of the new [layer](@@layer@@)
+     *
+     * @return {Object} [layer](@@layer@@) that was just created. If the layer already exists, it is returned
      */
     addLayer: function(name) {
-      var layer = new Layer(name, this);
+      var layer = findLayer.call(this, name, true);
+
+      if (layer) 
+        return layer; 
+        
+      layer = new Layer(name, this);
       this.layers.push(layer);
+      
       return layer;
+    },
+    /**
+     * --------------------------------
+     */
+
+     /**
+     * <p style='color:#AD071D'><strong>getLayers</strong></p>
+     *
+     * Gets all the [layer](@@layer@@) objects
+     *
+     * @return {Array} An array with all the [layers](@@layer@@)
+     */
+    getLayers: function(name) {
+      return this.layers;
     },
     /**
      * --------------------------------
@@ -522,14 +544,16 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
     set: function(value) { this.scaleY = value; } 
   });
 
-  var findLayer = function(name) {
+  var findLayer = function(name, skipError) {
     for (var i = 0; i < this.layers.length; i++) {
       if (this.layers[i].name == name) {
         return this.layers[i];
       }
     }
 
-    ErrorPrinter.printError('Viewport', 'Layer with id:' + name + ' does not exist.');
+    if (!skipError) {
+      ErrorPrinter.printError('Viewport', 'Layer with id:' + name + ' does not exist.');
+    }
   }
 
   return Viewport;
