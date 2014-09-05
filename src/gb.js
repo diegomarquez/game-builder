@@ -115,11 +115,12 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
        *                              the [game-object](@@game-object@@) should be added to.
        *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
-       *
+       * @param {Object} [args] Object with arguments to be applied to the created [game-object](@@game-object@@)
+       * 
        * @return {Object} The [game-object](@@game-object@@) that was just assembled.
        */
-      add: function (goId, groupId, vports) {
-        var go = assembler.get(goId);
+      add: function (goId, groupId, vports, args) {
+        var go = assembler.get(goId, args);
         groups.get(groupId).add(go);
         addToViewPorts.call(this, go, vports);
         go.start();
@@ -139,11 +140,12 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
        *                              the [game-object](@@game-object@@) should be added to.
        *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
+       * @param {Object} [args] Object with arguments to be applied to the created [game-object](@@game-object@@)
        *
        * @return {Object} The [game-object](@@game-object@@) that was just assembled.
        */
-      create: function (goId, groupId, vports) {
-        var go = assembler.create(goId);
+      create: function (goId, groupId, vports, args) {
+        var go = assembler.create(goId, args);
         groups.get(groupId).add(go);
         addToViewPorts.call(this, go, vports);
         go.start();
