@@ -40,7 +40,7 @@ define(["viewport", "error-printer"], function(Viewport, ErrorPrinter) {
 	 * @param {Number} offsetX X offset relative to the top corner of the screen
 	 * @param {Number} offsetY Y offset relative to the top corner of the screen
 	 *
-	 * @return {Object} The newly created [viewport](@@viewport@@)
+	 * @return {Object} The newly created [viewport](@@viewport@@). If it already exists, the existing one is returned
 	 */
 	ViewportContainer.prototype.add = function(name, width, height, offsetX, offsetY, scaleX, scaleY) {		
 		if (!viewports[name]) {
@@ -49,7 +49,9 @@ define(["viewport", "error-printer"], function(Viewport, ErrorPrinter) {
 			viewportsArray.push(viewports[name]);
 			
 			return viewports[name];
-		}
+		} 
+
+		return viewports[name];
 	};
 	/**
 	 * --------------------------------
