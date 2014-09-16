@@ -22,14 +22,16 @@
 /**
  * --------------------------------
  */
-define(["class"], function(Class) {
-	var World = Class.extend({
+define(["delegate"], function(Delegate) {
+	var World = Delegate.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>init</strong></p>
 		 *
 		 * Constructor
 		 */
-		init: function() {},
+		init: function() {
+			this._super();
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -59,14 +61,20 @@ define(["class"], function(Class) {
 
 			this.setWidth = function(v) { 
 				width = v; 
+				this.execute(this.CHANGE_WIDTH, v);
+				this.execute(this.CHANGE);
 			};
 			
 			this.setHeight = function(v) { 
 				height = v; 
+				this.execute(this.CHANGE_HEIGHT, v);
+				this.execute(this.CHANGE);
 			};
 
 			this.setStep = function(v) { 
 				step = v; 
+				this.execute(this.CHANGE_STEP, v);
+				this.execute(this.CHANGE);
 			};
 		},
 
@@ -116,8 +124,12 @@ define(["class"], function(Class) {
 			viewport.ScaleX *= factor;
 			viewport.ScaleY *= factor;
 		}
-
 	});
+
+	Object.defineProperty(World.prototype, "CHANGE", { get: function() { return 'change' } });
+	Object.defineProperty(World.prototype, "CHANGE_WIDTH", { get: function() { return 'change_width' } });
+	Object.defineProperty(World.prototype, "CHANGE_HEIGHT", { get: function() { return 'change_height' } });
+	Object.defineProperty(World.prototype, "CHANGE_STEP", { get: function() { return 'change_step' } });
 
 	return new World();
 });
