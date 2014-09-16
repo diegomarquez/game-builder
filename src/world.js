@@ -40,9 +40,10 @@ define(["class"], function(Class) {
 		 * @param  {Number} w Width of the world
 		 * @param  {Number} h Height of the world
 		 */
-		create: function(w, h) {
+		create: function(w, h, s) {
 			var width = w;
 			var height = h;
+			var step = s;
 
 			this.getWidth = function() { 
 				return width; 
@@ -52,12 +53,20 @@ define(["class"], function(Class) {
 				return height; 
 			};
 
+			this.getStep = function() { 
+				return step; 
+			};
+
 			this.setWidth = function(v) { 
 				width = v; 
 			};
 			
 			this.setHeight = function(v) { 
 				height = v; 
+			};
+
+			this.setStep = function(v) { 
+				step = v; 
 			};
 		},
 
@@ -74,6 +83,22 @@ define(["class"], function(Class) {
 
 			viewport.ScaleX /= this.getWidth() / viewport.Width;
 			viewport.ScaleY /= this.getHeight() / viewport.Height;
+
+			viewport.WorldFit = true;
+		},
+
+		/**
+		 * <p style='color:#AD071D'><strong>resetViewportScale</strong></p>
+		 *
+		 * Reset the scale of the specified [viewport](@@viewport@@)
+		 * 
+		 * @param  {Object} viewport The [viewport](@@viewport@@) to scale
+		 */
+		resetViewportScale: function(viewport) {
+			viewport.ScaleX = 1;
+			viewport.ScaleY = 1;
+
+			viewport.WorldFit = false;
 		},
 
 		/**
