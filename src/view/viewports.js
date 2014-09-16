@@ -206,6 +206,22 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>iterate</strong></p>
+		 *
+		 * Iterate through all the viewports executing the callback function with each [viewport](@@viewport@@) as argument
+		 * 
+		 * @param  {Function} method The method to execute for each [viewport](@@viewport@@)
+		 */
+		iterate: function(scope, method) {
+			for (var i = 0; i < viewportsArray.length; i++) {
+				method.call(scope, viewportsArray[i]); 
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>all</strong></p>
