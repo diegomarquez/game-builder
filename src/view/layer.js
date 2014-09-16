@@ -91,8 +91,7 @@ define(["delegate"], function(Delegate){
      */
     removeAll: function() {
       for (var i = 0; i < this.gameObjects.length; i++) {
-        go = this.gameObjects[i];
-        go.viewports.splice(go.viewports.indexOf(this.viewport.name), 1);
+        this.remove(this.gameObjects[i]);
       }
 
       var gos = this.gameObjects;

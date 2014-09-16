@@ -29,7 +29,7 @@
 /**
  * --------------------------------
  */
-define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"], function(Delegate, Layer, Matrix, SAT, Vector2D, ErrorPrinter){
+define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "error-printer"], function(Delegate, Layer, Reclaimer, Matrix, SAT, Vector2D, ErrorPrinter){
   var p1 = {};
   var p2 = {};
   var p3 = {};
@@ -78,6 +78,8 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
 
       this.OffsetX = offsetX || 0;
       this.OffsetY = offsetY || 0;
+
+      this.WorldFit = false;
 
       this.visible = true;
       this.registerMouseEvents = true;
@@ -173,7 +175,10 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      */
     removeLayer: function(name) {
       for (var i = 0; i < this.layers.length; i++) {
-        if (this.layers[i].name == name) {
+        var layer = this.layers[i];
+
+        if (layer.name == name) {
+          recycleGameObjects(layer.removeAll());
           this.layers.splice(i, 1);
           return;
         }
@@ -189,21 +194,17 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      * <p style='color:#AD071D'><strong>removeAllLayers</strong></p>
      *
      * Remove all [layers](@@layer@@) from the viewport
-     *
-     * @return {Array} The [game-objets](@@game-objet@@) that were just removed
      */
     removeAllLayers: function() {
       var layer;
 
       var gos = [];
 
-      for (var i = 0; i < this.layers.length; i++) {
-        layer = this.layers.pop();
-
-        gos = gos.concat(layer.removeAll());
+      while (this.layers.length != 0) {
+        gos = gos.concat(this.layers.pop().removeAll());
       }
 
-      return gos;
+      recycleGameObjects(gos);
     },
     /**
      * --------------------------------
@@ -234,8 +235,6 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      * <p style='color:#AD071D'><strong>removeAllGameObjects</strong></p>
      *
      * Remove all [game-objects](@@game-object@@) from the viewport
-     *
-     * @return {Array} The [game-objets](@@game-objet@@) that were just removed
      */
     removeAllGameObjects: function() {
       var gos = [];
@@ -244,7 +243,7 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
         gos = gos.concat(this.layers[i].removeAll());
       }
 
-      return gos;
+      recycleGameObjects(gos);
     },
     /**
      * --------------------------------
@@ -254,12 +253,10 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
      * <p style='color:#AD071D'><strong>destroy</strong></p>
      *
      * Destroys everything inside the viewport
-     *
-     * @return {Array} The [game-objets](@@game-objet@@) that were just removed
      */
     destroy: function() {
       this.matrix = null;
-      return this.removeAllLayers();
+      this.removeAllLayers();
     },
     /**
      * --------------------------------
@@ -514,6 +511,11 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
     
   });
 
+  Object.defineProperty(Viewport.prototype, "WorldFit", { 
+    get: function() { return this.worldFit; },
+    set: function(value) { this.worldFit = value; } 
+  });
+
   Object.defineProperty(Viewport.prototype, "Width", { 
     get: function() { return Number(this.width); },
     set: function(value) { this.width = value; } 
@@ -553,6 +555,18 @@ define(["delegate", "layer", "matrix-3x3", "sat", "vector-2D", "error-printer"],
 
     if (!skipError) {
       ErrorPrinter.printError('Viewport', 'Layer with id:' + name + ' does not exist.');
+    }
+  }
+
+  var recycleGameObjects = function(gos) {
+    // Check which game objects are not renderer in any viewport
+    for (var i = 0; i < gos.length; i++) {
+      var go = gos[i];
+
+      // If a game object is not renderer anywhere send it back to it's pool
+      if (!go.hasViewport()) {
+        Reclaimer.claim(go);
+      }
     }
   }
 
