@@ -93,6 +93,8 @@ define(["delegate"], function(Delegate) {
 			viewport.ScaleY /= this.getHeight() / viewport.Height;
 
 			viewport.WorldFit = true;
+
+			this.execute(this.SCALE_TO_FIT, viewport);
 		},
 
 		/**
@@ -107,6 +109,8 @@ define(["delegate"], function(Delegate) {
 			viewport.ScaleY = 1;
 
 			viewport.WorldFit = false;
+
+			this.execute(this.RESET_SCALE, viewport);
 		},
 
 		/**
@@ -130,6 +134,8 @@ define(["delegate"], function(Delegate) {
 	Object.defineProperty(World.prototype, "CHANGE_WIDTH", { get: function() { return 'change_width' } });
 	Object.defineProperty(World.prototype, "CHANGE_HEIGHT", { get: function() { return 'change_height' } });
 	Object.defineProperty(World.prototype, "CHANGE_STEP", { get: function() { return 'change_step' } });
+	Object.defineProperty(World.prototype, "SCALE_TO_FIT", { get: function() { return 'scale_to_fit' } });
+	Object.defineProperty(World.prototype, "RESET_SCALE", { get: function() { return 'scale_to_fit' } });
 
 	return new World();
 });
