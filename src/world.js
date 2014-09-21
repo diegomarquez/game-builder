@@ -112,6 +112,9 @@ define(["delegate"], function(Delegate) {
 
 			this.execute(this.RESET_SCALE, viewport);
 		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>scaleViewportProportionaly</strong></p>
