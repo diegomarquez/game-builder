@@ -119,6 +119,38 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 		 * --------------------------------
 		 */
 		
+		 /**
+		 * <p style='color:#AD071D'><strong>swap</strong></p>
+		 *
+		 * Swaps the specified [viewports](@@viewport@@) order
+		 *
+		 * @param {String|Number} [first] Name of one of the [viewports](@@viewport@@) to swap
+		 * @param {String|Number} [second] Name of one of the [viewports](@@viewport@@) to swap
+		 */
+		swap: function (first, second) {
+			var firstIndex, secondIndex;
+
+			if (typeof first == 'number' && typeof second == 'number') {
+				firstIndex = first;
+				secondIndex = second;
+			} else {
+				firstIndex = viewportsArray.indexOf(viewports[first]);
+				secondIndex = viewportsArray.indexOf(viewports[second]);
+			}
+
+			var firstViewport = viewportsArray[firstIndex];
+			var secondViewport = viewportsArray[secondIndex];
+
+			viewportsArray[firstIndex] = null;
+			viewportsArray[secondIndex] = null;
+
+			viewportsArray[firstIndex] = secondViewport;
+			viewportsArray[secondIndex] = firstViewport;
+		},
+		/**
+		 * --------------------------------
+		 */
+
 		/**
 		 * <p style='color:#AD071D'><strong>removeAll</strong></p>
 		 *
