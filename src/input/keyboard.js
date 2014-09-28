@@ -34,10 +34,8 @@ define(function(require) {
 
 			// ### Defined keycodes
 			
-			// Not all the keys of the keyboard,
-			// but they should be more than enough
-			// for a [Game-Builder](http://diegomarquez.github.io/game-builder)
-			// project
+			// Not all the keys of the keyboard but they should be more than enough
+			// for a [Game-Builder](http://diegomarquez.github.io/game-builder) project
 
 			this.LEFT = 37;
 			this.UP = 38;
@@ -79,6 +77,26 @@ define(function(require) {
 			this.GAME_BUTTON_1 = this.A;
 			this.GAME_BUTTON_2 = this.S;
 			this.GAME_BUTTON_PAUSE = this.P;
+
+			// And array with the keys that should avoid the default browser behaviour when they are pressed
+			this.skipDefaultBehaviour = [];
+		},
+
+		/**
+		 * <p style='color:#AD071D'><strong>config</strong></p>
+		 *
+		 * @param  {Object} options An object with various configuration options
+		 */
+		config: function(options) {
+			if (options.gameKeys) {
+				for (var k in options.gameKeys) {
+					this[k] = options.gameKeys[k];		
+				}
+			}
+
+			if (options.skipDefaultBehaviour) {
+				this.skipDefaultBehaviour = options.skipDefaultBehaviour;
+			}
 		},
 
 		/**
@@ -219,32 +237,18 @@ define(function(require) {
 	 * --------------------------------
 	 */
 
-	// TODO: Hacer que esto sea configurable desde el exterior
-
 	// ### Prevent default behaviour of keys in the browser
-	// document.onkeydown = function(event) {
-	// 	if (event.keyCode == keyboard.LEFT ||
-	// 		event.keyCode == keyboard.UP ||
-	// 		event.keyCode == keyboard.RIGHT ||
-	// 		event.keyCode == keyboard.DOWN ||
-	// 		event.keyCode == keyboard.CTRL ||
-	// 		event.keyCode == keyboard.ALT ||
-	// 		event.keyCode == keyboard.ESC) {
-	// 		event.preventDefault();
-	// 	}
-	// }
+	document.onkeydown = function(event) {
+		if (keyboard.skipDefaultBehaviour.indexOf(event.keyCode) != -1) {
+			event.preventDefault();
+		}
+	}
 
-	// document.onkeypress = function(event) {
-	// 	if (event.keyCode == keyboard.LEFT ||
-	// 		event.keyCode == keyboard.UP ||
-	// 		event.keyCode == keyboard.RIGHT ||
-	// 		event.keyCode == keyboard.DOWN ||
-	// 		event.keyCode == keyboard.CTRL ||
-	// 		event.keyCode == keyboard.ALT ||
-	// 		event.keyCode == keyboard.ESC) {
-	// 		event.preventDefault();
-	// 	}
-	// }
+	document.onkeypress = function(event) {
+		if (keyboard.skipDefaultBehaviour.indexOf(event.keyCode) != -1) {
+			event.preventDefault();
+		}
+	}
 
 	return keyboard;
 });
