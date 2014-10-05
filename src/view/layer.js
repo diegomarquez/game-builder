@@ -90,13 +90,11 @@ define(["delegate"], function(Delegate){
      * @return {Array} All the [game-objects](@@game-object@@) that were just removed
      */
     removeAll: function() {
+      var gos = [];
+
       for (var i = 0; i < this.gameObjects.length; i++) {
-        this.remove(this.gameObjects[i]);
+        gos.push(this.remove(this.gameObjects[i]));
       }
-
-      var gos = this.gameObjects;
-
-      this.gameObjects = [];
 
       return gos;
     },
