@@ -209,7 +209,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      *
      * @return {Array} An array with all the [layers](@@layer@@)
      */
-    getLayers: function(name) {
+    getLayers: function() {
       return this.layers;
     },
     /**
