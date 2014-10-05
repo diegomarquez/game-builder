@@ -77,6 +77,20 @@ define(["root", "group", "error-printer"], function(Root, Group, ErrorPrinter) {
   /**
    * --------------------------------
    */
+  
+  /**
+   * <p style='color:#AD071D'><strong>removeAll</strong></p>
+   *
+   * Removes all [groups](@@group@@) from the array in this object, and also from the [root](@@root@@).
+   */
+  GroupContainer.prototype.removeAll = function() {
+    for (var k in this.groups) {
+      this.remove(k);
+    }
+  };
+  /**
+   * --------------------------------
+   */
 
   /**
    * <p style='color:#AD071D'><strong>clear</strong></p>
