@@ -124,32 +124,19 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 		 */
 		
 		 /**
-		 * <p style='color:#AD071D'><strong>swap</strong></p>
+		 * <p style='color:#AD071D'><strong>change</strong></p>
 		 *
-		 * Swaps the specified [viewports](@@viewport@@) order
+		 * Chnage the position of the specified viewport
 		 *
-		 * @param {String|Number} [first] Name of one of the [viewports](@@viewport@@) to swap
-		 * @param {String|Number} [second] Name of one of the [viewports](@@viewport@@) to swap
+		 * @param {String} [name] Name [viewport](@@viewport@@) to change
+		 * @param {Number} [index] New index
 		 */
-		swap: function (first, second) {
-			var firstIndex, secondIndex;
+		change: function (name, index) {
+	      viewport = viewports[name];
+	      viewportIndex = viewportsArray.indexOf(viewport);
 
-			if (typeof first == 'number' && typeof second == 'number') {
-				firstIndex = first;
-				secondIndex = second;
-			} else {
-				firstIndex = viewportsArray.indexOf(viewports[first]);
-				secondIndex = viewportsArray.indexOf(viewports[second]);
-			}
-
-			var firstViewport = viewportsArray[firstIndex];
-			var secondViewport = viewportsArray[secondIndex];
-
-			viewportsArray[firstIndex] = null;
-			viewportsArray[secondIndex] = null;
-
-			viewportsArray[firstIndex] = secondViewport;
-			viewportsArray[secondIndex] = firstViewport;
+	      viewportsArray.splice(viewportIndex, 1);
+	      viewportsArray.splice(index, 0, viewport);
 		},
 		/**
 		 * --------------------------------
