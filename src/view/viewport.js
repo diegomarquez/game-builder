@@ -65,6 +65,8 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      * @param  {Number} scaleY Y scale of the viewport relative to the [world](@@world@@) size
      */
     init: function(name, width, height, offsetX, offsetY, scaleX, scaleY) {
+      this._super();
+
       this.name = name;
 
       this.x = 0;
@@ -135,16 +137,66 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      *
      * @return {Object} [layer](@@layer@@) that was just created. If the layer already exists, it is returned
      */
-    addLayer: function(name) {
-      var layer = findLayer.call(this, name, true);
+    addLayer: function(name) {      
+      var result = createLayer.call(this, name);
 
-      if (layer) 
-        return layer; 
-        
-      layer = new Layer(name, this);
-      this.layers.push(layer);
-      
-      return layer;
+      if(result.newLayer) {
+        this.layers.push(result.layer);
+
+        this.execute(this.ADD, result.layer);
+      }
+
+      return result.layer;
+    },
+    /**
+     * --------------------------------
+     */
+    
+    /**
+     * <p style='color:#AD071D'><strong>addLayerAfter</strong></p>
+     *
+     * Adds a new [layer](@@layer@@) to the viewport after an existing [layer](@@layer@@)
+     *
+     * @param {String} name Id of the new [layer](@@layer@@)
+     * @param {String} after Id of the existing [layer](@@layer@@)
+     *
+     * @return {Object} [layer](@@layer@@) that was just created. If the layer already exists, it is returned
+     */
+    addLayerAfter: function(name, after) {
+      var result = createLayer.call(this, name);
+
+      if(result.newLayer) {
+        this.layers.splice(findLayerIndex.call(this, after) + 1, 0, result.layer);
+
+        this.execute(this.ADD, result.layer);
+      }
+
+      return result.layer;
+    },
+    /**
+     * --------------------------------
+     */
+
+    /**
+     * <p style='color:#AD071D'><strong>addLayerBefore</strong></p>
+     *
+     * Adds a new [layer](@@layer@@) to the viewport before an existing [layer](@@layer@@)
+     *
+     * @param {String} name Id of the new [layer](@@layer@@)
+     * @param {String} before Id of the existing [layer](@@layer@@)
+     *
+     * @return {Object} [layer](@@layer@@) that was just created. If the layer already exists, it is returned
+     */
+    addLayerBefore: function(name, before) {
+      var result = createLayer.call(this, name);
+
+      if(result.newLayer) {
+        this.layers.splice(findLayerIndex.call(this, before), 0, result.layer);
+
+        this.execute(this.ADD, result.layer);
+      }
+
+      return result.layer;
     },
     /**
      * --------------------------------
@@ -159,6 +211,27 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      */
     getLayers: function(name) {
       return this.layers;
+    },
+    /**
+     * --------------------------------
+     */
+    
+    /**
+     * <p style='color:#AD071D'><strong>changeLayer</strong></p>
+     *
+     * Change [layer](@@layer@@) position in it's collection
+     *
+     * @param {String} [name] Name of of the [layer](@@layer@@) to change
+     * @param {Number} [index] Index to put the selected [layer](@@layer@@) in
+     */
+    changeLayer: function(name, index) {
+      layer = findLayer.call(this, name);
+      layerIndex = findLayerIndex.call(this, name);
+
+      this.layers.splice(layerIndex, 1);
+      this.layers.splice(index, 0, layer);
+
+      this.execute(this.CHANGE, result.layer);
     },
     /**
      * --------------------------------
@@ -178,8 +251,11 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
         var layer = this.layers[i];
 
         if (layer.name == name) {
+          this.execute(this.REMOVE, layer);
+
           recycleGameObjects(layer.removeAll());
           this.layers.splice(i, 1);
+
           return;
         }
       }
@@ -205,6 +281,8 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
       }
 
       recycleGameObjects(gos);
+
+      this.execute(this.REMOVE_ALL);
     },
     /**
      * --------------------------------
@@ -421,6 +499,22 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      * --------------------------------
      */
     
+     /**
+     * <p style='color:#AD071D'><strong>layerExists</strong></p>
+     *
+     * Check whether the specified [layer](@@layer@@) exists
+     *
+     * @param {Boolean} name
+     *
+     * @return {Boolean} Whether the specified layer exists or not
+     */
+    layerExists: function(name) {
+      return findLayer.call(this, name, true) ? true : false;
+    },
+    /**
+     * --------------------------------
+     */
+
     /**
      * <p style='color:#AD071D'><strong>showLayer</strong></p>
      *
@@ -508,8 +602,12 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * --------------------------------
      */
-    
   });
+
+  Object.defineProperty(Viewport.prototype, "ADD", { get: function() { return 'add'; } });
+  Object.defineProperty(Viewport.prototype, "REMOVE", { get: function() { return 'remove'; } });
+  Object.defineProperty(Viewport.prototype, "CHANGE", { get: function() { return 'change'; } });
+  Object.defineProperty(Viewport.prototype, "REMOVE_ALL", { get: function() { return 'remove_all'; } });
 
   Object.defineProperty(Viewport.prototype, "WorldFit", { 
     get: function() { return this.worldFit; },
@@ -546,10 +644,31 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     set: function(value) { this.scaleY = value; } 
   });
 
+  var createLayer = function(name) {
+    var layer = findLayer.call(this, name, true);
+
+    if (layer) 
+      return { layer:layer, newLayer:false }; 
+      
+    return { layer:new Layer(name, this), newLayer:true };
+  }
+
   var findLayer = function(name, skipError) {
     for (var i = 0; i < this.layers.length; i++) {
       if (this.layers[i].name == name) {
         return this.layers[i];
+      }
+    }
+
+    if (!skipError) {
+      ErrorPrinter.printError('Viewport', 'Layer with id:' + name + ' does not exist.');
+    }
+  }
+
+  var findLayerIndex = function(name, skipError) {
+    for (var i = 0; i < this.layers.length; i++) {
+      if (this.layers[i].name == name) {
+        return i;
       }
     }
 
