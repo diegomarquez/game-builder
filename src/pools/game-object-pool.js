@@ -198,13 +198,19 @@ define(function(require) {
 			var configuration = this.getConfigurationObject(alias);
 			var pool = this.pools[configuration.type];
 
-			if(!nestedCall && !pool.maxAmount) {
+			if(!nestedCall && !pool.maxAmount && !pool.dynamic) {
 				ErrorPrinter.printError('Game Object Pool', 'Game Object with type: ' + configuration.type + ' does not have a value for maxAmount. It can not be requested explicitly')
 			}
 
 			if (pool.objects.length <= 0) {
-				var ok = this.createNewIfNeeded(configuration.type, createNew);
-				
+				var ok;
+
+				if (pool.dynamic) {
+					ok = this.createNewIfNeeded(configuration.type, true);
+				} else {
+					ok = this.createNewIfNeeded(configuration.type, createNew);
+				}
+
 				if(!ok) {
 					ErrorPrinter.printError('Game Object Pool', 'Game Object with type: ' + configuration.type + ' is not available');
 				}

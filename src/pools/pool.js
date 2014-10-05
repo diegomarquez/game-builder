@@ -79,6 +79,8 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
           objects: [],
           type: type
         };
+        
+        this.addInitialObjectsToPool(amount, alias);
       }
 
       // Objects that are active on a given pool at any given time.
@@ -86,7 +88,37 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
         this.active[alias] = [];
       }
 
-      this.addInitialObjectsToPool(amount, alias);
+      this.execute(this.INIT);
+    },
+    /**
+     * --------------------------------
+     */
+    
+    /**
+     * <p style='color:#AD071D'><strong>createDynamicPool</strong></p>
+     *
+     * Creates a collections of a given type of objects, assigning it an
+     * id to later be able to get references out of it.
+     *
+     * @param  {String} alias  Id used to later refer to the collection that is being created
+     * @param  {Object} type   The object prototype from which instances in this pool will be created from
+     */
+    createDynamicPool: function(alias, type) {
+      // A pool object contains an array of objects, and a variable
+      // of the type of the objects it contains.
+      if (this.pools[alias] == null) {
+        this.pools[alias] = {
+          objects: [],
+          type: type
+        };
+      }
+
+      // Objects that are active on a given pool at any given time.
+      if (this.active[alias] == null) {
+        this.active[alias] = [];
+      }
+
+      this.pools[alias].dynamic = true;
 
       this.execute(this.INIT);
     },
