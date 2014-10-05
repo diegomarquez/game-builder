@@ -82,6 +82,10 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 				v.setStroke(viewport.stroke.width, viewport.stroke.color);
 				v.WorldFit = viewport.worldFit;
 
+				for (var i = 0; i < viewport.layers.length; i++) {
+					v.addLayer(viewport.layers[i]);
+				}
+
 				viewports[name] = v;
 				viewportsArray.push(v);
 
