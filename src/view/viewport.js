@@ -611,7 +611,13 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 
   Object.defineProperty(Viewport.prototype, "WorldFit", { 
     get: function() { return this.worldFit; },
-    set: function(value) { this.worldFit = value; } 
+    set: function(value) { 
+      if (typeof value === 'string') {
+        this.worldFit = value.toLowerCase() == 'true' ? true : false;
+      } else {
+        this.worldFit = value; 
+      }
+    } 
   });
 
   Object.defineProperty(Viewport.prototype, "Width", { 
