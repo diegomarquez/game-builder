@@ -31,6 +31,7 @@ define(["root", "group", "error-printer"], function(Root, Group, ErrorPrinter) {
 
   var GroupContainer = function() {
     this.groups = {};
+    this.groupsArray = [];
   };
 
   /**
@@ -45,12 +46,15 @@ define(["root", "group", "error-printer"], function(Root, Group, ErrorPrinter) {
    * a list of childs of it's own.
    *
    * @param {String} name Id of the group, used later to refer to the group.
+   *
+   * @return {Object} The [group](@@group@@) that was just created
    */
   GroupContainer.prototype.add = function(name) {
     var group = new Group();
 
     Root.add(group).start();
     this.groups[name] = group;
+    this.groupsArray.push(group);
 
     return group;
   };
@@ -70,8 +74,13 @@ define(["root", "group", "error-printer"], function(Root, Group, ErrorPrinter) {
    * @param  {String} name Id of the group to remove
    */
   GroupContainer.prototype.remove = function(name) {
-    this.groups[name].clear();
+    var group = this.groups[name];
+
+    group.clear();
+
+    this.groupsArray.splice(this.groupsArray.indexOf(group), 1);
     delete this.groups[name];
+    
     Root.remove(this.groups[name]);
   };
   /**
@@ -218,8 +227,14 @@ define(["root", "group", "error-printer"], function(Root, Group, ErrorPrinter) {
   GroupContainer.prototype.allGroupNames = function() {
     var r = [];
 
-    for (var k in this.groups) {
-      r.push(k);
+    for (var i = 0; i < this.groupsArray.length; i++) {
+      var group = this.groupsArray[i];
+ 
+      for (var k in this.groups) {
+        if (this.groups[k] === group) {
+          r.push(k);
+        }
+      }
     }
 
     return r;
