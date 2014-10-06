@@ -132,8 +132,8 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 		 * @param {Number} [index] New index
 		 */
 		change: function (name, index) {
-	      viewport = viewports[name];
-	      viewportIndex = viewportsArray.indexOf(viewport);
+	      var viewport = viewports[name];
+	      var viewportIndex = viewportsArray.indexOf(viewport);
 
 	      viewportsArray.splice(viewportIndex, 1);
 	      viewportsArray.splice(index, 0, viewport);

@@ -225,8 +225,8 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      * @param {Number} [index] Index to put the selected [layer](@@layer@@) in
      */
     changeLayer: function(name, index) {
-      layer = findLayer.call(this, name);
-      layerIndex = findLayerIndex.call(this, name);
+      var layer = findLayer.call(this, name);
+      var layerIndex = findLayerIndex.call(this, name);
 
       this.layers.splice(layerIndex, 1);
       this.layers.splice(index, 0, layer);
