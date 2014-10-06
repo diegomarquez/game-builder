@@ -46,9 +46,21 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 		 *
 		 * @return {Object} The newly created [viewport](@@viewport@@). If it already exists, the existing one is returned
 		 */
-		add: function (name, width, height, offsetX, offsetY, scaleX, scaleY) {		
+		add: function (name, width, height, offsetX, offsetY, scaleX, scaleY, layers, strokeColor, strokeWidth, worldFit) {		
 			if (!viewports[name]) {
-				var v = new Viewport(name, width, height, offsetX, offsetY, scaleX, scaleY);
+				var v = createViewport(
+					name, 
+					width, 
+					height, 
+					offsetX, 
+					offsetY, 
+					scaleX, 
+					scaleY, 
+					layers, 
+					strokeColor, 
+					strokeWidth, 
+					worldFit
+				);
 
 				viewports[name] = v;
 				viewportsArray.push(v);
@@ -77,14 +89,19 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 			var name = viewport.name;
 
 			if (!viewports[name]) {
-				var v = new Viewport(name, viewport.width, viewport.height, viewport.offsetX, viewport.offsetY, viewport.scaleX, viewport.scaleY);
-
-				v.setStroke(viewport.stroke.width, viewport.stroke.color);
-				v.WorldFit = viewport.worldFit;
-
-				for (var i = 0; i < viewport.layers.length; i++) {
-					v.addLayer(viewport.layers[i]);
-				}
+				var v = createViewport(
+					name, 
+					viewport.width, 
+					viewport.height, 
+					viewport.offsetX, 
+					viewport.offsetY, 
+					viewport.scaleX, 
+					viewport.scaleY, 
+					viewport.layers,
+					viewport.stroke.color, 
+					viewport.stroke.width, 
+					viewport.worldFit
+				);
 
 				viewports[name] = v;
 				viewportsArray.push(v);
@@ -274,6 +291,21 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 		 * --------------------------------
 		 */
 	});
+
+	var createViewport = function (name, width, height, offsetX, offsetY, scaleX, scaleY, layers, strokeColor, strokeWidth, worldFit) {
+		var v = new Viewport(name, width, height, offsetX, offsetY, scaleX, scaleY);
+
+		v.setStroke(strokeWidth, strokeColor);
+		v.WorldFit = worldFit;
+
+		if (layers) {
+			for (var i = 0; i < layers.length; i++) {
+				v.addLayer(layers[i]);
+			}
+		}
+
+		return v;
+	}
 
 	Object.defineProperty(ViewportContainer.prototype, "ADD", { get: function() { return 'add'; } });
 	Object.defineProperty(ViewportContainer.prototype, "REMOVE", { get: function() { return 'remove'; } });
