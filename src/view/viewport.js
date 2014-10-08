@@ -82,6 +82,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
       this.OffsetY = offsetY || 0;
 
       this.WorldFit = false;
+      this.Culling = true;
 
       this.visible = true;
       this.registerMouseEvents = true;
@@ -424,7 +425,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      * @return {Boolean} Whether the [game-object](@@game-object@@) is in the visible area of the viewport or not
      */
     isGameObjectInside: function(go) {
-      if (!go.renderer) return;
+      if (!go.renderer || !this.Culling) return true;
 
       r = go.renderer;
       m = go.matrix;
@@ -616,6 +617,17 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
         this.worldFit = value.toLowerCase() == 'true' ? true : false;
       } else {
         this.worldFit = value; 
+      }
+    } 
+  });
+
+  Object.defineProperty(Viewport.prototype, "Culling", { 
+    get: function() { return this.culling; },
+    set: function(value) { 
+      if (typeof value === 'string') {
+        this.culling = value.toLowerCase() == 'true' ? true : false;
+      } else {
+        this.culling = value; 
       }
     } 
   });
