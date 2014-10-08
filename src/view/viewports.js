@@ -48,19 +48,7 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 		 */
 		add: function (name, width, height, offsetX, offsetY, scaleX, scaleY, layers, strokeColor, strokeWidth, worldFit) {		
 			if (!viewports[name]) {
-				var v = createViewport(
-					name, 
-					width, 
-					height, 
-					offsetX, 
-					offsetY, 
-					scaleX, 
-					scaleY, 
-					layers, 
-					strokeColor, 
-					strokeWidth, 
-					worldFit
-				);
+				var v = create.apply(this, arguments);
 
 				viewports[name] = v;
 				viewportsArray.push(v);
@@ -76,6 +64,7 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 		 * --------------------------------
 		 */
 		
+		
 		/**
 		 * <p style='color:#AD071D'><strong>add</strong></p>
 		 *
@@ -89,7 +78,7 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 			var name = viewport.name;
 
 			if (!viewports[name]) {
-				var v = createViewport(
+				var v = create(
 					name, 
 					viewport.width, 
 					viewport.height, 
@@ -143,7 +132,7 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 		 /**
 		 * <p style='color:#AD071D'><strong>change</strong></p>
 		 *
-		 * Chnage the position of the specified viewport
+		 * Change the position of the specified viewport
 		 *
 		 * @param {String} [name] Name [viewport](@@viewport@@) to change
 		 * @param {Number} [index] New index
@@ -158,7 +147,39 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 		/**
 		 * --------------------------------
 		 */
-
+		
+		/**
+		 * <p style='color:#AD071D'><strong>after</strong></p>
+		 *
+		 * Place the [viewport](@@viewport@@) specified by the first argument after
+		 * the one specified by the second argument.
+		 *
+		 * @param {String} [name] Name [viewport](@@viewport@@) to change
+		 * @param {String} [other] Name [viewport](@@viewport@@) which should come before to the one in the first argument
+		 */
+		after: function (name, other) {
+			move('after', name, other);
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>before</strong></p>
+		 *
+		 * Place the [viewport](@@viewport@@) specified by the first argument before
+		 * the one specified by the second argument.
+		 *
+		 * @param {String} [name] Name [viewport](@@viewport@@) to change
+		 * @param {String} [other] Name [viewport](@@viewport@@) which should come after to the one in the first argument
+		 */
+		before: function (name, other) {
+	      	move('before', name, other);
+		},
+		/**
+		 * --------------------------------
+		 */
+		
 		/**
 		 * <p style='color:#AD071D'><strong>removeAll</strong></p>
 		 *
@@ -292,7 +313,7 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 		 */
 	});
 
-	var createViewport = function (name, width, height, offsetX, offsetY, scaleX, scaleY, layers, strokeColor, strokeWidth, worldFit) {
+	var create = function (name, width, height, offsetX, offsetY, scaleX, scaleY, layers, strokeColor, strokeWidth, worldFit) {
 		var v = new Viewport(name, width, height, offsetX, offsetY, scaleX, scaleY);
 
 		v.setStroke(strokeWidth, strokeColor);
@@ -305,6 +326,32 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 		}
 
 		return v;
+	}
+
+	var move = function(type, current, pivot) {
+		if (!viewports[current]) {
+			ErrorPrinter.printError('Viewports', 'Viewport with id:' + current + ' does not exist.');
+		}
+
+		if (!viewports[pivot]) {
+			ErrorPrinter.printError('Viewports', 'Viewport with id:' + pivot + ' does not exist.');
+		}
+       
+		var current = viewports[current];
+		var pivot = viewports[pivot];
+
+		var currentIndex = viewportsArray.indexOf(current);
+		var pivotIndex;
+
+		if (type == 'before') {
+			pivotIndex = viewportsArray.indexOf(pivot);
+		}
+
+		if (type == 'after') {
+			pivotIndex = viewportsArray.indexOf(pivot) + 1;
+		}
+
+		viewportsArray.splice(pivotIndex, 0, viewportsArray.splice(currentIndex, 1)[0]);
 	}
 
 	Object.defineProperty(ViewportContainer.prototype, "ADD", { get: function() { return 'add'; } });
