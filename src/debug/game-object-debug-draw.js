@@ -42,9 +42,8 @@ define(function(require){
 	 */
 	DebugDraw.gameObject = function(context, viewport) {
 		var gb = require('gb');
-		
-		if(gb.debug) {
 
+		if(gb.debug && !this.skipDebug) {
 			// Store current context
 			context.save();
 			// Reset transformation
