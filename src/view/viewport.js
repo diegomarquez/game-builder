@@ -632,6 +632,16 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     } 
   });
 
+  Object.defineProperty(Viewport.prototype, "X", { 
+    get: function() { return Number(this.x); },
+    set: function(value) { this.x = value; } 
+  });
+
+  Object.defineProperty(Viewport.prototype, "Y", { 
+    get: function() { return Number(this.y); },
+    set: function(value) { this.y = value; } 
+  });
+
   Object.defineProperty(Viewport.prototype, "Width", { 
     get: function() { return Number(this.width); },
     set: function(value) { this.width = value; } 
