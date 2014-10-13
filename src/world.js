@@ -95,6 +95,7 @@ define(["delegate"], function(Delegate) {
 			viewport.WorldFit = true;
 
 			this.execute(this.SCALE_TO_FIT, viewport);
+			this.execute(this.SCALE, viewport);
 		},
 
 		/**
@@ -111,6 +112,7 @@ define(["delegate"], function(Delegate) {
 			viewport.WorldFit = false;
 
 			this.execute(this.RESET_SCALE, viewport);
+			this.execute(this.SCALE, viewport);
 		},
 		/**
 		 * --------------------------------
@@ -130,6 +132,9 @@ define(["delegate"], function(Delegate) {
 
 			viewport.ScaleX *= factor;
 			viewport.ScaleY *= factor;
+
+			this.execute(this.SCALE_PROPORTIONALY, viewport);
+			this.execute(this.SCALE, viewport);
 		}
 	});
 
@@ -137,8 +142,11 @@ define(["delegate"], function(Delegate) {
 	Object.defineProperty(World.prototype, "CHANGE_WIDTH", { get: function() { return 'change_width' } });
 	Object.defineProperty(World.prototype, "CHANGE_HEIGHT", { get: function() { return 'change_height' } });
 	Object.defineProperty(World.prototype, "CHANGE_STEP", { get: function() { return 'change_step' } });
+	
+	Object.defineProperty(World.prototype, "SCALE", { get: function() { return 'scale_viewport' } });
 	Object.defineProperty(World.prototype, "SCALE_TO_FIT", { get: function() { return 'scale_to_fit' } });
 	Object.defineProperty(World.prototype, "RESET_SCALE", { get: function() { return 'scale_to_fit' } });
+	Object.defineProperty(World.prototype, "SCALE_PROPORTIONALY", { get: function() { return 'scale_proportionaly' } });
 
 	return new World();
 });
