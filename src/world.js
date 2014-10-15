@@ -42,10 +42,9 @@ define(["delegate"], function(Delegate) {
 		 * @param  {Number} w Width of the world
 		 * @param  {Number} h Height of the world
 		 */
-		create: function(w, h, s) {
+		create: function(w, h) {
 			var width = w;
 			var height = h;
-			var step = s;
 
 			this.getWidth = function() { 
 				return width; 
@@ -68,12 +67,6 @@ define(["delegate"], function(Delegate) {
 			this.setHeight = function(v) { 
 				height = v; 
 				this.execute(this.CHANGE_HEIGHT, v);
-				this.execute(this.CHANGE);
-			};
-
-			this.setStep = function(v) { 
-				step = v; 
-				this.execute(this.CHANGE_STEP, v);
 				this.execute(this.CHANGE);
 			};
 		},
@@ -141,7 +134,6 @@ define(["delegate"], function(Delegate) {
 	Object.defineProperty(World.prototype, "CHANGE", { get: function() { return 'change' } });
 	Object.defineProperty(World.prototype, "CHANGE_WIDTH", { get: function() { return 'change_width' } });
 	Object.defineProperty(World.prototype, "CHANGE_HEIGHT", { get: function() { return 'change_height' } });
-	Object.defineProperty(World.prototype, "CHANGE_STEP", { get: function() { return 'change_step' } });
 	
 	Object.defineProperty(World.prototype, "SCALE", { get: function() { return 'scale_viewport' } });
 	Object.defineProperty(World.prototype, "SCALE_TO_FIT", { get: function() { return 'scale_to_fit' } });
