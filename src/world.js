@@ -54,20 +54,38 @@ define(["delegate"], function(Delegate) {
 				return height; 
 			};
 
-			this.getStep = function() { 
-				return step; 
-			};
-
 			this.setWidth = function(v) { 
+				var prev = width;
 				width = v; 
-				this.execute(this.CHANGE_WIDTH, v);
-				this.execute(this.CHANGE);
+
+				if (prev != v) {
+					if (v > prev) {
+						this.execute(this.CHANGE_WIDTH_INCREASE, v);	
+					} else {
+						this.execute(this.CHANGE_WIDTH_DECREASE, v);
+					}
+
+					this.execute(this.CHANGE_WIDTH, v);
+
+					this.execute(this.CHANGE);
+				}
 			};
 			
 			this.setHeight = function(v) { 
+				var prev = height;
 				height = v; 
-				this.execute(this.CHANGE_HEIGHT, v);
-				this.execute(this.CHANGE);
+
+				if (prev != v) {
+					if (v > prev) {
+						this.execute(this.CHANGE_HEIGHT_INCREASE, v);	
+					} else {
+						this.execute(this.CHANGE_HEIGHT_DECREASE, v);
+					}
+
+					this.execute(this.CHANGE_HEIGHT, v);
+
+					this.execute(this.CHANGE);
+				}
 			};
 		},
 
@@ -134,7 +152,10 @@ define(["delegate"], function(Delegate) {
 	Object.defineProperty(World.prototype, "CHANGE", { get: function() { return 'change' } });
 	Object.defineProperty(World.prototype, "CHANGE_WIDTH", { get: function() { return 'change_width' } });
 	Object.defineProperty(World.prototype, "CHANGE_HEIGHT", { get: function() { return 'change_height' } });
-	
+	Object.defineProperty(World.prototype, "CHANGE_WIDTH_INCREASE", { get: function() { return 'change_width_increase' } });
+	Object.defineProperty(World.prototype, "CHANGE_WIDTH_DECREASE", { get: function() { return 'change_width_decrease' } });
+	Object.defineProperty(World.prototype, "CHANGE_HEIGHT_INCREASE", { get: function() { return 'change_height_increase' } });
+	Object.defineProperty(World.prototype, "CHANGE_HEIGHT_DECREASE", { get: function() { return 'change_height_decrease' } });	
 	Object.defineProperty(World.prototype, "SCALE", { get: function() { return 'scale_viewport' } });
 	Object.defineProperty(World.prototype, "SCALE_TO_FIT", { get: function() { return 'scale_to_fit' } });
 	Object.defineProperty(World.prototype, "RESET_SCALE", { get: function() { return 'scale_to_fit' } });
