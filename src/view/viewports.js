@@ -118,12 +118,16 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 				ErrorPrinter.printError('Viewports', 'Viewport with id:' + name + ' does not exist.');
 			}
 
-			this.execute(this.REMOVE, viewports[name]);
+			var v = viewports[name];
 
-			viewportsArray.splice(viewportsArray.indexOf(viewports[name]), 1);
-			viewports[name].destroy();
+			viewportsArray.splice(viewportsArray.indexOf(v), 1);
+			
 			viewports[name] = null;
 			delete viewports[name];
+		
+			this.execute(this.REMOVE, v);
+			
+			v.destroy();
 		},
 		/**
 		 * --------------------------------
@@ -143,6 +147,8 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 
 	      viewportsArray.splice(viewportIndex, 1);
 	      viewportsArray.splice(index, 0, viewport);
+
+	      this.execute(this.CHANGE, viewport);
 		},
 		/**
 		 * --------------------------------
@@ -158,7 +164,7 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 		 * @param {String} [other] Name [viewport](@@viewport@@) which should come before to the one in the first argument
 		 */
 		after: function (name, other) {
-			move('after', name, other);
+			move.call(this, 'after', name, other);
 		},
 		/**
 		 * --------------------------------
@@ -174,7 +180,7 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 		 * @param {String} [other] Name [viewport](@@viewport@@) which should come after to the one in the first argument
 		 */
 		before: function (name, other) {
-	      	move('before', name, other);
+	      	move.call(this, 'before', name, other);
 		},
 		/**
 		 * --------------------------------
@@ -352,10 +358,14 @@ define(["delegate", "viewport", "error-printer"], function(Delegate, Viewport, E
 		}
 
 		viewportsArray.splice(pivotIndex, 0, viewportsArray.splice(currentIndex, 1)[0]);
+
+		this.execute(this.MOVE, current);
 	}
 
 	Object.defineProperty(ViewportContainer.prototype, "ADD", { get: function() { return 'add'; } });
 	Object.defineProperty(ViewportContainer.prototype, "REMOVE", { get: function() { return 'remove'; } });
+	Object.defineProperty(ViewportContainer.prototype, "CHANGE", { get: function() { return 'change'; } });
+	Object.defineProperty(ViewportContainer.prototype, "MOVE", { get: function() { return 'move'; } });
 
 	return new ViewportContainer();
 });
