@@ -294,17 +294,55 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      *
      * Add a [game-object](@@game-object@@) to the specified [layer](@@layer@@) of the viewport
      *
-     * @param {String} layerName Id of the layer to add the [game-object](@@game-object@@) to
+     * @param {String} layerName Id of the [layer](@@layer@@) to add the [game-object](@@game-object@@) to
      * @param {Object} go        [game-object](@@game-object@@) to add
      */
     addGameObject: function(layerName, go) {
       var layer = findLayer.call(this, layerName);
 
-      layer.add(go);
+      var success = layer.add(go);
       
-      go.on(go.RECYCLE, this, function(g) {
-        layer.remove(g);
-      }, true);
+      if (success) {
+        go.on(go.RECYCLE, this, function(g) {
+          layer.remove(g);
+        }, true);
+      }
+    },
+    /**
+     * --------------------------------
+     */
+    
+    /**
+     * <p style='color:#AD071D'><strong>removeGameObject</strong></p>
+     *
+     * Remove the specified [game-object](@@game-object@@) from the specified [layer](@@layer@@) of the viewport
+     *
+     * @param {String} layerName Id of the [layer](@@layer@@) to remove the [game-object](@@game-object@@) from
+     * @param {Object} go        [game-object](@@game-object@@) to remove
+     */
+    removeGameObject: function(layerName, go) {
+      // Remove it from the old layer
+      findLayer.call(this, layerName).remove(go);
+      recycleGameObjects(go);
+    },
+    /**
+     * --------------------------------
+     */
+    
+    /**
+     * <p style='color:#AD071D'><strong>moveGameObject</strong></p>
+     *
+     * Move a [game-object](@@game-object@@) to the specified [layer](@@layer@@) of the viewport
+     *
+     * @param {String} oldLayerName Id of the old [layer](@@layer@@) the [game-object](@@game-object@@) belonged to
+     * @param {String} newLayerName Id of the new [layer](@@layer@@) the [game-object](@@game-object@@) will belong to
+     * @param {Object} go        [game-object](@@game-object@@) to move
+     */
+    moveGameObject: function(oldLayerName, newLayerName, go) {
+      // Add the game object to the new layer
+      this.addGameObject(newLayerName, go);
+      // Remove it from the old layer
+      removeGameObject(oldLayerName, go); 
     },
     /**
      * --------------------------------
@@ -706,14 +744,21 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
   }
 
   var recycleGameObjects = function(gos) {
-    // Check which game objects are not renderer in any viewport
-    for (var i = 0; i < gos.length; i++) {
-      var go = gos[i];
-
-      // If a game object is not renderer anywhere send it back to it's pool
-      if (!go.hasViewport()) {
-        Reclaimer.claim(go);
+    if (gos.typeId) {
+      // Single object sent
+      recycle(gos);
+    } else {
+      // Collection to test for recycling
+      for (var i = 0; i < gos.length; i++) {
+        recycle(gos[i]);
       }
+    }
+  }
+
+  var recycle = function(go) {
+    // If a game object is not renderer anywhere send it back to it's pool
+    if (!go.hasViewport()) {
+      Reclaimer.claim(go);
     }
   }
 

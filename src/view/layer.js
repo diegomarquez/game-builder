@@ -51,13 +51,19 @@ define(["delegate"], function(Delegate){
      *
      * @param {Object} go The [game-object](@@game-object@@) to add
      *
-     * @return {Object} The [game-object](@@game-object@@) that was just added
+     * @return {Object|null} The [game-object](@@game-object@@) that was just added or null if the [game-object](@@game-object@@) was already part of the layer
      */
     add: function(go) {
-      this.gameObjects.push(go);
-      go.viewports.push(this.viewport.name);
+      var index = this.gameObjects.indexOf(go); 
 
-      return go;
+      if (index == -1) {
+        this.gameObjects.push(go);
+        go.addToViewportList(this.viewport.name, this.name);
+
+        return go;
+      }
+
+      return null;
     },
     /**
      * --------------------------------
@@ -70,13 +76,19 @@ define(["delegate"], function(Delegate){
      *
      * @param {Object} go The [game-object](@@game-object@@) to remove
      *
-     * @return {Object} The [game-object](@@game-object@@) that was just removed
+     * @return {Object|null} The [game-object](@@game-object@@) that was just removed or null if the [game-object](@@game-object@@) was not part of the layer
      */
     remove: function(go) {
-      this.gameObjects.splice(this.gameObjects.indexOf(go), 1);
-      go.viewports.splice(go.viewports.indexOf(this.viewport.name), 1);
+      var index = this.gameObjects.indexOf(go);
 
-      return go;
+      if (index != -1) {
+        this.gameObjects.splice(index, 1);
+        go.removeFromViewportList(this.viewport.name, this.name);
+
+        return go;
+      }
+
+      return null;
     },
     /**
      * --------------------------------

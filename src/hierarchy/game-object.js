@@ -133,6 +133,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			// An array with the names of all the viewports this game objects is being renderer in.
 			// This property is set by the [layer](@@layer@@) objects held by [viewports](@@viewport@@)
 			this.viewports = [];
+			// The current update [group](@@group@@) of this game object. This property is set when the game object is added to a [group](@@group@@)
+			this.updateGroup = null;
 
 			// Color that will be used to draw a little shape to outline the position if the **debug**
 			// property of [gb](@@gb@@) is set to true;
@@ -160,6 +162,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 			this.centerY = 0;
 			this.viewportVisibility = {}
 			this.viewports = [];
+			this.updateGroup = null;
 		},
 		/**
 		 * --------------------------------
@@ -405,12 +408,53 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		/**
 		 * <p style='color:#AD071D'><strong>hasViewport</strong></p>
 		 *
-		 * Wheter or not this game-object is part of any viewport or not
+		 * Wheter or not this game-object is part of any viewport
 		 * 
 		 * @return {Boolean}
 		 */
 		hasViewport: function() {
 			return this.viewports.length > 0; 
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>addToViewport</strong></p>
+		 *
+		 * Adds the specified viewport and layer combo to the ones this game object belongs to
+		 *
+		 * @param {String} viewportName Name of the new viewport this object belongs to
+		 * @param {String} layerName Name of the layer in the specified viewport
+		 * 
+		 */
+		addToViewportList: function(viewportName, layerName) {
+			this.viewports.push({ 
+				viewport: viewportName, 
+				layer: layerName 
+			});	
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>removeFromViewport</strong></p>
+		 *
+		 * Removes the viewport and layer combo from the ones this game object belongs to
+		 *
+		 * @param {String} viewportName Name of the viewport to remove from this game objects list
+		 * @param {String} layerName Name of the layer in the specified viewport
+		 * 
+		 */
+		removeFromViewportList: function(viewportName, layerName) {
+			for (var i = this.viewports.length-1; i >= 0; i--) {
+				var v = this.viewports[i];
+
+				if (v.viewport === viewportName && v.layer === layerName) {
+					this.viewports.splice(i, 1);
+				}
+			}
 		},
 		/**
 		 * --------------------------------
@@ -441,6 +485,30 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 */
 		getViewportVisibility: function(viewportName) {
 			return this.viewportVisibility[viewportName];
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>getViewportList</strong></p>
+		 *
+		 * @return {Array} An array with all the [viewport](@@viewport@@) and [layer](@@layer@@) combinations this game object belongs to
+		 */
+		getViewportList: function() {
+			return this.viewports;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>getViewportList</strong></p>
+		 *
+		 * @return {String} The update [group](@@group@@) this game object belongs to
+		 */
+		getUpdateGroup: function() {
+			return this.updateGroup;
 		},
 		/**
 		 * --------------------------------

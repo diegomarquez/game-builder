@@ -28,6 +28,40 @@
 define(["game-object-container"], function(Container){
 	var Group = Container.extend({
 		/**
+		 * <p style='color:#AD071D'><strong>init</strong></p>
+		 *
+		 * Constructor
+		 * 
+		 * @param  {String} name The name of the group
+		 */
+		init: function(name) {
+			this._super();
+
+			this.groupName = name;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>add</strong></p>
+		 *
+		 * Adds the specified child [game-object](@@game-object@@) to this container.
+		 * If the child already is part of another parent, it is removed from it
+		 * and added to this one.
+		 * 
+		 * @param {Object} The child [game-object](@@game-object@@) to add
+		 */
+		add: function(child) {
+			this._super(child);	
+
+			child.updateGroup = this.groupName;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
 		 * <p style='color:#AD071D'><strong>clear</strong></p>
 		 *
 		 * This is normally called through [groups](@@groups@@) to empty a 

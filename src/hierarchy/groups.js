@@ -59,7 +59,7 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
      * @return {Object} The [group](@@group@@) that was just created
      */
     add: function(name) {
-      var group = new Group();
+      var group = new Group(name);
 
       Root.add(group).start();
       this.groups[name] = group;
@@ -315,6 +315,21 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
       for (var k in this.groups) {
         this[action](k);
       }
+    },
+    /**
+     * --------------------------------
+     */
+
+    /**
+      * [findGameObjectGroup description]
+      * <p style='color:#AD071D'><strong>{{method}}</strong></p>
+      *
+      * @param  {[type]} go [description]
+      *
+      * @return {[type]}    [description]
+      */
+    findGameObjectGroup: function(go) {
+
     }
     /**
      * --------------------------------
