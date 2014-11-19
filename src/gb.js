@@ -28,8 +28,8 @@
 /**
  * --------------------------------
  */
-define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool', 'json-cache', 'error-printer'],
-  function(game, groups, viewports, assembler, reclaimer, gameObjectPool, componentPool, jsonCache, ErrorPrinter) {
+define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool', 'json-cache', 'asset-map', 'error-printer'],
+  function(game, groups, viewports, assembler, reclaimer, gameObjectPool, componentPool, jsonCache, assetMap, ErrorPrinter) {
 
     var addToViewPorts = function(go, vports) {
       var v;
@@ -181,17 +181,9 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        * --------------------------------
        */
 
-      /**
-       * <p style='color:#AD071D'><strong>assetMap</strong></p>
-       *
-       * @return {Object} Cached object in the 'asset-map' key of the [json-cache](@@json-cache@@) module
-       */
       assetMap: function() {
-        return this.jsonCache.get('asset-map')
+        return assetMap.get();
       }
-      /**
-       * --------------------------------
-       */
     }
   }
 );
