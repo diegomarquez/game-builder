@@ -126,8 +126,11 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
 		 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
+		 * @param  {Object} gb     A reference to the [gb](@@gb@@) module
 		 */
-		debug_draw: function(context, viewport, draw) {
+		debug_draw: function(context, viewport, draw, gb) {
+			if (!gb.rendererDebug) return;
+
 			// Top Left
 			drawVertex.call(this, context, viewport, draw, this.rendererOffsetX(), this.rendererOffsetY());
 			// Top Right

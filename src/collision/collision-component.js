@@ -47,7 +47,7 @@ define(['component', 'collision-resolver', 'error-printer'], function(Component,
 		 * @throws {Error} If the parent of the component does not define an **onCollide** method 
 		 */
 		start: function() {
-			this.debugColor = "#FFFFFF";
+			this.debugColor = "#00FF00";
 
 			this.checkingCollisions = true;
 
@@ -119,7 +119,7 @@ define(['component', 'collision-resolver', 'error-printer'], function(Component,
 		 * This is redifined by objects extending this one.
 		 */
 		debug_draw: function() {
-			this.debugColor = "#FFFFFF";
+			this.debugColor = "#00FF00";
 		},
 		/**
 		 * --------------------------------

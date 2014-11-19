@@ -62,6 +62,8 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       jsonCache: jsonCache,
 
       debug: false,
+      colliderDebug: false,
+      rendererDebug: false,
 
       viewportsAliases: {},
 
@@ -181,8 +183,42 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        * --------------------------------
        */
 
+      /**
+       * <p style='color:#AD071D'><strong>assetMap</strong></p>
+       *
+       * Wrapper for the [asset-map](@@asset-map@@) module
+       * 
+       * @return {Object} An object with the local and remote asset URLs
+       */
       assetMap: function() {
         return assetMap.get();
+      },
+      /**
+       * --------------------------------
+       */
+
+      toggleDebug: function(state) {
+        if (state === false || state === true) {
+          this.debug = state;
+        } else {
+          this.debug = !this.debug;
+        }
+      },
+
+      toggleColliderDebug: function(state) {
+        if (state === false || state === true) {
+          this.colliderDebug = state;  
+        } else {
+          this.colliderDebug = !this.colliderDebug;
+        }
+      },
+
+      toggleRendererDebug: function(state) {
+        if (state === false || state === true) {
+          this.rendererDebug = state;
+        } else {
+          this.rendererDebug = !this.rendererDebug;
+        }
       }
     }
   }

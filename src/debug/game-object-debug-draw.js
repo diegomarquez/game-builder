@@ -29,6 +29,9 @@ define(function(require){
 
 	var DebugDraw = {}
 
+	var draw = require('draw');
+	var gb;
+
 	/**
 	 * <p style='color:#AD071D'><strong>debugDraw</strong></p>
 	 *
@@ -41,8 +44,10 @@ define(function(require){
 	 * @param  {Object} viewport The [viewport](@@viewport@@) the [game-object](@@game-object@@) is drawn too
 	 */
 	DebugDraw.gameObject = function(context, viewport) {
-		var gb = require('gb');
-
+		if (!gb) {
+			gb = require('gb');
+		}
+		
 		if(gb.debug && !this.skipDebug) {
 			// Store current context
 			context.save();
@@ -53,18 +58,18 @@ define(function(require){
 
 	    	// Draw what ever the [renderer](@@renderer@@) wants to show in debug mode
 	    	if (this.renderer) {
-	    		this.renderer.debug_draw(context, viewport, require('draw'));
+	    		this.renderer.debug_draw(context, viewport, draw, gb);
 	    	}
 
 			if (this.components) {
 				// Draw whatever the [components](@@component@@) want to draw in debug mode
 				for(var i=0; i<this.components.length; i++) {
-					this.components[i].debug_draw(context, viewport, require('draw'))
+					this.components[i].debug_draw(context, viewport, draw, gb);
 				}
 			}
 			
 			// Draw what ever the [game-object](@@game-object@@) wants to show in debug mode
-	    	this.debug_draw(context, viewport, require('draw'))
+	    	this.debug_draw(context, viewport, draw, gb);
 
 			// Restore original context
 			context.restore();

@@ -9,7 +9,6 @@
  * [sat](@@sat@@)
  * [collision-resolver](@@collision-resolver@@)
  * [vector-2D](@@vector-2D@@)
- * [draw](@@draw@@)
  * 
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -48,8 +47,8 @@
 /**
  * --------------------------------
  */
-define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw'],
-	function(CollisionComponent, SAT, CollisionResolver, Vector2D, Draw){
+define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
+	function(CollisionComponent, SAT, CollisionResolver, Vector2D){
 
 	var p = {};
 	
@@ -98,10 +97,13 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D', 'draw']
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
 		 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
+		 * @param  {Object} gb     A reference to the [gb](@@gb@@) module
 		 */
-		debug_draw: function(context, viewport, draw) {
+		debug_draw: function(context, viewport, draw, gb) {
+			if (!gb.colliderDebug) return;
+
 			p = this.parent.matrix.transformPoint(0, 0, p);		
-			Draw.circle(context, p.x, p.y, this.radius, null, this.debugColor, 2);
+			draw.circle(context, p.x, p.y, this.radius, null, this.debugColor, 2);
 			this._super();
 		} 
 		/**
