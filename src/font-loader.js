@@ -2,7 +2,7 @@
  * # font-loader.js
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  *
- * * Inherits from:
+ * Inherits from:
  *
  * Depends of: 
  * [error-printer](@@error-printer@@)
@@ -52,10 +52,11 @@ define(function(require) {
     /**
      * <p style='color:#AD071D'><strong>start</strong></p>
      *
-     * @param  {Object} config A configuration object.
      * @param {Funtion} onLoad This is called when all fonts have been downloaded.
      */
-    FontLoader.prototype.start = function(config, onLoad) {
+    FontLoader.prototype.start = function(onLoad) {
+        var config = require('font-data').get();
+
     	if (!config.loadFonts) {
             onLoad(); 
             return;
