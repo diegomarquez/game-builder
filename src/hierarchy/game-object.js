@@ -709,8 +709,11 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
 		 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
+		 * @param  {Object} gb     A reference to the [gb](@@gb@@) module
 		 */
-		debug_draw: function(context, viewport, draw) {
+		debug_draw: function(context, viewport, draw, gb) {
+			if(!gb.gameObjectDebug) return;
+
 			r = this.matrix.decompose(r);
 				
 			// Draw the center of the object

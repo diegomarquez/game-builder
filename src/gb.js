@@ -49,6 +49,14 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       }
     };
 
+    var toggle = function(state, prop) {
+      if (state === false || state === true) {
+        this[prop] = state;  
+      } else {
+        this[prop] = !this[prop];
+      }
+    }
+
     return {
       game: game,
       groups:groups,
@@ -64,6 +72,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       debug: false,
       colliderDebug: false,
       rendererDebug: false,
+      gameObjectDebug: false,
 
       viewportsAliases: {},
 
@@ -198,27 +207,19 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        */
 
       toggleDebug: function(state) {
-        if (state === false || state === true) {
-          this.debug = state;
-        } else {
-          this.debug = !this.debug;
-        }
+        toggle.call(this, state, 'debug');
       },
 
       toggleColliderDebug: function(state) {
-        if (state === false || state === true) {
-          this.colliderDebug = state;  
-        } else {
-          this.colliderDebug = !this.colliderDebug;
-        }
+        toggle.call(this, state, 'colliderDebug');
       },
 
       toggleRendererDebug: function(state) {
-        if (state === false || state === true) {
-          this.rendererDebug = state;
-        } else {
-          this.rendererDebug = !this.rendererDebug;
-        }
+        toggle.call(this, state, 'rendererDebug');
+      },
+
+      toggleGameObjectDebug: function(state) {
+        toggle.call(this, state, 'gameObjectDebug');
       }
     }
   }

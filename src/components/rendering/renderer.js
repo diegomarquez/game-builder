@@ -131,23 +131,32 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		debug_draw: function(context, viewport, draw, gb) {
 			if (!gb.rendererDebug) return;
 
-			// Top Left
-			drawVertex.call(this, context, viewport, draw, this.rendererOffsetX(), this.rendererOffsetY());
+			context.strokeStyle = this.debugColor;
+			context.lineWidth = 1;
+
+			context.beginPath();
+			
+			// Top Left 
+			drawLineAndPoint.call(this, context, this.rendererOffsetX(), this.rendererOffsetY(), draw, 'moveTo');
 			// Top Right
-			drawVertex.call(this, context, viewport, draw, this.rendererOffsetX() + this.rendererWidth(), this.rendererOffsetY());
-			// Bottom Left
-			drawVertex.call(this, context, viewport, draw, this.rendererOffsetX(), this.rendererOffsetY() + this.rendererHeight());
+			drawLineAndPoint.call(this, context, this.rendererOffsetX() + this.rendererWidth(), this.rendererOffsetY(), draw, 'lineTo');
 			// Bottom Right
-			drawVertex.call(this, context, viewport, draw, this.rendererOffsetX() + this.rendererWidth(), this.rendererOffsetY() + this.rendererHeight());
+			drawLineAndPoint.call(this, context, this.rendererOffsetX() + this.rendererWidth(), this.rendererOffsetY() + this.rendererHeight(), draw, 'lineTo');
+			// Bottom Left
+			drawLineAndPoint.call(this, context, this.rendererOffsetX(), this.rendererOffsetY() + this.rendererHeight(), draw, 'lineTo');
+
+			context.closePath();
+
+			context.stroke();
 		}
 		/**
 		 * --------------------------------
 		 */
 	});
 
-	var drawVertex = function(context, viewport, draw, offsetX, offsetY) {
-		r = this.parent.matrix.transformPoint(offsetX, offsetY, r);		
-		draw.circle(context, r.x, r.y, 1, null, this.debugColor, 2);
+	var drawLineAndPoint = function(context, offsetX, offsetY, draw, lineMethod) {
+		r = this.parent.matrix.transformPoint(offsetX, offsetY, r); 
+		context[lineMethod](r.x, r.y);
 	}
 
 	return Renderer;
