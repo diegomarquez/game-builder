@@ -205,12 +205,28 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	 *
 	 * Claims all the [game-objects](@@game-object@@) and then
 	 * clears both [game-object-pool](@@game-object-pool@@) and
-	 * [component-pool](@@component-pool@@)
+	 * [component-pool](@@component-pool@@). The Pools are no longer re-useable after this. They need to be configured again.
 	 */
 	Reclaimer.prototype.clearAllPools = function() {
 		this.claimAll();
 		GameObjectPool.clear();
 		ComponentPool.clear();
+	};
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>clearAllPools</strong></p>
+	 *
+	 * Claims all the [game-objects](@@game-object@@) and then
+	 * clears off the instances held in both [game-object-pool](@@game-object-pool@@) and
+	 * [component-pool](@@component-pool@@). Configurations are kepts so the pools can still be re-used.
+	 */
+	Reclaimer.prototype.clearAllObjectsFromPools = function() {
+		this.claimAll();
+		GameObjectPool.clearObjects();
+		ComponentPool.clearObjects();
 	};
 	/**
 	 * --------------------------------
