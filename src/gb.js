@@ -131,9 +131,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        * @return {Object} The [game-object](@@game-object@@) that was just assembled.
        */
       add: function (goId, groupId, vports, args) {
-        var go = assembler.get(goId, args);
-        groups.get(groupId).add(go);
-        addToViewPorts.call(this, go, vports);
+        var go = this.getGameObject(goId, groupId, vports, args, 'get'); 
         go.start();
 
         return go;
@@ -156,11 +154,32 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        * @return {Object} The [game-object](@@game-object@@) that was just assembled.
        */
       create: function (goId, groupId, vports, args) {
-        var go = assembler.create(goId, args);
-        groups.get(groupId).add(go);
-        addToViewPorts.call(this, go, vports);
+        var go = this.getGameObject(goId, groupId, vports, args, 'create');
         go.start();
 
+        return go;
+      },
+
+      /**
+       * <p style='color:#AD071D'><strong>getGameObject</strong></p>
+       *
+       * Wraps all the steps needed to setup a <a href=@@game-object@@>game-object</a>
+       * 
+       * @param {String} goId Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
+       * @param {String} groupId Id of the [group](@@group@@) to add the [game-object](@@game-object@@) to. View [groups](@@groups@@), for more details.
+       * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
+       *                              the [game-object](@@game-object@@) should be added to.
+       *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
+       * @param {Object} [args] Object with arguments to be applied to the created [game-object](@@game-object@@)
+       * @param {String} [method] Method to get a [game-object](@@game-object@@), can be either 'get' or 'create'
+       *
+       * @return {Object} The [game-object](@@game-object@@) that was just assembled.
+       */
+      getGameObject: function(goId, groupId, vports, args, method) {
+        var go = assembler[method](goId, args);
+        groups.get(groupId).add(go);
+        addToViewPorts.call(this, go, vports);
+        
         return go;
       },
 
