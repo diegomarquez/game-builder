@@ -330,7 +330,7 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
       this.clearConfigurations();
 
       for (var k in this.pools) {
-        Util.destroyObject(pools[k]);
+        Util.destroyObject(this.pools[k]);
       }
 
       this.pools = {};
