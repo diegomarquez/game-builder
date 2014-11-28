@@ -96,6 +96,27 @@ define(function() {
 	/**
 	 * --------------------------------
 	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>iterateObject</strong></p>
+	 *
+	 * Iterates through the properties of an object, executing a callback for each of them
+	 * 
+	 * @param  {Object} o        Object to iterate        
+	 * @param {Function} c Callback to execute on each property of the provided object  
+	 */
+	Utils.prototype.iterateObject = function(o, c) {
+		for(var propName in o) {
+			if(o.hasOwnProperty(propName)){
+				if (o[propName]) {
+					c(o, propName);
+				}
+			}
+		}
+	};
+	/**
+	 * --------------------------------
+	 */
 
 	/**
 	 * <p style='color:#AD071D'><strong>destroyArray</strong></p>
@@ -117,6 +138,25 @@ define(function() {
 	/**
 	 * --------------------------------
 	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>destroyArray</strong></p>
+	 *
+	 * Iterate through the elements of an array, executing a callback for each of them
+	 * 
+	 * @param  {Array} a        Array to iterate
+	 * @param {Function} c Callback to execute on each element of the provided array
+	 */
+	Utils.prototype.iterateArray = function(a, c) {
+		for(var i=0; i<a.length; i++) {
+			if (a[i]) {
+				c(a, a[i], i);
+			}
+		}
+	};
+	/**
+	 * --------------------------------
+	 */
 
 	/**
 	 * <p style='color:#AD071D'><strong>bind</strong></p>
@@ -127,7 +167,7 @@ define(function() {
 	 * 
 	 * @param  {Function} func  Function to bind
 	 * @param  {Oject} scope Scope to bind to
-	 * @param  {Object} args  Arguments the binded function will receive
+	 * @param  {Array} args  Arguments the binded function will receive
 	 * @return {Function}       Binded function
 	 */
 	Utils.prototype.bind = function(func, scope, args) {
@@ -138,7 +178,84 @@ define(function() {
 	/**
 	 * --------------------------------
 	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>bind</strong></p>
+	 *
+	 * Get a function that will cache the first computed value
+	 * 
+	 * Managing the scope of functions is a pretty big thing in Javascript.
+	 * 
+	 * @param  {Function} func  Function to cache
+	 * @param  {Oject|null} scope Scope to bind to
+	 * @param  {Object|null} args  Arguments the cached function will receive
+	 * @return {Function}       Function that returns the first computed value. When called, this function may recieve a Boolean argument to force a refresh, by default it is false.
+	 */
+	Utils.prototype.cache = function(func, scope, args) {
+		var r;
+		var s;
+		var a;
 
+		s = scope || this;
+		a = args;
+
+		return function (refresh) {
+			if (!r) {
+				r = func.apply(s, a);
+			}
+
+			if (refresh) {
+				r = func.apply(s, a);
+			}
+
+			return r;
+		}
+	}
+	/**
+	 * --------------------------------
+	 */
+
+	/**
+	 * <p style='color:#AD071D'><strong>isFunction</strong></p>
+	 *
+	 * Determine if the specified object is a function
+	 * 
+	 * @param  {Object}  o Object to tes
+	 *
+	 * @return {Boolean}
+	 */
+	Utils.prototype.isFunction = function(o) { return Object.prototype.toString.call(o) == '[object Function]' };
+	/**
+	 * --------------------------------
+	 */
+
+	/**
+	 * <p style='color:#AD071D'><strong>isObject</strong></p>
+	 *
+	 * Determine if the specified object is an object
+	 * 
+	 * @param  {Object}  o Object to tes
+	 *
+	 * @return {Boolean}
+	 */
+	Utils.prototype.isObject = function(o) { return Object.prototype.toString.call(o) == '[object Object]' };
+	/**
+	 * --------------------------------
+	 */
+
+	/**
+	 * <p style='color:#AD071D'><strong>isArray</strong></p>
+	 *
+	 * Determine if the specified object is an array
+	 * 
+	 * @param  {Object}  o Object to tes
+	 *
+	 * @return {Boolean}
+	 */
+	Utils.prototype.isArray = function(o) { return Object.prototype.toString.call(o) == '[object Array]' };
+	/**
+	 * --------------------------------
+	 */
 	
 	// These functions are helpers to get various types of random values. 
 	// They all use Math.random under the hood.
