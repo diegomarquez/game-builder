@@ -48,8 +48,9 @@ define(["class", "util"], function(Class, Util) {
 		 * @param  {Boolean} [removeOnExecute=false] The function will be removed from the corresponding list, after executing it once
 		 * @param  {Boolean} [keepOnCleanUp=false] Save the function when executing the **softCleanUp**
 		 * @param  {Boolean} [single=false] Do not add function if there is already one with the same id
+		 * @param  {String} [level=''] Give the delegate a 'level'. Later all the delegates with the same level can be removed without keeping track of the delegate details.
 		 */
-		on: function(name, scope, callback, removeOnExecute, keepOnCleanUp, single) {
+		on: function(name, scope, callback, removeOnExecute, keepOnCleanUp, single, level) {
 			if (!this.callbackList[name]) {
 				this.callbackList[name] = [];
 			}
@@ -60,24 +61,27 @@ define(["class", "util"], function(Class, Util) {
 				}				
 			}
 
-			this.callbackList[name].push({
+			var callbackObject = {
 				scope: scope,
 				callback: callback,
 				removeOnExecute: removeOnExecute,
-				keep: keepOnCleanUp
-			});
+				keep: keepOnCleanUp,
+				level: level
+			}
+
+			this.callbackList[name].push(callbackObject);
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>on</strong></p>
 		 *
 		 * Use to register functions under the given id. This method is a shorthand for
 		 *
 		 * ``` javascript  
-		 * delegate.on(name, scope, callback, true);
+		 * delegate.on(name, scope, callback, true, false, false, level);
 		 * ``` 
 		 *
 		 * The function will be removed from the corresponding list upon execution.
@@ -85,9 +89,10 @@ define(["class", "util"], function(Class, Util) {
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'
 		 * @param  {Function} callback Function you want to execute
+		 * @param  {String} [level=''] Give the delegate a 'level'. Later all the delegates with the same level can be removed without keeping track of the delegate details.
 		 */
-		once: function(name, scope, callback) {
-			this.on(name, scope, callback, true);
+		once: function(name, scope, callback, level) {
+			this.on(name, scope, callback, true, false, false, level);
 		},
 		/**
 		 * --------------------------------
@@ -99,7 +104,7 @@ define(["class", "util"], function(Class, Util) {
 		 * Use to register functions under the given id. This method is a shorthand for
 		 *
 		 * ``` javascript  
-		 * delegate.on(name, scope, callback, false, true, false);
+		 * delegate.on(name, scope, callback, false, true, false, level);
 		 * ``` 
 		 *
 		 * The function will not be removed from the corresponding list, if the **softCleanUp** method is called.
@@ -107,9 +112,10 @@ define(["class", "util"], function(Class, Util) {
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'
 		 * @param  {Function} callback Function you want to execute
+		 * @param  {String} [level=''] Give the delegate a 'level'. Later all the delegates with the same level can be removed without keeping track of the delegate details.
 		 */
-		persist: function(name, scope, callback) {
-			this.on(name, scope, callback, false, true, false);
+		persist: function(name, scope, callback, level) {
+			this.on(name, scope, callback, false, true, false, level);
 		},
 		/**
 		 * --------------------------------
@@ -129,9 +135,10 @@ define(["class", "util"], function(Class, Util) {
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'
 		 * @param  {Function} callback Function you want to execute
+		 * @param  {String} [level=''] Give the delegate a 'level'. Later all the delegates with the same level can be removed without keeping track of the delegate details.
 		 */
-		single: function(name, scope, callback) {
-			this.on(name, scope, callback, false, false, true);
+		single: function(name, scope, callback, level) {
+			this.on(name, scope, callback, false, false, true, level);
 		},
 		/**
 		 * --------------------------------
@@ -190,19 +197,21 @@ define(["class", "util"], function(Class, Util) {
 		 * except for the ones that were configured to be kept in **on**.
 		 */
 		softCleanUp: function() {
-			for (var k in this.callbackList) {
-				this.list = this.callbackList[k];
-
-				if (!this.list) return;
-
-				for (var i = this.list.length - 1; i >= 0; i--) {
-					var callbackObject = this.list[i];
-
-					if (!callbackObject.keep) {
-						this.list.splice(i, 1);
-					}
-				}
-			}
+			filterCallbacks.call(this, function(callbackObject) { return !callbackObject.keep; });
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>softCleanUp</strong></p>
+		 *
+		 * Removes every function for the specified level.
+		 *
+		 * @param {String} [level] All delegates with this 'level' will be removed
+		 */
+		levelCleanUp: function(level) {
+			filterCallbacks.call(this, function(callbackObject) { return callbackObject.level === level; });
 		},
 		/**
 		 * --------------------------------
@@ -285,7 +294,7 @@ define(["class", "util"], function(Class, Util) {
 				}
 			}
 
-			removeAllNulls(this.list);
+			removeAllNulls(this.callbackList[name]);
 		}
 		/**
 		 * --------------------------------
@@ -293,11 +302,29 @@ define(["class", "util"], function(Class, Util) {
 	});
 
 	var removeAllNulls = function(list) {
+		if (!list) return;
+
 		for (var i = list.length - 1; i >= 0; i--) {
 			var callbackObject = list[i];
 
 			if (!callbackObject) {
 				list.splice(i, 1);
+			}
+		}
+	}
+
+	var filterCallbacks = function(test) {
+		for (var k in this.callbackList) {
+			this.list = this.callbackList[k];
+
+			if (!this.list) continue;
+
+			for (var i = this.list.length - 1; i >= 0; i--) {
+				var callbackObject = this.list[i];
+
+				if (test(callbackObject)) {
+					this.list.splice(i, 1);
+				}
 			}
 		}
 	}
