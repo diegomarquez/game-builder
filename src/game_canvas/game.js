@@ -90,8 +90,10 @@ define(function(require) {
      * @param  {String} state The state of the application. ej. 'create'
      */
     execute_extensions: function(state) {
-      for(var i=0; i<this.extensions[state].length; i++){
-        this.extensions[state][i].execute();
+      for(var i=0; i<this.extensions[state].length; i++) {
+      	var ex = this.extensions[state][i];
+
+        ex.extension.execute(ex.args);
       }
     },
     /**
@@ -104,14 +106,43 @@ define(function(require) {
      * Use this to add extensions.
      *
      * @param {[extension](@@extension@@)} extensionModule A module that extends [extension](@@extension@@)
+     * @param {Object=null} args An object with arguments that will be passed to the extension when it is executed
      */
-    add_extension: function(extensionModule) {
+    add_extension: function(extensionModule, args) {
       var ex = new extensionModule();
-      this.extensions[ex.type()].push(ex);
+      
+      this.extensions[ex.type()].push({
+      	extension: ex,
+      	args: args
+      });
 
       if (this.initialized && ex.type() == this.CREATE) {
-      	ex.execute();
+      	ex.execute(args);
       }
+    },
+    /**
+     * --------------------------------
+     */
+    
+    /**
+     * <p style='color:#AD071D'><strong>get_extension</strong></p>
+     *
+     * Use this to get an instance of a currently active [extension](@@extension@@).
+     *
+     * @param {[extension](@@extension@@)} extensionModule The constructor for the [extension](@@extension@@) to retrieve
+     *
+     * @return {[extension](@@extension@@)} The matching [extension](@@extension@@) 
+     */
+    get_extension: function(extensionModule) {
+      for (var t in this.extensions) {
+    		var list = this.extensions[t];
+    		
+    		for (var i = list.length-1; i >= 0; i--) {
+	    		if (list[i].extension.constructor === extensionModule) {
+	    			return list[i].extension;
+	    		}
+	    	}	
+    	}
     },
     /**
      * --------------------------------
@@ -124,15 +155,15 @@ define(function(require) {
      *
      * @param {[extension](@@extension@@)} extensionModule The [extension](@@extension@@) module to remove
      */
-    remove_extension: function(extensionModule) {
-    	var ex = new extensionModule();      
-
-    	var list = this.extensions[ex.type()];
-
-    	for (var i = list.length-1; i >= 0; i--) {
-    		if (list[i].constructor === ex.constructor) {
-    			list.splice(i, 1)[0].destroy();
-    		}
+    remove_extension: function(extensionModule) {     
+    	for (var t in this.extensions) {
+    		var list = this.extensions[t];
+    		
+    		for (var i = list.length-1; i >= 0; i--) {
+	    		if (list[i].extension.constructor === extensionModule) {
+	    			list.splice(i, 1)[0].destroy();
+	    		}
+	    	}	
     	}
     },
     /**
