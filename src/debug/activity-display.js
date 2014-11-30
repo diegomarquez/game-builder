@@ -132,14 +132,23 @@ define(function(require) {
 			return gb.game.CREATE;
 		},
 
-		execute: function() {
+		execute: function(args) {
+			var hide = false;
+
+			if (args) {
+				hide = args.hide || false;
+			}
+
 			displayElement = document.createElement('div');
 			displayElement.id = 'activity-display';
 
 			var infoContainer = document.createElement('div');
+			infoContainer.id = 'activity-display-info-container';
 
 			var infoButton = document.createElement('button');
+			infoButton.id = 'activity-display-button';
 			infoButton.innerText = 'Show Info';
+			infoButton.style.visibility = hide ? 'hidden' : 'visible';
 
 			infoButton.addEventListener('click', function() {
 				if (this.innerText == 'Show Info') {
@@ -196,6 +205,18 @@ define(function(require) {
 			textCache.levelCleanUp('activity-display');
 			soundPlayer.levelCleanUp('activity-display');
 			timerFactory.levelCleanUp('activity-display');
+		},
+
+		toggle: function() {
+			var infoContainer = document.getElementById('activity-display-info-container');
+
+			if (infoContainer.style.display == 'block') {
+				infoContainer.style.display = 'none';
+			} else {
+				infoContainer.style.display = 'block';
+			}
+
+			positionInfoButton(displayElement);
 		}
 	});
 
