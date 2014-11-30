@@ -103,11 +103,37 @@ define(function(require) {
      *
      * Use this to add extensions.
      *
-     * @param {[extension](@@extension@@)} extensionMoudle A module that extends [extension](@@extension@@)
+     * @param {[extension](@@extension@@)} extensionModule A module that extends [extension](@@extension@@)
      */
-    add_extension: function(extensionMoudle) {
-      var ex = new extensionMoudle();
+    add_extension: function(extensionModule) {
+      var ex = new extensionModule();
       this.extensions[ex.type()].push(ex);
+
+      if (this.initialized && ex.type() == this.CREATE) {
+      	ex.execute();
+      }
+    },
+    /**
+     * --------------------------------
+     */
+    
+    /**
+     * <p style='color:#AD071D'><strong>remove_extension</strong></p>
+     *
+     * Use this to remove extensions.
+     *
+     * @param {[extension](@@extension@@)} extensionModule The [extension](@@extension@@) module to remove
+     */
+    remove_extension: function(extensionModule) {
+    	var ex = new extensionModule();      
+
+    	var list = this.extensions[ex.type()];
+
+    	for (var i = list.length-1; i >= 0; i--) {
+    		if (list[i].constructor === ex.constructor) {
+    			list.splice(i, 1)[0].destroy();
+    		}
+    	}
     },
     /**
      * --------------------------------
