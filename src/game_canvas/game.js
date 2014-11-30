@@ -158,10 +158,11 @@ define(function(require) {
     remove_extension: function(extensionModule) {     
     	for (var t in this.extensions) {
     		var list = this.extensions[t];
-    		
+
     		for (var i = list.length-1; i >= 0; i--) {
 	    		if (list[i].extension.constructor === extensionModule) {
-	    			list.splice(i, 1)[0].destroy();
+	    			list[i].extension.destroy();
+	    			list.splice(i, 1);
 	    		}
 	    	}	
     	}
