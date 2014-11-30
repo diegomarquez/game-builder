@@ -55,6 +55,9 @@ define(["class", "error-printer"], function(Class, ErrorPrinter) {
 		type: function() {
 			ErrorPrinter.mustOverrideError('Extension');
 		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>execute</strong></p>
@@ -65,7 +68,24 @@ define(["class", "error-printer"], function(Class, ErrorPrinter) {
 		 */
 		execute: function() {
 			ErrorPrinter.mustOverrideError('Extension');
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>destroy</strong></p>
+		 *
+		 * This method is called when the extension is removed
+		 *
+		 * @throws {Error} Always
+		 */
+		destroy: function() {
+			ErrorPrinter.mustOverrideError('Extension');
 		}
+		/**
+		 * --------------------------------
+		 */
 	});
 
 	return Extension;
