@@ -51,16 +51,16 @@ define(["gb", "extension"], function(Gb, Extension) {
 			var container = Gb.game.mainContainer;
 			var canvas = Gb.game.canvas;
 
-    		container.style.top  		= '50%';
-    		container.style.left 		= '50%';
+    	container.style.top  		= '50%';
+    	container.style.left 		= '50%';
 			container.style.marginLeft = '-' + Gb.game.canvas.width/2 + 'px';
 			container.style.marginTop  = '-' + Gb.game.canvas.height/2 + 'px';
 			container.style.position   = 'fixed';
 
 			canvas.style.paddingLeft  = 0;
-    		canvas.style.paddingRight = 0;
-    		canvas.style.marginLeft   = 'auto';
-    		canvas.style.marginRight  = 'auto';
+    	canvas.style.paddingRight = 0;
+    	canvas.style.marginLeft   = 'auto';
+    	canvas.style.marginRight  = 'auto';
 
 			resize(container, canvas);
 
