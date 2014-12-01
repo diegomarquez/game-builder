@@ -220,7 +220,7 @@ define(function() {
 	 *
 	 * Determine if the specified object is a function
 	 * 
-	 * @param  {Object}  o Object to tes
+	 * @param  {Object}  o Object to test
 	 *
 	 * @return {Boolean}
 	 */
@@ -234,7 +234,7 @@ define(function() {
 	 *
 	 * Determine if the specified object is an object
 	 * 
-	 * @param  {Object}  o Object to tes
+	 * @param  {Object}  o Object to test
 	 *
 	 * @return {Boolean}
 	 */
@@ -248,7 +248,7 @@ define(function() {
 	 *
 	 * Determine if the specified object is an array
 	 * 
-	 * @param  {Object}  o Object to tes
+	 * @param  {Object}  o Object to test
 	 *
 	 * @return {Boolean}
 	 */
@@ -257,6 +257,20 @@ define(function() {
 	 * --------------------------------
 	 */
 	
+	 /**
+	 * <p style='color:#AD071D'><strong>isBoolean</strong></p>
+	 *
+	 * Determine if the specified object is a boolean value
+	 * 
+	 * @param  {Object}  o Object to test
+	 *
+	 * @return {Boolean}
+	 */
+	Utils.prototype.isBoolean = function(o) { return Object.prototype.toString.call(o) == '[object Boolean]';	};
+	/**
+	 * --------------------------------
+	 */
+
 	// These functions are helpers to get various types of random values. 
 	// They all use Math.random under the hood.
 	Utils.prototype.rand_f     = function (min, max) { return Math.random() * (max - min) + min; };
