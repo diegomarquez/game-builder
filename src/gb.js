@@ -225,21 +225,61 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        * --------------------------------
        */
 
+      /**
+       * <p style='color:#AD071D'><strong>toggleDebug</strong></p>
+       *
+       * Toggle the global debug option which triggers a bunch of debug drawing
+       * 
+       * @param {Boolean} state=false If specified the debug option is set to that value
+       */
       toggleDebug: function(state) {
         toggle.call(this, state, 'debug');
       },
+      /**
+       * --------------------------------
+       */
 
+      /**
+       * <p style='color:#AD071D'><strong>toggleColliderDebug</strong></p>
+       *
+       * Toggle the debug drawing of [game-object](@@game-object@@) [colliders](@@collider-component@@)
+       * 
+       * @param {Boolean} state=false If specified the debug option is set to that value
+       */
       toggleColliderDebug: function(state) {
         toggle.call(this, state, 'colliderDebug');
       },
+      /**
+       * --------------------------------
+       */
 
+      /**
+       * <p style='color:#AD071D'><strong>toggleRendererDebug</strong></p>
+       *
+       * Toggle the debug drawing of [game-object](@@game-object@@) [renderers](@@renderer@@)
+       * 
+       * @param {Boolean} state=false If specified the debug option is set to that value
+       */
       toggleRendererDebug: function(state) {
         toggle.call(this, state, 'rendererDebug');
       },
+      /**
+       * --------------------------------
+       */
 
+      /**
+       * <p style='color:#AD071D'><strong>toggleGameObjectDebug</strong></p>
+       *
+       * Toggle the debug drawinf of [game-object](@@game-object@@) centers
+       * 
+       * @param {Boolean} state=false If specified the debug option is set to that value
+       */
       toggleGameObjectDebug: function(state) {
         toggle.call(this, state, 'gameObjectDebug');
       }
+      /**
+       * --------------------------------
+       */
     }
   }
 );
