@@ -10,8 +10,13 @@
  *
  * Depends of:
  * [layer](@@layer@@)
+ * [reclaimer](@@reclaimer@@)
+ * [matrix-3x3](@@matrix-3x3@@)
+ * [sat](@@sat@@)
+ * [vector-2D](@@vector-2D@@)
  * [error-printer](@@error-printer@@)
- *
+ * [util](@@util@@)
+ * 
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
  * This module defines a viewport, it has an offset in relation to the top left of the screen, a width and height, and the position
@@ -29,7 +34,7 @@
 /**
  * --------------------------------
  */
-define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "error-printer"], function(Delegate, Layer, Reclaimer, Matrix, SAT, Vector2D, ErrorPrinter){
+define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "error-printer", "util"], function(Delegate, Layer, Reclaimer, Matrix, SAT, Vector2D, ErrorPrinter, Util){
   var p1 = {};
   var p2 = {};
   var p3 = {};
@@ -83,6 +88,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 
       this.WorldFit = false;
       this.Culling = true;
+      this.Clipping = true;
 
       this.visible = true;
       this.registerMouseEvents = true;
@@ -666,6 +672,17 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
         this.culling = value.toLowerCase() == 'true' ? true : false;
       } else {
         this.culling = value; 
+      }
+    } 
+  });
+
+  Object.defineProperty(Viewport.prototype, "Clipping", { 
+    get: function() { return Number(this.clipping); },
+    set: function(value) {  
+    	if (typeof value === 'string') {
+        this.clipping = value.toLowerCase() == 'true' ? true : false;
+      } else {
+        this.clipping = value; 
       }
     } 
   });
