@@ -214,6 +214,46 @@ define(function() {
 	/**
 	 * --------------------------------
 	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>defineGetter</strong></p>
+	 *
+	 * Define a getter using the native Object.defineProperty method
+	 * 
+	 * @param  {Object} object 		Object in which to create the getter
+	 * @param  {String} name      Name of the getter
+	 * @param  {Function} func    Function the getter should execute
+	 */
+	Utils.prototype.defineGetter = function(object, name, func) {
+		Object.defineProperty(object, name, { 
+			configurable: true,
+			enumerable: true,
+			get: func 
+		});
+	};
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>defineSetter</strong></p>
+	 *
+	 * Define a setter using the native Object.defineProperty method
+	 * 
+	 * @param  {Object} object 		Object in which to create the setter
+	 * @param  {String} name      Name of the setter
+	 * @param  {Function} func    Function the setter should execute
+	 */
+	Utils.prototype.defineSetter = function(object, name, func) {
+		Object.defineProperty(object, name, { 
+			configurable: true,
+			enumerable: true,
+			set: func 
+		});
+	};
+	/**
+	 * --------------------------------
+	 */
 
 	/**
 	 * <p style='color:#AD071D'><strong>isFunction</strong></p>
@@ -224,7 +264,13 @@ define(function() {
 	 *
 	 * @return {Boolean}
 	 */
-	Utils.prototype.isFunction = function(o) { return Object.prototype.toString.call(o) == '[object Function]' };
+	Utils.prototype.isFunction = function(o) { 
+		if (o) {
+			return Object.prototype.toString.call(o) == '[object Function]';	
+		}
+		 
+		return false;
+	};
 	/**
 	 * --------------------------------
 	 */
@@ -238,7 +284,13 @@ define(function() {
 	 *
 	 * @return {Boolean}
 	 */
-	Utils.prototype.isObject = function(o) { return Object.prototype.toString.call(o) == '[object Object]' };
+	Utils.prototype.isObject = function(o) { 
+		if (o) {
+			return Object.prototype.toString.call(o) == '[object Object]'; 
+		}
+
+		return false;
+	};
 	/**
 	 * --------------------------------
 	 */
@@ -252,7 +304,13 @@ define(function() {
 	 *
 	 * @return {Boolean}
 	 */
-	Utils.prototype.isArray = function(o) { return Object.prototype.toString.call(o) == '[object Array]' };
+	Utils.prototype.isArray = function(o) { 
+		if (o) {
+			return Object.prototype.toString.call(o) == '[object Array]'; 
+		}
+
+		return false;
+	};
 	/**
 	 * --------------------------------
 	 */
@@ -266,7 +324,12 @@ define(function() {
 	 *
 	 * @return {Boolean}
 	 */
-	Utils.prototype.isBoolean = function(o) { return Object.prototype.toString.call(o) == '[object Boolean]';	};
+	Utils.prototype.isBoolean = function(o) { 
+		if (o === true) return true;
+		if (o === false) return true; 
+
+		return false;
+	};
 	/**
 	 * --------------------------------
 	 */
