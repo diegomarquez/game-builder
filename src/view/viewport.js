@@ -40,9 +40,15 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
   var p3 = {};
   var p4 = {};
   var m = null;
+  var vm = null;
   var r = null;
   var rOffsetX, rOffsetY, rWidth, rHeight;
   var x, y, w, h;
+
+  var canvasCollider = new SAT.FixedSizePolygon(
+    new Vector2D(),
+    [ new Vector2D(), new Vector2D(), new Vector2D(), new Vector2D() ]
+  );
 
   var viewportCollider = new SAT.FixedSizePolygon(
     new Vector2D(),
@@ -89,9 +95,10 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
       this.WorldFit = false;
       this.Culling = true;
       this.Clipping = true;
+      this.MouseEnabled = true;
+      this.MouseBounded = true;
 
       this.visible = true;
-      this.registerMouseEvents = true;
       
       this.layers = [];
       this.matrix = new Matrix();
@@ -450,74 +457,122 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      */
     
     /**
-     * <p style='color:#AD071D'><strong>mouseEnabled</strong></p>
-     *
-     * @returns {Boolean} Wether or not this viewport responds to mouse events
-     */
-    mouseEnabled: function() {
-      return this.registerMouseEvents;
-    },
-    /**
-     * --------------------------------
-     */
-
-    /**
      * <p style='color:#AD071D'><strong>isGameObjectInside</strong></p>
      *
      * @param  {Object}  go [game-object](@@game-object@@) to test
+     * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
      *
      * @return {Boolean} Whether the [game-object](@@game-object@@) is in the visible area of the viewport or not
      */
-    isGameObjectInside: function(go) {
-      if (!go.renderer || !this.Culling) return true;
+    isGameObjectInside: function(go, context) {
+			if (!go.renderer) {
+				// If there is no renderer, just tell the game object it is not visible in this viewport
+				go.setViewportVisibility(this.name, false);
+			}
+			else {
+				// If there is a renderer do some setup...
+				r = go.renderer;
+	      m = go.matrix;
 
-      r = go.renderer;
-      m = go.matrix;
+	      rOffsetX = r.rendererOffsetX();
+	      rOffsetY = r.rendererOffsetY();
+	      rWidth = r.rendererWidth();
+	      rHeight = r.rendererHeight();
 
-      rOffsetX = r.rendererOffsetX();
-      rOffsetY = r.rendererOffsetY();
-      rWidth = r.rendererWidth();
-      rHeight = r.rendererHeight();
+				if (this.Culling) {
+					// If the viewport is performing culling logic...
+					// Do a collision test between the viewport and the game object
 
-      // Viewport collider
-      viewportCollider.points[0].x = -this.x;
-      viewportCollider.points[0].y = -this.y;
+					// Build the viewport collider
+		      viewportCollider.points[0].x = -this.x;
+		      viewportCollider.points[0].y = -this.y;
 
-      viewportCollider.points[1].x = -this.x + this.Width;
-      viewportCollider.points[1].y = -this.y;
+		      viewportCollider.points[1].x = -this.x + this.Width;
+		      viewportCollider.points[1].y = -this.y;
 
-      viewportCollider.points[2].x = -this.x + this.Width;
-      viewportCollider.points[2].y = -this.y + this.Height;
+		      viewportCollider.points[2].x = -this.x + this.Width;
+		      viewportCollider.points[2].y = -this.y + this.Height;
 
-      viewportCollider.points[3].x = -this.x;
-      viewportCollider.points[3].y = -this.y + this.Height;
+		      viewportCollider.points[3].x = -this.x;
+		      viewportCollider.points[3].y = -this.y + this.Height;
 
-      p1 = m.transformPoint(rOffsetX, rOffsetY, p1);
-      p2 = m.transformPoint(rOffsetX + rWidth, rOffsetY, p2);
-      p3 = m.transformPoint(rOffsetX + rWidth, rOffsetY + rHeight, p3);
-      p4 = m.transformPoint(rOffsetX, rOffsetY + rHeight, p4);
+		      // Get the world coordinates of the game object corners
+		      p1 = m.transformPoint(rOffsetX, rOffsetY, p1);
+		      p2 = m.transformPoint(rOffsetX + rWidth, rOffsetY, p2);
+		      p3 = m.transformPoint(rOffsetX + rWidth, rOffsetY + rHeight, p3);
+		      p4 = m.transformPoint(rOffsetX, rOffsetY + rHeight, p4);
 
-      // Game Object collider
-      gameObjectCollider.points[0].x = p1.x * this.ScaleX;
-      gameObjectCollider.points[0].y = p1.y * this.ScaleY;
+		      // Build the game object collider with the world positions of it's corners, adjusting for the scale if the viewport
+		      gameObjectCollider.points[0].x = p1.x * this.ScaleX;
+		      gameObjectCollider.points[0].y = p1.y * this.ScaleY;
 
-      gameObjectCollider.points[1].x = p2.x * this.ScaleX;
-      gameObjectCollider.points[1].y = p2.y * this.ScaleY;
+		      gameObjectCollider.points[1].x = p2.x * this.ScaleX;
+		      gameObjectCollider.points[1].y = p2.y * this.ScaleY;
 
-      gameObjectCollider.points[2].x = p3.x * this.ScaleX;
-      gameObjectCollider.points[2].y = p3.y * this.ScaleY;
+		      gameObjectCollider.points[2].x = p3.x * this.ScaleX;
+		      gameObjectCollider.points[2].y = p3.y * this.ScaleY;
 
-      gameObjectCollider.points[3].x = p4.x * this.ScaleX;
-      gameObjectCollider.points[3].y = p4.y * this.ScaleY;
+		      gameObjectCollider.points[3].x = p4.x * this.ScaleX;
+		      gameObjectCollider.points[3].y = p4.y * this.ScaleY;
 
-      viewportCollider.recalc();
-      gameObjectCollider.recalc();
+		      viewportCollider.recalc();
+		      gameObjectCollider.recalc();
 
-      var inside = SAT.testPolygonPolygon(viewportCollider, gameObjectCollider);
+		      // Test if the viewport is colliding with the game object, and tell the game object if it is visible in this viewport or not
+		      go.setViewportVisibility(this.name, SAT.testPolygonPolygon(viewportCollider, gameObjectCollider));
+				} else {
+					// If the viewport is not performing culling logic...
+					// Do a collision test between the canvas and the game object
 
-      go.setViewportVisibility(this.name, inside);
+					// Build the collider for the canvas
+					canvasCollider.points[0].x = 0;
+		      canvasCollider.points[0].y = 0;
 
-      return inside;
+		      canvasCollider.points[1].x = context.canvas.width;
+		      canvasCollider.points[1].y = 0;
+
+		      canvasCollider.points[2].x = context.canvas.width;
+		      canvasCollider.points[2].y = context.canvas.height;
+
+		      canvasCollider.points[3].x = 0;
+		      canvasCollider.points[3].y = context.canvas.height;
+
+		      // Get the world coordinates of the game object corners
+		      p1 = m.transformPoint(rOffsetX, rOffsetY, p1);
+		      p2 = m.transformPoint(rOffsetX + rWidth, rOffsetY, p2);
+		      p3 = m.transformPoint(rOffsetX + rWidth, rOffsetY + rHeight, p3);
+		      p4 = m.transformPoint(rOffsetX, rOffsetY + rHeight, p4);
+
+		      // Viewports matrix
+		      vm = this.getMatrix();
+  		
+  				// Get the canvas coordinates of the game object's corners to build the game object collider that will work in canvas splace
+					p1 = vm.transformPoint(p1.x, p1.y, p1);
+					p2 = vm.transformPoint(p2.x, p2.y, p2);
+					p3 = vm.transformPoint(p3.x, p3.y, p3);
+					p4 = vm.transformPoint(p4.x, p4.y, p4);
+
+					gameObjectCollider.points[0].x = p1.x;
+		      gameObjectCollider.points[0].y = p1.y;
+
+		      gameObjectCollider.points[1].x = p2.x;
+		      gameObjectCollider.points[1].y = p2.y;
+
+		      gameObjectCollider.points[2].x = p3.x;
+		      gameObjectCollider.points[2].y = p3.y;
+
+		      gameObjectCollider.points[3].x = p4.x;
+		      gameObjectCollider.points[3].y = p4.y;
+
+		      canvasCollider.recalc();
+					gameObjectCollider.recalc();
+
+					// Test if the canvas is colliding with the game object, and tell the game object if it is visible in the canvas or not
+					go.setViewportVisibility(this.name, SAT.testPolygonPolygon(canvasCollider, gameObjectCollider));
+				}	
+			}
+
+			return go.getViewportVisibility(this.name);
     },
     /**
      * --------------------------------
@@ -626,11 +681,11 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      *
      * Convert the given canvas coordinates to viewport coordinates
      *
-     * @param {Number} x X coordinate in Canvas space
-     * @param {Number} y Y coordinate in Canvas space
+     * @param {Number} x X coordinate in canvas space
+     * @param {Number} y Y coordinate in canvas space
      * @param {Object} [r=null] Object to put the result in, if none is passed a new Object is created
      * 
-     * @return {[type]} [description]
+     * @return {Object} An object with x and y properties
      */
     canvasToLocalCoordinates: function(x, y, r) {
       var m = this.getMatrix();
@@ -643,7 +698,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
       r.y = m.ty;
       
       return r;
-    }
+    },
     /**
      * --------------------------------
      */
@@ -654,78 +709,44 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
   Object.defineProperty(Viewport.prototype, "CHANGE", { get: function() { return 'change'; } });
   Object.defineProperty(Viewport.prototype, "REMOVE_ALL", { get: function() { return 'remove_all'; } });
 
-  Object.defineProperty(Viewport.prototype, "WorldFit", { 
-    get: function() { return this.worldFit; },
-    set: function(value) { 
-      if (typeof value === 'string') {
-        this.worldFit = value.toLowerCase() == 'true' ? true : false;
-      } else {
-        this.worldFit = value; 
-      }
-    } 
-  });
+  var defineNumberGetterAndSetter = function(name) {
+  	var prop = name.replace(/^./, name.charAt(0).toLowerCase()); 
 
-  Object.defineProperty(Viewport.prototype, "Culling", { 
-    get: function() { return this.culling; },
-    set: function(value) { 
-      if (typeof value === 'string') {
-        this.culling = value.toLowerCase() == 'true' ? true : false;
-      } else {
-        this.culling = value; 
-      }
-    } 
-  });
+  	Object.defineProperty(Viewport.prototype, name, { 
+	    get: function() { return Number(this[prop]); },
+	    set: function(value) { this[prop] = value; } 
+	  });
+  }
 
-  Object.defineProperty(Viewport.prototype, "Clipping", { 
-    get: function() { return Number(this.clipping); },
-    set: function(value) {  
-    	if (typeof value === 'string') {
-        this.clipping = value.toLowerCase() == 'true' ? true : false;
-      } else {
-        this.clipping = value; 
-      }
-    } 
-  });
+  var defineBooleanGetterAndSetter = function(name) {
+  	var prop = name.replace(/^./, name.charAt(0).toLowerCase());
 
-  Object.defineProperty(Viewport.prototype, "X", { 
-    get: function() { return Number(this.x); },
-    set: function(value) { this.x = value; } 
-  });
+  	Object.defineProperty(Viewport.prototype, name, { 
+	    get: function() { return this[prop]; },
+	    set: function(value) {  
+	    	if (typeof value === 'string') {
+	        this[prop] = value.toLowerCase() == 'true' ? true : false;
+	      } else {
+	        this[prop] = value; 
+	      }
+	    } 
+	  });
+  }
 
-  Object.defineProperty(Viewport.prototype, "Y", { 
-    get: function() { return Number(this.y); },
-    set: function(value) { this.y = value; } 
-  });
+  defineBooleanGetterAndSetter('WorldFit');
+  defineBooleanGetterAndSetter('Culling');
+  defineBooleanGetterAndSetter('Clipping');
+  defineBooleanGetterAndSetter('MouseEnabled');
+  defineBooleanGetterAndSetter('MouseBounded');
 
-  Object.defineProperty(Viewport.prototype, "Width", { 
-    get: function() { return Number(this.width); },
-    set: function(value) { this.width = value; } 
-  });
-
-  Object.defineProperty(Viewport.prototype, "Height", { 
-    get: function() { return Number(this.height); },
-    set: function(value) { this.height = value; } 
-  });
-
-  Object.defineProperty(Viewport.prototype, "OffsetX", { 
-    get: function() { return Number(this.offsetX); },
-    set: function(value) { this.offsetX = value; } 
-  });
-
-  Object.defineProperty(Viewport.prototype, "OffsetY", { 
-    get: function() { return Number(this.offsetY); },
-    set: function(value) { this.offsetY = value; } 
-  });
-
-  Object.defineProperty(Viewport.prototype, "ScaleX", { 
-    get: function() { return Number(this.scaleX); },
-    set: function(value) { this.scaleX = value; } 
-  });
-
-  Object.defineProperty(Viewport.prototype, "ScaleY", { 
-    get: function() { return Number(this.scaleY); },
-    set: function(value) { this.scaleY = value; } 
-  });
+  defineNumberGetterAndSetter('X');
+  defineNumberGetterAndSetter('Y');
+  defineNumberGetterAndSetter('Width');
+  defineNumberGetterAndSetter('Height');
+  defineNumberGetterAndSetter('OffsetX');
+  defineNumberGetterAndSetter('OffsetY');
+  defineNumberGetterAndSetter('ScaleX');
+  defineNumberGetterAndSetter('ScaleY');
 
   var createLayer = function(name) {
     var layer = findLayer.call(this, name, true);

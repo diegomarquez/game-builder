@@ -22,7 +22,9 @@
 /**
  * --------------------------------
  */
-define(["delegate"], function(Delegate){
+define(["delegate"], function(Delegate) {
+	var r = {};
+
   var Layer = Delegate.extend({
 
     /**
@@ -122,14 +124,12 @@ define(["delegate"], function(Delegate){
     draw: function(context) {
       if (!this.visible) return;
 
-      var go;
-
       for (var i = 0; i < this.gameObjects.length; i++) {
-        go = this.gameObjects[i];
+        var go = this.gameObjects[i];
 
-        if (this.viewport.isGameObjectInside(go)) {
-          go.draw(context, this.viewport);
-        }
+    		if (this.viewport.isGameObjectInside(go, context)) {
+    			go.draw(context, this.viewport);		
+    		}
       }
     },
     /**
