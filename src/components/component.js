@@ -6,6 +6,7 @@
  * Inherits from: [delegate](@@delegate@@)
  *
  * Depends of:
+ * [util](@@util@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -56,7 +57,7 @@
 /**
  * --------------------------------
  */
-define(["delegate"], function(Delegate) {
+define(["delegate", "util"], function(Delegate, Util) {
 
 	var Component = Delegate.extend({
 		init: function() {
@@ -81,7 +82,24 @@ define(["delegate"], function(Delegate) {
 			if (!args) return;
 
 			for (var ha in args) {
-				this[ha] = args[ha];
+				if (Util.isObject(args[ha])) {
+					var getter = args[ha]['_get'];
+					var setter = args[ha]['_set'];
+
+					if (getter || setter) {
+						if (Util.isFunction(getter)) {
+							Util.defineGetter(this, ha, getter);
+						}
+						
+						if (Util.isFunction(setter)) {
+							Util.defineSetter(this, ha, setter);
+						}
+					} else {
+						this[ha] = args[ha];
+					}
+				} else {
+					this[ha] = args[ha];
+				}
 			}
 
 			this.args = args;

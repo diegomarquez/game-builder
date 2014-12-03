@@ -8,6 +8,7 @@
  * Depends of:
  * [matrix-3x3](@@matrix-3x3@@)
  * [game-object-debug-draw](@@game-object-debug-draw@@)
+ * [util](@@util@@)
  * 
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -58,7 +59,7 @@
 /**
  * --------------------------------
  */
-define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, Matrix, DebugDraw) {
+define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(Delegate, Matrix, DebugDraw, Util) {
 	var go, r;
 
 	var GameObject = Delegate.extend({
@@ -233,6 +234,25 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw"], function(Delegate, 
 
 			for (var ha in args) {
 				this[ha] = args[ha];
+
+				if (Util.isObject(args[ha])) {
+					var getter = args[ha]['_get'];
+					var setter = args[ha]['_set'];
+
+					if (getter || setter) {
+						if (Util.isFunction(getter)) {
+							Util.defineGetter(this, ha, getter);
+						}
+
+						if (Util.isFunction(setter)) {
+							Util.defineSetter(this, ha, setter);
+						} 
+					} else {
+						this[ha] = args[ha];
+					}
+				} else {
+					this[ha] = args[ha];
+				}
 			}
 
 			this.args = args;
