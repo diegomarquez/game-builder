@@ -131,11 +131,12 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		debug_draw: function(context, viewport, draw, gb) {
 			if (!gb.rendererDebug) return;
 
+			context.save();
+			context.beginPath();
+			
 			context.strokeStyle = this.debugColor;
 			context.lineWidth = 1;
 
-			context.beginPath();
-			
 			// Top Left 
 			drawLineAndPoint.call(this, context, this.rendererOffsetX(), this.rendererOffsetY(), draw, 'moveTo');
 			// Top Right
@@ -148,6 +149,7 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 			context.closePath();
 
 			context.stroke();
+			context.restore();
 		}
 		/**
 		 * --------------------------------
