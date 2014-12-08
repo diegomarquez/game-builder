@@ -64,6 +64,7 @@ define(["delegate", "util"], function(Delegate, Util) {
 			this._super();
 
 			this.poolId = null;
+			this.typeId = null;
 			this.parent = null;
 		},
 
@@ -107,6 +108,33 @@ define(["delegate", "util"], function(Delegate, Util) {
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>reset</strong></p>
+		 *
+		 * Not so interesting mehtod, it just resets some properties right
+		 * before the [assembler](@@assembler@@) module starts putting together
+		 * a component.
+		 */
+		reset: function() {
+			this.poolId = null;
+			this.typeId = null;
+			this.parent = null;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>onStarted</strong></p>
+		 *
+		 * This is called once when the parent [game-object](@@game-object@@) is started or when the component is added
+		 * dynamically to a [game-object](@@game-object@@)
+		 */
+		onStarted: function() {
+			this.start();	
+			this.execute(this.START, this);
+		},
 
 		/**
 		 * <p style='color:#AD071D'><strong>onAdded</strong></p>
@@ -118,8 +146,8 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 */
 		onAdded: function(parent) {
 			this.parent = parent;
-			this.execute(this.ADDED, this);
 			this.added(parent);
+			this.execute(this.ADD, this);
 		},
 		/**
 		 * --------------------------------
@@ -133,7 +161,7 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 */
 		onRemoved: function() {
 			this.removed(parent);
-			this.execute(this.REMOVED, this);
+			this.execute(this.REMOVE, this);
 			this.parent = null;
 		},
 		/**
@@ -235,9 +263,10 @@ define(["delegate", "util"], function(Delegate, Util) {
 	});
 
 	// ### Getters for all the types of events a Component can hook into
+	Object.defineProperty(Component.prototype, "START", { get: function() { return 'started'; } });
 	Object.defineProperty(Component.prototype, "ADD", { get: function() { return 'added'; } });
 	Object.defineProperty(Component.prototype, "REMOVE", { get: function() { return 'removed'; } });
-	Object.defineProperty(Component.prototype, "RECYCLE", { get: function() { return 'recycle'; } });
+	Object.defineProperty(Component.prototype, "RECYCLE", { get: function() { return 'recycled'; } });
 	/**
 	 * --------------------------------
 	 */
