@@ -169,7 +169,30 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * --------------------------------
 		 */
 
-
+		/**
+		 * <p style='color:#AD071D'><strong>added</strong></p>
+		 *
+		 * Executed when the game-object is added to a [game-object-container](@@game-object-container@@)
+		 *
+		 * @param {Object} [parent] The new parent [game-object-container](@@game-object-container@@)
+		 */
+		added: function(parent) {},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>removed</strong></p>
+		 *
+		 * Executed when the [game-object](@@game-object@@) is removed from it's [game-object-container](@@game-object-container@@)
+		 *
+		 * @param {Object} [parent] The old parent [game-object-container](@@game-object-container@@)
+		 */
+		removed: function(parent) {},
+		/**
+		 * --------------------------------
+		 */
+		
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -181,12 +204,12 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			this.canDraw = true;
 
 			if(this.renderer) {
-				this.renderer.start(this);
+				this.renderer.onStarted(this);
 			}
 
 			if (this.components) {
 				for (var i = 0; i < this.components.length; i++) {
-					this.components[i].start(this);
+					this.components[i].onStarted(this);
 				}
 			}
 
@@ -359,6 +382,78 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 */
 		
 		/**
+		 * <p style='color:#AD071D'><strong>findComponents</strong></p>
+		 *
+		 * Get an object to query the [component](@@component@@) list of the game object
+		 *
+		 * @return {Object}  An object to make the query. It has the following methods:
+		 * **all** returns all [components](@@components@@) that return true for the specified function 
+		 * **allWithProp** returns all [components](@@component@@) that have the given property
+		 * **first** returns the first [component](@@component@@) that returns true for the specified function
+		 * **firstWithProp** returns the first [component](@@component@@) that has the given property
+		 */
+		findComponents: function() {
+			var self = this;
+
+			return {
+				all: function(f) {
+					var r;
+
+					for (var i = 0; i < self.components.length; i++) {
+						var c = self.components[i];
+
+						if (f(c)) {
+							if (!r) r = [];
+							
+							r.push(c);
+						}
+					}
+
+					return r;
+				}, 
+
+				allWithProp: function(propName) {
+					var r;
+
+					for (var i = 0; i < self.components.length; i++) {
+						var c = self.components[i];
+
+						if (Boolean(c[propName])) {
+							if (!r) r = [];
+							
+							r.push(c);
+						}
+					}
+
+					return r;
+				},
+
+				first: function(f) {
+					for (var i = 0; i < self.components.length; i++) {
+						var c = self.components[i];
+
+						if (f(c)) {
+							return c;
+						}
+					}		
+				},
+
+				firstWithProp: function(propName) {
+					for (var i = 0; i < self.components.length; i++) {
+						var c = self.components[i];
+
+						if (Boolean(c[propName])) {
+							return c;
+						}
+					}
+				}
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
 		 * <p style='color:#AD071D'><strong>transform</strong></p>
 		 *
 		 * Generates the concatenated [matrix-3x3](@@matrix-3x3@@) used to draw itself in the proper place
@@ -379,8 +474,6 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * @param  {Object} viewport The [viewport](@@viewport@@) this objects is being drawn too
 		 */
 		draw: function(context, viewport) {
-			if (!this.canDraw) return;
-
 			context.save();
 
 			context.transform(this.matrix.a, this.matrix.b, this.matrix.c, this.matrix.d, this.matrix.tx, this.matrix.ty);
@@ -754,6 +847,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 	Object.defineProperty(GameObject.prototype, "START", { get: function() { return 'start'; } });
 	Object.defineProperty(GameObject.prototype, "RECYCLE", { get: function() { return 'recycle'; } });
 	Object.defineProperty(GameObject.prototype, "CLEAR", { get: function() { return 'clear'; } });
+	Object.defineProperty(GameObject.prototype, "ADDED", { get: function() { return 'added'; } });
+	Object.defineProperty(GameObject.prototype, "REMOVED", { get: function() { return 'removed'; } });
 
 	return GameObject;
 });

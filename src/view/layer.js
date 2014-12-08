@@ -127,9 +127,19 @@ define(["delegate"], function(Delegate) {
       for (var i = 0; i < this.gameObjects.length; i++) {
         var go = this.gameObjects[i];
 
-    		if (this.viewport.isGameObjectInside(go, context)) {
-    			go.draw(context, this.viewport);		
-    		}
+        if (go.isContainer()) {
+        	// If the game object is a container game object...
+        	// Call draw method, it will figure out if it actually needs to be drawn, and do the same for it's children
+					go.draw(context, this.viewport);	
+        } else {
+        	// If the game object is a regular game object...
+        	// Try to skip drawing as soon as possible
+        	
+        	// Draw only if inside the viewport and is allowed to be drawn
+					if (this.viewport.isGameObjectInside(go, context) && go.canDraw) {
+						go.draw(context, this.viewport);	
+					}
+        }
       }
     },
     /**

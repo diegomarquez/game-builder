@@ -78,6 +78,9 @@ define(["game-object"], function(GameObject){
 
 			this.childs.push(child);
 
+			child.added(this);
+			child.execute(child.ADDED, this);
+
 			return child;	
 		},
 		/**
@@ -99,6 +102,9 @@ define(["game-object"], function(GameObject){
 			if(!this.childs) return;
 
 			this.childs.splice(this.childs.indexOf(child), 1); 
+
+			child.removed(this);
+			child.execute(child.REMOVED, this);
 		},
 		/**
 		 * --------------------------------
@@ -156,8 +162,11 @@ define(["game-object"], function(GameObject){
 		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
 		 * @param  {Object} viewport The [viewport](@@viewport@@) this objects is being drawn too
 		 */
-		draw: function(context, viewport) {			
-			this._super(context, viewport);
+		draw: function(context, viewport) {	
+			// Draw only if inside the viewport and is allowed to be drawn
+			if (viewport.isGameObjectInside(this, context) && this.canDraw) {
+				this._super(context, viewport);	
+			}
 
 			if(!this.childs) return;
 						
@@ -166,9 +175,19 @@ define(["game-object"], function(GameObject){
 			for(var i=0; i<this.childs.length; i++){
 				child = this.childs[i];
 
-				if(!child.canDraw) continue;
-
-				child.draw(context, viewport);	
+				if (child.isContainer()) {
+					// If the child is a container game object... 
+					// Call draw method, it will figure out if it actually needs to be drawn, and do the same for it's children
+					child.draw(context, viewport);
+				} else {
+					// If the child is a regular game object...
+					// Try to skip drawing as soon as possible
+				
+					// Draw only if inside the viewport and is allowed to be drawn
+					if (viewport.isGameObjectInside(child, context) && child.canDraw) {
+						child.draw(context, viewport);	
+					}											
+				}
 			}
 		},
 		/**
