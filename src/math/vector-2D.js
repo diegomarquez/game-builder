@@ -114,5 +114,18 @@ define(function() {
 		return Math.sqrt(this.len2());
 	};
 
-	return vector_2D
+	vector_2D.prototype.distance = function(to) {
+		var xs = 0;
+	  var ys = 0;
+	 
+	  xs = to.x - this.x;
+	  xs = xs * xs;
+	 
+	  ys = to.y - this.y;
+	  ys = ys * ys;
+	 
+	  return Math.sqrt( xs + ys );
+	};
+
+	return vector_2D;
 });
