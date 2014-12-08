@@ -126,7 +126,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
        *                              the [game-object](@@game-object@@) should be added to.
        *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
-       * @param {Object} [args] Object with arguments to be applied to the created [game-object](@@game-object@@)
+       * @param {Object} [args=null] Object with arguments to be applied to the created [game-object](@@game-object@@)
        * 
        * @return {Object} The [game-object](@@game-object@@) that was just assembled.
        */
@@ -149,7 +149,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
        *                              the [game-object](@@game-object@@) should be added to.
        *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
-       * @param {Object} [args] Object with arguments to be applied to the created [game-object](@@game-object@@)
+       * @param {Object} [args=null] Object with arguments to be applied to the created [game-object](@@game-object@@)
        *
        * @return {Object} The [game-object](@@game-object@@) that was just assembled.
        */
@@ -181,6 +181,25 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
         addToViewPorts.call(this, go, vports);
         
         return go;
+      },
+
+      /**
+       * <p style='color:#AD071D'><strong>addComponentTo</strong></p>
+       *
+       * Wraps all the steps needed to add <a href=@@component@@>component</a> to a [game-object](@@game-object@@)
+       * 
+       * @param {Object} [go] [game-object](@@game-object@@) to add the [component](@@component@@) to
+       * @param {String} [coId] Id of [component](@@component@@) to add. View [component-pool](@@component-pool@@), for more details
+       * @param {Object} [args=null] Object with arguments to be applied to the [component](@@component@@)       
+       *
+       * @return {Object} A [component](@@component@@)
+       */
+      addComponentTo: function(go, coId, args) {
+      	var co = assembler.getComponent(coId, args);
+        go.addComponent(co);
+        co.start();
+
+        return co;
       },
 
       /**
