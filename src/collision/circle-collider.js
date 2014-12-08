@@ -103,7 +103,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			if (!gb.colliderDebug) return;
 
 			p = this.parent.matrix.transformPoint(0, 0, p);		
-			draw.circle(context, p.x, p.y, this.radius, null, this.debugColor, 2);
+			draw.circle(context, p.x, p.y, this.collider.r, null, this.debugColor, 2);
 			this._super();
 		} 
 		/**
