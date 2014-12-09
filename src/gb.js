@@ -203,6 +203,31 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       },
 
       /**
+       * <p style='color:#AD071D'><strong>addChildTo</strong></p>
+       *
+       * Wraps all the steps needed to add a child [game-object](@@game-object@@) to a [game-object-container](@@game-object-container@@)
+       * 
+       * @param {Object} [go] [game-object-container](@@game-object-container@@) to add the child to
+       * @param {String} [goId] Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details
+       * @param {Object} [args=null] Object with arguments to be applied to the child [game-object](@@game-object@@)  
+       * @param {String} [method] Method to get a [game-object](@@game-object@@), can be either 'get' or 'create'     
+       *
+       * @return {Object} The child [game-object](@@game-object@@)
+       */
+      addChildTo: function(parent, goId, args, method) {
+      	var child = assembler[method](goId, args);
+        child.start();
+
+        parent.add(child);
+        child.start();
+
+        return child;
+      },
+      /**
+       * --------------------------------
+       */
+
+      /**
        * <p style='color:#AD071D'><strong>addTextToLayer</strong></p>
        *
        * This method is basically the same as **add** but it is used with [game-objects](@@game-object@@) that have a
