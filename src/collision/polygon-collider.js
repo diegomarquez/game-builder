@@ -58,7 +58,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 		var p = {};
 		var m = null;
 
-		var Component = CollisionComponent.extend({
+		var PolygonCollider = CollisionComponent.extend({
 			/**
 			 * <p style='color:#AD071D'><strong>start</strong></p>
 			 *
@@ -139,6 +139,12 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 */
 		});
 
-		return Component;
+		Object.defineProperty(PolygonCollider.prototype, "Points", { 
+			get: function() { 
+				return this.pointsCopy; 
+			} 
+		});
+
+		return PolygonCollider;
 	}
 );
