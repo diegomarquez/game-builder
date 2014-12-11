@@ -184,6 +184,42 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       },
 
       /**
+       * <p style='color:#AD071D'><strong>addChildTo</strong></p>
+       *
+       * Wraps all the steps needed to add a child [game-object](@@game-object@@) to a [game-object-container](@@game-object-container@@)
+       *
+       * If the vports aregument is specified, the child will be drawn in the [viewport](@@viewport@@) and [layer](@@layer@@) pairs specified.
+       * The parent [viewport](@@viewport@@) will be ignored.
+       * 
+       * @param {Object} [go] [game-object-container](@@game-object-container@@) to add the child to
+       * @param {String} [goId] Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details
+       * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
+       *                              the [game-object](@@game-object@@) should be added to.
+       *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
+       * @param {Object} [args=null] Object with arguments to be applied to the child [game-object](@@game-object@@)  
+       * @param {String} [method] Method to get a [game-object](@@game-object@@), can be either 'get' or 'create'     
+       *
+       * @return {Object} The child [game-object](@@game-object@@)
+       */
+      addChildTo: function(parent, goId, vports, args, method) {
+      	var child = assembler[method](goId, args);
+      
+        parent.add(child);
+
+        if (vports) {
+        	addToViewPorts.call(this, child, vports);	
+        	parent.setChildOptions(child, { draw: false })
+        }
+        
+        child.start();
+
+        return child;
+      },
+      /**
+       * --------------------------------
+       */
+
+      /**
        * <p style='color:#AD071D'><strong>addComponentTo</strong></p>
        *
        * Wraps all the steps needed to add <a href=@@component@@>component</a> to a [game-object](@@game-object@@)
@@ -201,31 +237,22 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
 
         return co;
       },
-
-      /**
-       * <p style='color:#AD071D'><strong>addChildTo</strong></p>
-       *
-       * Wraps all the steps needed to add a child [game-object](@@game-object@@) to a [game-object-container](@@game-object-container@@)
-       * 
-       * @param {Object} [go] [game-object-container](@@game-object-container@@) to add the child to
-       * @param {String} [goId] Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details
-       * @param {Object} [args=null] Object with arguments to be applied to the child [game-object](@@game-object@@)  
-       * @param {String} [method] Method to get a [game-object](@@game-object@@), can be either 'get' or 'create'     
-       *
-       * @return {Object} The child [game-object](@@game-object@@)
-       */
-      addChildTo: function(parent, goId, args, method) {
-      	var child = assembler[method](goId, args);
-        child.start();
-
-        parent.add(child);
-        child.start();
-
-        return child;
-      },
       /**
        * --------------------------------
        */
+
+      /**
+       * <p style='color:#AD071D'><strong>removeComponentFrom</strong></p>
+       *
+       * Wraps all the steps needed to remove a <a href=@@component@@>component</a> from a [game-object](@@game-object@@)
+       * 
+       * @param {Object} [go] [game-object](@@game-object@@) to remove a [component](@@component@@) from
+       * @param {String} [coId] Id of [component](@@component@@) to remove. View [component-pool](@@component-pool@@), for more details
+       */
+      removeComponentFrom: function(go, coId) {
+      	var c = go.findComponents().firstWithType(coId);
+      	go.removeComponent(c);
+      }, 
 
       /**
        * <p style='color:#AD071D'><strong>addTextToLayer</strong></p>
