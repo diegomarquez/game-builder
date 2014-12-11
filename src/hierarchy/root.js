@@ -55,11 +55,11 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 			// Clear the canvas
 			context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-			for (var k in this.allViewports) {
-				var v = this.allViewports[k];
+			for (var i = 0; i < this.allViewports.length; i++) {
+				var v = this.allViewports[i];
 
 				// Skip everything if the viewport is not visible
-				if (!v.isVisible()) return;
+				if (!v.isVisible()) continue;
 
 				// Save state for current viewport
 				context.save();
