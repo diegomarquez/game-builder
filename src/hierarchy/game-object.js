@@ -86,6 +86,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			 * requesting a game object to the [assembler](@@assembler@@) module.
 			 */ 
 
+			// A unique identifier assigned when the game object is built by the [assembler](@@assembler@@) module
+			// It changes every time the game object is recycled
+			this.uid = null;
 			// The parent [game-object-container](@@game-object-container@@).
 			this.parent = null;
 			// [matrix-3x3](@@matrix-3x3@@) used to control affine transformations.
@@ -153,6 +156,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * a game object.
 		 */
 		reset: function() {
+			this.uid = null;
 			this.rotation = 0;
 			this.scaleX = 1;
 			this.scaleY = 1;
@@ -389,14 +393,18 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * @return {Object}  An object to make the query. It has the following methods:
 		 * **all** returns all [components](@@components@@) that return true for the specified function 
 		 * **allWithProp** returns all [components](@@component@@) that have the given property
+		 * **allWithType** returns all [components](@@component@@) that have the given id in the [component-pool](@@component-pool@@)
 		 * **first** returns the first [component](@@component@@) that returns true for the specified function
 		 * **firstWithProp** returns the first [component](@@component@@) that has the given property
+		 * **firstWithType** returns the first [components](@@component@@) that have the given id in the [component-pool](@@component-pool@@)
 		 */
 		findComponents: function() {
 			var self = this;
 
 			return {
 				all: function(f) {
+					if (!self.components) return;
+
 					var r;
 
 					for (var i = 0; i < self.components.length; i++) {
@@ -413,6 +421,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 				}, 
 
 				allWithProp: function(propName) {
+					if (!self.components) return;
+
 					var r;
 
 					for (var i = 0; i < self.components.length; i++) {
@@ -428,7 +438,27 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 					return r;
 				},
 
+				allWithType: function(typeId) {
+					if (!self.components) return;
+
+					var r;
+
+					for (var i = 0; i < self.components.length; i++) {
+						var c = self.components[i];
+
+						if (c.typeId == typeId) {
+							if (!r) r = [];
+							
+							r.push(c);
+						}
+					}
+
+					return r;
+				},
+
 				first: function(f) {
+					if (!self.components) return;
+
 					for (var i = 0; i < self.components.length; i++) {
 						var c = self.components[i];
 
@@ -439,10 +469,24 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 				},
 
 				firstWithProp: function(propName) {
+					if (!self.components) return;
+
 					for (var i = 0; i < self.components.length; i++) {
 						var c = self.components[i];
 
 						if (Boolean(c[propName])) {
+							return c;
+						}
+					}
+				},
+
+				firstWithType: function(typeId) {
+					if (!self.components) return;
+					
+					for (var i = 0; i < self.components.length; i++) {
+						var c = self.components[i];
+
+						if (c.typeId == typeId) {
 							return c;
 						}
 					}
