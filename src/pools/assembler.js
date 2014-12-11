@@ -38,6 +38,13 @@
 define(['game-object-pool', 'component-pool', 'util', 'error-printer'], function(GameObjectPool, ComponentPool, Util, ErrorPrinter) {
 	var Assembler = function() {};
 
+	var uidCounter = -1;
+
+	var getUid = function() {
+		uidCounter++;
+		return uidCounter.toString();
+	}
+
 	var getComponent = function(componentId, args) {
 		var config = ComponentPool.getConfiguration(componentId);
 
@@ -49,11 +56,13 @@ define(['game-object-pool', 'component-pool', 'util', 'error-printer'], function
 
 		// Reset some internal properties of the component before actually using it.
 		pooledComponent.reset();
+		// Assign a uid to the component, useful to precisly identify it, assuming you know the id
+		pooledComponent.uid = getUid();
+		// Set component typeId, this is very useful to identify game objects in the middle of the spaghetti mist.
+		pooledComponent.typeId = componentId;
 		// Merge arguments from type configuration with the ones in the specific component, if any.
 		pooledComponent.configure( Util.shallow_merge(config.componentArgs, args) );
-		// Set component typeId, this is very useful to identify game objects in the middle of the spaghetti mist.
-		pooledComponent.typeId = config.componentId;
-
+		
 		// When a component is 'recycled' it returns to it's respective pool
 		pooledComponent.on(pooledComponent.RECYCLE, this, function(c) {
 			ComponentPool.returnToPool(c);
@@ -77,10 +86,12 @@ define(['game-object-pool', 'component-pool', 'util', 'error-printer'], function
 		
 		// Reset some internal properties of the game-object before actually using it.
 		pooledObject.reset();
-		// Merge arguments from configuration the the ones specific to this call
-		pooledObject.configure( Util.shallow_merge(configuration.hardArguments, args) );
+		// Assign a uid to the game object, useful to precisly identify it, assuming you know the id
+		pooledObject.uid = getUid();
 		// Set object typeId, this is very useful to identify game objects in the middle of the spaghetti mist.
 		pooledObject.typeId = name;
+		// Merge arguments from configuration the the ones specific to this call
+		pooledObject.configure( Util.shallow_merge(configuration.hardArguments, args) );
 
 		// Adding all the components configured for this object type	
 		for (var i = 0; i < configuration.components.length; i++) {
