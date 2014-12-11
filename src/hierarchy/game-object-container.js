@@ -129,6 +129,10 @@ define(["game-object"], function(GameObject){
 
 				if(!child.canUpdate) continue;
 
+				if (this.childrenOptions && this.childrenOptions[child.uid]) {
+					if(!this.childrenOptions[child.uid].update) continue;	
+				}
+
 				child.update(delta);
 				
 				if(!child.components) {
@@ -185,7 +189,16 @@ define(["game-object"], function(GameObject){
 				
 					// Draw only if inside the viewport and is allowed to be drawn
 					if (viewport.isGameObjectInside(child, context) && child.canDraw) {
-						child.draw(context, viewport);	
+
+						// If there are options for this child, apply them
+						if (this.childrenOptions && this.childrenOptions[child.uid]) {
+							if(this.childrenOptions[child.uid].draw) {
+								child.draw(context, viewport);
+							}
+						} else {
+							// If there are no options, just draw the child
+							child.draw(context, viewport);	
+						}
 					}											
 				}
 			}
@@ -231,6 +244,30 @@ define(["game-object"], function(GameObject){
 		 */
 		
 		/**
+		 * <p style='color:#AD071D'><strong>setChildOptions</strong></p>
+		 *
+		 * This method allows to set options that will affect a [game-object](@@game-object@@) only on this container
+		 *
+		 * The options argument must have a **draw** key and an **update** key, these will determine if the child [game-object](@@game-object@@)
+		 * is drawn or updated on this container. The properties will be evaluated as truthy or falsy.
+		 *
+		 * If the keys are not provided, they are added and set to **true** by default
+		 * 
+		 * @param {Object} child   Child [game-object](@@game-object@@) to set options to
+		 * @param {Object} options Options that will be applied to the specified child on this container
+		 */
+		setChildOptions: function(child, options) {
+			if (!this.childrenOptions) this.childrenOptions = {};
+			if (!options.hasOwnProperty('update')) { options.update = true; }
+			if (!options.hasOwnProperty('draw')) { options.draw = true; }
+
+			this.childrenOptions[child.uid] = options;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
 		 * <p style='color:#AD071D'><strong>recycle</strong></p>
 		 *
 		 * Calls the recycle method on every child, and then on itself,
@@ -267,6 +304,8 @@ define(["game-object"], function(GameObject){
 				this.childs.length = 0;
 				this.childs = null;
 			}
+
+			this.childrenOptions = null;
 
 			this._super();
 		},
