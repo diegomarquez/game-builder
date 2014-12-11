@@ -63,6 +63,7 @@ define(["delegate", "util"], function(Delegate, Util) {
 		init: function() {
 			this._super();
 
+			this.uid 		= null;
 			this.poolId = null;
 			this.typeId = null;
 			this.parent = null;
@@ -117,8 +118,7 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 * a component.
 		 */
 		reset: function() {
-			this.poolId = null;
-			this.typeId = null;
+			this.uid = null;
 			this.parent = null;
 		},
 		/**
