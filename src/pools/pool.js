@@ -372,17 +372,36 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
      * --------------------------------
      */
     
-     /**
+    /**
+     * <p style='color:#AD071D'><strong>clearConfiguration</strong></p>
+     *
+     * Remove a configuration from the pool. After executing this method with a valid id, the id becomes useless to retrieve instances from the pool
+     * 
+     * @param  {String} configurationId An existing configuration id
+     */
+    clearConfiguration: function(configurationId) {
+    	var configuration = this.configurations[configurationId];
+
+    	if (configuration) {
+    		Util.destroyObject(configuration);
+    		delete this.configurations[configurationId];
+
+    		this.execute(this.CLEAR_CONFIGURATION, configurationId);
+    	}
+    },
+    /**
+     * --------------------------------
+     */
+
+    /**
      * <p style='color:#AD071D'><strong>clearConfigurations</strong></p>
      *
      * Remove all configurations from a pool. The pool is effectively useless without any configurations. After using this method
      * you probably want to add new [game-object](@@game-object@@) configurations.
      */
     clearConfigurations: function() {
-      var k;
-
-      for(k in this.configurations) {
-        Util.destroyObject(this.configurations[k]);
+      for(var k in this.configurations) {
+      	clearConfiguration(k);
       }
 
       this.configurations = {};
@@ -450,9 +469,11 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
   Object.defineProperty(Pool.prototype, "INIT", { get: function() { return 'init'; } });
   Object.defineProperty(Pool.prototype, "GET", { get: function() { return 'get'; } });
   Object.defineProperty(Pool.prototype, "RETURN", { get: function() { return 'return'; } });
+  Object.defineProperty(Pool.prototype, "CREATE_CONFIGURATION", { get: function() { return 'create_configurations'; } });
   Object.defineProperty(Pool.prototype, "CLEAR", { get: function() { return 'clear'; } });
   Object.defineProperty(Pool.prototype, "CLEAR_OBJECTS", { get: function() { return 'clear_objects'; } });
   Object.defineProperty(Pool.prototype, "CLEAR_CONFIGURATIONS", { get: function() { return 'clear_configurations'; } });
+  Object.defineProperty(Pool.prototype, "CLEAR_CONFIGURATION", { get: function() { return 'clear_configuration'; } });
   /**
    * --------------------------------
    */
