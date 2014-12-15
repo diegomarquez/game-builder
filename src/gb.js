@@ -255,6 +255,32 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       }, 
 
       /**
+       * <p style='color:#AD071D'><strong>findGameObjectsOfType</strong></p>
+       *
+       * Get all the currently active [game-objects](@@game-object@@) that are similar to the one specified 
+       * 
+       * @param  {Object} go All the objects returned will be similar to this one
+       *
+       * @return {Array}      An array with all the matching [game-objects](@@game-object@@)
+       */
+      findGameObjectsOfType: function(go) {
+      	var gos = gameObjectPool.getActiveObjects(go.poolId);
+
+      	var result = [];
+
+      	for (var i = 0; i < gos.length; i++) {
+      		if (gos[i].typeId == go.typeId) {
+      			result.push(gos[i]);
+      		}
+      	}
+
+      	return result;
+      },
+      /**
+       * --------------------------------
+       */
+      
+      /**
        * <p style='color:#AD071D'><strong>addTextToLayer</strong></p>
        *
        * This method is basically the same as **add** but it is used with [game-objects](@@game-object@@) that have a
