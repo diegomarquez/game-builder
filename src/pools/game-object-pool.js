@@ -138,12 +138,14 @@ define(function(require) {
 
 			this.configurations[alias] = configuration;
 
+			this.execute(this.CREATE_CONFIGURATION, configuration);
+
 			return configuration;
 		},
 		/**
 		 * --------------------------------
 		 */
-
+		
 		/**
 		 * <p style='color:#AD071D'><strong>getName</strong></p>
 		 *
