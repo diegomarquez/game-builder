@@ -136,12 +136,6 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 */
 		});
 
-		Object.defineProperty(FixedPolygonCollider.prototype, "Points", { 
-			get: function() { 
-				return this.pointsCopy; 
-			} 
-		});
-
 		return FixedPolygonCollider;
 	}
 );
