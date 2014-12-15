@@ -266,6 +266,27 @@ define(["game-object"], function(GameObject){
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>getChildOptions</strong></p>
+		 *
+		 * Get the options set in the **setChildOptions** method for the specified child [game-object](@@game-object@@)
+		 * 
+		 * @param  {Object} child A child [game-obejct](@@game-obejct@@) of this container
+		 *
+		 * @return {Object} An object like the one set in the **setChildOptions** method
+		 */
+		getChildOptions: function(child) {
+			if (this.childrenOptions[child.uid]) {
+				return this.childrenOptions[child.uid];	
+			} else {
+				setChildOptions(child);
+				return this.childrenOptions[child.uid];
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>recycle</strong></p>
