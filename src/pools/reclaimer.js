@@ -231,6 +231,22 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	/**
 	 * --------------------------------
 	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>clearGameObjectConfiguration</strong></p>
+	 *
+	 * Claims all the [game-objects](@@game-object@@) associated with the specified configuration id on the [game-object-pool](@@game-object-pool@@),
+	 * it then destroys the configuration itself in the [game-object-pool](@@game-object-pool@@) so it can't be used anymore.
+	 *
+	 * @param {String} [configurationId] A configuration id set in [game-object-pool](@@game-object-pool@@)
+	 */
+	Reclaimer.prototype.clearGameObjectConfiguration = function(configurationId) {
+		this.claimConfiguration(configurationId);
+		GameObjectPool.clearConfiguration(configurationId);
+	};
+	/**
+	 * --------------------------------
+	 */
 
 	return new Reclaimer();
 });
