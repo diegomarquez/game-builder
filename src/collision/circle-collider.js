@@ -52,7 +52,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 
 	var p = {};
 	
-	var Component = CollisionComponent.extend({
+	var CircleCollider = CollisionComponent.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -111,5 +111,5 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 		 */
 	});
 
-	return Component;
+	return CircleCollider;
 });
