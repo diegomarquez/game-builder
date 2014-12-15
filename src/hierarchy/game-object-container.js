@@ -274,14 +274,14 @@ define(["game-object"], function(GameObject){
 		 * nulling every reference on it's way.
 		 */
 		recycle: function() {
-			if(!this.childs) return;
+			if(this.childs) {
+				for(var i=0; i<this.childs.length; i++){
+					this.childs[i].recycle();
+				}
 
-			for(var i=0; i<this.childs.length; i++){
-				this.childs[i].recycle();
+				this.childs.length = 0;
+				this.childs = null;	
 			}
-
-			this.childs.length = 0;
-			this.childs = null;
 
 			this._super();
 		},
