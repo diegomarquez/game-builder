@@ -175,6 +175,7 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 * is destroying itself.
 		 */
 		onRecycled: function() {
+			this.hardCleanUp();
 			this.recycle();
 			this.execute(this.RECYCLE, this);
 		},
