@@ -502,8 +502,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 *
 		 * Generates the concatenated [matrix-3x3](@@matrix-3x3@@) used to draw itself in the proper place
 		 */
-		transform: function() {
-			this.getMatrix(this.matrix);
+		transform: function(options) {
+			this.getMatrix(this.matrix, options);
 		},
 		/**
 		 * --------------------------------
