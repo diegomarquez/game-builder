@@ -208,7 +208,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
 
         if (vports) {
         	addToViewPorts.call(this, child, vports);	
-        	parent.setChildOptions(child, { draw: false })
+        	parent.setChildOptions(child, { draw: false });
         }
         
         child.start();
