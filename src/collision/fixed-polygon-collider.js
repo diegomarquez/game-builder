@@ -78,7 +78,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 				this.pointsCopy = JSON.parse(JSON.stringify(this.points));
 
 				this.collider = new SAT.FixedSizePolygon(new Vector2D(0, 0), this.points);
-				this.colliderType = CollisionResolver.polygonCollider;
+				this.colliderType = CollisionResolver.fixedPolygonCollider;
 			},
 			/**
 			 * --------------------------------

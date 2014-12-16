@@ -128,14 +128,14 @@ define(['sat'], function(SAT) {
 			if (first.colliderType == this.circleCollider) {
 				return SAT.testCircleCircle(first.collider, second.collider);
 			}
-			if (first.colliderType == this.polygonCollider) {
+			if (first.colliderType == this.polygonCollider || first.colliderType == this.fixedPolygonCollider) {
 				return SAT.testPolygonPolygon(first.collider, second.collider);
 			}
 		} else {
 			if (first.colliderType == this.circleCollider) {
 				return SAT.testPolygonCircle(second.collider, first.collider);
 			}
-			if (first.colliderType == this.polygonCollider) {
+			if (first.colliderType == this.polygonCollider || first.colliderType == this.fixedPolygonCollider) {
 				return SAT.testPolygonCircle(first.collider, second.collider);
 			}
 		}
@@ -148,6 +148,7 @@ define(['sat'], function(SAT) {
 	// between them.
 	CollisionResolver.prototype.circleCollider  = 0;
 	CollisionResolver.prototype.polygonCollider = 1;
+	CollisionResolver.prototype.fixedPolygonCollider = 2;
 
 	return new CollisionResolver();
 });
