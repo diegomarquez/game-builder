@@ -41,7 +41,11 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
           ErrorPrinter.printError('Gb', 'Viewport shortcut ' + vports + ' does not exist.');
         }
       } else {
-        v = vports;
+      	if (Object.prototype.toString.call(vports) != '[object Array]') {
+      		ErrorPrinter.printError('Gb', 'Viewport argument must be an array');
+      	} else {
+      		v = vports;	
+      	}
       }
 
       for (var i=0; i<v.length; i++) {
