@@ -86,7 +86,7 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
         }
         
 				// Make all the drawings relative to the viewport's visible area
-				v.transformContext(context)
+				v.transformContext(context);
 				// Draw all the game objects associated with this viewport
 	    	v.draw(context);
 	    	// Go back to previous state for the next viewport
