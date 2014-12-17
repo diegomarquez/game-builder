@@ -438,7 +438,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 					return r;
 				},
 
-				allWithType: function(typeId) {
+				allWithType: function(id) {
 					if (!self.components) return;
 
 					var r;
@@ -446,7 +446,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 					for (var i = 0; i < self.components.length; i++) {
 						var c = self.components[i];
 
-						if (c.typeId == typeId) {
+						if (c.typeId == id || c.poolId == id) {
 							if (!r) r = [];
 							
 							r.push(c);
@@ -480,13 +480,13 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 					}
 				},
 
-				firstWithType: function(typeId) {
+				firstWithType: function(id) {
 					if (!self.components) return;
 					
 					for (var i = 0; i < self.components.length; i++) {
 						var c = self.components[i];
 
-						if (c.typeId == typeId) {
+						if (c.typeId == id || c.poolId == id) {
 							return c;
 						}
 					}
@@ -527,7 +527,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			}
 
 			if (this.matrix.alpha > 0) {
-				if(this.renderer) this.renderer.draw(context);
+				if(this.renderer) {
+					this.renderer.draw(context, viewport);
+				}
 			}
 			
 			DebugDraw.gameObject.call(this, context, viewport);
