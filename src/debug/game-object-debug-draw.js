@@ -56,10 +56,10 @@ define(function(require){
 			// Apply transformations for the current [viewport](@@viewport@@)
 			viewport.transformContext(context);
 
-	    	// Draw what ever the [renderer](@@renderer@@) wants to show in debug mode
-	    	if (this.renderer) {
-	    		this.renderer.debug_draw(context, viewport, draw, gb);
-	    	}
+    	// Draw what ever the [renderer](@@renderer@@) wants to show in debug mode
+    	if (this.renderer) {
+    		this.renderer.debug_draw(context, viewport, draw, gb);
+    	}
 
 			if (this.components) {
 				// Draw whatever the [components](@@component@@) want to draw in debug mode
@@ -69,7 +69,7 @@ define(function(require){
 			}
 			
 			// Draw what ever the [game-object](@@game-object@@) wants to show in debug mode
-	    	this.debug_draw(context, viewport, draw, gb);
+	    this.debug_draw(context, viewport, draw, gb);
 
 			// Restore original context
 			context.restore();
