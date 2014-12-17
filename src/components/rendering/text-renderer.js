@@ -101,8 +101,9 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 		 * like **width**, **height** and **offsets**
 		 * 
 		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
 		 */
-		draw: function(context) {
+		draw: function(context, viewport) {
 			image = TextCache.get(this.name);
 			context.drawImage(image, this.rendererOffsetX(), this.rendererOffsetY(), this.rendererWidth(), this.rendererHeight());	
 		},

@@ -54,7 +54,7 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 * 
 		 * @throws {Error} Always
 		 */
-		draw: function(context) {
+		draw: function(context, viewport) {
 			ErrorPrinter.mustOverrideError('Renderer');
 		},
 		/**
