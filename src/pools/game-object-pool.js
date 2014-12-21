@@ -30,11 +30,11 @@
  * object, but with three different configurations, for example. ej.
  *
  * ``` javascript
- * componentPool.createPool("GameObject", someGameObjectPrototypeObject, 1);
+ * gameObjectPool.createPool("GameObject", someGameObjectPrototypeObject, 1);
  * 
-	componentPool.createConfiguration("Conf_1", 'GameObject').args({some_property:  1});
-	componentPool.createConfiguration("Conf_2", 'GameObject').args({some_property:2});
-	componentPool.createConfiguration("Conf_3", 'GameObject').args({some_property: 3});
+	gameObjectPool.createConfiguration("Conf_1", 'GameObject').args({some_property:  1});
+	gameObjectPool.createConfiguration("Conf_2", 'GameObject').args({some_property:2});
+	gameObjectPool.createConfiguration("Conf_3", 'GameObject').args({some_property: 3});
  *
  * ```
  *
@@ -94,6 +94,7 @@ define(function(require) {
 			// contain the arguments that this configuration will apply
 			var configuration = {
 				type: type,
+				alias: alias,
 				hardArguments: null,
 				childs: [],
 				components: [],
@@ -102,6 +103,11 @@ define(function(require) {
 				// Returns the id of the pool this configuration refers to
 				typeId: function() {
 					return type;
+				},
+
+				// Returns the id of this configuration
+				configurationId: function() {
+					return alias;
 				},
 
 				// Set which arguments this configuration will apply to a
@@ -141,6 +147,23 @@ define(function(require) {
 			this.execute(this.CREATE_CONFIGURATION, configuration);
 
 			return configuration;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>createConfigurationFromObject</strong></p>
+		 *
+		 * @param  {Object} object An object with all the information needed to set up a configuration for a pooled type
+		 *
+		 * @return {Object}       A configuration object. This objects have a lot of information
+		 */
+		createConfigurationFromObject: function(object) {
+			this.configurations[object.alias] = object;
+			this.execute(this.CREATE_CONFIGURATION, this.configurations[object.alias]);
+
+			return this.configurations[object.alias];
 		},
 		/**
 		 * --------------------------------

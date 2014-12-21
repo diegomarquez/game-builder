@@ -80,10 +80,15 @@ define(function(require) {
 			var configuration = {
 				componentId: type,
 				componentArgs: null,
+				alias: alias,
 
 				// Returns the id of the pool this configuration refers to
 				typeId: function() {
 					return type;
+				},
+
+				configurationId: function() {
+					return typeId;
 				},
 
 				// Set which arguments this configuration will apply to a
@@ -97,6 +102,23 @@ define(function(require) {
 			this.configurations[alias] = configuration;
 		
 			return configuration;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>createConfigurationFromObject</strong></p>
+		 *
+		 * @param  {Object} object An object with all the information needed to set up a configuration for a pooled type
+		 *
+		 * @return {Object}       A configuration object. This objects have a lot of information
+		 */
+		createConfigurationFromObject: function(object) {
+			this.configurations[object.alias] = object;
+			this.execute(this.CREATE_CONFIGURATION, this.configurations[object.alias]);
+
+			return this.configurations[object.alias];
 		},
 		/**
 		 * --------------------------------
@@ -142,6 +164,30 @@ define(function(require) {
 			}
 
 			return configuration;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>getConfigurationObject</strong></p>
+		 *
+		 * Gets the requested configuration. It doesn't perform any type of validations.
+		 * 
+		 * @param  {String} alias      Id of the [component](@@component@@) requested
+		 *
+		 * @throws {Error} If the id provided does not match with any existing one
+		 * 
+		 * @return {Object} The configuration object requested
+		 */
+		getConfigurationObject: function(alias) {
+			var configuration = this.configurations[alias]
+
+			if(!configuration) {
+				ErrorPrinter.printError('Component Pool', 'Configuration with id: '  + alias + ' does not exist');
+			}
+
+			return this.configurations[alias];
 		}
 		/**
 		 * --------------------------------
