@@ -19,6 +19,25 @@
  */
 
 define(function() {
+	var interfaceMethods = [
+		'copy',
+		'perp',
+		'reverse',
+		'normalize',
+		'add',
+		'sub',
+		'scale',
+		'project',
+		'projectN',
+		'reflect',
+		'reflectN',
+		'dot',
+		'len',
+		'len2',
+		'distance',
+		'equal'
+	];
+
 	var vector_2D = function(x, y) {
 		this['x'] = this.x = x || 0;
 		this['y'] = this.y = y || 0;
@@ -126,6 +145,22 @@ define(function() {
 	 
 	  return Math.sqrt( xs + ys );
 	};
+
+	vector_2D.prototype.equal = function(to) {
+		return this.x === to.x && this.y === to.y;
+	} 
+
+	vector_2D.isVector = function(vec) {
+		for (var i = 0; i < interfaceMethods.length; i++) {
+			var method = interfaceMethods[i];
+
+			if (Object.prototype.toString.call(vec[method]) != '[object Function]') {
+				return false;
+			}
+		}
+
+		return true;
+	}
 
 	return vector_2D;
 });
