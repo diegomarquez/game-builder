@@ -244,6 +244,52 @@ define(["game-object"], function(GameObject){
 		 */
 		
 		/**
+		 * <p style='color:#AD071D'><strong>addToViewport</strong></p>
+		 *
+		 * Adds the specified viewport and layer combo to the ones this game object belongs to.
+		 * It also does it for it's children
+		 *
+		 * @param {String} viewportName Name of the new viewport this object belongs to
+		 * @param {String} layerName Name of the layer in the specified viewport
+		 * 
+		 */
+		addToViewportList: function(viewportName, layerName) {
+			this._super(viewportName, layerName);
+
+			if(!this.childs) return;
+
+			for(var i=0; i<this.childs.length; i++){
+				this.childs[i].addToViewportList(viewportName, layerName);
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>removeFromViewport</strong></p>
+		 *
+		 * Removes the viewport and layer combo from the ones this game object belongs to.
+		 * It also does it for it's children
+		 *
+		 * @param {String} viewportName Name of the viewport to remove from this game objects list
+		 * @param {String} layerName Name of the layer in the specified viewport
+		 * 
+		 */
+		removeFromViewportList: function(viewportName, layerName) {
+			this._super(viewportName, layerName);
+
+			if(!this.childs) return;
+
+			for(var i=0; i<this.childs.length; i++){
+				this.childs[i].removeFromViewportList(viewportName, layerName);
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
 		 * <p style='color:#AD071D'><strong>setChildOptions</strong></p>
 		 *
 		 * This method allows to set options that will affect a [game-object](@@game-object@@) only on this container
@@ -258,6 +304,9 @@ define(["game-object"], function(GameObject){
 		 */
 		setChildOptions: function(child, options) {
 			if (!this.childrenOptions) this.childrenOptions = {};
+
+			options = options || {};
+
 			if (!options.hasOwnProperty('update')) { options.update = true; }
 			if (!options.hasOwnProperty('draw')) { options.draw = true; }
 
@@ -280,7 +329,7 @@ define(["game-object"], function(GameObject){
 			if (this.childrenOptions[child.uid]) {
 				return this.childrenOptions[child.uid];	
 			} else {
-				setChildOptions(child);
+				this.setChildOptions(child);
 				return this.childrenOptions[child.uid];
 			}
 		},
