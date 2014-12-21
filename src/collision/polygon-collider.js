@@ -60,6 +60,35 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 
 		var PolygonCollider = CollisionComponent.extend({
 			/**
+			 * <p style='color:#AD071D'><strong>configure</strong></p>
+			 *
+			 * Configures properties
+			 * set via the <a href=@@component-pool@@>component-pool</a>
+			 * 
+			 * This method is important as it applies all the configuration needed for 
+			 * the component to work as expected.
+			 *
+			 * Overriden in this module to handle different types for the **points** argument
+			 * 
+			 * @param  {Object} args An object with all the properties to write into the component
+			 */
+			configure: function(args) {
+				this._super(args);
+
+				var copy = JSON.parse(JSON.stringify(this.points));
+				var points = [];
+
+				for (var i = 0; i < this.points.length; i++) {
+					points.push(new Vector2D(copy[i].x, copy[i].y));
+				}
+
+				this.points = points;
+			},
+			/**
+			 * --------------------------------
+			 */
+			
+			/**
 			 * <p style='color:#AD071D'><strong>start</strong></p>
 			 *
 			 * Set up the collider.
@@ -72,9 +101,17 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 				this._super();
 
 				this.pointCount = this.points.length;
-				this.pointsCopy = JSON.parse(JSON.stringify(this.points));
+				this.pointsCopy = [];
 
-				this.collider = new SAT.FixedSizePolygon(new Vector2D(0, 0), this.points);
+				var copy = JSON.parse(JSON.stringify(this.points));
+				var points = [];
+
+				for (var i = 0; i < this.pointCount; i++) {
+					this.pointsCopy.push(new Vector2D(copy[i].x, copy[i].y));
+					points.push(new Vector2D(copy[i].x, copy[i].y));
+				} 
+
+				this.collider = new SAT.FixedSizePolygon(new Vector2D(0, 0), points);
 				this.colliderType = CollisionResolver.polygonCollider;
 			},
 			/**
