@@ -178,12 +178,12 @@ define(["class", "util"], function(Class, Util) {
 		 * @param  {String} name All functions matching this Id will be removed
 		 */
 		removeAll: function(name) {
-			var list = this.callbackList[name];
+			if (this.callbackList[name]) {
+				this.callbackList[name].splice(0, this.callbackList[name].lenght);
+				this.callbackList[name].lenght = 0;
+				this.callbackList[name] = null;
 
-			if (list) {
-				list.splice(0, list.lenght);
-				list.lenght = 0;
-				list = null;
+				delete this.callbackList[name];
 			}
 		},
 		/**
