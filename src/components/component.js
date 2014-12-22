@@ -174,10 +174,11 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 * This is called by the parent [game-object](@@game-object@@) when it
 		 * is destroying itself.
 		 */
-		onRecycled: function() {
-			this.hardCleanUp();
+		onRecycled: function() {			
 			this.recycle();
 			this.execute(this.RECYCLE, this);
+
+			this.hardCleanUp();
 		},
 		/**
 		 * --------------------------------
