@@ -53,6 +53,30 @@ define(function() {
 	/**
 	 * --------------------------------
 	 */
+	
+	/**
+ 	 * <p style='color:#AD071D'><strong>shallow_merge_many</strong></p>
+ 	 *
+ 	 * Performs a shallow merge of many objects.
+ 	 *
+ 	 * The object which are specified first will be overrider by the ones specified last
+ 	 * 
+ 	 * @return {Object}        Result of merging
+ 	 */
+	Utils.prototype.shallow_merge_many = function() {
+		var result = {};
+
+		for (var i = 0; i < arguments.length; i++) {
+			if (arguments[i]) {
+				this.shallow_copy(arguments[i], result);	
+			}
+		}
+
+		return result;
+	};
+	/**
+	 * --------------------------------
+	 */
 
 	/**
 	 * <p style='color:#AD071D'><strong>shallow_copy</strong></p>
