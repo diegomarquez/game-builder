@@ -201,11 +201,12 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        *                              the [game-object](@@game-object@@) should be added to.
        *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
        * @param {Object} [args=null] Object with arguments to be applied to the child [game-object](@@game-object@@)  
-       * @param {String} [method] Method to get a [game-object](@@game-object@@), can be either 'get' or 'create'     
+       * @param {String} [method] Method to get a [game-object](@@game-object@@), can be either 'get' or 'create'
+       * @param {Boolean} [start=true] Whether the [game-object](@@game-object@@) should be started right away     
        *
        * @return {Object} The child [game-object](@@game-object@@)
        */
-      addChildTo: function(parent, goId, vports, args, method) {
+      addChildTo: function(parent, goId, vports, args, method, start) {
       	var child = assembler[method](goId, args);
       
         parent.add(child);
@@ -215,7 +216,11 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
         	parent.setChildOptions(child, { draw: false });
         }
         
-        child.start();
+        start = start === undefined ? true : false;
+
+        if (start) {
+        	child.start();
+        }
 
         return child;
       },
