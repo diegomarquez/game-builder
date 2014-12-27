@@ -268,7 +268,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        *
        * Get all the currently active [game-objects](@@game-object@@) that are similar to the one specified 
        * 
-       * @param  {Object} go All the objects returned will be similar to this one
+       * @param  {Object} go The [game-object](@@game-object@@) is used to return all other active ones that are similar to this one
        *
        * @return {Array}      An array with all the matching [game-objects](@@game-object@@)
        */
