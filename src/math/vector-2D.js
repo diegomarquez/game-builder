@@ -148,6 +148,10 @@ define(function() {
 
 	vector_2D.prototype.equal = function(to) {
 		return this.x === to.x && this.y === to.y;
+	}
+
+	vector_2D.prototype.clone = function() {
+		return new vector_2D(this.x, this.y);
 	} 
 
 	vector_2D.isVector = function(vec) {
