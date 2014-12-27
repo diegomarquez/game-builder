@@ -90,6 +90,8 @@ define(function(require) {
 		 * @return {Object}       A configuration object. This objects have a lot of information
 		 */
 		createConfiguration: function(alias, type) {
+			var self = this;
+
 			// Configuration objects for [game-objects](@@game-object@@)
 			// contain the arguments that this configuration will apply
 			var configuration = {
@@ -114,6 +116,7 @@ define(function(require) {
 				// [game-object](@@game-object@@)
 				args: function(args) {
 					this.hardArguments = args;
+					self.execute(self.UPDATE_CONFIGURATION, this);
 					return this;
 				},
 				// Add a child, specifying
@@ -124,6 +127,7 @@ define(function(require) {
 						childId: childId,
 						args: args
 					});
+					self.execute(self.UPDATE_CONFIGURATION, this);
 					return this;
 				},
 				// Add a [component](@@component@@), specifying an existing 
@@ -131,6 +135,7 @@ define(function(require) {
 				// and arguments the component will take when initialized
 				addComponent: function(componentId, args) {
 					this.components.push(getComponentDescription(componentId, args));
+					self.execute(self.UPDATE_CONFIGURATION, this);
 					return this;
 				},
 				// Set a renderer, specifying an existing 
@@ -138,12 +143,12 @@ define(function(require) {
 				// renderer will take when initialized
 				setRenderer: function(rendererId, args) {
 					this.renderer = getComponentDescription(rendererId, args);
+					self.execute(self.UPDATE_CONFIGURATION, this);
 					return this;
 				}
 			};
 
 			this.configurations[alias] = configuration;
-
 			this.execute(this.CREATE_CONFIGURATION, configuration);
 
 			return configuration;

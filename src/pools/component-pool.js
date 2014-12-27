@@ -74,6 +74,7 @@ define(function(require) {
 		 * @return {Object}       A configuration object. Nothing too fancy
 		 */
 		createConfiguration: function(alias, type) {
+			var self = this;
 
 			// Configurations objects for [components](@@component@@)
 			// contain the arguments that this configuration will apply
@@ -88,18 +89,20 @@ define(function(require) {
 				},
 
 				configurationId: function() {
-					return typeId;
+					return alias;
 				},
 
 				// Set which arguments this configuration will apply to a
 				// [component](@@component@@)
 				args: function(args) {
 					this.componentArgs = args;
+					self.execute(self.UPDATE_CONFIGURATION, this);
 					return this;
 				}
 			}
 
 			this.configurations[alias] = configuration;
+			this.execute(this.CREATE_CONFIGURATION, configuration);
 		
 			return configuration;
 		},

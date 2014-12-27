@@ -470,6 +470,7 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
   Object.defineProperty(Pool.prototype, "GET", { get: function() { return 'get'; } });
   Object.defineProperty(Pool.prototype, "RETURN", { get: function() { return 'return'; } });
   Object.defineProperty(Pool.prototype, "CREATE_CONFIGURATION", { get: function() { return 'create_configurations'; } });
+  Object.defineProperty(Pool.prototype, "UPDATE_CONFIGURATION", { get: function() { return 'update_configurations'; } });
   Object.defineProperty(Pool.prototype, "CLEAR", { get: function() { return 'clear'; } });
   Object.defineProperty(Pool.prototype, "CLEAR_OBJECTS", { get: function() { return 'clear_objects'; } });
   Object.defineProperty(Pool.prototype, "CLEAR_CONFIGURATIONS", { get: function() { return 'clear_configurations'; } });
