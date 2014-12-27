@@ -420,10 +420,10 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
      * @return {Array} The names of the configurations registered in the pool
      */
     getConfigurationTypes: function() {
-      var r = []
+      var r = [];
 
       for (var k in this.configurations) {
-        r.push(k)
+        r.push(k);
       }
 
       return r;

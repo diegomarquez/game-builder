@@ -101,6 +101,7 @@ define(function(require) {
 				childs: [],
 				components: [],
 				renderer: null,
+				isChild: false,
 
 				// Returns the id of the pool this configuration refers to
 				typeId: function() {
@@ -110,6 +111,10 @@ define(function(require) {
 				// Returns the id of this configuration
 				configurationId: function() {
 					return alias;
+				},
+
+				isChildOnly: function() {
+					return this.isChild;
 				},
 
 				// Set which arguments this configuration will apply to a
@@ -145,6 +150,11 @@ define(function(require) {
 					this.renderer = getComponentDescription(rendererId, args);
 					self.execute(self.UPDATE_CONFIGURATION, this);
 					return this;
+				},
+				// Set whether this configurations is meant to be used only as a child of another
+				// [game-obejct](@@game-obejct@@)
+				childOnly: function() {
+					this.isChild = true;
 				}
 			};
 
@@ -271,10 +281,43 @@ define(function(require) {
 			}
 
 			return this.configurations[alias];
-		}
+		},
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+     * <p style='color:#AD071D'><strong>getConfigurationTypes</strong></p>
+     *
+     * Get an array with all the names of the configurations currently in the pool
+     *
+     * The **options** arguments is an object which can have the **filterChilds** property. Specifying it will filter
+     * out all the configurations which are meant to only be childs of other configurations 
+     * 
+     * @param {Object} options
+     * 
+     * @return {Array} The names of the configurations registered in the pool
+     */
+    getConfigurationTypes: function(options) {
+    	options = options || {};
+
+      var r = []
+
+      for (var k in this.configurations) {
+      	if (options.filterChilds) {
+      		if (!this.configurations[k].isChildOnly()) {
+	      		r.push(k);
+	      	}	
+      	} else {
+      		r.push(k);
+      	}
+      }
+
+      return r;
+    }
+    /**
+     * --------------------------------
+     */
 	});
 
 	return new GameObjectPool();
