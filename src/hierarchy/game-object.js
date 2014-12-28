@@ -391,7 +391,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * Get an object to query the [component](@@component@@) list of the game object
 		 *
 		 * @return {Object}  An object to make the query. It has the following methods:
-		 * **all** returns all [components](@@components@@) that return true for the specified function 
+		 * **all** returns all [components](@@components@@) that return true for the specified function. Pass no argument to get all components 
 		 * **allWithProp** returns all [components](@@component@@) that have the given property
 		 * **allWithType** returns all [components](@@component@@) that have the given id in the [component-pool](@@component-pool@@)
 		 * **first** returns the first [component](@@component@@) that returns true for the specified function
@@ -410,7 +410,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 					for (var i = 0; i < self.components.length; i++) {
 						var c = self.components[i];
 
-						if (f(c)) {
+						if (!f || f(c)) {
 							if (!r) r = [];
 							
 							r.push(c);
