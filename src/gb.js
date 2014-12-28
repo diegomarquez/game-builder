@@ -196,7 +196,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        * The parent [viewport](@@viewport@@) will be ignored.
        * 
        * @param {Object} [go] [game-object-container](@@game-object-container@@) to add the child to
-       * @param {String} [goId] Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details
+       * @param {String} [chidlGoId] Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details
        * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
        *                              the [game-object](@@game-object@@) should be added to.
        *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
@@ -206,8 +206,8 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        *
        * @return {Object} The child [game-object](@@game-object@@)
        */
-      addChildTo: function(parent, goId, vports, args, method, start) {
-      	var child = assembler[method](goId, args);
+      addChildTo: function(parent, chidlGoId, vports, args, method, start) {
+      	var child = assembler[method](chidlGoId, args);
       
         parent.add(child);
 
