@@ -155,6 +155,7 @@ define(function(require) {
 				// [game-obejct](@@game-obejct@@)
 				childOnly: function() {
 					this.isChild = true;
+					return this;
 				}
 			};
 
@@ -170,15 +171,20 @@ define(function(require) {
 		/**
 		 * <p style='color:#AD071D'><strong>createConfigurationFromObject</strong></p>
 		 *
-		 * @param  {Object} object An object with all the information needed to set up a configuration for a pooled type
+		 * @param  {Object} configurationObject An object with all the information needed to set up a configuration for a pooled type
 		 *
-		 * @return {Object}       A configuration object. This objects have a lot of information
+		 * @return {Object} The configuration object created
 		 */
-		createConfigurationFromObject: function(object) {
-			this.configurations[object.alias] = object;
-			this.execute(this.CREATE_CONFIGURATION, this.configurations[object.alias]);
+		createConfigurationFromObject: function(configurationObject) {
+			var configuration = this.createConfiguration(configurationObject.alias, configurationObject.type);
 
-			return this.configurations[object.alias];
+			for (var k in configurationObject) {
+				configuration[k] = configurationObject[k];
+			}
+
+			this.execute(this.CREATE_CONFIGURATION, configuration);
+
+			return configuration;
 		},
 		/**
 		 * --------------------------------
