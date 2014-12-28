@@ -70,8 +70,6 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	 * that depend of it to their respective pools.
 	 * 
 	 * @param  {Object} go [game-object](@@game-object@@) to recycle
-	 *
-	 * @throws {Error} If the id argument is missing.
 	 */
 	Reclaimer.prototype.claim = function(go) {	
 		if (go.parent) {
@@ -79,6 +77,27 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 		}
 
 		go.clear();
+	},
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>claim</strong></p>
+	 *
+	 * Claims all the children from a [game-object-container](@@game-object-container@@), 
+	 * but does not claim the [game-object](@@game-object@@) itself.
+	 * 
+	 * @param  {Object} go [game-object-container](@@game-object-container@@) to remove children from
+	 */
+	Reclaimer.prototype.claimChildren = function(go) {	
+		if (go.isContainer()) {
+			var children = go.findChildren().all();
+
+			for (var i = 0; i < children.length; i++) {
+				this.claim(children[i]);
+			}
+		}
 	},
 	/**
 	 * --------------------------------
