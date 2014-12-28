@@ -103,6 +103,10 @@ define(["game-object"], function(GameObject){
 
 			this.childs.splice(this.childs.indexOf(child), 1); 
 
+			if (this.childrenOptions[child.uid]) {
+				delete this.childrenOptions[child.uid];	
+			}
+
 			child.removed(this);
 			child.execute(child.REMOVED, this);
 		},
@@ -331,6 +335,86 @@ define(["game-object"], function(GameObject){
 			} else {
 				this.setChildOptions(child);
 				return this.childrenOptions[child.uid];
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>findChildren</strong></p>
+		 *
+		 * Get an object to query the child [game-objects](@@game-object@@) list of this container
+		 *
+		 * @return {Object}  An object to make the query. It has the following methods:
+		 * **all** returns all [game-objects](@@game-object@@) that return true for the specified function. Pass no argument to get all children 
+		 * **allWithType** returns all [game-objects](@@game-object@@) that have the given id in the [game-object-pool](@@game-object-pool@@)
+		 * **first** returns the first [game-object](@@game-object@@) that returns true for the specified function
+		 * **firstWithType** returns the first [game-object](@@game-object@@) that has the given id in the [game-object-pool](@@game-object-pool@@)
+		 */
+		findChildren: function() {
+			var self = this;
+
+			return {
+				all: function(f) {
+					if (!self.childs) return;
+
+					var r;
+
+					for (var i = 0; i < self.childs.length; i++) {
+						var c = self.childs[i];
+
+						if (!f || f(c)) {
+							if (!r) r = [];
+							
+							r.push(c);
+						}
+					}
+
+					return r;
+				}, 
+
+				allWithType: function(id) {
+					if (!self.childs) return;
+
+					var r;
+
+					for (var i = 0; i < self.childs.length; i++) {
+						var c = self.childs[i];
+
+						if (c.typeId == id || c.poolId == id) {
+							if (!r) r = [];
+							
+							r.push(c);
+						}
+					}
+
+					return r;
+				},
+
+				first: function(f) {
+					if (!self.childs) return;
+
+					for (var i = 0; i < self.childs.length; i++) {
+						var c = self.childs[i];
+
+						if (f(c)) {
+							return c;
+						}
+					}		
+				},
+
+				firstWithType: function(id) {
+					if (!self.childs) return;
+					
+					for (var i = 0; i < self.childs.length; i++) {
+						var c = self.childs[i];
+
+						if (c.typeId == id || c.poolId == id) {
+							return c;
+						}
+					}
+				}
 			}
 		},
 		/**
