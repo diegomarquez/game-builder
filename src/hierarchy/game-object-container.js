@@ -103,7 +103,7 @@ define(["game-object"], function(GameObject){
 
 			this.childs.splice(this.childs.indexOf(child), 1); 
 
-			if (this.childrenOptions[child.uid]) {
+			if (this.childrenOptions && this.childrenOptions[child.uid]) {
 				delete this.childrenOptions[child.uid];	
 			}
 
