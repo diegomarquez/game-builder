@@ -116,8 +116,8 @@ define(function(require) {
 		display.innerText = text + numbers.join('/');
 	};
 
-	displays.push(getDisplay(gameObjectPool, updatePool('Game Object Pool', gameObjectPool, 'goPoolDisplay'), 'init', ['INIT', 'GET', 'RETURN', 'CLEAR']));
-	displays.push(getDisplay(componentPool, updatePool('Component Pool', componentPool, 'coPoolDisplay'), 'init', ['INIT', 'GET', 'RETURN', 'CLEAR']));
+	displays.push(getDisplay(gameObjectPool, updatePool('Game Object Pool', gameObjectPool, 'goPoolDisplay'), 'init', ['INIT', 'GET', 'RETURN', 'CLEAR', 'CLEAR_OBJECTS', 'CLEAR_CONFIGURATION', 'CLEAR_CONFIGURATIONS']));
+	displays.push(getDisplay(componentPool, updatePool('Component Pool', componentPool, 'coPoolDisplay'), 'init', ['INIT', 'GET', 'RETURN', 'CLEAR', 'CLEAR_OBJECTS', 'CLEAR_CONFIGURATION', 'CLEAR_CONFIGURATIONS']));
 	displays.push(getDisplay(jsonCache, updateCache('Json Cache', jsonCache, 'jsonCacheDisplay'), 'cache', ['CACHE', 'CLEAR', 'CLEAR_ALL']));
 	displays.push(getDisplay(imageCache, updateCache('Image Cache', imageCache, 'imageCacheDisplay'), 'cache', ['CACHE', 'CLEAR', 'CLEAR_ALL']));
 	displays.push(getDisplay(pathCache, updateCache('Path Cache', pathCache, 'pathCacheDisplay'), 'cache', ['CACHE', 'CLEAR', 'CLEAR_ALL']));
