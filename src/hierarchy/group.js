@@ -79,7 +79,19 @@ define(["game-object-container"], function(Container){
 			}
 
 			this.execute('clear', this);
-		}
+		},
+
+		/**
+		 * <p style='color:#AD071D'><strong>typeName</strong></p>
+		 *
+		 * @return {String} Returns the type name of this object
+		 */
+		typeName: function() {
+			return 'Group';
+		},
+		/**
+		 * --------------------------------
+		 */
 	});
 
 	return Group;

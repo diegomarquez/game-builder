@@ -92,7 +92,19 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 	    	// Go back to previous state for the next viewport
 	    	context.restore();
 			}
-		}
+		},
+
+		/**
+		 * <p style='color:#AD071D'><strong>typeName</strong></p>
+		 *
+		 * @return {String} Returns the type name of this object
+		 */
+		typeName: function() {
+			return 'Root';
+		},
+		/**
+		 * --------------------------------
+		 */
 	});
 
 	return new Root();

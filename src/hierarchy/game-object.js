@@ -168,6 +168,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			this.viewportVisibility = {}
 			this.viewports = [];
 			this.updateGroup = null;
+			this.isChildInContainer = false;
 		},
 		/**
 		 * --------------------------------
@@ -858,6 +859,37 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		isContainer: function() {
 			return false;
 		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>typeName</strong></p>
+		 *
+		 * @return {String} Returns the type name of this object
+		 */
+		typeName: function() {
+			return 'GameObject';
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>isChild</strong></p>
+		 *
+		 * @return {Boolean} Wheter this game object is a child of a container or not
+		 */
+		isChild: function() {
+			if (!this.parent) { 
+				return false;
+			} else {
+				return !(this.parent.typeName() == 'Group' || this.parent.typeName() == 'Root');
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>

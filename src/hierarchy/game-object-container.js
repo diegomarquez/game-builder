@@ -474,7 +474,23 @@ define(["game-object"], function(GameObject){
 		 */
 		isContainer: function() {
 			return true;
-		}
+		},
+		/**
+		 * 
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>typeName</strong></p>
+		 *
+		 * @return {String} Returns the type name of this object
+		 */
+		typeName: function() {
+			return 'GameObjectContainer';
+		},
+		/**
+		 * --------------------------------
+		 */
 	});
 
 	return GameObjectContainer;
