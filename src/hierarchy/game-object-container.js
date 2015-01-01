@@ -77,10 +77,8 @@ define(["game-object"], function(GameObject){
 			child.parent = this;
 
 			this.childs.push(child);
-
 			child.added(this);
-			child.execute(child.ADDED, this);
-
+			
 			return child;	
 		},
 		/**
@@ -108,7 +106,6 @@ define(["game-object"], function(GameObject){
 			}
 
 			child.removed(this);
-			child.execute(child.REMOVED, this);
 		},
 		/**
 		 * --------------------------------

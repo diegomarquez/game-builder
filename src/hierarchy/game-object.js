@@ -181,7 +181,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 *
 		 * @param {Object} [parent] The new parent [game-object-container](@@game-object-container@@)
 		 */
-		added: function(parent) {},
+		added: function(parent) {
+			this.execute(this.ADD, this);
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -193,7 +195,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 *
 		 * @param {Object} [parent] The old parent [game-object-container](@@game-object-container@@)
 		 */
-		removed: function(parent) {},
+		removed: function(parent) {
+			this.execute(this.REMOVE, this);
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -589,10 +593,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * 
 		 */
 		addToViewportList: function(viewportName, layerName) {
-			this.viewports.push({ 
-				viewport: viewportName, 
-				layer: layerName 
-			});	
+			var v = { viewport: viewportName, layer: layerName }
+			this.viewports.push(v);	
+    	this.execute(this.ADD_TO_VIEWPORT, [v]);
 		},
 		/**
 		 * --------------------------------
@@ -613,6 +616,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 
 				if (v.viewport === viewportName && v.layer === layerName) {
 					this.viewports.splice(i, 1);
+					this.execute(this.REMOVE_FROM_VIEWPORT, [v]);
 				}
 			}
 		},
@@ -925,8 +929,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 	Object.defineProperty(GameObject.prototype, "START", { get: function() { return 'start'; } });
 	Object.defineProperty(GameObject.prototype, "RECYCLE", { get: function() { return 'recycle'; } });
 	Object.defineProperty(GameObject.prototype, "CLEAR", { get: function() { return 'clear'; } });
-	Object.defineProperty(GameObject.prototype, "ADDED", { get: function() { return 'added'; } });
-	Object.defineProperty(GameObject.prototype, "REMOVED", { get: function() { return 'removed'; } });
+	Object.defineProperty(GameObject.prototype, "ADD", { get: function() { return 'added'; } });
+	Object.defineProperty(GameObject.prototype, "REMOVE", { get: function() { return 'removed'; } });
+	Object.defineProperty(GameObject.prototype, "ADD_TO_VIEWPORT", { get: function() { return 'added_to_viewport'; } });
+	Object.defineProperty(GameObject.prototype, "REMOVE_FROM_VIEWPORT", { get: function() { return 'removed_from_viewport'; } });
 
 	return GameObject;
 });
