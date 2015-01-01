@@ -31,8 +31,8 @@
 define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool', 'json-cache', 'asset-map', 'error-printer'],
   function(game, groups, viewports, assembler, reclaimer, gameObjectPool, componentPool, jsonCache, assetMap, ErrorPrinter) {
 
-    var addToViewPorts = function(go, vports) {
-      var v;
+  	var processViewportArgument = function(vports) {
+  		var v;
 
       if (typeof vports == 'string') {
         if (this.viewportsAliases[vports]) {
@@ -48,10 +48,24 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       	}
       }
 
+      return v;
+  	}
+
+    var addToViewPorts = function(go, vports) {
+      var v = processViewportArgument(vports);
+
       for (var i=0; i<v.length; i++) {
         viewports.get(v[i].viewport).addGameObject(v[i].layer, go);
       }
-    };
+    }
+
+    var removeFromViewPorts = function(go, vports) {
+    	var v = processViewportArgument(vports);
+
+    	for (var i=0; i<v.length; i++) {
+        viewports.get(v[i].viewport).removeGameObject(v[i].layer, go);
+      }
+    }
 
     var toggle = function(state, prop) {
       if (state === false || state === true) {
@@ -227,6 +241,34 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       /**
        * --------------------------------
        */
+      
+      /**
+       * <p style='color:#AD071D'><strong>addToViewports</strong></p>
+       *
+       * Adds a [game-object](@@game-object@@) to the specified [viewport](@@viewport@@) and [layer](@@layer@@) combos
+       *
+       * @param {Object} go    An active [game-object](@@game-object@@)
+       * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
+       *                              the [game-object](@@game-object@@) should be added to.
+       *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
+       */
+      addToViewports: function(go, vports) {
+      	addToViewPorts.call(this, go, vports);	
+      },
+
+      /**
+       * <p style='color:#AD071D'><strong>removeFromViewports</strong></p>
+       *
+       * Removes a [game-object](@@game-object@@) from the specified [viewport](@@viewport@@) and [layer](@@layer@@) combos
+       *
+       * @param {Object} go    An active [game-object](@@game-object@@)
+       * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
+       *                              the [game-object](@@game-object@@) should be removed from.
+       *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
+       */
+      removeFromViewports: function(go, vports) {
+      	removeFromViewPorts.call(this, go, vports);	
+      },
 
       /**
        * <p style='color:#AD071D'><strong>addComponentTo</strong></p>
