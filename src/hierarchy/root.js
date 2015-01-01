@@ -63,37 +63,41 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 
 				// Save state for current viewport
 				context.save();
-				
+
         if (v.Clipping) {
         	// Set the clipping area
 					context.beginPath();
-		      context.rect(v.OffsetX, v.OffsetY, v.Width, v.Height);
+
+					if (v.strokeWidth) {
+						context.rect(v.OffsetX-v.strokeWidth, v.OffsetY-v.strokeWidth, v.Width+v.strokeWidth*2, v.Height+v.strokeWidth*2);
+					} else {
+						context.rect(v.OffsetX, v.OffsetY, v.Width, v.Height);	
+					}
+
 		      context.clip();
 					context.closePath();
         }
-        
-        context.save();
+       
 				// Make all the drawings relative to the viewport's visible area
 				v.transformContext(context);
 				// Draw all the game objects associated with this viewport
 	    	v.draw(context);
 	    	// Go back to previous state for the next viewport
-	    	context.restore();
-
+	    
 	    	// This simulates a strokes that grows outwards
         if (v.strokeWidth || v.strokeColor) {
 					context.save();
-					context.fillStyle = v.strokeColor;
+					context.setTransform(1, 0, 0, 1, 0, 0);
 
+					context.fillStyle = v.strokeColor;
 	        context.fillRect(v.OffsetX-v.strokeWidth, v.OffsetY-v.strokeWidth, v.Width+(v.strokeWidth*2), v.strokeWidth);
 	        context.fillRect(v.OffsetX-v.strokeWidth, v.OffsetY+v.Height, v.Width+(v.strokeWidth*2), v.strokeWidth);
 	        context.fillRect(v.OffsetX-v.strokeWidth, v.OffsetY-v.strokeWidth, v.strokeWidth, v.Height+(v.strokeWidth*2));
 	        context.fillRect(v.OffsetX+v.Width, v.OffsetY-v.strokeWidth, v.strokeWidth, v.Height+(v.strokeWidth*2));
 
 					context.restore();	        	
-        } 
-	    	 
-	    	
+        }
+
 	    	context.restore();
 			}
 		},
