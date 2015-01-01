@@ -312,7 +312,6 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      */
     addGameObject: function(layerName, go) {
       var layer = findLayer.call(this, layerName);
-
       var success = layer.add(go);
       
       if (success) {
@@ -320,6 +319,8 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
           layer.remove(g);
         }, true);
       }
+
+      return success;
     },
     /**
      * --------------------------------
@@ -794,7 +795,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
   }
 
   var recycle = function(go) {
-    // If a game object is not renderer anywhere send it back to it's pool
+    // If a game object is not rendered anywhere send it back to it's pool
     if (!go.hasViewport()) {
       Reclaimer.claim(go);
     }
