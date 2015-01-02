@@ -660,6 +660,17 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * @return {Array} An array with all the [viewport](@@viewport@@) and [layer](@@layer@@) combinations this game object belongs to
 		 */
 		getViewportList: function() {
+			var go = this;
+
+			while (!go.viewports || go.viewports.length == 0) {
+				go = go.parent;
+				result = go.viewports;
+
+				if (result && result.length > 0) {
+					return result;
+				}
+			}
+
 			return this.viewports;
 		},
 		/**
