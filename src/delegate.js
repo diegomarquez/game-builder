@@ -31,7 +31,6 @@ define(["class", "util"], function(Class, Util) {
 	var Delegate = Class.extend({
 		init: function() {
 			this.callbackList = {};
-			this.list = null;
 		},
 		/**
 		 * --------------------------------
@@ -154,15 +153,15 @@ define(["class", "util"], function(Class, Util) {
 		 * @param  {Function} callback Function you want to remove
 		 */
 		remove: function(name, scope, callback) {
-			this.list = this.callbackList[name];
+			var list = this.callbackList[name];
 
-			if (!this.list) return;
+			if (!list) return;
 
-			for (var i = this.list.length - 1; i >= 0; i--) {
-				var callbackObject = this.list[i];
+			for (var i = list.length - 1; i >= 0; i--) {
+				var callbackObject = list[i];
 
 				if (scope === callbackObject.scope && callback === callbackObject.callback) {
-					this.list.splice(i, 1);
+					list.splice(i, 1);
 				}
 			}
 		},
@@ -276,21 +275,21 @@ define(["class", "util"], function(Class, Util) {
 		 * @param  {Object} args This Object will be passed as argument to all the functions executed
 		 */
 		execute: function(name, args) {
-			this.list = this.callbackList[name];
+			var list = this.callbackList[name];
 
-			if (!this.list) return;
+			if (!list) return;
 
-			var callbackCount = this.list.length;
+			var callbackCount = list.length;
 
 			for (var i = 0; i < callbackCount; i++) {
-				var callbackObject = this.list[i];
+				var callbackObject = list[i];
 
 				if (!callbackObject) continue;
 
 				callbackObject.callback.call(callbackObject.scope, args);
 
 				if (callbackObject.removeOnExecute) {
-					this.list[i] = null;
+					list[i] = null;
 				}
 			}
 
@@ -315,15 +314,15 @@ define(["class", "util"], function(Class, Util) {
 
 	var filterCallbacks = function(test) {
 		for (var k in this.callbackList) {
-			this.list = this.callbackList[k];
+			var list = this.callbackList[k];
 
-			if (!this.list) continue;
+			if (!list) continue;
 
-			for (var i = this.list.length - 1; i >= 0; i--) {
-				var callbackObject = this.list[i];
+			for (var i = list.length - 1; i >= 0; i--) {
+				var callbackObject = list[i];
 
 				if (test(callbackObject)) {
-					this.list.splice(i, 1);
+					list.splice(i, 1);
 				}
 			}
 		}
