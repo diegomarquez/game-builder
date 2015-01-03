@@ -13,21 +13,24 @@
  *
  * ### The Cache object extends [delegate](@@delegate@@) so it provides a few events to hook into:
  * 
- * ### **cache** 
+ * ### **CACHE** 
  * When something is registered in the cache
  *
  * ``` javascript  
  * cache.on(cache.CACHE, function(data) {});
  * ```
  *
- * ### **clear** 
+ * </br>
+ * 
+ * ### **CLEAR** 
  * When something is removed from the cache
  *
  * ``` javascript  
  * cache.on(cache.CLEAR, function(data) {});
  * ```
- *
- * ### **clear_all** 
+ * </br>
+ * 
+ * ### **CLEAR_ALL** 
  * When everything is removed from the cache
  *
  * ``` javascript  
@@ -150,13 +153,9 @@ define(function(require) {
 		 */
 	});
 
-	// ### Getters for all the types of events a cache can hook into
 	Object.defineProperty(Cache.prototype, "CACHE", { get: function() { return 'cache'; } }); 
 	Object.defineProperty(Cache.prototype, "CLEAR", { get: function() { return 'clear'; } });
 	Object.defineProperty(Cache.prototype, "CLEAR_ALL", { get: function() { return 'clear_all'; } });
-	/**
-	 * --------------------------------
-	 */
 
 	return Cache;
 });
