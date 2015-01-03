@@ -11,7 +11,7 @@
  *
  * This module defines a common interface for objects that behaive like a cache.
  *
- * ### The Cache object extends [delegate](@@delegate@@) so it provides a few events to hook into:
+ * The Cache object extends [delegate](@@delegate@@) so it provides a few events to hook into:
  * 
  * ### **CACHE** 
  * When something is registered in the cache
