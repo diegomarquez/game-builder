@@ -4,9 +4,9 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from:
- *
- * Depends of:
  * [component](@@component@@)
+ * 
+ * Depends of:
  * [collision-resolver](@@collision-resolver@@)
  * [error-printer](@@error-printer@@)
  *
