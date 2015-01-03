@@ -4,6 +4,7 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  * 
  * Inherits from: 
+ * [cache](@@cache@@)
  * 
  * Depends of:
  *
