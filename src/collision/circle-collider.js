@@ -94,7 +94,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 		 *
 		 * Draw the circle collider.
 		 * 
-		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 		 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
 		 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
 		 * @param  {Object} gb     A reference to the [gb](@@gb@@) module
