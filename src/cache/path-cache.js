@@ -4,6 +4,7 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  * 
  * Inherits from: 
+ * [cache](@@cache@@)
  * 
  * Depends of:
  *
@@ -78,7 +79,7 @@ define(function(require) {
 		 * it just draws more things into it
 		 * 
 		 * @param {String} id Id of a cached [Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas) to draw to
-		 * @param {Function} drawingFunction Drawing to command to add on top of the cached canvas 
+		 * @param {Function} drawingFunction Drawing to add on top of the cached canvas 
 		 */
 		draw: function(id, drawingFunction) {
 			var canvas = this.cacheObject[id];
