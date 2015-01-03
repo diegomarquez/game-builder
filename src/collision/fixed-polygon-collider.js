@@ -41,7 +41,7 @@
  * ```
  * If it is not provided it will most likely fail in un-expected ways.
  * 
- * <strong>Note: The snippet uses the reference to the <a href=@@component-pool@@>component-pool</a>
+ * <strong>Note 1: The snippet uses the reference to the <a href=@@component-pool@@>component-pool</a>
  * found in the <a href=@@gb@@>gb</a> module. 
  * The way you get a hold to a reference to the <a href=@@component-pool@@>component-pool</a> 
  * may vary.</strong>

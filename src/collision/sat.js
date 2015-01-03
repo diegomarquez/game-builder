@@ -11,7 +11,6 @@
  * 
  * This module was not actually made by me, I just took some code in github and made a requireJS module
  * out of it. [The original code is in here](https://github.com/jriecken/sat-js). 
- * The documentation in there should be enough to understand how to use this. 
  *
  * I added a few things, but nothing of true interest. The main code is largely unchanged.
  */
