@@ -11,7 +11,7 @@
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
  * This organizes the colliders into pairs of groups. The first collection of each pair, is tested against
- * the second collection for collisions. There isn't much more to it.
+ * the second collection for colliders. There isn't much more to it.
  *
  * Worth noting is that the module only checks for overlaps, there is no projection. For the type
  * of projects [Game-Builder](http://diegomarquez.github.io/game-builder) attempts to tackle, it should
@@ -115,8 +115,8 @@ define(['sat'], function(SAT) {
 	 * 
 	 * This method will make the appropiate tests according to the type of the colliders involved.
 	 * 
-	 * @param  {Object} first  The first [collider-component](@@collider-component@@) in the test
-	 * @param  {Object} second The second [collider-component](@@collider-component@@) in the test
+	 * @param  {Object} first  The first [collision-component](@@collision-component@@) in the test
+	 * @param  {Object} second The second [collision-component](@@collision-component@@) in the test
 	 * @return {Boolean} Whether there was a collision
 	 */
 	CollisionResolver.prototype.areColliding = function(first, second) {
