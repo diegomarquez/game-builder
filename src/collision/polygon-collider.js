@@ -13,7 +13,7 @@
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
  * This module defines a component meant to be attached to a [game-object](@@game-object@@), to give it
- * the ability to collide against other [game-object](@@game-object@@) with collider components.
+ * the ability to collide against other [game-objects](@@game-object@@) with collider components.
  *
  * Polygon colliders are defined by a collection of [vector-2D](@@vector-2D@@) objects. They follow
  * not only the position of it's parent but also scale and rotation transformations.
@@ -29,19 +29,21 @@
 
  		//Array of points that define the polygon collider
  		points:[ 
- 			new vector_2D(0, 0), 
- 			new vector_2D(64, 0), 
- 			new vector_2D(64, 64), 
- 			new vector_2D(0, 64) 
+ 			{x: 0, y: 0},
+ 			{x: 64, y: 0},
+ 			{x: 64, y: 64},
+ 			{x: 0, y: 64}
  		]
  * });
  * ```
  * If it is not provided it will most likely fail in un-expected ways.
- * 
- * <strong>Note: The snippet uses the reference to the <a href=@@component-pool@@>component-pool</a>
+ *
+ * <strong>Note 1: The snippet uses the reference to the <a href=@@component-pool@@>component-pool</a>
  * found in the <a href=@@gb@@>gb</a> module. 
  * The way you get a hold to a reference to the <a href=@@component-pool@@>component-pool</a>
  * may vary.</strong>
+ *
+ * <strong>Note 2: The points need to be specified in clockwise order.</strong>
  */
 
 /**
@@ -151,7 +153,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 * This method is only executed if the **debug** property of the parent [gb](@@gb@@)
 		 	 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
 			 * 
-			 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+			 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 			 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
 			 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
 			 * @param  {Object} gb     A reference to the [gb](@@gb@@) module
