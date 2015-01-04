@@ -70,7 +70,7 @@
  * </br>
  * 
  * ### **CHANGE_HEIGHT**
- * When the width of the canvas is changes using the setter **game.HEIGHT**
+ * When the height of the canvas is changes using the setter **game.HEIGHT**
  *
  * The new height is sent to all the registered callbacks 
  * ``` javascript
@@ -357,7 +357,6 @@ define(function(require) {
      */
   });
 
-  // ### Getters for all the types of events game can hook into
   Object.defineProperty(Game.prototype, "CREATE", { get: function() { return 'create'; } });
   Object.defineProperty(Game.prototype, "UPDATE", { get: function() { return 'update'; } });
   Object.defineProperty(Game.prototype, "FOCUS", { get: function() { return 'focus'; } });

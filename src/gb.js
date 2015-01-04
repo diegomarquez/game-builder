@@ -6,12 +6,13 @@
  *
  * Depends of:
  * [game](@@game@@)
- * [layers](@@layers@@)
+ * [groups](@@groups@@)
  * [assembler](@@assembler@@)
  * [reclaimer](@@reclaimer@@)
  * [game-object-pool](@@game-object-pool@@)
  * [component-pool](@@component-pool@@)
  * [json-cache](@@json-cache@@)
+ * [asset-map](@@asset-map@@)
  * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module.
@@ -107,11 +108,8 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        *
        * Store commonly used [viewport](@@viewport@@) + [layer](@@layer@@) setups
        *
-       * @param {String} goId Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
-       * @param {String} groupId Id of the group to add the [game-object](@@game-object@@) to. View [groups](@@groups@@), for more details.
-       * @param {Array} vports An array specifying viewports and corresponding layers the [game-object](@@game-object@@) should be added to.
-       *
-       * @return {Object} The [game-object](@@game-object@@) that was just assembled.
+       * @param {String} alias Id to later indentify the object sent in the **vports** argument
+       * @param {Array} vports An array specifying viewports and corresponding layers
        */
       setViewportShortCut: function(alias, vports) {
         this.viewportsAliases[alias] = vports;
@@ -141,8 +139,13 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        *
        * @param {String} goId Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
        * @param {String} groupId Id of the [group](@@group@@) to add the [game-object](@@game-object@@) to. View [groups](@@groups@@), for more details.
-       * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
-       *                              the [game-object](@@game-object@@) should be added to.
+       * @param {Array|String} vports If it is an array it should be a collection of objects looking like this
+       *  ``` javascript
+       *  	{
+       *  		viewport: 'ViewportName',
+       *  		layer: 'LayerName'
+       *  	}
+       *  ```                              
        *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
        * @param {Object} [args=null] Object with arguments to be applied to the created [game-object](@@game-object@@)
        * 
