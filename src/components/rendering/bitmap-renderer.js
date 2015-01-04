@@ -75,7 +75,7 @@ define(["renderer", "image-cache"], function(Renderer, ImageCache) {
 		 * Draws the image into the canvas, applying configured properties,
 		 * like **width**, **height** and **offsets**
 		 * 
-		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
 		 */
 		draw: function(context, viewport) {
