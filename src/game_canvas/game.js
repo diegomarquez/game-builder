@@ -20,35 +20,61 @@
  *
  * It's main behaviour can be extended by the use of [extensions](@@extension@@)
  *
- * ### Game extends [delegate](@@delegate@@) so it provides a few events to hook into:
+ * Game extends [delegate](@@delegate@@) so it provides a few events to hook into:
  *
- * ### **create**
+ * ### **CREATE**
  * On application startup
  *
  * ``` javascript
  * game.on(game.CREATE, function(repeatsLeft) {});
  * ```
  *
- * ### **blur**
+ * </br>
+ * 
+ * ### **BLUR**
  * When the application looses focus
  *
  * ``` javascript
  * game.on(game.BLUR, function() {});
  * ```
  *
- * ### **focus**
+ * </br>
+ * 
+ * ### **FOCUS**
  * When the application gains focus
  *
  * ``` javascript
  * game.on(game.FOCUS, function() {});
  * ```
  *
- * ### **update**
+ * </br>
+ * 
+ * ### **UPDATE**
  * On each update cycle
  *
  * The delta time between update cycles is sent to registered callbacks
  * ``` javascript
  * game.on(game.UPDATE, function(delta) {});
+ * ```
+ *
+ * </br>
+ * 
+ * ### **CHANGE_WIDTH**
+ * When the width of the canvas is changes using the setter **game.WIDTH**
+ *
+ * The new width is sent to all the registered callbacks 
+ * ``` javascript
+ * game.on(game.CHANGE_WIDTH, function(newWidth) {});
+ * ```
+ *
+ * </br>
+ * 
+ * ### **CHANGE_HEIGHT**
+ * When the width of the canvas is changes using the setter **game.HEIGHT**
+ *
+ * The new height is sent to all the registered callbacks 
+ * ``` javascript
+ * game.on(game.CHANGE_HEIGHT, function(newHeight) {});
  * ```
  */
 
@@ -224,7 +250,7 @@ define(function(require) {
 
           // Execute all update extensions
           self.execute_extensions(self.UPDATE);
-          // Update all [game-objects](@@game-objects@@)
+          // Update all [game-objects](@@game-object@@)
           root.update(self.delta);
           // Execute all update events
           self.execute(self.UPDATE);
