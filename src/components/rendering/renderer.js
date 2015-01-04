@@ -8,7 +8,6 @@
  *
  * Depends of:
  * [error-printer](@@error-printer@@)
- * [draw](@@draw@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -120,10 +119,10 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 		 *
-		 * This method is only executed if the **debug** property of the parent [gb](@@gb@@)
+		 * This method is only executed if the **debug** property in [gb](@@gb@@)
 		 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
 		 * 
-		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Context 2D} context     [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 		 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
 		 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
 		 * @param  {Object} gb     A reference to the [gb](@@gb@@) module

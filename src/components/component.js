@@ -267,7 +267,7 @@ define(["delegate", "util"], function(Delegate, Util) {
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 		 *
-		 * This method is only executed if the **debug** property of the parent [gb](@@gb@@)
+		 * This method is only executed if the **debug** property in [gb](@@gb@@)
 		 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
 		 * 
 		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)

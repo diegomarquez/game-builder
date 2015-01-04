@@ -147,7 +147,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 *
 			 * Draw the fixed polygon collider
 			 * 
-			 * This method is only executed if the **debug** property of the parent [gb](@@gb@@)
+			 * This method is only executed if the **debug** property in [gb](@@gb@@)
 		 	 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
 			 * 
 			 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
