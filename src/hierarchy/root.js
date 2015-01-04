@@ -49,7 +49,7 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 		 * The process includes, clearing the rectangle belonging to each viewport, modifying the context and drawing all
 		 * the corresponding [game-objects](@@game-object@@)
 		 * 
-		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 		 */
 		draw: function(context) {
 			// Clear the canvas
