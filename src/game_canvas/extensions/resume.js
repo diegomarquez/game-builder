@@ -20,9 +20,9 @@
  * The extension also adds a **resume** method to [game](@@game@@), to be able to resume the application
  * manually after pausing.
  *
- * ### This Extension adds an event [game](@@game@@) can hook into:
+ * This Extension adds an event [game](@@game@@) can hook into:
  *
- * ### **resume** 
+ * ### **RESUME** 
  * When the application is resumed manually
  * 
  * ``` javascript  
