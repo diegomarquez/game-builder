@@ -50,7 +50,7 @@ define(["game-object-container"], function(Container){
 		 * If the child already is part of another parent, it is removed from it
 		 * and added to this one.
 		 * 
-		 * @param {Object} The child [game-object](@@game-object@@) to add
+		 * @param {Object} child The child [game-object](@@game-object@@) to add
 		 */
 		add: function(child) {
 			this._super(child);	
