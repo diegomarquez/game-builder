@@ -10,8 +10,8 @@
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
  * This is a collection of methods to ease the pain of using HTML5's [Canvas drawing API](https://developer.mozilla.org/en-US/docs/HTML/Canvas). 
- * Not by much though, it's still pretty painfull. Believe me, I did I wrote a whole game only relaying
- * on it for graphics [SHAMELESS SELF PUBLICITY](http://www.treintipollo.com/tirador/index.html)
+ * Not by much though, it's still pretty painfull. Believe me, I wrote a whole game only relaying
+ * on it for graphics [CHECK IT OUT](http://www.treintipollo.com/tirador/index.html), it's pretty cool.
  *
  * There are some stuff missing, like individual method to wrap quadratic and cubic curves. There
  * are no helpers to draw a single line either.
@@ -37,13 +37,13 @@ define(function() {
 	 *
 	 * Well... you can draw a circle.
 	 * 
-	 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+	 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 	 * @param  {Number} x           X coordinate of the registration point
 	 * @param  {Number} y           Y coordinate of the registration point
 	 * @param  {Number} radius      Radius of the circle
 	 * @param  {String|Number} [fillColor=null the circle can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number (If you are into that kind of bullshit)
 	 * @param  {String|Number} [strokeColor=null the circle can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number
-	 * @param  {Number} [lineWidth=null] Line widt             	
+	 * @param  {Number} [lineWidth=null] Line width             	
 	 */
 	DrawUtils.prototype.circle = function(context, x, y, radius, fillColor, strokeColor, lineWidth) {
 		if (fillColor) context.fillStyle = fillColor;
@@ -66,7 +66,7 @@ define(function() {
 	  *
 	  * A rectangle, yeah!
 	  * 
-	  * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+	  * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 	  * @param  {Number} x           X coordinate of the registration point
 	  * @param  {Number} y           Y coordinate of the registration point
 	  * @param  {Number} width       Width of the rectangle
@@ -96,7 +96,7 @@ define(function() {
 	  *
 	  * A triangle. This is getting interesting. Points of the triangle are drawn clock-wise.
 	  * 
-	  * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+	  * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 	  * @param  {Number} centerX     X coordinate of the registration point. The rest of the points are relative to this
 	  * @param  {Number} centerY     Y coordinate of the registration point. The rest of the points are relative to this
 	  * @param  {Number} x1          X coordinate of the first vertex
@@ -152,7 +152,7 @@ define(function() {
 	  * This one is pretty weird. It lets you define a triangle, with each side being drawn as a quadratic curve. Looks neat!
 	  * You might want to look into what a <a href="http://en.wikipedia.org/wiki/B%C3%A9zier_curve#Quadratic_B.C3.A9zier_curves">quadratic curve</a> is.
 	  * 
-	  * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+	  * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 	  * @param  {Number} centerX     X coordinate of the registration point. The rest of the points are relative to this
 	  * @param  {Number} centerY     Y coordinate of the registration point. The rest of the points are relative to this
 	  * @param  {Number} x1          X coordinate of the first vertex
@@ -226,7 +226,7 @@ define(function() {
 	  *
 	  * This one is pretty usefull. Send in an array of points and lines will be ploted clock-wise to form the polygon.
 	  * 
-	  * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+	  * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 	  * @param  {Number} x           X coordinate registration point. All the points of the polygon are relative to this
 	  * @param  {Number} y           Y coordinate registration point. All the points of the polygon are relative to this
 	  * @param  {Array} points       An array of objects with the following form, {x:x, y:y}
@@ -264,7 +264,7 @@ define(function() {
 	  *
 	  * This is like the polygon but the lines between vertexes are drawn as quadratic curves.
 	  * 
-	  * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+	  * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 	  * @param  {Number} x           X coordinate registration point. All the points of the polygon are relative to this
 	  * @param  {Number} y           Y coordinate registration point. All the points of the polygon are relative to this
 	  * @param  {String} points      An array of objects with the following form, {x:x, y:y}. Note that since lines are quadratic curves, you need to provide anchor anchor points in between each pair of vertexes  
