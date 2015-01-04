@@ -8,7 +8,6 @@
  * Depends of: 
  * [timer-factory](@@timer-factory@@)
  * [gb](@@gb@@)
- * [extension](@@extension@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
