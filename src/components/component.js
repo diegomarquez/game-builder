@@ -10,7 +10,7 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * Every components extends from the object defined in this module. If you add this
+ * Every component extends from the object defined in this module. If you add this
  * to a [game-object](@@game-object@@) it will do nothing, so it needs to be extended.
  *
  * The idea behind components is being able to add logic to a [game-object](@@game-object@@)
@@ -19,9 +19,19 @@
  * If you are crafty enough when writting components you may even be able to share their
  * functionality between completely different [game-objects](@@game-object@@)
  *
- * ### The Component object extends [delegate](@@delegate@@) so it provides a few events to hook into:
+ * The Component object extends [delegate](@@delegate@@) so it provides a few events to hook into:
  *
- * ### **added** 
+ * ### **START** 
+ * When it's **start** method is called 
+ * 
+ * Registered callbacks get the component as argument. 
+ * ``` javascript  
+ * component.on(component.START, function(component) {});
+ * ```
+ *
+ * </br>
+ * 
+ * ### **ADD** 
  * When it is added to a [game-object](@@game-object@@) 
  * 
  * Registered callbacks get the component as argument. 
@@ -29,7 +39,9 @@
  * component.on(component.ADD, function(component) {});
  * ``` 
  *
- * ### **removed**
+ * </br>
+ * 
+ * ### **REMOVE**
  * When it is removed from a [game-object](@@game-object@@). 
  *
  * Registered callbacks get the component as argument.
@@ -37,7 +49,9 @@
  * component.on(component.REMOVE, function(component) {});
  * ```
  *
- * ### **recycle**
+ * </br>
+ * 
+ * ### **RECYCLE**
  * When the parent [game-object](@@game-object@@) is sent
  * back to the [game-object-pool](@@game-object-pool@@) it triggers
  * this event which sends the component back to the [component-pool](@@component-pool@@)
@@ -46,7 +60,6 @@
  * ``` javascript  
  * component.on(component.RECYCLE, function(component) {});
  * ```
- * 
  */
 
 /**
@@ -135,6 +148,9 @@ define(["delegate", "util"], function(Delegate, Util) {
 			this.start();	
 			this.execute(this.START, this);
 		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>onAdded</strong></p>
@@ -254,7 +270,7 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 * This method is only executed if the **debug** property of the parent [gb](@@gb@@)
 		 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
 		 * 
-		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 		 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
 		 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
 		 */
@@ -264,14 +280,10 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 */
 	});
 
-	// ### Getters for all the types of events a Component can hook into
 	Object.defineProperty(Component.prototype, "START", { get: function() { return 'started'; } });
 	Object.defineProperty(Component.prototype, "ADD", { get: function() { return 'added'; } });
 	Object.defineProperty(Component.prototype, "REMOVE", { get: function() { return 'removed'; } });
 	Object.defineProperty(Component.prototype, "RECYCLE", { get: function() { return 'recycled'; } });
-	/**
-	 * --------------------------------
-	 */
 
 	return Component;
 });
