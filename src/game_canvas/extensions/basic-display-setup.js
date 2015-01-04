@@ -3,12 +3,14 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [extension](@@extension@@)
+ * Inherits from: 
+ * [extension](@@extension@@)
  *
  * Depends of: 
  * [groups](@@groups@@)
  * [viewports](@@viewports@@)
  * [gb](@@gb@@)
+ * [world](@@world@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
