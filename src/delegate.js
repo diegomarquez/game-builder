@@ -3,9 +3,11 @@
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
  * ### [Find me on Github](https://github.com/diegomarquez)
  * 
- * Inherits from: [class](@@class)
+ * Inherits from: 
+ * [class](@@class@@)
  * 
- * Depends of: [util](@@util)
+ * Depends of: 
+ * [util](@@util@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
