@@ -13,7 +13,7 @@
  * 
  * This is  used in [game-object](@@game-object@@) to call the **debug_draw** method
  * of all the components. It also draws the registration point of the the [game-object](@@game-object@@)
- * calling the **debugDraw** method.
+ * calling it's **debug_draw** method.
  */
 
 /**
@@ -35,12 +35,12 @@ define(function(require){
 	/**
 	 * <p style='color:#AD071D'><strong>debugDraw</strong></p>
 	 *
-	 * Draw info about <a href=@@game-object@@>game-object</a>.
+	 * Draw info about a <a href=@@game-object@@>game-object</a>.
 	 * 
-	 * This method only does something if the **debug** property is set to **true** in 
-	 * the [game-object](@@game-object@@) making the call.
+	 * This method only does something if the **debug** property in [gb](@@gb@@) is set to **true** and the 
+	 * property **skipDebug** of the [game-object](@@game-object@@) making the call is set to **false**.
 	 * 
-	 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+	 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 	 * @param  {Object} viewport The [viewport](@@viewport@@) the [game-object](@@game-object@@) is drawn too
 	 */
 	DebugDraw.gameObject = function(context, viewport) {
