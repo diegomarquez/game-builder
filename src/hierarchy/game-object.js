@@ -440,13 +440,20 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 *
 		 * Get an object to query the [component](@@component@@) list of the game object
 		 *
-		 * @return {Object}  An object to make the query. It has the following methods:
-		 * **all** returns all [components](@@components@@) that return true for the specified function. Pass no argument to get all components </br>
-		 * **allWithProp** returns all [components](@@component@@) that have the given property </br>
-		 * **allWithType** returns all [components](@@component@@) that have the given id in the [component-pool](@@component-pool@@) </br>
-		 * **first** returns the first [component](@@component@@) that returns true for the specified function </br>
-		 * **firstWithProp** returns the first [component](@@component@@) that has the given property </br>
-		 * **firstWithType** returns the first [components](@@component@@) that have the given id in the [component-pool](@@component-pool@@) </br>
+		 * @return {Object}  An object to make the query. It has the following methods: 
+		 * </br>
+		 * **all** returns all [components](@@components@@) that return true for the specified function. Pass no argument to get all components 
+		 * </br>
+		 * **allWithProp** returns all [components](@@component@@) that have the given property 
+		 * </br>
+		 * **allWithType** returns all [components](@@component@@) that have the given id in the [component-pool](@@component-pool@@) 
+		 * </br>
+		 * **first** returns the first [component](@@component@@) that returns true for the specified function 
+		 * </br>
+		 * **firstWithProp** returns the first [component](@@component@@) that has the given property 
+		 * </br>
+		 * **firstWithType** returns the first [components](@@component@@) that have the given id in the [component-pool](@@component-pool@@) 
+		 * </br>
 		 */
 		findComponents: function() {
 			var self = this;
@@ -564,7 +571,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 *
 		 * Draws the game-object into the specified Context 2D, using it's [matrix-3x3](@@matrix-3x3@@)
 		 * 
-		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 		 * @param  {Object} viewport The [viewport](@@viewport@@) this objects is being drawn too
 		 */
 		draw: function(context, viewport) {
@@ -981,7 +988,6 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 	Object.defineProperty(GameObject.prototype, "X", { get: function() { return this.x + this.viewportOffsetX; } });
 	Object.defineProperty(GameObject.prototype, "Y", { get: function() { return this.y + this.viewportOffsetY; } });
 
-	// ### Getters for all the types of events a GameObject can hook into
 	Object.defineProperty(GameObject.prototype, "START", { get: function() { return 'start'; } });
 	Object.defineProperty(GameObject.prototype, "RECYCLE", { get: function() { return 'recycle'; } });
 	Object.defineProperty(GameObject.prototype, "CLEAR", { get: function() { return 'clear'; } });
