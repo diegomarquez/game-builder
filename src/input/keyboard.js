@@ -9,9 +9,7 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines to interact with the keyboard. 
- * In similar fashion to [timer-factory](@@timer-factory@@),
- * this module extends on existing behaviour to make it less annoying.
+ * This module defines an object to interact with the keyboard. 
  */
 
 /**
@@ -191,6 +189,8 @@ define(function(require) {
 		/**
 		 * <p style='color:#AD071D'><strong>setBlock</strong></p>
 		 *
+		 * This method will set or remove a block on all keyboard interactions. 
+		 * 
 		 * @param {Boolean} value   The state of the the block, can be true or false
 		 * @param {Array=null} whiteList Keys that should not be blocked
 		 */
@@ -216,7 +216,6 @@ define(function(require) {
 		return false;
 	}
 
-	// ### Actual registering with the windown keyboard events.
 	window.addEventListener('keyup', function(event) {
 		delete pressed[event.keyCode];
 
@@ -233,11 +232,8 @@ define(function(require) {
 		pressed[event.keyCode] = true;
 		keyboard.execute('keydown' + event.keyCode.toString(), event);
 	}, false);
-	/**
-	 * --------------------------------
-	 */
 
-	// ### Prevent default behaviour of keys in the browser
+	// Prevent default behaviour of keys in the browser
 	document.onkeydown = function(event) {
 		if (keyboard.skipDefaultBehaviour.indexOf(event.keyCode) != -1) {
 			event.preventDefault();
