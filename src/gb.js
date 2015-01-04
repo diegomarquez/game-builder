@@ -109,7 +109,9 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        * Store commonly used [viewport](@@viewport@@) + [layer](@@layer@@) setups
        *
        * @param {String} alias Id to later indentify the object sent in the **vports** argument
-       * @param {Array} vports An array specifying viewports and corresponding layers
+       * @param {Array} vports An array specifying viewports and corresponding layers. The objects in the array should look like this
+       * ``` { viewport: 'ViewportName', layer: 'LayerName' }
+       *  ```
        */
       setViewportShortCut: function(alias, vports) {
         this.viewportsAliases[alias] = vports;
@@ -140,11 +142,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        * @param {String} goId Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
        * @param {String} groupId Id of the [group](@@group@@) to add the [game-object](@@game-object@@) to. View [groups](@@groups@@), for more details.
        * @param {Array|String} vports If it is an array it should be a collection of objects looking like this
-       *  ``` javascript
-       *  	{
-       *  		viewport: 'ViewportName',
-       *  		layer: 'LayerName'
-       *  	}
+       *  ``` { viewport: 'ViewportName', layer: 'LayerName' }
        *  ```                              
        *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
        * @param {Object} [args=null] Object with arguments to be applied to the created [game-object](@@game-object@@)
@@ -167,8 +165,9 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        *
        * @param {String} goId Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
        * @param {String} groupId Id of the [group](@@group@@) to add the [game-object](@@game-object@@) to. View [groups](@@groups@@), for more details.
-       * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
-       *                              the [game-object](@@game-object@@) should be added to.
+       * @param {Array|String} vports If it is an array it should be a collection of objects looking like this
+       *  ``` { viewport: 'ViewportName', layer: 'LayerName' }
+       *  ```                              
        *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
        * @param {Object} [args=null] Object with arguments to be applied to the created [game-object](@@game-object@@)
        *
@@ -184,15 +183,17 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       /**
        * <p style='color:#AD071D'><strong>getGameObject</strong></p>
        *
-       * Wraps all the steps needed to setup a <a href=@@game-object@@>game-object</a>
+       * Wraps all the steps needed to setup a <a href=@@game-object@@>game-object</a>.
+       * The main difference with **add** and **create** is that this method does not start the objects
        * 
        * @param {String} goId Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
        * @param {String} groupId Id of the [group](@@group@@) to add the [game-object](@@game-object@@) to. View [groups](@@groups@@), for more details.
-       * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
-       *                              the [game-object](@@game-object@@) should be added to.
+       * @param {Array|String} vports If it is an array it should be a collection of objects looking like this
+       *  ``` { viewport: 'ViewportName', layer: 'LayerName' }
+       *  ```                              
        *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
-       * @param {Object} [args] Object with arguments to be applied to the created [game-object](@@game-object@@)
-       * @param {String} [method] Method to get a [game-object](@@game-object@@), can be either 'get' or 'create'
+       * @param {Object} args Object with arguments to be applied to the child [game-object](@@game-object@@)  
+       * @param {String} method Method to get a [game-object](@@game-object@@), can be either 'get' or 'create'
        *
        * @return {Object} The [game-object](@@game-object@@) that was just assembled.
        */
@@ -212,13 +213,14 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        * If the vports aregument is specified, the child will be drawn in the [viewport](@@viewport@@) and [layer](@@layer@@) pairs specified.
        * The parent [viewport](@@viewport@@) will be ignored.
        * 
-       * @param {Object} [go] [game-object-container](@@game-object-container@@) to add the child to
-       * @param {String} [chidlGoId] Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details
-       * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
-       *                              the [game-object](@@game-object@@) should be added to.
+       * @param {Object} go [game-object-container](@@game-object-container@@) to add the child to
+       * @param {String} chidlGoId Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details
+       * @param {Array|String} vports If it is an array it should be a collection of objects looking like this
+       *  ``` { viewport: 'ViewportName', layer: 'LayerName' }
+       *  ```                              
        *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
-       * @param {Object} [args=null] Object with arguments to be applied to the child [game-object](@@game-object@@)  
-       * @param {String} [method] Method to get a [game-object](@@game-object@@), can be either 'get' or 'create'
+       * @param {Object} args Object with arguments to be applied to the child [game-object](@@game-object@@)  
+       * @param {String} method Method to get a [game-object](@@game-object@@), can be either 'get' or 'create'
        * @param {Boolean} [start=true] Whether the [game-object](@@game-object@@) should be started right away     
        *
        * @return {Object} The child [game-object](@@game-object@@)
@@ -251,8 +253,9 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        * Adds a [game-object](@@game-object@@) to the specified [viewport](@@viewport@@) and [layer](@@layer@@) combos
        *
        * @param {Object} go    An active [game-object](@@game-object@@)
-       * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
-       *                              the [game-object](@@game-object@@) should be added to.
+       * @param {Array|String} vports If it is an array it should be a collection of objects looking like this
+       *  ``` { viewport: 'ViewportName', layer: 'LayerName' }
+       *  ```                              
        *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
        */
       addToViewports: function(go, vports) {
@@ -278,8 +281,8 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        *
        * Wraps all the steps needed to add <a href=@@component@@>component</a> to a [game-object](@@game-object@@)
        * 
-       * @param {Object} [go] [game-object](@@game-object@@) to add the [component](@@component@@) to
-       * @param {String} [coId] Id of [component](@@component@@) to add. View [component-pool](@@component-pool@@), for more details
+       * @param {Object} go [game-object](@@game-object@@) to add the [component](@@component@@) to
+       * @param {String} coId Id of [component](@@component@@) to add. View [component-pool](@@component-pool@@), for more details
        * @param {Object} [args=null] Object with arguments to be applied to the [component](@@component@@)       
        *
        * @return {Object} A [component](@@component@@)
@@ -300,8 +303,8 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        *
        * Wraps all the steps needed to remove a <a href=@@component@@>component</a> from a [game-object](@@game-object@@)
        * 
-       * @param {Object} [go] [game-object](@@game-object@@) to remove a [component](@@component@@) from
-       * @param {String} [coId] Id of [component](@@component@@) to remove. View [component-pool](@@component-pool@@), for more details
+       * @param {Object} go [game-object](@@game-object@@) to remove a [component](@@component@@) from
+       * @param {String} coId Id of [component](@@component@@) to remove. View [component-pool](@@component-pool@@), for more details
        */
       removeComponentFrom: function(go, coId) {
       	var c = go.findComponents().firstWithType(coId);
@@ -343,8 +346,9 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
        * @param {String} goId Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details.
        * @param {String} groupId Id of the [group](@@group@@) to add the [game-object](@@game-object@@) to. View [groups](@@groups@@), for more details.
        * @param {String} text  String to initialize the [text-renderer](@@text-renderer@@) with.
-       * @param {Array|String} vports If it is an array specifying [viewports](@@viewport@@) and corresponding [layers](@@layer@@)
-       *                              the [game-object](@@game-object@@) should be added to.
+       * @param {Array|String} vports If it is an array it should be a collection of objects looking like this
+       *  ``` { viewport: 'ViewportName', layer: 'LayerName' }
+       *  ```                              
        *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
        *
        * @return {Object} The [game-object](@@game-object@@) that was just assembled.
@@ -393,7 +397,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       /**
        * <p style='color:#AD071D'><strong>toggleColliderDebug</strong></p>
        *
-       * Toggle the debug drawing of [game-object](@@game-object@@) [colliders](@@collider-component@@)
+       * Toggle the debug drawing of [game-object](@@game-object@@) [collision-components](@@collision-component@@)
        * 
        * @param {Boolean} state=false If specified the debug option is set to that value
        */
