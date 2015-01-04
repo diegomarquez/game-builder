@@ -17,7 +17,49 @@
  *
  * It also acts as a wrapper for interacting with [root](@@root@@).
  *
- * Not much else needs to be said about this module, it's not very complex.
+ * This object extends [delegate](@@delegate@@) so it provides a few events to hook into:
+ * 
+ * ### **ADD** 
+ * When a [group](@@group@@) is added
+ * 
+ * Registered callbacks get the [group](@@group@@) as argument 
+ * ``` javascript  
+ * gb.groups.on(gb.groups.ADD, function(group) {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **REMOVE** 
+ * When a [group](@@group@@) is removed
+ * 
+ * Registered callbacks get the [group](@@group@@) as argument 
+ * ``` javascript  
+ * gb.groups.on(gb.groups.REMOVE, function(group) {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **CHANGE** 
+ * When [group](@@group@@) changes position
+ * 
+ * Registered callbacks get the [group](@@group@@) as argument 
+ * ``` javascript  
+ * gb.groups.on(gb.groups.CHANGE, function(group) {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **REMOVE_ALL** 
+ * When all the [groups](@@group@@) are removed
+ * 
+ * ``` javascript  
+ * gb.groups.on(gb.groups.REMOVE_ALL, function() {});
+ * ``` 
+ *
+ * <strong>Note: The snippets use the reference to <a href=@@groups@@>groups</a>
+ * found in the <a href=@@gb@@>gb</a> module. 
+ * The way you get a hold to a reference to <a href=@@groups@@>groups</a>
+ * may vary.</strong>
  */
 
 /**
@@ -316,21 +358,6 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
         this[action](k);
       }
     },
-    /**
-     * --------------------------------
-     */
-
-    /**
-      * [findGameObjectGroup description]
-      * <p style='color:#AD071D'><strong>{{method}}</strong></p>
-      *
-      * @param  {[type]} go [description]
-      *
-      * @return {[type]}    [description]
-      */
-    findGameObjectGroup: function(go) {
-
-    }
     /**
      * --------------------------------
      */
