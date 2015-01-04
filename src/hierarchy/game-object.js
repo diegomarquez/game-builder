@@ -730,7 +730,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 */
 		
 		/**
-		 * <p style='color:#AD071D'><strong>getViewportList</strong></p>
+		 * <p style='color:#AD071D'><strong>getUpdateGroup</strong></p>
 		 *
 		 * @return {String} The update [group](@@group@@) this game object belongs to
 		 */
@@ -885,7 +885,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * ```
 		 * 
 		 * @param  {Object} r On object into which to put the result of this operation.
-		 * @param  {[matrix-3x3](@@matrix-3x3@@)} m A matrix object into which put the result.
+		 * @param  {[matrix-3x3](@@matrix-3x3@@)} m matrix object to work with.
 		 * @param  {Object} [options] Options to apply when concatenating the matrix.
 		 *
 		 * @return {Object} Contains the individual properties of a trandformation. ej. x, y, rotation, scale
@@ -961,7 +961,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 		 *
-		 * This method is only executed if the **debug** property of the parent [gb](@@gb@@)
+		 * This method is only executed if the **debug** property in [gb](@@gb@@)
 		 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
 		 * 
 		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)

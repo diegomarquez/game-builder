@@ -63,7 +63,7 @@ define(["game-object"], function(GameObject){
 		 * If the child already is part of another parent, it is removed from it
 		 * and added to this one.
 		 * 
-		 * @param {Object} The child [game-object](@@game-object@@) to add
+		 * @param {Object} child The child [game-object](@@game-object@@) to add
 		 */
 		add: function(child) {
 			if(!child) return;
@@ -90,7 +90,7 @@ define(["game-object"], function(GameObject){
 		 *
 		 * Removes the specified child [game-object](@@game-object@@) from this container.
 		 * 
-		 * @param {Object} The child [game-object](@@game-object@@) to remove
+		 * @param {Object} child The child [game-object](@@game-object@@) to remove
 		 */
 		remove: function(child) {
 			if(!child) return;
@@ -164,7 +164,7 @@ define(["game-object"], function(GameObject){
 		 *
 		 * Then it draws all of it's children
 		 * 
-		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 		 * @param  {Object} viewport The [viewport](@@viewport@@) this objects is being drawn too
 		 */
 		draw: function(context, viewport) {	
@@ -247,12 +247,11 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>addToViewport</strong></p>
 		 *
-		 * Adds the specified viewport and layer combo to the ones this game object belongs to.
+		 * Adds the specified [viewport](@@viewport@@) and [layer](@@layer@@) combo to the ones this game object belongs to.
 		 * It also does it for it's children
 		 *
-		 * @param {String} viewportName Name of the new viewport this object belongs to
-		 * @param {String} layerName Name of the layer in the specified viewport
-		 * 
+		 * @param {String} viewportName Name of the new [viewport](@@viewport@@) this object belongs to
+		 * @param {String} layerName Name of the [layer](@@layer@@) in the specified viewport
 		 */
 		addToViewportList: function(viewportName, layerName) {
 			this._super(viewportName, layerName);
@@ -270,11 +269,11 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>removeFromViewport</strong></p>
 		 *
-		 * Removes the viewport and layer combo from the ones this game object belongs to.
+		 * Removes the [viewport](@@viewport@@) and [layer](@@layer@@) combo from the ones this game object belongs to.
 		 * It also does it for it's children
 		 *
-		 * @param {String} viewportName Name of the viewport to remove from this game objects list
-		 * @param {String} layerName Name of the layer in the specified viewport
+		 * @param {String} viewportName Name of the [viewport](@@viewport@@) to remove from this game objects list
+		 * @param {String} layerName Name of the [layer](@@layer@@) in the specified viewport
 		 * 
 		 */
 		removeFromViewportList: function(viewportName, layerName) {
@@ -344,10 +343,15 @@ define(["game-object"], function(GameObject){
 		 * Get an object to query the child [game-objects](@@game-object@@) list of this container
 		 *
 		 * @return {Object}  An object to make the query. It has the following methods:
+		 * </br>
 		 * **all** returns all [game-objects](@@game-object@@) that return true for the specified function. Pass no argument to get all children 
+		 * </br>
 		 * **allWithType** returns all [game-objects](@@game-object@@) that have the given id in the [game-object-pool](@@game-object-pool@@)
+		 * </br>
 		 * **first** returns the first [game-object](@@game-object@@) that returns true for the specified function
+		 * </br>
 		 * **firstWithType** returns the first [game-object](@@game-object@@) that has the given id in the [game-object-pool](@@game-object-pool@@)
+		 * </br>
 		 */
 		findChildren: function() {
 			var self = this;
