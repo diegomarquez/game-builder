@@ -22,7 +22,7 @@
  *
  * Support for affine transformations thanks to the [matrix-3x3](@@matrix-3x3@@) module.
  * 
- * ### These objects extend [delegate](@@delegate@@) so they provide a few events to hook into:
+ * These objects extend [delegate](@@delegate@@) so they provide a few events to hook into:
  *
  * ### **START** 
  * When the game object is started 
@@ -55,7 +55,7 @@
  *
  * </br>
  * 
- * * ### **ADD**
+ * ### **ADD**
  * When a game object is added to a parent [game-object-container](@@game-object-container@@) 
  * The parent is sent to the registered callbacks as argument
  * 
@@ -65,7 +65,7 @@
  *
  * </br>
  * 
- * * ### **REMOVE**
+ * ### **REMOVE**
  * When a game object is removed from a parent [game-object-container](@@game-object-container@@) 
  * The parent is sent to the registered callbacks as argument
  * 
@@ -75,7 +75,7 @@
  *
  * </br>
  * 
- * * ### **ADD_TO_VIEWPORT**
+ * ### **ADD_TO_VIEWPORT**
  * When a game object is added to a [viewport](@@viewport@@) + [layer](@@layer@@) pair
  *
  * An object that looks like this ``` [{viewport: 'ViewportName', layer:'LayerName'}] ```
@@ -87,7 +87,7 @@
  *
  * </br>
  *
- * * ### **REMOVE_FROM_VIEWPORT**
+ * ### **REMOVE_FROM_VIEWPORT**
  * When a game object is removed from a [viewport](@@viewport@@) + [layer](@@layer@@) pair
  *
  * An object that looks like this ``` [{viewport: 'ViewportName', layer:'LayerName'}] ```
@@ -170,16 +170,14 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			// The pool id, is the id of the pool this game object came from. Not so usefull
 			this.poolId = null;
 
-			// These two properties are used by [layers](@@layers@@) to turn on and off activity
-			// on a given [layer](@@layer@@).
-			
+			// These two properties are used by [layers](@@layer@@) to turn on and off activity
 			// If this is true the game object will update.
 			this.canUpdate = false;
 			// if this is true the game object will render.
 			this.canDraw = false;
 
 			// This object can be queried to tell whether this game-object is visible in a [viewport](@@viewport@@) or not
-			// It's values are set in the method isGameObjectInside of the [viewport](@@viewport@@) module.
+			// It's values are set in the method **isGameObjectInside** of the [viewport](@@viewport@@) module.
 			this.viewportVisibility = {}
 			// An array with the names of all the viewports this game objects is being renderer in.
 			// This property is set by the [layer](@@layer@@) objects held by [viewports](@@viewport@@)
@@ -443,12 +441,12 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * Get an object to query the [component](@@component@@) list of the game object
 		 *
 		 * @return {Object}  An object to make the query. It has the following methods:
-		 * **all** returns all [components](@@components@@) that return true for the specified function. Pass no argument to get all components 
-		 * **allWithProp** returns all [components](@@component@@) that have the given property
-		 * **allWithType** returns all [components](@@component@@) that have the given id in the [component-pool](@@component-pool@@)
-		 * **first** returns the first [component](@@component@@) that returns true for the specified function
-		 * **firstWithProp** returns the first [component](@@component@@) that has the given property
-		 * **firstWithType** returns the first [components](@@component@@) that have the given id in the [component-pool](@@component-pool@@)
+		 * **all** returns all [components](@@components@@) that return true for the specified function. Pass no argument to get all components </br>
+		 * **allWithProp** returns all [components](@@component@@) that have the given property </br>
+		 * **allWithType** returns all [components](@@component@@) that have the given id in the [component-pool](@@component-pool@@) </br>
+		 * **first** returns the first [component](@@component@@) that returns true for the specified function </br>
+		 * **firstWithProp** returns the first [component](@@component@@) that has the given property </br>
+		 * **firstWithType** returns the first [components](@@component@@) that have the given id in the [component-pool](@@component-pool@@) </br>
 		 */
 		findComponents: function() {
 			var self = this;
@@ -830,8 +828,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 	}	  
 		 * ```
 		 * 
-		 * @param  {Object} [m=new Matrix()] A matrix object into which to put result.
-		 * @param  {Object} [options=newObject()] Options to apply when concatenating the matrix. 
+		 * @param  {[matrix-3x3](@@matrix-3x3@@)} m A matrix object into which to put result.
+		 * @param  {Object} [options=null] Options to apply when concatenating the matrix. 
 		 *
 		 * @return {Object} The concatenated [matrix-3x3](@@matrix-3x3@@)
 		 */
@@ -879,9 +877,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 	}	  
 		 * ```
 		 * 
-		 * @param  {Object} [r=new Object()] On object into which to put the result of this operation.
-		 * @param  {Object} [m=new Matrix()] A matrix object into which put the result.
-		 * @param  {Object} [options=newObject()] Options to apply when concatenating the matrix.
+		 * @param  {Object} r On object into which to put the result of this operation.
+		 * @param  {[matrix-3x3](@@matrix-3x3@@)} m A matrix object into which put the result.
+		 * @param  {Object} [options] Options to apply when concatenating the matrix.
 		 *
 		 * @return {Object} Contains the individual properties of a trandformation. ej. x, y, rotation, scale
 		 */
@@ -959,7 +957,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * This method is only executed if the **debug** property of the parent [gb](@@gb@@)
 		 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
 		 * 
-		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 		 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
 		 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
 		 * @param  {Object} gb     A reference to the [gb](@@gb@@) module
