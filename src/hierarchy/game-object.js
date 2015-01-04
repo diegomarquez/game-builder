@@ -18,14 +18,13 @@
  * ### Main features are: 
  * 
  * Attaching [component](@@component@@) objects and a [renderer](@@renderer@@)
- * object. Why only one renderer? Because honestly, how many times do you need to add more than one
- * thing to be rendered by the same entity?
+ * object. Why only one renderer? Because I thought it made more sense to have only one renderer for each type of object.
  *
  * Support for affine transformations thanks to the [matrix-3x3](@@matrix-3x3@@) module.
  * 
  * ### These objects extend [delegate](@@delegate@@) so they provide a few events to hook into:
  *
- * ### **start** 
+ * ### **START** 
  * When the game object is started 
  * 
  * Registered callbacks get the game object as argument 
@@ -33,21 +32,69 @@
  * gameObject.on(gameObject.START, function(gameObject) {});
  * ``` 
  *
- * ### **recycle**
- * When a gameObject is sent back to the game object pool. 
+ * </br>
+ * 
+ * ### **RECYCLE**
+ * When a game object is sent back to the game object pool. 
  * This happens before destroying properties in the object.
- *
+ * 
  * Registered callbacks get the game object as argument
  * ``` javascript  
- * gameObject.on(gameObject.RECYCLE, function() {});
+ * gameObject.on(gameObject.RECYCLE, function(gameObject) {});
  * ```
  *
- * ### **clear**
- * When a gameObject is sent back to the game object pool.
+ * </br>
+ * 
+ * ### **CLEAR**
+ * When a game object is sent back to the game object pool.
  * This happens after destroying properties in the object.
  * 
  * ``` javascript  
  * gameObject.on(gameObject.CLEAR, function() {});
+ * ```
+ *
+ * </br>
+ * 
+ * * ### **ADD**
+ * When a game object is added to a parent [game-object-container](@@game-object-container@@) 
+ * The parent is sent to the registered callbacks as argument
+ * 
+ * ``` javascript  
+ * gameObject.on(gameObject.ADD, function(parent) {});
+ * ```
+ *
+ * </br>
+ * 
+ * * ### **REMOVE**
+ * When a game object is removed from a parent [game-object-container](@@game-object-container@@) 
+ * The parent is sent to the registered callbacks as argument
+ * 
+ * ``` javascript  
+ * gameObject.on(gameObject.REMOVE, function(parent) {});
+ * ```
+ *
+ * </br>
+ * 
+ * * ### **ADD_TO_VIEWPORT**
+ * When a game object is added to a [viewport](@@viewport@@) + [layer](@@layer@@) pair
+ *
+ * An object that looks like this ``` [{viewport: 'ViewportName', layer:'LayerName'}] ```
+ * is sent to all the registered callbacks as an argument
+ * 
+ * ``` javascript  
+ * gameObject.on(gameObject.ADD_TO_VIEWPORT, function(v) {});
+ * ```
+ *
+ * </br>
+ *
+ * * ### **REMOVE_FROM_VIEWPORT**
+ * When a game object is removed from a [viewport](@@viewport@@) + [layer](@@layer@@) pair
+ *
+ * An object that looks like this ``` [{viewport: 'ViewportName', layer:'LayerName'}] ```
+ * is sent to all the registered callbacks as an argument
+ * 
+ * ``` javascript  
+ * gameObject.on(gameObject.REMOVE_FROM_VIEWPORT, function(v) {});
  * ```
  */
 
