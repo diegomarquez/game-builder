@@ -50,6 +50,9 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 * 
 		 * This is an abstract method and must be overriden.
+		 *
+		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
 		 * 
 		 * @throws {Error} Always
 		 */
