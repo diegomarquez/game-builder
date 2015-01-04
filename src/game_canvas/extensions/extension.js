@@ -17,20 +17,22 @@
  * to be executed by [game](@@game@@), but not so common to make it part of the core
  * of [Game-Builder](http://diegomarquez.github.io/game-builder).
  *
- * # Extensions can be hooked into 4 parts of [game](@@game@@):
- * ### Initialization
- * These extensions return the string **'create'** for their type.
- * They are executed once on the initialization of the application
+ * Extensions can be hooked into 4 parts of [game](@@game@@):
  * 
- * ### Focus
+ * ### **INITIALIZATION** 
+ * These extensions return the string **'create'** for their type.
+ * They are executed once on the initialization of the application or if the application
+ * has already started, get executed once as soon as they are added to [game](@@game@@)
+ * 
+ * ### **FOCUS**
  * These extensions return the string **'focus'** for their type.
  * They are executed each time the application gains focus.
  * 
- * ### Blur
+ * ### **BLUR**
  * These extensions return the string **'blur'** for their type.
  * They are executed each time the application looses focus.
  * 
- * ### Update
+ * ### **UPDATE**
  * These extensions return the string **'update'** for their type.
  * They are executed on the main update loop.
  */
@@ -76,7 +78,7 @@ define(["class", "error-printer"], function(Class, ErrorPrinter) {
 		/**
 		 * <p style='color:#AD071D'><strong>destroy</strong></p>
 		 *
-		 * This method is called when the extension is removed
+		 * This method is called when the extension is removed. This is an abstract method and must be overriden.
 		 *
 		 * @throws {Error} Always
 		 */

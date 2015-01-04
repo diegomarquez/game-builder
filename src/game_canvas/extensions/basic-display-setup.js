@@ -35,7 +35,7 @@
  * --------------------------------
  */
 define(["groups", "viewports", "gb", "world", "extension"], function(Groups, Viewports, Gb, World, Extension) {
-	var BasicLayerSetup = Extension.extend({
+	var BasicDisplaySetup = Extension.extend({
 		type: function() {
 			// Notice the use of the constant CREATE defined in [game](@@game@@)
 			// to define this extension should be executed on creation.
@@ -68,5 +68,5 @@ define(["groups", "viewports", "gb", "world", "extension"], function(Groups, Vie
 		}
 	});
 
-	return BasicLayerSetup;
+	return BasicDisplaySetup;
 });
