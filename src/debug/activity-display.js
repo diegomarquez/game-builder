@@ -8,6 +8,7 @@
  *
  * Depends of: 
  * [gb](@@gb@@)
+ * [util](@@util@@)
  * [game-object-pool](@@game-object-pool@@)
  * [component-pool](@@component-pool@@)
  * [json-cache](@@json-cache@@)
