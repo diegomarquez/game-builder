@@ -21,9 +21,9 @@
  * The extension also adds a **pause** method to [game](@@game@@) to be able to pause the application
  * manually.
  *
- * ### This Extension adds an event [game](@@game@@) can hook into: 
+ * This Extension adds an event [game](@@game@@) can hook into: 
  *
- * ### **pause** 
+ * ### **PAUSE** 
  * When the application is paused manually
  * 
  * ``` javascript  
