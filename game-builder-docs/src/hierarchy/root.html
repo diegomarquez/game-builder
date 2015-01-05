@@ -5,23 +5,23 @@
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
 <p>Inherits from: 
-<a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a></p>
 
 <p>Depends of:
-<a href="http://localhost:5000/game-builder-docs/src/view/viewports.html">viewports</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewports.html">viewports</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module defines the root <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a></p>
+<p>This module defines the root <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a></p>
 
 <p>In any given <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a> application
-this is is the only <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> that is updated
+this is is the only <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> that is updated
 explicitly in the main update loop. As it is updated, it will update all of its 
 children, who will in turn update their children, until everything has been updated.</p>
 
 <p>Rendering is also executed in this module. The code takes care of setting up the context for each
-registered <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a>. In between setups, all the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> for a given
-<a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> are rendered.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="the-root-of-all-things">The root of all things</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;game-object-container&quot;</span><span class="p">,</span> <span class="s2">&quot;viewports&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Container</span><span class="p">,</span> <span class="nx">Viewports</span><span class="p">){</span>
+registered <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a>. In between setups, all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> for a given
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> are rendered.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="the-root-of-all-things">The root of all things</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;game-object-container&quot;</span><span class="p">,</span> <span class="s2">&quot;viewports&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Container</span><span class="p">,</span> <span class="nx">Viewports</span><span class="p">){</span>
   <span class="kd">var</span> <span class="nx">Root</span> <span class="o">=</span> <span class="nx">Container</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
 
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -31,10 +31,10 @@ registered <a href="http://localhost:5000/game-builder-docs/src/view/viewport.ht
       <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;game&#39;</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>draw</strong></p>
 
-<p>Performs the rendering of all the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewports</a> registered in the <a href="http://localhost:5000/game-builder-docs/src/view/viewports.html">viewports</a> object.</p>
+<p>Performs the rendering of all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewports</a> registered in the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewports.html">viewports</a> object.</p>
 
 <p>The process includes, clearing the rectangle belonging to each viewport, modifying the context and drawing all
-the corresponding <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p>
+the corresponding <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p>
 
 <p>Parameters:</p>
 

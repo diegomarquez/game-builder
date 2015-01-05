@@ -3,7 +3,7 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
+ * Inherits from: [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  *
  * Depends of:
  *
@@ -102,7 +102,7 @@ define(function(require) {
 		 *
 		 * Register a callback to be executed when a key is pressed.
 		 *
-		 * This wraps the extended [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
+		 * This wraps the extended [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
 		 * 
 		 * @param  {Number}   keyCode  Key code to listen to
 		 * @param  {Object}   scope    Scope of the callback function
@@ -120,7 +120,7 @@ define(function(require) {
 		 *
 		 * Register a callback to be executed when a key is released.
 		 *
-		 * This wraps the extended [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
+		 * This wraps the extended [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
 		 * 
 		 * @param  {Number}   keyCode  Key code to listen to
 		 * @param  {Object}   scope    Scope of the callback function
@@ -138,7 +138,7 @@ define(function(require) {
 		 *
 		 * Removes a registered callback for a key press.
 		 *
-		 * This wraps the extended [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
+		 * This wraps the extended [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
 		 * 
 		 * @param  {Number}   keyCode  Key code to stop listening to
 		 * @param  {Object}   scope    Scope of the callback function to remove
@@ -156,7 +156,7 @@ define(function(require) {
 		 *
 		 * Removes a registered callback for a key release.
 		 *
-		 * This wraps the extended [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
+		 * This wraps the extended [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
 		 * 
 		 * @param  {Number}   keyCode  Key code to stop listening to
 		 * @param  {Object}   scope    Scope of the callback function to remove

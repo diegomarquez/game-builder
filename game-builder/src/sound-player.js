@@ -4,11 +4,11 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
- * [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
+ * [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  *
  * Depends of: 
- * [timer-factory](http://localhost:5000/game-builder-docs/src/timers/timer-factory.html)
- * [error-printer](http://localhost:5000/game-builder-docs/src/debug/error-printer.html)
+ * [timer-factory](http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer-factory.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -26,7 +26,7 @@
  * 
  * The rest of the methods do what they say on the tin
  *
- * The Sound Player object extends [delegate](http://localhost:5000/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
+ * The Sound Player object extends [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
  *
  * ### **ON_LOAD_ALL_COMPLETE**
  * When loading of resources through the **loadAll** method is complete. 

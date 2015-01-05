@@ -9,13 +9,13 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * Similar to [sat](http://localhost:5000/game-builder-docs/src/collision/sat.html) and [vector-2D](http://localhost:5000/game-builder-docs/src/math/vector-2D.html) 
+ * Similar to [sat](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html) and [vector-2D](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/vector-2D.html) 
  * in that I took the code from somewhere else to make a requireJS module with it.
  * In this case the victim was [EaselJS](https://github.com/CreateJS/EaselJS/). Somewhere
  * in there is a javascript file that desribes a 3x3 matrix. So this is largely a copy/paste of that.
  *
  * Anyway, this module is very important for everything that has to do with rendering,
- * because matrix transformations are used in each [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) 
+ * because matrix transformations are used in each [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) 
  * to apply a transformation to the context 2D property 
  * of the [Canvas](https://developer.mozilla.org/en-US/docs/HTML/Canvas)
  * modifying it's position and that of all sub-sequent rendering commands.

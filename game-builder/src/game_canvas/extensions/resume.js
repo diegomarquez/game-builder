@@ -3,24 +3,24 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [extension](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html)
+ * Inherits from: [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
  * Depends of: 
- * [groups](http://localhost:5000/game-builder-docs/src/hierarchy/groups.html)
- * [viewports](http://localhost:5000/game-builder-docs/src/view/viewports.html)
- * [gb](http://localhost:5000/game-builder-docs/src/gb.html)
+ * [groups](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html)
+ * [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewports.html)
+ * [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines an extension that uses [groups](http://localhost:5000/game-builder-docs/src/hierarchy/groups.html) to resume all update activity
+ * This module defines an extension that uses [groups](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html) to resume all update activity
  * when the application gains focus.
  *
- * It also uses [viewports](http://localhost:5000/game-builder-docs/src/view/viewports.html) check that any [layers](http://localhost:5000/game-builder-docs/src/view/layer.html) hidden before pausing, remain hidden.
+ * It also uses [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewports.html) check that any [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) hidden before pausing, remain hidden.
  *
- * The extension also adds a **resume** method to [game](http://localhost:5000/game-builder-docs/src/game_canvas/game.html), to be able to resume the application
+ * The extension also adds a **resume** method to [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html), to be able to resume the application
  * manually after pausing.
  *
- * This Extension adds an event [game](http://localhost:5000/game-builder-docs/src/game_canvas/game.html) can hook into:
+ * This Extension adds an event [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html) can hook into:
  *
  * ### **RESUME** 
  * When the application is resumed manually
@@ -44,7 +44,7 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 
 	var Resume = Extension.extend({
 		type: function() {
-			// Notice the use of the constant FOCUS defined in [game](http://localhost:5000/game-builder-docs/src/game_canvas/game.html)
+			// Notice the use of the constant FOCUS defined in [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html)
 			// to define this extension should be executed on creation.
 			return Gb.game.FOCUS;
 		},

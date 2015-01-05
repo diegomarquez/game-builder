@@ -7,7 +7,7 @@
  * [game](@@game@@),
  * [groups](@@groups@@),
  * [basic-display-setup](@@basic-display-setup@@),
- * [layering-bundle](http://localhost:5000/examples-docs/common_src/bundles/nesting-bundle.html),
+ * [layering-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/nesting-bundle.html),
  * [keyboard](@@keyboard@@)
  */
 

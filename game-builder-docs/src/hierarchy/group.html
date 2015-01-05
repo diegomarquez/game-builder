@@ -4,17 +4,17 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a></p>
+<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a></p>
 
 <p>Depends of:</p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module defines a special kind of <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>.</p>
+<p>This module defines a special kind of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>.</p>
 
-<p>It's only purpose it be used by <a href="http://localhost:5000/game-builder-docs/src/hierarchy/groups.html">groups</a> as a way to organize the updating loop</p>
+<p>It's only purpose it be used by <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html">groups</a> as a way to organize the updating loop</p>
 
-<p>It behaives exactly like a <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> except
+<p>It behaives exactly like a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> except
 for the fact it redefines the <strong>clear</strong> method so that it only removes all children.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="visual-organization">Visual organization</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;game-object-container&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Container</span><span class="p">){</span>
   <span class="kd">var</span> <span class="nx">Group</span> <span class="o">=</span> <span class="nx">Container</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>init</strong></p>
 
@@ -30,21 +30,21 @@ for the fact it redefines the <strong>clear</strong> method so that it only remo
       <span class="k">this</span><span class="p">.</span><span class="nx">groupName</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong></p>
 
-<p>Adds the specified child <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to this container.
+<p>Adds the specified child <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to this container.
 If the child already is part of another parent, it is removed from it
 and added to this one.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>child must be an Object.</strong><br/>(The child <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to add)</li>
+<li><strong>child must be an Object.</strong><br/>(The child <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to add)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">add</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">(</span><span class="nx">child</span><span class="p">);</span> 
 
       <span class="nx">child</span><span class="p">.</span><span class="nx">updateGroup</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">groupName</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>clear</strong></p>
 
-<p>This is normally called through <a href="http://localhost:5000/game-builder-docs/src/hierarchy/groups.html">groups</a> to empty a 
+<p>This is normally called through <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html">groups</a> to empty a 
 group, but it could be called manually, assuming you can get a hold
 of a reference.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">clear</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">)</span> <span class="p">{</span> 

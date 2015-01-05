@@ -7,9 +7,9 @@
  * [game](@@game@@),
  * [state-machine](@@state-machine@@),
  * [keyboard](@@keyboard@@),
- * [state-1](http://localhost:5000/examples-docs/common_src/state-1.html),
- * [state-2](http://localhost:5000/examples-docs/common_src/state-2.html),
- * [state-3](http://localhost:5000/examples-docs/common_src/state-3.html)
+ * [state-1](http://diegomarquez.github.io/game-builder/examples-docs/common_src/state-1.html),
+ * [state-2](http://diegomarquez.github.io/game-builder/examples-docs/common_src/state-2.html),
+ * [state-3](http://diegomarquez.github.io/game-builder/examples-docs/common_src/state-3.html)
  */
 
 /**

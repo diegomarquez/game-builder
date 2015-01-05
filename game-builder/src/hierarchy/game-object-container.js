@@ -3,15 +3,15 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html)
+ * Inherits from: [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
  *
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This modules defines a container for [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html), which in turn
- * is a [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) itself. Being a parent means that all of it's child
- * [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) will follow it according to it's transformation matrix.
+ * This modules defines a container for [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html), which in turn
+ * is a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) itself. Being a parent means that all of it's child
+ * [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) will follow it according to it's transformation matrix.
  *
  * It's a pretty usefull behaviour to form more complex displays out of smaller, more manageable 
  * pieces. 
@@ -19,7 +19,7 @@
  * A note on drawing: A container will execute it's renderer code, and then the rendering code
  * of it's children. This means that the parent drawing will show up, below it's children's.
  *
- * Asides from that, a container is no different to a regular [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html),
+ * Asides from that, a container is no different to a regular [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html),
  * so go look at that part of the documentation for more details on every method here.
  */
 
@@ -59,11 +59,11 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>add</strong></p>
 		 *
-		 * Adds the specified child [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to this container.
+		 * Adds the specified child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to this container.
 		 * If the child already is part of another parent, it is removed from it
 		 * and added to this one.
 		 * 
-		 * @param {Object} child The child [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to add
+		 * @param {Object} child The child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to add
 		 */
 		add: function(child) {
 			if(!child) return;
@@ -88,9 +88,9 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>remove</strong></p>
 		 *
-		 * Removes the specified child [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) from this container.
+		 * Removes the specified child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) from this container.
 		 * 
-		 * @param {Object} child The child [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to remove
+		 * @param {Object} child The child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to remove
 		 */
 		remove: function(child) {
 			if(!child) return;
@@ -160,12 +160,12 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
-		 * Draws the game-object into the specified Context 2D, using it's [matrix-3x3](http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html)
+		 * Draws the game-object into the specified Context 2D, using it's [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
 		 *
 		 * Then it draws all of it's children
 		 * 
 		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		 * @param  {Object} viewport The [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) this objects is being drawn too
+		 * @param  {Object} viewport The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) this objects is being drawn too
 		 */
 		draw: function(context, viewport) {	
 			// Draw only if inside the viewport and is allowed to be drawn
@@ -247,11 +247,11 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>addToViewport</strong></p>
 		 *
-		 * Adds the specified [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) and [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) combo to the ones this game object belongs to.
+		 * Adds the specified [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) and [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) combo to the ones this game object belongs to.
 		 * It also does it for it's children
 		 *
-		 * @param {String} viewportName Name of the new [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) this object belongs to
-		 * @param {String} layerName Name of the [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) in the specified viewport
+		 * @param {String} viewportName Name of the new [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) this object belongs to
+		 * @param {String} layerName Name of the [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) in the specified viewport
 		 */
 		addToViewportList: function(viewportName, layerName) {
 			this._super(viewportName, layerName);
@@ -269,11 +269,11 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>removeFromViewport</strong></p>
 		 *
-		 * Removes the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) and [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) combo from the ones this game object belongs to.
+		 * Removes the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) and [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) combo from the ones this game object belongs to.
 		 * It also does it for it's children
 		 *
-		 * @param {String} viewportName Name of the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) to remove from this game objects list
-		 * @param {String} layerName Name of the [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) in the specified viewport
+		 * @param {String} viewportName Name of the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to remove from this game objects list
+		 * @param {String} layerName Name of the [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) in the specified viewport
 		 * 
 		 */
 		removeFromViewportList: function(viewportName, layerName) {
@@ -292,14 +292,14 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>setChildOptions</strong></p>
 		 *
-		 * This method allows to set options that will affect a [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) only on this container
+		 * This method allows to set options that will affect a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) only on this container
 		 *
-		 * The options argument must have a **draw** key and an **update** key, these will determine if the child [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html)
+		 * The options argument must have a **draw** key and an **update** key, these will determine if the child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 		 * is drawn or updated on this container. The properties will be evaluated as truthy or falsy.
 		 *
 		 * If the keys are not provided, they are added and set to **true** by default
 		 * 
-		 * @param {Object} child   Child [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to set options to
+		 * @param {Object} child   Child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to set options to
 		 * @param {Object} options Options that will be applied to the specified child on this container
 		 */
 		setChildOptions: function(child, options) {
@@ -319,7 +319,7 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>getChildOptions</strong></p>
 		 *
-		 * Get the options set in the **setChildOptions** method for the specified child [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html)
+		 * Get the options set in the **setChildOptions** method for the specified child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 		 * 
 		 * @param  {Object} child A child [game-obejct](@@game-obejct@@) of this container
 		 *
@@ -340,17 +340,17 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>findChildren</strong></p>
 		 *
-		 * Get an object to query the child [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) list of this container
+		 * Get an object to query the child [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) list of this container
 		 *
 		 * @return {Object}  An object to make the query. It has the following methods:
 		 * </br>
-		 * **all** returns all [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) that return true for the specified function. Pass no argument to get all children 
+		 * **all** returns all [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) that return true for the specified function. Pass no argument to get all children 
 		 * </br>
-		 * **allWithType** returns all [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) that have the given id in the [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html)
+		 * **allWithType** returns all [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) that have the given id in the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
 		 * </br>
-		 * **first** returns the first [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) that returns true for the specified function
+		 * **first** returns the first [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) that returns true for the specified function
 		 * </br>
-		 * **firstWithType** returns the first [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) that has the given id in the [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html)
+		 * **firstWithType** returns the first [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) that has the given id in the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
 		 * </br>
 		 */
 		findChildren: function() {

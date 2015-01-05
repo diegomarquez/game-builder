@@ -4,25 +4,25 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from:
- * [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
+ * [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  *
  * Depends of:
- * [root](http://localhost:5000/game-builder-docs/src/hierarchy/root.html)
- * [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html)
- * [error-printer](http://localhost:5000/game-builder-docs/src/debug/error-printer.html)
+ * [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html)
+ * [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
- * This module defines an object to contain and work with [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) objects.
+ * This module defines an object to contain and work with [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) objects.
  *
- * It also acts as a wrapper for interacting with [root](http://localhost:5000/game-builder-docs/src/hierarchy/root.html).
+ * It also acts as a wrapper for interacting with [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html).
  *
- * This object extends [delegate](http://localhost:5000/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
+ * This object extends [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
  * 
  * ### **ADD** 
- * When a [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) is added
+ * When a [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) is added
  * 
- * Registered callbacks get the [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) as argument 
+ * Registered callbacks get the [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) as argument 
  * ``` javascript  
  * gb.groups.on(gb.groups.ADD, function(group) {});
  * ``` 
@@ -30,9 +30,9 @@
  * </br>
  *
  * ### **REMOVE** 
- * When a [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) is removed
+ * When a [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) is removed
  * 
- * Registered callbacks get the [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) as argument 
+ * Registered callbacks get the [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) as argument 
  * ``` javascript  
  * gb.groups.on(gb.groups.REMOVE, function(group) {});
  * ``` 
@@ -40,9 +40,9 @@
  * </br>
  *
  * ### **CHANGE** 
- * When [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) changes position
+ * When [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) changes position
  * 
- * Registered callbacks get the [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) as argument 
+ * Registered callbacks get the [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) as argument 
  * ``` javascript  
  * gb.groups.on(gb.groups.CHANGE, function(group) {});
  * ``` 
@@ -50,15 +50,15 @@
  * </br>
  *
  * ### **REMOVE_ALL** 
- * When all the [groups](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) are removed
+ * When all the [groups](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) are removed
  * 
  * ``` javascript  
  * gb.groups.on(gb.groups.REMOVE_ALL, function() {});
  * ``` 
  *
- * <strong>Note: The snippets use the reference to <a href=http://localhost:5000/game-builder-docs/src/hierarchy/groups.html>groups</a>
- * found in the <a href=http://localhost:5000/game-builder-docs/src/gb.html>gb</a> module. 
- * The way you get a hold to a reference to <a href=http://localhost:5000/game-builder-docs/src/hierarchy/groups.html>groups</a>
+ * <strong>Note: The snippets use the reference to <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html>groups</a>
+ * found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
+ * The way you get a hold to a reference to <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html>groups</a>
  * may vary.</strong>
  */
 
@@ -89,16 +89,16 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
      * <p style='color:#AD071D'><strong>add</strong></p>
      *
      * Adds a new group. The group is managed in this object, but
-     * it also is added to [root](http://localhost:5000/game-builder-docs/src/hierarchy/root.html), which is what will make it update.
+     * it also is added to [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html), which is what will make it update.
      *
      * On that subject, it is important to note that if you re-arrange the elements
      * of the array that the group is added to, nothing will happen to the order of
-     * updating or rendering, as that is controlled by the [root](http://localhost:5000/game-builder-docs/src/hierarchy/root.html), which has
+     * updating or rendering, as that is controlled by the [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html), which has
      * a list of childs of it's own.
      *
      * @param {String} name Id of the group, used later to refer to the group.
      *
-     * @return {Object} The [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) that was just created
+     * @return {Object} The [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) that was just created
      */
     add: function(name) {
       var group = new Group(name);
@@ -118,10 +118,10 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
     /**
      * <p style='color:#AD071D'><strong>remove</strong></p>
      *
-     * Removes a group from the array in this object, and also from the [root](http://localhost:5000/game-builder-docs/src/hierarchy/root.html).
-     * Prior to removing the group it also clears it from any [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html)
+     * Removes a group from the array in this object, and also from the [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html).
+     * Prior to removing the group it also clears it from any [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
      *
-     * A removed group can not be used again, if you wish to just remove all [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html)
+     * A removed group can not be used again, if you wish to just remove all [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
      * from a group you might want to use the **clear** method.
      *
      * @param  {String} name Id of the group to remove
@@ -146,7 +146,7 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
     /**
      * <p style='color:#AD071D'><strong>removeAll</strong></p>
      *
-     * Removes all [groups](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) from the array in this object, and also from the [root](http://localhost:5000/game-builder-docs/src/hierarchy/root.html).
+     * Removes all [groups](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) from the array in this object, and also from the [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html).
      */
     removeAll: function() {
       for (var k in this.groups) {
@@ -162,7 +162,7 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
     /**
      * <p style='color:#AD071D'><strong>clear</strong></p>
      *
-     * Clears a group from all [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html)
+     * Clears a group from all [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
      *
      * A cleared group can still be used to add more things to it.
      */
@@ -180,9 +180,9 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
      *
      * @param  {String} name Id of the group to get a reference to.
      *
-     * @throws {Error} If the provided name does not match any [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html)
+     * @throws {Error} If the provided name does not match any [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html)
      *
-     * @return {Group} The specified [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html).
+     * @return {Group} The specified [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html).
      */
     get: function(name) {
       if (!this.groups[name]) {
@@ -198,7 +198,7 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
     /**
      * <p style='color:#AD071D'><strong>exists</strong></p>
      *
-     * Tell whether a [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) exists or not
+     * Tell whether a [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) exists or not
      *
      * @param  {String} name Id of the group to check existance of.
      */
@@ -212,9 +212,9 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
     /**
      * <p style='color:#AD071D'><strong>change</strong></p>
      *
-     * Change the position of the specified [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html)
+     * Change the position of the specified [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html)
      *
-     * @param  {String} name Id of the [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) to arrange.
+     * @param  {String} name Id of the [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) to arrange.
      */
     change: function(name, index) {
       var group = this.groups[name];
@@ -232,7 +232,7 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
     /**
      * <p style='color:#AD071D'><strong>stop</strong></p>
      *
-     * Stops updating and rendering everythin in the requested [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html).
+     * Stops updating and rendering everythin in the requested [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html).
      * For practical purposes this method pauses and makes invisible all the contents
      * of a group.
      *
@@ -249,9 +249,9 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
     /**
      * <p style='color:#AD071D'><strong>resume</strong></p>
      *
-     * Resumes all activity in the specified [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html).
+     * Resumes all activity in the specified [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html).
      *
-     * @param  {String} name Id of the [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) to resume activity in
+     * @param  {String} name Id of the [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) to resume activity in
      */
     resume: function(name) {
       this.resume_update(name);
@@ -264,9 +264,9 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
     /**
      * <p style='color:#AD071D'><strong>stop_draw</strong></p>
      *
-     * Stops rendering of the specified [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html). Effectively making everything in it invisible.
+     * Stops rendering of the specified [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html). Effectively making everything in it invisible.
      *
-     * @param  {String} name Id of the [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) that should stop rendering
+     * @param  {String} name Id of the [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) that should stop rendering
      */
     stop_draw: function(name) { this.groups[name].hide(); },
     /**
@@ -276,9 +276,9 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
     /**
      * <p style='color:#AD071D'><strong>resume_draw</strong></p>
      *
-     * Resumes rendering of the specified [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html).
+     * Resumes rendering of the specified [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html).
      *
-     * @param  {String} name Id of the [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) that should resume rendering
+     * @param  {String} name Id of the [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) that should resume rendering
      */
     resume_draw: function(name) { this.groups[name].show(); },
     /**
@@ -288,9 +288,9 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
     /**
      * <p style='color:#AD071D'><strong>stop_update</strong></p>
      *
-     * Stops updating of the specified [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html). Effectively pausing everything in it.
+     * Stops updating of the specified [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html). Effectively pausing everything in it.
      *
-     * @param  {String} name Id of the [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) that should stop updating
+     * @param  {String} name Id of the [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) that should stop updating
      */
     stop_update: function(name) { this.groups[name].canUpdate = false; },
     /**
@@ -300,9 +300,9 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
     /**
      * <p style='color:#AD071D'><strong>resume_update</strong></p>
      *
-     * Resumes updating of the specified [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html).
+     * Resumes updating of the specified [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html).
      *
-     * @param  {String} name Id of the [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) that should resume updating
+     * @param  {String} name Id of the [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) that should resume updating
      */
     resume_update: function(name) { this.groups[name].canUpdate = true; },
     /**

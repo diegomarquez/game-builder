@@ -4,18 +4,18 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from:
- * [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
+ * [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  *
  * Depends of: 
- * [timer](http://localhost:5000/game-builder-docs/src/timers/timer.html)
- * [error-printer](http://localhost:5000/game-builder-docs/src/debug/error-printer.html)
+ * [timer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder) 
  * 
- * This module provides a factory to create [timer](http://localhost:5000/game-builder-docs/src/timers/timer.html) objects. Asides from creating them it provides methods
+ * This module provides a factory to create [timer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer.html) objects. Asides from creating them it provides methods
  * to manipulate them in bulk.
  *
- * The Timer Factory object extends [delegate](http://localhost:5000/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
+ * The Timer Factory object extends [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
  * 
  * ### **CREATE** 
  * When a timer is created and added to the factory registry

@@ -5,21 +5,21 @@
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
 <p>Inherits from:
-<a href="http://localhost:5000/game-builder-docs/src/components/component.html">component</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a></p>
 
 <p>Depends of:
-<a href="http://localhost:5000/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a>
-<a href="http://localhost:5000/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
 <p>All colliders extend the object defined in this module. It's main responsibility
-is checking if it is colliding against any of the objects the <a href="http://localhost:5000/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a>
+is checking if it is colliding against any of the objects the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a>
 is saying it should collide against.</p>
 
-<p>When setting up the <a href="http://localhost:5000/game-builder-docs/src/pools/component-pool.html">component-pool</a> with collider components, be sure
-to checkout the documentation for <a href="http://localhost:5000/game-builder-docs/src/collision/circle-collider.html">circle-collider</a>, <a href="http://localhost:5000/game-builder-docs/src/collision/polygon-collider.html">polygon-collider</a>
-and <a href="http://localhost:5000/game-builder-docs/src/collision/fixed-polygon-collider.html">fixed-polygon-collider</a> to see what kind of object they expect as an argument
+<p>When setting up the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a> with collider components, be sure
+to checkout the documentation for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/circle-collider.html">circle-collider</a>, <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/polygon-collider.html">polygon-collider</a>
+and <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/fixed-polygon-collider.html">fixed-polygon-collider</a> to see what kind of object they expect as an argument
 to be properly configured.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="collisions">Collisions</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;component&#39;</span><span class="p">,</span> <span class="s1">&#39;collision-resolver&#39;</span><span class="p">,</span> <span class="s1">&#39;error-printer&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">CollisionResolver</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="kd">var</span> <span class="nx">collisionList</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -30,7 +30,7 @@ to be properly configured.</p></div></div></div><div class="segment"><div class=
 <p>Setup the component.</p>
 
 <p>The main thing here is that the component 
-adds itself to the <a href="http://localhost:5000/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a></p>
+adds itself to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a></p>
 
 <p><strong>Can throw an Error</strong><br/>(If the parent of the component does not define an <strong>onCollide</strong> method )</p></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span> <span class="o">=</span> <span class="s2">&quot;#00FF00&quot;</span><span class="p">;</span>
@@ -46,7 +46,7 @@ adds itself to the <a href="http://localhost:5000/game-builder-docs/src/collisio
 
 <p>Here is where the magic happens.</p>
 
-<p>The <a href="http://localhost:5000/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a> will test this collider against
+<p>The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a> will test this collider against
 all other registered colliders that are supposed to collide against it. If there is a collision
 A bunch of callbacks will be executed notifying the objects involved.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="nx">collisionList</span> <span class="o">=</span> <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">collisionLists</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">];</span>
@@ -79,7 +79,7 @@ A bunch of callbacks will be executed notifying the objects involved.</p></div><
 <p>Parameters:</p>
 
 <ul>
-<li><strong>other must be an Object.</strong><br/>(The other <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> involved in the collision.)</li>
+<li><strong>other must be an Object.</strong><br/>(The other <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> involved in the collision.)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">onCollide</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">other</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span> <span class="o">=</span> <span class="s2">&quot;#FF0000&quot;</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>debug_draw</strong></p>
@@ -91,7 +91,7 @@ A bunch of callbacks will be executed notifying the objects involved.</p></div><
 <p>Destroys the component.</p>
 
 <p>Asides from resetting some properties the component removes itself
-from the <a href="http://localhost:5000/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a></p></div></div><div class="code"><div class="wrapper">    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+from the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a></p></div></div><div class="code"><div class="wrapper">    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">checkingCollisions</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>

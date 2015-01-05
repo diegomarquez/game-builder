@@ -6,7 +6,7 @@
  * Inherits from:
  *
  * Depends of: 
- * [sat](http://localhost:5000/game-builder-docs/src/collision/sat.html)
+ * [sat](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -48,7 +48,7 @@ define(['sat'], function(SAT) {
 	 * 
 	 * The component is added to the correponding lists, depending on it's collision id.
 	 * 
-	 * @param {Object} collisionComponent An object extending [collision-component](http://localhost:5000/game-builder-docs/src/collision/collision-component.html)
+	 * @param {Object} collisionComponent An object extending [collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html)
 	 */
 	CollisionResolver.prototype.addToCollisionList = function(collisionComponent) {
 		var indexes = this.toCollideCache[collisionComponent.id];
@@ -70,7 +70,7 @@ define(['sat'], function(SAT) {
 	 * 
 	 * The component is removed from the corresponding lists, depending on it's collision id.
 	 * 
-	 * @param {Obejct} collisionComponent An object extending [collision-component](http://localhost:5000/game-builder-docs/src/collision/collision-component.html)
+	 * @param {Obejct} collisionComponent An object extending [collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html)
 	 */
 	CollisionResolver.prototype.removeFromCollisionList = function(collisionComponent) {
 		var indexes = this.toCollideCache[collisionComponent.id];
@@ -115,8 +115,8 @@ define(['sat'], function(SAT) {
 	 * 
 	 * This method will make the appropiate tests according to the type of the colliders involved.
 	 * 
-	 * @param  {Object} first  The first [collision-component](http://localhost:5000/game-builder-docs/src/collision/collision-component.html) in the test
-	 * @param  {Object} second The second [collision-component](http://localhost:5000/game-builder-docs/src/collision/collision-component.html) in the test
+	 * @param  {Object} first  The first [collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html) in the test
+	 * @param  {Object} second The second [collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html) in the test
 	 * @return {Boolean} Whether there was a collision
 	 */
 	CollisionResolver.prototype.areColliding = function(first, second) {

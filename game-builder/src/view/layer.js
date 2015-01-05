@@ -4,14 +4,14 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from:
- * [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
+ * [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  *
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
- * This is the type of objects that [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) uses to determine the order in which [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html)
- * should be drawn. Each [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) has an array of this type of objects.
+ * This is the type of objects that [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) uses to determine the order in which [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
+ * should be drawn. Each [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) has an array of this type of objects.
  */
 
 /**
@@ -33,7 +33,7 @@ define(["delegate"], function(Delegate) {
      * Constructor
      *
      * @param {String} name The name of the layer
-     * @param {Viewport} viewport The [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) the layer belongs to
+     * @param {Viewport} viewport The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) the layer belongs to
      */
     init: function(name, viewport) {
       this.name = name;
@@ -49,11 +49,11 @@ define(["delegate"], function(Delegate) {
     /**
      * <p style='color:#AD071D'><strong>add</strong></p>
      *
-     * Add a [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to layer for rendering
+     * Add a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to layer for rendering
      *
-     * @param {Object} go The [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to add
+     * @param {Object} go The [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to add
      *
-     * @return {Object|null} The [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) that was just added or null if the [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) was already part of the layer
+     * @return {Object|null} The [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) that was just added or null if the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) was already part of the layer
      */
     add: function(go) {
       var index = this.gameObjects.indexOf(go); 
@@ -74,11 +74,11 @@ define(["delegate"], function(Delegate) {
     /**
      * <p style='color:#AD071D'><strong>remove</strong></p>
      *
-     * Remove a [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) from the layer
+     * Remove a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) from the layer
      *
-     * @param {Object} go The [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to remove
+     * @param {Object} go The [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to remove
      *
-     * @return {Object|null} The [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) that was just removed or null if the [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) was not part of the layer
+     * @return {Object|null} The [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) that was just removed or null if the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) was not part of the layer
      */
     remove: function(go) {
       var index = this.gameObjects.indexOf(go);
@@ -99,9 +99,9 @@ define(["delegate"], function(Delegate) {
     /**
      * <p style='color:#AD071D'><strong>removeAll</strong></p>
      *
-     * Removes all the [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) from the layer
+     * Removes all the [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) from the layer
      *
-     * @return {Array} All the [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) that were just removed
+     * @return {Array} All the [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) that were just removed
      */
     removeAll: function() {
       var gos = [];
@@ -119,7 +119,7 @@ define(["delegate"], function(Delegate) {
     /**
      * <p style='color:#AD071D'><strong>draw</strong></p>
      *
-     * Draws all the [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html)
+     * Draws all the [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
      * 
      * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
      */

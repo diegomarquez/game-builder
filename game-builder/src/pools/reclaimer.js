@@ -6,19 +6,19 @@
  * Inherits from:
  *
  * Depends of: 
- * [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html)
- * [component-pool](http://localhost:5000/game-builder-docs/src/pools/component-pool.html)
- * [error-printer](http://localhost:5000/game-builder-docs/src/debug/error-printer.html)
+ * [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
+ * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines the object which is in charge of retrieving [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html)
+ * This module defines the object which is in charge of retrieving [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
  * at any given point. It's the last piece of [Game-Builder](http://diegomarquez.github.io/game-builder)
  * object management system.
  *
- * It has various methods to send [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to their respective pools.
+ * It has various methods to send [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to their respective pools.
  * 
- * When you just want to get rid of everything, [reclaimer](http://localhost:5000/game-builder-docs/src/pools/reclaimer.html) has you covered.
+ * When you just want to get rid of everything, [reclaimer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html) has you covered.
  */
 
 /**
@@ -35,12 +35,12 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	/**
 	 * <p style='color:#AD071D'><strong>claim</strong></p>
 	 *
-	 * Removes a [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) from it's parent if it has one, and then
+	 * Removes a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) from it's parent if it has one, and then
 	 * calls it's **clear** method. This sends it and all of the objects
 	 * that depend of it to their respective pools.
 	 * 
-	 * @param  {Object} go [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to recycle
-	 * @param  {String} id Id assigned to the [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) in [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html)
+	 * @param  {Object} go [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to recycle
+	 * @param  {String} id Id assigned to the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) in [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
 	 *
 	 * @throws {Error} If the id argument is missing.
 	 */
@@ -64,11 +64,11 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	/**
 	 * <p style='color:#AD071D'><strong>claim</strong></p>
 	 *
-	 * Removes a [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) from it's parent if it has one, and then
+	 * Removes a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) from it's parent if it has one, and then
 	 * calls it's **clear** method. This sends it and all of the objects
 	 * that depend of it to their respective pools.
 	 * 
-	 * @param  {Object} go [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to recycle
+	 * @param  {Object} go [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to recycle
 	 */
 	Reclaimer.prototype.claim = function(go) {	
 		if (go.parent) {
@@ -84,10 +84,10 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	/**
 	 * <p style='color:#AD071D'><strong>claim</strong></p>
 	 *
-	 * Claims all the children from a [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html), 
-	 * but does not claim the [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) itself.
+	 * Claims all the children from a [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html), 
+	 * but does not claim the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) itself.
 	 * 
-	 * @param  {Object} go [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html) to remove children from
+	 * @param  {Object} go [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html) to remove children from
 	 */
 	Reclaimer.prototype.claimChildren = function(go) {	
 		if (go.isContainer()) {
@@ -105,10 +105,10 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	/**
 	 * <p style='color:#AD071D'><strong>claimType</strong></p>
 	 *
-	 * Calls **claimWithId** on all the active [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html)
+	 * Calls **claimWithId** on all the active [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 	 * that match the given type id. 
 	 * 
-	 * @param  {String} typeName An id matching a existing type in [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html)
+	 * @param  {String} typeName An id matching a existing type in [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
 	 */
 	Reclaimer.prototype.claimType = function(typeName) {
 		var activeGameObjects = GameObjectPool.getActiveObjects(typeName);
@@ -124,10 +124,10 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	/**
 	 * <p style='color:#AD071D'><strong>claimConfiguration</strong></p>
 	 *
-	 * Calls **claimWithId** on all the active [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html)
+	 * Calls **claimWithId** on all the active [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 	 * that match the given configuration id. 
 	 * 
-	 * @param  {String} configurationName An id matching an existing configuration in [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html)
+	 * @param  {String} configurationName An id matching an existing configuration in [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
 	 */
 	Reclaimer.prototype.claimConfiguration = function(configurationName) {
 		var configuration = GameObjectPool.getConfigurationObject(configurationName);
@@ -144,7 +144,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	/**
 	 * <p style='color:#AD071D'><strong>claimAll</strong></p>
 	 *
-	 * Calls **claim** on all active [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html).
+	 * Calls **claim** on all active [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html).
 	 * Good ol' screen clear.
 	 */
 	Reclaimer.prototype.claimAll = function() {
@@ -161,7 +161,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	/**
 	 * <p style='color:#AD071D'><strong>claimAllBut</strong></p>
 	 *
-	 * Claims all the active [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html), 
+	 * Claims all the active [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html), 
 	 * but the ones specified in the second argument.
 	 * 
 	 * @param  {String} mode       What are the id's in the second argument refering too.
@@ -200,7 +200,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	/**
 	 * <p style='color:#AD071D'><strong>claimOnly</strong></p>
 	 *
-	 * Claims only the active [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html)
+	 * Claims only the active [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 	 * specified. 
 	 * 
 	 * @param  {String} mode       What are the id's in the second argument refering too.
@@ -221,9 +221,9 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	/**
 	 * <p style='color:#AD071D'><strong>clearAllPools</strong></p>
 	 *
-	 * Claims all the [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) and then
-	 * clears both [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html) and
-	 * [component-pool](http://localhost:5000/game-builder-docs/src/pools/component-pool.html). The Pools are no longer re-useable after this. They need to be configured again.
+	 * Claims all the [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) and then
+	 * clears both [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html) and
+	 * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html). The Pools are no longer re-useable after this. They need to be configured again.
 	 */
 	Reclaimer.prototype.clearAllPools = function() {
 		this.claimAll();
@@ -237,9 +237,9 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	/**
 	 * <p style='color:#AD071D'><strong>clearAllPools</strong></p>
 	 *
-	 * Claims all the [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) and then
-	 * clears off the instances held in both [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html) and
-	 * [component-pool](http://localhost:5000/game-builder-docs/src/pools/component-pool.html). Configurations are kepts so the pools can still be re-used.
+	 * Claims all the [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) and then
+	 * clears off the instances held in both [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html) and
+	 * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html). Configurations are kepts so the pools can still be re-used.
 	 */
 	Reclaimer.prototype.clearAllObjectsFromPools = function() {
 		this.claimAll();
@@ -253,10 +253,10 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	/**
 	 * <p style='color:#AD071D'><strong>clearGameObjectConfiguration</strong></p>
 	 *
-	 * Claims all the [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) associated with the specified configuration id on the [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html),
-	 * it then destroys the configuration itself in the [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html) so it can't be used anymore.
+	 * Claims all the [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) associated with the specified configuration id on the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html),
+	 * it then destroys the configuration itself in the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html) so it can't be used anymore.
 	 *
-	 * @param {String} [configurationId] A configuration id set in [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html)
+	 * @param {String} [configurationId] A configuration id set in [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
 	 */
 	Reclaimer.prototype.clearGameObjectConfiguration = function(configurationId) {
 		this.claimConfiguration(configurationId);

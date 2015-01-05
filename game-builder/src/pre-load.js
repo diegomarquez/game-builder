@@ -6,7 +6,7 @@
  * Inherits from:
  *
  * Depends of:
- * [font-loader](http://localhost:5000/game-builder-docs/src/font-loader.html)
+ * [font-loader](http://diegomarquez.github.io/game-builder/game-builder-docs/src/font-loader.html)
  * 
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 

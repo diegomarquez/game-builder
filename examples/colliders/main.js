@@ -6,7 +6,7 @@
  * [gb](@@gb@@),
  * [game](@@game@@),
  * [basic-display-setup](@@basic-display-setup@@),
- * [colliders-bundle](http://localhost:5000/examples-docs/common_src/bundles/colliders-bundle.html),
+ * [colliders-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/colliders-bundle.html),
  * [collision-resolver](@@collision-resolver@@)
  */
 

@@ -3,34 +3,34 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html)
+ * Inherits from: [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html)
  *
  * Inherits from:
- * [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
+ * [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  *
  * Depends of:
- * [layer](http://localhost:5000/game-builder-docs/src/view/layer.html)
- * [reclaimer](http://localhost:5000/game-builder-docs/src/pools/reclaimer.html)
- * [matrix-3x3](http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html)
- * [sat](http://localhost:5000/game-builder-docs/src/collision/sat.html)
- * [vector-2D](http://localhost:5000/game-builder-docs/src/math/vector-2D.html)
- * [error-printer](http://localhost:5000/game-builder-docs/src/debug/error-printer.html)
- * [util](http://localhost:5000/game-builder-docs/src/util.html)
+ * [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html)
+ * [reclaimer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html)
+ * [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
+ * [sat](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html)
+ * [vector-2D](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/vector-2D.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
+ * [util](http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html)
  * 
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
  * This module defines a viewport, it has an offset in relation to the top left of the screen, a width and height, and the position
  * of the world it is viewing. It is a rectangle.
  *
- * Aside from that it holds an array of [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) objects each with the [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) that this
+ * Aside from that it holds an array of [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) objects each with the [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) that this
  * viewport should draw.
  *
- * These objects extend [delegate](http://localhost:5000/game-builder-docs/src/delegate.html) so they provide a few events to hook into:
+ * These objects extend [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so they provide a few events to hook into:
  *
  * ### **ADD** 
- * When a [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) is added
+ * When a [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) is added
  * 
- * Registered callbacks get the [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) as argument 
+ * Registered callbacks get the [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) as argument 
  * ``` javascript  
  * viewport.on(viewport.ADD, function(layer) {});
  * ``` 
@@ -38,9 +38,9 @@
  * </br>
  *
  * ### **REMOVE** 
- * When a [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) is removed 
+ * When a [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) is removed 
  * 
- * Registered callbacks get the [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) as argument 
+ * Registered callbacks get the [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) as argument 
  * ``` javascript  
  * viewport.on(viewport.REMOVE, function(layer) {});
  * ``` 
@@ -48,9 +48,9 @@
  * </br>
  *
  * ### **CHANGE** 
- * When a [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) changes position
+ * When a [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) changes position
  *
- * Registered callbacks get the [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) as argument 
+ * Registered callbacks get the [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) as argument 
  * ``` javascript  
  * viewport.on(viewport.CHANGE, function(layer) {});
  * ``` 
@@ -58,7 +58,7 @@
  * </br>
  *
  * ### **REMOVE_ALL** 
- * When all the [layers](http://localhost:5000/game-builder-docs/src/view/layer.html) are removed
+ * When all the [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) are removed
  * 
  * ``` javascript  
  * viewport.on(viewport.REMOVE_ALL, function() {});
@@ -113,8 +113,8 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      * @param  {Number} height  Height of the viewport
      * @param  {Number} offsetX X offset relative to the top left corner of the screen
      * @param  {Number} offsetY Y offset relative to the top left corner of the screen
-     * @param  {Number} scaleX X scale of the viewport relative to the [world](http://localhost:5000/game-builder-docs/src/world.html) size
-     * @param  {Number} scaleY Y scale of the viewport relative to the [world](http://localhost:5000/game-builder-docs/src/world.html) size
+     * @param  {Number} scaleX X scale of the viewport relative to the [world](http://diegomarquez.github.io/game-builder/game-builder-docs/src/world.html) size
+     * @param  {Number} scaleY Y scale of the viewport relative to the [world](http://diegomarquez.github.io/game-builder/game-builder-docs/src/world.html) size
      */
     init: function(name, width, height, offsetX, offsetY, scaleX, scaleY) {
       this._super();
@@ -186,11 +186,11 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>addLayer</strong></p>
      *
-     * Adds a new [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) to the viewport
+     * Adds a new [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) to the viewport
      *
-     * @param {String} name Id of the new [layer](http://localhost:5000/game-builder-docs/src/view/layer.html)
+     * @param {String} name Id of the new [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html)
      *
-     * @return {Object} [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) that was just created. If the layer already exists, it is returned
+     * @return {Object} [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) that was just created. If the layer already exists, it is returned
      */
     addLayer: function(name) {      
       var result = createLayer.call(this, name);
@@ -210,12 +210,12 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>addLayerAfter</strong></p>
      *
-     * Adds a new [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) to the viewport after an existing [layer](http://localhost:5000/game-builder-docs/src/view/layer.html)
+     * Adds a new [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) to the viewport after an existing [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html)
      *
-     * @param {String} name Id of the new [layer](http://localhost:5000/game-builder-docs/src/view/layer.html)
-     * @param {String} after Id of the existing [layer](http://localhost:5000/game-builder-docs/src/view/layer.html)
+     * @param {String} name Id of the new [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html)
+     * @param {String} after Id of the existing [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html)
      *
-     * @return {Object} [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) that was just created. If the layer already exists, it is returned
+     * @return {Object} [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) that was just created. If the layer already exists, it is returned
      */
     addLayerAfter: function(name, after) {
       var result = createLayer.call(this, name);
@@ -235,12 +235,12 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>addLayerBefore</strong></p>
      *
-     * Adds a new [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) to the viewport before an existing [layer](http://localhost:5000/game-builder-docs/src/view/layer.html)
+     * Adds a new [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) to the viewport before an existing [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html)
      *
-     * @param {String} name Id of the new [layer](http://localhost:5000/game-builder-docs/src/view/layer.html)
-     * @param {String} before Id of the existing [layer](http://localhost:5000/game-builder-docs/src/view/layer.html)
+     * @param {String} name Id of the new [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html)
+     * @param {String} before Id of the existing [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html)
      *
-     * @return {Object} [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) that was just created. If the layer already exists, it is returned
+     * @return {Object} [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) that was just created. If the layer already exists, it is returned
      */
     addLayerBefore: function(name, before) {
       var result = createLayer.call(this, name);
@@ -260,9 +260,9 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      /**
      * <p style='color:#AD071D'><strong>getLayers</strong></p>
      *
-     * Gets all the [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) objects
+     * Gets all the [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) objects
      *
-     * @return {Array} An array with all the [layers](http://localhost:5000/game-builder-docs/src/view/layer.html)
+     * @return {Array} An array with all the [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html)
      */
     getLayers: function() {
       return this.layers;
@@ -274,10 +274,10 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>changeLayer</strong></p>
      *
-     * Change [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) position in it's collection
+     * Change [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) position in it's collection
      *
-     * @param {String} [name] Name of of the [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) to change
-     * @param {Number} [index] Index to put the selected [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) in
+     * @param {String} [name] Name of of the [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) to change
+     * @param {Number} [index] Index to put the selected [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) in
      */
     changeLayer: function(name, index) {
       var layer = findLayer.call(this, name);
@@ -295,9 +295,9 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>removeLayer</strong></p>
      *
-     * Removes the specified [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) from the viewport
+     * Removes the specified [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) from the viewport
      *
-     * @param  {String} name Id of the [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) to remove
+     * @param  {String} name Id of the [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) to remove
      *
      * @throws {Error} If the specified id does not exist
      */
@@ -324,7 +324,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>removeAllLayers</strong></p>
      *
-     * Remove all [layers](http://localhost:5000/game-builder-docs/src/view/layer.html) from the viewport
+     * Remove all [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) from the viewport
      */
     removeAllLayers: function() {
       var layer;
@@ -346,10 +346,10 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>addGameObject</strong></p>
      *
-     * Add a [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to the specified [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) of the viewport
+     * Add a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to the specified [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) of the viewport
      *
-     * @param {String} layerName Id of the [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) to add the [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to
-     * @param {Object} go        [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to add
+     * @param {String} layerName Id of the [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) to add the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to
+     * @param {Object} go        [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to add
      */
     addGameObject: function(layerName, go) {
       var layer = findLayer.call(this, layerName);
@@ -370,10 +370,10 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>removeGameObject</strong></p>
      *
-     * Remove the specified [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) from the specified [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) of the viewport
+     * Remove the specified [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) from the specified [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) of the viewport
      *
-     * @param {String} layerName Id of the [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) to remove the [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) from
-     * @param {Object} go        [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to remove
+     * @param {String} layerName Id of the [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) to remove the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) from
+     * @param {Object} go        [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to remove
      */
     removeGameObject: function(layerName, go) {
       // Remove it from the old layer
@@ -387,11 +387,11 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>moveGameObject</strong></p>
      *
-     * Move a [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to the specified [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) of the viewport
+     * Move a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to the specified [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) of the viewport
      *
-     * @param {String} oldLayerName Id of the old [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) the [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) belonged to
-     * @param {String} newLayerName Id of the new [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) the [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) will belong to
-     * @param {Object} go        [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to move
+     * @param {String} oldLayerName Id of the old [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) belonged to
+     * @param {String} newLayerName Id of the new [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) will belong to
+     * @param {Object} go        [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to move
      */
     moveGameObject: function(oldLayerName, newLayerName, go) {
       // Add the game object to the new layer
@@ -406,7 +406,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>removeAllGameObjects</strong></p>
      *
-     * Remove all [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) from the viewport
+     * Remove all [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) from the viewport
      */
     removeAllGameObjects: function() {
       var gos = [];
@@ -437,7 +437,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>draw</strong></p>
      *
-     * Draw all the [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) in the viewport
+     * Draw all the [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) in the viewport
      *
      * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
      */
@@ -455,7 +455,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>show</strong></p>
      *
-     * Make all the [layers](http://localhost:5000/game-builder-docs/src/view/layer.html) in the viewport visible
+     * Make all the [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) in the viewport visible
      */
     show: function() {
       this.visible = true;
@@ -471,7 +471,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>hide</strong></p>
      *
-     * Make all the [layers](http://localhost:5000/game-builder-docs/src/view/layer.html) in the viewport invisible
+     * Make all the [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) in the viewport invisible
      */
     hide: function() {
       this.visible = false;
@@ -501,10 +501,10 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>isGameObjectInside</strong></p>
      *
-     * @param  {Object}  go [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to test
+     * @param  {Object}  go [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to test
      * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
      *
-     * @return {Boolean} Whether the [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) is in the visible area of the viewport or not
+     * @return {Boolean} Whether the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) is in the visible area of the viewport or not
      */
     isGameObjectInside: function(go, context) {
 			if (!go.renderer) {
@@ -644,7 +644,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      /**
      * <p style='color:#AD071D'><strong>layerExists</strong></p>
      *
-     * Check whether the specified [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) exists
+     * Check whether the specified [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) exists
      *
      * @param {Boolean} name
      *
@@ -660,9 +660,9 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>showLayer</strong></p>
      *
-     * Makes the specified [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) visible
+     * Makes the specified [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) visible
      *
-     * @param  {String} name Id of an existing [layer](http://localhost:5000/game-builder-docs/src/view/layer.html)
+     * @param  {String} name Id of an existing [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html)
      */
     showLayer: function(name) {
       findLayer.call(this, name).show();
@@ -674,9 +674,9 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>hideLayer</strong></p>
      *
-     * Makes the specified [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) invisible
+     * Makes the specified [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) invisible
      *
-     * @param  {String} name Id of an existing [layer](http://localhost:5000/game-builder-docs/src/view/layer.html)
+     * @param  {String} name Id of an existing [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html)
      */
     hideLayer: function(name) {
       findLayer.call(this, name).hide();
@@ -688,9 +688,9 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
     /**
      * <p style='color:#AD071D'><strong>getMatrix</strong></p>
      *
-     * Get the concatenated [matrix-3x3](http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html) for this viewport
+     * Get the concatenated [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html) for this viewport
      * 
-     * @return {Object} The concatenated [matrix-3x3](http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html)
+     * @return {Object} The concatenated [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
      */
     getMatrix: function() {
       this.matrix.identity();
@@ -709,9 +709,9 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
      */
     transformContext: function(context) {
-      // Translate to adjust for the current [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+      // Translate to adjust for the current [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
       context.translate(this.x + this.OffsetX, this.y + this.OffsetY);
-      // Scale to adjust for the current [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+      // Scale to adjust for the current [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
       context.scale(this.ScaleX, this.ScaleY);
     },
     /**

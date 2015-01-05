@@ -4,16 +4,16 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a></p>
+<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Depends of:
-<a href="http://localhost:5000/game-builder-docs/src/util.html">util</a>
-<a href="http://localhost:5000/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html">util</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module defines the base object from which <a href="http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and
-<a href="http://localhost:5000/game-builder-docs/src/pools/component-pool.html">component-pool</a> are extended from.</p>
+<p>This module defines the base object from which <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a> are extended from.</p>
 
 <p>These pools create objects dynamically when requested. When one of those objects is
 not needed in it's current state anymore,
@@ -24,8 +24,8 @@ can be picked up again and refurbished later.</p>
 From then on, if the pool does not have available objects, it throws an error if it is requested
 something.</p>
 
-<p>One of the key features of both <a href="http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and
-<a href="http://localhost:5000/game-builder-docs/src/pools/component-pool.html">component-pool</a> is that you not only can define collections of
+<p>One of the key features of both <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a> is that you not only can define collections of
 instances, but also configurations for those instances. A configuration defines a set
 of arguments, to be applied on an instance. This allows to have configurations that would
 otherwise be sprinckled all over a project, centralized in the same place, or the same handfull
@@ -43,7 +43,7 @@ by the Garbage Collector doing it's thing. Which is good.</p>
 you will need in the entire life span of an application, unless it is a small one. For that reason
 it is possible to clear and repopulate pools.</p>
 
-<p>Pools extend <a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a> so they offer a bunch of events to hook onto.</p>
+<p>Pools extend <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a> so they offer a bunch of events to hook onto.</p>
 
 <h3 id="init"><strong>INIT</strong></h3>
 
@@ -258,13 +258,13 @@ of the type of the objects it contains.</p></div></div><div class="code"><div cl
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">active</span><span class="p">[</span><span class="nx">alias</span><span class="p">];</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getAllActiveObjects</strong></p>
 
-<p>Gets all the active <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> instances.</p>
+<p>Gets all the active <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> instances.</p>
 
-<p><strong>Returns an Object</strong><br/>(All the different types of active <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getAllActiveObjects</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p><strong>Returns an Object</strong><br/>(All the different types of active <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getAllActiveObjects</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">active</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>returnToPool</strong></p>
 
-<p>This method is used in <a href="http://localhost:5000/game-builder-docs/src/pools/assembler.html">assembler</a> when an object is
+<p>This method is used in <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html">assembler</a> when an object is
 recycled to send it back to it's corresponding pool for reuse.</p>
 
 <p>Parameters:</p>
@@ -279,8 +279,8 @@ recycled to send it back to it's corresponding pool for reuse.</p>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">RETURN</span><span class="p">,</span> <span class="nx">o</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Methods to be overriden by objects extending this one
-View <a href="http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and
-<a href="http://localhost:5000/game-builder-docs/src/pools/component-pool.html">component-pool</a> for implementations.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getName</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+View <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a> for implementations.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getName</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">mustOverrideError</span><span class="p">(</span><span class="s1">&#39;Pool&#39;</span><span class="p">);</span>
     <span class="p">},</span>
     <span class="nx">addInitialObjectsToPool</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">amount</span><span class="p">)</span> <span class="p">{</span>
@@ -319,8 +319,8 @@ a maximun amount when created.</p>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getPooledObject</strong></p>
 
 <p>Get a pooled object, the object to be returned is added to the collection
-of active objects. This method is mainly used by the <a href="http://localhost:5000/game-builder-docs/src/pools/assembler.html">assembler</a>
-module when putting together <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>.</p>
+of active objects. This method is mainly used by the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html">assembler</a>
+module when putting together <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>.</p>
 
 <p>Parameters:</p>
 
@@ -337,7 +337,7 @@ module when putting together <a href="http://localhost:5000/game-builder-docs/sr
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>clear</strong></p>
 
 <p>Clear a pool out of everything. This method is
-used by the <a href="http://localhost:5000/game-builder-docs/src/pools/reclaimer.html">reclaimer</a> module.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">clear</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+used by the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html">reclaimer</a> module.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">clear</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">clearObjects</span><span class="p">();</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">clearConfigurations</span><span class="p">();</span>
 
@@ -391,7 +391,7 @@ used by the <a href="http://localhost:5000/game-builder-docs/src/pools/reclaimer
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>clearConfigurations</strong></p>
 
 <p>Remove all configurations from a pool. The pool is effectively useless without any configurations. After using this method
-you probably want to add new <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> configurations.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">clearConfigurations</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+you probably want to add new <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> configurations.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">clearConfigurations</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">configurations</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">clearConfiguration</span><span class="p">(</span><span class="nx">k</span><span class="p">);</span>
       <span class="p">}</span>

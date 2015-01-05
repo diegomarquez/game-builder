@@ -4,22 +4,22 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from:
- * [class](http://localhost:5000/game-builder-docs/src/class.html)
+ * [class](http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html)
  *
  * Depends of: 
- * [gb](http://localhost:5000/game-builder-docs/src/gb.html)
- * [error-printer](http://localhost:5000/game-builder-docs/src/debug/error-printer.html)
+ * [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This is a helper module to define a block of [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html) and 
- * [component-pool](http://localhost:5000/game-builder-docs/src/pools/component-pool.html) configurations. 
+ * This is a helper module to define a block of [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html) and 
+ * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html) configurations. 
  *
  * The basic workflow is extending this module, and putting all the required code
  * to configure the pools in there. That way you can reuse that code in different places.
  *
  * It's not really needed but it will make things a bit more tidy.
- * Because it has [gb](http://localhost:5000/game-builder-docs/src/gb.html) as a dependency it already has references to the pools
+ * Because it has [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html) as a dependency it already has references to the pools
  * and the canvas, so you don't have to require those in the modules extending this one.
  */
 

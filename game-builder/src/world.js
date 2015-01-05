@@ -4,7 +4,7 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from:
- * [class](http://localhost:5000/game-builder-docs/src/class.html)
+ * [class](http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html)
  *
  * Depends of: 
  *
@@ -92,9 +92,9 @@ define(["delegate"], function(Delegate) {
 		/**
 		 * <p style='color:#AD071D'><strong>scaleViewportToFit</strong></p>
 		 *
-		 * Make the specified [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) scale so it can show all the world
+		 * Make the specified [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) scale so it can show all the world
 		 * 
-		 * @param  {Object} viewport The [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) to scale
+		 * @param  {Object} viewport The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to scale
 		 */
 		scaleViewportToFit: function(viewport) {
 			viewport.ScaleX = 1;
@@ -112,9 +112,9 @@ define(["delegate"], function(Delegate) {
 		/**
 		 * <p style='color:#AD071D'><strong>resetViewportScale</strong></p>
 		 *
-		 * Reset the scale of the specified [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+		 * Reset the scale of the specified [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
 		 * 
-		 * @param  {Object} viewport The [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) to scale
+		 * @param  {Object} viewport The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to scale
 		 */
 		resetViewportScale: function(viewport) {
 			viewport.ScaleX = 1;
@@ -132,9 +132,9 @@ define(["delegate"], function(Delegate) {
 		/**
 		 * <p style='color:#AD071D'><strong>scaleViewportProportionaly</strong></p>
 		 *
-		 * Make the specified [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) scale by the specified factor
+		 * Make the specified [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) scale by the specified factor
 		 * 
-		 * @param  {Object} viewport The [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) to scale
+		 * @param  {Object} viewport The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to scale
 		 * @param  {Number} factor   Amount to scale by
 		 */
 		scaleViewportProportionaly: function(viewport, factor) {

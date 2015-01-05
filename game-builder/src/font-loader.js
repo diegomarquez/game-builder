@@ -5,7 +5,7 @@
  * Inherits from:
  *
  * Depends of: 
- * [error-printer](http://localhost:5000/game-builder-docs/src/debug/error-printer.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  * 
  * A [requireJS](http://requirejs.org/) module.
  * 

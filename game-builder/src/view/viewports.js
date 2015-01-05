@@ -4,23 +4,23 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from:
- * [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
+ * [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  *
  * Depends of: 
- * [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
- * [error-printer](http://localhost:5000/game-builder-docs/src/debug/error-printer.html)
- * [util](http://localhost:5000/game-builder-docs/src/util.html)
+ * [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
+ * [util](http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
- * This module serves as a container for all the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) objects created.
+ * This module serves as a container for all the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) objects created.
  *
- * This module extends [delegate](http://localhost:5000/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
+ * This module extends [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
  *
  * ### **ADD** 
- * When a [viewports](http://localhost:5000/game-builder-docs/src/view/viewports.html) is added
+ * When a [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewports.html) is added
  * 
- * Registered callbacks get the [viewports](http://localhost:5000/game-builder-docs/src/view/viewports.html) as argument 
+ * Registered callbacks get the [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewports.html) as argument 
  * ``` javascript  
  * gb.viewports.on(gb.viewports.ADD, function(viewports) {});
  * ``` 
@@ -28,9 +28,9 @@
  * </br>
  *
  * ### **REMOVE** 
- * When a [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) is removed 
+ * When a [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) is removed 
  * 
- * Registered callbacks get the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) as argument 
+ * Registered callbacks get the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) as argument 
  * ``` javascript  
  * gb.viewports.on(gb.viewports.REMOVE, function(viewport) {});
  * ``` 
@@ -38,9 +38,9 @@
  * </br>
  *
  * ### **CHANGE** 
- * When a [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) changes position
+ * When a [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) changes position
  *
- * Registered callbacks get the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) as argument 
+ * Registered callbacks get the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) as argument 
  * ``` javascript  
  * gb.viewports.on(gb.viewports.CHANGE, function(viewport) {});
  * ``` 
@@ -48,7 +48,7 @@
  * </br>
  *
  * ### **MOVE** 
- * When all the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) is moved
+ * When all the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) is moved
  * 
  * ``` javascript  
  * gb.viewports.on(gb.viewports.MOVE, function() {});
@@ -56,9 +56,9 @@
  *
  * </br>
  *
- * <strong>Note: The snippet uses the reference to <a href=http://localhost:5000/game-builder-docs/src/view/viewports.html>viewports</a>
- * found in the <a href=http://localhost:5000/game-builder-docs/src/gb.html>gb</a> module. 
- * The way you get a hold to a reference to <a href=http://localhost:5000/game-builder-docs/src/view/viewports.html>viewports</a>
+ * <strong>Note: The snippet uses the reference to <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewports.html>viewports</a>
+ * found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
+ * The way you get a hold to a reference to <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewports.html>viewports</a>
  * may vary.</strong>
  */
 
@@ -83,23 +83,23 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		/**
 		 * <p style='color:#AD071D'><strong>add</strong></p>
 		 *
-		 * Creates a new [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) and adds it to the container.
+		 * Creates a new [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) and adds it to the container.
 		 * 
-		 * @param {String} name    Id of the new [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
-		 * @param {Number} width   Width of the new [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
-		 * @param {Number} height  Height of the new [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+		 * @param {String} name    Id of the new [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
+		 * @param {Number} width   Width of the new [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
+		 * @param {Number} height  Height of the new [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
 		 * @param {Number} [offsetX=0] X offset relative to the top corner of the screen
 		 * @param {Number} [offsetY=0] Y offset relative to the top corner of the screen
-		 * @param {Number} [scaleX=1] X scale of the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
-		 * @param {Number} [scaleY=1] Y scale of the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
-		 * @param {Array} [layers=null] Y An array of strings with the names of [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) objects to add on the created [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
-		 * @param {Number} [strokeColor=null] Color of the stroke around the [viewports](http://localhost:5000/game-builder-docs/src/view/viewports.html)
-		 * @param {Number} [strokeWidth=null] Width of the stroke around the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)		 
-		 * @param {Boolean} [worldfit=false] Whether [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) should scale to fit the [world](http://localhost:5000/game-builder-docs/src/world.html) size
-		 * @param {Boolean} [culling=true] Whether the viewport should perform culling when [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) are drawn to it
+		 * @param {Number} [scaleX=1] X scale of the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
+		 * @param {Number} [scaleY=1] Y scale of the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
+		 * @param {Array} [layers=null] Y An array of strings with the names of [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) objects to add on the created [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
+		 * @param {Number} [strokeColor=null] Color of the stroke around the [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewports.html)
+		 * @param {Number} [strokeWidth=null] Width of the stroke around the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)		 
+		 * @param {Boolean} [worldfit=false] Whether [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) should scale to fit the [world](http://diegomarquez.github.io/game-builder/game-builder-docs/src/world.html) size
+		 * @param {Boolean} [culling=true] Whether the viewport should perform culling when [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) are drawn to it
 		 * @param {Boolean} [clipping=true] Whether the viewport should clip drawings that fall outside of it's viewing area
 		 *
-		 * @return {Object} The newly created [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html). If it already exists, the existing one is returned
+		 * @return {Object} The newly created [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html). If it already exists, the existing one is returned
 		 */
 		add: function (name, width, height, offsetX, offsetY, scaleX, scaleY, layers, strokeColor, strokeWidth, worldFit, culling, clipping) {		
 			if (!viewports[name]) {
@@ -123,11 +123,11 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		/**
 		 * <p style='color:#AD071D'><strong>addFromObject</strong></p>
 		 *
-		 * Creates a new [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) and adds it to the container.
+		 * Creates a new [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) and adds it to the container.
 		 * 
-		 * @param {Object} viewport An object with all the properties needed to create a [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+		 * @param {Object} viewport An object with all the properties needed to create a [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
 		 *
-		 * @return {Object} The newly created [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html). If it already exists, the existing one is returned
+		 * @return {Object} The newly created [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html). If it already exists, the existing one is returned
 		 */
 		addFromObject: function (viewport) {
 			var name = viewport.name;
@@ -166,9 +166,9 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		/**
 		 * <p style='color:#AD071D'><strong>remove</strong></p>
 		 *
-		 * Removes the specified [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+		 * Removes the specified [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
 		 * 
-		 * @param {String} name    Id of the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) to remove
+		 * @param {String} name    Id of the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to remove
 		 */
 		remove: function (name) {
 			if (!viewports[name]) {
@@ -195,7 +195,7 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		 *
 		 * Change the position of the specified viewport
 		 *
-		 * @param {String} [name] Name [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) to change
+		 * @param {String} [name] Name [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to change
 		 * @param {Number} [index] New index
 		 */
 		change: function (name, index) {
@@ -214,11 +214,11 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		/**
 		 * <p style='color:#AD071D'><strong>after</strong></p>
 		 *
-		 * Place the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) specified by the first argument after
+		 * Place the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) specified by the first argument after
 		 * the one specified by the second argument.
 		 *
-		 * @param {String} [name] Name [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) to change
-		 * @param {String} [other] Name [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) which should come before to the one in the first argument
+		 * @param {String} [name] Name [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to change
+		 * @param {String} [other] Name [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) which should come before to the one in the first argument
 		 */
 		after: function (name, other) {
 			move.call(this, 'after', name, other);
@@ -230,11 +230,11 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		/**
 		 * <p style='color:#AD071D'><strong>before</strong></p>
 		 *
-		 * Place the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) specified by the first argument before
+		 * Place the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) specified by the first argument before
 		 * the one specified by the second argument.
 		 *
-		 * @param {String} [name] Name [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) to change
-		 * @param {String} [other] Name [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) which should come after to the one in the first argument
+		 * @param {String} [name] Name [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to change
+		 * @param {String} [other] Name [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) which should come after to the one in the first argument
 		 */
 		before: function (name, other) {
 	    move.call(this, 'before', name, other);
@@ -246,7 +246,7 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		/**
 		 * <p style='color:#AD071D'><strong>removeAll</strong></p>
 		 *
-		 * Destroys all the [viewports](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+		 * Destroys all the [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
 		 */
 		removeAll: function () {
 			for (var i = viewportsArray.length - 1; i >= 0; i--) {
@@ -260,9 +260,9 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		/**
 		 * <p style='color:#AD071D'><strong>show</strong></p>
 		 *
-		 * Makes the specified [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) visible
+		 * Makes the specified [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) visible
 		 * 
-		 * @param  {String} name Id of the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) to make visible
+		 * @param  {String} name Id of the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to make visible
 		 *
 		 * @throws {Error} If the id specified does not exist
 		 */
@@ -280,9 +280,9 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		/**
 		 * <p style='color:#AD071D'><strong>hide</strong></p>
 		 *
-		 * Makes the specified [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) invisible
+		 * Makes the specified [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) invisible
 		 * 
-		 * @param  {String} name Id of the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) to make invisible
+		 * @param  {String} name Id of the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to make invisible
 		 *
 		 * @throws {Error} If the id specified does not exist
 		 */
@@ -300,9 +300,9 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		/**
 		 * <p style='color:#AD071D'><strong>get</strong></p>
 		 * 
-		 * Get a reference to the specified [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+		 * Get a reference to the specified [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
 		 * 
-		 * @param  {String} name Id of the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) to get
+		 * @param  {String} name Id of the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to get
 		 *
 		 * @throws {Error} If the id specified does not exist
 		 */
@@ -320,9 +320,9 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		/**
 		 * <p style='color:#AD071D'><strong>exists</strong></p>
 		 * 
-		 * @param  {String} name Id of the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) to check
+		 * @param  {String} name Id of the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to check
 		 *
-		 * @throws {Boolean} Whether the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) exists or not
+		 * @throws {Boolean} Whether the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) exists or not
 		 */
 		exists: function (name) { 
 			return viewports[name]; 
@@ -334,9 +334,9 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		/**
 		 * <p style='color:#AD071D'><strong>iterate</strong></p>
 		 *
-		 * Iterate through all the viewports executing the callback function with each [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) as argument
+		 * Iterate through all the viewports executing the callback function with each [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) as argument
 		 * 
-		 * @param  {Function} method The method to execute for each [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+		 * @param  {Function} method The method to execute for each [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
 		 */
 		iterate: function(scope, method) {
 			for (var i = 0; i < viewportsArray.length; i++) {
@@ -350,9 +350,9 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		/**
 		 * <p style='color:#AD071D'><strong>all</strong></p>
 		 *
-		 * Get a reference to an object containing all the created [viewports](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+		 * Get a reference to an object containing all the created [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
 		 *
-		 * @return {Object} An object with all the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) objects
+		 * @return {Object} An object with all the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) objects
 		 */
 		all: function () { 
 			return viewports; 
@@ -364,9 +364,9 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		/**
 		 * <p style='color:#AD071D'><strong>allAsArray</strong></p>
 		 *
-		 * A reference to an array containing all the created [viewports](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+		 * A reference to an array containing all the created [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
 		 *
-		 * @return {Array} An array with all the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) objects
+		 * @return {Array} An array with all the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) objects
 		 */
 		allAsArray: function () { 
 			return viewportsArray; 

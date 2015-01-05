@@ -4,35 +4,35 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a></p>
+<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a></p>
 
 <p>Inherits from:
-<a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Depends of:
-<a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>
-<a href="http://localhost:5000/game-builder-docs/src/pools/reclaimer.html">reclaimer</a>
-<a href="http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>
-<a href="http://localhost:5000/game-builder-docs/src/collision/sat.html">sat</a>
-<a href="http://localhost:5000/game-builder-docs/src/math/vector-2D.html">vector-2D</a>
-<a href="http://localhost:5000/game-builder-docs/src/debug/error-printer.html">error-printer</a>
-<a href="http://localhost:5000/game-builder-docs/src/util.html">util</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html">reclaimer</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html">sat</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/vector-2D.html">vector-2D</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html">util</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
 <p>This module defines a viewport, it has an offset in relation to the top left of the screen, a width and height, and the position
 of the world it is viewing. It is a rectangle.</p>
 
-<p>Aside from that it holds an array of <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> objects each with the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> that this
+<p>Aside from that it holds an array of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> objects each with the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> that this
 viewport should draw.</p>
 
-<p>These objects extend <a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a> so they provide a few events to hook into:</p>
+<p>These objects extend <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a> so they provide a few events to hook into:</p>
 
 <h3 id="add"><strong>ADD</strong></h3>
 
-<p>When a <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> is added</p>
+<p>When a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> is added</p>
 
-<p>Registered callbacks get the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> as argument </p>
+<p>Registered callbacks get the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> as argument </p>
 
 <pre><code class=" javascript  ">viewport.on(viewport.ADD, function(layer) {});
 </code></pre>
@@ -41,9 +41,9 @@ viewport should draw.</p>
 
 <h3 id="remove"><strong>REMOVE</strong></h3>
 
-<p>When a <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> is removed </p>
+<p>When a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> is removed </p>
 
-<p>Registered callbacks get the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> as argument </p>
+<p>Registered callbacks get the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> as argument </p>
 
 <pre><code class=" javascript  ">viewport.on(viewport.REMOVE, function(layer) {});
 </code></pre>
@@ -52,9 +52,9 @@ viewport should draw.</p>
 
 <h3 id="change"><strong>CHANGE</strong></h3>
 
-<p>When a <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> changes position</p>
+<p>When a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> changes position</p>
 
-<p>Registered callbacks get the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> as argument </p>
+<p>Registered callbacks get the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> as argument </p>
 
 <pre><code class=" javascript  ">viewport.on(viewport.CHANGE, function(layer) {});
 </code></pre>
@@ -63,7 +63,7 @@ viewport should draw.</p>
 
 <h3 id="remove_all"><strong>REMOVE_ALL</strong></h3>
 
-<p>When all the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layers</a> are removed</p>
+<p>When all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layers</a> are removed</p>
 
 <pre><code class=" javascript  ">viewport.on(viewport.REMOVE_ALL, function() {});
 </code></pre>
@@ -106,8 +106,8 @@ viewport should draw.</p>
 <li><p><strong>height must be a Number.</strong><br/>(Height of the viewport)</p></li>
 <li><p><strong>offsetX must be a Number.</strong><br/>(X offset relative to the top left corner of the screen)</p></li>
 <li><p><strong>offsetY must be a Number.</strong><br/>(Y offset relative to the top left corner of the screen)</p></li>
-<li><p><strong>scaleX must be a Number.</strong><br/>(X scale of the viewport relative to the <a href="http://localhost:5000/game-builder-docs/src/world.html">world</a> size)</p></li>
-<li><p><strong>scaleY must be a Number.</strong><br/>(Y scale of the viewport relative to the <a href="http://localhost:5000/game-builder-docs/src/world.html">world</a> size)</p></li>
+<li><p><strong>scaleX must be a Number.</strong><br/>(X scale of the viewport relative to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/world.html">world</a> size)</p></li>
+<li><p><strong>scaleY must be a Number.</strong><br/>(Y scale of the viewport relative to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/world.html">world</a> size)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">offsetX</span><span class="p">,</span> <span class="nx">offsetY</span><span class="p">,</span> <span class="nx">scaleX</span><span class="p">,</span> <span class="nx">scaleY</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
 
@@ -163,15 +163,15 @@ viewport should draw.</p>
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addLayer</strong></p>
 
-<p>Adds a new <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> to the viewport</p>
+<p>Adds a new <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> to the viewport</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the new <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>)</li>
+<li><strong>name must be a String.</strong><br/>(Id of the new <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a>)</li>
 </ul>
 
-<p><strong>Returns an Object</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> that was just created. If the layer already exists, it is returned)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">addLayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>      
+<p><strong>Returns an Object</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> that was just created. If the layer already exists, it is returned)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">addLayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>      
       <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">createLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
 
       <span class="k">if</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">newLayer</span><span class="p">)</span> <span class="p">{</span>
@@ -183,16 +183,16 @@ viewport should draw.</p>
       <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">layer</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addLayerAfter</strong></p>
 
-<p>Adds a new <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> to the viewport after an existing <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a></p>
+<p>Adds a new <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> to the viewport after an existing <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a></p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>name must be a String.</strong><br/>(Id of the new <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>)</p></li>
-<li><p><strong>after must be a String.</strong><br/>(Id of the existing <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>)</p></li>
+<li><p><strong>name must be a String.</strong><br/>(Id of the new <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a>)</p></li>
+<li><p><strong>after must be a String.</strong><br/>(Id of the existing <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a>)</p></li>
 </ul>
 
-<p><strong>Returns an Object</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> that was just created. If the layer already exists, it is returned)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">addLayerAfter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">after</span><span class="p">)</span> <span class="p">{</span>
+<p><strong>Returns an Object</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> that was just created. If the layer already exists, it is returned)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">addLayerAfter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">after</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">createLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
 
       <span class="k">if</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">newLayer</span><span class="p">)</span> <span class="p">{</span>
@@ -204,16 +204,16 @@ viewport should draw.</p>
       <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">layer</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addLayerBefore</strong></p>
 
-<p>Adds a new <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> to the viewport before an existing <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a></p>
+<p>Adds a new <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> to the viewport before an existing <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a></p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>name must be a String.</strong><br/>(Id of the new <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>)</p></li>
-<li><p><strong>before must be a String.</strong><br/>(Id of the existing <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>)</p></li>
+<li><p><strong>name must be a String.</strong><br/>(Id of the new <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a>)</p></li>
+<li><p><strong>before must be a String.</strong><br/>(Id of the existing <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a>)</p></li>
 </ul>
 
-<p><strong>Returns an Object</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> that was just created. If the layer already exists, it is returned)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">addLayerBefore</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">before</span><span class="p">)</span> <span class="p">{</span>
+<p><strong>Returns an Object</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> that was just created. If the layer already exists, it is returned)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">addLayerBefore</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">before</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">createLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
 
       <span class="k">if</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">newLayer</span><span class="p">)</span> <span class="p">{</span>
@@ -225,19 +225,19 @@ viewport should draw.</p>
       <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">layer</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getLayers</strong></p>
 
-<p>Gets all the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> objects</p>
+<p>Gets all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> objects</p>
 
-<p><strong>Returns an Array</strong><br/>(An array with all the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layers</a>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getLayers</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p><strong>Returns an Array</strong><br/>(An array with all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layers</a>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getLayers</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>changeLayer</strong></p>
 
-<p>Change <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> position in it's collection</p>
+<p>Change <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> position in it's collection</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>name is optional and must be a String.</strong><br/>(Name of of the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> to change)</p></li>
-<li><p><strong>index is optional and must be a Number.</strong><br/>(Index to put the selected <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> in)</p></li>
+<li><p><strong>name is optional and must be a String.</strong><br/>(Name of of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> to change)</p></li>
+<li><p><strong>index is optional and must be a Number.</strong><br/>(Index to put the selected <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> in)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">changeLayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">layer</span> <span class="o">=</span> <span class="nx">findLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
       <span class="kd">var</span> <span class="nx">layerIndex</span> <span class="o">=</span> <span class="nx">findLayerIndex</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
@@ -248,12 +248,12 @@ viewport should draw.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CHANGE</span><span class="p">,</span> <span class="nx">result</span><span class="p">.</span><span class="nx">layer</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removeLayer</strong></p>
 
-<p>Removes the specified <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> from the viewport</p>
+<p>Removes the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> from the viewport</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> to remove)</li>
+<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> to remove)</li>
 </ul>
 
 <p><strong>Can throw an Error</strong><br/>(If the specified id does not exist)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeLayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
@@ -273,7 +273,7 @@ viewport should draw.</p>
       <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Viewport&#39;</span><span class="p">,</span> <span class="s1">&#39;Layer with id:&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; does not exist.&#39;</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>removeAllLayers</strong></p>
 
-<p>Remove all <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layers</a> from the viewport</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeAllLayers</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Remove all <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layers</a> from the viewport</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeAllLayers</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">layer</span><span class="p">;</span>
 
       <span class="kd">var</span> <span class="nx">gos</span> <span class="o">=</span> <span class="p">[];</span>
@@ -287,13 +287,13 @@ viewport should draw.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">REMOVE_ALL</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addGameObject</strong></p>
 
-<p>Add a <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to the specified <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> of the viewport</p>
+<p>Add a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> of the viewport</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>layerName must be a String.</strong><br/>(Id of the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> to add the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to)</p></li>
-<li><p><strong>go must be an Object.</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to add)</p></li>
+<li><p><strong>layerName must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> to add the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to)</p></li>
+<li><p><strong>go must be an Object.</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to add)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">addGameObject</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">layerName</span><span class="p">,</span> <span class="nx">go</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">layer</span> <span class="o">=</span> <span class="nx">findLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">layerName</span><span class="p">);</span>
       <span class="kd">var</span> <span class="nx">success</span> <span class="o">=</span> <span class="nx">layer</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">go</span><span class="p">);</span>
@@ -307,29 +307,29 @@ viewport should draw.</p>
       <span class="k">return</span> <span class="nx">success</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removeGameObject</strong></p>
 
-<p>Remove the specified <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> from the specified <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> of the viewport</p>
+<p>Remove the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> from the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> of the viewport</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>layerName must be a String.</strong><br/>(Id of the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> to remove the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> from)</p></li>
-<li><p><strong>go must be an Object.</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to remove)</p></li>
+<li><p><strong>layerName must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> to remove the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> from)</p></li>
+<li><p><strong>go must be an Object.</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to remove)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">removeGameObject</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">layerName</span><span class="p">,</span> <span class="nx">go</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Remove it from the old layer</p></div></div><div class="code"><div class="wrapper">      <span class="nx">findLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">layerName</span><span class="p">).</span><span class="nx">remove</span><span class="p">(</span><span class="nx">go</span><span class="p">);</span>
       <span class="nx">recycleGameObjects</span><span class="p">(</span><span class="nx">go</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>moveGameObject</strong></p>
 
-<p>Move a <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to the specified <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> of the viewport</p>
+<p>Move a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> of the viewport</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>oldLayerName must be a String.</strong><br/>(Id of the old <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> belonged to)</p></li>
-<li><p><strong>newLayerName must be a String.</strong><br/>(Id of the new <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> will belong to)</p></li>
-<li><p><strong>go must be an Object.</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to move)</p></li>
+<li><p><strong>oldLayerName must be a String.</strong><br/>(Id of the old <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> belonged to)</p></li>
+<li><p><strong>newLayerName must be a String.</strong><br/>(Id of the new <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> will belong to)</p></li>
+<li><p><strong>go must be an Object.</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to move)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">moveGameObject</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">oldLayerName</span><span class="p">,</span> <span class="nx">newLayerName</span><span class="p">,</span> <span class="nx">go</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Add the game object to the new layer</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">addGameObject</span><span class="p">(</span><span class="nx">newLayerName</span><span class="p">,</span> <span class="nx">go</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Remove it from the old layer</p></div></div><div class="code"><div class="wrapper">      <span class="nx">removeGameObject</span><span class="p">(</span><span class="nx">oldLayerName</span><span class="p">,</span> <span class="nx">go</span><span class="p">);</span> 
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>removeAllGameObjects</strong></p>
 
-<p>Remove all <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> from the viewport</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeAllGameObjects</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Remove all <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> from the viewport</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeAllGameObjects</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">gos</span> <span class="o">=</span> <span class="p">[];</span>
 
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -344,7 +344,7 @@ viewport should draw.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">removeAllLayers</span><span class="p">();</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>draw</strong></p>
 
-<p>Draw all the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> in the viewport</p>
+<p>Draw all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> in the viewport</p>
 
 <p>Parameters:</p>
 
@@ -358,7 +358,7 @@ viewport should draw.</p>
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>show</strong></p>
 
-<p>Make all the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layers</a> in the viewport visible</p></div></div><div class="code"><div class="wrapper">    <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Make all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layers</a> in the viewport visible</p></div></div><div class="code"><div class="wrapper">    <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -366,7 +366,7 @@ viewport should draw.</p>
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>hide</strong></p>
 
-<p>Make all the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layers</a> in the viewport invisible</p></div></div><div class="code"><div class="wrapper">    <span class="nx">hide</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Make all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layers</a> in the viewport invisible</p></div></div><div class="code"><div class="wrapper">    <span class="nx">hide</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -383,11 +383,11 @@ viewport should draw.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>go must be an Object.</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to test)</p></li>
+<li><p><strong>go must be an Object.</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to test)</p></li>
 <li><p><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</p></li>
 </ul>
 
-<p><strong>Returns a Boolean</strong><br/>(Whether the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> is in the visible area of the viewport or not)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">isGameObjectInside</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">go</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+<p><strong>Returns a Boolean</strong><br/>(Whether the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> is in the visible area of the viewport or not)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">isGameObjectInside</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">go</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">go</span><span class="p">.</span><span class="nx">renderer</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If there is no renderer, just tell the game object it is not visible in this viewport</p></div></div><div class="code"><div class="wrapper">        <span class="nx">go</span><span class="p">.</span><span class="nx">setViewportVisibility</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
       <span class="p">}</span>
       <span class="k">else</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If there is a renderer do some setup...</p></div></div><div class="code"><div class="wrapper">        <span class="nx">r</span> <span class="o">=</span> <span class="nx">go</span><span class="p">.</span><span class="nx">renderer</span><span class="p">;</span>
@@ -483,7 +483,7 @@ Do a collision test between the canvas and the game object</p></div></div></div>
       <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
     <span class="p">},</span>    </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>layerExists</strong></p>
 
-<p>Check whether the specified <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> exists</p>
+<p>Check whether the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> exists</p>
 
 <p>Parameters:</p>
 
@@ -495,29 +495,29 @@ Do a collision test between the canvas and the game object</p></div></div></div>
       <span class="k">return</span> <span class="nx">findLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>showLayer</strong></p>
 
-<p>Makes the specified <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> visible</p>
+<p>Makes the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> visible</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of an existing <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>)</li>
+<li><strong>name must be a String.</strong><br/>(Id of an existing <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">showLayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">findLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>hideLayer</strong></p>
 
-<p>Makes the specified <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> invisible</p>
+<p>Makes the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> invisible</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of an existing <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>)</li>
+<li><strong>name must be a String.</strong><br/>(Id of an existing <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">hideLayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">findLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getMatrix</strong></p>
 
-<p>Get the concatenated <a href="http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a> for this viewport</p>
+<p>Get the concatenated <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a> for this viewport</p>
 
-<p><strong>Returns an Object</strong><br/>(The concatenated <a href="http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getMatrix</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p><strong>Returns an Object</strong><br/>(The concatenated <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getMatrix</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">identity</span><span class="p">();</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">prependTransform</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">OffsetX</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">OffsetY</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">ScaleX</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">ScaleY</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">;</span>
@@ -529,7 +529,7 @@ Do a collision test between the canvas and the game object</p></div></div></div>
 
 <ul>
 <li><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">transformContext</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Translate to adjust for the current <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a></p></div></div><div class="code"><div class="wrapper">      <span class="nx">context</span><span class="p">.</span><span class="nx">translate</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">OffsetX</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">OffsetY</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Scale to adjust for the current <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a></p></div></div><div class="code"><div class="wrapper">      <span class="nx">context</span><span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ScaleX</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">ScaleY</span><span class="p">);</span>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">transformContext</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Translate to adjust for the current <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a></p></div></div><div class="code"><div class="wrapper">      <span class="nx">context</span><span class="p">.</span><span class="nx">translate</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">OffsetX</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">OffsetY</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Scale to adjust for the current <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a></p></div></div><div class="code"><div class="wrapper">      <span class="nx">context</span><span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ScaleX</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">ScaleY</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>canvasToLocalCoordinates</strong></p>
 
 <p>Convert the given canvas coordinates to viewport coordinates</p>

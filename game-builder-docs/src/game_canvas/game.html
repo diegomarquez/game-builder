@@ -5,10 +5,10 @@
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
 <p>Inherits from:
-<a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Depends of:
-<a href="http://localhost:5000/game-builder-docs/src/hierarchy/root.html">root</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html">root</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
@@ -19,9 +19,9 @@
 <p>It also hooks into the focus and blur events of <a href="https://developer.mozilla.org/en-US/docs/Web/API/window">window</a>,
 in order to be able to pause and resume the application if needed.</p>
 
-<p>It's main behaviour can be extended by the use of <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extensions</a></p>
+<p>It's main behaviour can be extended by the use of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extensions</a></p>
 
-<p>Game extends <a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</p>
+<p>Game extends <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</p>
 
 <h3 id="create"><strong>CREATE</strong></h3>
 
@@ -113,7 +113,7 @@ in order to be able to pause and resume the application if needed.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>extensionModule must be a <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>.</strong><br/>(A module that extends <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>)</p></li>
+<li><p><strong>extensionModule must be a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>.</strong><br/>(A module that extends <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>)</p></li>
 <li><p><strong>args must be an Object=null.</strong><br/>(An object with arguments that will be passed to the extension when it is executed)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">add_extension</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">extensionModule</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">ex</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">extensionModule</span><span class="p">();</span>
@@ -128,15 +128,15 @@ in order to be able to pause and resume the application if needed.</p>
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>get_extension</strong></p>
 
-<p>Use this to get an instance of a currently active <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>.</p>
+<p>Use this to get an instance of a currently active <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>extensionModule must be a <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>.</strong><br/>(The constructor for the <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a> to retrieve)</li>
+<li><strong>extensionModule must be a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>.</strong><br/>(The constructor for the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a> to retrieve)</li>
 </ul>
 
-<p><strong>Returns a <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a></strong><br/>(The matching <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a> )</p></div></div><div class="code"><div class="wrapper">    <span class="nx">get_extension</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">extensionModule</span><span class="p">)</span> <span class="p">{</span>
+<p><strong>Returns a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a></strong><br/>(The matching <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a> )</p></div></div><div class="code"><div class="wrapper">    <span class="nx">get_extension</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">extensionModule</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">t</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">[</span><span class="nx">t</span><span class="p">];</span>
         
@@ -153,7 +153,7 @@ in order to be able to pause and resume the application if needed.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><strong>extensionModule must be a <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>.</strong><br/>(The <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a> module to remove)</li>
+<li><strong>extensionModule must be a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>.</strong><br/>(The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a> module to remove)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">remove_extension</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">extensionModule</span><span class="p">)</span> <span class="p">{</span>     
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">t</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">[</span><span class="nx">t</span><span class="p">];</span>
@@ -205,7 +205,7 @@ to setup the update loop.</p>
         <span class="nx">mainLoop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
           <span class="nx">now</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
           <span class="nx">self</span><span class="p">.</span><span class="nx">delta</span> <span class="o">=</span> <span class="p">(</span><span class="nx">now</span> <span class="o">-</span> <span class="nx">self</span><span class="p">.</span><span class="nx">lastUpdate</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">;</span>
-          <span class="nx">self</span><span class="p">.</span><span class="nx">lastUpdate</span> <span class="o">=</span> <span class="nx">now</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all update extensions</p></div></div><div class="code"><div class="wrapper">          <span class="nx">self</span><span class="p">.</span><span class="nx">execute_extensions</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">UPDATE</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Update all <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p></div></div><div class="code"><div class="wrapper">          <span class="nx">root</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">delta</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all update events</p></div></div><div class="code"><div class="wrapper">          <span class="nx">self</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">UPDATE</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Draw to all the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewports</a></p></div></div><div class="code"><div class="wrapper">          <span class="nx">root</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">context</span><span class="p">);</span>
+          <span class="nx">self</span><span class="p">.</span><span class="nx">lastUpdate</span> <span class="o">=</span> <span class="nx">now</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all update extensions</p></div></div><div class="code"><div class="wrapper">          <span class="nx">self</span><span class="p">.</span><span class="nx">execute_extensions</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">UPDATE</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Update all <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p></div></div><div class="code"><div class="wrapper">          <span class="nx">root</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">delta</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all update events</p></div></div><div class="code"><div class="wrapper">          <span class="nx">self</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">UPDATE</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Draw to all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewports</a></p></div></div><div class="code"><div class="wrapper">          <span class="nx">root</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">context</span><span class="p">);</span>
 
           <span class="nb">window</span><span class="p">.</span><span class="nx">requestAnimationFrame</span><span class="p">(</span><span class="nx">mainLoop</span><span class="p">);</span>
         <span class="p">}</span>
@@ -270,7 +270,7 @@ for the first time, it is created here.</p></div></div><div class="code"><div cl
 
         <span class="k">return</span> <span class="nx">oldFocus</span><span class="p">;</span>
       <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>References to the blur and focus callbacks
-The <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/pause.html">pause</a> and <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/resume.html">resume</a>
+The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/pause.html">pause</a> and <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/resume.html">resume</a>
 extensions use these.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">blurAction</span> <span class="o">=</span> <span class="nx">onBlur</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">focusAction</span> <span class="o">=</span> <span class="nx">onFocus</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Actually setting up the listener to the events
 window dispatches.</p></div></div><div class="code"><div class="wrapper">      <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;blur&quot;</span><span class="p">,</span> <span class="nx">onBlur</span><span class="p">);</span>

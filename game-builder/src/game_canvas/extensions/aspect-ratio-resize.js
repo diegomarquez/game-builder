@@ -3,10 +3,10 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [extension](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html)
+ * Inherits from: [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
  * Depends of: 
- * [gb](http://localhost:5000/game-builder-docs/src/gb.html)
+ * [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -25,7 +25,7 @@
 define(["gb", "extension"], function(Gb, Extension) {
 	var AspectRatioResize = Extension.extend({
 		type: function() {
-			// Notice the use of the constant CREATE defined in [game](http://localhost:5000/game-builder-docs/src/game_canvas/game.html),
+			// Notice the use of the constant CREATE defined in [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html),
 			// to define this extension should be executed on creation.
 			return Gb.game.CREATE;
 		},

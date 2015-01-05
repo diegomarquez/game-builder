@@ -4,10 +4,10 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from:
- * [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
+ * [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  *
  * Depends of:
- * [root](http://localhost:5000/game-builder-docs/src/hierarchy/root.html)
+ * [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -18,9 +18,9 @@
  * It also hooks into the focus and blur events of [window](https://developer.mozilla.org/en-US/docs/Web/API/window),
  * in order to be able to pause and resume the application if needed.
  *
- * It's main behaviour can be extended by the use of [extensions](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html)
+ * It's main behaviour can be extended by the use of [extensions](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
- * Game extends [delegate](http://localhost:5000/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
+ * Game extends [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
  *
  * ### **CREATE**
  * On application startup
@@ -131,7 +131,7 @@ define(function(require) {
      *
      * Use this to add extensions.
      *
-     * @param {[extension](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html)} extensionModule A module that extends [extension](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html)
+     * @param {[extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)} extensionModule A module that extends [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
      * @param {Object=null} args An object with arguments that will be passed to the extension when it is executed
      */
     add_extension: function(extensionModule, args) {
@@ -153,11 +153,11 @@ define(function(require) {
     /**
      * <p style='color:#AD071D'><strong>get_extension</strong></p>
      *
-     * Use this to get an instance of a currently active [extension](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html).
+     * Use this to get an instance of a currently active [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html).
      *
-     * @param {[extension](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html)} extensionModule The constructor for the [extension](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html) to retrieve
+     * @param {[extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)} extensionModule The constructor for the [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html) to retrieve
      *
-     * @return {[extension](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html)} The matching [extension](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html) 
+     * @return {[extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)} The matching [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html) 
      */
     get_extension: function(extensionModule) {
       for (var t in this.extensions) {
@@ -179,7 +179,7 @@ define(function(require) {
      *
      * Use this to remove extensions.
      *
-     * @param {[extension](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html)} extensionModule The [extension](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html) module to remove
+     * @param {[extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)} extensionModule The [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html) module to remove
      */
     remove_extension: function(extensionModule) {     
     	for (var t in this.extensions) {
@@ -250,11 +250,11 @@ define(function(require) {
 
           // Execute all update extensions
           self.execute_extensions(self.UPDATE);
-          // Update all [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html)
+          // Update all [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
           root.update(self.delta);
           // Execute all update events
           self.execute(self.UPDATE);
-          // Draw to all the [viewports](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+          // Draw to all the [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
           root.draw(self.context);
 
           window.requestAnimationFrame(mainLoop);
@@ -336,7 +336,7 @@ define(function(require) {
       }
 
       // References to the blur and focus callbacks
-      // The [pause](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/pause.html) and [resume](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/resume.html)
+      // The [pause](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/pause.html) and [resume](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/resume.html)
       // extensions use these.
       this.blurAction = onBlur;
       this.focusAction = onFocus;

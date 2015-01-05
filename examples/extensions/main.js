@@ -9,7 +9,7 @@
  * [basic-display-setup](@@basic-display-setup@@),
  * [pause](@@pause@@),
  * [resume](@@resume@@),
- * [layering-bundle](http://localhost:5000/examples-docs/common_src/bundles/layering-bundle.html),
+ * [layering-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/layering-bundle.html),
  */
 
 /**

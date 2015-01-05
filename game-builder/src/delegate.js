@@ -4,10 +4,10 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  * 
  * Inherits from: 
- * [class](http://localhost:5000/game-builder-docs/src/class.html)
+ * [class](http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html)
  * 
  * Depends of: 
- * [util](http://localhost:5000/game-builder-docs/src/util.html)
+ * [util](http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *

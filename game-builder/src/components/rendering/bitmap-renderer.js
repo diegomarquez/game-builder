@@ -4,16 +4,16 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
- * [renderer](http://localhost:5000/game-builder-docs/src/components/rendering/renderer.html)
+ * [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html)
  *
- * Depends of: [image-cache](http://localhost:5000/game-builder-docs/src/cache/image-cache.html)
+ * Depends of: [image-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
  * Mainly this is a wrapper to the [Image Object](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement?redirectlocale=en-US&redirectslug=DOM%2FHTMLImageElement)
  * 
  * This renderer is used to draw still images and can receive a bunch of configuration options
- * when setting it up in the [component-pool](http://localhost:5000/game-builder-docs/src/pools/component-pool.html). ej.
+ * when setting it up in the [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html). ej.
  *
  * ``` javascript
  * gb.coPool.createConfiguration("Bitmap", 'Bitmap_Renderer')
@@ -37,9 +37,9 @@
 		scaleY: 1
  *	});
  * ```
- * <strong>Note: The snippet uses the reference to the <a href=http://localhost:5000/game-builder-docs/src/pools/component-pool.html>component-pool</a>
- * found in the <a href=http://localhost:5000/game-builder-docs/src/gb.html>gb</a> module. 
- * The way you get a hold to a reference to the <a href=http://localhost:5000/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+ * <strong>Note: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+ * found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
+ * The way you get a hold to a reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
  * may vary.</strong>
  */
 
@@ -59,8 +59,8 @@ define(["renderer", "image-cache"], function(Renderer, ImageCache) {
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
-		 * This is called by the [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) using this renderer.
-		 * It sends the path configured to the [image-cache](http://localhost:5000/game-builder-docs/src/cache/image-cache.html) module.
+		 * This is called by the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this renderer.
+		 * It sends the path configured to the [image-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html) module.
 		 */
 		start: function(parent) {	
 			ImageCache.cache(this.path);
@@ -76,7 +76,7 @@ define(["renderer", "image-cache"], function(Renderer, ImageCache) {
 		 * like **width**, **height** and **offsets**
 		 * 
 		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		 * @param  {Object} viewport     The [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) this renderer is being drawn to
+		 * @param  {Object} viewport     The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) this renderer is being drawn to
 		 */
 		draw: function(context, viewport) {
 			image = ImageCache.get(this.path);

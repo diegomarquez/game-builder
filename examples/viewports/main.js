@@ -6,8 +6,8 @@
  * [gb](@@gb@@),
  * [game](@@game@@),
  * [world](@@world@@),
- * [complex-display-setup](http://localhost:5000/examples-docs/common_src/complex-display-setup.html),
- * [input-bundle](http://localhost:5000/examples-docs/common_src/bundles/input-bundle.html),
+ * [complex-display-setup](http://diegomarquez.github.io/game-builder/examples-docs/common_src/complex-display-setup.html),
+ * [input-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/input-bundle.html),
  */
 
 define(function(require){	

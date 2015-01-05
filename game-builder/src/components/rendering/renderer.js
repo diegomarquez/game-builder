@@ -4,10 +4,10 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
- * [component](http://localhost:5000/game-builder-docs/src/components/component.html)
+ * [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html)
  *
  * Depends of:
- * [error-printer](http://localhost:5000/game-builder-docs/src/debug/error-printer.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -52,7 +52,7 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 * This is an abstract method and must be overriden.
 		 *
 		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		 * @param  {Object} viewport     The [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) this renderer is being drawn to
+		 * @param  {Object} viewport     The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) this renderer is being drawn to
 		 * 
 		 * @throws {Error} Always
 		 */
@@ -122,13 +122,13 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 		 *
-		 * This method is only executed if the **debug** property in [gb](http://localhost:5000/game-builder-docs/src/gb.html)
-		 * is set to true. It is better to leave the drawing to the [renderer](http://localhost:5000/game-builder-docs/src/components/rendering/renderer.html) components.
+		 * This method is only executed if the **debug** property in [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
+		 * is set to true. It is better to leave the drawing to the [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) components.
 		 * 
 		 * @param  {Context 2D} context     [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		 * @param  {Object} viewport A reference to the current [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
-		 * @param  {Object} draw     A reference to the [draw](http://localhost:5000/game-builder-docs/src/draw.html) module
-		 * @param  {Object} gb     A reference to the [gb](http://localhost:5000/game-builder-docs/src/gb.html) module
+		 * @param  {Object} viewport A reference to the current [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
+		 * @param  {Object} draw     A reference to the [draw](http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html) module
+		 * @param  {Object} gb     A reference to the [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html) module
 		 */
 		debug_draw: function(context, viewport, draw, gb) {
 			if (!gb.rendererDebug) return;

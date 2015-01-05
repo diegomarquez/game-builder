@@ -4,23 +4,23 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
- * [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html)
+ * [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html)
  *
  * Depends of:
- * [viewports](http://localhost:5000/game-builder-docs/src/view/viewports.html)
+ * [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewports.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines the root [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html)
+ * This module defines the root [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html)
  *
  * In any given [Game-Builder](http://diegomarquez.github.io/game-builder) application
- * this is is the only [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html) that is updated
+ * this is is the only [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html) that is updated
  * explicitly in the main update loop. As it is updated, it will update all of its 
  * children, who will in turn update their children, until everything has been updated.
  *
  * Rendering is also executed in this module. The code takes care of setting up the context for each
- * registered [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html). In between setups, all the [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) for a given
- * [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) are rendered.
+ * registered [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html). In between setups, all the [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) for a given
+ * [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) are rendered.
  */
 
 /**
@@ -44,10 +44,10 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 		/**
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
-		 * Performs the rendering of all the [viewports](http://localhost:5000/game-builder-docs/src/view/viewport.html) registered in the [viewports](http://localhost:5000/game-builder-docs/src/view/viewports.html) object.
+		 * Performs the rendering of all the [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) registered in the [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewports.html) object.
 		 *
 		 * The process includes, clearing the rectangle belonging to each viewport, modifying the context and drawing all
-		 * the corresponding [game-objects](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html)
+		 * the corresponding [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 		 * 
 		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 		 */

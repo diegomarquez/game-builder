@@ -3,12 +3,12 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
+ * Inherits from: [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  * 
  * Depends of:
- * [matrix-3x3](http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html)
- * [game-object-debug-draw](http://localhost:5000/game-builder-docs/src/debug/game-object-debug-draw.html)
- * [util](http://localhost:5000/game-builder-docs/src/util.html)
+ * [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
+ * [game-object-debug-draw](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/game-object-debug-draw.html)
+ * [util](http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html)
  * 
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -17,12 +17,12 @@
  *
  * ### Main features are: 
  * 
- * Attaching [component](http://localhost:5000/game-builder-docs/src/components/component.html) objects and a [renderer](http://localhost:5000/game-builder-docs/src/components/rendering/renderer.html)
+ * Attaching [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) objects and a [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html)
  * object. Why only one renderer? Because I thought it made more sense to have only one renderer for each type of object.
  *
- * Support for affine transformations thanks to the [matrix-3x3](http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html) module.
+ * Support for affine transformations thanks to the [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html) module.
  * 
- * These objects extend [delegate](http://localhost:5000/game-builder-docs/src/delegate.html) so they provide a few events to hook into:
+ * These objects extend [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so they provide a few events to hook into:
  *
  * ### **START** 
  * When the game object is started 
@@ -56,7 +56,7 @@
  * </br>
  * 
  * ### **ADD**
- * When a game object is added to a parent [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html) 
+ * When a game object is added to a parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html) 
  * The parent is sent to the registered callbacks as argument
  * 
  * ``` javascript  
@@ -66,7 +66,7 @@
  * </br>
  * 
  * ### **REMOVE**
- * When a game object is removed from a parent [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html) 
+ * When a game object is removed from a parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html) 
  * The parent is sent to the registered callbacks as argument
  * 
  * ``` javascript  
@@ -76,7 +76,7 @@
  * </br>
  * 
  * ### **ADD_TO_VIEWPORT**
- * When a game object is added to a [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) + [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) pair
+ * When a game object is added to a [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) + [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) pair
  *
  * An object that looks like this ``` [{viewport: 'ViewportName', layer:'LayerName'}] ```
  * is sent to all the registered callbacks as an argument
@@ -88,7 +88,7 @@
  * </br>
  *
  * ### **REMOVE_FROM_VIEWPORT**
- * When a game object is removed from a [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) + [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) pair
+ * When a game object is removed from a [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) + [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) pair
  *
  * An object that looks like this ``` [{viewport: 'ViewportName', layer:'LayerName'}] ```
  * is sent to all the registered callbacks as an argument
@@ -116,7 +116,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 
 			/*
 			 * Any of the following properties can be set when configuring the
-			 * [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html), like so:
+			 * [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html), like so:
 			 * 
 			 * ``` javascript
 			 * gb.goPool.createConfiguration("GameObject_1", "GameObject")
@@ -130,23 +130,23 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			 * object can also be set in the same way.
 			 *
 			 * You can also choose not to do that, and set the properties after
-			 * requesting a game object to the [assembler](http://localhost:5000/game-builder-docs/src/pools/assembler.html) module.
+			 * requesting a game object to the [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html) module.
 			 */ 
 
-			// A unique identifier assigned when the game object is built by the [assembler](http://localhost:5000/game-builder-docs/src/pools/assembler.html) module
+			// A unique identifier assigned when the game object is built by the [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html) module
 			// It changes every time the game object is recycled
 			this.uid = null;
-			// The parent [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html).
+			// The parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html).
 			this.parent = null;
-			// [matrix-3x3](http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html) used to control affine transformations.
+			// [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html) used to control affine transformations.
 			this.matrix = new Matrix();
-			// List of [components](http://localhost:5000/game-builder-docs/src/components/component.html) attached.
+			// List of [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) attached.
 			this.components = null;
-			// The [renderer](http://localhost:5000/game-builder-docs/src/components/rendering/renderer.html) attached.
+			// The [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) attached.
 			this.renderer = null;
 
 			// Pair of local coordinates. This coordinates are relative to the
-			// parent [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html).
+			// parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html).
 			this.x = 0;
 			this.y = 0;
 			// Registration point. Ussually 0, 0 means top left corner.
@@ -159,34 +159,34 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			this.scaleY = 1;
 			//Alpha / Opacity.
 			this.alpha = 1;
-			// Offset to the corresponding [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+			// Offset to the corresponding [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
 			this.viewportOffsetX = 0;
 			this.viewportOffsetY = 0;
 
 			// The type id, is the id of the configuration that was used to put together this game object.
-			// Set in the [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html).
+			// Set in the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html).
 			// Very usefull to identify game objects
 			this.typeId = null;
 			// The pool id, is the id of the pool this game object came from. Not so usefull
 			this.poolId = null;
 
-			// These two properties are used by [layers](http://localhost:5000/game-builder-docs/src/view/layer.html) to turn on and off activity
+			// These two properties are used by [layers](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) to turn on and off activity
 			// If this is true the game object will update.
 			this.canUpdate = false;
 			// if this is true the game object will render.
 			this.canDraw = false;
 
-			// This object can be queried to tell whether this game-object is visible in a [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) or not
-			// It's values are set in the method **isGameObjectInside** of the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) module.
+			// This object can be queried to tell whether this game-object is visible in a [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) or not
+			// It's values are set in the method **isGameObjectInside** of the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) module.
 			this.viewportVisibility = {}
 			// An array with the names of all the viewports this game objects is being renderer in.
-			// This property is set by the [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) objects held by [viewports](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+			// This property is set by the [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) objects held by [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
 			this.viewports = [];
-			// The current update [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) of this game object. This property is set when the game object is added to a [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html)
+			// The current update [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) of this game object. This property is set when the game object is added to a [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html)
 			this.updateGroup = null;
 
 			// Color that will be used to draw a little shape to outline the position if the **debug**
-			// property of [gb](http://localhost:5000/game-builder-docs/src/gb.html) is set to true;
+			// property of [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html) is set to true;
 			this.debugColor = "#FF00FF";
 		},
 		/**
@@ -197,7 +197,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * <p style='color:#AD071D'><strong>reset</strong></p>
 		 *
 		 * Not so interesting mehtod, it just resets some properties right
-		 * before the [assembler](http://localhost:5000/game-builder-docs/src/pools/assembler.html) module starts putting together
+		 * before the [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html) module starts putting together
 		 * a game object.
 		 */
 		reset: function() {
@@ -222,9 +222,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>added</strong></p>
 		 *
-		 * Executed when the game-object is added to a [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html)
+		 * Executed when the game-object is added to a [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html)
 		 *
-		 * @param {Object} [parent] The new parent [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html)
+		 * @param {Object} [parent] The new parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html)
 		 */
 		added: function(parent) {
 			this.execute(this.ADD, this);
@@ -236,9 +236,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>removed</strong></p>
 		 *
-		 * Executed when the [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) is removed from it's [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html)
+		 * Executed when the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) is removed from it's [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html)
 		 *
-		 * @param {Object} [parent] The old parent [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html)
+		 * @param {Object} [parent] The old parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html)
 		 */
 		removed: function(parent) {
 			this.execute(this.REMOVE, this);
@@ -302,7 +302,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * <p style='color:#AD071D'><strong>configure</strong></p>
 		 *
 		 * Sets up the properties that were previously configured 
-		 * in the [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html)
+		 * in the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
 		 * 
 		 * @param  {Object} args Object which properties will be used to set values on this game object
 		 */
@@ -341,10 +341,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>setRenderer</strong></p>
 		 *
-		 * Sets the [renderer](http://localhost:5000/game-builder-docs/src/components/rendering/renderer.html) and notifies it, through the **onAdded**
+		 * Sets the [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) and notifies it, through the **onAdded**
 		 * callback.
 		 *
-		 * @param {Object} renderer [renderer](http://localhost:5000/game-builder-docs/src/components/rendering/renderer.html) added
+		 * @param {Object} renderer [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) added
 		 */
 		setRenderer: function(renderer) {
 			if(!renderer) return;
@@ -359,7 +359,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>removeRenderer</strong></p>
 		 *
-		 * Removes the [renderer](http://localhost:5000/game-builder-docs/src/components/rendering/renderer.html), and notifies it through the **onRemove**
+		 * Removes the [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html), and notifies it through the **onRemove**
 		 * and **onRecycled** callbacks.
 		 */
 		removeRenderer: function() {
@@ -378,7 +378,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 *
 		 * Adds a component and notifies it was added through the **onAdded** callback.
 		 * 
-		 * @param {Object} component [component](http://localhost:5000/game-builder-docs/src/components/component.html) added
+		 * @param {Object} component [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) added
 		 */
 		addComponent: function(component) {
 			if (!this.components) {
@@ -399,10 +399,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>removeComponent</strong></p>
 		 *
-		 * Removes a [component](http://localhost:5000/game-builder-docs/src/components/component.html), and notifies it, 
+		 * Removes a [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html), and notifies it, 
 		 * it was removed through the **onRemoved** callback.
 		 * 
-		 * @param  {Object} component [component](http://localhost:5000/game-builder-docs/src/components/component.html) to remove
+		 * @param  {Object} component [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) to remove
 		 */
 		removeComponent: function(component) {
 			if (!this.components) return;
@@ -438,21 +438,21 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>findComponents</strong></p>
 		 *
-		 * Get an object to query the [component](http://localhost:5000/game-builder-docs/src/components/component.html) list of the game object
+		 * Get an object to query the [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) list of the game object
 		 *
 		 * @return {Object}  An object to make the query. It has the following methods: 
 		 * </br>
 		 * **all** returns all [components](@@components@@) that return true for the specified function. Pass no argument to get all components 
 		 * </br>
-		 * **allWithProp** returns all [components](http://localhost:5000/game-builder-docs/src/components/component.html) that have the given property 
+		 * **allWithProp** returns all [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) that have the given property 
 		 * </br>
-		 * **allWithType** returns all [components](http://localhost:5000/game-builder-docs/src/components/component.html) that have the given id in the [component-pool](http://localhost:5000/game-builder-docs/src/pools/component-pool.html) 
+		 * **allWithType** returns all [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) that have the given id in the [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html) 
 		 * </br>
-		 * **first** returns the first [component](http://localhost:5000/game-builder-docs/src/components/component.html) that returns true for the specified function 
+		 * **first** returns the first [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) that returns true for the specified function 
 		 * </br>
-		 * **firstWithProp** returns the first [component](http://localhost:5000/game-builder-docs/src/components/component.html) that has the given property 
+		 * **firstWithProp** returns the first [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) that has the given property 
 		 * </br>
-		 * **firstWithType** returns the first [components](http://localhost:5000/game-builder-docs/src/components/component.html) that have the given id in the [component-pool](http://localhost:5000/game-builder-docs/src/pools/component-pool.html) 
+		 * **firstWithType** returns the first [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) that have the given id in the [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html) 
 		 * </br>
 		 */
 		findComponents: function() {
@@ -557,7 +557,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>transform</strong></p>
 		 *
-		 * Generates the concatenated [matrix-3x3](http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html) used to draw itself in the proper place
+		 * Generates the concatenated [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html) used to draw itself in the proper place
 		 */
 		transform: function(options) {
 			this.getMatrix(this.matrix, options);
@@ -569,10 +569,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
-		 * Draws the game-object into the specified Context 2D, using it's [matrix-3x3](http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html)
+		 * Draws the game-object into the specified Context 2D, using it's [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
 		 * 
 		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		 * @param  {Object} viewport The [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) this objects is being drawn too
+		 * @param  {Object} viewport The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) this objects is being drawn too
 		 */
 		draw: function(context, viewport) {
 			context.save();
@@ -682,8 +682,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * Set the visible state of the game-object in the specified viewport
 		 * This is for checking purposes only, it doesn't actually affect the rendering
 		 * 
-		 * @param {String} viewportName The name of the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) to associate visibility with
-		 * @param {Boolean} visible Wheter the game-object is visible or not in the specified [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+		 * @param {String} viewportName The name of the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to associate visibility with
+		 * @param {Boolean} visible Wheter the game-object is visible or not in the specified [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
 		 */
 		setViewportVisibility: function(viewportName, visible) {
 			this.viewportVisibility[viewportName] = visible;
@@ -695,9 +695,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>getViewportVisibility</strong></p>
 		 *
-		 * @param {String} viewportName The name of the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) to get the visibility state from
+		 * @param {String} viewportName The name of the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to get the visibility state from
 		 *
-		 * @return {Boolean} Wheter the game-object is visible or not in the specified [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
+		 * @return {Boolean} Wheter the game-object is visible or not in the specified [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
 		 */
 		getViewportVisibility: function(viewportName) {
 			return this.viewportVisibility[viewportName];
@@ -709,7 +709,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>getViewportList</strong></p>
 		 *
-		 * @return {Array} An array with all the [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) and [layer](http://localhost:5000/game-builder-docs/src/view/layer.html) combinations this game object belongs to
+		 * @return {Array} An array with all the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) and [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) combinations this game object belongs to
 		 */
 		getViewportList: function() {
 			var go = this;
@@ -732,7 +732,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>getUpdateGroup</strong></p>
 		 *
-		 * @return {String} The update [group](http://localhost:5000/game-builder-docs/src/hierarchy/group.html) this game object belongs to
+		 * @return {String} The update [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) this game object belongs to
 		 */
 		getUpdateGroup: function() {
 			return this.updateGroup;
@@ -745,7 +745,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * <p style='color:#AD071D'><strong>clear</strong></p>
 		 *
 		 * This is called to send back a game object and all of it's parts to their
-		 * respective pools. This method is used by the [reclaimer](http://localhost:5000/game-builder-docs/src/pools/reclaimer.html) module.
+		 * respective pools. This method is used by the [reclaimer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html) module.
 		 */
 		clear: function() {
 			this.recycle();
@@ -824,7 +824,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>getMatrix</strong></p>
 		 *
-		 * Get's the complete concatenated [matrix-3x3](http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html) of the game object.
+		 * Get's the complete concatenated [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html) of the game object.
 		 *
 		 * options argument if provided should look like this
 		 *
@@ -835,10 +835,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 	}	  
 		 * ```
 		 * 
-		 * @param  {[matrix-3x3](http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html)} m A matrix object into which to put result.
+		 * @param  {[matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)} m A matrix object into which to put result.
 		 * @param  {Object} [options=null] Options to apply when concatenating the matrix. 
 		 *
-		 * @return {Object} The concatenated [matrix-3x3](http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html)
+		 * @return {Object} The concatenated [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
 		 */
 		getMatrix: function(m, options) {
 			if (m) {
@@ -871,7 +871,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>getTransform</strong></p>
 		 *
-		 * This will get an object with the properties that the [matrix-3x3](http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html)
+		 * This will get an object with the properties that the [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
 		 * is describing. This is usefull to get the absolute position of a game object
 		 * at any given point.
 		 *
@@ -885,7 +885,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * ```
 		 * 
 		 * @param  {Object} r On object into which to put the result of this operation.
-		 * @param  {[matrix-3x3](http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html)} m matrix object to work with.
+		 * @param  {[matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)} m matrix object to work with.
 		 * @param  {Object} [options] Options to apply when concatenating the matrix.
 		 *
 		 * @return {Object} Contains the individual properties of a trandformation. ej. x, y, rotation, scale
@@ -961,13 +961,13 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 		 *
-		 * This method is only executed if the **debug** property in [gb](http://localhost:5000/game-builder-docs/src/gb.html)
-		 * is set to true. It is better to leave the drawing to the [renderer](http://localhost:5000/game-builder-docs/src/components/rendering/renderer.html) components.
+		 * This method is only executed if the **debug** property in [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
+		 * is set to true. It is better to leave the drawing to the [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) components.
 		 * 
 		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		 * @param  {Object} viewport A reference to the current [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html)
-		 * @param  {Object} draw     A reference to the [draw](http://localhost:5000/game-builder-docs/src/draw.html) module
-		 * @param  {Object} gb     A reference to the [gb](http://localhost:5000/game-builder-docs/src/gb.html) module
+		 * @param  {Object} viewport A reference to the current [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
+		 * @param  {Object} draw     A reference to the [draw](http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html) module
+		 * @param  {Object} gb     A reference to the [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html) module
 		 */
 		debug_draw: function(context, viewport, draw, gb) {
 			if(!gb.gameObjectDebug) return;

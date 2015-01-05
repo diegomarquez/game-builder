@@ -4,10 +4,10 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from:
- * [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
+ * [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
  * 
  * Depends of: 
- * [error-printer](http://localhost:5000/game-builder-docs/src/debug/error-printer.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -16,7 +16,7 @@
  * is more intuitive, with a **stop** method. Another cool feature is being able to pause the timer, 
  * something which [**setTimeout**](https://developer.mozilla.org/en-US/docs/Web/API/Window.setTimeout) simply does not do.
  *
- * The Timer object extends [delegate](http://localhost:5000/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
+ * The Timer object extends [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
  *
  * ### **START**
  * When a timer starts. 
@@ -140,7 +140,7 @@ define(function(require) {
 		/**
 		 * <p style='color:#AD071D'><strong>on</strong></p>
 		 *
-		 * Wrapper to <a href=http://localhost:5000/game-builder-docs/src/delegate.html>delegate</a> method of the same name
+		 * Wrapper to <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html>delegate</a> method of the same name
 		 * 
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Function} callback Function you want to execute
