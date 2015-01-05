@@ -15,70 +15,88 @@
  * This module provides a factory to create [timer](@@timer@@) objects. Asides from creating them it provides methods
  * to manipulate them in bulk.
  *
- * ### The Timer Factory object extends [delegate](@@delegate@@) so it provides a few events to hook into:
+ * The Timer Factory object extends [delegate](@@delegate@@) so it provides a few events to hook into:
  * 
- * ### **create** 
+ * ### **CREATE** 
  * When a timer is created and added to the factory registry
  *
  * ``` javascript  
  * timerFactory.on(timerFactory.CREATE, function(timer) {});
  * ```
  *
- * ### **remove** 
+ * </br>
+ * 
+ * ### **REMOVE** 
  * When a timer is removed from the factory registry
  *
  * ``` javascript  
  * timerFactory.on(timerFactory.REMOVE, function(timer) {});
  * ```
  *
- * ### **complete** 
+ * </br>
+ * 
+ * ### **COMPLETE** 
  * When a timer completes
  *
  * ``` javascript  
  * timerFactory.on(timerFactory.COMPLETE, function(timer) {});
  * ```
  *
- * ### **repeate** 
+ * </br>
+ * 
+ * ### **REPEATE** 
  * When a timer repeates
  *
  * ``` javascript  
  * timerFactory.on(timerFactory.REPEATE, function(timer) {});
  * ```
  *
- * ### **start** 
+ * </br>
+ * 
+ * ### **START** 
  * When a timer starts
  *
  * ``` javascript  
  * timerFactory.on(timerFactory.START, function(timer) {});
  * ```
  *
- * ### **pause** 
+ * </br>
+ * 
+ * ### **PAUSE** 
  * When a timer pauses
  *
  * ``` javascript  
  * timerFactory.on(timerFactory.PAUSE, function(timer) {});
  * ```
  *
- * ### **resume** 
+ * </br>
+ * 
+ * ### **RESUME** 
  * When a timer resumes
  *
  * ``` javascript  
  * timerFactory.on(timerFactory.RESUME, function(timer) {});
  * ```
  *
- * ### **reset** 
+ * </br>
+ * 
+ * ### **RESET** 
  * When a timer is reset
  *
  * ``` javascript  
  * timerFactory.on(timerFactory.RESET, function(timer) {});
  * ```
  *
- * ### **stop** 
+ * </br>
+ * 
+ * ### **STOP** 
  * When a timer is stops
  *
  * ``` javascript  
  * timerFactory.on(timerFactory.STOP, function(timer) {});
  * ```
+ *
+ * </br>
  */
 
 /**
