@@ -1,5 +1,4 @@
 {
-  "asset-map@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/asset-map.html",
   "cache@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/cache.html",
   "image-cache@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html",
   "json-cache@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/json-cache.html",
@@ -22,7 +21,6 @@
   "game-object-debug-draw@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/game-object-debug-draw.html",
   "delegate@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html",
   "draw@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html",
-  "font-data@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/font-data.html",
   "font-loader@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/font-loader.html",
   "aspect-ratio-resize@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/aspect-ratio-resize.html",
   "basic-display-setup@@": "http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/basic-display-setup.html",

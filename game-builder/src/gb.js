@@ -12,7 +12,7 @@
  * [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
  * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html)
  * [json-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/json-cache.html)
- * [asset-map](http://diegomarquez.github.io/game-builder/game-builder-docs/src/asset-map.html)
+ * [asset-map](@@asset-map@@)
  * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module.
@@ -369,7 +369,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       /**
        * <p style='color:#AD071D'><strong>assetMap</strong></p>
        *
-       * Wrapper for the [asset-map](http://diegomarquez.github.io/game-builder/game-builder-docs/src/asset-map.html) module
+       * Wrapper for the [asset-map](@@asset-map@@) module
        * 
        * @return {Object} An object with the local and remote asset URLs
        */
