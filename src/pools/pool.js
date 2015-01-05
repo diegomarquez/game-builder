@@ -41,8 +41,94 @@
  * Pooling objects is good and all, but it is probably not a good idea to pool absolutely everything
  * you will need in the entire life span of an application, unless it is a small one. For that reason
  * it is possible to clear and repopulate pools.
+ *
+ * Pools extend [delegate](@@delegate@@) so they offer a bunch of events to hook onto.
+ * 
+ * * ### **INIT** 
+ * When a pool is created 
+ * 
+ * Registered callbacks get the pool as argument 
+ * ``` javascript  
+ * pool.on(pool.INIT, function(pool) {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **GET** 
+ * When an object is requested from a pool 
+ * 
+ * Registered callbacks get the object as argument 
+ * ``` javascript  
+ * pool.on(pool.GET, function(object) {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **RETURN** 
+ * When an object is returned to it's respective pool
+ * 
+ * Registered callbacks get the returning object as argument 
+ * ``` javascript  
+ * pool.on(pool.RETURN, function(object) {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **CREATE_CONFIGURATION** 
+ * When a configuration is created 
+ * 
+ * Registered callbacks get the configuration object as argument 
+ * ``` javascript  
+ * pool.on(pool.CREATE_CONFIGURATION, function(configuration) {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **UPDATE_CONFIGURATION** 
+ * When a configurations values are updated
+ * 
+ * Registered callbacks get the corresponding configuration as argument 
+ * ``` javascript  
+ * pool.on(pool.UPDATE_CONFIGURATION, function(configuration) {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **CLEAR** 
+ * When the whole pool object is cleared 
+ * 
+ * ``` javascript  
+ * pool.on(pool.CLEAR, function() {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **CLEAR_OBJECTS** 
+ * When all the instances in all pools are destroyed 
+ * 
+ * ``` javascript  
+ * pool.on(pool.CLEAR_OBJECTS, function() {});
+ * ``` 
+ *
+ * </br>
+ * 
+ * ### **CLEAR_CONFIGURATIONS** 
+ * When all configurations of all pools are destroyed
+ * 
+ * ``` javascript  
+ * pool.on(pool.CLEAR_CONFIGURATIONS, function() {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **CLEAR_CONFIGURATION** 
+ * When a specific configuration is destroyed
+ * 
+ * Registered callbacks get the id of the configuration that was destroyed 
+ * ``` javascript  
+ * pool.on(pool.CLEAR_CONFIGURATION, function(id) {});
+ * ``` 
  */
-
 /**
  * Pooling
  * --------------------------------
@@ -67,6 +153,9 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
      * Creates a collections of a given type of objects, assigning it an
      * id to later be able to get references out of it.
      *
+     * The pools created by this method can not go above the given amount. If objects are requested from this
+     * and there are no available, an error is thrown.
+     *
      * @param  {String} alias  Id used to later refer to the collection that is being created
      * @param  {Object} type   The object prototype from which instances in this pool will be created from
      * @param  {Number} amount The amount of objects to add to the pool initially.
@@ -81,14 +170,14 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
         };
         
         this.addInitialObjectsToPool(amount, alias);
+
+        this.execute(this.INIT, this.pools[alias]);
       }
 
       // Objects that are active on a given pool at any given time.
       if (this.active[alias] == null) {
         this.active[alias] = [];
       }
-
-      this.execute(this.INIT);
     },
     /**
      * --------------------------------
@@ -99,6 +188,9 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
      *
      * Creates a collections of a given type of objects, assigning it an
      * id to later be able to get references out of it.
+     *
+     * The pools created with this method, are completely dynamic and do not need an initial amount. If they don't have 
+     * an instance available they will create a new one when needed. These are more flexible, but also easier to loose control of.
      *
      * @param  {String} alias  Id used to later refer to the collection that is being created
      * @param  {Object} type   The object prototype from which instances in this pool will be created from
@@ -111,16 +203,15 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
           objects: [],
           type: type
         };
+
+        this.pools[alias].dynamic = true;
+        this.execute(this.INIT, this.pools[alias]);
       }
 
       // Objects that are active on a given pool at any given time.
       if (this.active[alias] == null) {
         this.active[alias] = [];
       }
-
-      this.pools[alias].dynamic = true;
-
-      this.execute(this.INIT);
     },
     /**
      * --------------------------------
@@ -241,7 +332,7 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
       this.pools[o.poolId].objects.push(o);
       this.active[o.poolId].splice(this.active[o.poolId].indexOf(o), 1);
 
-      this.execute(this.RETURN);
+      this.execute(this.RETURN, o);
     },
     /**
      * --------------------------------
@@ -312,7 +403,7 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
       var o = this.pools[type].objects.pop();
       this.active[type].push(o);
 
-      this.execute(this.GET);
+      this.execute(this.GET, o);
       return o;
     },
     /**
@@ -465,7 +556,6 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
      */
   });
 
-  // ### Getters for all the types of events a Pool can hook into
   Object.defineProperty(Pool.prototype, "INIT", { get: function() { return 'init'; } });
   Object.defineProperty(Pool.prototype, "GET", { get: function() { return 'get'; } });
   Object.defineProperty(Pool.prototype, "RETURN", { get: function() { return 'return'; } });
@@ -475,9 +565,6 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
   Object.defineProperty(Pool.prototype, "CLEAR_OBJECTS", { get: function() { return 'clear_objects'; } });
   Object.defineProperty(Pool.prototype, "CLEAR_CONFIGURATIONS", { get: function() { return 'clear_configurations'; } });
   Object.defineProperty(Pool.prototype, "CLEAR_CONFIGURATION", { get: function() { return 'clear_configuration'; } });
-  /**
-   * --------------------------------
-   */
 
   return Pool;
 });
