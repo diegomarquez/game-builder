@@ -4,11 +4,11 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
+ * [class](@@class@@)
  *
  * Depends of: 
  * [state](@@state@@)
  * [error-printer](@@error-printer@@)
- * [class](@@class@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
