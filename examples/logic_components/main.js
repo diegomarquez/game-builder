@@ -6,7 +6,7 @@
  * [gb](@@gb@@),
  * [game](@@game@@),
  * [basic-display-setup](@@basic-display-setup@@),
- * [logic-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/logic-bundle.html)
+ * [logic-bundle](http://localhost:5000/examples-docs/common_src/bundles/logic-bundle.html)
  */
 
 /**

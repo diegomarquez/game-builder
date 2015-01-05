@@ -2,12 +2,10 @@
 
 <h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
 
-<ul>
-<li>Inherits from:</li>
-</ul>
+<p>Inherits from:</p>
 
 <p>Depends of: 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+<a href="http://localhost:5000/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module.</p>
 
@@ -41,9 +39,10 @@ once the loading is complete. The configuration object looks like this:</p>
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>config must be an Object.</strong><br/>(A configuration object.)</p></li>
-<li><p><strong>onLoad must be a Funtion.</strong><br/>(This is called when all fonts have been downloaded.)</p></li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">FontLoader</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">start</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">,</span> <span class="nx">onLoad</span><span class="p">)</span> <span class="p">{</span>
+<li><strong>onLoad must be a Funtion.</strong><br/>(This is called when all fonts have been downloaded.)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">FontLoader</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">start</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">onLoad</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;font-data&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">();</span>
+
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">config</span><span class="p">.</span><span class="nx">loadFonts</span><span class="p">)</span> <span class="p">{</span>
             <span class="nx">onLoad</span><span class="p">();</span> 
             <span class="k">return</span><span class="p">;</span>

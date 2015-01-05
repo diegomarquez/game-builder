@@ -4,22 +4,22 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
- * * Inherits from: [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html)
+ * [renderer](http://localhost:5000/game-builder-docs/src/components/rendering/renderer.html)
  *
  * Depends of: 
- * [path-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/path-cache.html)
- * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
+ * [path-cache](http://localhost:5000/game-builder-docs/src/cache/path-cache.html)
+ * [error-printer](http://localhost:5000/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
- * This renderer is similar to [bitmap-renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/bitmap-renderer.html) but instead of drawing an external image
- * it receives a function that defines a path to draw on a [canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/).
+ * This renderer is similar to [bitmap-renderer](http://localhost:5000/game-builder-docs/src/components/rendering/bitmap-renderer.html) but instead of drawing an external image
+ * it receives a function that defines a path to draw on a [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D).
  * 
  * The module will take care of caching the drawing into a separate canvas and drawing from there, instead of executing all the path instructions
  * each frame. 
  * 
  * This renderer can receive a bunch of configuration options
- * when setting it up in the [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html). ej.
+ * when setting it up in the [component-pool](http://localhost:5000/game-builder-docs/src/pools/component-pool.html). ej.
  *
  * ``` javascript
  * gb.coPool.createConfiguration("Path", 'Path_Renderer')
@@ -56,8 +56,8 @@
 		scaleY: 1,
  *	});
  * ```
- * <strong>Note: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
- * found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
+ * <strong>Note: The snippet uses the reference to the <a href=http://localhost:5000/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+ * found in the <a href=http://localhost:5000/game-builder-docs/src/gb.html>gb</a> module. 
  * The way you get a hold to a reference to the <a href=@@csomponent-pool@@>component-pool</a>
  * may vary.</strong>
  */
@@ -78,19 +78,25 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
-		 * This is called by the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this renderer.
+		 * This is called by the [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) using this renderer.
 		 * It caches the results of executing the **drawPath** method.
 		 *
-		 * @throws {Error} If pathWidth and pathHeight properties are not set
+		 * @throws {Error} If width and height properties are not set
 		 */
 		start: function(parent) {	
 			if (this.skipCache) return;
 
 			if (!this.width && !this.height) {
-				ErrorPrinter.missingArgumentError('Path Renderer', 'width', 'height')
+				ErrorPrinter.missingArgumentError('Path Renderer', 'width', 'height');
 			}
 
-			PathCache.cache(this.name, this.width, this.height, this.drawPath);
+			if (!this.name) {
+				ErrorPrinter.missingArgumentError('Path Renderer', 'name');
+			}
+
+			PathCache.cache(this.name, this.width, this.height, function(context) {
+				this.drawPath(context);	
+			}.bind(this));
 		},
 		/**
 		 * --------------------------------
@@ -101,11 +107,12 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 		 *
 		 * This method must define the path that will be cached.
 		 *
-		 * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
-		 *
-		 * @throws {Error} If it is not overriden by child classes
+		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+		 * @param  {Object} viewport     The [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) this renderer is being drawn to
+		 * 
+		 * @throws {Error} If it is not overriden by child classes or redifined in some other way
 		 */
-		drawPath: function(context) {
+		drawPath: function(context, viewport) {
 			ErrorPrinter.mustOverrideError('Path Renderer');
 		},
 		/**
@@ -118,11 +125,12 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 		 * Draws the cached path into the canvas, applying configured properties,
 		 * like **scaleX**, **scaleY** and **offsets**
 		 * 
-		 * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+		 * @param  {Context 2D} context     [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+		 * @param  {Object} viewport     The [viewport](http://localhost:5000/game-builder-docs/src/view/viewport.html) this renderer is being drawn to
 		 */
-		draw: function(context) {
+		draw: function(context, viewport) {
 			if (this.skipCache) {
-				this.drawPath(context);
+				this.drawPath(context, viewport);
 			} else {
 				canvas = PathCache.get(this.name);
 				context.drawImage(canvas, this.rendererOffsetX(), this.rendererOffsetY(), this.rendererWidth(), this.rendererHeight());	

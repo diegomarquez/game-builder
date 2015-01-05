@@ -7,34 +7,33 @@
 <p>Inherits from:</p>
 
 <p>Depends of: 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+<a href="http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>
+<a href="http://localhost:5000/game-builder-docs/src/pools/component-pool.html">component-pool</a>
+<a href="http://localhost:5000/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module defines the object which is in charge of retrieving <a href="@@game-objetc@@">game-objetcs</a>
+<p>This module defines the object which is in charge of retrieving <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
 at any given point. It's the last piece of <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a>
-object management system. You could do the same thing this module does manually, as it is not so 
-complicated, but why bother when it is already made?</p>
+object management system.</p>
 
-<p>It has various methods to send <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> to their respective pools.</p>
+<p>It has various methods to send <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> to their respective pools.</p>
 
-<p>When you just want to get rid of everything, <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html">reclaimer</a> has you covered.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="recycling">Recycling</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;game-object-pool&#39;</span><span class="p">,</span> <span class="s1">&#39;component-pool&#39;</span><span class="p">,</span> <span class="s1">&#39;error-printer&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">GameObjectPool</span><span class="p">,</span> <span class="nx">ComponentPool</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
+<p>When you just want to get rid of everything, <a href="http://localhost:5000/game-builder-docs/src/pools/reclaimer.html">reclaimer</a> has you covered.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="recycling">Recycling</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;game-object-pool&#39;</span><span class="p">,</span> <span class="s1">&#39;component-pool&#39;</span><span class="p">,</span> <span class="s1">&#39;error-printer&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">GameObjectPool</span><span class="p">,</span> <span class="nx">ComponentPool</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">Reclaimer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>claim</strong></p>
 
-<p>Removes a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> from it's parent if it has one, and then
+<p>Removes a <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> from it's parent if it has one, and then
 calls it's <strong>clear</strong> method. This sends it and all of the objects
 that depend of it to their respective pools.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>go must be an Object.</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to recycle)</p></li>
-<li><p><strong>id must be a String.</strong><br/>(Id assigned to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> in <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>)</p></li>
+<li><p><strong>go must be an Object.</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to recycle)</p></li>
+<li><p><strong>id must be a String.</strong><br/>(Id assigned to the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> in <a href="http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>)</p></li>
 </ul>
 
-<p><strong>Can throw an Error</strong><br/>(If the id argument is missing.)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">Reclaimer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">claim</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">go</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+<p><strong>Can throw an Error</strong><br/>(If the id argument is missing.)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">Reclaimer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">claimWithId</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">go</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">go</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">missingArgumentError</span><span class="p">(</span><span class="s1">&#39;Reclaimer&#39;</span><span class="p">,</span> <span class="s1">&#39;go&#39;</span><span class="p">);</span>
     <span class="p">}</span>
@@ -44,46 +43,75 @@ that depend of it to their respective pools.</p>
     <span class="p">}</span>
 
     <span class="k">if</span><span class="p">(</span><span class="nx">go</span><span class="p">.</span><span class="nx">typeId</span> <span class="o">==</span> <span class="nx">id</span> <span class="o">||</span> <span class="nx">go</span><span class="p">.</span><span class="nx">poolId</span> <span class="o">==</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">go</span><span class="p">.</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">go</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">go</span><span class="p">);</span>
-      <span class="p">}</span>
-
-      <span class="nx">go</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">claim</span><span class="p">(</span><span class="nx">go</span><span class="p">);</span>
     <span class="p">}</span>
-  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>claimType</strong></p>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>claim</strong></p>
 
-<p>Calls <strong>claim</strong> on all the active <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
+<p>Removes a <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> from it's parent if it has one, and then
+calls it's <strong>clear</strong> method. This sends it and all of the objects
+that depend of it to their respective pools.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>go must be an Object.</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to recycle)</li>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nx">Reclaimer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">claim</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">go</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="k">if</span> <span class="p">(</span><span class="nx">go</span><span class="p">.</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">go</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">go</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">go</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+  <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>claim</strong></p>
+
+<p>Claims all the children from a <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>, 
+but does not claim the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> itself.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>go must be an Object.</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> to remove children from)</li>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nx">Reclaimer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">claimChildren</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">go</span><span class="p">)</span> <span class="p">{</span>  
+    <span class="k">if</span> <span class="p">(</span><span class="nx">go</span><span class="p">.</span><span class="nx">isContainer</span><span class="p">())</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">children</span> <span class="o">=</span> <span class="nx">go</span><span class="p">.</span><span class="nx">findChildren</span><span class="p">().</span><span class="nx">all</span><span class="p">();</span>
+
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">children</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">claim</span><span class="p">(</span><span class="nx">children</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>claimType</strong></p>
+
+<p>Calls <strong>claimWithId</strong> on all the active <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
 that match the given type id. </p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>typeName must be a String.</strong><br/>(An id matching a existing type in <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>)</li>
+<li><strong>typeName must be a String.</strong><br/>(An id matching a existing type in <a href="http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">Reclaimer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">claimType</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">typeName</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">activeGameObjects</span> <span class="o">=</span> <span class="nx">GameObjectPool</span><span class="p">.</span><span class="nx">getActiveObjects</span><span class="p">(</span><span class="nx">typeName</span><span class="p">);</span>
 
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="nx">activeGameObjects</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">claim</span><span class="p">(</span><span class="nx">activeGameObjects</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">typeName</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">claimWithId</span><span class="p">(</span><span class="nx">activeGameObjects</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">typeName</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>claimConfiguration</strong></p>
 
-<p>Calls <strong>claim</strong> on all the active <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
+<p>Calls <strong>claimWithId</strong> on all the active <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
 that match the given configuration id. </p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>configurationName must be a String.</strong><br/>(An id matching an existing configuration in <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>)</li>
+<li><strong>configurationName must be a String.</strong><br/>(An id matching an existing configuration in <a href="http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">Reclaimer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">claimConfiguration</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">configurationName</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">configuration</span> <span class="o">=</span> <span class="nx">GameObjectPool</span><span class="p">.</span><span class="nx">getConfigurationObject</span><span class="p">(</span><span class="nx">configurationName</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">activeGameObjects</span> <span class="o">=</span> <span class="nx">GameObjectPool</span><span class="p">.</span><span class="nx">getActiveObjects</span><span class="p">(</span><span class="nx">configuration</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>
 
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="nx">activeGameObjects</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>   
-      <span class="k">this</span><span class="p">.</span><span class="nx">claim</span><span class="p">(</span><span class="nx">activeGameObjects</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">configurationName</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">claimWithId</span><span class="p">(</span><span class="nx">activeGameObjects</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">configurationName</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>claimAll</strong></p>
 
-<p>Calls <strong>claim</strong> on all active <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>.
+<p>Calls <strong>claim</strong> on all active <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>.
 Good ol' screen clear.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">Reclaimer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">claimAll</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">allActiveGameObjects</span> <span class="o">=</span> <span class="nx">GameObjectPool</span><span class="p">.</span><span class="nx">getAllActiveObjects</span><span class="p">();</span>
 
@@ -92,7 +120,7 @@ Good ol' screen clear.</p></div></div><div class="code"><div class="wrapper">  <
     <span class="p">}</span>
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>claimAllBut</strong></p>
 
-<p>Claims all the active <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>, 
+<p>Claims all the active <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>, 
 but the ones specified in the second argument.</p>
 
 <p>Parameters:</p>
@@ -113,20 +141,20 @@ but the ones specified in the second argument.</p>
 
         <span class="k">if</span><span class="p">(</span><span class="nx">capitalizedMode</span> <span class="o">==</span> <span class="s1">&#39;Configuration&#39;</span><span class="p">)</span> <span class="p">{</span>
           <span class="k">if</span> <span class="p">(</span><span class="nx">doNotClaim</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">go</span><span class="p">.</span><span class="nx">typeId</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">claim</span><span class="p">(</span><span class="nx">go</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">typeId</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">claimWithId</span><span class="p">(</span><span class="nx">go</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">typeId</span><span class="p">);</span>
           <span class="p">}</span>
         <span class="p">}</span>
 
         <span class="k">if</span><span class="p">(</span><span class="nx">capitalizedMode</span> <span class="o">==</span> <span class="s1">&#39;Type&#39;</span><span class="p">)</span> <span class="p">{</span>
           <span class="k">if</span> <span class="p">(</span><span class="nx">doNotClaim</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">go</span><span class="p">.</span><span class="nx">poolId</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">claim</span><span class="p">(</span><span class="nx">go</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">poolId</span><span class="p">);</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">claimWithId</span><span class="p">(</span><span class="nx">go</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">poolId</span><span class="p">);</span>
           <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>claimOnly</strong></p>
 
-<p>Claims only the active <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
+<p>Claims only the active <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
 specified. </p>
 
 <p>Parameters:</p>
@@ -142,11 +170,31 @@ specified. </p>
     <span class="p">}</span>
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>clearAllPools</strong></p>
 
-<p>Claims all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> and then
-clears both <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a></p></div></div><div class="code"><div class="wrapper">  <span class="nx">Reclaimer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">clearAllPools</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Claims all the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> and then
+clears both <a href="http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and
+<a href="http://localhost:5000/game-builder-docs/src/pools/component-pool.html">component-pool</a>. The Pools are no longer re-useable after this. They need to be configured again.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">Reclaimer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">clearAllPools</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">claimAll</span><span class="p">();</span>
     <span class="nx">GameObjectPool</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
     <span class="nx">ComponentPool</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>clearAllPools</strong></p>
+
+<p>Claims all the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> and then
+clears off the instances held in both <a href="http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and
+<a href="http://localhost:5000/game-builder-docs/src/pools/component-pool.html">component-pool</a>. Configurations are kepts so the pools can still be re-used.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">Reclaimer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">clearAllObjectsFromPools</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">claimAll</span><span class="p">();</span>
+    <span class="nx">GameObjectPool</span><span class="p">.</span><span class="nx">clearObjects</span><span class="p">();</span>
+    <span class="nx">ComponentPool</span><span class="p">.</span><span class="nx">clearObjects</span><span class="p">();</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>clearGameObjectConfiguration</strong></p>
+
+<p>Claims all the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> associated with the specified configuration id on the <a href="http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>,
+it then destroys the configuration itself in the <a href="http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> so it can't be used anymore.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>configurationId is optional and must be a String.</strong><br/>(A configuration id set in <a href="http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a>)</li>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nx">Reclaimer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">clearGameObjectConfiguration</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">configurationId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">claimConfiguration</span><span class="p">(</span><span class="nx">configurationId</span><span class="p">);</span>
+    <span class="nx">GameObjectPool</span><span class="p">.</span><span class="nx">clearConfiguration</span><span class="p">(</span><span class="nx">configurationId</span><span class="p">);</span>
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="k">return</span> <span class="k">new</span> <span class="nx">Reclaimer</span><span class="p">();</span>
 <span class="p">});</span></div></div></div></div></body></html>

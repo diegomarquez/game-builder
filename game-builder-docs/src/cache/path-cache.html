@@ -4,13 +4,14 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: </p>
+<p>Inherits from: 
+<a href="http://localhost:5000/game-builder-docs/src/cache/cache.html">cache</a></p>
 
 <p>Depends of:</p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module is very similar to <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html">image-cache</a>, but instead of caching 
+<p>This module is very similar to <a href="http://localhost:5000/game-builder-docs/src/cache/image-cache.html">image-cache</a>, but instead of caching 
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement">Images</a> it caches paths drawn to a 
 <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">Canvas</a>. Paths are quite taxing on the CPU, so drawing it once and then
 keeping the rastered image can be a pretty good time saver.</p>
@@ -64,7 +65,7 @@ it just draws more things into it</p>
 
 <ul>
 <li><p><strong>id must be a String.</strong><br/>(Id of a cached <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas">Canvas</a> to draw to)</p></li>
-<li><p><strong>drawingFunction must be a Function.</strong><br/>(Drawing to command to add on top of the cached canvas )</p></li>
+<li><p><strong>drawingFunction must be a Function.</strong><br/>(Drawing to add on top of the cached canvas )</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">drawingFunction</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">];</span>
 

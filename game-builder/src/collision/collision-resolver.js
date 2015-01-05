@@ -6,12 +6,12 @@
  * Inherits from:
  *
  * Depends of: 
- * [sat](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html)
+ * [sat](http://localhost:5000/game-builder-docs/src/collision/sat.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
  * This organizes the colliders into pairs of groups. The first collection of each pair, is tested against
- * the second collection for collisions. There isn't much more to it.
+ * the second collection for colliders. There isn't much more to it.
  *
  * Worth noting is that the module only checks for overlaps, there is no projection. For the type
  * of projects [Game-Builder](http://diegomarquez.github.io/game-builder) attempts to tackle, it should
@@ -48,7 +48,7 @@ define(['sat'], function(SAT) {
 	 * 
 	 * The component is added to the correponding lists, depending on it's collision id.
 	 * 
-	 * @param {Object} collisionComponent An object extending [collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html)
+	 * @param {Object} collisionComponent An object extending [collision-component](http://localhost:5000/game-builder-docs/src/collision/collision-component.html)
 	 */
 	CollisionResolver.prototype.addToCollisionList = function(collisionComponent) {
 		var indexes = this.toCollideCache[collisionComponent.id];
@@ -70,7 +70,7 @@ define(['sat'], function(SAT) {
 	 * 
 	 * The component is removed from the corresponding lists, depending on it's collision id.
 	 * 
-	 * @param {Obejct} collisionComponent An object extending [collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html)
+	 * @param {Obejct} collisionComponent An object extending [collision-component](http://localhost:5000/game-builder-docs/src/collision/collision-component.html)
 	 */
 	CollisionResolver.prototype.removeFromCollisionList = function(collisionComponent) {
 		var indexes = this.toCollideCache[collisionComponent.id];
@@ -115,8 +115,8 @@ define(['sat'], function(SAT) {
 	 * 
 	 * This method will make the appropiate tests according to the type of the colliders involved.
 	 * 
-	 * @param  {Object} first  The first [collider-component](@@collider-component@@) in the test
-	 * @param  {Object} second The second [collider-component](@@collider-component@@) in the test
+	 * @param  {Object} first  The first [collision-component](http://localhost:5000/game-builder-docs/src/collision/collision-component.html) in the test
+	 * @param  {Object} second The second [collision-component](http://localhost:5000/game-builder-docs/src/collision/collision-component.html) in the test
 	 * @return {Boolean} Whether there was a collision
 	 */
 	CollisionResolver.prototype.areColliding = function(first, second) {
@@ -128,14 +128,14 @@ define(['sat'], function(SAT) {
 			if (first.colliderType == this.circleCollider) {
 				return SAT.testCircleCircle(first.collider, second.collider);
 			}
-			if (first.colliderType == this.polygonCollider) {
+			if (first.colliderType == this.polygonCollider || first.colliderType == this.fixedPolygonCollider) {
 				return SAT.testPolygonPolygon(first.collider, second.collider);
 			}
 		} else {
 			if (first.colliderType == this.circleCollider) {
 				return SAT.testPolygonCircle(second.collider, first.collider);
 			}
-			if (first.colliderType == this.polygonCollider) {
+			if (first.colliderType == this.polygonCollider || first.colliderType == this.fixedPolygonCollider) {
 				return SAT.testPolygonCircle(first.collider, second.collider);
 			}
 		}
@@ -148,6 +148,7 @@ define(['sat'], function(SAT) {
 	// between them.
 	CollisionResolver.prototype.circleCollider  = 0;
 	CollisionResolver.prototype.polygonCollider = 1;
+	CollisionResolver.prototype.fixedPolygonCollider = 2;
 
 	return new CollisionResolver();
 });

@@ -7,9 +7,9 @@
  * [bundle](@@bundle@@)
  *
  * Depends of:
- * [basic-game-object](http://diegomarquez.github.io/game-builder/examples-docs/common_src/basic-game-object.html)
- * [box-renderer](http://diegomarquez.github.io/game-builder/examples-docs/common_src/box-renderer.html)
- * [component-1](http://diegomarquez.github.io/game-builder/examples-docs/common_src/component-1.html)
+ * [basic-game-object](http://localhost:5000/examples-docs/common_src/basic-game-object.html)
+ * [box-renderer](http://localhost:5000/examples-docs/common_src/box-renderer.html)
+ * [component-1](http://localhost:5000/examples-docs/common_src/component-1.html)
  * 	
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 

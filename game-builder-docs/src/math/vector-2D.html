@@ -11,12 +11,31 @@
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
 <p>Another module made of <a href="https://github.com/jriecken/sat-js">stolen code</a>!
-In the original you can see that the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html">sat</a> and this module where originally
+In the original you can see that the <a href="http://localhost:5000/game-builder-docs/src/collision/sat.html">sat</a> module and this module where originally
 a single file, but I though It would be a good idea to make a standalone module
 out of the Vector2D implementation, as it is a very usefull thing to have laying around.</p>
 
 <p>The code defines a 2d vector with x and y coordinates,
 and several methods to apply different transformations to those coordinates.</p></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">interfaceMethods</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;copy&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;perp&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;reverse&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;normalize&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;add&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sub&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;scale&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;project&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;projectN&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;reflect&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;reflectN&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;dot&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;len&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;len2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;distance&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;equal&#39;</span>
+  <span class="p">];</span>
+
   <span class="kd">var</span> <span class="nx">vector_2D</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">this</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
     <span class="k">this</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
@@ -112,5 +131,38 @@ and several methods to apply different transformations to those coordinates.</p>
     <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">len2</span><span class="p">());</span>
   <span class="p">};</span>
 
-  <span class="k">return</span> <span class="nx">vector_2D</span>
+  <span class="nx">vector_2D</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">distance</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">to</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">xs</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">ys</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+   
+    <span class="nx">xs</span> <span class="o">=</span> <span class="nx">to</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+    <span class="nx">xs</span> <span class="o">=</span> <span class="nx">xs</span> <span class="o">*</span> <span class="nx">xs</span><span class="p">;</span>
+   
+    <span class="nx">ys</span> <span class="o">=</span> <span class="nx">to</span><span class="p">.</span><span class="nx">y</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+    <span class="nx">ys</span> <span class="o">=</span> <span class="nx">ys</span> <span class="o">*</span> <span class="nx">ys</span><span class="p">;</span>
+   
+    <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span> <span class="nx">xs</span> <span class="o">+</span> <span class="nx">ys</span> <span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="nx">vector_2D</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">equal</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">to</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">===</span> <span class="nx">to</span><span class="p">.</span><span class="nx">x</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">===</span> <span class="nx">to</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">vector_2D</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">clone</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">vector_2D</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
+  <span class="p">}</span> 
+
+  <span class="nx">vector_2D</span><span class="p">.</span><span class="nx">isVector</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">vec</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">interfaceMethods</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">method</span> <span class="o">=</span> <span class="nx">interfaceMethods</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">vec</span><span class="p">[</span><span class="nx">method</span><span class="p">])</span> <span class="o">!=</span> <span class="s1">&#39;[object Function]&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">vector_2D</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

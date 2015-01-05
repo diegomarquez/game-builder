@@ -7,12 +7,12 @@
 <p>Inherits from:</p>
 
 <p>Depends of: 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html">sat</a></p>
+<a href="http://localhost:5000/game-builder-docs/src/collision/sat.html">sat</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
 <p>This organizes the colliders into pairs of groups. The first collection of each pair, is tested against
-the second collection for collisions. There isn't much more to it.</p>
+the second collection for colliders. There isn't much more to it.</p>
 
 <p>Worth noting is that the module only checks for overlaps, there is no projection. For the type
 of projects <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a> attempts to tackle, it should
@@ -38,7 +38,7 @@ But I think that for prototypes is largely unnecessary.</p></div></div></div><di
 <p>Parameters:</p>
 
 <ul>
-<li><strong>collisionComponent must be an Object.</strong><br/>(An object extending <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html">collision-component</a>)</li>
+<li><strong>collisionComponent must be an Object.</strong><br/>(An object extending <a href="http://localhost:5000/game-builder-docs/src/collision/collision-component.html">collision-component</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">addToCollisionList</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">collisionComponent</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">indexes</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">toCollideCache</span><span class="p">[</span><span class="nx">collisionComponent</span><span class="p">.</span><span class="nx">id</span><span class="p">];</span>
 
@@ -56,7 +56,7 @@ But I think that for prototypes is largely unnecessary.</p></div></div></div><di
 <p>Parameters:</p>
 
 <ul>
-<li><strong>collisionComponent must be an Obejct.</strong><br/>(An object extending <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html">collision-component</a>)</li>
+<li><strong>collisionComponent must be an Obejct.</strong><br/>(An object extending <a href="http://localhost:5000/game-builder-docs/src/collision/collision-component.html">collision-component</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">removeFromCollisionList</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">collisionComponent</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">indexes</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">toCollideCache</span><span class="p">[</span><span class="nx">collisionComponent</span><span class="p">.</span><span class="nx">id</span><span class="p">];</span>
 
@@ -93,8 +93,8 @@ But I think that for prototypes is largely unnecessary.</p></div></div></div><di
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>first must be an Object.</strong><br/>(The first <a href="@@collider-component@@">collider-component</a> in the test)</p></li>
-<li><p><strong>second must be an Object.</strong><br/>(The second <a href="@@collider-component@@">collider-component</a> in the test)</p></li>
+<li><p><strong>first must be an Object.</strong><br/>(The first <a href="http://localhost:5000/game-builder-docs/src/collision/collision-component.html">collision-component</a> in the test)</p></li>
+<li><p><strong>second must be an Object.</strong><br/>(The second <a href="http://localhost:5000/game-builder-docs/src/collision/collision-component.html">collision-component</a> in the test)</p></li>
 </ul>
 
 <p><strong>Returns a Boolean</strong><br/>(Whether there was a collision)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">areColliding</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">first</span><span class="p">,</span> <span class="nx">second</span><span class="p">)</span> <span class="p">{</span>
@@ -106,14 +106,14 @@ But I think that for prototypes is largely unnecessary.</p></div></div></div><di
       <span class="k">if</span> <span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">circleCollider</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testCircleCircle</span><span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">collider</span><span class="p">,</span> <span class="nx">second</span><span class="p">.</span><span class="nx">collider</span><span class="p">);</span>
       <span class="p">}</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">polygonCollider</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">polygonCollider</span> <span class="o">||</span> <span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">fixedPolygonCollider</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testPolygonPolygon</span><span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">collider</span><span class="p">,</span> <span class="nx">second</span><span class="p">.</span><span class="nx">collider</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">circleCollider</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testPolygonCircle</span><span class="p">(</span><span class="nx">second</span><span class="p">.</span><span class="nx">collider</span><span class="p">,</span> <span class="nx">first</span><span class="p">.</span><span class="nx">collider</span><span class="p">);</span>
       <span class="p">}</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">polygonCollider</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">polygonCollider</span> <span class="o">||</span> <span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">fixedPolygonCollider</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testPolygonCircle</span><span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">collider</span><span class="p">,</span> <span class="nx">second</span><span class="p">.</span><span class="nx">collider</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">}</span>
@@ -123,6 +123,7 @@ But I think that for prototypes is largely unnecessary.</p></div></div></div><di
 type of collider they are, and hence, which method should be used when checking for collisions
 between them.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">circleCollider</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
   <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">polygonCollider</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">fixedPolygonCollider</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 
   <span class="k">return</span> <span class="k">new</span> <span class="nx">CollisionResolver</span><span class="p">();</span>
 <span class="p">});</span></div></div></div></div></body></html>

@@ -4,15 +4,13 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
+<p>Inherits from: <a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Depends of:</p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module defines to interact with the keyboard. 
-In similar fashion to <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer-factory.html">timer-factory</a>,
-this module extends on existing behaviour to make it less annoying.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="the-keyboard">The Keyboard</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+<p>This module defines an object to interact with the keyboard. </p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="the-keyboard">The Keyboard</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">pressed</span> <span class="o">=</span> <span class="p">{};</span>
 
   <span class="kd">var</span> <span class="nx">blocked</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
@@ -20,10 +18,8 @@ this module extends on existing behaviour to make it less annoying.</p></div></d
 
   <span class="kd">var</span> <span class="nx">Keyboard</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;delegate&#39;</span><span class="p">).</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="defined-keycodes">Defined keycodes</h3></div></div><div class="code"><div class="wrapper">      </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Not all the keys of the keyboard,
-but they should be more than enough
-for a <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a>
-project</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">LEFT</span> <span class="o">=</span> <span class="mi">37</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="defined-keycodes">Defined keycodes</h3></div></div><div class="code"><div class="wrapper">      </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Not all the keys of the keyboard but they should be more than enough
+for a <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a> project</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">LEFT</span> <span class="o">=</span> <span class="mi">37</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">UP</span> <span class="o">=</span> <span class="mi">38</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">RIGHT</span> <span class="o">=</span> <span class="mi">39</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">DOWN</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
@@ -33,6 +29,7 @@ project</p></div></div><div class="code"><div class="wrapper">      <span class=
       <span class="k">this</span><span class="p">.</span><span class="nx">ESC</span> <span class="o">=</span> <span class="mi">27</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">SPACE</span> <span class="o">=</span> <span class="mi">32</span><span class="p">;</span>
 
+      <span class="k">this</span><span class="p">.</span><span class="nx">W</span> <span class="o">=</span> <span class="mi">87</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">A</span> <span class="o">=</span> <span class="mi">65</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">S</span> <span class="o">=</span> <span class="mi">83</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">D</span> <span class="o">=</span> <span class="mi">68</span><span class="p">;</span>
@@ -58,12 +55,28 @@ use them. Plus it's easy to change them later down the road. </p></div></div><di
       <span class="k">this</span><span class="p">.</span><span class="nx">GAME_DOWN</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">DOWN</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">GAME_BUTTON_1</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">A</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">GAME_BUTTON_2</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">S</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">GAME_BUTTON_PAUSE</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">P</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">GAME_BUTTON_PAUSE</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">P</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>And array with the keys that should avoid the default browser behaviour when they are pressed</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">skipDefaultBehaviour</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>config</strong></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>options must be an Object.</strong><br/>(An object with various configuration options)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">config</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">gameKeys</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="nx">options</span><span class="p">.</span><span class="nx">gameKeys</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">gameKeys</span><span class="p">[</span><span class="nx">k</span><span class="p">];</span>    
+        <span class="p">}</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">skipDefaultBehaviour</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">skipDefaultBehaviour</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">skipDefaultBehaviour</span><span class="p">;</span>
+      <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>onKeyDown</strong></p>
 
 <p>Register a callback to be executed when a key is pressed.</p>
 
-<p>This wraps the extended <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
+<p>This wraps the extended <a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Parameters:</p>
 
@@ -77,7 +90,7 @@ use them. Plus it's easy to change them later down the road. </p></div></div><di
 
 <p>Register a callback to be executed when a key is released.</p>
 
-<p>This wraps the extended <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
+<p>This wraps the extended <a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Parameters:</p>
 
@@ -91,7 +104,7 @@ use them. Plus it's easy to change them later down the road. </p></div></div><di
 
 <p>Removes a registered callback for a key press.</p>
 
-<p>This wraps the extended <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
+<p>This wraps the extended <a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Parameters:</p>
 
@@ -105,7 +118,7 @@ use them. Plus it's easy to change them later down the road. </p></div></div><di
 
 <p>Removes a registered callback for a key release.</p>
 
-<p>This wraps the extended <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
+<p>This wraps the extended <a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Parameters:</p>
 
@@ -129,6 +142,8 @@ true if the specified key is pressed, false otherwise.</p>
 <p><strong>Returns a Boolean</strong><br/>(True if key is pressed, false otherwise.)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">isKeyDown</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">keyCode</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span> <span class="nx">pressed</span><span class="p">[</span><span class="nx">keyCode</span><span class="p">];</span>  
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>setBlock</strong></p>
+
+<p>This method will set or remove a block on all keyboard interactions. </p>
 
 <p>Parameters:</p>
 
@@ -155,7 +170,9 @@ true if the specified key is pressed, false otherwise.</p>
     <span class="p">}</span>
 
     <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="actual-registering-with-the-windown-keyboard-events">Actual registering with the windown keyboard events.</h3></div></div></div><div class="segment"><div class="code"><div class="wrapper">  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">}</span>
+
+  <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;keyup&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">delete</span> <span class="nx">pressed</span><span class="p">[</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">];</span>
 
     <span class="k">if</span><span class="p">(</span><span class="nx">preventKeyboardEvent</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">))</span> <span class="k">return</span><span class="p">;</span> 
@@ -170,52 +187,14 @@ true if the specified key is pressed, false otherwise.</p>
 
     <span class="nx">pressed</span><span class="p">[</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
     <span class="nx">keyboard</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;keydown&#39;</span> <span class="o">+</span> <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">.</span><span class="nx">toString</span><span class="p">(),</span> <span class="nx">event</span><span class="p">);</span>
-  <span class="p">},</span> <span class="kc">false</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="prevent-default-behaviour-of-keys-in-the-browser">Prevent default behaviour of keys in the browser</h3></div></div></div><div class="segment"><div class="code"><div class="wrapper">  <span class="nb">document</span><span class="p">.</span><span class="nx">onkeydown</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">LEFT</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">UP</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">RIGHT</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">DOWN</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">CTRL</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">ALT</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">ESC</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">SPACE</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">A</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">S</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">D</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">Z</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">X</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">C</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">NUM_0</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">NUM_1</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">NUM_2</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">NUM_3</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">NUM_4</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">NUM_5</span><span class="p">)</span> <span class="p">{</span>
+  <span class="p">},</span> <span class="kc">false</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Prevent default behaviour of keys in the browser</p></div></div><div class="code"><div class="wrapper">  <span class="nb">document</span><span class="p">.</span><span class="nx">onkeydown</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">skipDefaultBehaviour</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
     <span class="p">}</span>
   <span class="p">}</span>
 
   <span class="nb">document</span><span class="p">.</span><span class="nx">onkeypress</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">LEFT</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">UP</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">RIGHT</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">DOWN</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">CTRL</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">ALT</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">ESC</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">SPACE</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">A</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">S</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">D</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">Z</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">X</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">C</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">NUM_0</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">NUM_1</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">NUM_2</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">NUM_3</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">NUM_4</span> <span class="o">||</span>
-      <span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="nx">keyboard</span><span class="p">.</span><span class="nx">NUM_5</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">keyboard</span><span class="p">.</span><span class="nx">skipDefaultBehaviour</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
     <span class="p">}</span>
   <span class="p">}</span>

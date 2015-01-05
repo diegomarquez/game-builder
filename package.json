@@ -3,8 +3,9 @@
   "examplesRepository": "git@github.com:diegomarquez/game-builder-examples.git",
   "projectRoot": {
     "prod": "http://diegomarquez.github.io/game-builder",
-    "dev": "file://localhost/Users/johndoe/game-builder-gh-pages"
+    "dev": "http://localhost:5000"
   },
+
   "dependencies": {
     "grunt-shell": "~0.6.0",
     "grunt-text-replace": "~0.3.10",

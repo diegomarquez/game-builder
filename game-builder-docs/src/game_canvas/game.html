@@ -4,11 +4,11 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
+<p>Inherits from:
+<a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Depends of:
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html">root</a></p>
+<a href="http://localhost:5000/game-builder-docs/src/hierarchy/root.html">root</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
@@ -16,41 +16,69 @@
 
 <p>It does so by using <a href="http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/">request animation frame</a></p>
 
-<p>It also hooks into the focus and blur events of <a href="https://developer.mozilla.org/en-US/docs/Web/API/window">window</a>, 
+<p>It also hooks into the focus and blur events of <a href="https://developer.mozilla.org/en-US/docs/Web/API/window">window</a>,
 in order to be able to pause and resume the application if needed.</p>
 
-<p>It's main behaviour can be extended by the use of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extensions</a></p>
+<p>It's main behaviour can be extended by the use of <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extensions</a></p>
 
-<h3 id="gameextendsdelegatehttpdiegomarquezgithubiogamebuildergamebuilderdocssrcdelegatehtmlsoitprovidesafeweventstohookinto">Game extends <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</h3>
+<p>Game extends <a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</p>
 
-<h3 id="create"><strong>create</strong></h3>
+<h3 id="create"><strong>CREATE</strong></h3>
 
-<p>On application startup </p>
+<p>On application startup</p>
 
-<pre><code class=" javascript  ">game.on(game.CREATE, function(repeatsLeft) {});
+<pre><code class=" javascript">game.on(game.CREATE, function(repeatsLeft) {});
 </code></pre>
 
-<h3 id="blur"><strong>blur</strong></h3>
+<p></br></p>
 
-<p>When the application looses focus </p>
+<h3 id="blur"><strong>BLUR</strong></h3>
 
-<pre><code class=" javascript  ">game.on(game.BLUR, function() {});
+<p>When the application looses focus</p>
+
+<pre><code class=" javascript">game.on(game.BLUR, function() {});
 </code></pre>
 
-<h3 id="focus"><strong>focus</strong></h3>
+<p></br></p>
+
+<h3 id="focus"><strong>FOCUS</strong></h3>
 
 <p>When the application gains focus</p>
 
-<pre><code class=" javascript  ">game.on(game.FOCUS, function() {});
+<pre><code class=" javascript">game.on(game.FOCUS, function() {});
 </code></pre>
 
-<h3 id="update"><strong>update</strong></h3>
+<p></br></p>
+
+<h3 id="update"><strong>UPDATE</strong></h3>
 
 <p>On each update cycle</p>
 
 <p>The delta time between update cycles is sent to registered callbacks</p>
 
-<pre><code class=" javascript  ">game.on(game.UPDATE, function(delta) {});
+<pre><code class=" javascript">game.on(game.UPDATE, function(delta) {});
+</code></pre>
+
+<p></br></p>
+
+<h3 id="change_width"><strong>CHANGE_WIDTH</strong></h3>
+
+<p>When the width of the canvas is changes using the setter <strong>game.WIDTH</strong></p>
+
+<p>The new width is sent to all the registered callbacks </p>
+
+<pre><code class=" javascript">game.on(game.CHANGE_WIDTH, function(newWidth) {});
+</code></pre>
+
+<p></br></p>
+
+<h3 id="change_height"><strong>CHANGE_HEIGHT</strong></h3>
+
+<p>When the height of the canvas is changes using the setter <strong>game.HEIGHT</strong></p>
+
+<p>The new height is sent to all the registered callbacks </p>
+
+<pre><code class=" javascript">game.on(game.CHANGE_HEIGHT, function(newHeight) {});
 </code></pre></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="main-update-loop">Main Update loop</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">delegate</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;delegate&quot;</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">root</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;root&quot;</span><span class="p">);</span>
@@ -63,7 +91,7 @@ in order to be able to pause and resume the application if needed.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">blur</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">initialized</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">lastUpdate</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">delta</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>A reference to the main div in the corresponding index.html file</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">mainContainer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>A reference to the canvas</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>A reference to the context of the canvas</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">context</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>      
+      <span class="k">this</span><span class="p">.</span><span class="nx">delta</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>A reference to the main div in the corresponding index.html file</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">mainContainer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>A reference to the canvas</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>A reference to the context of the canvas</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">context</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>execute_extensions</strong></p>
 
 <p>Executes all the extensions for the given state of the application</p>
@@ -73,8 +101,10 @@ in order to be able to pause and resume the application if needed.</p>
 <ul>
 <li><strong>state must be a String.</strong><br/>(The state of the application. ej. 'create')</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">execute_extensions</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">[</span><span class="nx">state</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">[</span><span class="nx">state</span><span class="p">][</span><span class="nx">i</span><span class="p">].</span><span class="nx">execute</span><span class="p">();</span>
+      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">[</span><span class="nx">state</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">ex</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">[</span><span class="nx">state</span><span class="p">][</span><span class="nx">i</span><span class="p">];</span>
+
+        <span class="nx">ex</span><span class="p">.</span><span class="nx">extension</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">ex</span><span class="p">.</span><span class="nx">args</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add_extension</strong></p>
 
@@ -83,10 +113,58 @@ in order to be able to pause and resume the application if needed.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><strong>extensionMoudle must be a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>.</strong><br/>(A module that extends <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>)</li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">add_extension</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">extensionMoudle</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">ex</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">extensionMoudle</span><span class="p">();</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">[</span><span class="nx">ex</span><span class="p">.</span><span class="nx">type</span><span class="p">()].</span><span class="nx">push</span><span class="p">(</span><span class="nx">ex</span><span class="p">);</span>
+<li><p><strong>extensionModule must be a <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>.</strong><br/>(A module that extends <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>)</p></li>
+<li><p><strong>args must be an Object=null.</strong><br/>(An object with arguments that will be passed to the extension when it is executed)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">add_extension</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">extensionModule</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">ex</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">extensionModule</span><span class="p">();</span>
+      
+      <span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">[</span><span class="nx">ex</span><span class="p">.</span><span class="nx">type</span><span class="p">()].</span><span class="nx">push</span><span class="p">({</span>
+        <span class="nx">extension</span><span class="o">:</span> <span class="nx">ex</span><span class="p">,</span>
+        <span class="nx">args</span><span class="o">:</span> <span class="nx">args</span>
+      <span class="p">});</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">initialized</span> <span class="o">&amp;&amp;</span> <span class="nx">ex</span><span class="p">.</span><span class="nx">type</span><span class="p">()</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">CREATE</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ex</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>get_extension</strong></p>
+
+<p>Use this to get an instance of a currently active <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>extensionModule must be a <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>.</strong><br/>(The constructor for the <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a> to retrieve)</li>
+</ul>
+
+<p><strong>Returns a <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a></strong><br/>(The matching <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a> )</p></div></div><div class="code"><div class="wrapper">    <span class="nx">get_extension</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">extensionModule</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">t</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">[</span><span class="nx">t</span><span class="p">];</span>
+        
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">extension</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nx">extensionModule</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">extension</span><span class="p">;</span>
+          <span class="p">}</span>
+        <span class="p">}</span> 
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>remove_extension</strong></p>
+
+<p>Use this to remove extensions.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>extensionModule must be a <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a>.</strong><br/>(The <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a> module to remove)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">remove_extension</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">extensionModule</span><span class="p">)</span> <span class="p">{</span>     
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">t</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">extensions</span><span class="p">[</span><span class="nx">t</span><span class="p">];</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">extension</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">===</span> <span class="nx">extensionModule</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">list</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">extension</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+            <span class="nx">list</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+          <span class="p">}</span>
+        <span class="p">}</span> 
+      <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>create</strong></p>
 
 <p>The main method that will kick start everything.</p>
@@ -96,7 +174,7 @@ using <a href="http://www.paulirish.com/2011/requestanimationframe-for-smart-ani
 
 <p>The focus and blur events are also setup here.</p>
 
-<p>If the application does not have focus as soon as it starts, it waits until it has focus 
+<p>If the application does not have focus as soon as it starts, it waits until it has focus
 to setup the update loop.</p>
 
 <p>Parameters:</p>
@@ -110,11 +188,16 @@ to setup the update loop.</p>
       <span class="k">this</span><span class="p">.</span><span class="nx">context</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span>
 
       <span class="kd">var</span> <span class="nx">mainLoop</span><span class="p">;</span>
-      <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>This styling puts the canvas at the top left</p></div></div><div class="code"><div class="wrapper">      <span class="nx">mainContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">top</span>   <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="nx">mainContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">left</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-      <span class="nx">mainContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">margin</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-      <span class="nx">mainContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">padding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-      <span class="nx">mainContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="s1">&#39;fixed&#39;</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>When this is called the application has trully started.</p></div></div><div class="code"><div class="wrapper">      <span class="kd">var</span> <span class="nx">setupUpdateLoop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>This styling puts the canvas at the top left</p></div></div><div class="code"><div class="wrapper">      <span class="nx">mainContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="s1">&#39;relative&#39;</span><span class="p">;</span>
+
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;html&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">margin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;html&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">padding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">margin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">padding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">margin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">padding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;canvas&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">margin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;canvas&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">padding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>When this is called the application has trully started.</p></div></div><div class="code"><div class="wrapper">      <span class="kd">var</span> <span class="nx">setupUpdateLoop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">self</span><span class="p">.</span><span class="nx">initialized</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all create extensions</p></div></div><div class="code"><div class="wrapper">        <span class="nx">self</span><span class="p">.</span><span class="nx">execute_extensions</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">CREATE</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all create events</p></div></div><div class="code"><div class="wrapper">        <span class="nx">self</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">CREATE</span><span class="p">);</span>
 
         <span class="kd">var</span> <span class="nx">now</span><span class="p">;</span>
@@ -122,8 +205,8 @@ to setup the update loop.</p>
         <span class="nx">mainLoop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
           <span class="nx">now</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
           <span class="nx">self</span><span class="p">.</span><span class="nx">delta</span> <span class="o">=</span> <span class="p">(</span><span class="nx">now</span> <span class="o">-</span> <span class="nx">self</span><span class="p">.</span><span class="nx">lastUpdate</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">;</span>
-          <span class="nx">self</span><span class="p">.</span><span class="nx">lastUpdate</span> <span class="o">=</span> <span class="nx">now</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all update extensions</p></div></div><div class="code"><div class="wrapper">          <span class="nx">self</span><span class="p">.</span><span class="nx">execute_extensions</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">UPDATE</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Update all <a href="@@game-objects@@">game-objects</a></p></div></div><div class="code"><div class="wrapper">          <span class="nx">root</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">delta</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Draw to all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewports</a></p></div></div><div class="code"><div class="wrapper">          <span class="nx">root</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">context</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all update events</p></div></div><div class="code"><div class="wrapper">          <span class="nx">self</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">UPDATE</span><span class="p">);</span>
-          
+          <span class="nx">self</span><span class="p">.</span><span class="nx">lastUpdate</span> <span class="o">=</span> <span class="nx">now</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all update extensions</p></div></div><div class="code"><div class="wrapper">          <span class="nx">self</span><span class="p">.</span><span class="nx">execute_extensions</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">UPDATE</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Update all <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p></div></div><div class="code"><div class="wrapper">          <span class="nx">root</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">delta</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all update events</p></div></div><div class="code"><div class="wrapper">          <span class="nx">self</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">UPDATE</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Draw to all the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewports</a></p></div></div><div class="code"><div class="wrapper">          <span class="nx">root</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">context</span><span class="p">);</span>
+
           <span class="nb">window</span><span class="p">.</span><span class="nx">requestAnimationFrame</span><span class="p">(</span><span class="nx">mainLoop</span><span class="p">);</span>
         <span class="p">}</span>
 
@@ -151,8 +234,8 @@ to setup the update loop.</p>
         <span class="nb">window</span><span class="p">.</span><span class="nx">requestAnimationFrame</span><span class="p">(</span><span class="nx">mainLoop</span><span class="p">);</span>
       <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The blur and focus event callbacks
 Plus additional logic so that they don't get executed
-more than needed. </p></div></div><div class="code"><div class="wrapper">      <span class="kd">var</span> <span class="nx">blur</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-      
+more than needed.</p></div></div><div class="code"><div class="wrapper">      <span class="kd">var</span> <span class="nx">blur</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
       <span class="kd">var</span> <span class="nx">onBlur</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">oldBlur</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">blur</span><span class="p">;</span>
 
@@ -160,7 +243,7 @@ more than needed. </p></div></div><div class="code"><div class="wrapper">      <
           <span class="nx">self</span><span class="p">.</span><span class="nx">blur</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
           <span class="nx">self</span><span class="p">.</span><span class="nx">focus</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 
-          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">blur</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all blur state extensions</p></div></div><div class="code"><div class="wrapper">            <span class="nx">self</span><span class="p">.</span><span class="nx">execute_extensions</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">BLUR</span><span class="p">);</span> </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all blur events</p></div></div><div class="code"><div class="wrapper">            <span class="nx">self</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">BLUR</span><span class="p">);</span>
+          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">blur</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all blur state extensions</p></div></div><div class="code"><div class="wrapper">            <span class="nx">self</span><span class="p">.</span><span class="nx">execute_extensions</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">BLUR</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all blur events</p></div></div><div class="code"><div class="wrapper">            <span class="nx">self</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">BLUR</span><span class="p">);</span>
 
             <span class="nx">blur</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
           <span class="p">}</span>
@@ -170,7 +253,7 @@ more than needed. </p></div></div><div class="code"><div class="wrapper">      <
       <span class="p">};</span>
 
       <span class="kd">var</span> <span class="nx">onFocus</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">oldFocus</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">focus</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>In the case the game is not already created when the document gains focus 
+        <span class="kd">var</span> <span class="nx">oldFocus</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">focus</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>In the case the game is not already created when the document gains focus
 for the first time, it is created here.</p></div></div><div class="code"><div class="wrapper">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">self</span><span class="p">.</span><span class="nx">initialized</span><span class="p">)</span> <span class="p">{</span>
           <span class="nx">setupUpdateLoop</span><span class="p">();</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -187,18 +270,43 @@ for the first time, it is created here.</p></div></div><div class="code"><div cl
 
         <span class="k">return</span> <span class="nx">oldFocus</span><span class="p">;</span>
       <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>References to the blur and focus callbacks
-The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/pause.html">pause</a> and <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/resume.html">resume</a>
+The <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/pause.html">pause</a> and <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/resume.html">resume</a>
 extensions use these.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">blurAction</span> <span class="o">=</span> <span class="nx">onBlur</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">focusAction</span> <span class="o">=</span> <span class="nx">onFocus</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Actually setting up the listener to the events 
+      <span class="k">this</span><span class="p">.</span><span class="nx">focusAction</span> <span class="o">=</span> <span class="nx">onFocus</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Actually setting up the listener to the events
 window dispatches.</p></div></div><div class="code"><div class="wrapper">      <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;blur&quot;</span><span class="p">,</span> <span class="nx">onBlur</span><span class="p">);</span>
       <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;focus&quot;</span><span class="p">,</span> <span class="nx">onFocus</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Making sure we have focus setting up the update loop.
 If there is no focus, wait until it is gained to setup the update loop.</p></div></div><div class="code"><div class="wrapper">      <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">hasFocus</span><span class="p">())</span> <span class="p">{</span>
         <span class="nx">setupUpdateLoop</span><span class="p">();</span>
       <span class="p">}</span>
-    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="getters-for-all-the-types-of-events-game-can-hook-into">Getters for all the types of events game can hook into</h3></div></div></div><div class="segment"><div class="code"><div class="wrapper">  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Game</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CREATE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;create&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Game</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CREATE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;create&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Game</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;UPDATE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;update&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Game</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;FOCUS&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;focus&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Game</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;BLUR&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;blur&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Game</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CHANGE_WIDTH&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;change_width&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Game</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CHANGE_HEIGHT&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;change_height&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Game</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;WIDTH&quot;</span><span class="p">,</span> <span class="p">{</span> 
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span> 
+      <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CHANGE_WIDTH</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span> 
+    <span class="p">}</span> 
+  <span class="p">});</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Game</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;HEIGHT&quot;</span><span class="p">,</span> <span class="p">{</span> 
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+    <span class="p">},</span>
+    <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span> 
+      <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CHANGE_HEIGHT</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span> 
+    <span class="p">}</span> 
+  <span class="p">});</span>
 
   <span class="kd">var</span> <span class="nx">game</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Game</span><span class="p">();</span>
 

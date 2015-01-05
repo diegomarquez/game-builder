@@ -4,22 +4,23 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from:</p>
+<p>Inherits from:
+<a href="http://localhost:5000/game-builder-docs/src/class.html">class</a></p>
 
 <p>Depends of: 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+<a href="http://localhost:5000/game-builder-docs/src/gb.html">gb</a>
+<a href="http://localhost:5000/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This is a helper module to define a block of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and 
-<a href="@@components-pool@@">components-pool</a> configuration. </p>
+<p>This is a helper module to define a block of <a href="http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and 
+<a href="http://localhost:5000/game-builder-docs/src/pools/component-pool.html">component-pool</a> configurations. </p>
 
 <p>The basic workflow is extending this module, and putting all the required code
 to configure the pools in there. That way you can reuse that code in different places.</p>
 
 <p>It's not really needed but it will make things a bit more tidy.
-Because it has <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a> as a dependency it already has references to the pools
+Because it has <a href="http://localhost:5000/game-builder-docs/src/gb.html">gb</a> as a dependency it already has references to the pools
 and the canvas, so you don't have to require those in the modules extending this one.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="bundle-up">Bundle up!</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">Bundle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">).</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>

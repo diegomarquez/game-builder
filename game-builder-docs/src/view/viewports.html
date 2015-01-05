@@ -4,86 +4,352 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from:</p>
+<p>Inherits from:
+<a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Depends of: 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+<a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a>
+<a href="http://localhost:5000/game-builder-docs/src/debug/error-printer.html">error-printer</a>
+<a href="http://localhost:5000/game-builder-docs/src/util.html">util</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module serves as a container for all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> objects created.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="viewport-management">Viewport management</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;viewport&quot;</span><span class="p">,</span> <span class="s2">&quot;error-printer&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Viewport</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
+<p>This module serves as a container for all the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> objects created.</p>
+
+<p>This module extends <a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</p>
+
+<h3 id="add"><strong>ADD</strong></h3>
+
+<p>When a <a href="http://localhost:5000/game-builder-docs/src/view/viewports.html">viewports</a> is added</p>
+
+<p>Registered callbacks get the <a href="http://localhost:5000/game-builder-docs/src/view/viewports.html">viewports</a> as argument </p>
+
+<pre><code class=" javascript  ">gb.viewports.on(gb.viewports.ADD, function(viewports) {});
+</code></pre>
+
+<p></br></p>
+
+<h3 id="remove"><strong>REMOVE</strong></h3>
+
+<p>When a <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> is removed </p>
+
+<p>Registered callbacks get the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> as argument </p>
+
+<pre><code class=" javascript  ">gb.viewports.on(gb.viewports.REMOVE, function(viewport) {});
+</code></pre>
+
+<p></br></p>
+
+<h3 id="change"><strong>CHANGE</strong></h3>
+
+<p>When a <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> changes position</p>
+
+<p>Registered callbacks get the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> as argument </p>
+
+<pre><code class=" javascript  ">gb.viewports.on(gb.viewports.CHANGE, function(viewport) {});
+</code></pre>
+
+<p></br></p>
+
+<h3 id="move"><strong>MOVE</strong></h3>
+
+<p>When all the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> is moved</p>
+
+<pre><code class=" javascript  ">gb.viewports.on(gb.viewports.MOVE, function() {});
+</code></pre>
+
+<p></br></p>
+
+<p><strong>Note: The snippet uses the reference to <a href=http://localhost:5000/game-builder-docs/src/view/viewports.html>viewports</a>
+found in the <a href=http://localhost:5000/game-builder-docs/src/gb.html>gb</a> module. 
+The way you get a hold to a reference to <a href=http://localhost:5000/game-builder-docs/src/view/viewports.html>viewports</a>
+may vary.</strong></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="viewport-management">Viewport management</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;delegate&quot;</span><span class="p">,</span> <span class="s2">&quot;viewport&quot;</span><span class="p">,</span> <span class="s2">&quot;error-printer&quot;</span><span class="p">,</span> <span class="s2">&quot;util&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">,</span> <span class="nx">Viewport</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">,</span> <span class="nx">Util</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="kd">var</span> <span class="nx">viewports</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="kd">var</span> <span class="nx">viewportsArray</span> <span class="o">=</span> <span class="p">[];</span>
   
-  <span class="kd">var</span> <span class="nx">ViewportContainer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong></p>
+  <span class="kd">var</span> <span class="nx">ViewportContainer</span> <span class="o">=</span> <span class="nx">Delegate</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong></p>
 
-<p>Creates a new <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> and adds it to the container.</p>
-
-<p>Parameters:</p>
-
-<ul>
-<li><p><strong>name must be a String.</strong><br/>(Id of the new <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a>)</p></li>
-<li><p><strong>width must be a Number.</strong><br/>(Width of the new <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a>)</p></li>
-<li><p><strong>height must be a Number.</strong><br/>(Hidth of the new <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a>)</p></li>
-<li><p><strong>offsetX must be a Number.</strong><br/>(X offset relative to the top corner of the screen)</p></li>
-<li><p><strong>offsetY must be a Number.</strong><br/>(Y offset relative to the top corner of the screen)</p></li>
-</ul>
-
-<p><strong>Returns an Object</strong><br/>(The newly created <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a>)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">ViewportContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">add</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">offsetX</span><span class="p">,</span> <span class="nx">offsetY</span><span class="p">)</span> <span class="p">{</span>   
-    <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Viewport</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">offsetX</span><span class="p">,</span> <span class="nx">offsetY</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>show</strong></p>
-
-<p>Makes the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> visible</p>
+<p>Creates a new <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> and adds it to the container.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> to make visible)</li>
+<li><p><strong>name must be a String.</strong><br/>(Id of the new <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a>)</p></li>
+<li><p><strong>width must be a Number.</strong><br/>(Width of the new <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a>)</p></li>
+<li><p><strong>height must be a Number.</strong><br/>(Height of the new <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a>)</p></li>
+<li><p><strong>offsetX is optional, must be a Number, and has a default value of 0.</strong><br/>(X offset relative to the top corner of the screen)</p></li>
+<li><p><strong>offsetY is optional, must be a Number, and has a default value of 0.</strong><br/>(Y offset relative to the top corner of the screen)</p></li>
+<li><p><strong>scaleX is optional, must be a Number, and has a default value of 1.</strong><br/>(X scale of the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a>)</p></li>
+<li><p><strong>scaleY is optional, must be a Number, and has a default value of 1.</strong><br/>(Y scale of the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a>)</p></li>
+<li><p><strong>layers is optional, must be an Array, and has a default value of null.</strong><br/>(Y An array of strings with the names of <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> objects to add on the created <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a>)</p></li>
+<li><p><strong>strokeColor is optional, must be a Number, and has a default value of null.</strong><br/>(Color of the stroke around the <a href="http://localhost:5000/game-builder-docs/src/view/viewports.html">viewports</a>)</p></li>
+<li><p><strong>strokeWidth is optional, must be a Number, and has a default value of null.</strong><br/>(Width of the stroke around the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> )</p></li>
+<li><p><strong>worldfit is optional, must be a Boolean, and has a default value of false.</strong><br/>(Whether <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> should scale to fit the <a href="http://localhost:5000/game-builder-docs/src/world.html">world</a> size)</p></li>
+<li><p><strong>culling is optional, must be a Boolean, and has a default value of true.</strong><br/>(Whether the viewport should perform culling when <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> are drawn to it)</p></li>
+<li><p><strong>clipping is optional, must be a Boolean, and has a default value of true.</strong><br/>(Whether the viewport should clip drawings that fall outside of it's viewing area)</p></li>
 </ul>
 
-<p><strong>Can throw an Error</strong><br/>(If the id specified does not exist)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">ViewportContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="p">{</span>
-      <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Viewports&#39;</span><span class="p">,</span> <span class="s1">&#39;Viewport with id:&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; does not exist.&#39;</span><span class="p">);</span>
+<p><strong>Returns an Object</strong><br/>(The newly created <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a>. If it already exists, the existing one is returned)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">add</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">offsetX</span><span class="p">,</span> <span class="nx">offsetY</span><span class="p">,</span> <span class="nx">scaleX</span><span class="p">,</span> <span class="nx">scaleY</span><span class="p">,</span> <span class="nx">layers</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">,</span> <span class="nx">strokeWidth</span><span class="p">,</span> <span class="nx">worldFit</span><span class="p">,</span> <span class="nx">culling</span><span class="p">,</span> <span class="nx">clipping</span><span class="p">)</span> <span class="p">{</span>    
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">create</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+
+        <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span>
+        <span class="nx">viewportsArray</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+        
+        <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ADD</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
+      <span class="p">}</span> 
+
+      <span class="k">return</span> <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    
+    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addFromObject</strong></p>
+
+<p>Creates a new <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> and adds it to the container.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>viewport must be an Object.</strong><br/>(An object with all the properties needed to create a <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a>)</li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(The newly created <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a>. If it already exists, the existing one is returned)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">addFromObject</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">viewport</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">viewport</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">create</span><span class="p">(</span>
+          <span class="nx">name</span><span class="p">,</span> 
+          <span class="nx">viewport</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> 
+          <span class="nx">viewport</span><span class="p">.</span><span class="nx">height</span><span class="p">,</span> 
+          <span class="nx">viewport</span><span class="p">.</span><span class="nx">offsetX</span><span class="p">,</span> 
+          <span class="nx">viewport</span><span class="p">.</span><span class="nx">offsetY</span><span class="p">,</span> 
+          <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleX</span><span class="p">,</span> 
+          <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleY</span><span class="p">,</span> 
+          <span class="nx">viewport</span><span class="p">.</span><span class="nx">layers</span><span class="p">,</span>
+          <span class="nx">viewport</span><span class="p">.</span><span class="nx">stroke</span><span class="p">.</span><span class="nx">color</span><span class="p">,</span> 
+          <span class="nx">viewport</span><span class="p">.</span><span class="nx">stroke</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> 
+          <span class="nx">viewport</span><span class="p">.</span><span class="nx">worldFit</span><span class="p">,</span>
+          <span class="nx">viewport</span><span class="p">.</span><span class="nx">culling</span><span class="p">,</span>
+          <span class="nx">viewport</span><span class="p">.</span><span class="nx">clipping</span>
+        <span class="p">);</span>
+
+        <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span>
+        <span class="nx">viewportsArray</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ADD</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+        
+        <span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>remove</strong></p>
+
+<p>Removes the specified <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> to remove)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">remove</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Viewports&#39;</span><span class="p">,</span> <span class="s1">&#39;Viewport with id:&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; does not exist.&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+
+      <span class="nx">viewportsArray</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">viewportsArray</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">v</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+      
+      <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="k">delete</span> <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+    
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">REMOVE</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+      
+      <span class="nx">v</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>change</strong></p>
+
+<p>Change the position of the specified viewport</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>name is optional and must be a String.</strong><br/>(Name <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> to change)</p></li>
+<li><p><strong>index is optional and must be a Number.</strong><br/>(New index)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">change</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">viewport</span> <span class="o">=</span> <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+        <span class="kd">var</span> <span class="nx">viewportIndex</span> <span class="o">=</span> <span class="nx">viewportsArray</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">viewport</span><span class="p">);</span>
+
+        <span class="nx">viewportsArray</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">viewportIndex</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="nx">viewportsArray</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CHANGE</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>after</strong></p>
+
+<p>Place the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> specified by the first argument after
+the one specified by the second argument.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>name is optional and must be a String.</strong><br/>(Name <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> to change)</p></li>
+<li><p><strong>other is optional and must be a String.</strong><br/>(Name <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> which should come before to the one in the first argument)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">after</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">other</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">move</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;after&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">other</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>before</strong></p>
+
+<p>Place the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> specified by the first argument before
+the one specified by the second argument.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>name is optional and must be a String.</strong><br/>(Name <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> to change)</p></li>
+<li><p><strong>other is optional and must be a String.</strong><br/>(Name <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> which should come after to the one in the first argument)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">before</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">other</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">move</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s1">&#39;before&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">other</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>removeAll</strong></p>
+
+<p>Destroys all the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewports</a></p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeAll</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">viewportsArray</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">viewportsArray</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">name</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>show</strong></p>
+
+<p>Makes the specified <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> visible</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> to make visible)</li>
+</ul>
+
+<p><strong>Can throw an Error</strong><br/>(If the id specified does not exist)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Viewports&#39;</span><span class="p">,</span> <span class="s1">&#39;Viewport with id:&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; does not exist.&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">show</span><span class="p">();</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>hide</strong></p>
+
+<p>Makes the specified <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> invisible</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> to make invisible)</li>
+</ul>
+
+<p><strong>Can throw an Error</strong><br/>(If the id specified does not exist)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">hide</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> 
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Viewports&#39;</span><span class="p">,</span> <span class="s1">&#39;Viewport with id:&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; does not exist.&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>get</strong></p>
+
+<p>Get a reference to the specified <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> to get)</li>
+</ul>
+
+<p><strong>Can throw an Error</strong><br/>(If the id specified does not exist)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> 
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Viewports&#39;</span><span class="p">,</span> <span class="s1">&#39;Viewport with id:&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; does not exist.&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span> 
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>exists</strong></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> to check)</li>
+</ul>
+
+<p><strong>Can throw a Boolean</strong><br/>(Whether the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> exists or not)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">exists</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> 
+      <span class="k">return</span> <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span> 
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>iterate</strong></p>
+
+<p>Iterate through all the viewports executing the callback function with each <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> as argument</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>method must be a Function.</strong><br/>(The method to execute for each <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a>)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">iterate</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">method</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">viewportsArray</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">method</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">scope</span><span class="p">,</span> <span class="nx">viewportsArray</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> 
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>all</strong></p>
+
+<p>Get a reference to an object containing all the created <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewports</a></p>
+
+<p><strong>Returns an Object</strong><br/>(An object with all the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> objects)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">all</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> 
+      <span class="k">return</span> <span class="nx">viewports</span><span class="p">;</span> 
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>allAsArray</strong></p>
+
+<p>A reference to an array containing all the created <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewports</a></p>
+
+<p><strong>Returns an Array</strong><br/>(An array with all the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> objects)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">allAsArray</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> 
+      <span class="k">return</span> <span class="nx">viewportsArray</span><span class="p">;</span> 
+    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
+
+  <span class="kd">var</span> <span class="nx">create</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">offsetX</span><span class="p">,</span> <span class="nx">offsetY</span><span class="p">,</span> <span class="nx">scaleX</span><span class="p">,</span> <span class="nx">scaleY</span><span class="p">,</span> <span class="nx">layers</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">,</span> <span class="nx">strokeWidth</span><span class="p">,</span> <span class="nx">worldFit</span><span class="p">,</span> <span class="nx">culling</span><span class="p">,</span> <span class="nx">clipping</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Viewport</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">offsetX</span><span class="p">,</span> <span class="nx">offsetY</span><span class="p">,</span> <span class="nx">scaleX</span><span class="p">,</span> <span class="nx">scaleY</span><span class="p">);</span>
+
+    <span class="nx">v</span><span class="p">.</span><span class="nx">setStroke</span><span class="p">(</span><span class="nx">strokeWidth</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">Util</span><span class="p">.</span><span class="nx">isBoolean</span><span class="p">(</span><span class="nx">worldFit</span><span class="p">))</span> <span class="p">{</span> <span class="nx">v</span><span class="p">.</span><span class="nx">WorldFit</span> <span class="o">=</span> <span class="nx">worldFit</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">Util</span><span class="p">.</span><span class="nx">isBoolean</span><span class="p">(</span><span class="nx">culling</span><span class="p">))</span> <span class="p">{</span> <span class="nx">v</span><span class="p">.</span><span class="nx">Culling</span> <span class="o">=</span> <span class="nx">culling</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">Util</span><span class="p">.</span><span class="nx">isBoolean</span><span class="p">(</span><span class="nx">clipping</span><span class="p">))</span> <span class="p">{</span> <span class="nx">v</span><span class="p">.</span><span class="nx">Clipping</span> <span class="o">=</span> <span class="nx">clipping</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">layers</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">layers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">v</span><span class="p">.</span><span class="nx">addLayer</span><span class="p">(</span><span class="nx">layers</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+      <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">show</span><span class="p">();</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>hide</strong></p>
+    <span class="k">return</span> <span class="nx">v</span><span class="p">;</span>
+  <span class="p">}</span>
 
-<p>Makes the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> invisible</p>
-
-<p>Parameters:</p>
-
-<ul>
-<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> to make invisible)</li>
-</ul>
-
-<p><strong>Can throw an Error</strong><br/>(If the id specified does not exist)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">ViewportContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hide</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> 
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="p">{</span>
-      <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Viewports&#39;</span><span class="p">,</span> <span class="s1">&#39;Viewport with id:&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; does not exist.&#39;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">move</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">current</span><span class="p">,</span> <span class="nx">pivot</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">viewports</span><span class="p">[</span><span class="nx">current</span><span class="p">])</span> <span class="p">{</span>
+      <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Viewports&#39;</span><span class="p">,</span> <span class="s1">&#39;Viewport with id:&#39;</span> <span class="o">+</span> <span class="nx">current</span> <span class="o">+</span> <span class="s1">&#39; does not exist.&#39;</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">hide</span><span class="p">();</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>get</strong></p>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">viewports</span><span class="p">[</span><span class="nx">pivot</span><span class="p">])</span> <span class="p">{</span>
+      <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Viewports&#39;</span><span class="p">,</span> <span class="s1">&#39;Viewport with id:&#39;</span> <span class="o">+</span> <span class="nx">pivot</span> <span class="o">+</span> <span class="s1">&#39; does not exist.&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+       
+    <span class="kd">var</span> <span class="nx">current</span> <span class="o">=</span> <span class="nx">viewports</span><span class="p">[</span><span class="nx">current</span><span class="p">];</span>
+    <span class="kd">var</span> <span class="nx">pivot</span> <span class="o">=</span> <span class="nx">viewports</span><span class="p">[</span><span class="nx">pivot</span><span class="p">];</span>
 
-<p>Get a reference to the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a></p>
+    <span class="kd">var</span> <span class="nx">currentIndex</span> <span class="o">=</span> <span class="nx">viewportsArray</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">current</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">pivotIndex</span><span class="p">;</span>
 
-<p>Parameters:</p>
-
-<ul>
-<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> to get)</li>
-</ul>
-
-<p><strong>Can throw an Error</strong><br/>(If the id specified does not exist)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">ViewportContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">get</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> 
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">])</span> <span class="p">{</span>
-      <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Viewports&#39;</span><span class="p">,</span> <span class="s1">&#39;Viewport with id:&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; does not exist.&#39;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s1">&#39;before&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">pivotIndex</span> <span class="o">=</span> <span class="nx">viewportsArray</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">pivot</span><span class="p">);</span>
     <span class="p">}</span>
 
-    <span class="k">return</span> <span class="nx">viewports</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span> 
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>all</strong></p>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s1">&#39;after&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">pivotIndex</span> <span class="o">=</span> <span class="nx">viewportsArray</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">pivot</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
 
-<p>Get a reference to the underlaying object containing all the created <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewports.html">viewports</a></p></div></div><div class="code"><div class="wrapper">  <span class="nx">ViewportContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">all</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
-    <span class="k">return</span> <span class="nx">viewports</span><span class="p">;</span> 
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="k">return</span> <span class="k">new</span> <span class="nx">ViewportContainer</span><span class="p">();</span>
+    <span class="nx">viewportsArray</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">pivotIndex</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">viewportsArray</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">currentIndex</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]);</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">MOVE</span><span class="p">,</span> <span class="nx">current</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">ViewportContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;ADD&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;add&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">ViewportContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REMOVE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;remove&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">ViewportContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CHANGE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;change&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">ViewportContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;MOVE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;move&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">ViewportContainer</span><span class="p">();</span>
 <span class="p">});</span></div></div></div></div></body></html>

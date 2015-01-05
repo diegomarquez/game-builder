@@ -3,15 +3,13 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
+ * Inherits from: [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
  *
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines to interact with the keyboard. 
- * In similar fashion to [timer-factory](http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer-factory.html),
- * this module extends on existing behaviour to make it less annoying.
+ * This module defines an object to interact with the keyboard. 
  */
 
 /**
@@ -34,10 +32,8 @@ define(function(require) {
 
 			// ### Defined keycodes
 			
-			// Not all the keys of the keyboard,
-			// but they should be more than enough
-			// for a [Game-Builder](http://diegomarquez.github.io/game-builder)
-			// project
+			// Not all the keys of the keyboard but they should be more than enough
+			// for a [Game-Builder](http://diegomarquez.github.io/game-builder) project
 
 			this.LEFT = 37;
 			this.UP = 38;
@@ -49,6 +45,7 @@ define(function(require) {
 			this.ESC = 27;
 			this.SPACE = 32;
 
+			this.W = 87;
 			this.A = 65;
 			this.S = 83;
 			this.D = 68;
@@ -78,6 +75,26 @@ define(function(require) {
 			this.GAME_BUTTON_1 = this.A;
 			this.GAME_BUTTON_2 = this.S;
 			this.GAME_BUTTON_PAUSE = this.P;
+
+			// And array with the keys that should avoid the default browser behaviour when they are pressed
+			this.skipDefaultBehaviour = [];
+		},
+
+		/**
+		 * <p style='color:#AD071D'><strong>config</strong></p>
+		 *
+		 * @param  {Object} options An object with various configuration options
+		 */
+		config: function(options) {
+			if (options.gameKeys) {
+				for (var k in options.gameKeys) {
+					this[k] = options.gameKeys[k];		
+				}
+			}
+
+			if (options.skipDefaultBehaviour) {
+				this.skipDefaultBehaviour = options.skipDefaultBehaviour;
+			}
 		},
 
 		/**
@@ -85,7 +102,7 @@ define(function(require) {
 		 *
 		 * Register a callback to be executed when a key is pressed.
 		 *
-		 * This wraps the extended [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
+		 * This wraps the extended [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
 		 * 
 		 * @param  {Number}   keyCode  Key code to listen to
 		 * @param  {Object}   scope    Scope of the callback function
@@ -103,7 +120,7 @@ define(function(require) {
 		 *
 		 * Register a callback to be executed when a key is released.
 		 *
-		 * This wraps the extended [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
+		 * This wraps the extended [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
 		 * 
 		 * @param  {Number}   keyCode  Key code to listen to
 		 * @param  {Object}   scope    Scope of the callback function
@@ -121,7 +138,7 @@ define(function(require) {
 		 *
 		 * Removes a registered callback for a key press.
 		 *
-		 * This wraps the extended [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
+		 * This wraps the extended [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
 		 * 
 		 * @param  {Number}   keyCode  Key code to stop listening to
 		 * @param  {Object}   scope    Scope of the callback function to remove
@@ -139,7 +156,7 @@ define(function(require) {
 		 *
 		 * Removes a registered callback for a key release.
 		 *
-		 * This wraps the extended [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
+		 * This wraps the extended [delegate](http://localhost:5000/game-builder-docs/src/delegate.html)
 		 * 
 		 * @param  {Number}   keyCode  Key code to stop listening to
 		 * @param  {Object}   scope    Scope of the callback function to remove
@@ -172,6 +189,8 @@ define(function(require) {
 		/**
 		 * <p style='color:#AD071D'><strong>setBlock</strong></p>
 		 *
+		 * This method will set or remove a block on all keyboard interactions. 
+		 * 
 		 * @param {Boolean} value   The state of the the block, can be true or false
 		 * @param {Array=null} whiteList Keys that should not be blocked
 		 */
@@ -197,7 +216,6 @@ define(function(require) {
 		return false;
 	}
 
-	// ### Actual registering with the windown keyboard events.
 	window.addEventListener('keyup', function(event) {
 		delete pressed[event.keyCode];
 
@@ -214,57 +232,16 @@ define(function(require) {
 		pressed[event.keyCode] = true;
 		keyboard.execute('keydown' + event.keyCode.toString(), event);
 	}, false);
-	/**
-	 * --------------------------------
-	 */
 
-	// ### Prevent default behaviour of keys in the browser
+	// Prevent default behaviour of keys in the browser
 	document.onkeydown = function(event) {
-		if (event.keyCode == keyboard.LEFT ||
-			event.keyCode == keyboard.UP ||
-			event.keyCode == keyboard.RIGHT ||
-			event.keyCode == keyboard.DOWN ||
-			event.keyCode == keyboard.CTRL ||
-			event.keyCode == keyboard.ALT ||
-			event.keyCode == keyboard.ESC ||
-			event.keyCode == keyboard.SPACE ||
-			event.keyCode == keyboard.A ||
-			event.keyCode == keyboard.S ||
-			event.keyCode == keyboard.D ||
-			event.keyCode == keyboard.Z ||
-			event.keyCode == keyboard.X ||
-			event.keyCode == keyboard.C ||
-			event.keyCode == keyboard.NUM_0 ||
-			event.keyCode == keyboard.NUM_1 ||
-			event.keyCode == keyboard.NUM_2 ||
-			event.keyCode == keyboard.NUM_3 ||
-			event.keyCode == keyboard.NUM_4 ||
-			event.keyCode == keyboard.NUM_5) {
+		if (keyboard.skipDefaultBehaviour.indexOf(event.keyCode) != -1) {
 			event.preventDefault();
 		}
 	}
 
 	document.onkeypress = function(event) {
-		if (event.keyCode == keyboard.LEFT ||
-			event.keyCode == keyboard.UP ||
-			event.keyCode == keyboard.RIGHT ||
-			event.keyCode == keyboard.DOWN ||
-			event.keyCode == keyboard.CTRL ||
-			event.keyCode == keyboard.ALT ||
-			event.keyCode == keyboard.ESC ||
-			event.keyCode == keyboard.SPACE ||
-			event.keyCode == keyboard.A ||
-			event.keyCode == keyboard.S ||
-			event.keyCode == keyboard.D ||
-			event.keyCode == keyboard.Z ||
-			event.keyCode == keyboard.X ||
-			event.keyCode == keyboard.C ||
-			event.keyCode == keyboard.NUM_0 ||
-			event.keyCode == keyboard.NUM_1 ||
-			event.keyCode == keyboard.NUM_2 ||
-			event.keyCode == keyboard.NUM_3 ||
-			event.keyCode == keyboard.NUM_4 ||
-			event.keyCode == keyboard.NUM_5) {
+		if (keyboard.skipDefaultBehaviour.indexOf(event.keyCode) != -1) {
 			event.preventDefault();
 		}
 	}

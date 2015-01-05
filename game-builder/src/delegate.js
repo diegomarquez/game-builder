@@ -3,9 +3,11 @@
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
  * ### [Find me on Github](https://github.com/diegomarquez)
  * 
- * Inherits from: [class](@@class)
+ * Inherits from: 
+ * [class](http://localhost:5000/game-builder-docs/src/class.html)
  * 
- * Depends of: [util](@@util)
+ * Depends of: 
+ * [util](http://localhost:5000/game-builder-docs/src/util.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -31,7 +33,6 @@ define(["class", "util"], function(Class, Util) {
 	var Delegate = Class.extend({
 		init: function() {
 			this.callbackList = {};
-			this.list = null;
 		},
 		/**
 		 * --------------------------------
@@ -48,8 +49,9 @@ define(["class", "util"], function(Class, Util) {
 		 * @param  {Boolean} [removeOnExecute=false] The function will be removed from the corresponding list, after executing it once
 		 * @param  {Boolean} [keepOnCleanUp=false] Save the function when executing the **softCleanUp**
 		 * @param  {Boolean} [single=false] Do not add function if there is already one with the same id
+		 * @param  {String} [level=''] Give the delegate a 'level'. Later all the delegates with the same level can be removed without keeping track of the delegate details.
 		 */
-		on: function(name, scope, callback, removeOnExecute, keepOnCleanUp, single) {
+		on: function(name, scope, callback, removeOnExecute, keepOnCleanUp, single, level) {
 			if (!this.callbackList[name]) {
 				this.callbackList[name] = [];
 			}
@@ -60,24 +62,27 @@ define(["class", "util"], function(Class, Util) {
 				}				
 			}
 
-			this.callbackList[name].push({
+			var callbackObject = {
 				scope: scope,
 				callback: callback,
 				removeOnExecute: removeOnExecute,
-				keep: keepOnCleanUp
-			});
+				keep: keepOnCleanUp,
+				level: level
+			}
+
+			this.callbackList[name].push(callbackObject);
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>on</strong></p>
 		 *
 		 * Use to register functions under the given id. This method is a shorthand for
 		 *
 		 * ``` javascript  
-		 * delegate.on(name, scope, callback, true);
+		 * delegate.on(name, scope, callback, true, false, false, level);
 		 * ``` 
 		 *
 		 * The function will be removed from the corresponding list upon execution.
@@ -85,9 +90,10 @@ define(["class", "util"], function(Class, Util) {
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'
 		 * @param  {Function} callback Function you want to execute
+		 * @param  {String} [level=''] Give the delegate a 'level'. Later all the delegates with the same level can be removed without keeping track of the delegate details.
 		 */
-		once: function(name, scope, callback) {
-			this.on(name, scope, callback, true);
+		once: function(name, scope, callback, level) {
+			this.on(name, scope, callback, true, false, false, level);
 		},
 		/**
 		 * --------------------------------
@@ -99,7 +105,7 @@ define(["class", "util"], function(Class, Util) {
 		 * Use to register functions under the given id. This method is a shorthand for
 		 *
 		 * ``` javascript  
-		 * delegate.on(name, scope, callback, false, true, false);
+		 * delegate.on(name, scope, callback, false, true, false, level);
 		 * ``` 
 		 *
 		 * The function will not be removed from the corresponding list, if the **softCleanUp** method is called.
@@ -107,9 +113,10 @@ define(["class", "util"], function(Class, Util) {
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'
 		 * @param  {Function} callback Function you want to execute
+		 * @param  {String} [level=''] Give the delegate a 'level'. Later all the delegates with the same level can be removed without keeping track of the delegate details.
 		 */
-		persist: function(name, scope, callback) {
-			this.on(name, scope, callback, false, true, false);
+		persist: function(name, scope, callback, level) {
+			this.on(name, scope, callback, false, true, false, level);
 		},
 		/**
 		 * --------------------------------
@@ -129,9 +136,10 @@ define(["class", "util"], function(Class, Util) {
 		 * @param  {String} name Id that the function will be associated with
 		 * @param  {Object} scope Scope of the function, most of the time you will be passing 'this'
 		 * @param  {Function} callback Function you want to execute
+		 * @param  {String} [level=''] Give the delegate a 'level'. Later all the delegates with the same level can be removed without keeping track of the delegate details.
 		 */
-		single: function(name, scope, callback) {
-			this.on(name, scope, callback, false, false, true);
+		single: function(name, scope, callback, level) {
+			this.on(name, scope, callback, false, false, true, level);
 		},
 		/**
 		 * --------------------------------
@@ -147,15 +155,15 @@ define(["class", "util"], function(Class, Util) {
 		 * @param  {Function} callback Function you want to remove
 		 */
 		remove: function(name, scope, callback) {
-			this.list = this.callbackList[name];
+			var list = this.callbackList[name];
 
-			if (!this.list) return;
+			if (!list) return;
 
-			for (var i = this.list.length - 1; i >= 0; i--) {
-				var callbackObject = this.list[i];
+			for (var i = list.length - 1; i >= 0; i--) {
+				var callbackObject = list[i];
 
 				if (scope === callbackObject.scope && callback === callbackObject.callback) {
-					this.list.splice(i, 1);
+					list.splice(i, 1);
 				}
 			}
 		},
@@ -171,12 +179,12 @@ define(["class", "util"], function(Class, Util) {
 		 * @param  {String} name All functions matching this Id will be removed
 		 */
 		removeAll: function(name) {
-			var list = this.callbackList[name];
+			if (this.callbackList[name]) {
+				this.callbackList[name].splice(0, this.callbackList[name].lenght);
+				this.callbackList[name].lenght = 0;
+				this.callbackList[name] = null;
 
-			if (list) {
-				list.splice(0, list.lenght);
-				list.lenght = 0;
-				list = null;
+				delete this.callbackList[name];
 			}
 		},
 		/**
@@ -190,19 +198,21 @@ define(["class", "util"], function(Class, Util) {
 		 * except for the ones that were configured to be kept in **on**.
 		 */
 		softCleanUp: function() {
-			for (var k in this.callbackList) {
-				this.list = this.callbackList[k];
-
-				if (!this.list) return;
-
-				for (var i = this.list.length - 1; i >= 0; i--) {
-					var callbackObject = this.list[i];
-
-					if (!callbackObject.keep) {
-						this.list.splice(i, 1);
-					}
-				}
-			}
+			filterCallbacks.call(this, function(callbackObject) { return !callbackObject.keep; });
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>softCleanUp</strong></p>
+		 *
+		 * Removes every function for the specified level.
+		 *
+		 * @param {String} [level] All delegates with this 'level' will be removed
+		 */
+		levelCleanUp: function(level) {
+			filterCallbacks.call(this, function(callbackObject) { return callbackObject.level === level; });
 		},
 		/**
 		 * --------------------------------
@@ -217,6 +227,30 @@ define(["class", "util"], function(Class, Util) {
 			for (var k in this.callbackList) {
 				this.removeAll(k);
 			}
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>isRegistered</strong></p>
+		 *
+		 * @param  {String} name Id of the group of functions 
+		 *
+		 * @return {Boolean} Returns true if the given id has any callbacks registered
+		 */
+		isRegistered: function(name) {
+			var list = this.callbackList[name];
+
+			if (!list) return false;
+
+			for (var i = 0; i < list.length; i++) {
+				if (list[i]) {
+					return true;
+				}
+			}
+
+			return false;
 		},
 		/**
 		 * --------------------------------
@@ -243,25 +277,25 @@ define(["class", "util"], function(Class, Util) {
 		 * @param  {Object} args This Object will be passed as argument to all the functions executed
 		 */
 		execute: function(name, args) {
-			this.list = this.callbackList[name];
+			var list = this.callbackList[name];
 
-			if (!this.list) return;
+			if (!list) return;
 
-			var callbackCount = this.list.length;
+			var callbackCount = list.length;
 
 			for (var i = 0; i < callbackCount; i++) {
-				var callbackObject = this.list[i];
+				var callbackObject = list[i];
 
 				if (!callbackObject) continue;
 
 				callbackObject.callback.call(callbackObject.scope, args);
 
 				if (callbackObject.removeOnExecute) {
-					this.list[i] = null;
+					list[i] = null;
 				}
 			}
 
-			removeAllNulls(this.list);
+			removeAllNulls(this.callbackList[name]);
 		}
 		/**
 		 * --------------------------------
@@ -269,11 +303,29 @@ define(["class", "util"], function(Class, Util) {
 	});
 
 	var removeAllNulls = function(list) {
+		if (!list) return;
+
 		for (var i = list.length - 1; i >= 0; i--) {
 			var callbackObject = list[i];
 
 			if (!callbackObject) {
 				list.splice(i, 1);
+			}
+		}
+	}
+
+	var filterCallbacks = function(test) {
+		for (var k in this.callbackList) {
+			var list = this.callbackList[k];
+
+			if (!list) continue;
+
+			for (var i = list.length - 1; i >= 0; i--) {
+				var callbackObject = list[i];
+
+				if (test(callbackObject)) {
+					list.splice(i, 1);
+				}
 			}
 		}
 	}

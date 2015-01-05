@@ -11,8 +11,8 @@
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
 <p>This is a collection of methods to ease the pain of using HTML5's <a href="https://developer.mozilla.org/en-US/docs/HTML/Canvas">Canvas drawing API</a>. 
-Not by much though, it's still pretty painfull. Believe me, I did I wrote a whole game only relaying
-on it for graphics <a href="http://www.treintipollo.com/tirador/index.html">SHAMELESS SELF PUBLICITY</a></p>
+Not by much though, it's still pretty painfull. Believe me, I wrote a whole game only relaying
+on it for graphics <a href="http://www.treintipollo.com/tirador/index.html">CHECK IT OUT</a>, it's pretty cool.</p>
 
 <p>There are some stuff missing, like individual method to wrap quadratic and cubic curves. There
 are no helpers to draw a single line either.
@@ -27,13 +27,13 @@ in the context will be used.</strong></p></div></div></div><div class="segment">
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</p></li>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</p></li>
 <li><p><strong>x must be a Number.</strong><br/>(X coordinate of the registration point)</p></li>
 <li><p><strong>y must be a Number.</strong><br/>(Y coordinate of the registration point)</p></li>
 <li><p><strong>radius must be a Number.</strong><br/>(Radius of the circle)</p></li>
 <li><p><strong>fillColor can be a String or a Number and has a default value of null.</strong><br/>(the circle can be a <a href="http://www.javascripter.net/faq/hextorgb.htm">hex string</a> or a number (If you are into that kind of bullshit))</p></li>
 <li><p><strong>strokeColor can be a String or a Number and has a default value of null.</strong><br/>(the circle can be a <a href="http://www.javascripter.net/faq/hextorgb.htm">hex string</a> or a number)</p></li>
-<li><p><strong>lineWidth is optional, must be a Number, and has a default value of null.</strong><br/>(Line widt )</p></li>
+<li><p><strong>lineWidth is optional, must be a Number, and has a default value of null.</strong><br/>(Line width )</p></li>
 </ul></div></div><div class="code"><div class="wrapper">  <span class="nx">DrawUtils</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">circle</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">radius</span><span class="p">,</span> <span class="nx">fillColor</span><span class="p">,</span> <span class="nx">strokeColor</span><span class="p">,</span> <span class="nx">lineWidth</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">fillColor</span><span class="p">;</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">strokeColor</span><span class="p">)</span> <span class="nx">context</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="nx">strokeColor</span><span class="p">;</span>
@@ -52,7 +52,7 @@ in the context will be used.</strong></p></div></div></div><div class="segment">
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</p></li>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</p></li>
 <li><p><strong>x must be a Number.</strong><br/>(X coordinate of the registration point)</p></li>
 <li><p><strong>y must be a Number.</strong><br/>(Y coordinate of the registration point)</p></li>
 <li><p><strong>width must be a Number.</strong><br/>(Width of the rectangle)</p></li>
@@ -78,7 +78,7 @@ in the context will be used.</strong></p></div></div></div><div class="segment">
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</p></li>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</p></li>
 <li><p><strong>centerX must be a Number.</strong><br/>(X coordinate of the registration point. The rest of the points are relative to this)</p></li>
 <li><p><strong>centerY must be a Number.</strong><br/>(Y coordinate of the registration point. The rest of the points are relative to this)</p></li>
 <li><p><strong>x1 must be a Number.</strong><br/>(X coordinate of the first vertex)</p></li>
@@ -130,7 +130,7 @@ You might want to look into what a <a href="http://en.wikipedia.org/wiki/B%C3%A9
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</p></li>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</p></li>
 <li><p><strong>centerX must be a Number.</strong><br/>(X coordinate of the registration point. The rest of the points are relative to this)</p></li>
 <li><p><strong>centerY must be a Number.</strong><br/>(Y coordinate of the registration point. The rest of the points are relative to this)</p></li>
 <li><p><strong>x1 must be a Number.</strong><br/>(X coordinate of the first vertex)</p></li>
@@ -200,7 +200,7 @@ You might want to look into what a <a href="http://en.wikipedia.org/wiki/B%C3%A9
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</p></li>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</p></li>
 <li><p><strong>x must be a Number.</strong><br/>(X coordinate registration point. All the points of the polygon are relative to this)</p></li>
 <li><p><strong>y must be a Number.</strong><br/>(Y coordinate registration point. All the points of the polygon are relative to this)</p></li>
 <li><p><strong>points must be an Array.</strong><br/>(An array of objects with the following form, {x:x, y:y})</p></li>
@@ -234,7 +234,7 @@ You might want to look into what a <a href="http://en.wikipedia.org/wiki/B%C3%A9
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</p></li>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</p></li>
 <li><p><strong>x must be a Number.</strong><br/>(X coordinate registration point. All the points of the polygon are relative to this)</p></li>
 <li><p><strong>y must be a Number.</strong><br/>(Y coordinate registration point. All the points of the polygon are relative to this)</p></li>
 <li><p><strong>points must be a String.</strong><br/>(An array of objects with the following form, {x:x, y:y}. Note that since lines are quadratic curves, you need to provide anchor anchor points in between each pair of vertexes )</p></li>

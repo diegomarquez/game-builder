@@ -4,27 +4,95 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a></p>
+<p>Inherits from: <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a></p>
 
 <p>Inherits from:
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a> </p>
+<a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Depends of:
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+<a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>
+<a href="http://localhost:5000/game-builder-docs/src/pools/reclaimer.html">reclaimer</a>
+<a href="http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>
+<a href="http://localhost:5000/game-builder-docs/src/collision/sat.html">sat</a>
+<a href="http://localhost:5000/game-builder-docs/src/math/vector-2D.html">vector-2D</a>
+<a href="http://localhost:5000/game-builder-docs/src/debug/error-printer.html">error-printer</a>
+<a href="http://localhost:5000/game-builder-docs/src/util.html">util</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
 <p>This module defines a viewport, it has an offset in relation to the top left of the screen, a width and height, and the position
 of the world it is viewing. It is a rectangle.</p>
 
-<p>Aside from that it holds an array of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> objects each with the <a href="@@game-objetc@@">game-objetcs</a> that this 
-viewport should draw.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="a-little-window">A little window</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;delegate&quot;</span><span class="p">,</span> <span class="s2">&quot;layer&quot;</span><span class="p">,</span> <span class="s2">&quot;error-printer&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">,</span> <span class="nx">Layer</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">){</span>
-  <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{};</span>
-  <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<p>Aside from that it holds an array of <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> objects each with the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> that this
+viewport should draw.</p>
+
+<p>These objects extend <a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a> so they provide a few events to hook into:</p>
+
+<h3 id="add"><strong>ADD</strong></h3>
+
+<p>When a <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> is added</p>
+
+<p>Registered callbacks get the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> as argument </p>
+
+<pre><code class=" javascript  ">viewport.on(viewport.ADD, function(layer) {});
+</code></pre>
+
+<p></br></p>
+
+<h3 id="remove"><strong>REMOVE</strong></h3>
+
+<p>When a <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> is removed </p>
+
+<p>Registered callbacks get the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> as argument </p>
+
+<pre><code class=" javascript  ">viewport.on(viewport.REMOVE, function(layer) {});
+</code></pre>
+
+<p></br></p>
+
+<h3 id="change"><strong>CHANGE</strong></h3>
+
+<p>When a <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> changes position</p>
+
+<p>Registered callbacks get the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> as argument </p>
+
+<pre><code class=" javascript  ">viewport.on(viewport.CHANGE, function(layer) {});
+</code></pre>
+
+<p></br></p>
+
+<h3 id="remove_all"><strong>REMOVE_ALL</strong></h3>
+
+<p>When all the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layers</a> are removed</p>
+
+<pre><code class=" javascript  ">viewport.on(viewport.REMOVE_ALL, function() {});
+</code></pre>
+
+<p></br></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="a-little-window">A little window</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;delegate&quot;</span><span class="p">,</span> <span class="s2">&quot;layer&quot;</span><span class="p">,</span> <span class="s2">&quot;reclaimer&quot;</span><span class="p">,</span> <span class="s2">&quot;matrix-3x3&quot;</span><span class="p">,</span> <span class="s2">&quot;sat&quot;</span><span class="p">,</span> <span class="s2">&quot;vector-2D&quot;</span><span class="p">,</span> <span class="s2">&quot;error-printer&quot;</span><span class="p">,</span> <span class="s2">&quot;util&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">,</span> <span class="nx">Layer</span><span class="p">,</span> <span class="nx">Reclaimer</span><span class="p">,</span> <span class="nx">Matrix</span><span class="p">,</span> <span class="nx">SAT</span><span class="p">,</span> <span class="nx">Vector2D</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">,</span> <span class="nx">Util</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">p1</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="kd">var</span> <span class="nx">p2</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="kd">var</span> <span class="nx">p3</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="kd">var</span> <span class="nx">p4</span> <span class="o">=</span> <span class="p">{};</span>
   <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">rOffsetX</span><span class="p">,</span> <span class="nx">rOffsetY</span><span class="p">,</span> <span class="nx">rWidth</span><span class="p">,</span> <span class="nx">rHeight</span><span class="p">;</span>
   <span class="kd">var</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">canvasCollider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">FixedSizePolygon</span><span class="p">(</span>
+    <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(),</span>
+    <span class="p">[</span> <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(),</span> <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(),</span> <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(),</span> <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">()</span> <span class="p">]</span>
+  <span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">viewportCollider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">FixedSizePolygon</span><span class="p">(</span>
+    <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(),</span>
+    <span class="p">[</span> <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(),</span> <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(),</span> <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(),</span> <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">()</span> <span class="p">]</span>
+  <span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">gameObjectCollider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">FixedSizePolygon</span><span class="p">(</span>
+    <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(),</span>
+    <span class="p">[</span> <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(),</span> <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(),</span> <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(),</span> <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">()</span> <span class="p">]</span>
+  <span class="p">);</span>
 
   <span class="kd">var</span> <span class="nx">Viewport</span> <span class="o">=</span> <span class="nx">Delegate</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>init</strong></p>
 
@@ -33,25 +101,40 @@ viewport should draw.</p></div></div></div><div class="segment"><div class="comm
 <p>Parameters:</p>
 
 <ul>
+<li><p><strong>name must be a String.</strong><br/>(Name of the viewport)</p></li>
 <li><p><strong>width must be a Number.</strong><br/>(Width of the viewport)</p></li>
 <li><p><strong>height must be a Number.</strong><br/>(Height of the viewport)</p></li>
 <li><p><strong>offsetX must be a Number.</strong><br/>(X offset relative to the top left corner of the screen)</p></li>
 <li><p><strong>offsetY must be a Number.</strong><br/>(Y offset relative to the top left corner of the screen)</p></li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">offsetX</span><span class="p">,</span> <span class="nx">offsetY</span><span class="p">)</span> <span class="p">{</span>
+<li><p><strong>scaleX must be a Number.</strong><br/>(X scale of the viewport relative to the <a href="http://localhost:5000/game-builder-docs/src/world.html">world</a> size)</p></li>
+<li><p><strong>scaleY must be a Number.</strong><br/>(Y scale of the viewport relative to the <a href="http://localhost:5000/game-builder-docs/src/world.html">world</a> size)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">,</span> <span class="nx">offsetX</span><span class="p">,</span> <span class="nx">offsetY</span><span class="p">,</span> <span class="nx">scaleX</span><span class="p">,</span> <span class="nx">scaleY</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+
       <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">scaleX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">scaleY</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">Width</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">Height</span> <span class="o">=</span> <span class="nx">height</span><span class="p">;</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span> <span class="o">=</span> <span class="nx">offsetX</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span> <span class="o">=</span> <span class="nx">offsetY</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">ScaleX</span> <span class="o">=</span> <span class="nx">scaleX</span> <span class="o">||</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">ScaleY</span> <span class="o">=</span> <span class="nx">scaleY</span> <span class="o">||</span> <span class="mi">1</span><span class="p">;</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">height</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">OffsetX</span> <span class="o">=</span> <span class="nx">offsetX</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">OffsetY</span> <span class="o">=</span> <span class="nx">offsetY</span> <span class="o">||</span> <span class="mi">0</span><span class="p">;</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">layers</span> <span class="o">=</span> <span class="p">[];</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">WorldFit</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">Culling</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">Clipping</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">MouseEnabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">MouseBounded</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
       <span class="k">this</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      
+      <span class="k">this</span><span class="p">.</span><span class="nx">layers</span> <span class="o">=</span> <span class="p">[];</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Matrix</span><span class="p">();</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>setStroke</strong></p>
 
 <p>Set the border of the rectangle of the viewport</p>
@@ -62,34 +145,127 @@ viewport should draw.</p></div></div></div><div class="segment"><div class="comm
 <li><p><strong>width must be a Number.</strong><br/>(Line width of the stroke)</p></li>
 <li><p><strong>color must be a Number.</strong><br/>(Color of the stroke)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">setStroke</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">strokeWidth</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">strokeColor</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">width</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">strokeWidth</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">strokeColor</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getStroke</strong></p>
+
+<p>Get the stroke attributes of the viewport</p>
+
+<p><strong>Returns an Object</strong><br/>(with stroke color and width)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getStroke</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">strokeWidth</span><span class="p">,</span>
+        <span class="nx">color</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">strokeColor</span>
+      <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addLayer</strong></p>
 
-<p>Adds a new <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> to the viewport</p>
+<p>Adds a new <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> to the viewport</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the new <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a>)</li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">addLayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">layer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Layer</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">layer</span><span class="p">);</span>
-      <span class="k">return</span> <span class="nx">layer</span><span class="p">;</span>
+<li><strong>name must be a String.</strong><br/>(Id of the new <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>)</li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> that was just created. If the layer already exists, it is returned)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">addLayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>      
+      <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">createLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
+
+      <span class="k">if</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">newLayer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">layer</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ADD</span><span class="p">,</span> <span class="nx">result</span><span class="p">.</span><span class="nx">layer</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">layer</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addLayerAfter</strong></p>
+
+<p>Adds a new <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> to the viewport after an existing <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>name must be a String.</strong><br/>(Id of the new <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>)</p></li>
+<li><p><strong>after must be a String.</strong><br/>(Id of the existing <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>)</p></li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> that was just created. If the layer already exists, it is returned)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">addLayerAfter</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">after</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">createLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
+
+      <span class="k">if</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">newLayer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">findLayerIndex</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">after</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">result</span><span class="p">.</span><span class="nx">layer</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ADD</span><span class="p">,</span> <span class="nx">result</span><span class="p">.</span><span class="nx">layer</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">layer</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addLayerBefore</strong></p>
+
+<p>Adds a new <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> to the viewport before an existing <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>name must be a String.</strong><br/>(Id of the new <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>)</p></li>
+<li><p><strong>before must be a String.</strong><br/>(Id of the existing <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>)</p></li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> that was just created. If the layer already exists, it is returned)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">addLayerBefore</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">before</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">createLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
+
+      <span class="k">if</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">newLayer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">findLayerIndex</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">before</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">result</span><span class="p">.</span><span class="nx">layer</span><span class="p">);</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ADD</span><span class="p">,</span> <span class="nx">result</span><span class="p">.</span><span class="nx">layer</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">layer</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getLayers</strong></p>
+
+<p>Gets all the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> objects</p>
+
+<p><strong>Returns an Array</strong><br/>(An array with all the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layers</a>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getLayers</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>changeLayer</strong></p>
+
+<p>Change <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> position in it's collection</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>name is optional and must be a String.</strong><br/>(Name of of the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> to change)</p></li>
+<li><p><strong>index is optional and must be a Number.</strong><br/>(Index to put the selected <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> in)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">changeLayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">layer</span> <span class="o">=</span> <span class="nx">findLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">layerIndex</span> <span class="o">=</span> <span class="nx">findLayerIndex</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">layerIndex</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">layer</span><span class="p">);</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CHANGE</span><span class="p">,</span> <span class="nx">result</span><span class="p">.</span><span class="nx">layer</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removeLayer</strong></p>
 
-<p>Removes the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> from the viewport</p>
+<p>Removes the specified <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> from the viewport</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> to remove)</li>
+<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> to remove)</li>
 </ul>
 
 <p><strong>Can throw an Error</strong><br/>(If the specified id does not exist)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeLayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">name</span> <span class="o">==</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">layer</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">layer</span><span class="p">.</span><span class="nx">name</span> <span class="o">==</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">REMOVE</span><span class="p">,</span> <span class="nx">layer</span><span class="p">);</span>
+
+          <span class="nx">recycleGameObjects</span><span class="p">(</span><span class="nx">layer</span><span class="p">.</span><span class="nx">removeAll</span><span class="p">());</span>
           <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
           <span class="k">return</span><span class="p">;</span>
         <span class="p">}</span>
       <span class="p">}</span>
@@ -97,44 +273,83 @@ viewport should draw.</p></div></div></div><div class="segment"><div class="comm
       <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Viewport&#39;</span><span class="p">,</span> <span class="s1">&#39;Layer with id:&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; does not exist.&#39;</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>removeAllLayers</strong></p>
 
-<p>Remove all <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layers</a> from the viewport</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeAllLayers</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Remove all <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layers</a> from the viewport</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeAllLayers</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">layer</span><span class="p">;</span>
 
-      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">layer</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">pop</span><span class="p">();</span>
-        <span class="nx">layer</span><span class="p">.</span><span class="nx">removeAll</span><span class="p">();</span>
+      <span class="kd">var</span> <span class="nx">gos</span> <span class="o">=</span> <span class="p">[];</span>
+
+      <span class="k">while</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">length</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">gos</span> <span class="o">=</span> <span class="nx">gos</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">pop</span><span class="p">().</span><span class="nx">removeAll</span><span class="p">());</span>
       <span class="p">}</span>
+
+      <span class="nx">recycleGameObjects</span><span class="p">(</span><span class="nx">gos</span><span class="p">);</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">REMOVE_ALL</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addGameObject</strong></p>
 
-<p>Add a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> of the viewport</p>
+<p>Add a <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to the specified <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> of the viewport</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>layerName must be a String.</strong><br/>(Id of the layer to add the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to)</p></li>
-<li><p><strong>go must be an Object.</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to add)</p></li>
+<li><p><strong>layerName must be a String.</strong><br/>(Id of the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> to add the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to)</p></li>
+<li><p><strong>go must be an Object.</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to add)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">addGameObject</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">layerName</span><span class="p">,</span> <span class="nx">go</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">layer</span> <span class="o">=</span> <span class="nx">findLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">layerName</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">success</span> <span class="o">=</span> <span class="nx">layer</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">go</span><span class="p">);</span>
       
-      <span class="nx">layer</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">go</span><span class="p">);</span>
-
-      <span class="nx">go</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">go</span><span class="p">.</span><span class="nx">RECYCLE</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">g</span><span class="p">)</span> <span class="p">{</span> 
-        <span class="nx">layer</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">g</span><span class="p">);</span> 
-      <span class="p">},</span> <span class="kc">true</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>removeAllGameObjects</strong></p>
-
-<p>Remove all <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> from the viewport</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeAllGameObjects</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">removeAll</span><span class="p">();</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">success</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">go</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">go</span><span class="p">.</span><span class="nx">RECYCLE</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">g</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">layer</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">g</span><span class="p">);</span>
+        <span class="p">},</span> <span class="kc">true</span><span class="p">);</span>
       <span class="p">}</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>draw</strong></p>
 
-<p>Draw all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> in the viewport</p>
+      <span class="k">return</span> <span class="nx">success</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removeGameObject</strong></p>
+
+<p>Remove the specified <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> from the specified <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> of the viewport</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a> )</li>
+<li><p><strong>layerName must be a String.</strong><br/>(Id of the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> to remove the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> from)</p></li>
+<li><p><strong>go must be an Object.</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to remove)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">removeGameObject</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">layerName</span><span class="p">,</span> <span class="nx">go</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Remove it from the old layer</p></div></div><div class="code"><div class="wrapper">      <span class="nx">findLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">layerName</span><span class="p">).</span><span class="nx">remove</span><span class="p">(</span><span class="nx">go</span><span class="p">);</span>
+      <span class="nx">recycleGameObjects</span><span class="p">(</span><span class="nx">go</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>moveGameObject</strong></p>
+
+<p>Move a <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to the specified <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> of the viewport</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>oldLayerName must be a String.</strong><br/>(Id of the old <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> belonged to)</p></li>
+<li><p><strong>newLayerName must be a String.</strong><br/>(Id of the new <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> will belong to)</p></li>
+<li><p><strong>go must be an Object.</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to move)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">moveGameObject</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">oldLayerName</span><span class="p">,</span> <span class="nx">newLayerName</span><span class="p">,</span> <span class="nx">go</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Add the game object to the new layer</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">addGameObject</span><span class="p">(</span><span class="nx">newLayerName</span><span class="p">,</span> <span class="nx">go</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Remove it from the old layer</p></div></div><div class="code"><div class="wrapper">      <span class="nx">removeGameObject</span><span class="p">(</span><span class="nx">oldLayerName</span><span class="p">,</span> <span class="nx">go</span><span class="p">);</span> 
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>removeAllGameObjects</strong></p>
+
+<p>Remove all <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> from the viewport</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeAllGameObjects</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">gos</span> <span class="o">=</span> <span class="p">[];</span>
+
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">gos</span> <span class="o">=</span> <span class="nx">gos</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">removeAll</span><span class="p">());</span>
+      <span class="p">}</span>
+
+      <span class="nx">recycleGameObjects</span><span class="p">(</span><span class="nx">gos</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>destroy</strong></p>
+
+<p>Destroys everything inside the viewport</p></div></div><div class="code"><div class="wrapper">    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">removeAllLayers</span><span class="p">();</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>draw</strong></p>
+
+<p>Draw all the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> in the viewport</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">visible</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
@@ -143,7 +358,7 @@ viewport should draw.</p></div></div></div><div class="segment"><div class="comm
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>show</strong></p>
 
-<p>Make all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layers</a> in the viewport visible</p></div></div><div class="code"><div class="wrapper">    <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Make all the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layers</a> in the viewport visible</p></div></div><div class="code"><div class="wrapper">    <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -151,89 +366,283 @@ viewport should draw.</p></div></div></div><div class="segment"><div class="comm
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>hide</strong></p>
 
-<p>Make all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layers</a> in the viewport invisible</p></div></div><div class="code"><div class="wrapper">    <span class="nx">hide</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Make all the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layers</a> in the viewport invisible</p></div></div><div class="code"><div class="wrapper">    <span class="nx">hide</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">hide</span><span class="p">();</span>
       <span class="p">}</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>isVisible</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>isVisible</strong></p>
 
 <p>Wether the layer is visible or not</p>
 
-<p><strong>Returns a Boolean</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">isVisible</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
-      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">visible</span><span class="p">;</span> 
+<p><strong>Returns a Boolean</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">isVisible</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">visible</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>isGameObjectInside</strong></p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>go must be an Object.</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to test)</li>
+<li><p><strong>go must be an Object.</strong><br/>(<a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to test)</p></li>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</p></li>
 </ul>
 
-<p><strong>Returns a Boolean</strong><br/>(Whether the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> is in the visible area of the viewport or not)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">isGameObjectInside</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">go</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">go</span><span class="p">.</span><span class="nx">renderer</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+<p><strong>Returns a Boolean</strong><br/>(Whether the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> is in the visible area of the viewport or not)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">isGameObjectInside</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">go</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">go</span><span class="p">.</span><span class="nx">renderer</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If there is no renderer, just tell the game object it is not visible in this viewport</p></div></div><div class="code"><div class="wrapper">        <span class="nx">go</span><span class="p">.</span><span class="nx">setViewportVisibility</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If there is a renderer do some setup...</p></div></div><div class="code"><div class="wrapper">        <span class="nx">r</span> <span class="o">=</span> <span class="nx">go</span><span class="p">.</span><span class="nx">renderer</span><span class="p">;</span>
+        <span class="nx">m</span> <span class="o">=</span> <span class="nx">go</span><span class="p">.</span><span class="nx">matrix</span><span class="p">;</span>
 
-      <span class="nx">r</span> <span class="o">=</span> <span class="nx">go</span><span class="p">.</span><span class="nx">renderer</span><span class="p">;</span>
-      <span class="nx">m</span> <span class="o">=</span> <span class="nx">go</span><span class="p">.</span><span class="nx">matrix</span><span class="p">;</span>
+        <span class="nx">rOffsetX</span> <span class="o">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">rendererOffsetX</span><span class="p">();</span>
+        <span class="nx">rOffsetY</span> <span class="o">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">rendererOffsetY</span><span class="p">();</span>
+        <span class="nx">rWidth</span> <span class="o">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">rendererWidth</span><span class="p">();</span>
+        <span class="nx">rHeight</span> <span class="o">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">rendererHeight</span><span class="p">();</span>
 
-      <span class="nx">rOffsetX</span> <span class="o">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">rendererOffsetX</span><span class="p">();</span>
-      <span class="nx">rOffsetY</span> <span class="o">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">rendererOffsetY</span><span class="p">();</span>
-      <span class="nx">rWidth</span> <span class="o">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">rendererWidth</span><span class="p">();</span>
-      <span class="nx">rHeight</span> <span class="o">=</span> <span class="nx">r</span><span class="p">.</span><span class="nx">rendererHeight</span><span class="p">();</span>
-      <span class="nx">x</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span><span class="p">;</span>
-      <span class="nx">y</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span><span class="p">;</span>
-      <span class="nx">w</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
-      <span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Top Left</p></div></div><div class="code"><div class="wrapper">      <span class="nx">p</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">rOffsetX</span><span class="p">,</span> <span class="nx">rOffsetY</span><span class="p">,</span> <span class="nx">p</span><span class="p">);</span>
-      <span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleX</span><span class="p">)</span> <span class="o">+</span> <span class="nx">x</span><span class="p">;</span>
-      <span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleY</span><span class="p">)</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">Culling</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If the viewport is performing culling logic...
+Do a collision test between the viewport and the game object</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Build the viewport collider</p></div></div><div class="code"><div class="wrapper">          <span class="nx">viewportCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+          <span class="nx">viewportCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
 
-      <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span> <span class="o">&amp;&amp;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">w</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span> <span class="o">&amp;&amp;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">h</span><span class="p">)</span> <span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-      </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Top Right</p></div></div><div class="code"><div class="wrapper">      <span class="nx">p</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">rOffsetX</span> <span class="o">+</span> <span class="nx">rWidth</span><span class="p">,</span> <span class="nx">rOffsetY</span><span class="p">,</span> <span class="nx">p</span><span class="p">);</span>
-      <span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleX</span><span class="p">)</span> <span class="o">+</span> <span class="nx">x</span><span class="p">;</span>
-      <span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleY</span><span class="p">)</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span>
+          <span class="nx">viewportCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">Width</span><span class="p">;</span>
+          <span class="nx">viewportCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
 
-      <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span> <span class="o">&amp;&amp;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">w</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span> <span class="o">&amp;&amp;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">h</span><span class="p">)</span> <span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-      </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Bottom Left</p></div></div><div class="code"><div class="wrapper">      <span class="nx">p</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">rOffsetX</span><span class="p">,</span> <span class="nx">rOffsetY</span> <span class="o">+</span> <span class="nx">rHeight</span><span class="p">,</span> <span class="nx">p</span><span class="p">);</span>
-      <span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleX</span><span class="p">)</span> <span class="o">+</span> <span class="nx">x</span><span class="p">;</span>
-      <span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleY</span><span class="p">)</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span>
+          <span class="nx">viewportCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">Width</span><span class="p">;</span>
+          <span class="nx">viewportCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">Height</span><span class="p">;</span>
 
-      <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span> <span class="o">&amp;&amp;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">w</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span> <span class="o">&amp;&amp;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">h</span><span class="p">)</span> <span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-      </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Bottom Right</p></div></div><div class="code"><div class="wrapper">      <span class="nx">p</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">rOffsetX</span> <span class="o">+</span> <span class="nx">rWidth</span><span class="p">,</span> <span class="nx">rOffsetY</span> <span class="o">+</span> <span class="nx">rHeight</span><span class="p">,</span> <span class="nx">p</span><span class="p">);</span>
-      <span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleX</span><span class="p">)</span> <span class="o">+</span> <span class="nx">x</span><span class="p">;</span>
-      <span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleY</span><span class="p">)</span> <span class="o">+</span> <span class="nx">y</span><span class="p">;</span>
+          <span class="nx">viewportCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+          <span class="nx">viewportCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">Height</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Get the world coordinates of the game object corners</p></div></div><div class="code"><div class="wrapper">          <span class="nx">p1</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">rOffsetX</span><span class="p">,</span> <span class="nx">rOffsetY</span><span class="p">,</span> <span class="nx">p1</span><span class="p">);</span>
+          <span class="nx">p2</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">rOffsetX</span> <span class="o">+</span> <span class="nx">rWidth</span><span class="p">,</span> <span class="nx">rOffsetY</span><span class="p">,</span> <span class="nx">p2</span><span class="p">);</span>
+          <span class="nx">p3</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">rOffsetX</span> <span class="o">+</span> <span class="nx">rWidth</span><span class="p">,</span> <span class="nx">rOffsetY</span> <span class="o">+</span> <span class="nx">rHeight</span><span class="p">,</span> <span class="nx">p3</span><span class="p">);</span>
+          <span class="nx">p4</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">rOffsetX</span><span class="p">,</span> <span class="nx">rOffsetY</span> <span class="o">+</span> <span class="nx">rHeight</span><span class="p">,</span> <span class="nx">p4</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Build the game object collider with the world positions of it's corners, adjusting for the scale if the viewport</p></div></div><div class="code"><div class="wrapper">          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">p1</span><span class="p">.</span><span class="nx">x</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">ScaleX</span><span class="p">;</span>
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">p1</span><span class="p">.</span><span class="nx">y</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">ScaleY</span><span class="p">;</span>
 
-      <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span> <span class="o">&amp;&amp;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">w</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span> <span class="o">&amp;&amp;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">&lt;</span> <span class="nx">h</span><span class="p">)</span> <span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Reaching this point means the object is outside the viewport's sight</p></div></div><div class="code"><div class="wrapper">      <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>showLayer</strong></p>
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">x</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">ScaleX</span><span class="p">;</span>
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">y</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">ScaleY</span><span class="p">;</span>
 
-<p>Makes the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> visible</p>
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">p3</span><span class="p">.</span><span class="nx">x</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">ScaleX</span><span class="p">;</span>
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">p3</span><span class="p">.</span><span class="nx">y</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">ScaleY</span><span class="p">;</span>
+
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">p4</span><span class="p">.</span><span class="nx">x</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">ScaleX</span><span class="p">;</span>
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">p4</span><span class="p">.</span><span class="nx">y</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">ScaleY</span><span class="p">;</span>
+
+          <span class="nx">viewportCollider</span><span class="p">.</span><span class="nx">recalc</span><span class="p">();</span>
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">recalc</span><span class="p">();</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Test if the viewport is colliding with the game object, and tell the game object if it is visible in this viewport or not</p></div></div><div class="code"><div class="wrapper">          <span class="nx">go</span><span class="p">.</span><span class="nx">setViewportVisibility</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testPolygonPolygon</span><span class="p">(</span><span class="nx">viewportCollider</span><span class="p">,</span> <span class="nx">gameObjectCollider</span><span class="p">));</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If the viewport is not performing culling logic...
+Do a collision test between the canvas and the game object</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Build the collider for the canvas</p></div></div><div class="code"><div class="wrapper">          <span class="nx">canvasCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="nx">canvasCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+          <span class="nx">canvasCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+          <span class="nx">canvasCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+          <span class="nx">canvasCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+          <span class="nx">canvasCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+
+          <span class="nx">canvasCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+          <span class="nx">canvasCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Get the world coordinates of the game object corners</p></div></div><div class="code"><div class="wrapper">          <span class="nx">p1</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">rOffsetX</span><span class="p">,</span> <span class="nx">rOffsetY</span><span class="p">,</span> <span class="nx">p1</span><span class="p">);</span>
+          <span class="nx">p2</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">rOffsetX</span> <span class="o">+</span> <span class="nx">rWidth</span><span class="p">,</span> <span class="nx">rOffsetY</span><span class="p">,</span> <span class="nx">p2</span><span class="p">);</span>
+          <span class="nx">p3</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">rOffsetX</span> <span class="o">+</span> <span class="nx">rWidth</span><span class="p">,</span> <span class="nx">rOffsetY</span> <span class="o">+</span> <span class="nx">rHeight</span><span class="p">,</span> <span class="nx">p3</span><span class="p">);</span>
+          <span class="nx">p4</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">rOffsetX</span><span class="p">,</span> <span class="nx">rOffsetY</span> <span class="o">+</span> <span class="nx">rHeight</span><span class="p">,</span> <span class="nx">p4</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Viewports matrix</p></div></div><div class="code"><div class="wrapper">          <span class="nx">vm</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getMatrix</span><span class="p">();</span>
+      </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Get the canvas coordinates of the game object's corners to build the game object collider that will work in canvas splace</p></div></div><div class="code"><div class="wrapper">          <span class="nx">p1</span> <span class="o">=</span> <span class="nx">vm</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">p1</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">p1</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="nx">p1</span><span class="p">);</span>
+          <span class="nx">p2</span> <span class="o">=</span> <span class="nx">vm</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">p2</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="nx">p2</span><span class="p">);</span>
+          <span class="nx">p3</span> <span class="o">=</span> <span class="nx">vm</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">p3</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">p3</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="nx">p3</span><span class="p">);</span>
+          <span class="nx">p4</span> <span class="o">=</span> <span class="nx">vm</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">p4</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">p4</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="nx">p4</span><span class="p">);</span>
+
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">p1</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">p1</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">p2</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">p3</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">p3</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">p4</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">points</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">p4</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+
+          <span class="nx">canvasCollider</span><span class="p">.</span><span class="nx">recalc</span><span class="p">();</span>
+          <span class="nx">gameObjectCollider</span><span class="p">.</span><span class="nx">recalc</span><span class="p">();</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Test if the canvas is colliding with the game object, and tell the game object if it is visible in the canvas or not</p></div></div><div class="code"><div class="wrapper">          <span class="nx">go</span><span class="p">.</span><span class="nx">setViewportVisibility</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testPolygonPolygon</span><span class="p">(</span><span class="nx">canvasCollider</span><span class="p">,</span> <span class="nx">gameObjectCollider</span><span class="p">));</span>
+        <span class="p">}</span> 
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="nx">go</span><span class="p">.</span><span class="nx">getViewportVisibility</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>isPointInside</strong></p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of an existing <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a>)</li>
+<li><p><strong>x must be a Number.</strong><br/>(X coordinate)</p></li>
+<li><p><strong>y must be a Number.</strong><br/>(Y coordinate)</p></li>
+</ul>
+
+<p><strong>Returns a Boolean</strong><br/>(Whether the coordinates given are inside the viewport or not)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">isPointInside</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">x</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">OffsetX</span> <span class="o">&amp;&amp;</span> <span class="nx">x</span> <span class="o">&lt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">OffsetX</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">Width</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">y</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">OffsetY</span> <span class="o">&amp;&amp;</span> <span class="nx">y</span> <span class="o">&lt;=</span> <span class="k">this</span><span class="p">.</span><span class="nx">OffsetY</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">Height</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>  
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">},</span>    </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>layerExists</strong></p>
+
+<p>Check whether the specified <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> exists</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>name must be a Boolean.</strong></li>
+</ul>
+
+<p><strong>Returns a Boolean</strong><br/>(Whether the specified layer exists or not)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">layerExists</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">findLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>showLayer</strong></p>
+
+<p>Makes the specified <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> visible</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>name must be a String.</strong><br/>(Id of an existing <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">showLayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">findLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>hideLayer</strong></p>
 
-<p>Makes the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> invisible</p>
+<p>Makes the specified <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> invisible</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of an existing <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a>)</li>
+<li><strong>name must be a String.</strong><br/>(Id of an existing <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">hideLayer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">findLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">).</span><span class="nx">hide</span><span class="p">();</span>
-    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getMatrix</strong></p>
 
-  <span class="kd">var</span> <span class="nx">findLayer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+<p>Get the concatenated <a href="http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a> for this viewport</p>
+
+<p><strong>Returns an Object</strong><br/>(The concatenated <a href="http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getMatrix</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">identity</span><span class="p">();</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">prependTransform</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">OffsetX</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">OffsetY</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">ScaleX</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">ScaleY</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>transformContext</strong></p>
+
+<p>Applies the transformations this viewport defines to the current context</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">transformContext</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Translate to adjust for the current <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a></p></div></div><div class="code"><div class="wrapper">      <span class="nx">context</span><span class="p">.</span><span class="nx">translate</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">OffsetX</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">OffsetY</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Scale to adjust for the current <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a></p></div></div><div class="code"><div class="wrapper">      <span class="nx">context</span><span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ScaleX</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">ScaleY</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>canvasToLocalCoordinates</strong></p>
+
+<p>Convert the given canvas coordinates to viewport coordinates</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>x must be a Number.</strong><br/>(X coordinate in canvas space)</p></li>
+<li><p><strong>y must be a Number.</strong><br/>(Y coordinate in canvas space)</p></li>
+<li><p><strong>r is optional, must be an Object, and has a default value of null.</strong><br/>(Object to put the result in, if none is passed a new Object is created)</p></li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(An object with x and y properties)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">canvasToLocalCoordinates</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getMatrix</span><span class="p">();</span>
+      <span class="nx">m</span><span class="p">.</span><span class="nx">invert</span><span class="p">();</span>
+      <span class="nx">m</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
+
+      <span class="nx">r</span> <span class="o">=</span> <span class="nx">r</span> <span class="o">||</span> <span class="p">{};</span>
+
+      <span class="nx">r</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">tx</span><span class="p">;</span>
+      <span class="nx">r</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">ty</span><span class="p">;</span>
+      
+      <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Viewport</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;ADD&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;add&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Viewport</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REMOVE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;remove&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Viewport</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CHANGE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;change&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Viewport</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REMOVE_ALL&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;remove_all&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+
+  <span class="kd">var</span> <span class="nx">defineNumberGetterAndSetter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">prop</span> <span class="o">=</span> <span class="nx">name</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^./</span><span class="p">,</span> <span class="nx">name</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">());</span> 
+
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Viewport</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="p">{</span> 
+      <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">Number</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">prop</span><span class="p">]);</span> <span class="p">},</span>
+      <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">[</span><span class="nx">prop</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span> <span class="p">}</span> 
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">defineBooleanGetterAndSetter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">prop</span> <span class="o">=</span> <span class="nx">name</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^./</span><span class="p">,</span> <span class="nx">name</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">toLowerCase</span><span class="p">());</span>
+
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">Viewport</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="p">{</span> 
+      <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">[</span><span class="nx">prop</span><span class="p">];</span> <span class="p">},</span>
+      <span class="nx">set</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>  
+        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">[</span><span class="nx">prop</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">[</span><span class="nx">prop</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span> 
+        <span class="p">}</span>
+      <span class="p">}</span> 
+    <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">defineBooleanGetterAndSetter</span><span class="p">(</span><span class="s1">&#39;WorldFit&#39;</span><span class="p">);</span>
+  <span class="nx">defineBooleanGetterAndSetter</span><span class="p">(</span><span class="s1">&#39;Culling&#39;</span><span class="p">);</span>
+  <span class="nx">defineBooleanGetterAndSetter</span><span class="p">(</span><span class="s1">&#39;Clipping&#39;</span><span class="p">);</span>
+  <span class="nx">defineBooleanGetterAndSetter</span><span class="p">(</span><span class="s1">&#39;MouseEnabled&#39;</span><span class="p">);</span>
+  <span class="nx">defineBooleanGetterAndSetter</span><span class="p">(</span><span class="s1">&#39;MouseBounded&#39;</span><span class="p">);</span>
+
+  <span class="nx">defineNumberGetterAndSetter</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">);</span>
+  <span class="nx">defineNumberGetterAndSetter</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">);</span>
+  <span class="nx">defineNumberGetterAndSetter</span><span class="p">(</span><span class="s1">&#39;Width&#39;</span><span class="p">);</span>
+  <span class="nx">defineNumberGetterAndSetter</span><span class="p">(</span><span class="s1">&#39;Height&#39;</span><span class="p">);</span>
+  <span class="nx">defineNumberGetterAndSetter</span><span class="p">(</span><span class="s1">&#39;OffsetX&#39;</span><span class="p">);</span>
+  <span class="nx">defineNumberGetterAndSetter</span><span class="p">(</span><span class="s1">&#39;OffsetY&#39;</span><span class="p">);</span>
+  <span class="nx">defineNumberGetterAndSetter</span><span class="p">(</span><span class="s1">&#39;ScaleX&#39;</span><span class="p">);</span>
+  <span class="nx">defineNumberGetterAndSetter</span><span class="p">(</span><span class="s1">&#39;ScaleY&#39;</span><span class="p">);</span>
+
+  <span class="kd">var</span> <span class="nx">createLayer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">layer</span> <span class="o">=</span> <span class="nx">findLayer</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">layer</span><span class="p">)</span> 
+      <span class="k">return</span> <span class="p">{</span> <span class="nx">layer</span><span class="o">:</span><span class="nx">layer</span><span class="p">,</span> <span class="nx">newLayer</span><span class="o">:</span><span class="kc">false</span> <span class="p">};</span> 
+      
+    <span class="k">return</span> <span class="p">{</span> <span class="nx">layer</span><span class="o">:</span><span class="k">new</span> <span class="nx">Layer</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span> <span class="nx">newLayer</span><span class="o">:</span><span class="kc">true</span> <span class="p">};</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">findLayer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">skipError</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">name</span> <span class="o">==</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
       <span class="p">}</span>
     <span class="p">}</span>
 
-    <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Viewport&#39;</span><span class="p">,</span> <span class="s1">&#39;Layer with id:&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; does not exist.&#39;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">skipError</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Viewport&#39;</span><span class="p">,</span> <span class="s1">&#39;Layer with id:&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; does not exist.&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">findLayerIndex</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">skipError</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">layers</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">name</span> <span class="o">==</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">i</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">skipError</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Viewport&#39;</span><span class="p">,</span> <span class="s1">&#39;Layer with id:&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39; does not exist.&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">recycleGameObjects</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">gos</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">gos</span><span class="p">.</span><span class="nx">typeId</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Single object sent</p></div></div><div class="code"><div class="wrapper">      <span class="nx">recycle</span><span class="p">(</span><span class="nx">gos</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Collection to test for recycling</p></div></div><div class="code"><div class="wrapper">      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">gos</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">recycle</span><span class="p">(</span><span class="nx">gos</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">recycle</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">go</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If a game object is not rendered anywhere send it back to it's pool</p></div></div><div class="code"><div class="wrapper">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">go</span><span class="p">.</span><span class="nx">hasViewport</span><span class="p">())</span> <span class="p">{</span>
+      <span class="nx">Reclaimer</span><span class="p">.</span><span class="nx">claim</span><span class="p">(</span><span class="nx">go</span><span class="p">);</span>
+    <span class="p">}</span>
   <span class="p">}</span>
 
   <span class="k">return</span> <span class="nx">Viewport</span><span class="p">;</span>

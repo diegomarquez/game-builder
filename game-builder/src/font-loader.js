@@ -2,10 +2,10 @@
  * # font-loader.js
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  *
- * * Inherits from:
+ * Inherits from:
  *
  * Depends of: 
- * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
+ * [error-printer](http://localhost:5000/game-builder-docs/src/debug/error-printer.html)
  * 
  * A [requireJS](http://requirejs.org/) module.
  * 
@@ -52,10 +52,11 @@ define(function(require) {
     /**
      * <p style='color:#AD071D'><strong>start</strong></p>
      *
-     * @param  {Object} config A configuration object.
      * @param {Funtion} onLoad This is called when all fonts have been downloaded.
      */
-    FontLoader.prototype.start = function(config, onLoad) {
+    FontLoader.prototype.start = function(onLoad) {
+        var config = require('font-data').get();
+
     	if (!config.loadFonts) {
             onLoad(); 
             return;

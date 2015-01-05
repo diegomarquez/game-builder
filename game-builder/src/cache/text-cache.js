@@ -4,12 +4,13 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  * 
  * Inherits from: 
+ * [cache](http://localhost:5000/game-builder-docs/src/cache/cache.html)
  * 
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
- * This module is very similar to [image-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html), but instead of caching 
+ * This module is very similar to [image-cache](http://localhost:5000/game-builder-docs/src/cache/image-cache.html), but instead of caching 
  * [Images](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) it caches text drawn to a 
  * [Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas). Drawing text is quite taxing on the CPU, so drawing it once and then
  * keeping the rastered image can be a pretty good time saver.

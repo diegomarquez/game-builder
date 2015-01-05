@@ -5,17 +5,19 @@
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
 <p>Inherits from:
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html">class</a></p>
+<a href="http://localhost:5000/game-builder-docs/src/class.html">class</a></p>
 
 <p>Depends of: </p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
 <p>This module serves as an abstraction for the rectangle that defines the 2D world of the game. Useful to
-have those values available to everyone, instead of hardcoded some where.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="game-world">Game World</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;class&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Class</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">World</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>init</strong></p>
+have those values available to everyone, instead of hardcoded some where.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="game-world">Game World</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;delegate&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">World</span> <span class="o">=</span> <span class="nx">Delegate</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>init</strong></p>
 
-<p>Constructor</p></div></div><div class="code"><div class="wrapper">    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>create</strong></p>
+<p>Constructor</p></div></div><div class="code"><div class="wrapper">    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>create</strong></p>
 
 <p>Parameters:</p>
 
@@ -35,44 +37,105 @@ have those values available to everyone, instead of hardcoded some where.</p></d
       <span class="p">};</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">setWidth</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="kd">var</span> <span class="nx">prev</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
         <span class="nx">width</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span> 
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">prev</span> <span class="o">!=</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">v</span> <span class="o">&gt;</span> <span class="nx">prev</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CHANGE_WIDTH_INCREASE</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>  
+          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CHANGE_WIDTH_DECREASE</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+          <span class="p">}</span>
+
+          <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CHANGE_WIDTH</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+
+          <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CHANGE</span><span class="p">);</span>
+        <span class="p">}</span>
       <span class="p">};</span>
       
       <span class="k">this</span><span class="p">.</span><span class="nx">setHeight</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="kd">var</span> <span class="nx">prev</span> <span class="o">=</span> <span class="nx">height</span><span class="p">;</span>
         <span class="nx">height</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span> 
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">prev</span> <span class="o">!=</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">v</span> <span class="o">&gt;</span> <span class="nx">prev</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CHANGE_HEIGHT_INCREASE</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span> 
+          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CHANGE_HEIGHT_DECREASE</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+          <span class="p">}</span>
+
+          <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CHANGE_HEIGHT</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+
+          <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CHANGE</span><span class="p">);</span>
+        <span class="p">}</span>
       <span class="p">};</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>scaleViewportToFit</strong></p>
 
-<p>Make the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> scale so it can show all the world</p>
+<p>Make the specified <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> scale so it can show all the world</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>viewport must be an Object.</strong><br/>(The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> to scale)</li>
+<li><strong>viewport must be an Object.</strong><br/>(The <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> to scale)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">scaleViewportToFit</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">viewport</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleY</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">ScaleX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">ScaleY</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 
-      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleX</span> <span class="o">/=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getWidth</span><span class="p">()</span> <span class="o">/</span> <span class="nx">viewport</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
-      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleY</span> <span class="o">/=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getHeight</span><span class="p">()</span> <span class="o">/</span> <span class="nx">viewport</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>scaleViewportProportionaly</strong></p>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">ScaleX</span> <span class="o">/=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getWidth</span><span class="p">()</span> <span class="o">/</span> <span class="nx">viewport</span><span class="p">.</span><span class="nx">Width</span><span class="p">;</span>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">ScaleY</span> <span class="o">/=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getHeight</span><span class="p">()</span> <span class="o">/</span> <span class="nx">viewport</span><span class="p">.</span><span class="nx">Height</span><span class="p">;</span>
 
-<p>Make the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> scale by the specified factor</p>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">WorldFit</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">SCALE_TO_FIT</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">SCALE</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resetViewportScale</strong></p>
+
+<p>Reset the scale of the specified <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a></p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>viewport must be an Object.</strong><br/>(The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> to scale)</p></li>
+<li><strong>viewport must be an Object.</strong><br/>(The <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> to scale)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">resetViewportScale</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">viewport</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">ScaleX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">ScaleY</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">WorldFit</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">RESET_SCALE</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">SCALE</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>scaleViewportProportionaly</strong></p>
+
+<p>Make the specified <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> scale by the specified factor</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>viewport must be an Object.</strong><br/>(The <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> to scale)</p></li>
 <li><p><strong>factor must be a Number.</strong><br/>(Amount to scale by)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">scaleViewportProportionaly</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">viewport</span><span class="p">,</span> <span class="nx">factor</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleY</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">ScaleX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">ScaleY</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 
-      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleX</span> <span class="o">*=</span> <span class="nx">factor</span><span class="p">;</span>
-      <span class="nx">viewport</span><span class="p">.</span><span class="nx">scaleY</span> <span class="o">*=</span> <span class="nx">factor</span><span class="p">;</span>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">ScaleX</span> <span class="o">*=</span> <span class="nx">factor</span><span class="p">;</span>
+      <span class="nx">viewport</span><span class="p">.</span><span class="nx">ScaleY</span> <span class="o">*=</span> <span class="nx">factor</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">SCALE_PROPORTIONALY</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">SCALE</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>
     <span class="p">}</span>
-
   <span class="p">});</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">World</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CHANGE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;change&#39;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">World</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CHANGE_WIDTH&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;change_width&#39;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">World</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CHANGE_HEIGHT&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;change_height&#39;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">World</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CHANGE_WIDTH_INCREASE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;change_width_increase&#39;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">World</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CHANGE_WIDTH_DECREASE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;change_width_decrease&#39;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">World</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CHANGE_HEIGHT_INCREASE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;change_height_increase&#39;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">World</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CHANGE_HEIGHT_DECREASE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;change_height_decrease&#39;</span> <span class="p">}</span> <span class="p">});</span>  
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">World</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;SCALE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;scale_viewport&#39;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">World</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;SCALE_TO_FIT&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;scale_to_fit&#39;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">World</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;RESET_SCALE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;scale_to_fit&#39;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">World</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;SCALE_PROPORTIONALY&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;scale_proportionaly&#39;</span> <span class="p">}</span> <span class="p">});</span>
 
   <span class="k">return</span> <span class="k">new</span> <span class="nx">World</span><span class="p">();</span>
 <span class="p">});</span></div></div></div></div></body></html>

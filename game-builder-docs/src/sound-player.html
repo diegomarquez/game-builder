@@ -5,11 +5,11 @@
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
 <p>Inherits from: 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
+<a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Depends of: 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer-factory.html">timer-factory</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+<a href="http://localhost:5000/game-builder-docs/src/timers/timer-factory.html">timer-factory</a>
+<a href="http://localhost:5000/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
@@ -21,30 +21,33 @@ that will let you do all the actions described earlier in all the sounds in one 
 this will dictate the amount of sounds that can be played simultaneously. Of course more sound channels means
 a bigger memory foot print.</p>
 
-<p>After creating the channels, it is a matter of adding some sounds files, using the <strong>load</strong> method. After doing that. After
+<p>After creating the channels, it is a matter of adding some sounds files, using the <strong>load</strong> method. After
 doing that the <strong>playSingle</strong> and <strong>playLoop</strong> methods will play sound given an id, provided the sound file has already been loaded,
 otherwise nothing will happen.</p>
 
-<p>The rest of the methods do what they say on the tin, it should be pretty easy for you, a master coder, 
-to figure out how to use them.</p>
+<p>The rest of the methods do what they say on the tin</p>
 
-<h3 id="thesoundplayerobjectextendsdelegatehttpdiegomarquezgithubiogamebuildergamebuilderdocssrcdelegatehtmlsoitprovidesafeweventstohookinto">The Sound Player object extends <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</h3>
+<p>The Sound Player object extends <a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</p>
 
-<h3 id="on_all_load_complete"><strong>on<em>all</em>load_complete</strong></h3>
+<h3 id="on_load_all_complete"><strong>ON<em>LOAD</em>ALL_COMPLETE</strong></h3>
 
 <p>When loading of resources through the <strong>loadAll</strong> method is complete. </p>
 
 <pre><code class=" javascript  ">soundPlayer.on(soundPlayer.ON_LOAD_ALL_COMPLETE, function() {});
 </code></pre>
 
-<h3 id="load_complete"><strong>load_complete</strong></h3>
+<p></br></p>
+
+<h3 id="on_load_complete"><strong>ON<em>LOAD</em>COMPLETE</strong></h3>
 
 <p>When the loading of a single resource is complete. </p>
 
 <pre><code class=" javascript  ">soundPlayer.on(soundPlayer.ON_LOAD_COMPLETE, function(soundId) {});
 </code></pre>
 
-<h3 id="channels_assign"><strong>channels_assign</strong></h3>
+<p></br></p>
+
+<h3 id="channels_assign"><strong>CHANNELS_ASSIGN</strong></h3>
 
 <p>When channels are assigned to a specific sound </p>
 
@@ -56,54 +59,70 @@ to figure out how to use them.</p>
 });
 </code></pre>
 
-<h3 id="channels_revoke"><strong>channels_revoke</strong></h3>
+<p></br></p>
+
+<h3 id="channels_revoke"><strong>CHANNELS_REVOKE</strong></h3>
 
 <p>When dedicated channels are removed from a sound</p>
 
 <pre><code class=" javascript  ">soundPlayer.on(soundPlayer.CHANNELS_REVOKE, function(soundId) {});
 </code></pre>
 
-<h3 id="single_complete"><strong>single_complete</strong></h3>
+<p></br></p>
+
+<h3 id="single_complete"><strong>SINGLE_COMPLETE</strong></h3>
 
 <p>When a <strong>playSingle</strong> call finished playing it's sound</p>
 
 <pre><code class=" javascript  ">soundPlayer.on(soundPlayer.SINGLE_COMPLETE, function(soundId) {});
 </code></pre>
 
-<h3 id="play_single"><strong>play_single</strong></h3>
+<p></br></p>
+
+<h3 id="play_single"><strong>PLAY_SINGLE</strong></h3>
 
 <p>When a <strong>playSingle</strong> call starts playback</p>
 
 <pre><code class=" javascript  ">soundPlayer.on(soundPlayer.PLAY_SINGLE, function(soundId) {});
 </code></pre>
 
-<h3 id="play_loop"><strong>play_loop</strong></h3>
+<p></br></p>
+
+<h3 id="play_loop"><strong>PLAY_LOOP</strong></h3>
 
 <p>When a <strong>playLoop</strong> call starts playback</p>
 
 <pre><code class=" javascript  ">soundPlayer.on(soundPlayer.PLAY_LOOP, function(soundId) {});
 </code></pre>
 
-<h3 id="pause"><strong>pause</strong></h3>
+<p></br></p>
+
+<h3 id="pause"><strong>PAUSE</strong></h3>
 
 <p>When a sound is paused </p>
 
 <pre><code class=" javascript  ">soundPlayer.on(soundPlayer.PAUSE, function(soundId) {});
 </code></pre>
 
-<h3 id="resume"><strong>resume</strong></h3>
+<p></br></p>
+
+<h3 id="resume"><strong>RESUME</strong></h3>
 
 <p>When a sound is resumed</p>
 
 <pre><code class=" javascript  ">soundPlayer.on(soundPlayer.RESUME, function(soundId) {});
 </code></pre>
 
-<h3 id="stop"><strong>stop</strong></h3>
+<p></br></p>
+
+<h3 id="stop"><strong>STOP</strong></h3>
 
 <p>When a sound is stopped </p>
 
 <pre><code class=" javascript  ">soundPlayer.on(soundPlayer.STOP, function(soundId) {});
-</code></pre></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="play-it-loud">Play it loud!</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;delegate&#39;</span><span class="p">,</span> <span class="s1">&#39;timer-factory&#39;</span><span class="p">,</span> <span class="s1">&#39;error-printer&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">,</span> <span class="nx">TimerFactory</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
+</code></pre>
+
+<p></br></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="play-it-loud">Play it loud!</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;delegate&#39;</span><span class="p">,</span> <span class="s1">&#39;timer-factory&#39;</span><span class="p">,</span> <span class="s1">&#39;error-printer&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">,</span> <span class="nx">TimerFactory</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">SoundPlayer</span> <span class="o">=</span> <span class="nx">Delegate</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>init</strong></p>
 
 <p>Constructor</p></div></div><div class="code"><div class="wrapper">    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -387,7 +406,9 @@ when all the loading is complete a callback is executed.</p>
 
 <p><strong>Returns an Object</strong><br/>(A control object with methods to determine which sounds should be paused)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">setPropertyToAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">property</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span> <span class="nx">bulkControl</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">setProperty</span><span class="p">,</span> <span class="nx">property</span><span class="p">,</span> <span class="nx">value</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="getters-for-all-the-types-of-events-the-sound-player-can-hook-into">Getters for all the types of events the sound player can hook into</h3></div></div></div><div class="segment"><div class="code"><div class="wrapper">  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;ON_LOAD_ALL_COMPLETE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;load_all_complete&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;ON_LOAD_ALL_COMPLETE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;load_all_complete&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;ON_LOAD_COMPLETE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;load_complete&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CHANNELS_ASSIGN&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;channel_assign&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span> 
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CHANNELS_REVOKE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;channel_revoke&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span> 
@@ -396,7 +417,9 @@ when all the loading is complete a callback is executed.</p>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;PLAY_LOOP&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;play_loop&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;PAUSE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;pause&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;RESUME&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;resume&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;STOP&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;stop&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">isLoading</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">SoundPlayer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;STOP&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;stop&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+
+  <span class="kd">var</span> <span class="nx">isLoading</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 
   <span class="kd">var</span> <span class="nx">getPooledChannel</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fromList</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">fromList</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>

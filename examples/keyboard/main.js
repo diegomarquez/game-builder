@@ -6,7 +6,7 @@
  * [gb](@@gb@@),
  * [game](@@game@@),
  * [basic-display-setup](@@basic-display-setup@@),
- * [input-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/input-bundle.html),
+ * [input-bundle](http://localhost:5000/examples-docs/common_src/bundles/input-bundle.html),
  * [keyboard](@@keyboard@@),
  * [util](@@util@@)
  */

@@ -4,18 +4,19 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from:
- * [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
+ * [extension](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
  * Depends of: 
- * [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
- * [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
- * [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html)
- * [json-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/json-cache.html)
- * [image-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html)
- * [path-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/path-cache.html)
- * [text-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/text-cache.html)
- * [sound-player](http://diegomarquez.github.io/game-builder/game-builder-docs/src/sound-player.html)
- * [timer-factory](http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer-factory.html)
+ * [gb](http://localhost:5000/game-builder-docs/src/gb.html)
+ * [util](http://localhost:5000/game-builder-docs/src/util.html)
+ * [game-object-pool](http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html)
+ * [component-pool](http://localhost:5000/game-builder-docs/src/pools/component-pool.html)
+ * [json-cache](http://localhost:5000/game-builder-docs/src/cache/json-cache.html)
+ * [image-cache](http://localhost:5000/game-builder-docs/src/cache/image-cache.html)
+ * [path-cache](http://localhost:5000/game-builder-docs/src/cache/path-cache.html)
+ * [text-cache](http://localhost:5000/game-builder-docs/src/cache/text-cache.html)
+ * [sound-player](http://localhost:5000/game-builder-docs/src/sound-player.html)
+ * [timer-factory](http://localhost:5000/game-builder-docs/src/timers/timer-factory.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -33,6 +34,7 @@
  */
 define(function(require) {
 	var gb = require('gb');
+	var util = require('util');
 
 	var gameObjectPool = require('game-object-pool');
 	var componentPool = require('component-pool');
@@ -44,7 +46,6 @@ define(function(require) {
 	var timerFactory = require('timer-factory');
 
 	var displayElement;
-
 	var displays = [];
 
 	var getDisplay = function(object, listener, trigger, events) {
@@ -59,7 +60,8 @@ define(function(require) {
 	var createDisplay = function(id, container) {
 		var display = document.createElement('div');
 		display.setAttribute('id', id); 
-		display.style.fontSize = '8px';
+		display.style.fontSize = '10px';
+		display.style.fontWeight = 'bold';
 		display.style.color = '#fff';
 		display.style.margin = '1px';
 		display.style.padding = '1px';
@@ -68,8 +70,8 @@ define(function(require) {
 	};
 
 	var positionInfoButton = function (element) {
-		var x = "";
-		var y = gb.canvas.clientTop + gb.canvas.clientHeight - element.clientHeight;
+		var x = 5;
+		var y = gb.canvas.clientTop + gb.canvas.clientHeight - element.clientHeight - 5;
 
 		displayElement.style.top = y + 'px';
 		displayElement.style.left = x + 'px';
@@ -115,8 +117,8 @@ define(function(require) {
 		display.innerText = text + numbers.join('/');
 	};
 
-	displays.push(getDisplay(gameObjectPool, updatePool('Game Object Pool', gameObjectPool, 'goPoolDisplay'), 'init', ['INIT', 'GET', 'RETURN', 'CLEAR']));
-	displays.push(getDisplay(componentPool, updatePool('Component Pool', componentPool, 'coPoolDisplay'), 'init', ['INIT', 'GET', 'RETURN', 'CLEAR']));
+	displays.push(getDisplay(gameObjectPool, updatePool('Game Object Pool', gameObjectPool, 'goPoolDisplay'), 'init', ['INIT', 'GET', 'RETURN', 'CLEAR', 'CLEAR_OBJECTS', 'CLEAR_CONFIGURATION', 'CLEAR_CONFIGURATIONS']));
+	displays.push(getDisplay(componentPool, updatePool('Component Pool', componentPool, 'coPoolDisplay'), 'init', ['INIT', 'GET', 'RETURN', 'CLEAR', 'CLEAR_OBJECTS', 'CLEAR_CONFIGURATION', 'CLEAR_CONFIGURATIONS']));
 	displays.push(getDisplay(jsonCache, updateCache('Json Cache', jsonCache, 'jsonCacheDisplay'), 'cache', ['CACHE', 'CLEAR', 'CLEAR_ALL']));
 	displays.push(getDisplay(imageCache, updateCache('Image Cache', imageCache, 'imageCacheDisplay'), 'cache', ['CACHE', 'CLEAR', 'CLEAR_ALL']));
 	displays.push(getDisplay(pathCache, updateCache('Path Cache', pathCache, 'pathCacheDisplay'), 'cache', ['CACHE', 'CLEAR', 'CLEAR_ALL']));
@@ -131,13 +133,23 @@ define(function(require) {
 			return gb.game.CREATE;
 		},
 
-		execute: function() {
+		execute: function(args) {
+			var hide = false;
+
+			if (args) {
+				hide = args.hide || false;
+			}
+
 			displayElement = document.createElement('div');
+			displayElement.id = 'activity-display';
 
 			var infoContainer = document.createElement('div');
+			infoContainer.id = 'activity-display-info-container';
 
 			var infoButton = document.createElement('button');
+			infoButton.id = 'activity-display-button';
 			infoButton.innerText = 'Show Info';
+			infoButton.style.visibility = hide ? 'hidden' : 'visible';
 
 			infoButton.addEventListener('click', function() {
 				if (this.innerText == 'Show Info') {
@@ -164,10 +176,10 @@ define(function(require) {
 			displayElement.appendChild(infoContainer);
 			
 			infoContainer.style.display = 'none';
-			displayElement.style.position = 'fixed';
+			displayElement.style.position = 'absolute';
 
 			gb.game.mainContainer.appendChild(displayElement);
-		
+
 			positionInfoButton(displayElement);
 
 			for(var i = 0; i < displays.length; i++) {
@@ -176,11 +188,36 @@ define(function(require) {
 				var events = p.events;
 
 				for(var j = 0; j < events.length; j++) {
-					p.object.single(p.object[events[j]], this, p.listener);
+					p.object.single(p.object[events[j]], this, p.listener, 'activity-display');
 				}
 
 				p.object.execute(p.trigger);
 			}
+		},
+
+		destroy: function() {
+			gb.game.mainContainer.removeChild(displayElement);
+
+			gameObjectPool.levelCleanUp('activity-display');
+			componentPool.levelCleanUp('activity-display');
+			jsonCache.levelCleanUp('activity-display');
+			imageCache.levelCleanUp('activity-display');
+			pathCache.levelCleanUp('activity-display');
+			textCache.levelCleanUp('activity-display');
+			soundPlayer.levelCleanUp('activity-display');
+			timerFactory.levelCleanUp('activity-display');
+		},
+
+		toggle: function() {
+			var infoContainer = document.getElementById('activity-display-info-container');
+
+			if (infoContainer.style.display == 'block') {
+				infoContainer.style.display = 'none';
+			} else {
+				infoContainer.style.display = 'block';
+			}
+
+			positionInfoButton(displayElement);
 		}
 	});
 

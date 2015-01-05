@@ -30,6 +30,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       "depth": 1,
       "children": [
         {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/asset-map.js",
+            "projectPath": "work/game-builder/src/asset-map.js",
+            "targetPath": "src/asset-map",
+            "pageTitle": "src/asset-map",
+            "title": "asset-map"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
           "type": "folder",
           "data": {
             "path": "src/cache",
@@ -70,18 +90,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "title": "Cache Interface",
                         "slug": "cache-interface"
                       },
-                      "depth": 2,
-                      "children": [
-                        {
-                          "type": "heading",
-                          "data": {
-                            "level": 3,
-                            "title": "Getters for all the types of events a cache can hook into",
-                            "slug": "getters-for-all-the-types-of-events-a-cache-can-hook-into"
-                          },
-                          "depth": 3
-                        }
-                      ]
+                      "depth": 2
                     }
                   ]
                 },
@@ -96,18 +105,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "title": "Cache Interface",
                     "slug": "cache-interface"
                   },
-                  "depth": 2,
-                  "children": [
-                    {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "Getters for all the types of events a cache can hook into",
-                        "slug": "getters-for-all-the-types-of-events-a-cache-can-hook-into"
-                      },
-                      "depth": 3
-                    }
-                  ]
+                  "depth": 2
                 }
               ]
             }, {
@@ -661,18 +659,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "title": "Extend logic",
                         "slug": "extend-logic"
                       },
-                      "depth": 2,
-                      "children": [
-                        {
-                          "type": "heading",
-                          "data": {
-                            "level": 3,
-                            "title": "Getters for all the types of events a Component can hook into",
-                            "slug": "getters-for-all-the-types-of-events-a-component-can-hook-into"
-                          },
-                          "depth": 3
-                        }
-                      ]
+                      "depth": 2
                     }
                   ]
                 },
@@ -687,18 +674,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "title": "Extend logic",
                     "slug": "extend-logic"
                   },
-                  "depth": 2,
-                  "children": [
-                    {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "Getters for all the types of events a Component can hook into",
-                        "slug": "getters-for-all-the-types-of-events-a-component-can-hook-into"
-                      },
-                      "depth": 3
-                    }
-                  ]
+                  "depth": 2
                 }
               ]
             }, {
@@ -1216,6 +1192,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/font-data.js",
+            "projectPath": "work/game-builder/src/font-data.js",
+            "targetPath": "src/font-data",
+            "pageTitle": "src/font-data",
+            "title": "font-data"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
             "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/font-loader.js",
             "projectPath": "work/game-builder/src/font-loader.js",
             "targetPath": "src/font-loader",
@@ -1397,81 +1393,12 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "slug": "extensionjs",
                         "isFileHeader": true
                       },
-                      "depth": 1,
-                      "children": [
-                        {
-                          "type": "heading",
-                          "data": {
-                            "level": 3,
-                            "title": "Initialization",
-                            "slug": "initialization"
-                          },
-                          "depth": 3
-                        }, {
-                          "type": "heading",
-                          "data": {
-                            "level": 3,
-                            "title": "Focus",
-                            "slug": "focus"
-                          },
-                          "depth": 3
-                        }, {
-                          "type": "heading",
-                          "data": {
-                            "level": 3,
-                            "title": "Blur",
-                            "slug": "blur"
-                          },
-                          "depth": 3
-                        }, {
-                          "type": "heading",
-                          "data": {
-                            "level": 3,
-                            "title": "Update",
-                            "slug": "update"
-                          },
-                          "depth": 3
-                        }
-                      ]
+                      "depth": 1
                     },
                     "title": "extension.js"
                   },
                   "depth": 4,
-                  "outline": [
-                    {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "Initialization",
-                        "slug": "initialization"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "Focus",
-                        "slug": "focus"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "Blur",
-                        "slug": "blur"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "Update",
-                        "slug": "update"
-                      },
-                      "depth": 3
-                    }
-                  ]
+                  "outline": []
                 }, {
                   "type": "file",
                   "data": {
@@ -1502,8 +1429,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                           "type": "heading",
                           "data": {
                             "level": 2,
-                            "title": "Block Keyboards",
-                            "slug": "block-keyboards"
+                            "title": "Block Keys",
+                            "slug": "block-keys"
                           },
                           "depth": 2
                         }
@@ -1517,8 +1444,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 2,
-                        "title": "Block Keyboards",
-                        "slug": "block-keyboards"
+                        "title": "Block Keys",
+                        "slug": "block-keys"
                       },
                       "depth": 2
                     }
@@ -1762,18 +1689,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "title": "Main Update loop",
                         "slug": "main-update-loop"
                       },
-                      "depth": 2,
-                      "children": [
-                        {
-                          "type": "heading",
-                          "data": {
-                            "level": 3,
-                            "title": "Getters for all the types of events game can hook into",
-                            "slug": "getters-for-all-the-types-of-events-game-can-hook-into"
-                          },
-                          "depth": 3
-                        }
-                      ]
+                      "depth": 2
                     }
                   ]
                 },
@@ -1788,18 +1704,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "title": "Main Update loop",
                     "slug": "main-update-loop"
                   },
-                  "depth": 2,
-                  "children": [
-                    {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "Getters for all the types of events game can hook into",
-                        "slug": "getters-for-all-the-types-of-events-game-can-hook-into"
-                      },
-                      "depth": 3
-                    }
-                  ]
+                  "depth": 2
                 }
               ]
             }
@@ -1914,14 +1819,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                             "slug": "game-objects-have-a-bunch-of-properties"
                           },
                           "depth": 3
-                        }, {
-                          "type": "heading",
-                          "data": {
-                            "level": 3,
-                            "title": "Getters for all the types of events a GameObject can hook into",
-                            "slug": "getters-for-all-the-types-of-events-a-gameobject-can-hook-into"
-                          },
-                          "depth": 3
                         }
                       ]
                     }
@@ -1954,14 +1851,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "level": 3,
                         "title": "Game Objects have a bunch of properties",
                         "slug": "game-objects-have-a-bunch-of-properties"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "Getters for all the types of events a GameObject can hook into",
-                        "slug": "getters-for-all-the-types-of-events-a-gameobject-can-hook-into"
                       },
                       "depth": 3
                     }
@@ -2225,22 +2114,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                             "slug": "defined-keycodes"
                           },
                           "depth": 3
-                        }, {
-                          "type": "heading",
-                          "data": {
-                            "level": 3,
-                            "title": "Actual registering with the windown keyboard events.",
-                            "slug": "actual-registering-with-the-windown-keyboard-events"
-                          },
-                          "depth": 3
-                        }, {
-                          "type": "heading",
-                          "data": {
-                            "level": 3,
-                            "title": "Prevent default behaviour of keys in the browser",
-                            "slug": "prevent-default-behaviour-of-keys-in-the-browser"
-                          },
-                          "depth": 3
                         }
                       ]
                     }
@@ -2265,22 +2138,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "level": 3,
                         "title": "Defined keycodes",
                         "slug": "defined-keycodes"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "Actual registering with the windown keyboard events.",
-                        "slug": "actual-registering-with-the-windown-keyboard-events"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "Prevent default behaviour of keys in the browser",
-                        "slug": "prevent-default-behaviour-of-keys-in-the-browser"
                       },
                       "depth": 3
                     }
@@ -2625,18 +2482,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "title": "Pooling",
                         "slug": "pooling"
                       },
-                      "depth": 2,
-                      "children": [
-                        {
-                          "type": "heading",
-                          "data": {
-                            "level": 3,
-                            "title": "Getters for all the types of events a Pool can hook into",
-                            "slug": "getters-for-all-the-types-of-events-a-pool-can-hook-into"
-                          },
-                          "depth": 3
-                        }
-                      ]
+                      "depth": 2
                     }
                   ]
                 },
@@ -2651,18 +2497,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "title": "Pooling",
                     "slug": "pooling"
                   },
-                  "depth": 2,
-                  "children": [
-                    {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "Getters for all the types of events a Pool can hook into",
-                        "slug": "getters-for-all-the-types-of-events-a-pool-can-hook-into"
-                      },
-                      "depth": 3
-                    }
-                  ]
+                  "depth": 2
                 }
               ]
             }, {
@@ -2730,6 +2565,36 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "foldPrefix": "^",
               "name": "JavaScript"
             },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pre-load.js",
+            "projectPath": "work/game-builder/src/pre-load.js",
+            "targetPath": "src/pre-load",
+            "pageTitle": "src/pre-load",
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "pre-load.js",
+                "slug": "pre-loadjs",
+                "isFileHeader": true
+              },
+              "depth": 1
+            },
+            "title": "pre-load.js"
+          },
+          "depth": 2,
+          "outline": []
+        }, {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
             "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/sound-player.js",
             "projectPath": "work/game-builder/src/sound-player.js",
             "targetPath": "src/sound-player",
@@ -2751,18 +2616,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "title": "Play it loud!",
                     "slug": "play-it-loud"
                   },
-                  "depth": 2,
-                  "children": [
-                    {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "Getters for all the types of events the sound player can hook into",
-                        "slug": "getters-for-all-the-types-of-events-the-sound-player-can-hook-into"
-                      },
-                      "depth": 3
-                    }
-                  ]
+                  "depth": 2
                 }
               ]
             },
@@ -2777,18 +2631,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "title": "Play it loud!",
                 "slug": "play-it-loud"
               },
-              "depth": 2,
-              "children": [
-                {
-                  "type": "heading",
-                  "data": {
-                    "level": 3,
-                    "title": "Getters for all the types of events the sound player can hook into",
-                    "slug": "getters-for-all-the-types-of-events-the-sound-player-can-hook-into"
-                  },
-                  "depth": 3
-                }
-              ]
+              "depth": 2
             }
           ]
         }, {
@@ -2966,18 +2809,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "title": "Time, time, time, time, TIME!",
                         "slug": "time-time-time-time-time"
                       },
-                      "depth": 2,
-                      "children": [
-                        {
-                          "type": "heading",
-                          "data": {
-                            "level": 3,
-                            "title": "Getters for all the types of events a Timer can hook into",
-                            "slug": "getters-for-all-the-types-of-events-a-timer-can-hook-into"
-                          },
-                          "depth": 3
-                        }
-                      ]
+                      "depth": 2
                     }
                   ]
                 },
@@ -2992,18 +2824,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "title": "Time, time, time, time, TIME!",
                     "slug": "time-time-time-time-time"
                   },
-                  "depth": 2,
-                  "children": [
-                    {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "Getters for all the types of events a Timer can hook into",
-                        "slug": "getters-for-all-the-types-of-events-a-timer-can-hook-into"
-                      },
-                      "depth": 3
-                    }
-                  ]
+                  "depth": 2
                 }
               ]
             }, {
@@ -3039,18 +2860,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "title": "Manage Timers",
                         "slug": "manage-timers"
                       },
-                      "depth": 2,
-                      "children": [
-                        {
-                          "type": "heading",
-                          "data": {
-                            "level": 3,
-                            "title": "Getters for all the types of events the sound player can hook into",
-                            "slug": "getters-for-all-the-types-of-events-the-sound-player-can-hook-into"
-                          },
-                          "depth": 3
-                        }
-                      ]
+                      "depth": 2
                     }
                   ]
                 },
@@ -3065,18 +2875,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "title": "Manage Timers",
                     "slug": "manage-timers"
                   },
-                  "depth": 2,
-                  "children": [
-                    {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "Getters for all the types of events the sound player can hook into",
-                        "slug": "getters-for-all-the-types-of-events-the-sound-player-can-hook-into"
-                      },
-                      "depth": 3
-                    }
-                  ]
+                  "depth": 2
                 }
               ]
             }

@@ -4,15 +4,15 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a></p>
+<p>Inherits from: <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a></p>
 
 <p>Depends of:</p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This modules defines a container for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>, which in turn
-is a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> itself. Being a parent means that all of it's child
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> will follow it according to it's transformation matrix.</p>
+<p>This modules defines a container for <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>, which in turn
+is a <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> itself. Being a parent means that all of it's child
+<a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> will follow it according to it's transformation matrix.</p>
 
 <p>It's a pretty usefull behaviour to form more complex displays out of smaller, more manageable 
 pieces. </p>
@@ -20,7 +20,7 @@ pieces. </p>
 <p>A note on drawing: A container will execute it's renderer code, and then the rendering code
 of it's children. This means that the parent drawing will show up, below it's children's.</p>
 
-<p>Asides from that, a container is no different to a regular <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>,
+<p>Asides from that, a container is no different to a regular <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a>,
 so go look at that part of the documentation for more details on every method here.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="nesting-ftw">Nesting FTW!</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;game-object&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">){</span>
 
   <span class="kd">var</span> <span class="nx">GameObjectContainer</span> <span class="o">=</span> <span class="nx">GameObject</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
@@ -38,14 +38,14 @@ so go look at that part of the documentation for more details on every method he
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong></p>
 
-<p>Adds the specified child <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to this container.
+<p>Adds the specified child <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to this container.
 If the child already is part of another parent, it is removed from it
 and added to this one.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>The must be an Object.</strong><br/>(child <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to add)</li>
+<li><strong>child must be an Object.</strong><br/>(The child <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to add)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">add</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">child</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
@@ -58,16 +58,17 @@ and added to this one.</p>
       <span class="nx">child</span><span class="p">.</span><span class="nx">parent</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">child</span><span class="p">);</span>
-
+      <span class="nx">child</span><span class="p">.</span><span class="nx">added</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+      
       <span class="k">return</span> <span class="nx">child</span><span class="p">;</span> 
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>remove</strong></p>
 
-<p>Removes the specified child <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> from this container.</p>
+<p>Removes the specified child <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> from this container.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>The must be an Object.</strong><br/>(child <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to remove)</li>
+<li><strong>child must be an Object.</strong><br/>(The child <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to remove)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">remove</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">child</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
@@ -76,6 +77,12 @@ and added to this one.</p>
       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">child</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span> 
+
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span><span class="p">[</span><span class="nx">child</span><span class="p">.</span><span class="nx">uid</span><span class="p">])</span> <span class="p">{</span>
+        <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span><span class="p">[</span><span class="nx">child</span><span class="p">.</span><span class="nx">uid</span><span class="p">];</span> 
+      <span class="p">}</span>
+
+      <span class="nx">child</span><span class="p">.</span><span class="nx">removed</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>update</strong></p>
 
 <p>Updates all of it's children.</p>
@@ -95,6 +102,10 @@ and added to this one.</p>
         <span class="nx">child</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
 
         <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">child</span><span class="p">.</span><span class="nx">canUpdate</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span><span class="p">[</span><span class="nx">child</span><span class="p">.</span><span class="nx">uid</span><span class="p">])</span> <span class="p">{</span>
+          <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span><span class="p">[</span><span class="nx">child</span><span class="p">.</span><span class="nx">uid</span><span class="p">].</span><span class="nx">update</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span> 
+        <span class="p">}</span>
 
         <span class="nx">child</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">delta</span><span class="p">);</span>
         
@@ -116,17 +127,18 @@ and added to this one.</p>
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>draw</strong></p>
 
-<p>Draws the game-object into the specified Context 2D, using it's <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a></p>
+<p>Draws the game-object into the specified Context 2D, using it's <a href="http://localhost:5000/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a></p>
 
 <p>Then it draws all of it's children</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</p></li>
-<li><p><strong>viewport must be an Object.</strong><br/>(The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> this objects is being drawn too)</p></li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">)</span> <span class="p">{</span>     
-      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</p></li>
+<li><p><strong>viewport must be an Object.</strong><br/>(The <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> this objects is being drawn too)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">)</span> <span class="p">{</span> </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Draw only if inside the viewport and is allowed to be drawn</p></div></div><div class="code"><div class="wrapper">      <span class="k">if</span> <span class="p">(</span><span class="nx">viewport</span><span class="p">.</span><span class="nx">isGameObjectInside</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">canDraw</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span> 
+      <span class="p">}</span>
 
       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
             
@@ -135,9 +147,17 @@ and added to this one.</p>
       <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
         <span class="nx">child</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
 
-        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">child</span><span class="p">.</span><span class="nx">canDraw</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
-
-        <span class="nx">child</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>  
+        <span class="k">if</span> <span class="p">(</span><span class="nx">child</span><span class="p">.</span><span class="nx">isContainer</span><span class="p">())</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If the child is a container game object... 
+Call draw method, it will figure out if it actually needs to be drawn, and do the same for it's children</p></div></div><div class="code"><div class="wrapper">          <span class="nx">child</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If the child is a regular game object...
+Try to skip drawing as soon as possible</p></div></div><div class="code"><div class="wrapper">        </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Draw only if inside the viewport and is allowed to be drawn</p></div></div><div class="code"><div class="wrapper">          <span class="k">if</span> <span class="p">(</span><span class="nx">viewport</span><span class="p">.</span><span class="nx">isGameObjectInside</span><span class="p">(</span><span class="nx">child</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">child</span><span class="p">.</span><span class="nx">canDraw</span><span class="p">)</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If there are options for this child, apply them</p></div></div><div class="code"><div class="wrapper">            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span><span class="p">[</span><span class="nx">child</span><span class="p">.</span><span class="nx">uid</span><span class="p">])</span> <span class="p">{</span>
+              <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span><span class="p">[</span><span class="nx">child</span><span class="p">.</span><span class="nx">uid</span><span class="p">].</span><span class="nx">draw</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">child</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>
+              <span class="p">}</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If there are no options, just draw the child</p></div></div><div class="code"><div class="wrapper">              <span class="nx">child</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>  
+            <span class="p">}</span>
+          <span class="p">}</span>                     
+        <span class="p">}</span>
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>hide</strong></p>
 
@@ -159,18 +179,162 @@ and added to this one.</p>
       <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">show</span><span class="p">();</span>
       <span class="p">}</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>recycle</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addToViewport</strong></p>
 
-<p>Calls the recycle method on every child, and then on itself,
-nulling every reference on it's way.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">recycle</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Adds the specified <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> and <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> combo to the ones this game object belongs to.
+It also does it for it's children</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>viewportName must be a String.</strong><br/>(Name of the new <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> this object belongs to)</p></li>
+<li><p><strong>layerName must be a String.</strong><br/>(Name of the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> in the specified viewport)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">addToViewportList</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">viewportName</span><span class="p">,</span> <span class="nx">layerName</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">(</span><span class="nx">viewportName</span><span class="p">,</span> <span class="nx">layerName</span><span class="p">);</span>
+
       <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
       <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">recycle</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">addToViewportList</span><span class="p">(</span><span class="nx">viewportName</span><span class="p">,</span> <span class="nx">layerName</span><span class="p">);</span>
       <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removeFromViewport</strong></p>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">childs</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<p>Removes the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> and <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> combo from the ones this game object belongs to.
+It also does it for it's children</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>viewportName must be a String.</strong><br/>(Name of the <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> to remove from this game objects list)</p></li>
+<li><p><strong>layerName must be a String.</strong><br/>(Name of the <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layer</a> in the specified viewport)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">removeFromViewportList</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">viewportName</span><span class="p">,</span> <span class="nx">layerName</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">(</span><span class="nx">viewportName</span><span class="p">,</span> <span class="nx">layerName</span><span class="p">);</span>
+
+      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">removeFromViewportList</span><span class="p">(</span><span class="nx">viewportName</span><span class="p">,</span> <span class="nx">layerName</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>setChildOptions</strong></p>
+
+<p>This method allows to set options that will affect a <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> only on this container</p>
+
+<p>The options argument must have a <strong>draw</strong> key and an <strong>update</strong> key, these will determine if the child <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a>
+is drawn or updated on this container. The properties will be evaluated as truthy or falsy.</p>
+
+<p>If the keys are not provided, they are added and set to <strong>true</strong> by default</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>child must be an Object.</strong><br/>(Child <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to set options to)</p></li>
+<li><p><strong>options must be an Object.</strong><br/>(Options that will be applied to the specified child on this container)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">setChildOptions</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span> <span class="o">=</span> <span class="p">{};</span>
+
+      <span class="nx">options</span> <span class="o">=</span> <span class="nx">options</span> <span class="o">||</span> <span class="p">{};</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">))</span> <span class="p">{</span> <span class="nx">options</span><span class="p">.</span><span class="nx">update</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="s1">&#39;draw&#39;</span><span class="p">))</span> <span class="p">{</span> <span class="nx">options</span><span class="p">.</span><span class="nx">draw</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span><span class="p">[</span><span class="nx">child</span><span class="p">.</span><span class="nx">uid</span><span class="p">]</span> <span class="o">=</span> <span class="nx">options</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getChildOptions</strong></p>
+
+<p>Get the options set in the <strong>setChildOptions</strong> method for the specified child <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>child must be an Object.</strong><br/>(A child <a href="@@game-obejct@@">game-obejct</a> of this container)</li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(An object like the one set in the <strong>setChildOptions</strong> method)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getChildOptions</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">child</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span><span class="p">[</span><span class="nx">child</span><span class="p">.</span><span class="nx">uid</span><span class="p">])</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span><span class="p">[</span><span class="nx">child</span><span class="p">.</span><span class="nx">uid</span><span class="p">];</span> 
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">setChildOptions</span><span class="p">(</span><span class="nx">child</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span><span class="p">[</span><span class="nx">child</span><span class="p">.</span><span class="nx">uid</span><span class="p">];</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>findChildren</strong></p>
+
+<p>Get an object to query the child <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> list of this container</p>
+
+<p><strong>Returns an Object</strong><br/>(An object to make the query. It has the following methods: </br> <strong>all</strong> returns all <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> that return true for the specified function. Pass no argument to get all children </br> <strong>allWithType</strong> returns all <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> that have the given id in the <a href="http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> </br> <strong>first</strong> returns the first <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> that returns true for the specified function </br> <strong>firstWithType</strong> returns the first <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> that has the given id in the <a href="http://localhost:5000/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> </br>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">findChildren</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+      <span class="k">return</span> <span class="p">{</span>
+        <span class="nx">all</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">self</span><span class="p">.</span><span class="nx">childs</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+          <span class="kd">var</span> <span class="nx">r</span><span class="p">;</span>
+
+          <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">self</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">childs</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">f</span> <span class="o">||</span> <span class="nx">f</span><span class="p">(</span><span class="nx">c</span><span class="p">))</span> <span class="p">{</span>
+              <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">r</span><span class="p">)</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">[];</span>
+              
+              <span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+
+          <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
+        <span class="p">},</span> 
+
+        <span class="nx">allWithType</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">self</span><span class="p">.</span><span class="nx">childs</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+          <span class="kd">var</span> <span class="nx">r</span><span class="p">;</span>
+
+          <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">self</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">childs</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">typeId</span> <span class="o">==</span> <span class="nx">id</span> <span class="o">||</span> <span class="nx">c</span><span class="p">.</span><span class="nx">poolId</span> <span class="o">==</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">r</span><span class="p">)</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">[];</span>
+              
+              <span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+
+          <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
+        <span class="p">},</span>
+
+        <span class="nx">first</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">self</span><span class="p">.</span><span class="nx">childs</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+          <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">self</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">childs</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">f</span><span class="p">(</span><span class="nx">c</span><span class="p">))</span> <span class="p">{</span>
+              <span class="k">return</span> <span class="nx">c</span><span class="p">;</span>
+            <span class="p">}</span>
+          <span class="p">}</span>   
+        <span class="p">},</span>
+
+        <span class="nx">firstWithType</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">self</span><span class="p">.</span><span class="nx">childs</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+          
+          <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">self</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">childs</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">typeId</span> <span class="o">==</span> <span class="nx">id</span> <span class="o">||</span> <span class="nx">c</span><span class="p">.</span><span class="nx">poolId</span> <span class="o">==</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">return</span> <span class="nx">c</span><span class="p">;</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>recycle</strong></p>
+
+<p>Calls the recycle method on every child, and then on itself,
+nulling every reference on it's way.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">recycle</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">recycle</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">childs</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> 
+      <span class="p">}</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>clear</strong></p>
@@ -186,13 +350,18 @@ It also removes all the childs.</p></div></div><div class="code"><div class="wra
         <span class="k">this</span><span class="p">.</span><span class="nx">childs</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
       <span class="p">}</span>
 
+      <span class="k">this</span><span class="p">.</span><span class="nx">childrenOptions</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>isContainer</strong></p>
 
 <p><strong>Returns a Boolean</strong><br/>(Wheter it is a container object or not)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">isContainer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="p">});</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>typeName</strong></p>
+
+<p><strong>Returns a String</strong><br/>(Returns the type name of this object)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">typeName</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;GameObjectContainer&#39;</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
 
   <span class="k">return</span> <span class="nx">GameObjectContainer</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

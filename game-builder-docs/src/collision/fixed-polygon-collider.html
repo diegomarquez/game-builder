@@ -4,26 +4,25 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html">collision-component</a></p>
+<p>Inherits from: <a href="http://localhost:5000/game-builder-docs/src/collision/collision-component.html">collision-component</a></p>
 
 <p>Depends of: 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html">sat</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/vector-2D.html">vector-2D</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html">draw</a></p>
+<a href="http://localhost:5000/game-builder-docs/src/collision/sat.html">sat</a>
+<a href="http://localhost:5000/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a>
+<a href="http://localhost:5000/game-builder-docs/src/math/vector-2D.html">vector-2D</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module defines a component meant to be attached to a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>, to give it
-the ability to collide against other <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> with collider components.</p>
+<p>This module defines a component meant to be attached to a <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a>, to give it
+the ability to collide against other <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> with collider components.</p>
 
-<p>Fixed Polygon colliders are just like a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/polygon-collider.html">polygon-collider</a>, the 
+<p>Fixed Polygon colliders are just like a <a href="http://localhost:5000/game-builder-docs/src/collision/polygon-collider.html">polygon-collider</a>, the 
 difference is that they do no follow their parents along all the transformations, only translation.</p>
 
 <p>This make them considerably less expensive, but also less accurate. 
 Often you can do without the precision.</p>
 
-<p>During the configuration of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a> fixed polygon colliders need to 
+<p>During the configuration of the <a href="http://localhost:5000/game-builder-docs/src/pools/component-pool.html">component-pool</a> fixed polygon colliders need to 
 receive an object that looks similar to the following:</p>
 
 <pre><code class=" javascript">gb.coPool.createConfiguration("Fixed_Polygon", 'Fixed_Polygon_1')
@@ -33,45 +32,80 @@ receive an object that looks similar to the following:</p>
 
         //Array of points that define the polygon collider
         points:[ 
-            new vector_2D(-10, -10), 
-            new vector_2D(10, -10), 
-            new vector_2D(10, 10), 
-            new vector_2D(-10, 10) 
+            {x: 0, y: 0},
+             {x: 64, y: 0},
+             {x: 64, y: 64},
+             {x: 0, y: 64}
         ]
 });
 </code></pre>
 
 <p>If it is not provided it will most likely fail in un-expected ways.</p>
 
-<p><strong>Note: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
-found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
-The way you get a hold to a reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a> 
-may vary.</strong></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="polygons-colliding">Polygons colliding</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;collision-component&#39;</span><span class="p">,</span> <span class="s1">&#39;sat&#39;</span><span class="p">,</span> <span class="s1">&#39;collision-resolver&#39;</span><span class="p">,</span> <span class="s1">&#39;vector-2D&#39;</span><span class="p">,</span> <span class="s1">&#39;draw&#39;</span><span class="p">],</span>
-  <span class="kd">function</span><span class="p">(</span><span class="nx">CollisionComponent</span><span class="p">,</span> <span class="nx">SAT</span><span class="p">,</span> <span class="nx">CollisionResolver</span><span class="p">,</span> <span class="nx">Vector2D</span><span class="p">,</span> <span class="nx">Draw</span><span class="p">)</span> <span class="p">{</span>
+<p><strong>Note 1: The snippet uses the reference to the <a href=http://localhost:5000/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+found in the <a href=http://localhost:5000/game-builder-docs/src/gb.html>gb</a> module. 
+The way you get a hold to a reference to the <a href=http://localhost:5000/game-builder-docs/src/pools/component-pool.html>component-pool</a> 
+may vary.</strong></p>
+
+<p><strong>Note 2: The points need to be specified in clockwise order.</strong></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="polygons-colliding">Polygons colliding</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;collision-component&#39;</span><span class="p">,</span> <span class="s1">&#39;sat&#39;</span><span class="p">,</span> <span class="s1">&#39;collision-resolver&#39;</span><span class="p">,</span> <span class="s1">&#39;vector-2D&#39;</span><span class="p">],</span>
+  <span class="kd">function</span><span class="p">(</span><span class="nx">CollisionComponent</span><span class="p">,</span> <span class="nx">SAT</span><span class="p">,</span> <span class="nx">CollisionResolver</span><span class="p">,</span> <span class="nx">Vector2D</span><span class="p">)</span> <span class="p">{</span>
 
     <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="p">{};</span>
     <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
-    <span class="kd">var</span> <span class="nx">Component</span> <span class="o">=</span> <span class="nx">CollisionComponent</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>start</strong></p>
+    <span class="kd">var</span> <span class="nx">FixedPolygonCollider</span> <span class="o">=</span> <span class="nx">CollisionComponent</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>configure</strong></p>
+
+<p>Configures properties
+set via the <a href=http://localhost:5000/game-builder-docs/src/pools/component-pool.html>component-pool</a></p>
+
+<p>This method is important as it applies all the configuration needed for 
+the component to work as expected.</p>
+
+<p>Overriden in this module to handle different types for the <strong>points</strong> argument</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>args must be an Object.</strong><br/>(An object with all the properties to write into the component)</li>
+</ul></div></div><div class="code"><div class="wrapper">      <span class="nx">configure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">(</span><span class="nx">args</span><span class="p">);</span>
+
+        <span class="kd">var</span> <span class="nx">copy</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">points</span><span class="p">));</span>
+        <span class="kd">var</span> <span class="nx">points</span> <span class="o">=</span> <span class="p">[];</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">points</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">points</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(</span><span class="nx">copy</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">x</span><span class="p">,</span> <span class="nx">copy</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">y</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">points</span> <span class="o">=</span> <span class="nx">points</span><span class="p">;</span>
+      <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>start</strong></p>
 
 <p>Set up the collider.</p>
 
-<p>Creates a FixedSizePolygon object defined in the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html">sat</a> module.
+<p>Creates a FixedSizePolygon object defined in the <a href="http://localhost:5000/game-builder-docs/src/collision/sat.html">sat</a> module.
 The polygon is said to be fixed of size becuase no more vertexes can be
 added to it after it is created.</p></div></div><div class="code"><div class="wrapper">      <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
 
         <span class="k">this</span><span class="p">.</span><span class="nx">pointCount</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">points</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">pointsCopy</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">points</span><span class="p">));</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">pointsCopy</span> <span class="o">=</span> <span class="p">[];</span>
 
-        <span class="k">this</span><span class="p">.</span><span class="nx">collider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">FixedSizePolygon</span><span class="p">(</span><span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="k">this</span><span class="p">.</span><span class="nx">points</span><span class="p">);</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">=</span> <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">polygonCollider</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">copy</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">points</span><span class="p">));</span>
+        <span class="kd">var</span> <span class="nx">points</span> <span class="o">=</span> <span class="p">[];</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">pointCount</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">pointsCopy</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(</span><span class="nx">copy</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">x</span><span class="p">,</span> <span class="nx">copy</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">y</span><span class="p">));</span>
+          <span class="nx">points</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(</span><span class="nx">copy</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">x</span><span class="p">,</span> <span class="nx">copy</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">y</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">collider</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">FixedSizePolygon</span><span class="p">(</span><span class="k">new</span> <span class="nx">Vector2D</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="nx">points</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">=</span> <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">fixedPolygonCollider</span><span class="p">;</span>
       <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>update</strong></p>
 
 <p>Updates the position of the collider.</p>
 
 <p>The collider follows the position of it's parent.</p></div></div><div class="code"><div class="wrapper">      <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">getTransform</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">m</span><span class="p">);</span>
+        <span class="nx">p</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">p</span><span class="p">);</span>
 
         <span class="k">this</span><span class="p">.</span><span class="nx">collider</span><span class="p">.</span><span class="nx">pos</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">collider</span><span class="p">.</span><span class="nx">pos</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
@@ -81,29 +115,32 @@ added to it after it is created.</p></div></div><div class="code"><div class="wr
 
 <p>Draw the fixed polygon collider</p>
 
-<p>This method is only executed if the <strong>debug</strong> property of the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a>
-is set to true. It is better to leave the drawing to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a> components.</p>
+<p>This method is only executed if the <strong>debug</strong> property in <a href="http://localhost:5000/game-builder-docs/src/gb.html">gb</a>
+is set to true. It is better to leave the drawing to the <a href="http://localhost:5000/game-builder-docs/src/components/rendering/renderer.html">renderer</a> components.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</p></li>
-<li><p><strong>viewport must be an Object.</strong><br/>(A reference to the current <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a>)</p></li>
-<li><p><strong>draw must be an Object.</strong><br/>(A reference to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html">draw</a> module)</p></li>
-</ul></div></div><div class="code"><div class="wrapper">      <span class="nx">debug_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">,</span> <span class="nx">draw</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">getTransform</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">m</span><span class="p">);</span>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</p></li>
+<li><p><strong>viewport must be an Object.</strong><br/>(A reference to the current <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a>)</p></li>
+<li><p><strong>draw must be an Object.</strong><br/>(A reference to the <a href="http://localhost:5000/game-builder-docs/src/draw.html">draw</a> module)</p></li>
+<li><p><strong>gb must be an Object.</strong><br/>(A reference to the <a href="http://localhost:5000/game-builder-docs/src/gb.html">gb</a> module)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">      <span class="nx">debug_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">,</span> <span class="nx">draw</span><span class="p">,</span> <span class="nx">gb</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">gb</span><span class="p">.</span><span class="nx">colliderDebug</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        
+        <span class="nx">p</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">p</span><span class="p">);</span>
 
         <span class="nx">context</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
 
         <span class="nx">context</span><span class="p">.</span><span class="nx">setTransform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>     
         <span class="nx">context</span><span class="p">.</span><span class="nx">translate</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">p</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
-        <span class="nx">Draw</span><span class="p">.</span><span class="nx">polygon</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">pointsCopy</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+        <span class="nx">draw</span><span class="p">.</span><span class="nx">polygon</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">pointsCopy</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
         
         <span class="nx">context</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span>
 
         <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
       <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    <span class="p">});</span>
 
-    <span class="k">return</span> <span class="nx">Component</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">FixedPolygonCollider</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">);</span></div></div></div></div></body></html>

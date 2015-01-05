@@ -5,81 +5,99 @@
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
 <p>Inherits from:
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
+<a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Depends of: 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer.html">timer</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+<a href="http://localhost:5000/game-builder-docs/src/timers/timer.html">timer</a>
+<a href="http://localhost:5000/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a> </p>
 
-<p>This module provides a factory to create <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer.html">timer</a> objects. Asides from creating them it provides methods
+<p>This module provides a factory to create <a href="http://localhost:5000/game-builder-docs/src/timers/timer.html">timer</a> objects. Asides from creating them it provides methods
 to manipulate them in bulk.</p>
 
-<h3 id="thetimerfactoryobjectextendsdelegatehttpdiegomarquezgithubiogamebuildergamebuilderdocssrcdelegatehtmlsoitprovidesafeweventstohookinto">The Timer Factory object extends <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</h3>
+<p>The Timer Factory object extends <a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a> so it provides a few events to hook into:</p>
 
-<h3 id="create"><strong>create</strong></h3>
+<h3 id="create"><strong>CREATE</strong></h3>
 
 <p>When a timer is created and added to the factory registry</p>
 
 <pre><code class=" javascript  ">timerFactory.on(timerFactory.CREATE, function(timer) {});
 </code></pre>
 
-<h3 id="remove"><strong>remove</strong></h3>
+<p></br></p>
+
+<h3 id="remove"><strong>REMOVE</strong></h3>
 
 <p>When a timer is removed from the factory registry</p>
 
 <pre><code class=" javascript  ">timerFactory.on(timerFactory.REMOVE, function(timer) {});
 </code></pre>
 
-<h3 id="complete"><strong>complete</strong></h3>
+<p></br></p>
+
+<h3 id="complete"><strong>COMPLETE</strong></h3>
 
 <p>When a timer completes</p>
 
 <pre><code class=" javascript  ">timerFactory.on(timerFactory.COMPLETE, function(timer) {});
 </code></pre>
 
-<h3 id="repeate"><strong>repeate</strong></h3>
+<p></br></p>
+
+<h3 id="repeate"><strong>REPEATE</strong></h3>
 
 <p>When a timer repeates</p>
 
 <pre><code class=" javascript  ">timerFactory.on(timerFactory.REPEATE, function(timer) {});
 </code></pre>
 
-<h3 id="start"><strong>start</strong></h3>
+<p></br></p>
+
+<h3 id="start"><strong>START</strong></h3>
 
 <p>When a timer starts</p>
 
 <pre><code class=" javascript  ">timerFactory.on(timerFactory.START, function(timer) {});
 </code></pre>
 
-<h3 id="pause"><strong>pause</strong></h3>
+<p></br></p>
+
+<h3 id="pause"><strong>PAUSE</strong></h3>
 
 <p>When a timer pauses</p>
 
 <pre><code class=" javascript  ">timerFactory.on(timerFactory.PAUSE, function(timer) {});
 </code></pre>
 
-<h3 id="resume"><strong>resume</strong></h3>
+<p></br></p>
+
+<h3 id="resume"><strong>RESUME</strong></h3>
 
 <p>When a timer resumes</p>
 
 <pre><code class=" javascript  ">timerFactory.on(timerFactory.RESUME, function(timer) {});
 </code></pre>
 
-<h3 id="reset"><strong>reset</strong></h3>
+<p></br></p>
+
+<h3 id="reset"><strong>RESET</strong></h3>
 
 <p>When a timer is reset</p>
 
 <pre><code class=" javascript  ">timerFactory.on(timerFactory.RESET, function(timer) {});
 </code></pre>
 
-<h3 id="stop"><strong>stop</strong></h3>
+<p></br></p>
+
+<h3 id="stop"><strong>STOP</strong></h3>
 
 <p>When a timer is stops</p>
 
 <pre><code class=" javascript  ">timerFactory.on(timerFactory.STOP, function(timer) {});
-</code></pre></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="manage-timers">Manage Timers</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+</code></pre>
+
+<p></br></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="manage-timers">Manage Timers</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="kd">var</span> <span class="nx">ErrorPrinter</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;error-printer&#39;</span><span class="p">);</span>
 
@@ -285,7 +303,9 @@ set with the given value.</p>
 
 <p><strong>Returns a String</strong><br/>(Formatted milliseconds to minutes:seconds)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">formatMinutesSeconds</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ms</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">formatMinutes</span><span class="p">(</span><span class="nx">ms</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;:&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">formatSeconds</span><span class="p">(</span><span class="nx">ms</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="getters-for-all-the-types-of-events-the-sound-player-can-hook-into">Getters for all the types of events the sound player can hook into</h3></div></div></div><div class="segment"><div class="code"><div class="wrapper">  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CREATE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;create&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CREATE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;create&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REMOVE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;remove&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;COMPLETE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;complete&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REPEATE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;repeate&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
@@ -293,7 +313,9 @@ set with the given value.</p>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;PAUSE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;pause&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;RESUME&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;resume&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
   <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;RESET&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;reset&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;STOP&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;stop&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">getCountInState</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">TimerFactory</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;STOP&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;stop&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+
+  <span class="kd">var</span> <span class="nx">getCountInState</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">timeOuts</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>

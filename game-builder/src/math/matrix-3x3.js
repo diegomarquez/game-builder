@@ -9,14 +9,13 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * Similar [sat](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html) and [vector-2D](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/vector-2D.html) 
+ * Similar to [sat](http://localhost:5000/game-builder-docs/src/collision/sat.html) and [vector-2D](http://localhost:5000/game-builder-docs/src/math/vector-2D.html) 
  * in that I took the code from somewhere else to make a requireJS module with it.
  * In this case the victim was [EaselJS](https://github.com/CreateJS/EaselJS/). Somewhere
- * in there is a javascript file that desribes a 3x3 matrix. Instead of implementing it myself,
- * I took the cowards way out and took that code and changed it to suit my needs.
+ * in there is a javascript file that desribes a 3x3 matrix. So this is largely a copy/paste of that.
  *
  * Anyway, this module is very important for everything that has to do with rendering,
- * because matrix transformations are used in each [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) 
+ * because matrix transformations are used in each [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) 
  * to apply a transformation to the context 2D property 
  * of the [Canvas](https://developer.mozilla.org/en-US/docs/HTML/Canvas)
  * modifying it's position and that of all sub-sequent rendering commands.
@@ -169,6 +168,23 @@ define(function() {
 	p.translate = function(x, y) {
 		this.tx += x;
 		this.ty += y;
+		return this;
+	};
+
+	p.invert = function() {
+		var a1 = this.a;
+		var b1 = this.b;
+		var c1 = this.c;
+		var d1 = this.d;
+		var tx1 = this.tx;
+		var n = a1*d1-b1*c1;
+
+		this.a = d1/n;
+		this.b = -b1/n;
+		this.c = -c1/n;
+		this.d = a1/n;
+		this.tx = (c1*this.ty-d1*tx1)/n;
+		this.ty = -(a1*this.ty-b1*tx1)/n;
 		return this;
 	};
 

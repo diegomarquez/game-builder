@@ -4,39 +4,41 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
- * [class](http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html)
+ * [class](http://localhost:5000/game-builder-docs/src/class.html)
  *
  * Depends of:
- * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
+ * [error-printer](http://localhost:5000/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
  * This module only exists to make the interface for an extension explicit.
  *
- * Extensions works with [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html). They provide functionality that is common enough
- * to be executed by [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html), but not so common to make it part of the core
+ * Extensions works with [game](http://localhost:5000/game-builder-docs/src/game_canvas/game.html). They provide functionality that is common enough
+ * to be executed by [game](http://localhost:5000/game-builder-docs/src/game_canvas/game.html), but not so common to make it part of the core
  * of [Game-Builder](http://diegomarquez.github.io/game-builder).
  *
- * # Extensions can be hooked into 4 parts of [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html):
- * ### Initialization
- * These extensions return the string **'create'** for their type.
- * They are executed once on the initialization of the application
+ * Extensions can be hooked into 4 parts of [game](http://localhost:5000/game-builder-docs/src/game_canvas/game.html):
  * 
- * ### Focus
+ * ### **INITIALIZATION** 
+ * These extensions return the string **'create'** for their type.
+ * They are executed once on the initialization of the application or if the application
+ * has already started, get executed once as soon as they are added to [game](http://localhost:5000/game-builder-docs/src/game_canvas/game.html)
+ * 
+ * ### **FOCUS**
  * These extensions return the string **'focus'** for their type.
  * They are executed each time the application gains focus.
  * 
- * ### Blur
+ * ### **BLUR**
  * These extensions return the string **'blur'** for their type.
  * They are executed each time the application looses focus.
  * 
- * ### Update
+ * ### **UPDATE**
  * These extensions return the string **'update'** for their type.
  * They are executed on the main update loop.
  */
 
 /**
- * Extend functionality of [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html)
+ * Extend functionality of [game](http://localhost:5000/game-builder-docs/src/game_canvas/game.html)
  * --------------------------------
  */
 
@@ -55,6 +57,9 @@ define(["class", "error-printer"], function(Class, ErrorPrinter) {
 		type: function() {
 			ErrorPrinter.mustOverrideError('Extension');
 		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>execute</strong></p>
@@ -65,7 +70,24 @@ define(["class", "error-printer"], function(Class, ErrorPrinter) {
 		 */
 		execute: function() {
 			ErrorPrinter.mustOverrideError('Extension');
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>destroy</strong></p>
+		 *
+		 * This method is called when the extension is removed. This is an abstract method and must be overriden.
+		 *
+		 * @throws {Error} Always
+		 */
+		destroy: function() {
+			ErrorPrinter.mustOverrideError('Extension');
 		}
+		/**
+		 * --------------------------------
+		 */
 	});
 
 	return Extension;

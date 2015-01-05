@@ -5,13 +5,12 @@
  *
  * Inherits from:
  *
- * Depends of: [vector-2D](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/vector-2D.html)
+ * Depends of: [vector-2D](http://localhost:5000/game-builder-docs/src/math/vector-2D.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
  * This module was not actually made by me, I just took some code in github and made a requireJS module
  * out of it. [The original code is in here](https://github.com/jriecken/sat-js). 
- * The documentation in there should be enough to understand how to use this. 
  *
  * I added a few things, but nothing of true interest. The main code is largely unchanged.
  */
@@ -27,6 +26,7 @@ define(['vector-2D'], function(Vector) {
   for (var i = 0; i < 5; i++) {
     T_ARRAYS.push([]);
   }
+
 
   var Circle = function(pos, r) {
     this['pos'] = this.pos = pos || new Vector();
@@ -389,6 +389,19 @@ define(['vector-2D'], function(Vector) {
     return true;
   };
 
+  var UNIT_SQUARE = new Polygon(new Vector(), [new Vector(0,0), new Vector(1,0), new Vector(1,1), new Vector(0,1)]);
+  var T_RESPONSE = new Response();
+
+  var pointInPolygon = function(p, poly) {
+    UNIT_SQUARE['pos'].copy(p);
+    T_RESPONSE.clear();
+    var result = testPolygonPolygon(UNIT_SQUARE, poly, T_RESPONSE);
+    if (result) {
+      result = T_RESPONSE['aInB'];
+    }
+    return result;
+  };
+
   var SAT = {}
 
   SAT['Circle']           = Circle;
@@ -400,6 +413,8 @@ define(['vector-2D'], function(Vector) {
   SAT['testPolygonCircle']  = testPolygonCircle;
   SAT['testCirclePolygon']  = testCirclePolygon;
   SAT['testPolygonPolygon'] = testPolygonPolygon;
+  
+  SAT['pointInPolygon'] = pointInPolygon;
 
   return SAT;
 });

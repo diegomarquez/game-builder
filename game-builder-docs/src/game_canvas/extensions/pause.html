@@ -4,27 +4,27 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a></p>
+<p>Inherits from: <a href="http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a></p>
 
 <p>Depends of: 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html">groups</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewports.html">viewports</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a></p>
+<a href="http://localhost:5000/game-builder-docs/src/hierarchy/groups.html">groups</a>
+<a href="http://localhost:5000/game-builder-docs/src/view/viewports.html">viewports</a>
+<a href="http://localhost:5000/game-builder-docs/src/gb.html">gb</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module defines an extension that uses <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html">groups</a> to halt all update activity
+<p>This module defines an extension that uses <a href="http://localhost:5000/game-builder-docs/src/hierarchy/groups.html">groups</a> to halt all update activity
 when the application looses focus.</p>
 
-<p>It also uses <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewports.html">viewports</a> to check if there were any <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layers</a> already hiding before pausing.
+<p>It also uses <a href="http://localhost:5000/game-builder-docs/src/view/viewports.html">viewports</a> to check if there were any <a href="http://localhost:5000/game-builder-docs/src/view/layer.html">layers</a> already hiding before pausing.
 The extension needs to check that so that things that were hiding before pausing, remain hiding after resuming.</p>
 
-<p>The extension also adds a <strong>pause</strong> method to <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html">game</a> to be able to pause the application
+<p>The extension also adds a <strong>pause</strong> method to <a href="http://localhost:5000/game-builder-docs/src/game_canvas/game.html">game</a> to be able to pause the application
 manually.</p>
 
-<h3 id="thisextensionaddsaneventgamehttpdiegomarquezgithubiogamebuildergamebuilderdocssrcgame_canvasgamehtmlcanhookinto">This Extension adds an event <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html">game</a> can hook into:</h3>
+<p>This Extension adds an event <a href="http://localhost:5000/game-builder-docs/src/game_canvas/game.html">game</a> can hook into: </p>
 
-<h3 id="pause"><strong>pause</strong></h3>
+<h3 id="pause"><strong>PAUSE</strong></h3>
 
 <p>When the application is paused manually</p>
 
@@ -33,7 +33,7 @@ manually.</p>
   <span class="kd">var</span> <span class="nx">game</span> <span class="o">=</span> <span class="nx">Gb</span><span class="p">.</span><span class="nx">game</span><span class="p">;</span>
 
   <span class="kd">var</span> <span class="nx">Pause</span> <span class="o">=</span> <span class="nx">Extension</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-    <span class="nx">type</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Notice the use of the constant BLUR defined in <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html">game</a>
+    <span class="nx">type</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Notice the use of the constant BLUR defined in <a href="http://localhost:5000/game-builder-docs/src/game_canvas/game.html">game</a>
 to define this extension should be executed on creation.</p></div></div><div class="code"><div class="wrapper">      <span class="k">return</span> <span class="nx">game</span><span class="p">.</span><span class="nx">BLUR</span><span class="p">;</span>
     <span class="p">},</span>
 

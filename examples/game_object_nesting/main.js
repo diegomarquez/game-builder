@@ -6,7 +6,7 @@
  * [gb](@@gb@@),
  * [game](@@game@@),
  * [basic-display-setup](@@basic-display-setup@@),
- * [nesting-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/nesting-bundle.html)
+ * [nesting-bundle](http://localhost:5000/examples-docs/common_src/bundles/nesting-bundle.html)
  */
 
 /**

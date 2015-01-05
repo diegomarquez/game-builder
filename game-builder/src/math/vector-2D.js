@@ -10,7 +10,7 @@
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *  
  * Another module made of [stolen code](https://github.com/jriecken/sat-js)!
- * In the original you can see that the [sat](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html) and this module where originally
+ * In the original you can see that the [sat](http://localhost:5000/game-builder-docs/src/collision/sat.html) module and this module where originally
  * a single file, but I though It would be a good idea to make a standalone module
  * out of the Vector2D implementation, as it is a very usefull thing to have laying around.
  * 
@@ -19,6 +19,25 @@
  */
 
 define(function() {
+	var interfaceMethods = [
+		'copy',
+		'perp',
+		'reverse',
+		'normalize',
+		'add',
+		'sub',
+		'scale',
+		'project',
+		'projectN',
+		'reflect',
+		'reflectN',
+		'dot',
+		'len',
+		'len2',
+		'distance',
+		'equal'
+	];
+
 	var vector_2D = function(x, y) {
 		this['x'] = this.x = x || 0;
 		this['y'] = this.y = y || 0;
@@ -114,5 +133,38 @@ define(function() {
 		return Math.sqrt(this.len2());
 	};
 
-	return vector_2D
+	vector_2D.prototype.distance = function(to) {
+		var xs = 0;
+	  var ys = 0;
+	 
+	  xs = to.x - this.x;
+	  xs = xs * xs;
+	 
+	  ys = to.y - this.y;
+	  ys = ys * ys;
+	 
+	  return Math.sqrt( xs + ys );
+	};
+
+	vector_2D.prototype.equal = function(to) {
+		return this.x === to.x && this.y === to.y;
+	}
+
+	vector_2D.prototype.clone = function() {
+		return new vector_2D(this.x, this.y);
+	} 
+
+	vector_2D.isVector = function(vec) {
+		for (var i = 0; i < interfaceMethods.length; i++) {
+			var method = interfaceMethods[i];
+
+			if (Object.prototype.toString.call(vec[method]) != '[object Function]') {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	return vector_2D;
 });

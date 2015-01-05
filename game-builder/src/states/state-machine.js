@@ -4,11 +4,11 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: 
+ * [class](http://localhost:5000/game-builder-docs/src/class.html)
  *
  * Depends of: 
- * [state](http://diegomarquez.github.io/game-builder/game-builder-docs/src/states/state.html)
- * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
- * [class](http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html)
+ * [state](http://localhost:5000/game-builder-docs/src/states/state.html)
+ * [error-printer](http://localhost:5000/game-builder-docs/src/debug/error-printer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *

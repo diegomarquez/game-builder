@@ -3,17 +3,17 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html)
+ * Inherits from: [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html)
  *
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines a special kind of [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html).
+ * This module defines a special kind of [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html).
  *
- * It's only purpose it be used by [groups](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html) as a way to organize the updating loop
+ * It's only purpose it be used by [groups](http://localhost:5000/game-builder-docs/src/hierarchy/groups.html) as a way to organize the updating loop
  *
- * It behaives exactly like a [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html) except
+ * It behaives exactly like a [game-object-container](http://localhost:5000/game-builder-docs/src/hierarchy/game-object-container.html) except
  * for the fact it redefines the **clear** method so that it only removes all children.
  */
 
@@ -28,9 +28,43 @@
 define(["game-object-container"], function(Container){
 	var Group = Container.extend({
 		/**
+		 * <p style='color:#AD071D'><strong>init</strong></p>
+		 *
+		 * Constructor
+		 * 
+		 * @param  {String} name The name of the group
+		 */
+		init: function(name) {
+			this._super();
+
+			this.groupName = name;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>add</strong></p>
+		 *
+		 * Adds the specified child [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to this container.
+		 * If the child already is part of another parent, it is removed from it
+		 * and added to this one.
+		 * 
+		 * @param {Object} child The child [game-object](http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html) to add
+		 */
+		add: function(child) {
+			this._super(child);	
+
+			child.updateGroup = this.groupName;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
 		 * <p style='color:#AD071D'><strong>clear</strong></p>
 		 *
-		 * This is normally called through [groups](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html) to empty a 
+		 * This is normally called through [groups](http://localhost:5000/game-builder-docs/src/hierarchy/groups.html) to empty a 
 		 * group, but it could be called manually, assuming you can get a hold
 		 * of a reference.
 		 */
@@ -45,7 +79,19 @@ define(["game-object-container"], function(Container){
 			}
 
 			this.execute('clear', this);
-		}
+		},
+
+		/**
+		 * <p style='color:#AD071D'><strong>typeName</strong></p>
+		 *
+		 * @return {String} Returns the type name of this object
+		 */
+		typeName: function() {
+			return 'Group';
+		},
+		/**
+		 * --------------------------------
+		 */
 	});
 
 	return Group;

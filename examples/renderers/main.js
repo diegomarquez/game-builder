@@ -6,7 +6,7 @@
  * [gb](@@gb@@),
  * [game](@@game@@),
  * [basic-display-setup](@@basic-display-setup@@),
- * [rendering-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/rendering-bundle.html)
+ * [rendering-bundle](http://localhost:5000/examples-docs/common_src/bundles/rendering-bundle.html)
  */
 
 /**

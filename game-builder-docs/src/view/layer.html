@@ -4,17 +4,18 @@
 
 <h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
 
-<p>Inherits from: 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a></p>
+<p>Inherits from:
+<a href="http://localhost:5000/game-builder-docs/src/delegate.html">delegate</a></p>
 
 <p>Depends of:</p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This is the type of objects that <a href="@@videport@@">videport</a> uses to determine the order in which <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
-should be drawn. Each <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> has an array of this type of objects.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="visual-organization">Visual organization</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;delegate&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">){</span>
-  <span class="kd">var</span> <span class="nx">Layer</span> <span class="o">=</span> <span class="nx">Delegate</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>init</strong></p>
+<p>This is the type of objects that <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> uses to determine the order in which <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a>
+should be drawn. Each <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> has an array of this type of objects.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="visual-organization">Visual organization</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;delegate&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">{};</span>
+
+  <span class="kd">var</span> <span class="nx">Layer</span> <span class="o">=</span> <span class="nx">Delegate</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>init</strong></p>
 
 <p>Constructor</p>
 
@@ -22,7 +23,7 @@ should be drawn. Each <a href="http://diegomarquez.github.io/game-builder/game-b
 
 <ul>
 <li><p><strong>name must be a String.</strong><br/>(The name of the layer)</p></li>
-<li><p><strong>viewport must be a Viewport.</strong><br/>(The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> the layer belongs to)</p></li>
+<li><p><strong>viewport must be a Viewport.</strong><br/>(The <a href="http://localhost:5000/game-builder-docs/src/view/viewport.html">viewport</a> the layer belongs to)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">gameObjects</span> <span class="o">=</span> <span class="p">[];</span>
@@ -30,60 +31,94 @@ should be drawn. Each <a href="http://diegomarquez.github.io/game-builder/game-b
       <span class="k">this</span><span class="p">.</span><span class="nx">viewport</span> <span class="o">=</span> <span class="nx">viewport</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong></p>
 
-<p>Add a <a href="@@game-obejct@@">game-obejct</a> to layer for rendering</p>
+<p>Add a <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to layer for rendering</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>go must be an Object.</strong><br/>(The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to add)</li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">add</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">go</span><span class="p">)</span> <span class="p">{</span> 
-      <span class="k">this</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">go</span><span class="p">);</span> 
+<li><strong>go must be an Object.</strong><br/>(The <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to add)</li>
+</ul>
+
+<p><strong>Returns an Object or a null</strong><br/>(The <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> that was just added or null if the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> was already part of the layer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">add</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">go</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">go</span><span class="p">);</span> 
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">go</span><span class="p">);</span>
+        <span class="nx">go</span><span class="p">.</span><span class="nx">addToViewportList</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">viewport</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">go</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>remove</strong></p>
 
-<p>Remove a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> from the layer</p>
+<p>Remove a <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> from the layer</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>go must be an Object.</strong><br/>(The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to remove)</li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">remove</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">go</span><span class="p">)</span> <span class="p">{</span> 
-      <span class="k">this</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">go</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span> 
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>removeAll</strong></p>
+<li><strong>go must be an Object.</strong><br/>(The <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to remove)</li>
+</ul>
 
-<p>Removes all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> from the layer</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
-      <span class="k">this</span><span class="p">.</span><span class="nx">gameObjects</span> <span class="o">=</span> <span class="p">[];</span> 
+<p><strong>Returns an Object or a null</strong><br/>(The <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> that was just removed or null if the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-object</a> was not part of the layer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">remove</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">go</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">go</span><span class="p">);</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="nx">go</span><span class="p">.</span><span class="nx">removeFromViewportList</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">viewport</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nx">go</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removeAll</strong></p>
+
+<p>Removes all the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> from the layer</p>
+
+<p><strong>Returns an Array</strong><br/>(All the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> that were just removed)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">gos</span> <span class="o">=</span> <span class="p">[];</span>
+
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">gos</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">[</span><span class="nx">i</span><span class="p">]));</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="nx">gos</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>draw</strong></p>
 
+<p>Draws all the <a href="http://localhost:5000/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p>
+
 <p>Parameters:</p>
 
 <ul>
-<li><strong>context must be a Context 2D.</strong><br/>(<a href="http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/">Canvas 2D context</a>)</li>
+<li><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">visible</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
-      <span class="kd">var</span> <span class="nx">go</span><span class="p">;</span>
-
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">go</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+        <span class="kd">var</span> <span class="nx">go</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">gameObjects</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
 
-        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">viewport</span><span class="p">.</span><span class="nx">isGameObjectInside</span><span class="p">(</span><span class="nx">go</span><span class="p">,</span> <span class="nx">context</span><span class="p">))</span> <span class="p">{</span>
-          <span class="nx">go</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewport</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">go</span><span class="p">.</span><span class="nx">isContainer</span><span class="p">())</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If the game object is a container game object...
+Call draw method, it will figure out if it actually needs to be drawn, and do the same for it's children</p></div></div><div class="code"><div class="wrapper">          <span class="nx">go</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewport</span><span class="p">);</span>  
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>If the game object is a regular game object...
+Try to skip drawing as soon as possible</p></div></div><div class="code"><div class="wrapper">          </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Draw only if inside the viewport and is allowed to be drawn</p></div></div><div class="code"><div class="wrapper">          <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">viewport</span><span class="p">.</span><span class="nx">isGameObjectInside</span><span class="p">(</span><span class="nx">go</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">go</span><span class="p">.</span><span class="nx">canDraw</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">go</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewport</span><span class="p">);</span>  
+          <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>show</strong></p>
 
-<p>Make the layer visible</p></div></div><div class="code"><div class="wrapper">    <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
-      <span class="k">this</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> 
+<p>Make the layer visible</p></div></div><div class="code"><div class="wrapper">    <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>hide</strong></p>
 
-<p>Make the layer invisible</p></div></div><div class="code"><div class="wrapper">    <span class="nx">hide</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
-      <span class="k">this</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> 
+<p>Make the layer invisible</p></div></div><div class="code"><div class="wrapper">    <span class="nx">hide</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">visible</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>isVisible</strong></p>
 
 <p>Wether the layer is visible or not</p>
 
-<p><strong>Returns a Boolean</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">isVisible</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
-      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">visible</span><span class="p">;</span> 
+<p><strong>Returns a Boolean</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">isVisible</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">visible</span><span class="p">;</span>
     <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
 
   <span class="k">return</span> <span class="nx">Layer</span><span class="p">;</span>

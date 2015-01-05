@@ -3,10 +3,10 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
+ * Inherits from: [extension](http://localhost:5000/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
  * Depends of: 
- * [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
+ * [gb](http://localhost:5000/game-builder-docs/src/gb.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -25,7 +25,7 @@
 define(["gb", "extension"], function(Gb, Extension) {
 	var AspectRatioResize = Extension.extend({
 		type: function() {
-			// Notice the use of the constant CREATE defined in [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html),
+			// Notice the use of the constant CREATE defined in [game](http://localhost:5000/game-builder-docs/src/game_canvas/game.html),
 			// to define this extension should be executed on creation.
 			return Gb.game.CREATE;
 		},
@@ -51,16 +51,16 @@ define(["gb", "extension"], function(Gb, Extension) {
 			var container = Gb.game.mainContainer;
 			var canvas = Gb.game.canvas;
 
-    		container.style.top  		= '50%';
-    		container.style.left 		= '50%';
+    	container.style.top  		= '50%';
+    	container.style.left 		= '50%';
 			container.style.marginLeft = '-' + Gb.game.canvas.width/2 + 'px';
 			container.style.marginTop  = '-' + Gb.game.canvas.height/2 + 'px';
 			container.style.position   = 'fixed';
 
 			canvas.style.paddingLeft  = 0;
-    		canvas.style.paddingRight = 0;
-    		canvas.style.marginLeft   = 'auto';
-    		canvas.style.marginRight  = 'auto';
+    	canvas.style.paddingRight = 0;
+    	canvas.style.marginLeft   = 'auto';
+    	canvas.style.marginRight  = 'auto';
 
 			resize(container, canvas);
 
