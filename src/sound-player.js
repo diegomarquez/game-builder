@@ -20,30 +20,31 @@
  * this will dictate the amount of sounds that can be played simultaneously. Of course more sound channels means
  * a bigger memory foot print.
  *
- * After creating the channels, it is a matter of adding some sounds files, using the **load** method. After doing that. After
+ * After creating the channels, it is a matter of adding some sounds files, using the **load** method. After
  * doing that the **playSingle** and **playLoop** methods will play sound given an id, provided the sound file has already been loaded,
  * otherwise nothing will happen.
  * 
- * The rest of the methods do what they say on the tin, it should be pretty easy for you, a master coder, 
- * to figure out how to use them.
+ * The rest of the methods do what they say on the tin
  *
- * ### The Sound Player object extends [delegate](@@delegate@@) so it provides a few events to hook into:
+ * The Sound Player object extends [delegate](@@delegate@@) so it provides a few events to hook into:
  *
- * ### **on_all_load_complete**
+ * ### **ON_LOAD_ALL_COMPLETE**
  * When loading of resources through the **loadAll** method is complete. 
  *
  * ``` javascript  
  * soundPlayer.on(soundPlayer.ON_LOAD_ALL_COMPLETE, function() {});
  * ```
+ * </br>
  * 
- * ### **load_complete** 
+ * ### **ON_LOAD_COMPLETE** 
  * When the loading of a single resource is complete. 
  *
  * ``` javascript  
  * soundPlayer.on(soundPlayer.ON_LOAD_COMPLETE, function(soundId) {});
  * ```
+ * </br>
  *
- * ### **channels_assign** 
+ * ### **CHANNELS_ASSIGN** 
  * When channels are assigned to a specific sound 
  *
  * ``` javascript  
@@ -54,55 +55,71 @@
  * 		data.amount
  * });
  * ```
+ *
+ * </br>
  * 
- * ### **channels_revoke** 
+ * ### **CHANNELS_REVOKE** 
  * When dedicated channels are removed from a sound
  *
  * ``` javascript  
  * soundPlayer.on(soundPlayer.CHANNELS_REVOKE, function(soundId) {});
  * ```
  *
- * ### **single_complete** 
+ * </br>
+ *
+ * ### **SINGLE_COMPLETE** 
  * When a **playSingle** call finished playing it's sound
  *
  * ``` javascript  
  * soundPlayer.on(soundPlayer.SINGLE_COMPLETE, function(soundId) {});
  * ```
+ * 
+ * </br>
  *
- * ### **play_single** 
+ * ### **PLAY_SINGLE** 
  * When a **playSingle** call starts playback
  *
  * ``` javascript  
  * soundPlayer.on(soundPlayer.PLAY_SINGLE, function(soundId) {});
  * ```
  *
- * ### **play_loop** 
+ * </br>
+ *
+ * ### **PLAY_LOOP** 
  * When a **playLoop** call starts playback
  *
  * ``` javascript  
  * soundPlayer.on(soundPlayer.PLAY_LOOP, function(soundId) {});
  * ```
  *
- * ### **pause** 
+ * </br>
+ *
+ * ### **PAUSE** 
  * When a sound is paused 
  *
  * ``` javascript  
  * soundPlayer.on(soundPlayer.PAUSE, function(soundId) {});
  * ```
  *
- * ### **resume** 
+ * </br>
+ *
+ * ### **RESUME** 
  * When a sound is resumed
  *
  * ``` javascript  
  * soundPlayer.on(soundPlayer.RESUME, function(soundId) {});
  * ```
  *
- * ### **stop** 
+ * </br>
+ *
+ * ### **STOP** 
  * When a sound is stopped 
  *
  * ``` javascript  
  * soundPlayer.on(soundPlayer.STOP, function(soundId) {});
  * ```
+ *
+ * </br>
  */
 
 /**
@@ -511,7 +528,6 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 		 */
 	});
 
-	// ### Getters for all the types of events the sound player can hook into
 	Object.defineProperty(SoundPlayer.prototype, "ON_LOAD_ALL_COMPLETE", { get: function() { return 'load_all_complete'; } });
 	Object.defineProperty(SoundPlayer.prototype, "ON_LOAD_COMPLETE", { get: function() { return 'load_complete'; } });
 	Object.defineProperty(SoundPlayer.prototype, "CHANNELS_ASSIGN", { get: function() { return 'channel_assign'; } }); 
@@ -522,9 +538,6 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 	Object.defineProperty(SoundPlayer.prototype, "PAUSE", { get: function() { return 'pause'; } });
 	Object.defineProperty(SoundPlayer.prototype, "RESUME", { get: function() { return 'resume'; } });
 	Object.defineProperty(SoundPlayer.prototype, "STOP", { get: function() { return 'stop'; } });
-	/**
-	 * --------------------------------
-	 */
 
 	var isLoading = false;
 
