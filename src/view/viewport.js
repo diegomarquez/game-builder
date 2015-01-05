@@ -22,8 +22,49 @@
  * This module defines a viewport, it has an offset in relation to the top left of the screen, a width and height, and the position
  * of the world it is viewing. It is a rectangle.
  *
- * Aside from that it holds an array of [layer](@@layer@@) objects each with the [game-objetcs](@@game-objetc@@) that this
+ * Aside from that it holds an array of [layer](@@layer@@) objects each with the [game-objects](@@game-object@@) that this
  * viewport should draw.
+ *
+ * These objects extend [delegate](@@delegate@@) so they provide a few events to hook into:
+ *
+ * ### **ADD** 
+ * When a [layer](@@layer@@) is added
+ * 
+ * Registered callbacks get the [layer](@@layer@@) as argument 
+ * ``` javascript  
+ * viewport.on(viewport.ADD, function(layer) {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **REMOVE** 
+ * When a [layer](@@layer@@) is removed 
+ * 
+ * Registered callbacks get the [layer](@@layer@@) as argument 
+ * ``` javascript  
+ * viewport.on(viewport.REMOVE, function(layer) {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **CHANGE** 
+ * When a [layer](@@layer@@) changes position
+ *
+ * Registered callbacks get the [layer](@@layer@@) as argument 
+ * ``` javascript  
+ * viewport.on(viewport.CHANGE, function(layer) {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **REMOVE_ALL** 
+ * When all the [layers](@@layer@@) are removed
+ * 
+ * ``` javascript  
+ * viewport.on(viewport.REMOVE_ALL, function() {});
+ * ``` 
+ *
+ * </br>
  */
 
 /**
@@ -398,7 +439,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      *
      * Draw all the [game-objects](@@game-object@@) in the viewport
      *
-     * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+     * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
      */
     draw: function(context) {
       if (!this.visible) return;
