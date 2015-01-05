@@ -14,6 +14,52 @@
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
  * This module serves as a container for all the [viewport](@@viewport@@) objects created.
+ *
+ * This module extends [delegate](@@delegate@@) so it provides a few events to hook into:
+ *
+ * ### **ADD** 
+ * When a [viewports](@@viewports@@) is added
+ * 
+ * Registered callbacks get the [viewports](@@viewports@@) as argument 
+ * ``` javascript  
+ * gb.viewports.on(gb.viewports.ADD, function(viewports) {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **REMOVE** 
+ * When a [viewport](@@viewport@@) is removed 
+ * 
+ * Registered callbacks get the [viewport](@@viewport@@) as argument 
+ * ``` javascript  
+ * gb.viewports.on(gb.viewports.REMOVE, function(viewport) {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **CHANGE** 
+ * When a [viewport](@@viewport@@) changes position
+ *
+ * Registered callbacks get the [viewport](@@viewport@@) as argument 
+ * ``` javascript  
+ * gb.viewports.on(gb.viewports.CHANGE, function(viewport) {});
+ * ``` 
+ *
+ * </br>
+ *
+ * ### **MOVE** 
+ * When all the [viewport](@@viewport@@) is moved
+ * 
+ * ``` javascript  
+ * gb.viewports.on(gb.viewports.MOVE, function() {});
+ * ``` 
+ *
+ * </br>
+ *
+ * <strong>Note: The snippet uses the reference to <a href=@@viewports@@>viewports</a>
+ * found in the <a href=@@gb@@>gb</a> module. 
+ * The way you get a hold to a reference to <a href=@@viewports@@>viewports</a>
+ * may vary.</strong>
  */
 
 /**
@@ -75,7 +121,7 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		
 		
 		/**
-		 * <p style='color:#AD071D'><strong>add</strong></p>
+		 * <p style='color:#AD071D'><strong>addFromObject</strong></p>
 		 *
 		 * Creates a new [viewport](@@viewport@@) and adds it to the container.
 		 * 

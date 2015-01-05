@@ -502,7 +502,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      * <p style='color:#AD071D'><strong>isGameObjectInside</strong></p>
      *
      * @param  {Object}  go [game-object](@@game-object@@) to test
-     * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+     * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
      *
      * @return {Boolean} Whether the [game-object](@@game-object@@) is in the visible area of the viewport or not
      */
@@ -706,7 +706,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
      *
      * Applies the transformations this viewport defines to the current context
      * 
-     * @param  {Context 2D} context     [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+     * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
      */
     transformContext: function(context) {
       // Translate to adjust for the current [viewport](@@viewport@@)
