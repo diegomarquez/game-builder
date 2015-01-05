@@ -124,31 +124,29 @@ define(['sat'], function(SAT) {
 			return false;
 		}
 
-		if (first.colliderType == second.colliderType) {
-			if (first.colliderType == this.circleCollider) {
-				return SAT.testCircleCircle(first.collider, second.collider);
-			}
-			if (first.colliderType == this.polygonCollider || first.colliderType == this.fixedPolygonCollider) {
-				return SAT.testPolygonPolygon(first.collider, second.collider);
-			}
-		} else {
-			if (first.colliderType == this.circleCollider) {
-				return SAT.testPolygonCircle(second.collider, first.collider);
-			}
-			if (first.colliderType == this.polygonCollider || first.colliderType == this.fixedPolygonCollider) {
-				return SAT.testPolygonCircle(first.collider, second.collider);
-			}
-		}
+		var collisionMethodKey = first.colliderType + second.colliderType;
 
-		return false;
+		return this.collisionMethodPairs[collisionMethodKey](first.collider, second.collider);
 	}
 
 	// These variables are used by the concrete implementations of colliders to decide what
 	// type of collider they are, and hence, which method should be used when checking for collisions
 	// between them.
-	CollisionResolver.prototype.circleCollider  = 0;
-	CollisionResolver.prototype.polygonCollider = 1;
-	CollisionResolver.prototype.fixedPolygonCollider = 2;
+	CollisionResolver.prototype.circleCollider  = 'circle';
+	CollisionResolver.prototype.polygonCollider = 'polygon';
+	CollisionResolver.prototype.fixedPolygonCollider = 'fixed';
+
+	CollisionResolver.prototype.collisionMethodPairs = {
+		'circlecircle': SAT.testCircleCircle,
+		'circlepolygon': SAT.testCirclePolygon,
+		'circlefixed': SAT.testCirclePolygon,
+		'polygoncircle': SAT.testPolygonCircle,
+		'polygonpolygon': SAT.testPolygonPolygon,
+		'polygonfixed': SAT.testPolygonPolygon,
+		'fixedcircle': SAT.testPolygonCircle,
+		'fixedpolygon': SAT.testPolygonPolygon,
+		'fixedfixed': SAT.testPolygonPolygon 
+	}
 
 	return new CollisionResolver();
 });

@@ -53,7 +53,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
   	}
 
     var addToViewPorts = function(go, vports) {
-      var v = processViewportArgument(vports);
+      var v = processViewportArgument.call(this, vports);
 
       for (var i=0; i<v.length; i++) {
         viewports.get(v[i].viewport).addGameObject(v[i].layer, go);
@@ -61,7 +61,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
     }
 
     var removeFromViewPorts = function(go, vports) {
-    	var v = processViewportArgument(vports);
+    	var v = processViewportArgument.call(this, vports);
 
     	for (var i=0; i<v.length; i++) {
         viewports.get(v[i].viewport).removeGameObject(v[i].layer, go);
