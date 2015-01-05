@@ -18,7 +18,7 @@
  *
  * <p style='color:#AD071D'>Note: State machines may throw a custom error when trying to 
  * execute <strong>Initialization</strong> and <strong>Completion</strong> actions. 
- * This is because those methods are enclosed in a **'try catch'** block. 
+ * This is because those methods are enclosed in a <strong>'try catch block'</strong>. 
  * This means if you see this illusive error, there is something wrong in the callbacks registered with the
  * state machine rather than the state machine itself.</p> 
  */
