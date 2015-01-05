@@ -9,11 +9,10 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * Similar [sat](@@sat@@) and [vector-2D](@@vector-2D@@) 
+ * Similar to [sat](@@sat@@) and [vector-2D](@@vector-2D@@) 
  * in that I took the code from somewhere else to make a requireJS module with it.
  * In this case the victim was [EaselJS](https://github.com/CreateJS/EaselJS/). Somewhere
- * in there is a javascript file that desribes a 3x3 matrix. Instead of implementing it myself,
- * I took the cowards way out and took that code and changed it to suit my needs.
+ * in there is a javascript file that desribes a 3x3 matrix. So this is largely a copy/paste of that.
  *
  * Anyway, this module is very important for everything that has to do with rendering,
  * because matrix transformations are used in each [game-object](@@game-object@@) 
