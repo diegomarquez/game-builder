@@ -18,7 +18,7 @@
  * This module extends [delegate](@@delegate@@) so it provides a few events to hook into:
  *
  * ### **ADD** 
- * When a [viewports](@@viewports@@) is added
+ * When a [viewport](@@viewport@@) is added
  * 
  * Registered callbacks get the [viewports](@@viewports@@) as argument 
  * ``` javascript  
