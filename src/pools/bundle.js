@@ -4,6 +4,7 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from:
+ * [class](@@class@@)
  *
  * Depends of: 
  * [gb](@@gb@@)
@@ -12,7 +13,7 @@
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
  * This is a helper module to define a block of [game-object-pool](@@game-object-pool@@) and 
- * [components-pool](@@components-pool@@) configuration. 
+ * [component-pool](@@component-pool@@) configurations. 
  *
  * The basic workflow is extending this module, and putting all the required code
  * to configure the pools in there. That way you can reuse that code in different places.
