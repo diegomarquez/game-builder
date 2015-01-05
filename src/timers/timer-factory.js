@@ -397,7 +397,6 @@ define(function(require) {
 		 */
 	});
 
-	// ### Getters for all the types of events the sound player can hook into
 	Object.defineProperty(TimerFactory.prototype, "CREATE", { get: function() { return 'create'; } });
 	Object.defineProperty(TimerFactory.prototype, "REMOVE", { get: function() { return 'remove'; } });
 	Object.defineProperty(TimerFactory.prototype, "COMPLETE", { get: function() { return 'complete'; } });
@@ -407,9 +406,6 @@ define(function(require) {
 	Object.defineProperty(TimerFactory.prototype, "RESUME", { get: function() { return 'resume'; } });
 	Object.defineProperty(TimerFactory.prototype, "RESET", { get: function() { return 'reset'; } });
 	Object.defineProperty(TimerFactory.prototype, "STOP", { get: function() { return 'stop'; } });
-	/**
-	 * --------------------------------
-	 */
 
 	var getCountInState = function(state) {
 		var result = 0;

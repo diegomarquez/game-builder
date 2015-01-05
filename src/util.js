@@ -59,7 +59,7 @@ define(function() {
  	 *
  	 * Performs a shallow merge of many objects.
  	 *
- 	 * The object which are specified first will be overrider by the ones specified last
+ 	 * The object which are specified first will be overriden by the ones specified last
  	 * 
  	 * @return {Object}        Result of merging
  	 */
@@ -164,7 +164,7 @@ define(function() {
 	 */
 	
 	/**
-	 * <p style='color:#AD071D'><strong>destroyArray</strong></p>
+	 * <p style='color:#AD071D'><strong>iterateArray</strong></p>
 	 *
 	 * Iterate through the elements of an array, executing a callback for each of them
 	 * 
@@ -187,8 +187,6 @@ define(function() {
 	 *
 	 * Get a function binded to the given scope.
 	 * 
-	 * Managing the scope of functions is a pretty big thing in Javascript.
-	 * 
 	 * @param  {Function} func  Function to bind
 	 * @param  {Oject} scope Scope to bind to
 	 * @param  {Array} args  Arguments the binded function will receive
@@ -204,11 +202,9 @@ define(function() {
 	 */
 	
 	/**
-	 * <p style='color:#AD071D'><strong>bind</strong></p>
+	 * <p style='color:#AD071D'><strong>cache</strong></p>
 	 *
 	 * Get a function that will cache the first computed value
-	 * 
-	 * Managing the scope of functions is a pretty big thing in Javascript.
 	 * 
 	 * @param  {Function} func  Function to cache
 	 * @param  {Oject|null} scope Scope to bind to
