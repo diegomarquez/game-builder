@@ -44,7 +44,7 @@
  *
  * Pools extend [delegate](@@delegate@@) so they offer a bunch of events to hook onto.
  * 
- * * ### **INIT** 
+ * ### **INIT** 
  * When a pool is created 
  * 
  * Registered callbacks get the pool as argument 
@@ -128,7 +128,9 @@
  * ``` javascript  
  * pool.on(pool.CLEAR_CONFIGURATION, function(id) {});
  * ``` 
+ * </br>
  */
+
 /**
  * Pooling
  * --------------------------------

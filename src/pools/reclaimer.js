@@ -12,10 +12,9 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines the object which is in charge of retrieving [game-objetcs](@@game-objetc@@)
+ * This module defines the object which is in charge of retrieving [game-objects](@@game-object@@)
  * at any given point. It's the last piece of [Game-Builder](http://diegomarquez.github.io/game-builder)
- * object management system. You could do the same thing this module does manually, as it is not so 
- * complicated, but why bother when it is already made?
+ * object management system.
  *
  * It has various methods to send [game-objects](@@game-object@@) to their respective pools.
  * 
