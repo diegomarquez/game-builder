@@ -211,8 +211,8 @@ define(function(require) {
      * to setup the update loop.
      */
     create: function() {
-      this.mainContainer = mainContainer;
-      this.canvas = canvas;
+      this.mainContainer = document.getElementById('main');
+      this.canvas = document.getElementById('game');
       this.context = this.canvas.getContext("2d");
 
       var mainLoop;
