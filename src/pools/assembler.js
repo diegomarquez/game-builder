@@ -13,7 +13,7 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
- * This module defines a very important module for [Game-Builder](http://diegomarquez.github.io/game-builder).
+ * This module defines a very important object for [Game-Builder](http://diegomarquez.github.io/game-builder).
  *
  * The assembler module takes care of putting together the [game-objects](@@game-object@@) with their
  * [components](@@component@@) as they were configured in the [game-object-pool](@@game-object-pool@@)
