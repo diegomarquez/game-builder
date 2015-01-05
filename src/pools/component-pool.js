@@ -25,7 +25,7 @@
  *
  * Unlike [game-objects](@@game-object@@), [components](@@component@@) don't make sense by themselves, so
  * you don't specify the maximun amount of them you want, like you do with the [game-object-pool](@@game-object-pool@@). 
- * Instead [components](@@components@@) will be created as needed. Since [components](@@component@@),
+ * Instead [components](@@component@@) will be created as needed. Since [components](@@component@@),
  * can not exists outside of a [game-object](@@game-object@@), when the cap on [game-objects](@@game-object@@)
  * is reached, naturally, no more [components](@@component@@) will be created.
  *
@@ -46,7 +46,7 @@
  * ```
  *
  * In the example above, there will only be 
- * a single instance of _'someComponentPrototypeObject'_, but it might be configured with the arguments
+ * a single instance of **'someComponentPrototypeObject'**, but it might be configured with the arguments
  * for any of those configurations at the moment it is requested.
  *
  * This is usefull to avoid having too many idling instances of the same type at the same time.
@@ -76,7 +76,7 @@ define(function(require) {
 		createConfiguration: function(alias, type) {
 			var self = this;
 
-			// Configurations objects for [components](@@component@@)
+			// Configuration objects for [components](@@component@@)
 			// contain the arguments that this configuration will apply
 			var configuration = {
 				componentId: type,
