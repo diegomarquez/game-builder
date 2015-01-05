@@ -10,7 +10,7 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
- * This is the type of objects that [videport](@@videport@@) uses to determine the order in which [game-objects](@@game-object@@)
+ * This is the type of objects that [viewport](@@viewport@@) uses to determine the order in which [game-objects](@@game-object@@)
  * should be drawn. Each [viewport](@@viewport@@) has an array of this type of objects.
  */
 
@@ -49,7 +49,7 @@ define(["delegate"], function(Delegate) {
     /**
      * <p style='color:#AD071D'><strong>add</strong></p>
      *
-     * Add a [game-obejct](@@game-obejct@@) to layer for rendering
+     * Add a [game-object](@@game-object@@) to layer for rendering
      *
      * @param {Object} go The [game-object](@@game-object@@) to add
      *
@@ -119,7 +119,9 @@ define(["delegate"], function(Delegate) {
     /**
      * <p style='color:#AD071D'><strong>draw</strong></p>
      *
-     * @param  {Context 2D} context [Canvas 2D context](http://www.w3.org/html/wg/drafts/2dcontext/html5_canvas/)
+     * Draws all the [game-objects](@@game-object@@)
+     * 
+     * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
      */
     draw: function(context) {
       if (!this.visible) return;
