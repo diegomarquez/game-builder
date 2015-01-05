@@ -39,7 +39,7 @@
  * ```
  *
  * In the example above, there will only be 
- * a single instance of _'someGameObjectPrototypeObject'_, but it might be configured with the arguments
+ * a single instance of *'someGameObjectPrototypeObject'*, but it might be configured with the arguments
  * for any of those configurations at the moment it is requested.
  *
  * This is usefull to avoid having too many idling instances at the same time.
