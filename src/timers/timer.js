@@ -4,9 +4,9 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from:
- *
- * Depends of: 
  * [delegate](@@delegate@@)
+ * 
+ * Depends of: 
  * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
@@ -16,16 +16,18 @@
  * is more intuitive, with a **stop** method. Another cool feature is being able to pause the timer, 
  * something which [**setTimeout**](https://developer.mozilla.org/en-US/docs/Web/API/Window.setTimeout) simply does not do.
  *
- * ### The Timer object extends [delegate](@@delegate@@) so it provides a few events to hook into:
+ * The Timer object extends [delegate](@@delegate@@) so it provides a few events to hook into:
  *
- * ### **start**
+ * ### **START**
  * When a timer starts. 
  *
  * ``` javascript  
  * timer.on(component.START, function() {});
  * ```
+ *
+ * </br>
  * 
- * ### **repeate** 
+ * ### **REPEATE** 
  * Each time a timer is repeated. 
  *
  * Registered callbacks get the amount of repeats left as argument. 
@@ -33,47 +35,62 @@
  * timer.on(timer.REPEATE, function(repeatsLeft) {});
  * ``` 
  *
- * ### **complete**
+ * </br>
+ * 
+ * ### **COMPLETE**
  * When a timer completes. 
  * 
  * ``` javascript  
  * timer.on(timer.COMPLETE, function() {});
  * ```
  *
- * ### **stop**
+ * </br>
+ *
+ * ### **STOP**
  * When a timer is stopped.
  * 
  * ``` javascript  
  * timer.on(timer.STOP, function() {});
  * ```
  * 
- * ### **reset**
+ * </br>
+ *
+ * 
+ * ### **RESET**
  * When a timer is reset.
  * 
  * ``` javascript  
  * timer.on(timer.RESET, function() {});
  * ```
+ *
+ * </br>
  * 
- * ### **pause**
+ * ### **PAUSE**
  * When a timer is paused.
  * 
  * ``` javascript  
  * timer.on(timer.PAUSE, function() {});
  * ```
  * 
- * ### **resume**
+ * </br>
+ * 
+ * ### **RESUME**
  * When a timer is resumed.
  * 
  * ``` javascript  
  * timer.on(timer.RESUME, function() {});
  * ```
+ *
+ * </br>
  * 
- * ### **remove**
+ * ### **REMOVE**
  * When a timer is removed from the factory register.
  * 
  * ``` javascript  
- * timer.on('remove' function() {});
+ * timer.on(timer.REMOVE function() {});
  * ``` 
+ *
+ * </br>
  */
 
 /**
@@ -457,7 +474,6 @@ define(function(require) {
 		}
 	});
 
-	// ### Getters for all the types of events a Timer can hook into
 	Object.defineProperty(Timer.prototype, "START", { get: function() { return 'start'; } });
 	Object.defineProperty(Timer.prototype, "REPEATE", { get: function() { return 'repeate'; } });
 	Object.defineProperty(Timer.prototype, "COMPLETE", { get: function() { return 'complete'; } });
@@ -465,9 +481,6 @@ define(function(require) {
 	Object.defineProperty(Timer.prototype, "PAUSE", { get: function() { return 'pause'; } });
 	Object.defineProperty(Timer.prototype, "RESUME", { get: function() { return 'resume'; } });
 	Object.defineProperty(Timer.prototype, "REMOVE", { get: function() { return 'remove'; } });
-	/**
-	 * --------------------------------
-	 */
 
 	return Timer;
 });
