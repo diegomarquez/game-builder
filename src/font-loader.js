@@ -79,7 +79,11 @@ define(function(require) {
     	
     	var protocol = document.location.protocol === 'https:' ? 'https' : 'http';
 
-		require([protocol + '://ajax.googleapis.com/ajax/libs/webfont/' + config.version + '/webfont.js'], function() {
+			// require([protocol + '://ajax.googleapis.com/ajax/libs/webfont/' + config.version + '/webfont.js'], function() {
+	  //       WebFont.load(config.data);
+	  //   });
+	  //   
+	    require(['http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js'], function() {
 	        WebFont.load(config.data);
 	    });
     }
