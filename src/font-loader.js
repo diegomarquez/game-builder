@@ -55,42 +55,55 @@ define(function(require) {
      * @param {Funtion} onLoad This is called when all fonts have been downloaded.
      */
     FontLoader.prototype.start = function(onLoad) {
-        var config = require('font-data').get();
+      var config = require('font-data').get();
 
     	if (!config.loadFonts) {
-            onLoad(); 
-            return;
-        }
+        onLoad(); 
+        return;
+      }
 
-        var self = this;
+      var self = this;
 
     	config.data.active = function() {
     		onLoad();	
     	};
 
     	config.data.inactive = function() {
-            require('error-printer').printError('Font Loader', 'No fonts are available');
+        require('error-printer').printError('Font Loader', 'No fonts are available');
     		onLoad();	
     	};
 
-        config.data.fontinactive = function(familyName) {
-            require('error-printer').printError('Font Loader', 'Font: ' + familyName + ' could not be loaded');   
-        };
+      config.data.fontinactive = function(familyName) {
+        require('error-printer').printError('Font Loader', 'Font: ' + familyName + ' could not be loaded');   
+      };
     	
     	var protocol = document.location.protocol === 'https:' ? 'https' : 'http';
 
-			// require([protocol + '://ajax.googleapis.com/ajax/libs/webfont/' + config.version + '/webfont.js'], function() {
-	  //       WebFont.load(config.data);
-	  //   });
-	  //   
-	    require(['http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js'], function() {
-	        WebFont.load(config.data);
-	    });
+    	loadScript(protocol + '://ajax.googleapis.com/ajax/libs/webfont/' + config.version + '/webfont.js', function() {
+    		WebFont.load(config.data);
+    	});
     }
     /**
      * --------------------------------
      */
 
+    var loadScript = function(src, callback) {
+		  var s, r, t;
+		  
+		  r = false;
+		  s = document.createElement('script');
+		  s.type = 'text/javascript';
+		  s.src = src;
+		  s.onload = s.onreadystatechange = function() {
+		    if (!r && (!this.readyState || this.readyState == 'complete') ) {
+		      r = true;
+		      callback();
+		    }
+		  }
+		  
+		  t = document.getElementsByTagName('script')[0];
+		  t.parentNode.insertBefore(s, t);
+		}
+
     return new FontLoader();
 });
-
