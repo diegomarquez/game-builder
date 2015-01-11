@@ -25,7 +25,7 @@
 /**
  * --------------------------------
  */
-define(["extension", "keyboard"], function(Extension, Keyboard) {
+define(["extension", "gb", "keyboard"], function(Extension, Gb, Keyboard) {
 
 	var PreventKeysDefault = Extension.extend({
 		type: function() {
