@@ -47,8 +47,10 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 			this._super();
 
 			Object.defineProperty(game.prototype, "PAUSE", { 
-				configurable: true
-				get: function() { return 'pause'; } 
+				configurable: true,
+				get: function() { 
+					return 'pause'; 
+				} 
 			});
 
 			game.pause = function() {
