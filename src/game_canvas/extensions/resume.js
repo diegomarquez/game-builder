@@ -43,6 +43,23 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 	var game = Gb.game;
 
 	var Resume = Extension.extend({
+		init: function() {
+			Object.defineProperty(game.prototype, "RESUME", { 
+				configurable: true,
+				get: function() { 
+					return 'resume'; 
+				} 
+			});
+
+			game.resume = function() {
+				if(game.focusAction()) {
+					game.execute(game.RESUME);
+					window.addEventListener("blur", game.blurAction);
+					window.addEventListener("focus", game.focusAction);	
+				}
+			}
+		},
+
 		type: function() {
 			// Notice the use of the constant FOCUS defined in [game](@@game@@)
 			// to define this extension should be executed on creation.
@@ -76,18 +93,16 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 					l.alreadyHidden = false;					
 				}
 			}
+		},
+
+		destroy: function() {
+			delete game.prototype['RESUME'];
+			delete game['resume'];
+
+			window.removeEventListener("blur", game.blurAction);
+			window.removeEventListener("focus", game.focusAction);
 		}
 	});
-
-	Object.defineProperty(game.prototype, "RESUME", { get: function() { return 'resume'; } });
-
-	game.resume = function() {
-		if(game.focusAction()) {
-			game.execute(game.RESUME);
-			window.addEventListener("blur", game.blurAction);
-			window.addEventListener("focus", game.focusAction);	
-		}
-	}
 
 	return Resume;
 });

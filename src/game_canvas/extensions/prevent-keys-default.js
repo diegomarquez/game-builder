@@ -53,6 +53,12 @@ define(["extension", "keyboard"], function(Extension, Keyboard) {
 					Keyboard.NUM_5				
 				]	
 			});
+		},
+
+		destroy: function() {
+			Keyboard.config({
+				skipDefaultBehaviour: []
+			});
 		}
 	});
 
