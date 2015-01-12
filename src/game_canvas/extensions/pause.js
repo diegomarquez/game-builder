@@ -44,8 +44,6 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 
 	var Pause = Extension.extend({
 		init: function() {
-			this._super();
-
 			Object.defineProperty(game.prototype, "PAUSE", { 
 				configurable: true,
 				get: function() { 
