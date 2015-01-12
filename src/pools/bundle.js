@@ -103,7 +103,7 @@ define(function(require) {
 		 */
 		create: function(args) {
 			require('error-printer').mustOverrideError('Bundle');
-		}
+		},
 		/**
 		 * --------------------------------
 		 */
