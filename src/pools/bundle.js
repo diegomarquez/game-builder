@@ -19,11 +19,16 @@
  * to configure the pools in there. That way you can reuse that code in different places.
  *
  * The module defines five convinience methods 
+ * </br>
  * **createComponentPool**, 
+ * </br>
  * **createGameObjectPool**, 
+ * </br>
  * **createDynamicGameObjectPool**, 
- * **createComponentConfiguration** and
- * **createGameObjectConfiguration**
+ * </br>
+ * **createComponentConfiguration**
+ * </br>
+ * and **createGameObjectConfiguration**
  *
  * These should make setting up the [game-object-pool](@@game-object-pool@@) and the [component-pool](@@component-pool@@) a little easier.
  *
@@ -153,7 +158,7 @@ define(function(require) {
 		/**
 		 * <p style='color:#AD071D'><strong>createDynamicGameObjectPool</strong></p>
 		 *
-		 * Creates a a game object pool. The name is generated from the function provided as argument
+		 * Creates a dynamic game object pool. The name is generated from the function provided as argument
 		 *
 		 * ```
 		 * this.createDynamicGameObjectPool(function() { return require('a-game-object-module-name')});
@@ -177,10 +182,12 @@ define(function(require) {
 		/**
 		 * <p style='color:#AD071D'><strong>createComponentConfiguration</strong></p>
 		 *
-		 * @param  {[type]} configurationId [description]
-		 * @param  {[type]} poolId          [description]
+		 * Creates a configuration for a component pool
+		 * 
+		 * @param  {String} configurationId The id that will be used to create objects based on this configuration
+		 * @param  {String} poolId          The id of the basic type of object this configuration referes too
 		 *
-		 * @return {[type]}                 [description]
+		 * @return {Object}                 The configuration
 		 */
 		createComponentConfiguration = function (configurationId, poolId) {
 			var configuration = this.componentPool.createConfiguration(configurationId, poolId);
@@ -196,10 +203,12 @@ define(function(require) {
 		/**
 		 * <p style='color:#AD071D'><strong>createGameObjectConfiguration</strong></p>
 		 *
-		 * @param  {[type]} configurationId [description]
-		 * @param  {[type]} poolId          [description]
+		 * Creates a configuration for a game object pool
+		 * 
+		 * @param  {String} configurationId The id that will be used to create objects based on this configuration
+		 * @param  {String} poolId          The id of the basic type of object this configuration referes too
 		 *
-		 * @return {[type]}                 [description]
+		 * @return {Object}                 The configuration
 		 */
 		createGameObjectConfiguration = function (configurationId, poolId) {
 			var configuration = this.gameObjectPool.createConfiguration(configurationId, poolId);
