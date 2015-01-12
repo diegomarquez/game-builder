@@ -21,7 +21,7 @@ to define this extension should be executed on creation.</p></div></div><div cla
     <span class="nx">execute</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">scaleX</span><span class="p">,</span> <span class="nx">scaleY</span><span class="p">;</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">resize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">resize</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">scaleX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
         <span class="nx">scaleY</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 
@@ -61,7 +61,7 @@ to define this extension should be executed on creation.</p></div></div><div cla
       <span class="nx">canvas</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">marginLeft</span>   <span class="o">=</span> <span class="s1">&#39;auto&#39;</span><span class="p">;</span>
       <span class="nx">canvas</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">marginRight</span>  <span class="o">=</span> <span class="s1">&#39;auto&#39;</span><span class="p">;</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">resize</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">);</span>
+      <span class="nx">resize</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">);</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">resizeListener</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">resize</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">);</span>

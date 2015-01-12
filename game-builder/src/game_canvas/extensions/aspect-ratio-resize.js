@@ -33,7 +33,7 @@ define(["gb", "extension"], function(Gb, Extension) {
 		execute: function() {
 			var scaleX, scaleY;
 
-			this.resize = function(container, canvas) {
+			var resize = function(container, canvas) {
 				scaleX = 1;
 				scaleY = 1;
 
@@ -73,7 +73,7 @@ define(["gb", "extension"], function(Gb, Extension) {
     	canvas.style.marginLeft   = 'auto';
     	canvas.style.marginRight  = 'auto';
 
-			this.resize(container, canvas);
+			resize(container, canvas);
 
 			this.resizeListener = function() {
 				resize(container, canvas);
