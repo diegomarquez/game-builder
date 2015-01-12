@@ -1,0 +1,83 @@
+@import url(http://fonts.googleapis.com/css?family=Press+Start+2P);
+
+html, body, div, canvas {
+	margin: 0px;
+	padding: 0px;
+}
+
+div {
+  font-family: 'Press Start 2P';
+  font-size: 7;
+}
+
+#game {
+	background-color: #000000;
+}
+
+#main {
+	position: fixed;
+}
+
+#timers {
+	color: #fff;
+	position: relative;
+}
+
+#label_1 {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	top: -230px;
+	left: 0px;
+}
+
+#timer_1 {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	top: -210px;
+	left: 0px;
+}
+
+#event_1 {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	top: -190px;
+	left: 0px;
+	color: #0f0;
+}
+
+#label_2 {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	top: -150px;
+	left: 0px;
+}
+
+#timer_2 {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	top: -130px;
+	left: 0px;
+}
+
+#event_2 {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	top: -110px;
+	left: 0px;
+	color: #0f0;
+}
+
+#label_3 {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	top: -50px;
+	left: 0px;
+	color: #f00;
+}
