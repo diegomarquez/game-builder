@@ -38,8 +38,6 @@ define(["keyboard", "gb", "extension"], function(Keyboard, Gb, Extension) {
 		},
 
 		execute: function() {
-			removeOnExecute, keepOnCleanUp, single
-
 			game.on(game.BLUR, this, function() {
 				Keyboard.setBlock(true);
 			}, false, false, false, 'keyboard-lock');
