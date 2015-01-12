@@ -50,6 +50,21 @@ in case you don't want it to start in the top left corner of the canvas</p></div
       <span class="nx">Gb</span><span class="p">.</span><span class="nx">setViewportShortCut</span><span class="p">(</span><span class="s1">&#39;MainFront&#39;</span><span class="p">,</span> <span class="p">[{</span><span class="nx">viewport</span><span class="o">:</span><span class="s1">&#39;Main&#39;</span><span class="p">,</span> <span class="nx">layer</span><span class="o">:</span><span class="s1">&#39;Front&#39;</span><span class="p">}]);</span>
       <span class="nx">Gb</span><span class="p">.</span><span class="nx">setViewportShortCut</span><span class="p">(</span><span class="s1">&#39;MainMiniFront&#39;</span><span class="p">,</span> <span class="p">[{</span><span class="nx">viewport</span><span class="o">:</span><span class="s1">&#39;Mini&#39;</span><span class="p">,</span> <span class="nx">layer</span><span class="o">:</span><span class="s1">&#39;Front&#39;</span><span class="p">},</span> <span class="p">{</span><span class="nx">viewport</span><span class="o">:</span><span class="s1">&#39;Main&#39;</span><span class="p">,</span> <span class="nx">layer</span><span class="o">:</span><span class="s1">&#39;Front&#39;</span><span class="p">}]);</span>
       <span class="nx">Gb</span><span class="p">.</span><span class="nx">setViewportShortCut</span><span class="p">(</span><span class="s1">&#39;MiniFront&#39;</span><span class="p">,</span> <span class="p">[{</span><span class="nx">viewport</span><span class="o">:</span><span class="s1">&#39;Mini&#39;</span><span class="p">,</span> <span class="nx">layer</span><span class="o">:</span><span class="s1">&#39;Front&#39;</span><span class="p">}]);</span>
+    <span class="p">},</span>
+
+    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">Groups</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;First&quot;</span><span class="p">);</span>
+      <span class="nx">Groups</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;Second&quot;</span><span class="p">);</span>
+      <span class="nx">Groups</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&quot;Third&quot;</span><span class="p">);</span>
+
+      <span class="nx">Viewports</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;Main&#39;</span><span class="p">);</span>
+      <span class="nx">Viewports</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;Mini&#39;</span><span class="p">);</span>
+
+      <span class="nx">Gb</span><span class="p">.</span><span class="nx">removeViewportShortCut</span><span class="p">(</span><span class="s1">&#39;MainBack&#39;</span><span class="p">);</span>
+      <span class="nx">Gb</span><span class="p">.</span><span class="nx">removeViewportShortCut</span><span class="p">(</span><span class="s1">&#39;MainMiddle&#39;</span><span class="p">);</span>
+      <span class="nx">Gb</span><span class="p">.</span><span class="nx">removeViewportShortCut</span><span class="p">(</span><span class="s1">&#39;MainFront&#39;</span><span class="p">);</span>
+      <span class="nx">Gb</span><span class="p">.</span><span class="nx">removeViewportShortCut</span><span class="p">(</span><span class="s1">&#39;MainMiniFront&#39;</span><span class="p">);</span>
+      <span class="nx">Gb</span><span class="p">.</span><span class="nx">removeViewportShortCut</span><span class="p">(</span><span class="s1">&#39;MiniFront&#39;</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">});</span>
 

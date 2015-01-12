@@ -1,0 +1,11 @@
+define(function() {
+	var Data = function() {};
+
+	var data = <%= data %>;
+
+	Data.prototype.get = function() {
+		return data;
+	}
+
+	return new Data();
+});

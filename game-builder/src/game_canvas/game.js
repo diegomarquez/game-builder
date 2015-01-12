@@ -209,29 +209,14 @@ define(function(require) {
      *
      * If the application does not have focus as soon as it starts, it waits until it has focus
      * to setup the update loop.
-     *
-     * @param  {ElementObject} mainContainer The Dom element that contains the canvas
-     * @param  {Canvas} canvas A [Canvas](https://developer.mozilla.org/en-US/docs/HTML/Canvas) object
      */
-    create: function(mainContainer, canvas) {
-      this.mainContainer = mainContainer;
-      this.canvas = canvas;
+    create: function() {
+      this.mainContainer = document.getElementById('main');
+      this.canvas = document.getElementById('game');
       this.context = this.canvas.getContext("2d");
 
       var mainLoop;
       var self = this;
-
-      // This styling puts the canvas at the top left
-      mainContainer.style.position = 'relative';
-
-      document.querySelector('html').style.margin = 0;
-      document.querySelector('html').style.padding = 0;
-      document.querySelector('body').style.margin = 0;
-      document.querySelector('body').style.padding = 0;
-      document.querySelector('div').style.margin = 0;
-      document.querySelector('div').style.padding = 0;
-      document.querySelector('canvas').style.margin = 0;
-      document.querySelector('canvas').style.padding = 0;
 
       // When this is called the application has trully started.
       var setupUpdateLoop = function() {

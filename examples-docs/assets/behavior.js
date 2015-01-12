@@ -74,65 +74,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/asset-map.js",
-            "projectPath": "work/examples/colliders/asset-map.js",
-            "targetPath": "colliders/asset-map",
-            "pageTitle": "colliders/asset-map",
-            "title": "asset-map"
+            "path": "colliders/generated",
+            "title": "generated"
           },
           "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/config.js",
-            "projectPath": "work/examples/colliders/config.js",
-            "targetPath": "colliders/config",
-            "pageTitle": "colliders/config",
-            "title": "config"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/font-data.js",
-            "projectPath": "work/examples/colliders/font-data.js",
-            "targetPath": "colliders/font-data",
-            "pageTitle": "colliders/font-data",
-            "title": "font-data"
-          },
-          "depth": 2,
-          "outline": []
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/generated/config.js",
+                "projectPath": "work/examples/colliders/generated/config.js",
+                "targetPath": "colliders/generated/config",
+                "pageTitle": "colliders/generated/config",
+                "title": "config"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -156,12 +126,82 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "folder",
           "data": {
+            "path": "colliders/src",
+            "title": "src"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/src/asset-map.js",
+                "projectPath": "work/examples/colliders/src/asset-map.js",
+                "targetPath": "colliders/src/asset-map",
+                "pageTitle": "colliders/src/asset-map",
+                "title": "asset-map"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/src/font-data.js",
+                "projectPath": "work/examples/colliders/src/font-data.js",
+                "targetPath": "colliders/src/font-data",
+                "pageTitle": "colliders/src/font-data",
+                "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
             "path": "colliders/tasks",
             "title": "tasks"
           },
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/tasks/build-index.js",
+                "projectPath": "work/examples/colliders/tasks/build-index.js",
+                "targetPath": "colliders/tasks/build-index",
+                "pageTitle": "colliders/tasks/build-index",
+                "title": "build-index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -193,11 +233,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/tasks/data-module.js",
+                "projectPath": "work/examples/colliders/tasks/data-module.js",
+                "targetPath": "colliders/tasks/data-module",
+                "pageTitle": "colliders/tasks/data-module",
+                "title": "data-module"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/tasks/local-assets.js",
                 "projectPath": "work/examples/colliders/tasks/local-assets.js",
                 "targetPath": "colliders/tasks/local-assets",
                 "pageTitle": "colliders/tasks/local-assets",
                 "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/tasks/make-dir.js",
+                "projectPath": "work/examples/colliders/tasks/make-dir.js",
+                "targetPath": "colliders/tasks/make-dir",
+                "pageTitle": "colliders/tasks/make-dir",
+                "title": "make-dir"
               },
               "depth": 3,
               "outline": []
@@ -731,65 +811,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/asset-map.js",
-            "projectPath": "work/examples/empty/asset-map.js",
-            "targetPath": "empty/asset-map",
-            "pageTitle": "empty/asset-map",
-            "title": "asset-map"
+            "path": "empty/generated",
+            "title": "generated"
           },
           "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/config.js",
-            "projectPath": "work/examples/empty/config.js",
-            "targetPath": "empty/config",
-            "pageTitle": "empty/config",
-            "title": "config"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/font-data.js",
-            "projectPath": "work/examples/empty/font-data.js",
-            "targetPath": "empty/font-data",
-            "pageTitle": "empty/font-data",
-            "title": "font-data"
-          },
-          "depth": 2,
-          "outline": []
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/generated/config.js",
+                "projectPath": "work/examples/empty/generated/config.js",
+                "targetPath": "empty/generated/config",
+                "pageTitle": "empty/generated/config",
+                "title": "config"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -813,12 +863,82 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "folder",
           "data": {
+            "path": "empty/src",
+            "title": "src"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/src/asset-map.js",
+                "projectPath": "work/examples/empty/src/asset-map.js",
+                "targetPath": "empty/src/asset-map",
+                "pageTitle": "empty/src/asset-map",
+                "title": "asset-map"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/src/font-data.js",
+                "projectPath": "work/examples/empty/src/font-data.js",
+                "targetPath": "empty/src/font-data",
+                "pageTitle": "empty/src/font-data",
+                "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
             "path": "empty/tasks",
             "title": "tasks"
           },
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/tasks/build-index.js",
+                "projectPath": "work/examples/empty/tasks/build-index.js",
+                "targetPath": "empty/tasks/build-index",
+                "pageTitle": "empty/tasks/build-index",
+                "title": "build-index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -850,11 +970,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/tasks/data-module.js",
+                "projectPath": "work/examples/empty/tasks/data-module.js",
+                "targetPath": "empty/tasks/data-module",
+                "pageTitle": "empty/tasks/data-module",
+                "title": "data-module"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/tasks/local-assets.js",
                 "projectPath": "work/examples/empty/tasks/local-assets.js",
                 "targetPath": "empty/tasks/local-assets",
                 "pageTitle": "empty/tasks/local-assets",
                 "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/tasks/make-dir.js",
+                "projectPath": "work/examples/empty/tasks/make-dir.js",
+                "targetPath": "empty/tasks/make-dir",
+                "pageTitle": "empty/tasks/make-dir",
+                "title": "make-dir"
               },
               "depth": 3,
               "outline": []
@@ -897,65 +1057,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/asset-map.js",
-            "projectPath": "work/examples/extensions/asset-map.js",
-            "targetPath": "extensions/asset-map",
-            "pageTitle": "extensions/asset-map",
-            "title": "asset-map"
+            "path": "extensions/generated",
+            "title": "generated"
           },
           "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/config.js",
-            "projectPath": "work/examples/extensions/config.js",
-            "targetPath": "extensions/config",
-            "pageTitle": "extensions/config",
-            "title": "config"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/font-data.js",
-            "projectPath": "work/examples/extensions/font-data.js",
-            "targetPath": "extensions/font-data",
-            "pageTitle": "extensions/font-data",
-            "title": "font-data"
-          },
-          "depth": 2,
-          "outline": []
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/generated/config.js",
+                "projectPath": "work/examples/extensions/generated/config.js",
+                "targetPath": "extensions/generated/config",
+                "pageTitle": "extensions/generated/config",
+                "title": "config"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -979,12 +1109,82 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "folder",
           "data": {
+            "path": "extensions/src",
+            "title": "src"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/src/asset-map.js",
+                "projectPath": "work/examples/extensions/src/asset-map.js",
+                "targetPath": "extensions/src/asset-map",
+                "pageTitle": "extensions/src/asset-map",
+                "title": "asset-map"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/src/font-data.js",
+                "projectPath": "work/examples/extensions/src/font-data.js",
+                "targetPath": "extensions/src/font-data",
+                "pageTitle": "extensions/src/font-data",
+                "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
             "path": "extensions/tasks",
             "title": "tasks"
           },
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/tasks/build-index.js",
+                "projectPath": "work/examples/extensions/tasks/build-index.js",
+                "targetPath": "extensions/tasks/build-index",
+                "pageTitle": "extensions/tasks/build-index",
+                "title": "build-index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -1016,11 +1216,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/tasks/data-module.js",
+                "projectPath": "work/examples/extensions/tasks/data-module.js",
+                "targetPath": "extensions/tasks/data-module",
+                "pageTitle": "extensions/tasks/data-module",
+                "title": "data-module"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/tasks/local-assets.js",
                 "projectPath": "work/examples/extensions/tasks/local-assets.js",
                 "targetPath": "extensions/tasks/local-assets",
                 "pageTitle": "extensions/tasks/local-assets",
                 "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/tasks/make-dir.js",
+                "projectPath": "work/examples/extensions/tasks/make-dir.js",
+                "targetPath": "extensions/tasks/make-dir",
+                "pageTitle": "extensions/tasks/make-dir",
+                "title": "make-dir"
               },
               "depth": 3,
               "outline": []
@@ -1063,65 +1303,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/asset-map.js",
-            "projectPath": "work/examples/fixed_state_machine/asset-map.js",
-            "targetPath": "fixed_state_machine/asset-map",
-            "pageTitle": "fixed_state_machine/asset-map",
-            "title": "asset-map"
+            "path": "fixed_state_machine/generated",
+            "title": "generated"
           },
           "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/config.js",
-            "projectPath": "work/examples/fixed_state_machine/config.js",
-            "targetPath": "fixed_state_machine/config",
-            "pageTitle": "fixed_state_machine/config",
-            "title": "config"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/font-data.js",
-            "projectPath": "work/examples/fixed_state_machine/font-data.js",
-            "targetPath": "fixed_state_machine/font-data",
-            "pageTitle": "fixed_state_machine/font-data",
-            "title": "font-data"
-          },
-          "depth": 2,
-          "outline": []
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/generated/config.js",
+                "projectPath": "work/examples/fixed_state_machine/generated/config.js",
+                "targetPath": "fixed_state_machine/generated/config",
+                "pageTitle": "fixed_state_machine/generated/config",
+                "title": "config"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -1145,12 +1355,82 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "folder",
           "data": {
+            "path": "fixed_state_machine/src",
+            "title": "src"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/src/asset-map.js",
+                "projectPath": "work/examples/fixed_state_machine/src/asset-map.js",
+                "targetPath": "fixed_state_machine/src/asset-map",
+                "pageTitle": "fixed_state_machine/src/asset-map",
+                "title": "asset-map"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/src/font-data.js",
+                "projectPath": "work/examples/fixed_state_machine/src/font-data.js",
+                "targetPath": "fixed_state_machine/src/font-data",
+                "pageTitle": "fixed_state_machine/src/font-data",
+                "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
             "path": "fixed_state_machine/tasks",
             "title": "tasks"
           },
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/tasks/build-index.js",
+                "projectPath": "work/examples/fixed_state_machine/tasks/build-index.js",
+                "targetPath": "fixed_state_machine/tasks/build-index",
+                "pageTitle": "fixed_state_machine/tasks/build-index",
+                "title": "build-index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -1182,11 +1462,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/tasks/data-module.js",
+                "projectPath": "work/examples/fixed_state_machine/tasks/data-module.js",
+                "targetPath": "fixed_state_machine/tasks/data-module",
+                "pageTitle": "fixed_state_machine/tasks/data-module",
+                "title": "data-module"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/tasks/local-assets.js",
                 "projectPath": "work/examples/fixed_state_machine/tasks/local-assets.js",
                 "targetPath": "fixed_state_machine/tasks/local-assets",
                 "pageTitle": "fixed_state_machine/tasks/local-assets",
                 "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/tasks/make-dir.js",
+                "projectPath": "work/examples/fixed_state_machine/tasks/make-dir.js",
+                "targetPath": "fixed_state_machine/tasks/make-dir",
+                "pageTitle": "fixed_state_machine/tasks/make-dir",
+                "title": "make-dir"
               },
               "depth": 3,
               "outline": []
@@ -1229,65 +1549,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/asset-map.js",
-            "projectPath": "work/examples/game_object_creation/asset-map.js",
-            "targetPath": "game_object_creation/asset-map",
-            "pageTitle": "game_object_creation/asset-map",
-            "title": "asset-map"
+            "path": "game_object_creation/generated",
+            "title": "generated"
           },
           "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/config.js",
-            "projectPath": "work/examples/game_object_creation/config.js",
-            "targetPath": "game_object_creation/config",
-            "pageTitle": "game_object_creation/config",
-            "title": "config"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/font-data.js",
-            "projectPath": "work/examples/game_object_creation/font-data.js",
-            "targetPath": "game_object_creation/font-data",
-            "pageTitle": "game_object_creation/font-data",
-            "title": "font-data"
-          },
-          "depth": 2,
-          "outline": []
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/generated/config.js",
+                "projectPath": "work/examples/game_object_creation/generated/config.js",
+                "targetPath": "game_object_creation/generated/config",
+                "pageTitle": "game_object_creation/generated/config",
+                "title": "config"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -1311,12 +1601,82 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "folder",
           "data": {
+            "path": "game_object_creation/src",
+            "title": "src"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/src/asset-map.js",
+                "projectPath": "work/examples/game_object_creation/src/asset-map.js",
+                "targetPath": "game_object_creation/src/asset-map",
+                "pageTitle": "game_object_creation/src/asset-map",
+                "title": "asset-map"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/src/font-data.js",
+                "projectPath": "work/examples/game_object_creation/src/font-data.js",
+                "targetPath": "game_object_creation/src/font-data",
+                "pageTitle": "game_object_creation/src/font-data",
+                "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
             "path": "game_object_creation/tasks",
             "title": "tasks"
           },
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/tasks/build-index.js",
+                "projectPath": "work/examples/game_object_creation/tasks/build-index.js",
+                "targetPath": "game_object_creation/tasks/build-index",
+                "pageTitle": "game_object_creation/tasks/build-index",
+                "title": "build-index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -1348,11 +1708,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/tasks/data-module.js",
+                "projectPath": "work/examples/game_object_creation/tasks/data-module.js",
+                "targetPath": "game_object_creation/tasks/data-module",
+                "pageTitle": "game_object_creation/tasks/data-module",
+                "title": "data-module"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/tasks/local-assets.js",
                 "projectPath": "work/examples/game_object_creation/tasks/local-assets.js",
                 "targetPath": "game_object_creation/tasks/local-assets",
                 "pageTitle": "game_object_creation/tasks/local-assets",
                 "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/tasks/make-dir.js",
+                "projectPath": "work/examples/game_object_creation/tasks/make-dir.js",
+                "targetPath": "game_object_creation/tasks/make-dir",
+                "pageTitle": "game_object_creation/tasks/make-dir",
+                "title": "make-dir"
               },
               "depth": 3,
               "outline": []
@@ -1395,65 +1795,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/asset-map.js",
-            "projectPath": "work/examples/game_object_nesting/asset-map.js",
-            "targetPath": "game_object_nesting/asset-map",
-            "pageTitle": "game_object_nesting/asset-map",
-            "title": "asset-map"
+            "path": "game_object_nesting/generated",
+            "title": "generated"
           },
           "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/config.js",
-            "projectPath": "work/examples/game_object_nesting/config.js",
-            "targetPath": "game_object_nesting/config",
-            "pageTitle": "game_object_nesting/config",
-            "title": "config"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/font-data.js",
-            "projectPath": "work/examples/game_object_nesting/font-data.js",
-            "targetPath": "game_object_nesting/font-data",
-            "pageTitle": "game_object_nesting/font-data",
-            "title": "font-data"
-          },
-          "depth": 2,
-          "outline": []
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/generated/config.js",
+                "projectPath": "work/examples/game_object_nesting/generated/config.js",
+                "targetPath": "game_object_nesting/generated/config",
+                "pageTitle": "game_object_nesting/generated/config",
+                "title": "config"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -1477,12 +1847,82 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "folder",
           "data": {
+            "path": "game_object_nesting/src",
+            "title": "src"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/src/asset-map.js",
+                "projectPath": "work/examples/game_object_nesting/src/asset-map.js",
+                "targetPath": "game_object_nesting/src/asset-map",
+                "pageTitle": "game_object_nesting/src/asset-map",
+                "title": "asset-map"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/src/font-data.js",
+                "projectPath": "work/examples/game_object_nesting/src/font-data.js",
+                "targetPath": "game_object_nesting/src/font-data",
+                "pageTitle": "game_object_nesting/src/font-data",
+                "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
             "path": "game_object_nesting/tasks",
             "title": "tasks"
           },
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/tasks/build-index.js",
+                "projectPath": "work/examples/game_object_nesting/tasks/build-index.js",
+                "targetPath": "game_object_nesting/tasks/build-index",
+                "pageTitle": "game_object_nesting/tasks/build-index",
+                "title": "build-index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -1514,11 +1954,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/tasks/data-module.js",
+                "projectPath": "work/examples/game_object_nesting/tasks/data-module.js",
+                "targetPath": "game_object_nesting/tasks/data-module",
+                "pageTitle": "game_object_nesting/tasks/data-module",
+                "title": "data-module"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/tasks/local-assets.js",
                 "projectPath": "work/examples/game_object_nesting/tasks/local-assets.js",
                 "targetPath": "game_object_nesting/tasks/local-assets",
                 "pageTitle": "game_object_nesting/tasks/local-assets",
                 "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/tasks/make-dir.js",
+                "projectPath": "work/examples/game_object_nesting/tasks/make-dir.js",
+                "targetPath": "game_object_nesting/tasks/make-dir",
+                "pageTitle": "game_object_nesting/tasks/make-dir",
+                "title": "make-dir"
               },
               "depth": 3,
               "outline": []
@@ -1561,65 +2041,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/asset-map.js",
-            "projectPath": "work/examples/keyboard/asset-map.js",
-            "targetPath": "keyboard/asset-map",
-            "pageTitle": "keyboard/asset-map",
-            "title": "asset-map"
+            "path": "keyboard/generated",
+            "title": "generated"
           },
           "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/config.js",
-            "projectPath": "work/examples/keyboard/config.js",
-            "targetPath": "keyboard/config",
-            "pageTitle": "keyboard/config",
-            "title": "config"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/font-data.js",
-            "projectPath": "work/examples/keyboard/font-data.js",
-            "targetPath": "keyboard/font-data",
-            "pageTitle": "keyboard/font-data",
-            "title": "font-data"
-          },
-          "depth": 2,
-          "outline": []
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/generated/config.js",
+                "projectPath": "work/examples/keyboard/generated/config.js",
+                "targetPath": "keyboard/generated/config",
+                "pageTitle": "keyboard/generated/config",
+                "title": "config"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -1643,12 +2093,82 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "folder",
           "data": {
+            "path": "keyboard/src",
+            "title": "src"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/src/asset-map.js",
+                "projectPath": "work/examples/keyboard/src/asset-map.js",
+                "targetPath": "keyboard/src/asset-map",
+                "pageTitle": "keyboard/src/asset-map",
+                "title": "asset-map"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/src/font-data.js",
+                "projectPath": "work/examples/keyboard/src/font-data.js",
+                "targetPath": "keyboard/src/font-data",
+                "pageTitle": "keyboard/src/font-data",
+                "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
             "path": "keyboard/tasks",
             "title": "tasks"
           },
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/tasks/build-index.js",
+                "projectPath": "work/examples/keyboard/tasks/build-index.js",
+                "targetPath": "keyboard/tasks/build-index",
+                "pageTitle": "keyboard/tasks/build-index",
+                "title": "build-index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -1680,11 +2200,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/tasks/data-module.js",
+                "projectPath": "work/examples/keyboard/tasks/data-module.js",
+                "targetPath": "keyboard/tasks/data-module",
+                "pageTitle": "keyboard/tasks/data-module",
+                "title": "data-module"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/tasks/local-assets.js",
                 "projectPath": "work/examples/keyboard/tasks/local-assets.js",
                 "targetPath": "keyboard/tasks/local-assets",
                 "pageTitle": "keyboard/tasks/local-assets",
                 "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/tasks/make-dir.js",
+                "projectPath": "work/examples/keyboard/tasks/make-dir.js",
+                "targetPath": "keyboard/tasks/make-dir",
+                "pageTitle": "keyboard/tasks/make-dir",
+                "title": "make-dir"
               },
               "depth": 3,
               "outline": []
@@ -1727,65 +2287,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/asset-map.js",
-            "projectPath": "work/examples/layering/asset-map.js",
-            "targetPath": "layering/asset-map",
-            "pageTitle": "layering/asset-map",
-            "title": "asset-map"
+            "path": "layering/generated",
+            "title": "generated"
           },
           "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/config.js",
-            "projectPath": "work/examples/layering/config.js",
-            "targetPath": "layering/config",
-            "pageTitle": "layering/config",
-            "title": "config"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/font-data.js",
-            "projectPath": "work/examples/layering/font-data.js",
-            "targetPath": "layering/font-data",
-            "pageTitle": "layering/font-data",
-            "title": "font-data"
-          },
-          "depth": 2,
-          "outline": []
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/generated/config.js",
+                "projectPath": "work/examples/layering/generated/config.js",
+                "targetPath": "layering/generated/config",
+                "pageTitle": "layering/generated/config",
+                "title": "config"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -1809,12 +2339,82 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "folder",
           "data": {
+            "path": "layering/src",
+            "title": "src"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/src/asset-map.js",
+                "projectPath": "work/examples/layering/src/asset-map.js",
+                "targetPath": "layering/src/asset-map",
+                "pageTitle": "layering/src/asset-map",
+                "title": "asset-map"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/src/font-data.js",
+                "projectPath": "work/examples/layering/src/font-data.js",
+                "targetPath": "layering/src/font-data",
+                "pageTitle": "layering/src/font-data",
+                "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
             "path": "layering/tasks",
             "title": "tasks"
           },
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/tasks/build-index.js",
+                "projectPath": "work/examples/layering/tasks/build-index.js",
+                "targetPath": "layering/tasks/build-index",
+                "pageTitle": "layering/tasks/build-index",
+                "title": "build-index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -1846,11 +2446,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/tasks/data-module.js",
+                "projectPath": "work/examples/layering/tasks/data-module.js",
+                "targetPath": "layering/tasks/data-module",
+                "pageTitle": "layering/tasks/data-module",
+                "title": "data-module"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/tasks/local-assets.js",
                 "projectPath": "work/examples/layering/tasks/local-assets.js",
                 "targetPath": "layering/tasks/local-assets",
                 "pageTitle": "layering/tasks/local-assets",
                 "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/tasks/make-dir.js",
+                "projectPath": "work/examples/layering/tasks/make-dir.js",
+                "targetPath": "layering/tasks/make-dir",
+                "pageTitle": "layering/tasks/make-dir",
+                "title": "make-dir"
               },
               "depth": 3,
               "outline": []
@@ -1893,65 +2533,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/asset-map.js",
-            "projectPath": "work/examples/logic_components/asset-map.js",
-            "targetPath": "logic_components/asset-map",
-            "pageTitle": "logic_components/asset-map",
-            "title": "asset-map"
+            "path": "logic_components/generated",
+            "title": "generated"
           },
           "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/config.js",
-            "projectPath": "work/examples/logic_components/config.js",
-            "targetPath": "logic_components/config",
-            "pageTitle": "logic_components/config",
-            "title": "config"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/font-data.js",
-            "projectPath": "work/examples/logic_components/font-data.js",
-            "targetPath": "logic_components/font-data",
-            "pageTitle": "logic_components/font-data",
-            "title": "font-data"
-          },
-          "depth": 2,
-          "outline": []
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/generated/config.js",
+                "projectPath": "work/examples/logic_components/generated/config.js",
+                "targetPath": "logic_components/generated/config",
+                "pageTitle": "logic_components/generated/config",
+                "title": "config"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -1975,12 +2585,82 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "folder",
           "data": {
+            "path": "logic_components/src",
+            "title": "src"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/src/asset-map.js",
+                "projectPath": "work/examples/logic_components/src/asset-map.js",
+                "targetPath": "logic_components/src/asset-map",
+                "pageTitle": "logic_components/src/asset-map",
+                "title": "asset-map"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/src/font-data.js",
+                "projectPath": "work/examples/logic_components/src/font-data.js",
+                "targetPath": "logic_components/src/font-data",
+                "pageTitle": "logic_components/src/font-data",
+                "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
             "path": "logic_components/tasks",
             "title": "tasks"
           },
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/tasks/build-index.js",
+                "projectPath": "work/examples/logic_components/tasks/build-index.js",
+                "targetPath": "logic_components/tasks/build-index",
+                "pageTitle": "logic_components/tasks/build-index",
+                "title": "build-index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -2012,11 +2692,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/tasks/data-module.js",
+                "projectPath": "work/examples/logic_components/tasks/data-module.js",
+                "targetPath": "logic_components/tasks/data-module",
+                "pageTitle": "logic_components/tasks/data-module",
+                "title": "data-module"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/tasks/local-assets.js",
                 "projectPath": "work/examples/logic_components/tasks/local-assets.js",
                 "targetPath": "logic_components/tasks/local-assets",
                 "pageTitle": "logic_components/tasks/local-assets",
                 "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/tasks/make-dir.js",
+                "projectPath": "work/examples/logic_components/tasks/make-dir.js",
+                "targetPath": "logic_components/tasks/make-dir",
+                "pageTitle": "logic_components/tasks/make-dir",
+                "title": "make-dir"
               },
               "depth": 3,
               "outline": []
@@ -2059,65 +2779,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/asset-map.js",
-            "projectPath": "work/examples/loose_state_machine/asset-map.js",
-            "targetPath": "loose_state_machine/asset-map",
-            "pageTitle": "loose_state_machine/asset-map",
-            "title": "asset-map"
+            "path": "loose_state_machine/generated",
+            "title": "generated"
           },
           "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/config.js",
-            "projectPath": "work/examples/loose_state_machine/config.js",
-            "targetPath": "loose_state_machine/config",
-            "pageTitle": "loose_state_machine/config",
-            "title": "config"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/font-data.js",
-            "projectPath": "work/examples/loose_state_machine/font-data.js",
-            "targetPath": "loose_state_machine/font-data",
-            "pageTitle": "loose_state_machine/font-data",
-            "title": "font-data"
-          },
-          "depth": 2,
-          "outline": []
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/generated/config.js",
+                "projectPath": "work/examples/loose_state_machine/generated/config.js",
+                "targetPath": "loose_state_machine/generated/config",
+                "pageTitle": "loose_state_machine/generated/config",
+                "title": "config"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -2141,12 +2831,82 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "folder",
           "data": {
+            "path": "loose_state_machine/src",
+            "title": "src"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/src/asset-map.js",
+                "projectPath": "work/examples/loose_state_machine/src/asset-map.js",
+                "targetPath": "loose_state_machine/src/asset-map",
+                "pageTitle": "loose_state_machine/src/asset-map",
+                "title": "asset-map"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/src/font-data.js",
+                "projectPath": "work/examples/loose_state_machine/src/font-data.js",
+                "targetPath": "loose_state_machine/src/font-data",
+                "pageTitle": "loose_state_machine/src/font-data",
+                "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
             "path": "loose_state_machine/tasks",
             "title": "tasks"
           },
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/tasks/build-index.js",
+                "projectPath": "work/examples/loose_state_machine/tasks/build-index.js",
+                "targetPath": "loose_state_machine/tasks/build-index",
+                "pageTitle": "loose_state_machine/tasks/build-index",
+                "title": "build-index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -2178,11 +2938,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/tasks/data-module.js",
+                "projectPath": "work/examples/loose_state_machine/tasks/data-module.js",
+                "targetPath": "loose_state_machine/tasks/data-module",
+                "pageTitle": "loose_state_machine/tasks/data-module",
+                "title": "data-module"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/tasks/local-assets.js",
                 "projectPath": "work/examples/loose_state_machine/tasks/local-assets.js",
                 "targetPath": "loose_state_machine/tasks/local-assets",
                 "pageTitle": "loose_state_machine/tasks/local-assets",
                 "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/tasks/make-dir.js",
+                "projectPath": "work/examples/loose_state_machine/tasks/make-dir.js",
+                "targetPath": "loose_state_machine/tasks/make-dir",
+                "pageTitle": "loose_state_machine/tasks/make-dir",
+                "title": "make-dir"
               },
               "depth": 3,
               "outline": []
@@ -2225,65 +3025,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/asset-map.js",
-            "projectPath": "work/examples/reclaimer/asset-map.js",
-            "targetPath": "reclaimer/asset-map",
-            "pageTitle": "reclaimer/asset-map",
-            "title": "asset-map"
+            "path": "reclaimer/generated",
+            "title": "generated"
           },
           "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/config.js",
-            "projectPath": "work/examples/reclaimer/config.js",
-            "targetPath": "reclaimer/config",
-            "pageTitle": "reclaimer/config",
-            "title": "config"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/font-data.js",
-            "projectPath": "work/examples/reclaimer/font-data.js",
-            "targetPath": "reclaimer/font-data",
-            "pageTitle": "reclaimer/font-data",
-            "title": "font-data"
-          },
-          "depth": 2,
-          "outline": []
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/generated/config.js",
+                "projectPath": "work/examples/reclaimer/generated/config.js",
+                "targetPath": "reclaimer/generated/config",
+                "pageTitle": "reclaimer/generated/config",
+                "title": "config"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -2307,12 +3077,82 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "folder",
           "data": {
+            "path": "reclaimer/src",
+            "title": "src"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/src/asset-map.js",
+                "projectPath": "work/examples/reclaimer/src/asset-map.js",
+                "targetPath": "reclaimer/src/asset-map",
+                "pageTitle": "reclaimer/src/asset-map",
+                "title": "asset-map"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/src/font-data.js",
+                "projectPath": "work/examples/reclaimer/src/font-data.js",
+                "targetPath": "reclaimer/src/font-data",
+                "pageTitle": "reclaimer/src/font-data",
+                "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
             "path": "reclaimer/tasks",
             "title": "tasks"
           },
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/tasks/build-index.js",
+                "projectPath": "work/examples/reclaimer/tasks/build-index.js",
+                "targetPath": "reclaimer/tasks/build-index",
+                "pageTitle": "reclaimer/tasks/build-index",
+                "title": "build-index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -2344,11 +3184,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/tasks/data-module.js",
+                "projectPath": "work/examples/reclaimer/tasks/data-module.js",
+                "targetPath": "reclaimer/tasks/data-module",
+                "pageTitle": "reclaimer/tasks/data-module",
+                "title": "data-module"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/tasks/local-assets.js",
                 "projectPath": "work/examples/reclaimer/tasks/local-assets.js",
                 "targetPath": "reclaimer/tasks/local-assets",
                 "pageTitle": "reclaimer/tasks/local-assets",
                 "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/tasks/make-dir.js",
+                "projectPath": "work/examples/reclaimer/tasks/make-dir.js",
+                "targetPath": "reclaimer/tasks/make-dir",
+                "pageTitle": "reclaimer/tasks/make-dir",
+                "title": "make-dir"
               },
               "depth": 3,
               "outline": []
@@ -2391,65 +3271,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/asset-map.js",
-            "projectPath": "work/examples/renderers/asset-map.js",
-            "targetPath": "renderers/asset-map",
-            "pageTitle": "renderers/asset-map",
-            "title": "asset-map"
+            "path": "renderers/generated",
+            "title": "generated"
           },
           "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/config.js",
-            "projectPath": "work/examples/renderers/config.js",
-            "targetPath": "renderers/config",
-            "pageTitle": "renderers/config",
-            "title": "config"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/font-data.js",
-            "projectPath": "work/examples/renderers/font-data.js",
-            "targetPath": "renderers/font-data",
-            "pageTitle": "renderers/font-data",
-            "title": "font-data"
-          },
-          "depth": 2,
-          "outline": []
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/generated/config.js",
+                "projectPath": "work/examples/renderers/generated/config.js",
+                "targetPath": "renderers/generated/config",
+                "pageTitle": "renderers/generated/config",
+                "title": "config"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -2473,12 +3323,82 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "folder",
           "data": {
+            "path": "renderers/src",
+            "title": "src"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/src/asset-map.js",
+                "projectPath": "work/examples/renderers/src/asset-map.js",
+                "targetPath": "renderers/src/asset-map",
+                "pageTitle": "renderers/src/asset-map",
+                "title": "asset-map"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/src/font-data.js",
+                "projectPath": "work/examples/renderers/src/font-data.js",
+                "targetPath": "renderers/src/font-data",
+                "pageTitle": "renderers/src/font-data",
+                "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
             "path": "renderers/tasks",
             "title": "tasks"
           },
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/tasks/build-index.js",
+                "projectPath": "work/examples/renderers/tasks/build-index.js",
+                "targetPath": "renderers/tasks/build-index",
+                "pageTitle": "renderers/tasks/build-index",
+                "title": "build-index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -2510,11 +3430,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/tasks/data-module.js",
+                "projectPath": "work/examples/renderers/tasks/data-module.js",
+                "targetPath": "renderers/tasks/data-module",
+                "pageTitle": "renderers/tasks/data-module",
+                "title": "data-module"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/tasks/local-assets.js",
                 "projectPath": "work/examples/renderers/tasks/local-assets.js",
                 "targetPath": "renderers/tasks/local-assets",
                 "pageTitle": "renderers/tasks/local-assets",
                 "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/tasks/make-dir.js",
+                "projectPath": "work/examples/renderers/tasks/make-dir.js",
+                "targetPath": "renderers/tasks/make-dir",
+                "pageTitle": "renderers/tasks/make-dir",
+                "title": "make-dir"
               },
               "depth": 3,
               "outline": []
@@ -2557,65 +3517,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/asset-map.js",
-            "projectPath": "work/examples/sound/asset-map.js",
-            "targetPath": "sound/asset-map",
-            "pageTitle": "sound/asset-map",
-            "title": "asset-map"
+            "path": "sound/generated",
+            "title": "generated"
           },
           "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/config.js",
-            "projectPath": "work/examples/sound/config.js",
-            "targetPath": "sound/config",
-            "pageTitle": "sound/config",
-            "title": "config"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/font-data.js",
-            "projectPath": "work/examples/sound/font-data.js",
-            "targetPath": "sound/font-data",
-            "pageTitle": "sound/font-data",
-            "title": "font-data"
-          },
-          "depth": 2,
-          "outline": []
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/generated/config.js",
+                "projectPath": "work/examples/sound/generated/config.js",
+                "targetPath": "sound/generated/config",
+                "pageTitle": "sound/generated/config",
+                "title": "config"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -2639,12 +3569,82 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "folder",
           "data": {
+            "path": "sound/src",
+            "title": "src"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/src/asset-map.js",
+                "projectPath": "work/examples/sound/src/asset-map.js",
+                "targetPath": "sound/src/asset-map",
+                "pageTitle": "sound/src/asset-map",
+                "title": "asset-map"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/src/font-data.js",
+                "projectPath": "work/examples/sound/src/font-data.js",
+                "targetPath": "sound/src/font-data",
+                "pageTitle": "sound/src/font-data",
+                "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
             "path": "sound/tasks",
             "title": "tasks"
           },
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/tasks/build-index.js",
+                "projectPath": "work/examples/sound/tasks/build-index.js",
+                "targetPath": "sound/tasks/build-index",
+                "pageTitle": "sound/tasks/build-index",
+                "title": "build-index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -2676,11 +3676,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/tasks/data-module.js",
+                "projectPath": "work/examples/sound/tasks/data-module.js",
+                "targetPath": "sound/tasks/data-module",
+                "pageTitle": "sound/tasks/data-module",
+                "title": "data-module"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/tasks/local-assets.js",
                 "projectPath": "work/examples/sound/tasks/local-assets.js",
                 "targetPath": "sound/tasks/local-assets",
                 "pageTitle": "sound/tasks/local-assets",
                 "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/tasks/make-dir.js",
+                "projectPath": "work/examples/sound/tasks/make-dir.js",
+                "targetPath": "sound/tasks/make-dir",
+                "pageTitle": "sound/tasks/make-dir",
+                "title": "make-dir"
               },
               "depth": 3,
               "outline": []
@@ -2723,65 +3763,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/asset-map.js",
-            "projectPath": "work/examples/timers/asset-map.js",
-            "targetPath": "timers/asset-map",
-            "pageTitle": "timers/asset-map",
-            "title": "asset-map"
+            "path": "timers/generated",
+            "title": "generated"
           },
           "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/config.js",
-            "projectPath": "work/examples/timers/config.js",
-            "targetPath": "timers/config",
-            "pageTitle": "timers/config",
-            "title": "config"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/font-data.js",
-            "projectPath": "work/examples/timers/font-data.js",
-            "targetPath": "timers/font-data",
-            "pageTitle": "timers/font-data",
-            "title": "font-data"
-          },
-          "depth": 2,
-          "outline": []
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/generated/config.js",
+                "projectPath": "work/examples/timers/generated/config.js",
+                "targetPath": "timers/generated/config",
+                "pageTitle": "timers/generated/config",
+                "title": "config"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -2805,12 +3815,82 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "folder",
           "data": {
+            "path": "timers/src",
+            "title": "src"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/src/asset-map.js",
+                "projectPath": "work/examples/timers/src/asset-map.js",
+                "targetPath": "timers/src/asset-map",
+                "pageTitle": "timers/src/asset-map",
+                "title": "asset-map"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/src/font-data.js",
+                "projectPath": "work/examples/timers/src/font-data.js",
+                "targetPath": "timers/src/font-data",
+                "pageTitle": "timers/src/font-data",
+                "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
             "path": "timers/tasks",
             "title": "tasks"
           },
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/tasks/build-index.js",
+                "projectPath": "work/examples/timers/tasks/build-index.js",
+                "targetPath": "timers/tasks/build-index",
+                "pageTitle": "timers/tasks/build-index",
+                "title": "build-index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -2842,11 +3922,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/tasks/data-module.js",
+                "projectPath": "work/examples/timers/tasks/data-module.js",
+                "targetPath": "timers/tasks/data-module",
+                "pageTitle": "timers/tasks/data-module",
+                "title": "data-module"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/tasks/local-assets.js",
                 "projectPath": "work/examples/timers/tasks/local-assets.js",
                 "targetPath": "timers/tasks/local-assets",
                 "pageTitle": "timers/tasks/local-assets",
                 "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/tasks/make-dir.js",
+                "projectPath": "work/examples/timers/tasks/make-dir.js",
+                "targetPath": "timers/tasks/make-dir",
+                "pageTitle": "timers/tasks/make-dir",
+                "title": "make-dir"
               },
               "depth": 3,
               "outline": []
@@ -2889,65 +4009,35 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             }
           ]
         }, {
-          "type": "file",
+          "type": "folder",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/asset-map.js",
-            "projectPath": "work/examples/viewports/asset-map.js",
-            "targetPath": "viewports/asset-map",
-            "pageTitle": "viewports/asset-map",
-            "title": "asset-map"
+            "path": "viewports/generated",
+            "title": "generated"
           },
           "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/config.js",
-            "projectPath": "work/examples/viewports/config.js",
-            "targetPath": "viewports/config",
-            "pageTitle": "viewports/config",
-            "title": "config"
-          },
-          "depth": 2,
-          "outline": []
-        }, {
-          "type": "file",
-          "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/font-data.js",
-            "projectPath": "work/examples/viewports/font-data.js",
-            "targetPath": "viewports/font-data",
-            "pageTitle": "viewports/font-data",
-            "title": "font-data"
-          },
-          "depth": 2,
-          "outline": []
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/generated/config.js",
+                "projectPath": "work/examples/viewports/generated/config.js",
+                "targetPath": "viewports/generated/config",
+                "pageTitle": "viewports/generated/config",
+                "title": "config"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
         }, {
           "type": "file",
           "data": {
@@ -2971,12 +4061,82 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "folder",
           "data": {
+            "path": "viewports/src",
+            "title": "src"
+          },
+          "depth": 2,
+          "children": [
+            {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/src/asset-map.js",
+                "projectPath": "work/examples/viewports/src/asset-map.js",
+                "targetPath": "viewports/src/asset-map",
+                "pageTitle": "viewports/src/asset-map",
+                "title": "asset-map"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/src/font-data.js",
+                "projectPath": "work/examples/viewports/src/font-data.js",
+                "targetPath": "viewports/src/font-data",
+                "pageTitle": "viewports/src/font-data",
+                "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }
+          ]
+        }, {
+          "type": "folder",
+          "data": {
             "path": "viewports/tasks",
             "title": "tasks"
           },
           "depth": 2,
           "children": [
             {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/tasks/build-index.js",
+                "projectPath": "work/examples/viewports/tasks/build-index.js",
+                "targetPath": "viewports/tasks/build-index",
+                "pageTitle": "viewports/tasks/build-index",
+                "title": "build-index"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -3008,11 +4168,51 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/tasks/data-module.js",
+                "projectPath": "work/examples/viewports/tasks/data-module.js",
+                "targetPath": "viewports/tasks/data-module",
+                "pageTitle": "viewports/tasks/data-module",
+                "title": "data-module"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/tasks/local-assets.js",
                 "projectPath": "work/examples/viewports/tasks/local-assets.js",
                 "targetPath": "viewports/tasks/local-assets",
                 "pageTitle": "viewports/tasks/local-assets",
                 "title": "local-assets"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/tasks/make-dir.js",
+                "projectPath": "work/examples/viewports/tasks/make-dir.js",
+                "targetPath": "viewports/tasks/make-dir",
+                "pageTitle": "viewports/tasks/make-dir",
+                "title": "make-dir"
               },
               "depth": 3,
               "outline": []

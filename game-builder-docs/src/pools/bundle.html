@@ -16,21 +16,68 @@
 <p>This is a helper module to define a block of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and 
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a> configurations. </p>
 
-<p>The basic workflow is extending this module, and putting all the required code
+<p>The basic workflow is extending this module and putting all the required code
 to configure the pools in there. That way you can reuse that code in different places.</p>
 
-<p>It's not really needed but it will make things a bit more tidy.
-Because it has <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a> as a dependency it already has references to the pools
-and the canvas, so you don't have to require those in the modules extending this one.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="bundle-up">Bundle up!</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+<p>The module defines five convinience methods 
+</br>
+<strong>createComponentPool</strong>, 
+</br>
+<strong>createGameObjectPool</strong>, 
+</br>
+<strong>createDynamicGameObjectPool</strong>, 
+</br>
+<strong>createComponentConfiguration</strong>
+</br>
+and <strong>createGameObjectConfiguration</strong></p>
+
+<p>These should make setting up the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a> a little easier.</p>
+
+<p>An additional feature is that getter methods are created dynamically in the bundle prototype for pools and configurations 
+defined using any of the methods described above. 
+These dynamic methods return the ids used for a pool or a configuration. In the case that you want to use a configuration id 
+or a pool id defined in a bundle, you don't have to use the raw string in your code, instead you can <strong>require</strong> the corresponding 
+bundle, and call one of these methods to get the id you are looking for.</p>
+
+<p>Ej.</p>
+
+<pre><code>// This method sets up a component pool using the 'circle-collider' module
+this.createComponentPool(function() { return require('circle-collider') });
+
+// As a result this method is created in the prototype 
+// which returns the string 'circle-collider'
+this.getCircleColliderPoolId()
+</code></pre>
+
+<p>Ej.</p>
+
+<pre><code>// This method sets up a game object pool using the 'game-object' module
+this.createGameObjectPool(function() { return require('game-object') }, 10);
+
+// As a result this method is created in the prototype 
+// which returns the string 'game-object'
+this.getGameObjectPoolId()
+</code></pre>
+
+<p>Ej.</p>
+
+<pre><code>// This method creates a configuration for a game object pool
+this.createGameObjectConfiguration('Object_1', 'Pool_1');
+
+// As a result this method is created in the prototype 
+// which returns the string 'Object_1'
+this.getObject_1ConfigurationId()
+</code></pre></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="bundle-up">Bundle up!</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">var</span> <span class="nx">Bundle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">).</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">gb</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gb&#39;</span><span class="p">);</span>
       
       <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span> <span class="o">=</span> <span class="nx">gb</span><span class="p">.</span><span class="nx">goPool</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">componentPool</span>  <span class="o">=</span> <span class="nx">gb</span><span class="p">.</span><span class="nx">coPool</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span>     <span class="o">=</span> <span class="nx">gb</span><span class="p">.</span><span class="nx">canvas</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span>         <span class="o">=</span> <span class="nx">gb</span><span class="p">.</span><span class="nx">canvas</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">assetMap</span>       <span class="o">=</span> <span class="nx">gb</span><span class="p">.</span><span class="nx">assetMap</span><span class="p">();</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>create</strong></p>
+    <span class="p">},</span>
+    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>create</strong></p>
 
 <p>Modules extending this one should implement this method.</p>
 
@@ -42,7 +89,118 @@ and the canvas, so you don't have to require those in the modules extending this
 
 <p><strong>Can throw an Error</strong><br/>(If it is not overriden)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;error-printer&#39;</span><span class="p">).</span><span class="nx">mustOverrideError</span><span class="p">(</span><span class="s1">&#39;Bundle&#39;</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>createComponentPool</strong></p>
+
+<p>Creates a component pool. The name is generated from the function provided as argument</p>
+
+<pre><code>this.createComponentPool(function() { return require('a-component-module-name')});
+</code></pre>
+
+<p>It is necessary to use that syntax so the name can be infered from the argument</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>moduleGetter must be a Function.</strong><br/>(A function that returns the result of a <strong>require</strong> call)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">createComponentPool</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">moduleGetter</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">getModuleName</span><span class="p">(</span><span class="nx">moduleGetter</span><span class="p">);</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">componentPool</span><span class="p">.</span><span class="nx">createPool</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">moduleGetter</span><span class="p">());</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>createGameObjectPool</strong></p>
+
+<p>Creates a game object pool. The name is generated from the function provided as argument</p>
+
+<pre><code>this.createGameObjectPool(function() { return require('a-game-object-module-name')}, 10);
+</code></pre>
+
+<p>It is necessary to use that syntax so the name can be infered from the argument</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>moduleGetter must be a Function.</strong><br/>(A function that returns the result of a <strong>require</strong> call)</p></li>
+<li><p><strong>amount must be a Number.</strong><br/>(The amount of object the pool will hold)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">createGameObjectPool</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">moduleGetter</span><span class="p">,</span> <span class="nx">amount</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">getModuleName</span><span class="p">(</span><span class="nx">moduleGetter</span><span class="p">);</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span><span class="p">.</span><span class="nx">createPool</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">moduleGetter</span><span class="p">(),</span> <span class="nx">amount</span><span class="p">);</span>
+
+      <span class="nx">addPoolIdGetter</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>createDynamicGameObjectPool</strong></p>
+
+<p>Creates a dynamic game object pool. The name is generated from the function provided as argument</p>
+
+<pre><code>this.createDynamicGameObjectPool(function() { return require('a-game-object-module-name')});
+</code></pre>
+
+<p>It is necessary to use that syntax so the name can be infered from the argument</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>moduleGetter must be a Function.</strong><br/>(A function that returns the result of a <strong>require</strong> call)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">createDynamicGameObjectPool</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">moduleGetter</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">name</span> <span class="o">=</span> <span class="nx">getModuleName</span><span class="p">(</span><span class="nx">moduleGetter</span><span class="p">);</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span><span class="p">.</span><span class="nx">createDynamicPool</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">moduleGetter</span><span class="p">());</span>
+
+      <span class="nx">addPoolIdGetter</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>createComponentConfiguration</strong></p>
+
+<p>Creates a configuration for a component pool</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>configurationId must be a String.</strong><br/>(The id that will be used to create objects based on this configuration)</p></li>
+<li><p><strong>poolId must be a String.</strong><br/>(The id of the basic type of object this configuration referes too)</p></li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(The configuration)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">createComponentConfiguration</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">configurationId</span><span class="p">,</span> <span class="nx">poolId</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">configuration</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">componentPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="nx">configurationId</span><span class="p">,</span> <span class="nx">poolId</span><span class="p">);</span>
+
+      <span class="nx">addConfigurationIdGetter</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">configurationId</span><span class="p">);</span>
+
+      <span class="k">return</span> <span class="nx">configuration</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>createGameObjectConfiguration</strong></p>
+
+<p>Creates a configuration for a game object pool</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>configurationId must be a String.</strong><br/>(The id that will be used to create objects based on this configuration)</p></li>
+<li><p><strong>poolId must be a String.</strong><br/>(The id of the basic type of object this configuration referes too)</p></li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(The configuration)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">createGameObjectConfiguration</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">configurationId</span><span class="p">,</span> <span class="nx">poolId</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">configuration</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">gameObjectPool</span><span class="p">.</span><span class="nx">createConfiguration</span><span class="p">(</span><span class="nx">configurationId</span><span class="p">,</span> <span class="nx">poolId</span><span class="p">);</span>
+      
+      <span class="nx">addConfigurationIdGetter</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">configurationId</span><span class="p">);</span>
+
+      <span class="k">return</span> <span class="nx">configuration</span><span class="p">;</span>
     <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
+
+  <span class="kd">var</span> <span class="nx">getModuleName</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">moduleGetter</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">moduleGetter</span><span class="p">.</span><span class="nx">toString</span><span class="p">().</span><span class="nx">match</span><span class="p">(</span><span class="sr">/require\([&#39;|&quot;](.*?)[&#39;|&quot;]\)/</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">addPoolIdGetter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="nx">name</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">word</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">+</span> <span class="nx">word</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="p">}).</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">method</span> <span class="o">=</span> <span class="s1">&#39;get&#39;</span> <span class="o">+</span> <span class="nx">n</span> <span class="o">+</span> <span class="s1">&#39;PoolId&#39;</span><span class="p">;</span>
+    
+    <span class="k">this</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">prototype</span><span class="p">[</span><span class="nx">method</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+      <span class="k">return</span> <span class="nx">name</span><span class="p">;</span> 
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">addConfigurationIdGetter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">method</span> <span class="o">=</span> <span class="s1">&#39;get&#39;</span> <span class="o">+</span> <span class="nx">name</span> <span class="o">+</span> <span class="s1">&#39;ConfigurationId&#39;</span><span class="p">;</span>
+    
+    <span class="k">this</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">prototype</span><span class="p">[</span><span class="nx">method</span><span class="p">]</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+      <span class="k">return</span> <span class="nx">name</span><span class="p">;</span> 
+    <span class="p">}</span>
+  <span class="p">}</span>
 
   <span class="k">return</span> <span class="nx">Bundle</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

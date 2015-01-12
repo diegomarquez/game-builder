@@ -28,19 +28,23 @@ to define this extension should be executed on creation.</p></div></div><div cla
     <span class="nx">execute</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="nx">game</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">BLUR</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">setBlock</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-      <span class="p">});</span>
+      <span class="p">},</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s1">&#39;keyboard-lock&#39;</span><span class="p">);</span>
 
       <span class="nx">game</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">FOCUS</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">setBlock</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
-      <span class="p">});</span>
+      <span class="p">},</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s1">&#39;keyboard-lock&#39;</span><span class="p">);</span>
 
       <span class="nx">game</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">PAUSE</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">setBlock</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="nx">whiteList</span><span class="p">);</span>
-      <span class="p">});</span>
+      <span class="p">},</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s1">&#39;keyboard-lock&#39;</span><span class="p">);</span>
 
       <span class="nx">game</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="nx">game</span><span class="p">.</span><span class="nx">RESUME</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">setBlock</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
-      <span class="p">});</span>
+      <span class="p">},</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s1">&#39;keyboard-lock&#39;</span><span class="p">);</span>
+    <span class="p">},</span>
+
+    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">game</span><span class="p">.</span><span class="nx">levelCleanUp</span><span class="p">(</span><span class="s1">&#39;keyboard-lock&#39;</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">});</span>
 

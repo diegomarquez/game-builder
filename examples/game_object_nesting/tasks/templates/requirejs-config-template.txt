@@ -1,0 +1,7 @@
+require.config({ 
+	shim: <%= shim %>,
+	paths: { 
+		<% paths.forEach(function(pathObject) { %>"<%= pathObject.alias %>": "<%= pathObject.path %>", 
+		<% }); %>  
+	}  
+});

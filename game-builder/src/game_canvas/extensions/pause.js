@@ -43,6 +43,23 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 	var game = Gb.game;
 
 	var Pause = Extension.extend({
+		init: function() {
+			Object.defineProperty(game.prototype, "PAUSE", { 
+				configurable: true,
+				get: function() { 
+					return 'pause'; 
+				} 
+			});
+
+			game.pause = function() {
+				if(game.blurAction()) {
+					game.execute(game.PAUSE);
+					window.removeEventListener("blur", game.blurAction);
+					window.removeEventListener("focus", game.focusAction);	
+				}
+			}
+		},
+
 		type: function() {
 			// Notice the use of the constant BLUR defined in [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html)
 			// to define this extension should be executed on creation.
@@ -64,18 +81,13 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 			}
 
 			Groups.all('stop', 'update');
+		},
+
+		destroy: function() {
+			delete game.prototype['PAUSE'];
+			delete game['pause'];
 		}
 	});
-
-	Object.defineProperty(game.prototype, "PAUSE", { get: function() { return 'pause'; } });
-
-	game.pause = function() {
-		if(game.blurAction()) {
-			game.execute(game.PAUSE);
-			window.removeEventListener("blur", game.blurAction);
-			window.removeEventListener("focus", game.focusAction);	
-		}
-	}
 
 	return Pause;
 });

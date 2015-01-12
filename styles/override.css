@@ -59,21 +59,26 @@ body {
 }
 
 .orange-text {
-  color: #F0A61D;
+  color: #ca8142;
 }
 
 .red-text {
   color: #ca4247;
 }
 
-.description li {
+.red-link:hover {
+  text-decoration: none;
+	border-bottom: 1px solid #ca4247;
+}
+
+.description > li {
   color: #b9b5b5; 
   font-size: 10px;
   padding-bottom: 5px;
 }
 
 .blue-background h4 {
-  color: #521412;
+  color: #ca8142;
 }
 
 .blue-background p {
@@ -81,11 +86,11 @@ body {
 }
 
 .blue-background a {
-  color: #d9534f;
+  color: #ca8142;
 }
 
 .blue-background a:hover {
-  color: #b52b27;
+  color: #9c602c;
 }
 
 .left-padding { 

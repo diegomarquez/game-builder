@@ -165,7 +165,7 @@ in order to be able to pause and resume the application if needed.</p>
           <span class="p">}</span>
         <span class="p">}</span> 
       <span class="p">}</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>create</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>create</strong></p>
 
 <p>The main method that will kick start everything.</p>
 
@@ -175,29 +175,13 @@ using <a href="http://www.paulirish.com/2011/requestanimationframe-for-smart-ani
 <p>The focus and blur events are also setup here.</p>
 
 <p>If the application does not have focus as soon as it starts, it waits until it has focus
-to setup the update loop.</p>
-
-<p>Parameters:</p>
-
-<ul>
-<li><p><strong>mainContainer must be an ElementObject.</strong><br/>(The Dom element that contains the canvas)</p></li>
-<li><p><strong>canvas must be a Canvas.</strong><br/>(A <a href="https://developer.mozilla.org/en-US/docs/HTML/Canvas">Canvas</a> object)</p></li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">mainContainer</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">mainContainer</span> <span class="o">=</span> <span class="nx">mainContainer</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">;</span>
+to setup the update loop.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">mainContainer</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;main&#39;</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;game&#39;</span><span class="p">);</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">context</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span>
 
       <span class="kd">var</span> <span class="nx">mainLoop</span><span class="p">;</span>
-      <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>This styling puts the canvas at the top left</p></div></div><div class="code"><div class="wrapper">      <span class="nx">mainContainer</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="s1">&#39;relative&#39;</span><span class="p">;</span>
-
-      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;html&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">margin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;html&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">padding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">margin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">padding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">margin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">padding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;canvas&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">margin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-      <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;canvas&#39;</span><span class="p">).</span><span class="nx">style</span><span class="p">.</span><span class="nx">padding</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>When this is called the application has trully started.</p></div></div><div class="code"><div class="wrapper">      <span class="kd">var</span> <span class="nx">setupUpdateLoop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>When this is called the application has trully started.</p></div></div><div class="code"><div class="wrapper">      <span class="kd">var</span> <span class="nx">setupUpdateLoop</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">self</span><span class="p">.</span><span class="nx">initialized</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all create extensions</p></div></div><div class="code"><div class="wrapper">        <span class="nx">self</span><span class="p">.</span><span class="nx">execute_extensions</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">CREATE</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Execute all create events</p></div></div><div class="code"><div class="wrapper">        <span class="nx">self</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">CREATE</span><span class="p">);</span>
 
         <span class="kd">var</span> <span class="nx">now</span><span class="p">;</span>

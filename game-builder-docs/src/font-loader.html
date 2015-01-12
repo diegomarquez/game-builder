@@ -41,32 +41,50 @@ once the loading is complete. The configuration object looks like this:</p>
 <ul>
 <li><strong>onLoad must be a Funtion.</strong><br/>(This is called when all fonts have been downloaded.)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">FontLoader</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">start</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">onLoad</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;font-data&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">();</span>
+      <span class="kd">var</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;font-data&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">();</span>
 
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">config</span><span class="p">.</span><span class="nx">loadFonts</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">onLoad</span><span class="p">();</span> 
-            <span class="k">return</span><span class="p">;</span>
-        <span class="p">}</span>
+        <span class="nx">onLoad</span><span class="p">();</span> 
+        <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span>
 
-        <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
       <span class="nx">config</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">active</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
         <span class="nx">onLoad</span><span class="p">();</span> 
       <span class="p">};</span>
 
       <span class="nx">config</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">inactive</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;error-printer&#39;</span><span class="p">).</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Font Loader&#39;</span><span class="p">,</span> <span class="s1">&#39;No fonts are available&#39;</span><span class="p">);</span>
+        <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;error-printer&#39;</span><span class="p">).</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Font Loader&#39;</span><span class="p">,</span> <span class="s1">&#39;No fonts are available&#39;</span><span class="p">);</span>
         <span class="nx">onLoad</span><span class="p">();</span> 
       <span class="p">};</span>
 
-        <span class="nx">config</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">fontinactive</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">familyName</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;error-printer&#39;</span><span class="p">).</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Font Loader&#39;</span><span class="p">,</span> <span class="s1">&#39;Font: &#39;</span> <span class="o">+</span> <span class="nx">familyName</span> <span class="o">+</span> <span class="s1">&#39; could not be loaded&#39;</span><span class="p">);</span>   
-        <span class="p">};</span>
+      <span class="nx">config</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">fontinactive</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">familyName</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;error-printer&#39;</span><span class="p">).</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Font Loader&#39;</span><span class="p">,</span> <span class="s1">&#39;Font: &#39;</span> <span class="o">+</span> <span class="nx">familyName</span> <span class="o">+</span> <span class="s1">&#39; could not be loaded&#39;</span><span class="p">);</span>   
+      <span class="p">};</span>
       
       <span class="kd">var</span> <span class="nx">protocol</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">protocol</span> <span class="o">===</span> <span class="s1">&#39;https:&#39;</span> <span class="o">?</span> <span class="s1">&#39;https&#39;</span> <span class="o">:</span> <span class="s1">&#39;http&#39;</span><span class="p">;</span>
 
-    <span class="nx">require</span><span class="p">([</span><span class="nx">protocol</span> <span class="o">+</span> <span class="s1">&#39;://ajax.googleapis.com/ajax/libs/webfont/&#39;</span> <span class="o">+</span> <span class="nx">config</span><span class="p">.</span><span class="nx">version</span> <span class="o">+</span> <span class="s1">&#39;/webfont.js&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-          <span class="nx">WebFont</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+      <span class="nx">loadScript</span><span class="p">(</span><span class="nx">protocol</span> <span class="o">+</span> <span class="s1">&#39;://ajax.googleapis.com/ajax/libs/webfont/&#39;</span> <span class="o">+</span> <span class="nx">config</span><span class="p">.</span><span class="nx">version</span> <span class="o">+</span> <span class="s1">&#39;/webfont.js&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">WebFont</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
       <span class="p">});</span>
-    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    <span class="k">return</span> <span class="k">new</span> <span class="nx">FontLoader</span><span class="p">();</span>
+    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    <span class="kd">var</span> <span class="nx">loadScript</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">src</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">t</span><span class="p">;</span>
+      
+      <span class="nx">r</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="nx">s</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">);</span>
+      <span class="nx">s</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text/javascript&#39;</span><span class="p">;</span>
+      <span class="nx">s</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">src</span><span class="p">;</span>
+      <span class="nx">s</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">onreadystatechange</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">r</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">==</span> <span class="s1">&#39;complete&#39;</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+          <span class="nx">r</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+          <span class="nx">callback</span><span class="p">();</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+      
+      <span class="nx">t</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;script&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+      <span class="nx">t</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">s</span><span class="p">,</span> <span class="nx">t</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">FontLoader</span><span class="p">();</span>
 <span class="p">});</span></div></div></div></div></body></html>

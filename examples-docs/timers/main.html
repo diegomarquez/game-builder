@@ -6,6 +6,9 @@
 <a href="@@gb@@">gb</a>,
 <a href="@@game@@">game</a>,
 <a href="@@timer-factory@@">timer-factory</a>,
+<a href="@@timers-control@@">timers-control</a>,
+<a href="@@activity-display@@">activity-display</a>,
+<a href="@@prevent-keys-default@@">prevent-keys-default</a>
 <a href="@@keyboard@@">keyboard</a></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">){</span>
   <span class="kd">var</span> <span class="nx">gb</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gb&#39;</span><span class="p">);</span>
   
@@ -16,6 +19,7 @@
   
   <span class="nx">game</span><span class="p">.</span><span class="nx">add_extension</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;timers-control&quot;</span><span class="p">));</span>
   <span class="nx">game</span><span class="p">.</span><span class="nx">add_extension</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;activity-display&quot;</span><span class="p">));</span>
+  <span class="nx">game</span><span class="p">.</span><span class="nx">add_extension</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s2">&quot;prevent-keys-default&quot;</span><span class="p">));</span>
 
   <span class="kd">var</span> <span class="nx">domTimer1</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;timer_1&#39;</span><span class="p">);</span>
   <span class="kd">var</span> <span class="nx">domTimer2</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;timer_2&#39;</span><span class="p">);</span>
@@ -70,6 +74,5 @@ Hooking into the 'repeate' event lets us know when a loop has been completed.   
 this.context => 2D Context where stuff is drawn</p></div></div><div class="code"><div class="wrapper">    
     <span class="nx">domTimer1</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s1">&#39;TIMER 1: &#39;</span> <span class="o">+</span> <span class="nx">timer_factory</span><span class="p">.</span><span class="nx">formatMinutesSeconds</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">my_timer_1</span><span class="p">.</span><span class="nx">rest</span><span class="p">());</span>
     <span class="nx">domTimer2</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s1">&#39;TIMER 2: &#39;</span> <span class="o">+</span> <span class="nx">timer_factory</span><span class="p">.</span><span class="nx">formatMinutesSeconds</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">my_timer_2</span><span class="p">.</span><span class="nx">rest</span><span class="p">());</span>
-  <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>This is the main setup that kicks off the whole thing
-Notice how it needs to find a '#main' and '#game' in the document</p></div></div><div class="code"><div class="wrapper">  <span class="nx">game</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;main&#39;</span><span class="p">),</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;game&#39;</span><span class="p">));</span>
+  <span class="p">});</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>This is the main setup that kicks off the whole thing</p></div></div><div class="code"><div class="wrapper">  <span class="nx">game</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span>
 <span class="p">});</span></div></div></div></div></body></html>

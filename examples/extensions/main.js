@@ -9,6 +9,8 @@
  * [basic-display-setup](@@basic-display-setup@@),
  * [pause](@@pause@@),
  * [resume](@@resume@@),
+ * [activity-display](@@activity-display@@),
+ * [prevent-keys-default](@@prevent-keys-default@@),
  * [layering-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/layering-bundle.html),
  */
 
@@ -26,6 +28,7 @@ define(function(require){
 	game.add_extension(require("pause"));
 	game.add_extension(require("resume"));
 	game.add_extension(require("activity-display"));
+	game.add_extension(require("prevent-keys-default"));
 	
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {
@@ -69,6 +72,5 @@ define(function(require){
 	});
 
 	// This is the main setup that kicks off the whole thing
-	// Notice how it needs to find a '#main' and '#game' in the document
-	game.create(document.getElementById('main'), document.getElementById('game'));
+	game.create();
 });

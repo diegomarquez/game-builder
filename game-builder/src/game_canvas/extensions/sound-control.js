@@ -43,7 +43,7 @@ define(["sound-player", "gb", "extension"], function(SoundPlayer, Gb, Extension)
 
 				// Pause all the sound channels
 				SoundPlayer.pauseAll().now();
-			});
+			}, false, false, false, 'sound-control');
 
 			game.on(game.FOCUS, this, function() {
 				// Resume all the sound channels which don't have an _'alreadyPaused'_ property
@@ -53,7 +53,11 @@ define(["sound-player", "gb", "extension"], function(SoundPlayer, Gb, Extension)
 
 				// Set the _'alreadyPaused'_ property to null on all sound channels
 				SoundPlayer.setPropertyToAll('alreadyPaused', null).now();
-			});
+			}, false, false, false, 'sound-control');
+		},
+
+		destroy: function() {
+			game.levelCleanUp('sound-control');
 		}
 	});
 

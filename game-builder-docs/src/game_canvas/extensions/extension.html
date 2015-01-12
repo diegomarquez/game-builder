@@ -56,6 +56,8 @@ They are executed on the main update loop.</p></div></div></div><div class="segm
 
 <p>This method is called when the extension is removed. This is an abstract method and must be overriden.</p>
 
+<p>This method should undo any changes that the extension introduced. Setting up event listeners, defining methods, etc.</p>
+
 <p><strong>Can throw an Error</strong><br/>(Always)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">mustOverrideError</span><span class="p">(</span><span class="s1">&#39;Extension&#39;</span><span class="p">);</span>
     <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>

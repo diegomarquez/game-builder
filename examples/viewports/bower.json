@@ -1,20 +1,18 @@
 {
   "name": "viewports",
   "version": "0.1.0",
-  
   "dependencies": {
-    "requirejs": "2.x.x",
-    "requirejs-domready": "2.x.x"
+    "requirejs": "2.1.8",
+    "requirejs-domready": "*",
+    "almond": "~0.3.0"
   },
-
   "ignore": [
     "**/.*",
     "node_modules",
+    "bower_components",
     "test",
     "tests",
-    "./lib"
+    "lib"
   ]
 }
-
-
 

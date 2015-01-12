@@ -74,7 +74,6 @@ define(function(require) {
 				text: 'Default Text 3'
 			});
 
-
 			this.gameObjectPool.createPool("Base", basic_game_object, 4);
 			this.gameObjectPool.createPool("Text", game_object, 3); 
 

@@ -176,7 +176,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 		for (var k in allActiveGameObjects) {
 			var activeCollection = allActiveGameObjects[k];
 
-			for (var i=0; i<activeCollection.length; i++) {
+			for (var i=activeCollection.length-1; i >= 0; i--) {
 				var go = activeCollection[i];
 
 				if(capitalizedMode == 'Configuration') {
@@ -210,7 +210,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	Reclaimer.prototype.claimOnly = function(mode, only) {
 		capitalizedMode = mode.charAt(0).toUpperCase() + mode.slice(1);
 
-		for (var i=0; i<only.length; i++) {
+		for (var i = only.length-1; i >= 0; i--) {
 			this['claim' + capitalizedMode](only[i]);
 		}
 	};

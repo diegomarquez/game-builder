@@ -8,9 +8,11 @@
  * [game-object-pool](@@game-object-pool@@),
  * [component-pool](@@component-pool@@),
  * [assembler](@@assembler@@),
- * [groups](@@groups@@)
- * [viewports](@@viewports@@)
+ * [groups](@@groups@@),
+ * [viewports](@@viewports@@),
  * [basic-display-setup](@@basic-display-setup@@),
+ * [activity-display](@@activity-display@@),
+ * [prevent-keys-default](@@prevent-keys-default@@),
  * [basic-game-object](http://diegomarquez.github.io/game-builder/examples-docs/common_src/basic-game-object.html),
  * [box-renderer](http://diegomarquez.github.io/game-builder/examples-docs/common_src/box-renderer.html)
  */
@@ -30,13 +32,15 @@ define(function(require){
 	var viewports = gb.viewports;
 	var canvas = gb.canvas;
 
-	// This piece of code takes care of creating a basic display structure.
+	// This extension takes care of setting up the basic display structure,
 	// it adds 3 [groups](@@group@@) to work with, 'First', 'Second' and 'Third'
-	// This groups control the updating order
 	// The [viewports](@@viewport@@) are set up here aswell, in this case there is a single one called 'Main'
 	game.add_extension(require('basic-display-setup'));
+	// Display some information on the activity of Game-Builder's inner workings
 	game.add_extension(require("activity-display"));
-	
+	// Prevents default key behaviour for all the keys defined by Game Builder
+	game.add_extension(require("prevent-keys-default"));
+
 	// Getting the prototype for [basic-game-object](http://diegomarquez.github.io/game-builder/examples-docs/common_src/basic-game-object.html)
 	var basic_game_object = require('basic-game-object'); 
 	// Getting the prototype for [box-renderer](http://diegomarquez.github.io/game-builder/examples-docs/common_src/box-renderer.html) component
@@ -108,6 +112,5 @@ define(function(require){
 	});
 
 	// This is the main setup that kicks off the whole thing
-	// Notice how it needs to find a '#main' and '#game' in the document
-	game.create(document.getElementById('main'), document.getElementById('game'));
+	game.create();
 });

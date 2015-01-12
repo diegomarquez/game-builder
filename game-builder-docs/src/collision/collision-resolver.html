@@ -102,28 +102,26 @@ But I think that for prototypes is largely unnecessary.</p></div></div></div><di
       <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">==</span> <span class="nx">second</span><span class="p">.</span><span class="nx">colliderType</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">circleCollider</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testCircleCircle</span><span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">collider</span><span class="p">,</span> <span class="nx">second</span><span class="p">.</span><span class="nx">collider</span><span class="p">);</span>
-      <span class="p">}</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">polygonCollider</span> <span class="o">||</span> <span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">fixedPolygonCollider</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testPolygonPolygon</span><span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">collider</span><span class="p">,</span> <span class="nx">second</span><span class="p">.</span><span class="nx">collider</span><span class="p">);</span>
-      <span class="p">}</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">circleCollider</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testPolygonCircle</span><span class="p">(</span><span class="nx">second</span><span class="p">.</span><span class="nx">collider</span><span class="p">,</span> <span class="nx">first</span><span class="p">.</span><span class="nx">collider</span><span class="p">);</span>
-      <span class="p">}</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">polygonCollider</span> <span class="o">||</span> <span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">fixedPolygonCollider</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testPolygonCircle</span><span class="p">(</span><span class="nx">first</span><span class="p">.</span><span class="nx">collider</span><span class="p">,</span> <span class="nx">second</span><span class="p">.</span><span class="nx">collider</span><span class="p">);</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">collisionMethodKey</span> <span class="o">=</span> <span class="nx">first</span><span class="p">.</span><span class="nx">colliderType</span> <span class="o">+</span> <span class="nx">second</span><span class="p">.</span><span class="nx">colliderType</span><span class="p">;</span>
 
-    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">collisionMethodPairs</span><span class="p">[</span><span class="nx">collisionMethodKey</span><span class="p">](</span><span class="nx">first</span><span class="p">.</span><span class="nx">collider</span><span class="p">,</span> <span class="nx">second</span><span class="p">.</span><span class="nx">collider</span><span class="p">);</span>
   <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>These variables are used by the concrete implementations of colliders to decide what
 type of collider they are, and hence, which method should be used when checking for collisions
-between them.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">circleCollider</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">polygonCollider</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">fixedPolygonCollider</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+between them.</p></div></div><div class="code"><div class="wrapper">  <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">circleCollider</span>  <span class="o">=</span> <span class="s1">&#39;circle&#39;</span><span class="p">;</span>
+  <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">polygonCollider</span> <span class="o">=</span> <span class="s1">&#39;polygon&#39;</span><span class="p">;</span>
+  <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">fixedPolygonCollider</span> <span class="o">=</span> <span class="s1">&#39;fixed&#39;</span><span class="p">;</span>
+
+  <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">collisionMethodPairs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;circlecircle&#39;</span><span class="o">:</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testCircleCircle</span><span class="p">,</span>
+    <span class="s1">&#39;circlepolygon&#39;</span><span class="o">:</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testCirclePolygon</span><span class="p">,</span>
+    <span class="s1">&#39;circlefixed&#39;</span><span class="o">:</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testCirclePolygon</span><span class="p">,</span>
+    <span class="s1">&#39;polygoncircle&#39;</span><span class="o">:</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testPolygonCircle</span><span class="p">,</span>
+    <span class="s1">&#39;polygonpolygon&#39;</span><span class="o">:</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testPolygonPolygon</span><span class="p">,</span>
+    <span class="s1">&#39;polygonfixed&#39;</span><span class="o">:</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testPolygonPolygon</span><span class="p">,</span>
+    <span class="s1">&#39;fixedcircle&#39;</span><span class="o">:</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testPolygonCircle</span><span class="p">,</span>
+    <span class="s1">&#39;fixedpolygon&#39;</span><span class="o">:</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testPolygonPolygon</span><span class="p">,</span>
+    <span class="s1">&#39;fixedfixed&#39;</span><span class="o">:</span> <span class="nx">SAT</span><span class="p">.</span><span class="nx">testPolygonPolygon</span> 
+  <span class="p">}</span>
 
   <span class="k">return</span> <span class="k">new</span> <span class="nx">CollisionResolver</span><span class="p">();</span>
 <span class="p">});</span></div></div></div></div></body></html>

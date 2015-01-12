@@ -42,7 +42,7 @@ define(["timer-factory", "gb", "extension"], function(TimerFactory, Gb, Extensio
 
 				// Pause all timers
 				TimerFactory.pauseAll().now();
-			});
+			}, false, false, false, 'timers-control');
 
 			game.on(game.FOCUS, this, function() {
 				// Resume all the timers which don't have an _'alreadyPaused'_ property
@@ -54,7 +54,11 @@ define(["timer-factory", "gb", "extension"], function(TimerFactory, Gb, Extensio
 				TimerFactory.setProperty('alreadyPaused', null, function(timer, index, array){
 					return true;
 				});
-			});
+			}, false, false, false, 'timers-control');
+		},
+
+		destroy: function() {
+			game.levelCleanUp('timers-control');
 		}
 	});
 

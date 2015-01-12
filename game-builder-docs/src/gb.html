@@ -42,7 +42,7 @@ you just load this one and use the references that it provides.</p></div></div><
     <span class="p">}</span>
 
     <span class="kd">var</span> <span class="nx">addToViewPorts</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">go</span><span class="p">,</span> <span class="nx">vports</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">processViewportArgument</span><span class="p">(</span><span class="nx">vports</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">processViewportArgument</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">vports</span><span class="p">);</span>
 
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">v</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">viewports</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">v</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">viewport</span><span class="p">).</span><span class="nx">addGameObject</span><span class="p">(</span><span class="nx">v</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">layer</span><span class="p">,</span> <span class="nx">go</span><span class="p">);</span>
@@ -50,7 +50,7 @@ you just load this one and use the references that it provides.</p></div></div><
     <span class="p">}</span>
 
     <span class="kd">var</span> <span class="nx">removeFromViewPorts</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">go</span><span class="p">,</span> <span class="nx">vports</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">processViewportArgument</span><span class="p">(</span><span class="nx">vports</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">processViewportArgument</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">vports</span><span class="p">);</span>
 
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">v</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">viewports</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">v</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">viewport</span><span class="p">).</span><span class="nx">removeGameObject</span><span class="p">(</span><span class="nx">v</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">layer</span><span class="p">,</span> <span class="nx">go</span><span class="p">);</span>
@@ -93,7 +93,17 @@ you just load this one and use the references that it provides.</p></div></div><
 <li><p><strong>vports must be an Array.</strong><br/>(An array specifying viewports and corresponding layers. The objects in the array should look like this <code>{ viewport: 'ViewportName', layer: 'LayerName' }</code>)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">      <span class="nx">setViewportShortCut</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">,</span> <span class="nx">vports</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">viewportsAliases</span><span class="p">[</span><span class="nx">alias</span><span class="p">]</span> <span class="o">=</span> <span class="nx">vports</span><span class="p">;</span>
-      <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getViewportShortCuts</strong></p>
+      <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removeViewportShortCut</strong></p>
+
+<p>Removes the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> + <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> setups for the given id</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>alias must be a Strin.</strong><br/>(Id of the shortcut to remove)</li>
+</ul></div></div><div class="code"><div class="wrapper">      <span class="nx">removeViewportShortCut</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">alias</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewportsAliases</span><span class="p">[</span><span class="nx">alias</span><span class="p">];</span>
+      <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getViewportShortCuts</strong></p>
 
 <p>Get all the viewport shortcut names</p>
 

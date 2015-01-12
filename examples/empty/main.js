@@ -4,7 +4,10 @@
  *
  * Depends of:
  * [game](@@game@@),
- * [gb](@@gb@@)
+ * [gb](@@gb@@),
+ * [activity-display](@@activity-display@@),
+ * [prevent-keys-default](@@prevent-keys-default@@)
+ * 
  */
 
 /**
@@ -17,6 +20,7 @@ define(function(require){
 	var game = gb.game;
 
 	game.add_extension(require("activity-display"));
+	game.add_extension(require("prevent-keys-default"));
 
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {	
@@ -42,6 +46,5 @@ define(function(require){
 	});
 
 	// This is the main setup that kicks off the whole thing
-	// Notice how it needs to find a '#main' and '#game' in the document
-	game.create(document.getElementById('main'), document.getElementById('game'));
+	game.create();
 });

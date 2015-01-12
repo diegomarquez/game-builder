@@ -1,22 +1,20 @@
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>sound</title>
-		<!-- For all your styling needs -->
-		<link rel="stylesheet" href="styles/main.css" />
-	</head>
-	<body>
+  <head>
+    <meta charset="utf-8">
+    <title>sound</title>
+    <link rel="stylesheet" href="styles/css/all_styles.css"/>
+  </head>
+  <body>
+    <!-- This is what will render the canvas. This needs to be here. There is nothing preventing
+    you from adding more HTML if that is what you want, though. -->
 
-		<!-- This is what will render the canvas. This needs to be here. There is nothing preventing
-		you from adding more HTML if that is what you want, though. -->
+    <!-- div #main and canvas #game need to be here for this whole contraption to work. -->
+    <div id="main">
+      <canvas id="game" width="400" height="300">
+        Sorry, your web browser does not support Canvas content.
+      </canvas>
 
-		<!-- div #main and canvas #game need to be here for this whole contraption to work. -->
-		<div id="main">
-			<canvas id="game" width="400" height="300">
-				Sorry, your web browser does not support Canvas content.
-			</canvas>		
-
-			<div id="labels">
+      <div id="labels">
 				<div id="label_1" class="label">PRESS 'A': BIRDIE</div>
 				<div id="label_2" class="label">PRESS 'S': HORSE</div>
 				<div id="label_3" class="label">PRESS 'D': SHEEP</div>
@@ -25,31 +23,15 @@
 				<div id="label_6" class="label">PRESS 'P': PAUSE/RESUME ALL</div>
 				<div id="label_7" class="label">PRESS 'X': STOP ALL</div>
 			</div>
-		</div>
+    </div>
 
-		<!-- require.js -->
-		<script src="../../lib/requirejs/require.js"></script>
-		<!-- require.js configuration -->
-		<script src="config.js"></script>
-		<!-- Object with local and remote asset paths -->
-		<script src="asset-map.js"></script>
-		<!-- Object with font data and version of webfonts.js to use -->
-		<script src="font-data.js"></script>
-		<script>
-			// This waits for the DOM to be ready before doing anything. It loads the json-cache module.
-			require(["domReady!", "json-cache", "font-loader"], function(doc, jsonCache, fontLoader) {
-				// Cache the asset map loaded from asset-map.js . Later it will be available through the json-cache module, 
-				// using the 'asset-map' id.
-				jsonCache.cache("asset-map", assetMap);
-	
-				// Start loading configured fonts
-				fontLoader.start(webfonts, function() {
-					// Now all fonts are loaded, and FOUT has been avoided.
-					
-					// Create main module
-					require(["main"], function(main){});
-				});
-			});
-		</script>
-	</body>
+    <!-- require.js -->
+    <script src="../../lib/requirejs/require.js"></script>
+    <!-- require.js configuration -->
+    <script src="generated/config.js"></script>
+    <script>
+      require(["pre-load"]);
+    </script>
+  </body>
 </html>
+

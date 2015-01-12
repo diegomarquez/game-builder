@@ -80,6 +80,8 @@ define(["class", "error-printer"], function(Class, ErrorPrinter) {
 		 *
 		 * This method is called when the extension is removed. This is an abstract method and must be overriden.
 		 *
+		 * This method should undo any changes that the extension introduced. Setting up event listeners, defining methods, etc.
+		 *
 		 * @throws {Error} Always
 		 */
 		destroy: function() {

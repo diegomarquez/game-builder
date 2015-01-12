@@ -6,13 +6,18 @@
   "frameworkRepo": "git@github.com:diegomarquez/game-builder.git",
   "framework": "../../game-builder",
   "lib": "../../lib",
-  "frameworkTag": "latest",
+  "frameworkTag": "master",
   "dependencies": {
     "grunt-shell": "~0.6.4",
     "grunt-open": "~0.2.2",
-    "grunt-bower-requirejs": "~0.8.4",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-merge-json": "~0.9.4",
-    "grunt-file-append": "0.0.2"
+    "grunt-contrib-less": "~0.12.0",
+    "grunt-contrib-cssmin": "~0.10.0",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-requirejs": "~0.4.4",
+    "grunt-contrib-copy": "~0.7.0",
+    "cheerio": "~0.18.0"
   }
 }
+

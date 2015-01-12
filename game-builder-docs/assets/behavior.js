@@ -1473,6 +1473,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "foldPrefix": "^",
                       "name": "JavaScript"
                     },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/prevent-keys-default.js",
+                    "projectPath": "work/game-builder/src/game_canvas/extensions/prevent-keys-default.js",
+                    "targetPath": "src/game_canvas/extensions/prevent-keys-default",
+                    "pageTitle": "src/game_canvas/extensions/prevent-keys-default",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "prevent-keys-default.js",
+                        "slug": "prevent-keys-defaultjs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Prevent Keys Behaviour",
+                            "slug": "prevent-keys-behaviour"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "prevent-keys-default.js"
+                  },
+                  "depth": 4,
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Prevent Keys Behaviour",
+                        "slug": "prevent-keys-behaviour"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
                     "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/game_canvas/extensions/resume.js",
                     "projectPath": "work/game-builder/src/game_canvas/extensions/resume.js",
                     "targetPath": "src/game_canvas/extensions/resume",
@@ -2256,6 +2307,36 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "depth": 2
                 }
               ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/basic-bundle.js",
+                "projectPath": "work/game-builder/src/pools/basic-bundle.js",
+                "targetPath": "src/pools/basic-bundle",
+                "pageTitle": "src/pools/basic-bundle",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "basic-bundle.js",
+                    "slug": "basic-bundlejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1
+                },
+                "title": "basic-bundle.js"
+              },
+              "depth": 3,
+              "outline": []
             }, {
               "type": "file",
               "data": {

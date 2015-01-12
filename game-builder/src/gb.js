@@ -53,7 +53,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
   	}
 
     var addToViewPorts = function(go, vports) {
-      var v = processViewportArgument(vports);
+      var v = processViewportArgument.call(this, vports);
 
       for (var i=0; i<v.length; i++) {
         viewports.get(v[i].viewport).addGameObject(v[i].layer, go);
@@ -61,7 +61,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
     }
 
     var removeFromViewPorts = function(go, vports) {
-    	var v = processViewportArgument(vports);
+    	var v = processViewportArgument.call(this, vports);
 
     	for (var i=0; i<v.length; i++) {
         viewports.get(v[i].viewport).removeGameObject(v[i].layer, go);
@@ -116,6 +116,20 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       setViewportShortCut: function(alias, vports) {
         this.viewportsAliases[alias] = vports;
       },
+
+      /**
+       * <p style='color:#AD071D'><strong>removeViewportShortCut</strong></p>
+       *
+       * Removes the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) + [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) setups for the given id
+       * 
+       * @param  {Strin} alias Id of the shortcut to remove
+       */
+      removeViewportShortCut: function(alias) {
+      	delete this.viewportsAliases[alias];
+      },
+      /**
+       * --------------------------------
+       */
 
       /**
        * <p style='color:#AD071D'><strong>getViewportShortCuts</strong></p>

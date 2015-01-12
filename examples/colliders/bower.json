@@ -1,9 +1,10 @@
 {
-  "name": "colliders",
+  "name": "game-object-nesting",
   "version": "0.1.0",
   "dependencies": {
     "requirejs": "2.1.8",
-    "requirejs-domready": "*"
+    "requirejs-domready": "*",
+    "almond": "~0.3.0"
   },
   "ignore": [
     "**/.*",
@@ -14,3 +15,4 @@
     "lib"
   ]
 }
+

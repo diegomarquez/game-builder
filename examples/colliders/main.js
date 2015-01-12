@@ -6,6 +6,8 @@
  * [gb](@@gb@@),
  * [game](@@game@@),
  * [basic-display-setup](@@basic-display-setup@@),
+ * [activity-display](@@activity-display@@),
+ * [prevent-keys-default](@@prevent-keys-default@@),
  * [colliders-bundle](http://diegomarquez.github.io/game-builder/examples-docs/common_src/bundles/colliders-bundle.html),
  * [collision-resolver](@@collision-resolver@@)
  */
@@ -17,11 +19,13 @@ define(function(require){
 	var gb = require('gb');
 	
 	gb.debug = true;
+	gb.toggleColliderDebug();
 
 	var game = gb.game;
 
 	game.add_extension(require('basic-display-setup'));
 	game.add_extension(require("activity-display"));
+	game.add_extension(require("prevent-keys-default"));
 
 	// This is the main initialization function
 	game.on(game.CREATE, this, function() {
@@ -39,6 +43,8 @@ define(function(require){
 		collision_resolver.addCollisionPair('circle-collider_ID', 'fixed-polygon-collider_ID');
 		//All colliders with ID 'Fixed_Polygon_1' will check for overlapping against all colliders with ID 'Polygon_1'
 		collision_resolver.addCollisionPair('fixed-polygon-collider_ID', 'polygon-collider_ID');		
+
+		debugger;
 
 		gb.add('Base_1', 'First', 'MainMiddle');
 		gb.add('Base_2', 'First', 'MainMiddle');
@@ -64,6 +70,5 @@ define(function(require){
 	});
 
 	// This is the main setup that kicks off the whole thing
-	// Notice how it needs to find a '#main' and '#game' in the document
-	game.create(document.getElementById('main'), document.getElementById('game'));
+	game.create();
 });

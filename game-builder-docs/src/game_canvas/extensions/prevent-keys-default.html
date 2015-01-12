@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><title>src/game_canvas/extensions/prevent-keys-default</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../../"><meta name="groc-document-path" content="src/game_canvas/extensions/prevent-keys-default"><meta name="groc-project-path" content="work/game-builder/src/game_canvas/extensions/prevent-keys-default.js"><link rel="stylesheet" type="text/css" media="all" href="../../../assets/style.css"><script type="text/javascript" src="../../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/game_canvas/extensions/prevent-keys-default.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="prevent-keys-defaultjs">prevent-keys-default.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from: 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html">extension</a></p>
+
+<p>Depends of: 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/input/keyboard.html">keyboard</a></p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This extension prevents the default keyboard behaviour of all the keys defined in the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/input/keyboard.html">keyboard</a> module.</p>
+
+<p>Most of the times you won't want the browser default key behaviour when playing a game, if you do, it is always possible 
+to not know this extension, or to make another extension that blocks only some keys.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="prevent-keys-behaviour">Prevent Keys Behaviour</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;extension&quot;</span><span class="p">,</span> <span class="s2">&quot;gb&quot;</span><span class="p">,</span> <span class="s2">&quot;keyboard&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Extension</span><span class="p">,</span> <span class="nx">Gb</span><span class="p">,</span> <span class="nx">Keyboard</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">PreventKeysDefault</span> <span class="o">=</span> <span class="nx">Extension</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Notice the use of the constant CREATE defined in <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html">game</a>
+to define this extension should be executed on creation.</p></div></div><div class="code"><div class="wrapper">      <span class="k">return</span> <span class="nx">Gb</span><span class="p">.</span><span class="nx">game</span><span class="p">.</span><span class="nx">CREATE</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="nx">execute</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
+        <span class="nx">skipDefaultBehaviour</span><span class="o">:</span> <span class="p">[</span>
+          <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">LEFT</span><span class="p">,</span>
+          <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">UP</span><span class="p">,</span>
+          <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">RIGHT</span><span class="p">,</span>
+          <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">DOWN</span><span class="p">,</span>
+          <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">CTRL</span><span class="p">,</span>
+          <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">ALT</span><span class="p">,</span>
+          <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">ESC</span><span class="p">,</span>
+          <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">SPACE</span><span class="p">,</span>
+          <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">NUM_0</span><span class="p">,</span>
+          <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">NUM_1</span><span class="p">,</span>
+          <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">NUM_2</span><span class="p">,</span>
+          <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">NUM_3</span><span class="p">,</span>
+          <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">NUM_4</span><span class="p">,</span>
+          <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">NUM_5</span>        
+        <span class="p">]</span> 
+      <span class="p">});</span>
+    <span class="p">},</span>
+
+    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">Keyboard</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
+        <span class="nx">skipDefaultBehaviour</span><span class="o">:</span> <span class="p">[]</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="nx">PreventKeysDefault</span><span class="p">;</span>
+<span class="p">});</span></div></div></div></div></body></html>

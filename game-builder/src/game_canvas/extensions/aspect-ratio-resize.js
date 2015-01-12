@@ -33,7 +33,7 @@ define(["gb", "extension"], function(Gb, Extension) {
 		execute: function() {
 			var scaleX, scaleY;
 
-			var resize = function(container, canvas) {
+			this.resize = function(container, canvas) {
 				scaleX = 1;
 				scaleY = 1;
 
@@ -51,6 +51,17 @@ define(["gb", "extension"], function(Gb, Extension) {
 			var container = Gb.game.mainContainer;
 			var canvas = Gb.game.canvas;
 
+			this.initContainerTop = container.style.top;
+			this.initContainerLeft = container.style.left;
+			this.initContainerMarginTop = container.style.marginTop;
+			this.initContainerMarginLeft = container.style.marginLeft;
+			this.initContainerPosition = container.style.position;
+
+			this.initCanvasPaddingLeft = canvas.style.paddingLeft;
+			this.initCanvasPaddingRight = canvas.style.paddingRight;
+			this.initCanvasMarginLeft = canvas.style.marginLeft;
+			this.initCanvasMarginRight = canvas.style.marginRight;
+
     	container.style.top  		= '50%';
     	container.style.left 		= '50%';
 			container.style.marginLeft = '-' + Gb.game.canvas.width/2 + 'px';
@@ -62,11 +73,41 @@ define(["gb", "extension"], function(Gb, Extension) {
     	canvas.style.marginLeft   = 'auto';
     	canvas.style.marginRight  = 'auto';
 
-			resize(container, canvas);
+			this.resize(container, canvas);
 
-			window.addEventListener('resize', function() { 
-				resize(container, canvas); 
-			}, false);			
+			this.resizeListener = function() {
+				resize(container, canvas);
+			}
+
+			window.addEventListener('resize', this.resizeListener, false);			
+		},
+
+		destroy: function() {
+			container.style.top  		   = this.initContainerTop;
+    	container.style.left 		   = this.initContainerLeft;
+			container.style.marginTop  = this.initContainerMarginTop;
+			container.style.marginLeft = this.initContainerMarginLeft;
+			container.style.position   = this.initContainerPosition;
+
+			canvas.style.paddingLeft  = this.initCanvasPaddingLeft;
+    	canvas.style.paddingRight = this.initCanvasPaddingRight;
+    	canvas.style.marginLeft   = this.initCanvasMarginLeft;
+    	canvas.style.marginRight  = this.initCanvasMarginRight;
+
+    	window.removeEventListener('resize', this.resizeListener);
+
+    	delete this['initContainerTop'];
+    	delete this['initContainerLeft'];
+			delete this['initContainerMarginTop'];
+			delete this['initContainerMarginLeft'];
+			delete this['initContainerPosition'];
+
+			delete this['initCanvasPaddingLeft'];
+    	delete this['initCanvasPaddingRight'];
+    	delete this['initCanvasMarginLeft'];
+    	delete this['initCanvasMarginRight'];
+
+    	delete this['resizeListener']
 		}
 	});
 

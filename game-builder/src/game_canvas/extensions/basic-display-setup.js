@@ -65,6 +65,18 @@ define(["groups", "viewports", "gb", "world", "extension"], function(Groups, Vie
 			Gb.setViewportShortCut('MainBack', [{viewport:'Main', layer:'Back'}]);
 			Gb.setViewportShortCut('MainMiddle', [{viewport:'Main', layer:'Middle'}]);
 			Gb.setViewportShortCut('MainFront', [{viewport:'Main', layer:'Front'}]);
+		},
+
+		destroy: function() {
+			Groups.remove("First");
+			Groups.remove("Second");
+			Groups.remove("Third");
+
+			Viewports.remove('Main');
+
+			Gb.removeViewportShortCut('MainBack');
+			Gb.removeViewportShortCut('MainMiddle');
+			Gb.removeViewportShortCut('MainFront');
 		}
 	});
 

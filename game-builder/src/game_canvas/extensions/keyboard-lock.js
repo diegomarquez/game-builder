@@ -40,19 +40,23 @@ define(["keyboard", "gb", "extension"], function(Keyboard, Gb, Extension) {
 		execute: function() {
 			game.on(game.BLUR, this, function() {
 				Keyboard.setBlock(true);
-			});
+			}, false, false, false, 'keyboard-lock');
 
 			game.on(game.FOCUS, this, function() {
 				Keyboard.setBlock(false);
-			});
+			}, false, false, false, 'keyboard-lock');
 
 			game.on(game.PAUSE, this, function() {
 				Keyboard.setBlock(true, whiteList);
-			});
+			}, false, false, false, 'keyboard-lock');
 
 			game.on(game.RESUME, this, function() {
 				Keyboard.setBlock(false);
-			});
+			}, false, false, false, 'keyboard-lock');
+		},
+
+		destroy: function() {
+			game.levelCleanUp('keyboard-lock');
 		}
 	});
 
