@@ -60,7 +60,7 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 					window.removeEventListener("focus", game.focusAction);	
 				}
 			}
-		}
+		},
 
 		type: function() {
 			// Notice the use of the constant BLUR defined in [game](@@game@@)
