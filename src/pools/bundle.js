@@ -121,7 +121,7 @@ define(function(require) {
 		 * 
 		 * @param  {Function} moduleGetter A function that returns the result of a **require** call
 		 */
-		createComponentPool = function (moduleGetter) {
+		createComponentPool: function (moduleGetter) {
 			var name = getModuleName(moduleGetter);
 
 			this.componentPool.createPool(name, moduleGetter());
@@ -144,7 +144,7 @@ define(function(require) {
 		 * @param  {Function} moduleGetter A function that returns the result of a **require** call
 		 * @param  {Number} amount       The amount of object the pool will hold
 		 */
-		createGameObjectPool = function (moduleGetter, amount) {
+		createGameObjectPool: function (moduleGetter, amount) {
 			var name = getModuleName(moduleGetter);
 
 			this.gameObjectPool.createPool(name, moduleGetter(), amount);
@@ -168,7 +168,7 @@ define(function(require) {
 		 * 
 		 * @param  {Function} moduleGetter A function that returns the result of a **require** call
 		 */
-		createDynamicGameObjectPool = function (moduleGetter) {
+		createDynamicGameObjectPool: function (moduleGetter) {
 			var name = getModuleName(moduleGetter);
 
 			this.gameObjectPool.createDynamicPool(name, moduleGetter());
@@ -189,7 +189,7 @@ define(function(require) {
 		 *
 		 * @return {Object}                 The configuration
 		 */
-		createComponentConfiguration = function (configurationId, poolId) {
+		createComponentConfiguration: function (configurationId, poolId) {
 			var configuration = this.componentPool.createConfiguration(configurationId, poolId);
 
 			addConfigurationIdGetter.call(this, configurationId);
@@ -210,7 +210,7 @@ define(function(require) {
 		 *
 		 * @return {Object}                 The configuration
 		 */
-		createGameObjectConfiguration = function (configurationId, poolId) {
+		createGameObjectConfiguration: function (configurationId, poolId) {
 			var configuration = this.gameObjectPool.createConfiguration(configurationId, poolId);
 			
 			addConfigurationIdGetter.call(this, configurationId);
