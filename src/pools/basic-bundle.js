@@ -22,7 +22,7 @@
  * basic [components](@@component@@) and [game-objects](@@game-object@@) are ready to use.
  *
  * If you need a configuration to use a simple [game-object](@@game-object@@) or a [game-object-container](@@game-object-container@@)
- * there is no need to setup a pool for them, instead you can just use the **getGameObjectPoolId** and **getGameObjectContainerPoolId**
+ * there is no need to setup a pool for them, instead you can **require** this module and use the **getGameObjectPoolId** and **getGameObjectContainerPoolId**
  * methods where necessary. 
  *
  * Same goes for [renderers](@@renderer@@) if you need ids for a [bitmap-renderer](@@bitmap-renderer@@), 
@@ -32,7 +32,20 @@
  * Similarly you can get ids for [collision-components](@@collision-component@@), either a [circle-collider](@@circle-collider@@), 
  * [polygon-collider](@@polygon-collider@@) or [fixed-polygon-collider](@@fixed-polygon-collider@@) have their corresponding methods. 
  * **getCircleColliderPoolId**, **getPolygonColliderPoolId** and **getFixedPolygonColliderPoolId**.
- * 
+ *
+ * Ej.
+ * ```
+ * var basicBundle = require('basic-bundle');
+ *
+ * basicBundle.getGameObjectPoolId() // returns 'game-object'
+ * basicBundle.getGameObjectContainerPoolId() // returns 'game-object-container'
+ * basicBundle.getBitmapRendererPoolId() // returns 'bitmap-renderer'
+ * basicBundle.getTextRendererPoolId() // returns 'text-renderer'
+ * basicBundle.getPathRendererPoolId() // returns 'path-renderer'
+ * basicBundle.getCircleColliderPoolId() // returns 'circle-collider'
+ * basicBundle.getPolygonColliderPoolId() // returns 'polygon-collider'
+ * basicBundle.getFixedPolygonColliderPoolId() // returns 'fixed-polygon-collider'
+ * ```
  */
 
 /**
