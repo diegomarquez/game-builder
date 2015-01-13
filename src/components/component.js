@@ -143,9 +143,11 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 *
 		 * This is called once when the parent [game-object](@@game-object@@) is started or when the component is added
 		 * dynamically to a [game-object](@@game-object@@)
+		 *
+		 * @param  {Object} parent [game-object](@@game-object@@) using this component
 		 */
-		onStarted: function() {
-			this.start();	
+		onStarted: function(parent) {
+			this.start(parent);	
 			this.execute(this.START, this);
 		},
 		/**

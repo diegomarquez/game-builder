@@ -304,7 +304,7 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       addComponentTo: function(go, coId, args) {
       	var co = assembler.getComponent(coId, args);
         go.addComponent(co);
-        co.start();
+        co.start(go);
 
         return co;
       },
