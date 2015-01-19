@@ -494,7 +494,7 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
      */
     clearConfigurations: function() {
       for(var k in this.configurations) {
-      	clearConfiguration(k);
+      	this.clearConfiguration(k);
       }
 
       this.configurations = {};
