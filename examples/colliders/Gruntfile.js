@@ -19,6 +19,10 @@ module.exports = function(grunt) {
   var assetPaths = p.additionalAssetPaths.split(',');
   assetPaths.push(assetsDir);
 
+  assetPaths = assetPaths.filter(function(path) {
+  	return path.trim() != "";
+  });
+
   var assetSelectorsProd = assetPaths.map(function(path) {
   	return { 
   		expand: true, 

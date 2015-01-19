@@ -19,6 +19,10 @@ module.exports = function(grunt) {
   var assetPaths = p.additionalAssetPaths.split(',');
   assetPaths.push(assetsDir);
 
+  assetPaths = assetPaths.filter(function(path) {
+  	return path.trim() != "";
+  });
+
   var assetSelectorsProd = assetPaths.map(function(path) {
   	return { 
   		expand: true, 
@@ -292,18 +296,17 @@ module.exports = function(grunt) {
   grunt.registerTask('asset-map-build-dev', ['local-assets:build-dev', 'merge-json', 'data-modules', 'config']);
   // This task creates the asset map 
   grunt.registerTask('asset-map-build-prod', ['local-assets:build-prod', 'merge-json', 'data-modules', 'config']);
-  
   // This task creates all the requirejs configuration needed
   grunt.registerTask('config', ['create-config']);
   // This task downloads game-builder source code
   grunt.registerTask('framework', ['clean:framework', 'shell:framework']);  
   // This task builds the css stylesheet
   grunt.registerTask('css', ['clean:css', 'less', 'concat:generated_sans_main', 'concat:plain_sans_main', 'concat:append_main']);
+  
   // This task opens index.html
   grunt.registerTask('run', ['open:index']);
   // Refreshes all the data before opening index.html
-  grunt.registerTask('refresh', ['css', 'asset-map-dev', 'open:index']);
-  
+  grunt.registerTask('refresh', ['css', 'asset-map-dev', 'open:index']);  
   // This task sets up the development environment
   grunt.registerTask('setup', ['shell:bower', 'framework', 'css', 'asset-map-dev']);
   
