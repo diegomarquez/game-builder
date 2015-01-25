@@ -345,7 +345,7 @@ define(function() {
 		if (fillColor) context.fillStyle = fillColor;
 
 		if (close === undefined) close = true;
-		
+
 		if (!scale) scale = 1;
 
 		context.beginPath();
@@ -475,10 +475,11 @@ define(function() {
 
 		var lastAbsoluteX = points[0].x;
 		var lastAbsoluteY = points[0].y;
+		var currentAbsoluteX, currentAbsoluteY; 
 
 		for (var i = 1; i < points.length; i++) {
-			diffX = (points[i].x + points[i-1].x)/2; 
-			diffY = (points[i].y + points[i-1].y)/2;
+			diffX = ((points[i].x + lastAbsoluteX)  + lastAbsoluteX)/2; 
+			diffY = ((points[i].y + lastAbsoluteY) + lastAbsoluteY)/2;
 
 			var angle = Math.atan2(diffY, diffX) + Math.PI/2;
 
@@ -490,7 +491,7 @@ define(function() {
 				anchorY = diffY + Math.sin(angle) * -anchorDistance;
 			}
 
-			context.moveTo((points[i-1].x * scale) + x, (points[i-1].y * scale) + y);
+			context.moveTo((lastAbsoluteX * scale) + x, (lastAbsoluteY * scale) + y);
 			context.quadraticCurveTo((anchorX * scale) + x, (anchorY * scale) + y, ((points[i].x + lastAbsoluteX) * scale) + x, ((points[i].y + lastAbsoluteY) * scale) + y);
 
 			normalSide = !normalSide;
