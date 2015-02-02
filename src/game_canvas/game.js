@@ -115,11 +115,11 @@ define(function(require) {
      *
      * @param  {String} state The state of the application. ej. 'create'
      */
-    execute_extensions: function(state) {
+    execute_extensions: function(state, args) {
       for(var i=0; i<this.extensions[state].length; i++) {
       	var ex = this.extensions[state][i];
 
-        ex.extension.execute(ex.args);
+        ex.extension.execute(ex.args, args);
       }
     },
     /**
@@ -234,11 +234,11 @@ define(function(require) {
           self.lastUpdate = now;
 
           // Execute all update extensions
-          self.execute_extensions(self.UPDATE);
+          self.execute_extensions(self.UPDATE, self.delta);
           // Update all [game-objects](@@game-object@@)
           root.update(self.delta);
           // Execute all update events
-          self.execute(self.UPDATE);
+          self.execute(self.UPDATE, self.delta);
           // Draw to all the [viewports](@@viewport@@)
           root.draw(self.context);
 

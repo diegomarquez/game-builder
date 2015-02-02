@@ -69,14 +69,17 @@ define(function(require) {
 			div.style.position = 'absolute';
 			div.style.width = 'auto';
 			div.style.height = 'auto';
+			div.style.margin = 0;
 			div.innerHTML = textAttributes.text;
 
 			// Append the div to document to get it's width and height
 			document.body.appendChild(div);
 
+			var padding = textAttributes.padding || 0;
+
 			// Set the canvas dimentions
-			canvas.width = div.clientWidth;
-			canvas.height = div.clientHeight;
+			canvas.width = div.getBoundingClientRect().width + padding;
+			canvas.height = div.getBoundingClientRect().height + padding;
 
 			// Discard the div
 			document.body.removeChild(div);
