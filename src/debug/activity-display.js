@@ -142,6 +142,7 @@ define(function(require) {
 
 			displayElement = document.createElement('div');
 			displayElement.id = 'activity-display';
+			displayElement.style.pointerEvents = 'none';
 
 			var infoContainer = document.createElement('div');
 			infoContainer.id = 'activity-display-info-container';
