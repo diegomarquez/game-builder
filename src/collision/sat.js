@@ -13,6 +13,8 @@
  * out of it. [The original code is in here](https://github.com/jriecken/sat-js). 
  *
  * I added a few things, but nothing of true interest. The main code is largely unchanged.
+ *
+ * This works with simple and concave polygons. 
  */
 
 define(['vector-2D'], function(Vector) {
