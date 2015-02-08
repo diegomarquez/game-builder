@@ -91,7 +91,7 @@ define(['sat'], function(SAT) {
 	 * Use this method to setup collision pairs.
 	 * 
 	 * @param {String} first  The collidionId of the first group in the pair
-	 * @param {String} second The collidionId of the first group in the pair
+	 * @param {String} second The collidionId of the second group in the pair
 	 */
 	CollisionResolver.prototype.addCollisionPair = function(first, second) {
 		if (this.collisionLists[first] == null) {
@@ -103,6 +103,22 @@ define(['sat'], function(SAT) {
 		}
 
 		this.toCollideCache[second].push(first);
+	};
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>removeCollisionPair</strong></p>
+	 *
+	 * Use this method to setup remove a collision pairs.
+	 * 
+	 * @param {String} first  The collidionId of the first group in the pair
+	 * @param {String} second The collidionId of the second group in the pair
+	 */
+	CollisionResolver.prototype.removeCollisionPair = function(first, second) {
+		this.collisionLists[first] = null;
+		this.toCollideCache[second] = null;
 	};
 	/**
 	 * --------------------------------
