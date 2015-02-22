@@ -68,10 +68,10 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
         	// Set the clipping area
 					context.beginPath();
 
-					if (v.strokeWidth) {
-						context.rect(v.OffsetX-v.strokeWidth, v.OffsetY-v.strokeWidth, v.Width+v.strokeWidth*2, v.Height+v.strokeWidth*2);
+					if (!v.strokeWidth || v.strokeWidth == 'none') {
+						context.rect(v.OffsetX, v.OffsetY, v.Width, v.Height);
 					} else {
-						context.rect(v.OffsetX, v.OffsetY, v.Width, v.Height);	
+						context.rect(v.OffsetX-v.strokeWidth, v.OffsetY-v.strokeWidth, v.Width+v.strokeWidth*2, v.Height+v.strokeWidth*2);
 					}
 
 		      context.clip();
@@ -85,7 +85,7 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 	    	// Go back to previous state for the next viewport
 	    
 	    	// This simulates a strokes that grows outwards
-        if (v.strokeWidth || v.strokeColor) {
+        if ( (v.strokeWidth && (v.strokeWidth != 'none')) || (v.strokeColor && (v.strokeColor != v.strokeColor != 'none')) ) {
 					context.save();
 					context.setTransform(1, 0, 0, 1, 0, 0);
 
