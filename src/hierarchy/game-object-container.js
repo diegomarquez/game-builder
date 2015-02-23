@@ -340,7 +340,7 @@ define(["game-object"], function(GameObject){
 		/**
 		 * <p style='color:#AD071D'><strong>findChildren</strong></p>
 		 *
-		 * Get an object to query the child [game-objects](@@game-object@@) list of this container
+		 * Get an object to query the child [game-objects](@@game-object@@) list of this container.
 		 *
 		 * @return {Object}  An object to make the query. It has the following methods:
 		 * </br>
@@ -351,6 +351,8 @@ define(["game-object"], function(GameObject){
 		 * **first** returns the first [game-object](@@game-object@@) that returns true for the specified function
 		 * </br>
 		 * **firstWithType** returns the first [game-object](@@game-object@@) that has the given id in the [game-object-pool](@@game-object-pool@@)
+		 * </br>
+		 * **recurse** chain this method call before any of the above to make the search recursive
 		 * </br>
 		 */
 		findChildren: function() {
@@ -370,6 +372,16 @@ define(["game-object"], function(GameObject){
 							
 							r.push(c);
 						}
+
+						if (this.recursiveSearch) {
+							if (c.isContainer()) {
+								var cr = c.findChildren().all(f, true);
+
+								if (cr) {
+									r = r.concat(cr);		
+								}
+							}	
+						}
 					}
 
 					return r;
@@ -388,6 +400,16 @@ define(["game-object"], function(GameObject){
 							
 							r.push(c);
 						}
+
+						if (this.recursiveSearch) {
+							if (c.isContainer()) {
+								var cr = c.findChildren().allWithType(id, true);
+
+								if (cr) {
+									r = r.concat(cr);		
+								}
+							}
+						}
 					}
 
 					return r;
@@ -396,25 +418,53 @@ define(["game-object"], function(GameObject){
 				first: function(f) {
 					if (!self.childs) return;
 
-					for (var i = 0; i < self.childs.length; i++) {
-						var c = self.childs[i];
+					var c;
 
-						if (f(c)) {
+					for (var i = 0; i < self.childs.length; i++) {
+						c = self.childs[i];
+
+						if (!f || f(c)) {
 							return c;
 						}
-					}		
+					}
+
+					if (this.recursiveSearch) {
+						for (var i = 0; i < self.childs.length; i++) {
+							c = self.childs[i];
+							if (c.isContainer()) {
+								return c.findChildren().first(f, true);
+							}
+						}	
+					}
 				},
 
 				firstWithType: function(id) {
 					if (!self.childs) return;
 					
+					var c;
+
 					for (var i = 0; i < self.childs.length; i++) {
-						var c = self.childs[i];
+						c = self.childs[i];
 
 						if (c.typeId == id || c.poolId == id) {
 							return c;
 						}
 					}
+
+					if (this.recursiveSearch) {
+						for (var i = 0; i < self.childs.length; i++) {
+							c = self.childs[i];
+							
+							if (c.isContainer()) {
+								return c.findChildren().firstWithType(id, true);
+							}
+						}	
+					}
+				},
+
+				recurse: function() {
+					this.recursiveSearch = true;
+					return this;
 				}
 			}
 		},
