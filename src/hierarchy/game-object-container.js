@@ -406,6 +406,8 @@ define(["game-object"], function(GameObject){
 								var cr = c.findChildren().allWithType(id, true);
 
 								if (cr) {
+									if (!r) r = [];
+									
 									r = r.concat(cr);		
 								}
 							}
