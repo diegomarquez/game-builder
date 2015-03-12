@@ -165,8 +165,10 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 
 				context.save();
 
-				context.setTransform(1, 0, 0, 1, 0, 0);			
-				context.transform(m.a, m.b, m.c, m.d, m.tx, m.ty);
+				context.setTransform(1, 0, 0, 1, 0, 0);	
+				
+				viewport.transformContext(context);
+				context.transform(m.a, m.b, m.c, m.d, m.tx, m.ty);				
 				draw.polygon(context, 0, 0, this.pointsCopy, null, this.debugColor, 2);
 				
 				context.restore();
