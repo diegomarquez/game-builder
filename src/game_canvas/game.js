@@ -229,6 +229,8 @@ define(function(require) {
         var now;
 
         mainLoop = function() {
+          window.requestAnimationFrame(mainLoop);
+
           now = Date.now();
           self.delta = (now - self.lastUpdate) / 1000;
           self.lastUpdate = now;
@@ -241,8 +243,6 @@ define(function(require) {
           self.execute(self.UPDATE, self.delta);
           // Draw to all the [viewports](@@viewport@@)
           root.draw(self.context);
-
-          window.requestAnimationFrame(mainLoop);
         }
 
         var vendors = ['ms', 'moz', 'webkit', 'o'];
