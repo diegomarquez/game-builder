@@ -50,7 +50,7 @@ define(['component', 'collision-resolver', 'error-printer'], function(Component,
 			this.debugColor = "#00FF00";
 
 			this.checkingCollisions = true;
-
+			
 			CollisionResolver.addToCollisionList(this);
 
 			if(!this.parent.onCollide) {
@@ -130,6 +130,19 @@ define(['component', 'collision-resolver', 'error-printer'], function(Component,
 		 */
 
 		/**
+		 * <p style='color:#AD071D'><strong>remove</strong></p>
+		 *
+		 * Asides from resetting some properties the component removes itself
+		 * from the [collision-resolver](@@collision-resolver@@)
+		 * 
+		 * @param  {Object} parent [game-object](@@game-object@@) using this component
+		 */
+		removed: function(parent) {
+			this.checkingCollisions = false;
+			CollisionResolver.removeFromCollisionList(this);
+		},
+
+		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 		 *
 		 * This is redifined by objects extending this one.
@@ -137,25 +150,6 @@ define(['component', 'collision-resolver', 'error-printer'], function(Component,
 		debug_draw: function() {
 			this.debugColor = "#00FF00";
 		},
-		/**
-		 * --------------------------------
-		 */
-
-		/**
-		 * <p style='color:#AD071D'><strong>destroy</strong></p>
-		 *
-		 * Destroys the component.
-		 * 
-		 * Asides from resetting some properties the component removes itself
-		 * from the [collision-resolver](@@collision-resolver@@)
-		 */
-		destroy: function() {
-			this._super();
-
-			this.checkingCollisions = false;
-
-			CollisionResolver.removeFromCollisionList(this);
-		}
 		/**
 		 * --------------------------------
 		 */
