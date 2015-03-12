@@ -84,16 +84,28 @@ define(['component', 'collision-resolver', 'error-printer'], function(Component,
 		
 						if (collisionOpponent.parent && this.parent) {
 							this.onCollide(collisionOpponent);
-							this.parent.onCollide(collisionOpponent.parent);
-							this.parent.execute('collide', collisionOpponent.parent);	
+
+							if (collisionOpponent.parent && this.parent) {
+								this.parent.execute('collide', collisionOpponent.parent);
+							}
+
+							if (collisionOpponent.parent && this.parent) {
+								this.parent.onCollide(collisionOpponent.parent);
+							}
 						}
 
 						if (!this.checkingCollisions) break;
 
 						if (collisionOpponent.parent && this.parent) {
 							collisionOpponent.onCollide(this);
-							collisionOpponent.parent.onCollide(this.parent);
-							collisionOpponent.parent.execute('collide', this.parent);	
+							
+							if (collisionOpponent.parent && this.parent) {
+								collisionOpponent.parent.execute('collide', this.parent);	
+							}
+
+							if (collisionOpponent.parent && this.parent) {
+								collisionOpponent.parent.onCollide(this.parent);	
+							}
 						}
 					}
 				}
