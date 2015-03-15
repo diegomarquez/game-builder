@@ -8,6 +8,7 @@
  *
  * Depends of:
  * [root](@@root@@)
+ * [reclaimer](@@reclaimer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -89,6 +90,7 @@
 define(function(require) {
   var delegate = require("delegate");
   var root = require("root");
+  var reclaimer = require("reclaimer");
 
   var Game = delegate.extend({
     init: function() {
@@ -243,6 +245,8 @@ define(function(require) {
           self.execute(self.UPDATE, self.delta);
           // Draw to all the [viewports](@@viewport@@)
           root.draw(self.context);
+          // Recycle any [game-objects](@@game-object@@) marked for removal
+          reclaimer.claimMarked();
         }
 
         var vendors = ['ms', 'moz', 'webkit', 'o'];
