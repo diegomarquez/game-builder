@@ -30,6 +30,8 @@
  * --------------------------------
  */
 define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObjectPool, ComponentPool, ErrorPrinter) {
+	var marked = [];
+
 	var Reclaimer = function() {};
 
 	/**
@@ -76,6 +78,34 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 		}
 
 		go.clear();
+	},
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>mark</strong></p>
+	 *
+	 * Marks a [game-object](@@game-object@@) for removal. [game](@@game@@) calls **claim** on all marked objects.
+	 * 
+	 * @param  {Object} go [game-object](@@game-object@@) to recycle
+	 */
+	Reclaimer.prototype.mark = function(go) {	
+		marked.push(go);
+	},
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>claimMarked</strong></p>
+	 *
+	 * Claims all the [game-objects](@@game-object@@) marked for removal with the **mark** method.
+	 */
+	Reclaimer.prototype.claimMarked = function() {	
+		while (marked.length) {
+			this.claim(marked.pop());
+		}
 	},
 	/**
 	 * --------------------------------
