@@ -584,7 +584,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			}
 
 			if (this.matrix.alpha > 0) {
-				if(this.renderer) {
+				if(this.renderer && this.renderer.isEnabled()) {
 					this.renderer.draw(context, viewport);
 				}
 			}

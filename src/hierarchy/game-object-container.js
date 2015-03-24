@@ -142,7 +142,7 @@ define(["game-object"], function(GameObject){
 					}
 				} else {
 					for(var k=0; k<child.components.length; k++) {
-						if(child.components[k].update) {
+						if(child.components[k].update && child.components[k].isEnabled()) {
 							child.components[k].update(delta);
 						}
 					}	

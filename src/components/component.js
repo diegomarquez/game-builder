@@ -80,6 +80,7 @@ define(["delegate", "util"], function(Delegate, Util) {
 			this.poolId = null;
 			this.typeId = null;
 			this.parent = null;
+			this.enabled = false;
 		},
 
 		/**
@@ -147,6 +148,8 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 * @param  {Object} parent [game-object](@@game-object@@) using this component
 		 */
 		onStarted: function(parent) {
+			this.enabled = true;
+
 			this.start(parent);	
 			this.execute(this.START, this);
 		},
@@ -192,7 +195,9 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 * This is called by the parent [game-object](@@game-object@@) when it
 		 * is destroying itself.
 		 */
-		onRecycled: function() {			
+		onRecycled: function() {
+			this.enabled = false;
+
 			this.recycle();
 			this.execute(this.RECYCLE, this);
 
@@ -265,6 +270,41 @@ define(["delegate", "util"], function(Delegate, Util) {
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>enable</strong></p>
+		 *
+		 * An enabled component will execute it's update logic
+		 */
+		enable: function() {
+			this.enabled = true;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>disable</strong></p>
+		 *
+		 * A disabled component will not execute it's update logic
+		 */
+		disable: function() {
+			this.enabled = false;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>isEnabled</strong></p>
+		 *
+		 * Whether the components is enabled or not
+		 * 
+		 * @return {Boolean}
+		 */
+		isEnabled: function() {
+			return this.enabled;
+		},
 		
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>

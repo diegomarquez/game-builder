@@ -77,7 +77,7 @@ define(['component', 'collision-resolver', 'error-printer'], function(Component,
 				for (k = 0; k < collisionList.length; k++) {
 					collisionOpponent = collisionList[k];
 
-					if (!collisionOpponent.checkingCollisions) break;
+					if (!collisionOpponent.checkingCollisions) continue;
 
 					if (CollisionResolver.areColliding(this, collisionOpponent)) {
 						if (!this.checkingCollisions) break;
@@ -149,6 +149,32 @@ define(['component', 'collision-resolver', 'error-printer'], function(Component,
 		 */
 		debug_draw: function() {
 			this.debugColor = "#00FF00";
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>enable</strong></p>
+		 *
+		 * An enabled component will execute it's update logic
+		 */
+		enable: function() {
+			this._super();
+			this.checkingCollisions = true;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>disable</strong></p>
+		 *
+		 * A disabled component will not execute it's update logic
+		 */
+		disable: function() {
+			this._super();
+			this.checkingCollisions = false;
 		},
 		/**
 		 * --------------------------------
