@@ -304,9 +304,32 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
       addComponentTo: function(go, coId, args) {
       	var co = assembler.getComponent(coId, args);
         go.addComponent(co);
-        co.start(go);
+        co.onStarted(go);
 
         return co;
+      },
+      /**
+       * --------------------------------
+       */
+      
+      /**
+       * <p style='color:#AD071D'><strong>setRendererTo</strong></p>
+       *
+       * Wraps all the steps needed to set the <a href=@@renderer@@>renderer</a> of a [game-object](@@game-object@@)
+       * 
+       * @param {Object} go [game-object](@@game-object@@) to add the [renderer](@@renderer@@) to
+       * @param {String} rId Id of [renderer](@@renderer@@) to add. View [component-pool](@@component-pool@@), for more details
+       * @param {Object} [args=null] Object with arguments to be applied to the [renderer](@@renderer@@)       
+       *
+       * @return {Object} A [renderer](@@renderer@@)
+       */
+      setRendererTo: function(go, rId, args) {
+      	var r = assembler.getComponent(rId, args);
+        go.removeRenderer();
+        go.setRenderer(r);
+        r.onStarted(go);
+
+        return r;
       },
       /**
        * --------------------------------
