@@ -446,7 +446,7 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
       for(k in this.pools) {
         var pool = this.pools[k].objects;
 
-        while (pool.length > 0){
+        while (pool.length > 0) {
           Util.destroyObject(pool.pop());
         }
       }
