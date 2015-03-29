@@ -295,7 +295,7 @@ define(["class", "util"], function(Class, Util) {
 				}
 			}
 
-			removeAllNulls(this.callbackList[name]);
+			removeAllNulls(list);
 		}
 		/**
 		 * --------------------------------
