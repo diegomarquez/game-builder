@@ -131,14 +131,16 @@ define(function(require) {
     /**
      * <p style='color:#AD071D'><strong>add_extension</strong></p>
      *
-     * Use this to add extensions.
+     * Use this to add extensions. If the extension has already been added this method call does nothing.
      *
      * @param {[extension](@@extension@@)} extensionModule A module that extends [extension](@@extension@@)
      * @param {Object=null} args An object with arguments that will be passed to the extension when it is executed
      */
     add_extension: function(extensionModule, args) {
+      if (this.get_extension(extensionModule)) return;
+
       var ex = new extensionModule();
-      
+
       this.extensions[ex.type()].push({
       	extension: ex,
       	args: args
