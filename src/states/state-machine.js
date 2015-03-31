@@ -62,6 +62,20 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>finish</strong></p>
+		 *
+		 * Finishes the execution of the current state.
+		 * 
+		 * @param  {Object} [args=null] Arguments to be sent to the completion callbacks of the current state.  
+		 */
+		finish: function (args) {
+			executeStateAction.call(this, this.currentStateId, 'complete', args);
+		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>add</strong></p>
@@ -291,7 +305,15 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		try {
 			this.states[stateId][action](args);	
 		} catch(e) {
-			ErrorPrinter.printError('State', 'State with id: ' + stateId + ' caused an un expected error.', e);
+			if (e.message) {
+				console.error(e.message);
+			}
+
+			if (e.stack) {
+				console.error(e.stack);
+			}
+
+			ErrorPrinter.printError('State', 'State with name: ' + this.states[stateId].name + ' caused an un expected error.', e);
 		}
 
 		this.currentStateId = stateId;
