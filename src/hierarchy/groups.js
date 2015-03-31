@@ -133,11 +133,10 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
 
       group.clear();
 
-      this.groupsArray.splice(this.groupsArray.indexOf(group), 1);
-      delete this.groups[name];
-      
       Root.remove(this.groups[name]);
 
+      this.groupsArray.splice(this.groupsArray.indexOf(group), 1);
+      delete this.groups[name];
     },
     /**
      * --------------------------------
