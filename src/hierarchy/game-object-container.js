@@ -375,7 +375,7 @@ define(["game-object"], function(GameObject){
 
 						if (this.recursiveSearch) {
 							if (c.isContainer()) {
-								var cr = c.findChildren().all(f, true);
+								var cr = c.findChildren().recurse().all(f);
 
 								if (cr) {
 									r = r.concat(cr);		
@@ -403,7 +403,7 @@ define(["game-object"], function(GameObject){
 
 						if (this.recursiveSearch) {
 							if (c.isContainer()) {
-								var cr = c.findChildren().allWithType(id, true);
+								var cr = c.findChildren().recurse().allWithType(id);
 
 								if (cr) {
 									if (!r) r = [];
@@ -434,7 +434,7 @@ define(["game-object"], function(GameObject){
 						for (var i = 0; i < self.childs.length; i++) {
 							c = self.childs[i];
 							if (c.isContainer()) {
-								return c.findChildren().first(f, true);
+								return c.findChildren().recurse().first(f);
 							}
 						}	
 					}
@@ -458,7 +458,7 @@ define(["game-object"], function(GameObject){
 							c = self.childs[i];
 							
 							if (c.isContainer()) {
-								return c.findChildren().firstWithType(id, true);
+								return c.findChildren().recurse().firstWithType(id);
 							}
 						}	
 					}
