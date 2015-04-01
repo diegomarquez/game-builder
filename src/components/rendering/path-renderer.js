@@ -133,7 +133,12 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 				this.drawPath(context, viewport);
 			} else {
 				canvas = PathCache.get(this.name);
-				context.drawImage(canvas, this.rendererOffsetX(), this.rendererOffsetY(), this.rendererWidth(), this.rendererHeight());	
+				context.drawImage(canvas, 
+					Math.floor(this.rendererOffsetX()), 
+					Math.floor(this.rendererOffsetY()), 
+					Math.floor(this.rendererWidth()), 
+					Math.floor(this.rendererHeight())
+				);	
 			}
 		},
 		/**

@@ -105,7 +105,12 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 		 */
 		draw: function(context, viewport) {
 			image = TextCache.get(this.name);
-			context.drawImage(image, this.rendererOffsetX(), this.rendererOffsetY(), this.rendererWidth(), this.rendererHeight());	
+			context.drawImage(image, 
+				Math.floor(this.rendererOffsetX()), 
+				Math.floor(this.rendererOffsetY()), 
+				Math.floor(this.rendererWidth()), 
+				Math.floor(this.rendererHeight())
+			);	
 		},
 		/**
 		 * --------------------------------
