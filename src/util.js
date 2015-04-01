@@ -221,11 +221,19 @@ define(function() {
 
 		return function (refresh) {
 			if (!r) {
-				r = func.apply(s, a);
+				if (a.length) {
+					r = func.apply(s, a);	
+				} else {
+					r = func.call(s, a);
+				}				
 			}
 
 			if (refresh) {
-				r = func.apply(s, a);
+				if (a.length) {
+					r = func.apply(s, a);	
+				} else {
+					r = func.call(s, a);
+				}	
 			}
 
 			return r;
