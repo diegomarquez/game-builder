@@ -213,27 +213,22 @@ define(function() {
 	 */
 	Utils.prototype.cache = function(func, scope, args) {
 		var r;
-		var s;
-		var a;
 
-		s = scope || this;
-		a = args;
+		var execute = function() {
+			if (this.isArray(args)) {
+				r = func.apply(scope || this, args);
+			} else {
+				r = func.call(scope || this, args);
+			}
+		}.bind(this);
 
 		return function (refresh) {
 			if (!r) {
-				if (a.length) {
-					r = func.apply(s, a);	
-				} else {
-					r = func.call(s, a);
-				}				
+				execute();					
 			}
 
 			if (refresh) {
-				if (a.length) {
-					r = func.apply(s, a);	
-				} else {
-					r = func.call(s, a);
-				}	
+				execute();	
 			}
 
 			return r;
@@ -342,6 +337,27 @@ define(function() {
 	/**
 	 * --------------------------------
 	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>isString</strong></p>
+	 *
+	 * Determine if the specified object is a string
+	 * 
+	 * @param  {Object}  o Object to test
+	 *
+	 * @return {Boolean}
+	 */
+	Utils.prototype.isString = function(o) { 
+		if (o) {
+			return Object.prototype.toString.call(o) == '[object String]'; 
+		}
+
+		return false;
+	};
+	/**
+	 * --------------------------------
+	 */
+
 	
 	 /**
 	 * <p style='color:#AD071D'><strong>isBoolean</strong></p>
