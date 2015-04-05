@@ -95,6 +95,28 @@ define(['vector-2D'], function(Vector) {
     return this;
   };
 
+  Response.prototype.copy = function(other) {
+    this['a'] = other['a'];
+    this['b'] = other['b'];
+    this['overlap'] = other['overlap']; 
+    this['overlapN'] = new Vector(); 
+    this['overlapV'] = new Vector();
+    this['overlapN'].copy(other['overlapN']); 
+    this['overlapV'].copy(other['overlapV']);
+    this['aInB'] = other['aInB']; 
+    this['bInA'] = other['bInA']; 
+  };
+
+  Response.prototype.invert = function() {
+  	var temp = this['a'];
+    this['a'] = this['b'];
+    this['b'] = temp;
+    this['overlapN'] = this['overlapN'].reverse(); 
+    this['overlapV'] = this['overlapV'].reverse();
+    this['aInB'] = !this['aInB'];
+    this['bInA'] = !this['bInA'];
+  };
+
   var flattenPointsOn = function(points, normal, result) {
     var min = Number.MAX_VALUE;
     var max = -Number.MAX_VALUE;
