@@ -180,7 +180,7 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 * This is called by the parent [game-object](@@game-object@@) when it
 		 * removes this component to it's list.
 		 */
-		onRemoved: function() {
+		onRemoved: function(parent) {
 			this.removed(parent);
 			this.execute(this.REMOVE, this);
 			this.parent = null;
@@ -195,10 +195,10 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 * This is called by the parent [game-object](@@game-object@@) when it
 		 * is destroying itself.
 		 */
-		onRecycled: function() {
+		onRecycled: function(parent) {
 			this.enabled = false;
 
-			this.recycle();
+			this.recycle(parent);
 			this.execute(this.RECYCLE, this);
 
 			this.hardCleanUp();
@@ -264,9 +264,10 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 *
 		 * Called by the parent [game-object](@@game-object@@) 
 		 * when it is sent back to it's pool for reuse.
-		 * 
+		 *
+		 * @param  {Object} parent [game-object](@@game-object@@) using this component
 		 */
-		recycle: function() {},
+		recycle: function(parent) {},
 		/**
 		 * --------------------------------
 		 */

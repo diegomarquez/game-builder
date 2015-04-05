@@ -411,8 +411,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 
 			if (index != -1) {
 				this.components.splice(index, 1);
-				component.onRemoved();
-				component.onRecycled();
+				component.onRemoved(this);
+				component.onRecycled(this);
 			}
 		},
 		/**
