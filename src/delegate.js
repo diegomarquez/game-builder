@@ -275,11 +275,14 @@ define(["class", "util"], function(Class, Util) {
 		 * 
 		 * @param  {String} name All the functions registered with the id provided will be executed
 		 * @param  {Object} args This Object will be passed as argument to all the functions executed
+		 * @param  {String} [method='call'] Whether to use **call** or **apply** to execute the callbacks. This affects how the arguments are interpreted.
 		 */
-		execute: function(name, args) {
+		execute: function(name, args, method) {
 			var list = this.callbackList[name];
 
 			if (!list) return;
+
+			method = method || 'call';
 
 			var callbackCount = list.length;
 
@@ -288,7 +291,7 @@ define(["class", "util"], function(Class, Util) {
 
 				if (!callbackObject) continue;
 
-				callbackObject.callback.call(callbackObject.scope, args);
+				callbackObject.callback[method](callbackObject.scope, args);
 
 				if (callbackObject.removeOnExecute) {
 					list[i] = null;
