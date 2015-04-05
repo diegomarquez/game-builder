@@ -41,6 +41,7 @@ define(['sat'], function(SAT) {
 		this.toCollideCache = {};
 
 		this.response = new SAT.Response();
+		this.invertedResponse = new SAT.Response();
 	};
 
 	/**
@@ -145,7 +146,9 @@ define(['sat'], function(SAT) {
 		var collisionMethodKey = first.colliderType + second.colliderType;
 
 		if (first.getResponse || second.getResponse) {
+			this.invertedResponse.clear();
 			this.response.clear();
+			
 			return this.collisionMethodPairs[collisionMethodKey](first.collider, second.collider, this.response);
 		} else {
 			return this.collisionMethodPairs[collisionMethodKey](first.collider, second.collider);
@@ -164,6 +167,23 @@ define(['sat'], function(SAT) {
 	 */
 	CollisionResolver.prototype.getLastResponse = function() {
 		return this.response;
+	};
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>getLastInvertedResponse</strong></p>
+	 *
+	 * Get the last inverted response from a collision check
+	 * 
+	 * @return {Object} The response object
+	 */
+	CollisionResolver.prototype.getLastInvertedResponse = function() {
+		this.invertedResponse.copy(this.response);
+		this.invertedResponse.invert();
+
+		return this.invertedResponse;
 	};
 	/**
 	 * --------------------------------
