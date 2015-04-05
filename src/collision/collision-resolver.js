@@ -39,6 +39,8 @@ define(['sat'], function(SAT) {
 	var CollisionResolver = function() {
 		this.collisionLists = {};
 		this.toCollideCache = {};
+
+		this.response = new SAT.Response();
 	};
 
 	/**
@@ -142,8 +144,30 @@ define(['sat'], function(SAT) {
 
 		var collisionMethodKey = first.colliderType + second.colliderType;
 
-		return this.collisionMethodPairs[collisionMethodKey](first.collider, second.collider);
-	}
+		if (first.getResponse || second.getResponse) {
+			this.response.clear();
+			return this.collisionMethodPairs[collisionMethodKey](first.collider, second.collider, this.response);
+		} else {
+			return this.collisionMethodPairs[collisionMethodKey](first.collider, second.collider);
+		}		
+	};
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>getLastResponse</strong></p>
+	 *
+	 * Get the last response from a collision check
+	 * 
+	 * @return {Object} The response object
+	 */
+	CollisionResolver.prototype.getLastResponse = function() {
+		return this.response;
+	};
+	/**
+	 * --------------------------------
+	 */
 
 	// These variables are used by the concrete implementations of colliders to decide what
 	// type of collider they are, and hence, which method should be used when checking for collisions

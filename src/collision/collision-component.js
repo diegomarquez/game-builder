@@ -9,6 +9,7 @@
  * Depends of:
  * [collision-resolver](@@collision-resolver@@)
  * [error-printer](@@error-printer@@)
+ * [game-object](@@game-object@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -30,10 +31,13 @@
 /**
  * --------------------------------
  */
-define(['component', 'collision-resolver', 'error-printer'], function(Component, CollisionResolver, ErrorPrinter) {
+define(['component', 'collision-resolver', 'error-printer', 'game-object'], function(Component, CollisionResolver, ErrorPrinter, GameObject) {
 
 	var collisionList = null;
 	var collisionOpponent = null;
+	var collideEventName = 'collide';
+
+	var onCollideArguments = [null, null];
 
 	var CollisionComponent = Component.extend({
 		/**
@@ -82,15 +86,26 @@ define(['component', 'collision-resolver', 'error-printer'], function(Component,
 					if (CollisionResolver.areColliding(this, collisionOpponent)) {
 						if (!this.checkingCollisions) break;
 		
-						if (collisionOpponent.parent && this.parent) {
-							this.onCollide(collisionOpponent);
+						var response;
+
+						if (collisionOpponent.getResponse || this.getResponse) {
+							response = CollisionResolver.getLastResponse()
+						} else {
+							response = null;
+						}
+
+						if (collisionOpponent.parent && this.parent) {							
+							this.onCollide(collisionOpponent, response);
 
 							if (collisionOpponent.parent && this.parent) {
-								this.parent.execute('collide', collisionOpponent.parent);
+								onCollideArguments[0] = collisionOpponent.parent;
+								onCollideArguments[1] = response;
+
+								this.parent.execute(collideEventName, onCollideArguments, 'apply');
 							}
 
 							if (collisionOpponent.parent && this.parent) {
-								this.parent.onCollide(collisionOpponent.parent);
+								this.parent.onCollide(collisionOpponent.parent, response);
 							}
 						}
 
@@ -100,7 +115,10 @@ define(['component', 'collision-resolver', 'error-printer'], function(Component,
 							collisionOpponent.onCollide(this);
 							
 							if (collisionOpponent.parent && this.parent) {
-								collisionOpponent.parent.execute('collide', this.parent);	
+								onCollideArguments[0] = this.parent;
+								onCollideArguments[1] = response;
+								
+								collisionOpponent.parent.execute(collideEventName, onCollideArguments, 'apply');	
 							}
 
 							if (collisionOpponent.parent && this.parent) {
@@ -180,6 +198,8 @@ define(['component', 'collision-resolver', 'error-printer'], function(Component,
 		 * --------------------------------
 		 */
 	});
+
+	Object.defineProperty(GameObject.prototype, "COLLIDE", { get: function() { return collideEventName; } });
 
 	return CollisionComponent;
 });
