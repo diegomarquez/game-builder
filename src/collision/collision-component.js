@@ -31,7 +31,7 @@
 /**
  * --------------------------------
  */
-define(['component', 'collision-resolver', 'error-printer', 'game-object'], function(Component, CollisionResolver, ErrorPrinter, GameObject) {
+define(['component', 'collision-resolver', 'error-printer', 'game-object', 'sat'], function(Component, CollisionResolver, ErrorPrinter, GameObject, SAT) {
 
 	var collisionList = null;
 	var collisionOpponent = null;
@@ -86,12 +86,14 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object'], func
 					if (CollisionResolver.areColliding(this, collisionOpponent)) {
 						if (!this.checkingCollisions) break;
 		
-						var response;
+						var response, invertedResponse;
 
 						if (collisionOpponent.getResponse || this.getResponse) {
-							response = CollisionResolver.getLastResponse()
+							response = CollisionResolver.getLastResponse();
+							invertedResponse = CollisionResolver.getLastInvertedResponse();
 						} else {
 							response = null;
+							invertedResponse = null;
 						}
 
 						if (collisionOpponent.parent && this.parent) {							
@@ -112,17 +114,17 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object'], func
 						if (!this.checkingCollisions) break;
 
 						if (collisionOpponent.parent && this.parent) {
-							collisionOpponent.onCollide(this);
+							collisionOpponent.onCollide(this, invertedResponse);
 							
 							if (collisionOpponent.parent && this.parent) {
 								onCollideArguments[0] = this.parent;
-								onCollideArguments[1] = response;
+								onCollideArguments[1] =  invertedResponse;
 								
 								collisionOpponent.parent.execute(collideEventName, onCollideArguments, 'apply');	
 							}
 
 							if (collisionOpponent.parent && this.parent) {
-								collisionOpponent.parent.onCollide(this.parent);	
+								collisionOpponent.parent.onCollide(this.parent, invertedResponse);	
 							}
 						}
 					}
