@@ -88,6 +88,21 @@ define(function() {
 	 * --------------------------------
 	 */
 	
+	/**
+	 * <p style='color:#AD071D'><strong>wrongTypeArgumentError</strong></p>
+	 *
+	 * Defines an error thrown when an argument has the wrong type.
+	 * 
+	 * @param  {String} origin An id to determine from which place this method was called.
+	 *
+	 * @throws {Error} Always
+	 */
+	ErrorPrinter.prototype.wrongTypeArgumentError = function(origin, property, expectedType) {
+		throw new Error(origin + ' => ' + 'Wrong type error: ' + property + ' must be of type' + expectedType + '\nhttp://diegomarquez.github.io/game-builder/errors.html' + getAnchor(origin));
+	};
+	/**
+	 * --------------------------------
+	 */
 	
 
 	return new ErrorPrinter;
