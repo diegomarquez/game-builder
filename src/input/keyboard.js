@@ -108,8 +108,8 @@ define(function(require) {
 		 * @param  {Object}   scope    Scope of the callback function
 		 * @param  {Function} callback The callback function
 		 */
-		onKeyDown: function(keyCode, scope, callback) {
-			this.on('keydown' + keyCode.toString(), scope, callback);
+		onKeyDown: function(keyCode, scope, callback, level) {
+			this.on('keydown' + keyCode.toString(), scope, callback, false, false, false, level);
 		},
 		/**
 		 * --------------------------------
@@ -126,8 +126,8 @@ define(function(require) {
 		 * @param  {Object}   scope    Scope of the callback function
 		 * @param  {Function} callback The callback function
 		 */
-		onKeyUp: function(keyCode, scope, callback) {
-			this.on('keyup' + keyCode.toString(), scope, callback);
+		onKeyUp: function(keyCode, scope, callback, level) {
+			this.on('keyup' + keyCode.toString(), scope, callback, false, false, false, level);
 		},
 		/**
 		 * --------------------------------
