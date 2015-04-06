@@ -376,6 +376,12 @@ define(function(require) {
   	} 
   });
 
+  Object.defineProperty(Game.prototype, "CURRENT_DELTA", { 
+  	get: function() {
+  		return this.delta;
+  	} 
+  });
+
   var game = new Game();
 
   game.prototype = Game.prototype;
