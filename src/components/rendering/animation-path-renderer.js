@@ -40,7 +40,7 @@
 		frameDelay: 0.1,
 		
 		//Each element of this array defines a frame of animation
-		//It is required and can have as many elements as needed
+		//It is required and can have as many elements as needed.
 		framePaths: [
 			function(context) {
 				draw.rectangle(context, 0, 0, 70, 30, "#FF0000", null, 1);

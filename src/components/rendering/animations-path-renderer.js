@@ -139,12 +139,10 @@ define(["animation-path-renderer", "path-cache", "error-printer", "util", "game"
 				ErrorPrinter.missingArgumentError('Animation Path Renderer', 'startingLabel');
 			}  
 
-			this._super();
-
 			this.currentFrames = null;
 			this.currentLabel = null;
 
-			this.stop(this.startingLabel);
+			this._super();
 		},
 		/**
 		 * --------------------------------
@@ -202,10 +200,12 @@ define(["animation-path-renderer", "path-cache", "error-printer", "util", "game"
 		 *
 		 * Plays the animation defined by the specified label
 		 * 
-		 * @param  {String} label
+		 * @param  {String} selectedLabel
 		 */
-		play: function(label) {
-			var label = this.labels[label];
+		play: function(selectedLabel) {
+			selectedLabel = selectedLabel || this.startingLabel;
+
+			var label = this.labels[selectedLabel];
 
 			this.currentLabel = label;
 			this.currentFrames = label.frames;
@@ -225,10 +225,10 @@ define(["animation-path-renderer", "path-cache", "error-printer", "util", "game"
 		 *
 		 * Forces a label to loop
 		 * 
-		 * @param  {String} label
+		 * @param  {String} selectedLabel
 		 */
-		loop: function(label) {
-			var label = this.labels[label];
+		loop: function(selectedLabel) {
+			selectedLabel = selectedLabel || this.startingLabel;
 
 			this.currentLabel = label;
 			this.currentFrames = label.frames;
@@ -248,10 +248,12 @@ define(["animation-path-renderer", "path-cache", "error-printer", "util", "game"
 		 *
 		 * Stops and resets the animation to the beginning of the specified label
 		 * 
-		 * @param  {String} label
+		 * @param  {String} selectedLabel
 		 */
-		stop: function(label) {
-			var label = this.labels[label];
+		stop: function(selectedLabel) {
+			selectedLabel = selectedLabel || this.startingLabel;
+
+			var label = this.labels[selectedLabel];
 
 			this.currentLabel = label;
 			this.currentFrames = label.frames;
