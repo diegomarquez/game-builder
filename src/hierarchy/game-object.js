@@ -188,6 +188,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			// Color that will be used to draw a little shape to outline the position if the **debug**
 			// property of [gb](@@gb@@) is set to true;
 			this.debugColor = "#FF00FF";
+
+			// This boolean signals that a transformation has taken place and hence the object can be drawn afterwards. 
+			// If an object tries to draw itself before a transformation has occured, the drawing will be skipped to avoid graphical glitches.
+			this.isTransformed = false;
 		},
 		/**
 		 * --------------------------------
@@ -214,6 +218,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			this.viewports = [];
 			this.updateGroup = null;
 			this.isChildInContainer = false;
+			this.isTransformed = false;
 		},
 		/**
 		 * --------------------------------
@@ -561,6 +566,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 */
 		transform: function(options) {
 			this.getMatrix(this.matrix, options);
+			this.isTransformed = true;
 		},
 		/**
 		 * --------------------------------
@@ -575,6 +581,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * @param  {Object} viewport The [viewport](@@viewport@@) this objects is being drawn too
 		 */
 		draw: function(context, viewport) {
+			if (!this.isTransformed) return;
+
 			context.save();
 
 			context.transform(this.matrix.a, this.matrix.b, this.matrix.c, this.matrix.d, this.matrix.tx, this.matrix.ty);
@@ -592,6 +600,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			DebugDraw.gameObject.call(this, context, viewport);
 
 			context.restore();
+
+			this.isTransformed = false;
 		},
 		/**
 		 * --------------------------------
@@ -732,10 +742,16 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>getUpdateGroup</strong></p>
 		 *
-		 * @return {String} The update [group](@@group@@) this game object belongs to
+		 * @return {String} The update [group](@@group@@) this game object belongs to. If it has no update group, check it's parent recursively until a group is fround
 		 */
 		getUpdateGroup: function() {
-			return this.updateGroup;
+			var go = this;
+
+			while (!go.updateGroup) {
+				go = go.parent;				
+			}
+
+			return go.updateGroup;
 		},
 		/**
 		 * --------------------------------
