@@ -232,6 +232,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * @param {Object} [parent] The new parent [game-object-container](@@game-object-container@@)
 		 */
 		added: function(parent) {
+			this.isTransformed = false;
 			this.execute(this.ADD, this);
 		},
 		/**
@@ -600,8 +601,6 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			DebugDraw.gameObject.call(this, context, viewport);
 
 			context.restore();
-
-			this.isTransformed = false;
 		},
 		/**
 		 * --------------------------------
