@@ -29,8 +29,8 @@
 /**
  * --------------------------------
  */
-define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool', 'json-cache', 'asset-map', 'error-printer'],
-  function(game, groups, viewports, assembler, reclaimer, gameObjectPool, componentPool, jsonCache, assetMap, ErrorPrinter) {
+define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-pool', 'component-pool', 'json-cache', 'asset-map', 'error-printer', 'util'],
+  function(game, groups, viewports, assembler, reclaimer, gameObjectPool, componentPool, jsonCache, assetMap, ErrorPrinter, Util) {
 
   	var processViewportArgument = function(vports) {
   		var v;
@@ -307,6 +307,36 @@ define(['game', 'groups', 'viewports', 'assembler', 'reclaimer', 'game-object-po
         co.onStarted(go);
 
         return co;
+      },
+      /**
+       * --------------------------------
+       */
+      
+      /**
+       * <p style='color:#AD071D'><strong>addComponentsTo</strong></p>
+       *
+       * Wraps all the steps needed to add a list of <a href=@@component@@>components</a> to a [game-object](@@game-object@@)
+       * 
+       * @param {Object} go [game-object](@@game-object@@) to add the [component](@@component@@) to
+       * @param {Array} coIds Ids of [components](@@component@@) to add. View [component-pool](@@component-pool@@), for more details
+       * @param {Array} [args=null] Array with arguments to be applied to each [component](@@component@@)       
+       *
+       * @return {Array} An array with all the [components](@@component@@) added
+       */
+      addComponentsTo: function(go, coIds, args) {
+      	var result = [];
+      	var isArgsArray = Util.isArray(args);
+
+      	for (var i = 0; i < coIds.length; i++) { 
+      		if (isArgsArray) {
+      			result.push(this.addComponentTo(go, coIds[i], args[i]));
+      		}
+      		else {
+      			result.push(this.addComponentTo(go, coIds[i], args));
+      		}
+      	}
+
+        return result;
       },
       /**
        * --------------------------------
