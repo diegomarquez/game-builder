@@ -124,10 +124,10 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	 */
 	Reclaimer.prototype.mark = function(go) {	
 		if (marked.indexOf(go) == -1) { 
-			var index = marked.push(go) - 1;
+			marked.push(go);
 
-			go.once(go.RECYCLE, this, function () {
-				marked.splice(index, 1);
+			go.once(go.RECYCLE, this, function (go) {
+				marked.splice(marked.indexOf(go), 1);
 			}); 	
 		}
 	},
