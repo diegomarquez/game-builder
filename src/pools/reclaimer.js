@@ -140,9 +140,9 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	 *
 	 * Claims all the [game-objects](@@game-object@@) marked for removal with the **mark** method.
 	 */
-	Reclaimer.prototype.claimMarked = function() {	
-		while (marked.length) {
-			this.claim(marked.pop());
+	Reclaimer.prototype.claimMarked = function() {
+		for (var i = marked.length-1; i >= 0; i--) {
+			this.claim(marked[i]);
 		}
 
 		if (this.clearObjectsFromPools) {
