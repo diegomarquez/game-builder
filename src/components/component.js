@@ -134,6 +134,7 @@ define(["delegate", "util"], function(Delegate, Util) {
 		reset: function() {
 			this.uid = null;
 			this.parent = null;
+			this.enabled = true;
 		},
 		/**
 		 * --------------------------------
@@ -148,8 +149,6 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 * @param  {Object} parent [game-object](@@game-object@@) using this component
 		 */
 		onStarted: function(parent) {
-			this.enabled = true;
-
 			this.start(parent);	
 			this.execute(this.START, this);
 		},
