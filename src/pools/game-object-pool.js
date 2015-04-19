@@ -90,6 +90,11 @@ define(function(require) {
 		 * @return {Object}       A configuration object. This objects have a lot of information
 		 */
 		createConfiguration: function(alias, type) {
+			// If the configuration already exists, return it
+			if (this.configurations[alias]) {
+				return this.configurations[alias];
+			}
+
 			var self = this;
 
 			// Configuration objects for [game-objects](@@game-object@@)
