@@ -58,6 +58,10 @@
 				draw.rectangle(context, 0, 0, 70, 30, "#00FFFF", null, 1);
 			}
 		],
+	
+		//This boolean indicates wheter the animation should loop after completing or just play once
+		//It is false by default
+		loop: false,
 
  		//Use this if you want the registration point of the image to be the center
  		//This is optional
@@ -102,6 +106,18 @@ define(["renderer", "path-cache", "error-printer", "util", "game"], function(Ren
 	var canvas;
 
 	var AnimationPathRenderer = Renderer.extend({
+
+		init: function() {
+			this._super();
+
+			this.loop = false;
+			this.width = null;
+			this.height = null;
+			this.name = null;
+			this.frameDelay = null;
+			this.framePaths = null;
+		},
+
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -146,6 +162,37 @@ define(["renderer", "path-cache", "error-printer", "util", "game"], function(Ren
 		 */
 
 		/**
+		 * <p style='color:#AD071D'><strong>update</strong></p>
+		 *
+		 * Executes the logic needed to change frames
+		 * 
+		 * @param  {Number} delta The time between the current update and the last
+		 */
+		update: function(delta) {
+		 	if (this.isPlaying) {
+				this.delayTotal += delta;
+			
+	      if (this.delayTotal > this.frameDelay) {
+	      	this.delayTotal -= this.frameDelay;
+
+	      	if (this.frameIndex < this.framePaths.length-1) {
+	      		this.frameIndex++;
+	      	} else {
+	      		if (this.loop) {
+	      			this.frameIndex = 0;	
+	      		} else {
+	      			this.pause();
+	      		}
+
+	      		this.execute(this.COMPLETE);
+	      	}
+
+	      	this.currentFrameName = this.name + '_' + this.frameIndex.toString();
+	      }	
+			}
+		},
+
+		/**
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
 		 * Draws the cached path into the canvas, applying configured properties,
@@ -155,24 +202,6 @@ define(["renderer", "path-cache", "error-printer", "util", "game"], function(Ren
 		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
 		 */
 		draw: function(context, viewport) {
-			if (this.isPlaying) {
-				this.delayTotal += Game.CURRENT_DELTA;
-			
-	      if (this.delayTotal > this.frameDelay) {
-	      	this.delayTotal -= this.frameDelay;
-
-	      	if (this.frameIndex < this.framePaths.length-1) {
-	      		this.frameIndex++;
-	      	} else {
-	      		this.frameIndex = 0;
-
-	      		this.execute(this.COMPLETE);
-	      	}
-
-	      	this.currentFrameName = this.name + '_' + this.frameIndex.toString();
-	      }	
-			}
-
 			canvas = PathCache.get(this.currentFrameName);
 			
 			context.drawImage(canvas, 

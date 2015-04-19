@@ -149,18 +149,16 @@ define(["animation-path-renderer", "path-cache", "error-printer", "util", "game"
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>draw</strong></p>
+		 * <p style='color:#AD071D'><strong>update</strong></p>
 		 *
-		 * Draws the cached path into the canvas, applying configured properties,
-		 * like **scaleX**, **scaleY** and **offsets**
+		 * Executes the logic needed to change frames
 		 * 
-		 * @param  {Context 2D} context     [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
+		 * @param  {Number} delta The time between the current update and the last
 		 */
-		draw: function(context, viewport) {
+		update: function(delta) {
 			if (this.isPlaying) {
-				if (this.currentFrames.length != 1) {
-      		this.delayTotal += Game.CURRENT_DELTA;	
+				if (this.currentFrames.length > 1) {
+      		this.delayTotal += delta;	
 
 					if (this.delayTotal > this.frameDelay) {
 		      	this.delayTotal -= this.frameDelay;
@@ -181,19 +179,7 @@ define(["animation-path-renderer", "path-cache", "error-printer", "util", "game"
 		      }
       	}
 			}
-
-			canvas = PathCache.get(this.currentFrameName);
-			
-			context.drawImage(canvas, 
-				Math.floor(this.rendererOffsetX()), 
-				Math.floor(this.rendererOffsetY()), 
-				Math.floor(this.rendererWidth()), 
-				Math.floor(this.rendererHeight())
-			)
 		},
-		/**
-		 * --------------------------------
-		 */
 		
 		/**
 		 * <p style='color:#AD071D'><strong>play</strong></p>
