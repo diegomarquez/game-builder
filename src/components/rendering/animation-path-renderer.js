@@ -71,11 +71,6 @@
 		//These are optional and default to 0
 		offsetX:0,
 		offsetY:0, 
-		
-		//Use these to override the dimentions of the path.
-		//These are optional
-		scaleX: 1, 
-		scaleY: 1,
  *	});
  * ```
  * <strong>Note: The snippet uses the reference to the <a href=@@component-pool@@>component-pool</a>
@@ -222,9 +217,9 @@ define(["renderer", "path-cache", "error-printer", "util", "game"], function(Ren
 		 */
 		rendererOffsetX: function() { 
 			if (this.offset == 'center') {
-				return -this.rendererWidth()/2 * this.scaleX;
+				return -this.rendererWidth()/2;
 			} else {
-				return this.offsetX * this.scaleX; 
+				return this.offsetX; 
 			}
 		},
 		/**
@@ -238,9 +233,9 @@ define(["renderer", "path-cache", "error-printer", "util", "game"], function(Ren
 		 */
 		rendererOffsetY: function() { 
 			if (this.offset == 'center') {
-				return -this.rendererHeight()/2  * this.scaleY;
+				return -this.rendererHeight()/2;
 			} else {
-				return this.offsetY * this.scaleY;  
+				return this.offsetY;  
 			}
 		},
 		/**

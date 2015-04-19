@@ -37,9 +37,6 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 			this.offsetX = 0;
 			this.offsetY = 0;
 
-			this.scaleX = 1;
-			this.scaleY = 1;
-
 			this.debugColor = "#FFFF00";
 		},
 		/**
@@ -73,7 +70,7 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 				ErrorPrinter.missingArgumentError('Renderer', 'width');
 			}
 
-			return this.width * this.scaleX; 
+			return this.width; 
 		},
 		/**
 		 * --------------------------------
@@ -89,7 +86,7 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 				ErrorPrinter.missingArgumentError('Renderer', 'height');
 			}
 
-			return this.height * this.scaleY; 
+			return this.height; 
 		},
 		/**
 		 * --------------------------------
@@ -101,7 +98,7 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 * @return {Number} The offset in the X axis of the renderer
 		 */
 		rendererOffsetX: function() { 
-			return this.offsetX * this.scaleX; 
+			return this.offsetX; 
 		},
 		/**
 		 * --------------------------------
@@ -113,7 +110,7 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 * @return {Number} The offset in the Y axis of the renderer
 		 */
 		rendererOffsetY: function() { 
-			return this.offsetY * this.scaleY; 
+			return this.offsetY; 
 		},
 		/**
 		 * --------------------------------

@@ -80,11 +80,6 @@
 		//These are optional and default to 0
 		offsetX:0,
 		offsetY:0, 
-		
-		//Use these to override the dimentions of the path.
-		//These are optional
-		scaleX: 1, 
-		scaleY: 1,
  *	});
  * ```
  * <strong>Note: The snippet uses the reference to the <a href=@@component-pool@@>component-pool</a>
