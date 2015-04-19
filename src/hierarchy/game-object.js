@@ -428,13 +428,21 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>removeComponents</strong></p>
 		 *
-		 * Removes all components.
+		 * Removes [components](@@component@@).
+		 *
+		 * @param {Array} [toRemove=null] Optional array of [components](@@component@@) to remove, if not specified all [components](@@component@@) are removed
 		 */
-		removeComponents: function() {
+		removeComponents: function(toRemove) {
 			if (!this.components) return;
 
-			for (var i=this.components.length-1; i>=0; i--) {
-				this.removeComponent(this.components[i]);
+			if (toRemove && Util.isArray(toRemove)) {
+				for (var i = 0; i < toRemove.length; i++) {
+					this.removeComponent(toRemove[i]);
+				}
+			} else {
+				for (var i=this.components.length-1; i>=0; i--) {
+					this.removeComponent(this.components[i]);
+				}
 			}
 		},
 		/**
@@ -948,7 +956,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * @return {Boolean} Whether there are any [components](@@component@@) or not
 		 */
 		hasComponents: function() {
-			if (!!this.components) {
+			if (this.components) {
 				return this.components.length > 0;
 			}
 
