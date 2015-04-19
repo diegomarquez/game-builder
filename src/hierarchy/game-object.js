@@ -1022,7 +1022,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			// Draw the center of the object
 			context.save();
 			context.translate(r.x, r.y);
-			draw.circle(context, 0, 0, 1, null, this.debugColor, 2);
+			draw.circle(context, 0, 0, 2, this.debugColor, null, 1);
 			context.restore();
 		}
 		/**
