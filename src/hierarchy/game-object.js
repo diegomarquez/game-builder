@@ -491,7 +491,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 					for (var i = 0; i < self.components.length; i++) {
 						var c = self.components[i];
 
-						if (Boolean(c[propName])) {
+						if (!!c[propName]) {
 							if (!r) r = [];
 							
 							r.push(c);
@@ -537,7 +537,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 					for (var i = 0; i < self.components.length; i++) {
 						var c = self.components[i];
 
-						if (Boolean(c[propName])) {
+						if (!!c[propName]) {
 							return c;
 						}
 					}
@@ -933,6 +933,28 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * --------------------------------
 		 */
 		
+		/**
+		 * <p style='color:#AD071D'><strong>hasRenderer</strong></p>
+		 *
+		 * @return {Boolean} Whether there is a [renderer](@@renderer@@) or not
+		 */
+		hasRenderer: function() {
+			return !!this.renderer;
+		},
+
+		/**
+		 * <p style='color:#AD071D'><strong>hasComponents</strong></p>
+		 *
+		 * @return {Boolean} Whether there are any [components](@@component@@) or not
+		 */
+		hasComponents: function() {
+			if (!!this.components) {
+				return this.components.length > 0;
+			}
+
+			return false;
+		},
+
 		/**
 		 * <p style='color:#AD071D'><strong>isContainer</strong></p>
 		 *
