@@ -3,9 +3,11 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [game-object](@@game-object@@)
+ * Inherits from: 
+ * [game-object](@@game-object@@)
  *
  * Depends of:
+ * [visibility-control](@@visibility-control@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -31,7 +33,7 @@
 /**
  * --------------------------------
  */
-define(["game-object"], function(GameObject){
+define(["game-object", "visibility-control"], function(GameObject, VisibilityControl){
 
 	var GameObjectContainer = GameObject.extend({
 		init: function() {
@@ -124,8 +126,9 @@ define(["game-object"], function(GameObject){
 			if(!this.childs) return;
 
 			var child = null
+			var hasRenderer;
 
-			for(var i=0; i<this.childs.length; i++){
+			for(var i=0; i<this.childs.length; i++) {
 				child = this.childs[i];
 
 				if(!child.canUpdate) continue;
@@ -136,15 +139,26 @@ define(["game-object"], function(GameObject){
 
 				child.update(delta);
 				
-				if(!child.components) {
+				hasRenderer = child.hasRenderer();
+
+				if(!child.hasComponents()) {
+					if (hasRenderer) {
+						child.renderer.update(delta);
+					}
+
 					if (!child.isContainer()) {
 						child.transform();	
 					}
-				} else {
+				} 
+				else {
 					for(var k=0; k<child.components.length; k++) {
 						if(child.components[k].update && child.components[k].isEnabled()) {
 							child.components[k].update(delta);
 						}
+					}
+
+					if (hasRenderer) {
+						child.renderer.update(delta);
 					}	
 					
 					if (!child.isContainer()) {
@@ -212,14 +226,20 @@ define(["game-object"], function(GameObject){
 		 * <p style='color:#AD071D'><strong>hide</strong></p>
 		 *
 		 * Prevents rendering of itself and all of it's children
+		 *
+		 * @param {Boolean} [getControl=false] If set to true returns a [visibility-control](@@visibility-control@@) object for more fine grained control
 		 */
-		hide: function() {
-			this._super();
+		hide: function(getControl) {
+			if (!getControl) {
+				this._super();
 
-			if(!this.childs) return;
-		
-			for(var i=0; i<this.childs.length; i++){
-				this.childs[i].hide();
+				if(!this.childs) return;
+
+				for(var i=0; i<this.childs.length; i++){
+					this.childs[i].hide();
+				}	
+			} else {
+				return VisibilityControl.user(this).hide(this._super);
 			}
 		},
 		/**
@@ -230,14 +250,20 @@ define(["game-object"], function(GameObject){
 		 * <p style='color:#AD071D'><strong>show</strong></p>
 		 *
 		 * Enables rendering of itself and all of it's children
+		 *
+		 * @param {Boolean} [getControl=false] If set to true return a [visibility-control](@@visibility-control@@) object for more fine grained control
 		 */
-		show: function() {
-			this._super();
+		show: function(getControl) {
+			if (!getControl) {
+				this._super();
 
-			if(!this.childs) return;
+				if(!this.childs) return;
 
-			for(var i=0; i<this.childs.length; i++){
-				this.childs[i].show();
+				for(var i=0; i<this.childs.length; i++){
+					this.childs[i].show();
+				}	
+			} else {
+				return VisibilityControl.user(this).show(this._super);
 			}
 		},
 		/**
@@ -354,11 +380,16 @@ define(["game-object"], function(GameObject){
 		 * </br>
 		 * **recurse** chain this method call before any of the above to make the search recursive
 		 * </br>
+		 * **not** chain this method call before any of above to return opposite results from the search
+		 * </br>
 		 */
 		findChildren: function() {
 			var self = this;
 
 			return {
+				negate: false,
+				recursiveSearch: false,
+
 				all: function(f) {
 					if (!self.childs) return;
 
@@ -367,7 +398,7 @@ define(["game-object"], function(GameObject){
 					for (var i = 0; i < self.childs.length; i++) {
 						var c = self.childs[i];
 
-						if (!f || f(c)) {
+						if ((!f || f(c)) ^ this.negate) {
 							if (!r) r = [];
 							
 							r.push(c);
@@ -375,7 +406,13 @@ define(["game-object"], function(GameObject){
 
 						if (this.recursiveSearch) {
 							if (c.isContainer()) {
-								var cr = c.findChildren().recurse().all(f);
+								var cr;
+
+								if (this.negate) {
+									cr = c.findChildren().recurse().not().all(f);
+								} else {
+									cr = c.findChildren().recurse().all(f);
+								}
 
 								if (cr) {
 									r = r.concat(cr);		
@@ -395,7 +432,7 @@ define(["game-object"], function(GameObject){
 					for (var i = 0; i < self.childs.length; i++) {
 						var c = self.childs[i];
 
-						if (c.typeId == id || c.poolId == id) {
+						if ((c.typeId == id || c.poolId == id) ^ this.negate) {
 							if (!r) r = [];
 							
 							r.push(c);
@@ -403,7 +440,13 @@ define(["game-object"], function(GameObject){
 
 						if (this.recursiveSearch) {
 							if (c.isContainer()) {
-								var cr = c.findChildren().recurse().allWithType(id);
+								var cr;
+
+								if (this.negate) {
+									cr = c.findChildren().recurse().not().allWithType(id);
+								} else {
+									cr = c.findChildren().recurse().allWithType(id);
+								}
 
 								if (cr) {
 									if (!r) r = [];
@@ -425,7 +468,7 @@ define(["game-object"], function(GameObject){
 					for (var i = 0; i < self.childs.length; i++) {
 						c = self.childs[i];
 
-						if (!f || f(c)) {
+						if ((!f || f(c)) ^ this.negate) {
 							return c;
 						}
 					}
@@ -433,8 +476,13 @@ define(["game-object"], function(GameObject){
 					if (this.recursiveSearch) {
 						for (var i = 0; i < self.childs.length; i++) {
 							c = self.childs[i];
+							
 							if (c.isContainer()) {
-								return c.findChildren().recurse().first(f);
+								if (this.negate) {
+									return c.findChildren().recurse().not().first(f);
+								} else {
+									return c.findChildren().recurse().first(f);	
+								}
 							}
 						}	
 					}
@@ -448,7 +496,7 @@ define(["game-object"], function(GameObject){
 					for (var i = 0; i < self.childs.length; i++) {
 						c = self.childs[i];
 
-						if (c.typeId == id || c.poolId == id) {
+						if ((c.typeId == id || c.poolId == id) ^ this.negate) {
 							return c;
 						}
 					}
@@ -458,7 +506,11 @@ define(["game-object"], function(GameObject){
 							c = self.childs[i];
 							
 							if (c.isContainer()) {
-								return c.findChildren().recurse().firstWithType(id);
+								if (this.negate) {
+									return c.findChildren().recurse().not().firstWithType(id);
+								} else {
+									return c.findChildren().recurse().firstWithType(id);	
+								}
 							}
 						}	
 					}
@@ -466,6 +518,11 @@ define(["game-object"], function(GameObject){
 
 				recurse: function() {
 					this.recursiveSearch = true;
+					return this;
+				},
+
+				not: function() {
+					this.negate = true;
 					return this;
 				}
 			}
