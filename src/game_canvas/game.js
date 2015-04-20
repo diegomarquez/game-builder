@@ -99,7 +99,8 @@ define(function(require) {
       this.focus = true;
       this.blur = true;
       this.initialized = false;
-      this.lastUpdate = Date.now();
+      this.lastUpdate = null;
+      this.lastAnimationFrameId = null;
       this.delta = null;
 
       // A reference to the main div in the corresponding index.html file
@@ -233,7 +234,7 @@ define(function(require) {
         var now;
 
         mainLoop = function() {
-          window.requestAnimationFrame(mainLoop);
+          self.lastAnimationFrameId = window.requestAnimationFrame(mainLoop);
 
           now = Date.now();
           self.delta = (now - self.lastUpdate) / 1000;
@@ -266,13 +267,13 @@ define(function(require) {
 
         if (!window.cancelAnimationFrame) {
           window.cancelAnimationFrame = function(id) {
-            clearTimeout(id);
+            window.clearTimeout(id);
           };
         }
 
         self.lastUpdate = Date.now();
 
-        window.requestAnimationFrame(mainLoop);
+        self.lastAnimationFrameId = window.requestAnimationFrame(mainLoop);
       };
 
       // The blur and focus event callbacks
@@ -294,6 +295,9 @@ define(function(require) {
             self.execute(self.BLUR);
 
             blur = true;
+
+            // Cancel the main game loop
+            window.cancelAnimationFrame(self.lastAnimationFrameId);
           }
         }
 
@@ -319,6 +323,10 @@ define(function(require) {
               self.execute(self.FOCUS);
 
               blur = false;
+
+              // Re-start the main game loop
+              self.lastUpdate = Date.now();
+              self.lastAnimationFrameId = window.requestAnimationFrame(mainLoop);
             }
           }
         }
@@ -373,12 +381,6 @@ define(function(require) {
   	set: function (value) { 
   		this.canvas.height = value;
   		this.execute(this.CHANGE_HEIGHT, value); 
-  	} 
-  });
-
-  Object.defineProperty(Game.prototype, "CURRENT_DELTA", { 
-  	get: function() {
-  		return this.delta;
   	} 
   });
 
