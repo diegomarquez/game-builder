@@ -48,8 +48,6 @@
  */
 define(["renderer", "image-cache"], function(Renderer, ImageCache) {
 
-	var image;
-
 	var BitmapRenderer = Renderer.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
@@ -74,8 +72,12 @@ define(["renderer", "image-cache"], function(Renderer, ImageCache) {
 		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
 		 */
 		draw: function(context, viewport) {
-			image = ImageCache.get(this.path);
-			context.drawImage(image, this.rendererOffsetX(), this.rendererOffsetY(), this.rendererWidth(), this.rendererHeight());	
+			context.drawImage(ImageCache.get(this.path), 
+				Math.floor(this.rendererOffsetX()), 
+				Math.floor(this.rendererOffsetY()), 
+				Math.floor(this.rendererWidth()), 
+				Math.floor(this.rendererHeight())
+			);
 		},
 		/**
 		 * --------------------------------
