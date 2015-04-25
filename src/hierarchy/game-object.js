@@ -96,6 +96,50 @@
  * ``` javascript  
  * gameObject.on(gameObject.REMOVE_FROM_VIEWPORT, function(v) {});
  * ```
+ *
+ * </br>
+ * 
+ * ### **HIDE**
+ * When a game object calls it's **hide** method
+ *
+ * Registered callbacks get the game object as argument
+ * 
+ * ``` javascript  
+ * gameObject.on(gameObject.HIDE, function(gameObject) {});
+ * ```
+ * 
+ * </br>
+ * 
+ * ### **SHOW**
+ * When a game object calls it's **show** method
+ *
+ * Registered callbacks get the game object as argument
+ * 
+ * ``` javascript  
+ * gameObject.on(gameObject.SHOW, function(gameObject) {});
+ * ```
+ *
+ * </br>
+ * 
+ * ### **STOP**
+ * When a game object calls it's **stop** method
+ *
+ * Registered callbacks get the game object as argument
+ * 
+ * ``` javascript  
+ * gameObject.on(gameObject.STOP, function(gameObject) {});
+ * ```
+ * 
+ * </br>
+ * 
+ * ### **RUN**
+ * When a game object calls it's **run** method
+ *
+ * Registered callbacks get the game object as argument
+ * 
+ * ``` javascript  
+ * gameObject.on(gameObject.RUN, function(gameObject) {});
+ * ```
  */
 
 /**
@@ -618,9 +662,15 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * <p style='color:#AD071D'><strong>hide</strong></p>
 		 *
 		 * Prevents rendering
+		 *
+		 * @param {Boolean} [skipEvent=false]
 		 */
-		hide: function() {
+		hide: function(skipEvent) {
 			this.canDraw = false;
+
+			if (!skipEvent) {
+				this.execute(this.HIDE, this);	
+			}
 		},
 		/**
 		 * --------------------------------
@@ -630,9 +680,51 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * <p style='color:#AD071D'><strong>show</strong></p>
 		 *
 		 * Enables rendering
+		 *
+		 * @param {Boolean} [skipEvent=false]
 		 */
-		show: function() {
+		show: function(skipEvent) {
 			this.canDraw = true;
+
+			if (!skipEvent) {
+				this.execute(this.SHOW, this);
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>stop</strong></p>
+		 *
+		 * Prevents updating
+		 *
+		 * @param {Boolean} [skipEvent=false]
+		 */
+		stop: function(skipEvent) {
+			this.canUpdate = false;
+
+			if (!skipEvent) {
+				this.execute(this.STOP, this);
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>run</strong></p>
+		 *
+		 * Enables updating
+		 *
+		 * @param {Boolean} [skipEvent=false]
+		 */
+		run: function(skipEvent) {
+			this.canUpdate = true;
+
+			if (!skipEvent) {
+				this.execute(this.RUN, this);
+			}
 		},
 		/**
 		 * --------------------------------
@@ -1040,6 +1132,11 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 	Object.defineProperty(GameObject.prototype, "REMOVE", { get: function() { return 'removed'; } });
 	Object.defineProperty(GameObject.prototype, "ADD_TO_VIEWPORT", { get: function() { return 'added_to_viewport'; } });
 	Object.defineProperty(GameObject.prototype, "REMOVE_FROM_VIEWPORT", { get: function() { return 'removed_from_viewport'; } });
+
+	Object.defineProperty(GameObject.prototype, "HIDE", { get: function() { return 'hide'; } });
+	Object.defineProperty(GameObject.prototype, "SHOW", { get: function() { return 'show'; } });
+	Object.defineProperty(GameObject.prototype, "STOP", { get: function() { return 'stop'; } });
+	Object.defineProperty(GameObject.prototype, "RUN", { get: function() { return 'run'; } });
 
 	return GameObject;
 });
