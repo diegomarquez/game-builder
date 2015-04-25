@@ -181,25 +181,6 @@ define(function() {
 	/**
 	 * --------------------------------
 	 */
-
-	/**
-	 * <p style='color:#AD071D'><strong>bind</strong></p>
-	 *
-	 * Get a function binded to the given scope.
-	 * 
-	 * @param  {Function} func  Function to bind
-	 * @param  {Oject} scope Scope to bind to
-	 * @param  {Array} args  Arguments the binded function will receive
-	 * @return {Function}       Binded function
-	 */
-	Utils.prototype.bind = function(func, scope, args) {
-		return function() {
-			func.apply(scope, args);
-		}
-	}
-	/**
-	 * --------------------------------
-	 */
 	
 	/**
 	 * <p style='color:#AD071D'><strong>cache</strong></p>
