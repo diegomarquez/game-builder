@@ -67,20 +67,9 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 		},
 
 		execute: function() {
-			for (var k in Groups.groups) { 
-				Groups.groups[k].drawAlreadyStopped = !Groups.groups[k].canDraw;
-				Groups.groups[k].updateAlreadyStopped = !Groups.groups[k].canUpdate;
-			}
-
-			var viewports = Viewports.all();
-
-			for (var v in viewports) {
-				for (var l in v.layers) {
-					l.alreadyHidden = !l.isVisible();					
-				}
-			}
-
-			Groups.all('stop', 'update');
+			Groups.all('stop', 'update', function (group) {
+				return !group.updateAlreadyStopped;
+			}, true);
 		},
 
 		destroy: function() {

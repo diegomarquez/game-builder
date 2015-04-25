@@ -236,10 +236,11 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
      * of a group.
      *
      * @param  {String} name Id of the group in which to stop all activity
+     * @param  {Boolean} [skipEvents=false] Whether to skip the **HIDE** and **STOP** events of the corresponding [group](@@group@@)
      */
-    stop: function(name) {
-      this.stop_update(name);
-      this.stop_draw(name);
+    stop: function(name, skipEvents) {
+      this.stop_update(name, skipEvents);
+      this.stop_draw(name, skipEvents);
     },
     /**
      * --------------------------------
@@ -251,10 +252,11 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
      * Resumes all activity in the specified [group](@@group@@).
      *
      * @param  {String} name Id of the [group](@@group@@) to resume activity in
+     * @param  {Boolean} [skipEvents=false] Whether to skip the **SHOW** and **RUN** events of the corresponding [group](@@group@@)
      */
-    resume: function(name) {
-      this.resume_update(name);
-      this.resume_draw(name);
+    resume: function(name, skipEvents) {
+      this.resume_update(name, skipEvents);
+      this.resume_draw(name, skipEvents);
     },
     /**
      * --------------------------------
@@ -265,9 +267,10 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
      *
      * Stops rendering of the specified [group](@@group@@). Effectively making everything in it invisible.
      *
-     * @param  {String} name Id of the [group](@@group@@) that should stop rendering
+     * @param {String} name Id of the [group](@@group@@) that should stop rendering
+     * @param  {Boolean} [skipEvents=false] Whether to skip the **HIDE** event of the corresponding [group](@@group@@) 
      */
-    stop_draw: function(name) { this.groups[name].hide(); },
+    stop_draw: function(name, skipEvents) { this.groups[name].hide(skipEvents); },
     /**
      * --------------------------------
      */
@@ -278,8 +281,9 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
      * Resumes rendering of the specified [group](@@group@@).
      *
      * @param  {String} name Id of the [group](@@group@@) that should resume rendering
+     * @param  {Boolean} [skipEvents=false] Whether to skip the **SHOW** event of the corresponding [group](@@group@@)
      */
-    resume_draw: function(name) { this.groups[name].show(); },
+    resume_draw: function(name, skipEvents) { this.groups[name].show(skipEvents); },
     /**
      * --------------------------------
      */
@@ -290,8 +294,9 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
      * Stops updating of the specified [group](@@group@@). Effectively pausing everything in it.
      *
      * @param  {String} name Id of the [group](@@group@@) that should stop updating
+     * @param  {Boolean} [skipEvents=false] Whether to skip the **STOP** event of the corresponding [group](@@group@@)
      */
-    stop_update: function(name) { this.groups[name].canUpdate = false; },
+    stop_update: function(name, skipEvents) { this.groups[name].stop(skipEvents); },
     /**
      * --------------------------------
      */
@@ -302,8 +307,9 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
      * Resumes updating of the specified [group](@@group@@).
      *
      * @param  {String} name Id of the [group](@@group@@) that should resume updating
+     * @param  {Boolean} [skipEvents=false] Whether to skip the **RUN** event of the corresponding [group](@@group@@)
      */
-    resume_update: function(name) { this.groups[name].canUpdate = true; },
+    resume_update: function(name, skipEvents) { this.groups[name].run(skipEvents); },
     /**
      * --------------------------------
      */
@@ -349,12 +355,20 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
      *
      * @param  {String} action This can be either 'resume' or 'stop'
      * @param  {String} method This can be either 'draw' or update.
+     * @param  {Function} which Groups passing this test will get the action and method applied to them
+     * @param  {Boolean} [skipEvents=false] Whether to skip the events of the corresponding [groups](@@group@@)
      */
-    all: function(action, method) {
+    all: function(action, method, which, skipEvents) {
       if (method) action = action + '_' + method;
 
       for (var k in this.groups) {
-        this[action](k);
+      	if (!which) {
+      		this[action](k, skipEvents);	
+      	} else {
+      		if (which(this.groups[k])) {
+      			this[action](k, skipEvents);
+      		}
+      	}
       }
     },
     /**

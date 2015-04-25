@@ -25,7 +25,7 @@
 /**
  * --------------------------------
  */
-define(["game-object-container"], function(Container){
+define(["game-object-container", "util"], function(Container, Util){
 	var Group = Container.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>init</strong></p>
@@ -38,10 +38,32 @@ define(["game-object-container"], function(Container){
 			this._super();
 
 			this.groupName = name;
+			this.drawAlreadyStopped = false;
+			this.updateAlreadyStopped = false;
 		},
 		/**
 		 * --------------------------------
 		 */
+		
+		start: function() {
+			this._super();
+
+			this.on(this.HIDE, this, function() {
+				this.drawAlreadyStopped = true;
+			});
+
+			this.on(this.SHOW, this, function() {
+				this.drawAlreadyStopped = false;
+			});
+
+			this.on(this.STOP, this, function() {
+				this.updateAlreadyStopped = true;
+			});
+
+			this.on(this.RUN, this, function() {
+				this.updateAlreadyStopped = false;
+			});
+		},
 
 		/**
 		 * <p style='color:#AD071D'><strong>add</strong></p>
