@@ -25,12 +25,12 @@
  * --------------------------------
  */
 define(function(require){
-	var r = {};
-
+	
 	var DebugDraw = {}
 
-	var draw = require('draw');
-	var gb;
+	var r = {};
+	var draw = null;
+	var gb = null;
 
 	/**
 	 * <p style='color:#AD071D'><strong>debugDraw</strong></p>
@@ -46,6 +46,10 @@ define(function(require){
 	DebugDraw.gameObject = function(context, viewport) {
 		if (!gb) {
 			gb = require('gb');
+		}
+
+		if (!draw) {
+			draw = require('draw');
 		}
 		
 		if(gb.debug && !this.skipDebug) {
