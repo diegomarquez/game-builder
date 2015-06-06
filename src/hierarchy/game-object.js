@@ -517,6 +517,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			var self = this;
 
 			return {
+				negate: false,
+
 				all: function(f) {
 					if (!self.components) return;
 
@@ -525,7 +527,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 					for (var i = 0; i < self.components.length; i++) {
 						var c = self.components[i];
 
-						if (!f || f(c)) {
+						if (!f || f(c) ^ this.negate) {
 							if (!r) r = [];
 							
 							r.push(c);
@@ -543,7 +545,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 					for (var i = 0; i < self.components.length; i++) {
 						var c = self.components[i];
 
-						if (!!c[propName]) {
+						if ((!!c[propName]) ^ this.negate) {
 							if (!r) r = [];
 							
 							r.push(c);
@@ -561,7 +563,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 					for (var i = 0; i < self.components.length; i++) {
 						var c = self.components[i];
 
-						if (c.typeId == id || c.poolId == id) {
+						if ((c.typeId == id || c.poolId == id) ^ this.negate) {
 							if (!r) r = [];
 							
 							r.push(c);
@@ -577,7 +579,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 					for (var i = 0; i < self.components.length; i++) {
 						var c = self.components[i];
 
-						if (f(c)) {
+						if (f(c) ^ this.negate) {
 							return c;
 						}
 					}		
@@ -589,7 +591,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 					for (var i = 0; i < self.components.length; i++) {
 						var c = self.components[i];
 
-						if (!!c[propName]) {
+						if ((!!c[propName]) ^ this.negate) {
 							return c;
 						}
 					}
@@ -601,10 +603,15 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 					for (var i = 0; i < self.components.length; i++) {
 						var c = self.components[i];
 
-						if (c.typeId == id || c.poolId == id) {
+						if ((c.typeId == id || c.poolId == id) ^ this.negate) {
 							return c;
 						}
 					}
+				},
+
+				not: function() {
+					this.negate = true;
+					return this;
 				}
 			}
 		},
