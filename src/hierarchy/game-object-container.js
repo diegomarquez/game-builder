@@ -8,6 +8,7 @@
  *
  * Depends of:
  * [visibility-control](@@visibility-control@@)
+ * [child-finder](@@child-finder@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -33,7 +34,7 @@
 /**
  * --------------------------------
  */
-define(["game-object", "visibility-control"], function(GameObject, VisibilityControl){
+define(["game-object", "visibility-control", "child-finder"], function(GameObject, VisibilityControl, ChildFinder){
 
 	var GameObjectContainer = GameObject.extend({
 		init: function() {
@@ -366,166 +367,12 @@ define(["game-object", "visibility-control"], function(GameObject, VisibilityCon
 		/**
 		 * <p style='color:#AD071D'><strong>findChildren</strong></p>
 		 *
-		 * Get an object to query the child [game-objects](@@game-object@@) list of this container.
+		 * Gets a reference to the [child-finder](@@child-finder@@) object, to search for children of this container 
 		 *
-		 * @return {Object}  An object to make the query. It has the following methods:
-		 * </br>
-		 * **all** returns all [game-objects](@@game-object@@) that return true for the specified function. Pass no argument to get all children 
-		 * </br>
-		 * **allWithType** returns all [game-objects](@@game-object@@) that have the given id in the [game-object-pool](@@game-object-pool@@)
-		 * </br>
-		 * **first** returns the first [game-object](@@game-object@@) that returns true for the specified function
-		 * </br>
-		 * **firstWithType** returns the first [game-object](@@game-object@@) that has the given id in the [game-object-pool](@@game-object-pool@@)
-		 * </br>
-		 * **recurse** chain this method call before any of the above to make the search recursive
-		 * </br>
-		 * **not** chain this method call before any of above to return opposite results from the search
-		 * </br>
+		 * @return {Object}
 		 */
 		findChildren: function() {
-			var self = this;
-
-			return {
-				negate: false,
-				recursiveSearch: false,
-
-				all: function(f) {
-					if (!self.childs) return;
-
-					var r;
-
-					for (var i = 0; i < self.childs.length; i++) {
-						var c = self.childs[i];
-
-						if ((!f || f(c)) ^ this.negate) {
-							if (!r) r = [];
-							
-							r.push(c);
-						}
-
-						if (this.recursiveSearch) {
-							if (c.isContainer()) {
-								var cr;
-
-								if (this.negate) {
-									cr = c.findChildren().recurse().not().all(f);
-								} else {
-									cr = c.findChildren().recurse().all(f);
-								}
-
-								if (cr) {
-									r = r.concat(cr);		
-								}
-							}	
-						}
-					}
-
-					return r;
-				}, 
-
-				allWithType: function(id) {
-					if (!self.childs) return;
-
-					var r;
-
-					for (var i = 0; i < self.childs.length; i++) {
-						var c = self.childs[i];
-
-						if ((c.typeId == id || c.poolId == id) ^ this.negate) {
-							if (!r) r = [];
-							
-							r.push(c);
-						}
-
-						if (this.recursiveSearch) {
-							if (c.isContainer()) {
-								var cr;
-
-								if (this.negate) {
-									cr = c.findChildren().recurse().not().allWithType(id);
-								} else {
-									cr = c.findChildren().recurse().allWithType(id);
-								}
-
-								if (cr) {
-									if (!r) r = [];
-									
-									r = r.concat(cr);		
-								}
-							}
-						}
-					}
-
-					return r;
-				},
-
-				first: function(f) {
-					if (!self.childs) return;
-
-					var c;
-
-					for (var i = 0; i < self.childs.length; i++) {
-						c = self.childs[i];
-
-						if ((!f || f(c)) ^ this.negate) {
-							return c;
-						}
-					}
-
-					if (this.recursiveSearch) {
-						for (var i = 0; i < self.childs.length; i++) {
-							c = self.childs[i];
-							
-							if (c.isContainer()) {
-								if (this.negate) {
-									return c.findChildren().recurse().not().first(f);
-								} else {
-									return c.findChildren().recurse().first(f);	
-								}
-							}
-						}	
-					}
-				},
-
-				firstWithType: function(id) {
-					if (!self.childs) return;
-					
-					var c;
-
-					for (var i = 0; i < self.childs.length; i++) {
-						c = self.childs[i];
-
-						if ((c.typeId == id || c.poolId == id) ^ this.negate) {
-							return c;
-						}
-					}
-
-					if (this.recursiveSearch) {
-						for (var i = 0; i < self.childs.length; i++) {
-							c = self.childs[i];
-							
-							if (c.isContainer()) {
-								if (this.negate) {
-									return c.findChildren().recurse().not().firstWithType(id);
-								} else {
-									return c.findChildren().recurse().firstWithType(id);	
-								}
-							}
-						}	
-					}
-				},
-
-				recurse: function() {
-					this.recursiveSearch = true;
-					return this;
-				},
-
-				not: function() {
-					this.negate = true;
-					return this;
-				}
-			}
+			return ChildFinder.user(this);	
 		},
 		/**
 		 * --------------------------------
