@@ -14,6 +14,15 @@
  *
  * Call the **show** and **hide** methods of a [game-object-container](@@game-object-container@@) with a single boolean parameter with a value of true
  * to get a handle of this object.
+ *
+ * Ej.
+ * 
+ * ``` javascript  
+ * gameObject.hide(true).recurse().not().allWithType('AN_ID'));
+ * ```
+ *
+ * The previous example would hide the [game-object-cotainer](@@game-object-cotainer@@) itself along with any children in all of it's
+ * heriarchy that did not match the specified type.
  */
 
 /**
@@ -164,6 +173,7 @@ define(function() {
 
 		pass(args);
 
+		user = null;
 		recurse = false;
 		not = false;
 	}
