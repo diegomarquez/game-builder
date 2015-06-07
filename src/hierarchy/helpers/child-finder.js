@@ -90,6 +90,8 @@ define(function() {
 	 * Chain this method to select all the children that return true for the given function
 	 * 
 	 * @param  {Function} f Test function to decide whether a child should be returned or not in the result.
+	 *
+	 * @return {Array}
 	 */
 	ChildFinder.prototype.all = function (f) {
 		return common(f, 'all', 'truthyResult', 'collection', not, recurse);
@@ -104,6 +106,8 @@ define(function() {
 	 * Chain this method to search for [game-objects](@@game-object@@) with a matching poolId or typeId
 	 * 
 	 * @param  {String} type
+	 *
+	 * @return {Array}
 	 */
 	ChildFinder.prototype.allWithType = function (type) {
 		return common(type, 'allWithType', 'matchingId', 'collection', not, recurse);
@@ -118,6 +122,8 @@ define(function() {
 	 * Chain this method to select the first child that returns true for the given function
 	 * 
 	 * @param  {Function} f Test function.
+	 *
+	 * @return {Object | null}
 	 */
 	ChildFinder.prototype.first = function (f) {
 		return common(f, 'first', 'truthyResult', 'single', not, recurse);
@@ -132,6 +138,8 @@ define(function() {
 	 * Chain this method to search for the first [game-objects](@@game-object@@) with a matching poolId or typeId
 	 * 
 	 * @param  {String} type
+	 *
+	 * @return {Object | null}
 	 */
 	ChildFinder.prototype.firstWithType = function (type) {
 		return common(type, 'firstWithType', 'matchingId', 'single', not, recurse);
@@ -148,17 +156,20 @@ define(function() {
 
 		if (resultType == 'collection') {
 			r = [];
-			if (!user.childs) return r;
-
-			return resutlTypes[resultType](user.childs, condition, findMethod, conditionChecker, r, negate, recursive);
 		}
 
 		if (resultType == 'single') {
-			r = resutlTypes[resultType](user.childs, condition, findMethod, conditionChecker, negate, recursive);
+			r = null;
 		}
 
-		user = null;
+		if (!user.childs) {
+			user = null;
+			return r;	
+		}
 
+		r = resultTypes[resultType](user.childs, condition, findMethod, conditionChecker, r, negate, recursive);
+
+		user = null;
 		return r;
 	}
 
@@ -172,7 +183,7 @@ define(function() {
 		}
 	}
 
-	var resutlTypes = {
+	var resultTypes = {
 		'collection' : function(childs, condition, findMethod, conditionChecker, r, negate, recursive) {
 			for (var i = 0; i < childs.length; i++) {
 				var c = childs[i];
@@ -202,7 +213,7 @@ define(function() {
 			return r;
 		},
 
-		'single' : function(childs, condition, findMethod, conditionChecker, negate, recursive) {
+		'single' : function(childs, condition, findMethod, conditionChecker, r, negate, recursive) {
 			for (var i = 0; i < childs.length; i++) {
 				var c = childs[i];
 
