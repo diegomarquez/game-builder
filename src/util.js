@@ -338,7 +338,22 @@ define(function() {
 	/**
 	 * --------------------------------
 	 */
-
+	
+	/**
+	 * <p style='color:#AD071D'><strong>isNumber</strong></p>
+	 *
+	 * Determine if the specified object is a number
+	 * 
+	 * @param  {Object}  o Object to test
+	 *
+	 * @return {Boolean}
+	 */
+	Utils.prototype.isNumber = function(o) {
+  		return !isNaN(parseFloat(o)) && isFinite(o);
+	};
+	/**
+	 * --------------------------------
+	 */
 	
 	 /**
 	 * <p style='color:#AD071D'><strong>isBoolean</strong></p>
