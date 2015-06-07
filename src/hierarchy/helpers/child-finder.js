@@ -49,6 +49,8 @@ define(function() {
 	 */
 	ChildFinder.prototype.user = function (u) {
 		user = u;
+		recurse = false;
+		not = false;
 
 		return this;
 	};
@@ -63,7 +65,6 @@ define(function() {
 	 */
 	ChildFinder.prototype.recurse = function () {
 		recurse = true;
-		
 		return this;
 	};
 	/**
@@ -77,7 +78,6 @@ define(function() {
 	 */
 	ChildFinder.prototype.not = function () {
 		not = true;
-		
 		return this;
 	};
 	/**
@@ -89,10 +89,10 @@ define(function() {
 	 *
 	 * Chain this method to select all the children that return true for the given function
 	 * 
-	 * @param  {Function} f Test function to decide whether a child should change it's visibility. Receives a [game-object](@@game-object@@) as argument. Must return true or false.
+	 * @param  {Function} f Test function to decide whether a child should be returned or not in the result.
 	 */
 	ChildFinder.prototype.all = function (f) {
-		return common(all, f, 'all', 'truthyResult', 'collection');
+		return common(f, 'all', 'truthyResult', 'collection', not, recurse);
 	};
 	/**
 	 * --------------------------------
@@ -101,170 +101,131 @@ define(function() {
 	/**
 	 * <p style='color:#AD071D'><strong>allWithType</strong></p>
 	 *
-	 * Chain this method to search for [game-objects](@@game-object@@) with a mathing poolId or typeId
+	 * Chain this method to search for [game-objects](@@game-object@@) with a matching poolId or typeId
 	 * 
 	 * @param  {String} type
 	 */
 	ChildFinder.prototype.allWithType = function (type) {
-		return common(withType, type, 'allWithType', 'matchingId', 'collection');
+		return common(type, 'allWithType', 'matchingId', 'collection', not, recurse);
 	};
 	/**
 	 * --------------------------------
 	 */
 	
 	/**
-	 * <p style='color:#AD071D'><strong>all</strong></p>
+	 * <p style='color:#AD071D'><strong>first</strong></p>
 	 *
-	 * Chain this method to select all the children that return true for the given function
+	 * Chain this method to select the first child that returns true for the given function
 	 * 
-	 * @param  {Function} f Test function to decide whether a child should change it's visibility. Receives a [game-object](@@game-object@@) as argument. Must return true or false.
+	 * @param  {Function} f Test function.
 	 */
 	ChildFinder.prototype.first = function (f) {
-		return common(first, f, 'first', 'truthyResult', 'single');
+		return common(f, 'first', 'truthyResult', 'single', not, recurse);
 	};
 	/**
 	 * --------------------------------
 	 */
 	
 	/**
-	 * <p style='color:#AD071D'><strong>allWithType</strong></p>
+	 * <p style='color:#AD071D'><strong>firstWithType</strong></p>
 	 *
-	 * Chain this method to search for [game-objects](@@game-object@@) with a mathing poolId or typeId
+	 * Chain this method to search for the first [game-objects](@@game-object@@) with a matching poolId or typeId
 	 * 
 	 * @param  {String} type
 	 */
 	ChildFinder.prototype.firstWithType = function (type) {
-		return common(firstWithType, type, 'firstWithType', 'matchingId', 'single');
+		return common(type, 'firstWithType', 'matchingId', 'single', not, recurse);
 	};
 	/**
 	 * --------------------------------
 	 */
 
-	var commonFirst = function(pass, condition, findMethod, conditionChecker) {
+	var common = function(condition, findMethod, conditionChecker, resultType, negate, recursive) {
 		if (user === null)
 			return;
 
-		pass(condition, findMethod, conditionChecker);
-
-		recurse = false;
-		not = false;
-		user = null;
-	}
-
-	var all = function(f, findMethod, conditionChecker) {
-		var r = [];
-
-		if (!user.childs) return r;
-
-		var childCount = user.childs.length;
-
-		for (var i = 0; i < childCount; i++) {
-			var c = user.childs[i];
-
-			if (truthyResult(c, f)) {
-				r.push(c);
-			}
-
-			if (recurse) {
-				if (c.isContainer()) {
-					var cr = c.findChildren().all(f);
-					
-					if (cr) {
-						r = r.concat(cr);		
-					}
-				}	
-			}
-		}
-
-		return r;
-	}
-
-	var first = function(f) {
-		if (!user.childs) return;
-
-		var c;
-		var childCount = user.childs.length;
-
-		for (var i = 0; i < childCount; i++) {
-			c = user.childs[i];
-
-			if (truthyResult(c, f)) {
-				return c;
-			}
-		}
-
-		if (recurse) {
-			for (var i = 0; i < childCount; i++) {
-				c = user.childs[i];
-				
-				if (c.isContainer()) {
-					return c.findChildren().first(f);
-				}
-			}	
-		}
-	}
-
-	var withType = function(type) {
-		if (!user.childs) return emptyResult;
-
 		var r;
-		var childCount = self.childs.length;
 
-		for (var i = 0; i < childCount; i++) {
-			var c = user.childs[i];
+		if (resultType == 'collection') {
+			r = [];
+			if (!user.childs) return r;
 
-			if (matchingId(c, id)) {
-				if (!r) r = [];
-				r.push(c);
-			}
-
-			if (recurse) {
-				if (c.isContainer()) {
-					var cr = c.findChildren().allWithType(id);
-					
-					if (cr) {
-						if (!r) r = [];
-						r = r.concat(cr);		
-					}
-				}
-			}
+			return resutlTypes[resultType](user.childs, condition, findMethod, conditionChecker, r, negate, recursive);
 		}
+
+		if (resultType == 'single') {
+			r = resutlTypes[resultType](user.childs, condition, findMethod, conditionChecker, negate, recursive);
+		}
+
+		user = null;
 
 		return r;
 	}
 
-	var firstWithType = function(type) {
-		if (!user.childs) return;
+	var conditionCheckers = {
+		'matchingId' : function(c, id, negate) {
+			return (c.typeId == id || c.poolId == id) ^ negate;
+		},
+
+		'truthyResult' : function(c, f, negate) {
+			return (!f || f(c)) ^ negate;
+		}
+	}
+
+	var resutlTypes = {
+		'collection' : function(childs, condition, findMethod, conditionChecker, r, negate, recursive) {
+			for (var i = 0; i < childs.length; i++) {
+				var c = childs[i];
+
+				if (conditionCheckers[conditionChecker](c, condition, negate)) {
+					r.push(c);
+				}
+
+				if (recursive) {
+					if (c.isContainer()) {
+
+						var cr;
+
+						if (negate) {
+							cr = c.findChildren().recurse().not()[findMethod](condition);
+						} else {
+							cr = c.findChildren().recurse()[findMethod](condition);
+						}
+
+						if (cr) {
+							r = r.concat(cr);		
+						}
+					}	
+				}
+			}
+
+			return r;
+		},
+
+		'single' : function(childs, condition, findMethod, conditionChecker, negate, recursive) {
+			for (var i = 0; i < childs.length; i++) {
+				var c = childs[i];
+
+				if (conditionCheckers[conditionChecker](c, condition, negate)) {
+					return c;
+				}
+			}
+
+			if (recursive) {
+				for (var i = 0; i < childs.length; i++) {
+					c = childs[i];
 					
-		var c;
-		var childCount = user.childs.length;
-
-		for (var i = 0; i < childCount; i++) {
-			c = user.childs[i];
-
-			if (matchingId(c, id)) {
-				return c;
+					if (c.isContainer()) {
+						if (negate) {
+							return c.findChildren().recurse().not()[findMethod](condition);
+						} else {
+							return c.findChildren().recurse()[findMethod](condition);
+						}
+					}
+				}
 			}
 		}
-
-		if (recurse) {
-			for (var i = 0; i < childCount; i++) {
-				c = user.childs[i];
-				
-				if (c.isContainer()) {
-					return c.findChildren().firstWithType(id);
-				}
-			}	
-		}
 	}
-
-	var matchingId = function(child, id) {
-		return (c.typeId == id || c.poolId == id) ^ not);
-	}
-
-	var truthyResult = function(child, f) {
-		return ((!f || f(c)) ^ not);
-	} 
 
 	return new ChildFinder();
 });
