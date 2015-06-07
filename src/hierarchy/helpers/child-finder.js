@@ -62,9 +62,12 @@ define(function() {
 	 * <p style='color:#AD071D'><strong>recurse</strong></p>
 	 *
 	 * Chain this method to search for children recursively
+	 * 
+	 * @return {Object} The 'this' pointer
 	 */
 	ChildFinder.prototype.recurse = function () {
 		recurse = true;
+
 		return this;
 	};
 	/**
@@ -75,9 +78,12 @@ define(function() {
 	 * <p style='color:#AD071D'><strong>not</strong></p>
 	 *
 	 * Chain this method to negate the search criteria
+	 *
+	 * @return {Object} The 'this' pointer
 	 */
 	ChildFinder.prototype.not = function () {
 		not = true;
+
 		return this;
 	};
 	/**

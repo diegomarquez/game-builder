@@ -45,6 +45,8 @@ define(function() {
 	 * Chain this method to set the current [game-object](@@game-object@@) that will be affected
 	 * 
 	 * @param {Object} user
+	 *
+	 * @return {Object} The 'this' pointer
 	 */
 	ComponentFinder.prototype.user = function (u) {
 		user = u;
@@ -60,9 +62,12 @@ define(function() {
 	 * <p style='color:#AD071D'><strong>not</strong></p>
 	 *
 	 * Chain this method to negate the search criteria
+	 *
+	 * @return {Object} The 'this' pointer
 	 */
 	ComponentFinder.prototype.not = function () {
 		not = true;
+		
 		return this;
 	};
 	/**
