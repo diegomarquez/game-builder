@@ -37,6 +37,8 @@ define(function() {
 
 	var user = null;
 	var visibility = null;
+	var toggle = false;
+	var applyOnSelf = true;
 	var userVisibilityMethod = null;
 	var not = false;
 	var recurse = false;
@@ -51,11 +53,16 @@ define(function() {
 	 * Chain this method to set the current [game-object-container](@@game-object-container@@) that will be affected
 	 * 
 	 * @param {Object} user
+	 *
+	 * @return {Object} The 'this' pointer
 	 */
 	VisibilityControl.prototype.user = function (u) {
 		user = u;
 		recurse = false;
 		not = false;
+		applyOnSelf = true;
+		visibility = null;
+		toggle = false;
 
 		return this;
 	};
@@ -63,12 +70,33 @@ define(function() {
 	 * --------------------------------
 	 */
 	
+
+	/**
+	 * <p style='color:#AD071D'><strong>ommitSelf</strong></p>
+	 *
+	 * Chain this method to prevent the opeartion from taking place on the user [game-object](@@game-object@@)
+	 *
+	 * @return {Object} The 'this' pointer
+	 */
+	VisibilityControl.prototype.ommitSelf = function (u) {
+		applyOnSelf = false;
+
+		return this;
+	};
+	/**
+	 * --------------------------------
+	 */
+
+	
+	
 	/**
 	 * <p style='color:#AD071D'><strong>hide</strong></p>
 	 *
 	 * Chain this method to hide the user [game-object-container](@@game-object-container@@) and it's selected children
 	 * 
 	 * @param {Function} uvm The **hide** method of the current user [game-object-container](@@game-object-container@@) super class
+	 *
+	 * @return {Object} The 'this' pointer
 	 */
 	VisibilityControl.prototype.hide = function (uvm) {
 		visibility = false;
@@ -86,9 +114,30 @@ define(function() {
 	 * Chain this method to show the user [game-object-container](@@game-object-container@@) and it's selected children
 	 * 
 	 * @param {Function} uvm The **show** method of the current user [game-object-container](@@game-object-container@@) super class
+	 *
+	 * @return {Object} The 'this' pointer
 	 */
 	VisibilityControl.prototype.show = function (uvm) {
 		visibility = true;
+		userVisibilityMethod = uvm;
+
+		return this;
+	};
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
+	 * <p style='color:#AD071D'><strong>show</strong></p>
+	 *
+	 * Chain this method to toggle the user visibility and it's selected children
+	 * 
+	 * @param {Function} uvm The **toggleVisibility** method of the current user [game-object-container](@@game-object-container@@) super class
+	 *
+	 * @return {Object} The 'this' pointer
+	 */
+	VisibilityControl.prototype.toggle = function (uvm) {
+		toggle = true;
 		userVisibilityMethod = uvm;
 
 		return this;
@@ -168,12 +217,14 @@ define(function() {
 	 */
 
 	var common = function(pass, args) {
-		if (user === null || visibility === null || userVisibilityMethod === null)
+		if (user === null )
 			return;
 
-		userVisibilityMethod.call(user);
+		if (applyOnSelf) {
+			userVisibilityMethod.call(user);
+		}
 
-		pass(args);
+		pass(args, visibility, toggle);
 
 		user = null;
 	}
@@ -192,32 +243,25 @@ define(function() {
 		return finder;
 	}
 
-	var all = function(f) {
-		iterate(find().all(f));
+	var all = function(f, v, t) {
+		iterate(find().all(f), v, t);
 	}
 
-	var withProp = function(propName) {
-		iterate(find().allWithProp(propName));
+	var withProp = function(propName, v, t) {
+		iterate(find().allWithProp(propName), v, t);
 	}
 
-	var withType = function(type) {
-		iterate(find().allWithType(type));
+	var withType = function(type, v, t) {
+		iterate(find().allWithType(type), v, t);
 	}
 
-	var iterate = function(children) {
+	var iterate = function(children, v, t) {
 		if (!children) return;
 
-		children.forEach(eachChild);
-	}
-
-	var eachChild = function (child) {
-		if (visibility) {
-			child.show();
-		}	
-		else {
-			child.hide();
+		for (var i = 0; i < children.length; i++) {
+			t ? children[i].toggleVisibility() : v ? children[i].show() : children[i].hide();
 		}
-	} 
+	}
 
 	return new VisibilityControl();
 });

@@ -591,6 +591,29 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 */
 		
 		/**
+		 * <p style='color:#AD071D'><strong>toggleVisibility</strong></p>
+		 *
+		 * Toggle rendering
+		 *
+		 * @param {Boolean} [skipEvent=false]
+		 */
+		toggleVisibility: function(skipEvent) {
+			this.canDraw = !this.canDraw;
+
+			if (!skipEvent) {
+				if (this.canDraw) {
+					this.execute(this.SHOW, this);	
+				}
+				else {
+					this.execute(this.HIDE, this);	
+				}
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
 		 * <p style='color:#AD071D'><strong>stop</strong></p>
 		 *
 		 * Prevents updating

@@ -272,6 +272,30 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 */
 		
 		/**
+		 * <p style='color:#AD071D'><strong>toggleVisibility</strong></p>
+		 *
+		 * Toggles the rendering of itself and all of it's children
+		 *
+		 * @param {Boolean} [getControl=false] If set to true return a [visibility-control](@@visibility-control@@) object for more fine grained control
+		 */
+		toggleVisibility: function(getControl) {
+			if (!getControl) {
+				this._super();
+
+				if(!this.childs) return;
+
+				for(var i=0; i<this.childs.length; i++){
+					this.childs[i].toggleVisibility();
+				}	
+			} else {
+				return VisibilityControl.user(this).toggle(this._super);
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
 		 * <p style='color:#AD071D'><strong>addToViewport</strong></p>
 		 *
 		 * Adds the specified [viewport](@@viewport@@) and [layer](@@layer@@) combo to the ones this game object belongs to.
