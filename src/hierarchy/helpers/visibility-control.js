@@ -54,6 +54,8 @@ define(function() {
 	 */
 	VisibilityControl.prototype.user = function (u) {
 		user = u;
+		recurse = false;
+		not = false;
 
 		return this;
 	};
@@ -154,7 +156,7 @@ define(function() {
 	/**
 	 * <p style='color:#AD071D'><strong>allWithType</strong></p>
 	 *
-	 * Chain this method to search for [game-objects](@@game-object@@) with a mathing poolId or typeId
+	 * Chain this method to search for [game-objects](@@game-object@@) with a matching poolId or typeId
 	 * 
 	 * @param  {String} type
 	 */
@@ -174,11 +176,9 @@ define(function() {
 		pass(args);
 
 		user = null;
-		recurse = false;
-		not = false;
 	}
 
-	find = function() {
+	var find = function() {
 		var finder = user.findChildren();
 
 		if (not) {
@@ -192,15 +192,15 @@ define(function() {
 		return finder;
 	}
 
-	all = function(f) {
+	var all = function(f) {
 		iterate(find().all(f));
 	}
 
-	withProp = function(propName) {
+	var withProp = function(propName) {
 		iterate(find().allWithProp(propName));
 	}
 
-	withType = function(type) {
+	var withType = function(type) {
 		iterate(find().allWithType(type));
 	}
 
