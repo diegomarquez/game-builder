@@ -9,6 +9,7 @@
  * [matrix-3x3](@@matrix-3x3@@)
  * [game-object-debug-draw](@@game-object-debug-draw@@)
  * [util](@@util@@)
+ * [component-finder](@@component-finder@@)
  * 
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -150,7 +151,7 @@
 /**
  * --------------------------------
  */
-define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(Delegate, Matrix, DebugDraw, Util) {
+define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-finder"], function(Delegate, Matrix, DebugDraw, Util, ComponentFinder) {
 	var go, r;
 
 	var GameObject = Delegate.extend({
@@ -496,124 +497,12 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>findComponents</strong></p>
 		 *
-		 * Get an object to query the [component](@@component@@) list of the game object
+		 * Get a reference to the [component-finder](@@component-finder@@) object, to search for [components](@@component@@) in the game object
 		 *
-		 * @return {Object}  An object to make the query. It has the following methods: 
-		 * </br>
-		 * **all** returns all [components](@@components@@) that return true for the specified function. Pass no argument to get all components 
-		 * </br>
-		 * **allWithProp** returns all [components](@@component@@) that have the given property 
-		 * </br>
-		 * **allWithType** returns all [components](@@component@@) that have the given id in the [component-pool](@@component-pool@@) 
-		 * </br>
-		 * **first** returns the first [component](@@component@@) that returns true for the specified function 
-		 * </br>
-		 * **firstWithProp** returns the first [component](@@component@@) that has the given property 
-		 * </br>
-		 * **firstWithType** returns the first [components](@@component@@) that have the given id in the [component-pool](@@component-pool@@) 
-		 * </br>
+		 * @return {Object}
 		 */
 		findComponents: function() {
-			var self = this;
-
-			return {
-				negate: false,
-
-				all: function(f) {
-					if (!self.components) return;
-
-					var r;
-
-					for (var i = 0; i < self.components.length; i++) {
-						var c = self.components[i];
-
-						if (!f || f(c) ^ this.negate) {
-							if (!r) r = [];
-							
-							r.push(c);
-						}
-					}
-
-					return r;
-				}, 
-
-				allWithProp: function(propName) {
-					if (!self.components) return;
-
-					var r;
-
-					for (var i = 0; i < self.components.length; i++) {
-						var c = self.components[i];
-
-						if ((!!c[propName]) ^ this.negate) {
-							if (!r) r = [];
-							
-							r.push(c);
-						}
-					}
-
-					return r;
-				},
-
-				allWithType: function(id) {
-					if (!self.components) return;
-
-					var r;
-
-					for (var i = 0; i < self.components.length; i++) {
-						var c = self.components[i];
-
-						if ((c.typeId == id || c.poolId == id) ^ this.negate) {
-							if (!r) r = [];
-							
-							r.push(c);
-						}
-					}
-
-					return r;
-				},
-
-				first: function(f) {
-					if (!self.components) return;
-
-					for (var i = 0; i < self.components.length; i++) {
-						var c = self.components[i];
-
-						if (f(c) ^ this.negate) {
-							return c;
-						}
-					}		
-				},
-
-				firstWithProp: function(propName) {
-					if (!self.components) return;
-
-					for (var i = 0; i < self.components.length; i++) {
-						var c = self.components[i];
-
-						if ((!!c[propName]) ^ this.negate) {
-							return c;
-						}
-					}
-				},
-
-				firstWithType: function(id) {
-					if (!self.components) return;
-					
-					for (var i = 0; i < self.components.length; i++) {
-						var c = self.components[i];
-
-						if ((c.typeId == id || c.poolId == id) ^ this.negate) {
-							return c;
-						}
-					}
-				},
-
-				not: function() {
-					this.negate = true;
-					return this;
-				}
-			}
+			return ComponentFinder.user(this);
 		},
 		/**
 		 * --------------------------------
