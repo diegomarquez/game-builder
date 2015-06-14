@@ -64,8 +64,8 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 				// Save state for current viewport
 				context.save();
 
-        if (v.Clipping) {
-        	// Set the clipping area
+				if (v.Clipping) {
+					// Set the clipping area
 					context.beginPath();
 
 					if (!v.strokeWidth || v.strokeWidth == 'none') {
@@ -74,31 +74,31 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 						context.rect(v.OffsetX-v.strokeWidth, v.OffsetY-v.strokeWidth, v.Width+v.strokeWidth*2, v.Height+v.strokeWidth*2);
 					}
 
-		      context.clip();
+					context.clip();
 					context.closePath();
-        }
-       
+				}
+			 
 				// Make all the drawings relative to the viewport's visible area
 				v.transformContext(context);
 				// Draw all the game objects associated with this viewport
-	    	v.draw(context);
-	    	// Go back to previous state for the next viewport
-	    
-	    	// This simulates a strokes that grows outwards
-        if ( (v.strokeWidth && (v.strokeWidth != 'none')) || (v.strokeColor && (v.strokeColor != v.strokeColor != 'none')) ) {
+				v.draw(context);
+				// Go back to previous state for the next viewport
+			
+				// This simulates a strokes that grows outwards
+				if ( (v.strokeWidth && (v.strokeWidth != 'none')) || (v.strokeColor && (v.strokeColor != v.strokeColor != 'none')) ) {
 					context.save();
 					context.setTransform(1, 0, 0, 1, 0, 0);
 
 					context.fillStyle = v.strokeColor;
-	        context.fillRect(v.OffsetX-v.strokeWidth, v.OffsetY-v.strokeWidth, v.Width+(v.strokeWidth*2), v.strokeWidth);
-	        context.fillRect(v.OffsetX-v.strokeWidth, v.OffsetY+v.Height, v.Width+(v.strokeWidth*2), v.strokeWidth);
-	        context.fillRect(v.OffsetX-v.strokeWidth, v.OffsetY-v.strokeWidth, v.strokeWidth, v.Height+(v.strokeWidth*2));
-	        context.fillRect(v.OffsetX+v.Width, v.OffsetY-v.strokeWidth, v.strokeWidth, v.Height+(v.strokeWidth*2));
+					context.fillRect(v.OffsetX-v.strokeWidth, v.OffsetY-v.strokeWidth, v.Width+(v.strokeWidth*2), v.strokeWidth);
+					context.fillRect(v.OffsetX-v.strokeWidth, v.OffsetY+v.Height, v.Width+(v.strokeWidth*2), v.strokeWidth);
+					context.fillRect(v.OffsetX-v.strokeWidth, v.OffsetY-v.strokeWidth, v.strokeWidth, v.Height+(v.strokeWidth*2));
+					context.fillRect(v.OffsetX+v.Width, v.OffsetY-v.strokeWidth, v.strokeWidth, v.Height+(v.strokeWidth*2));
 
-					context.restore();	        	
-        }
+					context.restore();            
+				}
 
-	    	context.restore();
+				context.restore();
 			}
 		},
 
