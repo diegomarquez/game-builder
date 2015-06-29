@@ -49,18 +49,14 @@ define(function() {
 	p.alpha = 1;
 
 	p.initialize = function(a, b, c, d, tx, ty, alpha) {
-		if (a != null) {
-			this.a = a;
-		}
+		this.a = a || 1;
 		this.b = b || 0;
 		this.c = c || 0;
-		if (d != null) {
-			this.d = d;
-		}
+		this.d = d || 1;
 		this.tx = tx || 0;
 		this.ty = ty || 0;
 
-		this.ty = alpha || 1;
+		this.alpha = alpha || 1;
 		return this;
 	};
 
@@ -95,10 +91,12 @@ define(function() {
 	};
 
 	p.prependTransform = function(x, y, scaleX, scaleY, rotation, regX, regY, alpha) {
+		var cos, sin;
+
 		if (rotation % 360) {
 			var r = rotation * matrix_3x3.DEG_TO_RAD;
-			var cos = Math.cos(r);
-			var sin = Math.sin(r);
+			cos = Math.cos(r);
+			sin = Math.sin(r);
 		} else {
 			cos = 1;
 			sin = 0;
