@@ -128,7 +128,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 * The collider follows it's parent along every matrix transformation.
 			 */
 			update: function() {
-				m = this.parent.matrix;
+				m = this.parent.getMatrix();
 
 				for(var i=0; i<this.pointCount; i++) {
 					p = m.transformPoint(this.pointsCopy[i].x, this.pointsCopy[i].y, p);
