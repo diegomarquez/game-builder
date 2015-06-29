@@ -115,6 +115,54 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		/**
 		 * --------------------------------
 		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererLeft</strong></p>
+		 *
+		 * @return {Number} The left coordinate of the rectangle enclosing this renderer
+		 */
+		rendererLeft: function() {
+			return this.rendererOffsetX();
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererTop</strong></p>
+		 *
+		 * @return {Number} The top coordinate of the rectangle enclosing this renderer
+		 */
+		rendererTop: function() {
+			return this.rendererOffsetY();
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererRight</strong></p>
+		 *
+		 * @return {Number} The right coordinate of the rectangle enclosing this renderer
+		 */
+		rendererRight: function() {
+			return this.rendererOffsetX() + this.rendererWidth();
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererBottom</strong></p>
+		 *
+		 * @return {Number} The bottom coordinate of the rectangle enclosing this renderer
+		 */
+		rendererBottom: function() {
+			return this.rendererOffsetY() + this.rendererHeight();
+		},
+		/**
+		 * --------------------------------
+		 */
 		
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
@@ -136,14 +184,16 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 			context.strokeStyle = this.debugColor;
 			context.lineWidth = 1;
 
+			context.translate(-0.5, -0.5);
+
 			// Top Left 
-			drawLineAndPoint.call(this, context, this.rendererOffsetX(), this.rendererOffsetY(), draw, 'moveTo');
+			drawLineAndPoint.call(this, context, this.rendererLeft(), this.rendererTop(), 'moveTo');
 			// Top Right
-			drawLineAndPoint.call(this, context, this.rendererOffsetX() + this.rendererWidth(), this.rendererOffsetY(), draw, 'lineTo');
+			drawLineAndPoint.call(this, context, this.rendererRight(), this.rendererTop(), 'lineTo');
 			// Bottom Right
-			drawLineAndPoint.call(this, context, this.rendererOffsetX() + this.rendererWidth(), this.rendererOffsetY() + this.rendererHeight(), draw, 'lineTo');
+			drawLineAndPoint.call(this, context, this.rendererRight(), this.rendererBottom(), 'lineTo');
 			// Bottom Left
-			drawLineAndPoint.call(this, context, this.rendererOffsetX(), this.rendererOffsetY() + this.rendererHeight(), draw, 'lineTo');
+			drawLineAndPoint.call(this, context, this.rendererLeft(), this.rendererBottom(), 'lineTo');
 
 			context.closePath();
 
@@ -155,9 +205,9 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 */
 	});
 
-	var drawLineAndPoint = function(context, offsetX, offsetY, draw, lineMethod) {
-		r = this.parent.matrix.transformPoint(offsetX, offsetY, r); 
-		context[lineMethod](r.x, r.y);
+	var drawLineAndPoint = function(context, offsetX, offsetY, lineMethod) {
+		r = this.parent.getMatrix().transformPoint(offsetX, offsetY, r); 
+		context[lineMethod](Math.round(r.x), Math.round(r.y));
 	}
 
 	return Renderer;

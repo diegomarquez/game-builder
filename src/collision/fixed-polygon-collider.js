@@ -131,7 +131,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 * The collider follows the position of it's parent.
 			 */
 			update: function() {
-				p = this.parent.matrix.transformPoint(0, 0, p);
+				p = this.parent.getMatrix().transformPoint(0, 0, p);
 
 				this.collider.pos.x = p.x;
 				this.collider.pos.y = p.y;
@@ -158,7 +158,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			debug_draw: function(context, viewport, draw, gb) {
 				if (!gb.colliderDebug) return;
 				
-				p = this.parent.matrix.transformPoint(0, 0, p);
+				p = this.parent.getMatrix().transformPoint(0, 0, p);
 
 				context.save();
 

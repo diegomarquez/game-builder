@@ -514,7 +514,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 * Generates the concatenated [matrix-3x3](@@matrix-3x3@@) used to draw itself in the proper place
 		 */
 		transform: function(options) {
-			this.getMatrix(this.matrix, options);
+			this.concatenateMatrix(this.matrix, options);
 			this.isTransformed = true;
 		},
 		/**
@@ -534,13 +534,15 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 
 			context.save();
 
-			context.transform(this.matrix.a, this.matrix.b, this.matrix.c, this.matrix.d, this.matrix.tx, this.matrix.ty);
+			var m = this.getMatrix();
+
+			context.transform(m.a, m.b, m.c, m.d, m.tx, m.ty);
 			
-			if (this.matrix.alpha != 1) {
-				 context.globalAlpha *= this.matrix.alpha;
+			if (m.alpha != 1) {
+				 context.globalAlpha *= m.alpha;
 			}
 
-			if (this.matrix.alpha > 0) {
+			if (m.alpha > 0) {
 				if(this.renderer && this.renderer.isEnabled()) {
 					this.renderer.draw(context, viewport);
 				}
@@ -675,7 +677,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		addToViewportList: function(viewportName, layerName) {
 			var v = { viewport: viewportName, layer: layerName }
 			this.viewports.push(v);	
-    	this.execute(this.ADD_TO_VIEWPORT, [v]);
+    		this.execute(this.ADD_TO_VIEWPORT, [v]);
 		},
 		/**
 		 * --------------------------------
@@ -856,7 +858,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>getMatrix</strong></p>
+		 * <p style='color:#AD071D'><strong>concatenateMatrix</strong></p>
 		 *
 		 * Get's the complete concatenated [matrix-3x3](@@matrix-3x3@@) of the game object.
 		 *
@@ -874,7 +876,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 *
 		 * @return {Object} The concatenated [matrix-3x3](@@matrix-3x3@@)
 		 */
-		getMatrix: function(m, options) {
+		concatenateMatrix: function(m, options) {
 			if (m) {
 				m.identity();
 			} else {
@@ -897,6 +899,18 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			}
 
 			return m;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>getMatrix</strong></p>
+		 * 
+		 * @return {[matrix-3x3](@@matrix-3x3@@)} The concatenated matrix of this game object
+		 */
+		getMatrix: function() {
+			return this.matrix;
 		},
 		/**
 		 * --------------------------------

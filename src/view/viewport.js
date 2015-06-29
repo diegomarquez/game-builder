@@ -527,7 +527,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 		 */
 		isGameObjectInside: function(go, context) {
 			r = go.renderer;
-			m = go.matrix;
+			m = go.getMatrix();
 
 			if (r) {
 				// Game Objects with renderers take dimentions from them
