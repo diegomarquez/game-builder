@@ -27,6 +27,48 @@
 define(function() {
 	var Utils = function() {}
 
+	/**
+	 * <p style='color:#AD071D'><strong>normalize</strong></p>
+	 *
+	 * Normalize the given value in the given range to a number between 0 and 1
+	 * 
+	 * @return {Number}
+	 */
+	Utils.prototype.normalize = function(v, min, max) {
+		return (v - min) / (max - min);
+	};
+	/**
+	 * --------------------------------
+	 */
+
+	/**
+	 * <p style='color:#AD071D'><strong>interpolate</strong></p>
+	 *
+	 * Interpolate the given value ( A number between 0 and 1 ) to obtain the corresponding number in the given range.
+	 *
+	 * @return {Number}
+	 */
+	Utils.prototype.interpolate = function(v, min, max) {
+		return min + (max - min) * v;
+	};
+	/**
+	 * --------------------------------
+	 */
+
+	/**
+	 * <p style='color:#AD071D'><strong>map</strong></p>
+	 *
+	 * Convert the fiven value from the first range into the second range
+	 *
+	 * @return {Number}
+	 */
+	Utils.prototype.map = function(value, min1, max1, min2, max2) {
+		return this.interpolate( this.normalize(value, min1, max1), min2, max2);
+	};
+	/**
+	 * --------------------------------
+	 */
+
  	/**
  	 * <p style='color:#AD071D'><strong>shallow_merge</strong></p>
  	 *
