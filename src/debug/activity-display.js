@@ -60,11 +60,11 @@ define(function(require) {
 	var createDisplay = function(id, container) {
 		var display = document.createElement('div');
 		display.setAttribute('id', id); 
-		display.style.fontSize = '10px';
-		display.style.fontWeight = 'bold';
+		display.style.fontSize = 'small';
 		display.style.color = '#fff';
 		display.style.margin = '1px';
 		display.style.padding = '1px';
+		display.style.fontVariant = 'small-caps';
 
 		container.appendChild(display);
 	};
@@ -117,6 +117,14 @@ define(function(require) {
 		display.innerText = text + numbers.join('/');
 	};
 
+	var scroll = function() {
+		var x = 5 + gb.game.mainContainer.scrollLeft;
+		var y = gb.canvas.clientTop + gb.canvas.clientHeight - displayElement.clientHeight - 5 + gb.game.mainContainer.scrollTop;
+
+		displayElement.style.top = y + 'px';
+		displayElement.style.left = x + 'px';
+	}
+
 	displays.push(getDisplay(gameObjectPool, updatePool('Game Object Pool', gameObjectPool, 'goPoolDisplay'), 'init', ['INIT', 'GET', 'RETURN', 'CLEAR', 'CLEAR_OBJECTS', 'CLEAR_CONFIGURATION', 'CLEAR_CONFIGURATIONS']));
 	displays.push(getDisplay(componentPool, updatePool('Component Pool', componentPool, 'coPoolDisplay'), 'init', ['INIT', 'GET', 'RETURN', 'CLEAR', 'CLEAR_OBJECTS', 'CLEAR_CONFIGURATION', 'CLEAR_CONFIGURATIONS']));
 	displays.push(getDisplay(jsonCache, updateCache('Json Cache', jsonCache, 'jsonCacheDisplay'), 'cache', ['CACHE', 'CLEAR', 'CLEAR_ALL']));
@@ -143,6 +151,7 @@ define(function(require) {
 			displayElement = document.createElement('div');
 			displayElement.id = 'activity-display';
 			displayElement.style.pointerEvents = 'none';
+			displayElement.style.whiteSpace = 'nowrap';
 
 			var infoContainer = document.createElement('div');
 			infoContainer.id = 'activity-display-info-container';
@@ -197,6 +206,7 @@ define(function(require) {
 		},
 
 		destroy: function() {
+			gb.game.mainContainer.removeEventListener('scroll', scroll);
 			gb.game.mainContainer.removeChild(displayElement);
 
 			gameObjectPool.levelCleanUp('activity-display');
@@ -214,11 +224,13 @@ define(function(require) {
 
 			if (infoContainer.style.display == 'block') {
 				infoContainer.style.display = 'none';
+				gb.game.mainContainer.removeEventListener('scroll', scroll);
 			} else {
 				infoContainer.style.display = 'block';
+				gb.game.mainContainer.addEventListener('scroll', scroll);
 			}
 
-			positionInfoButton(displayElement);
+			scroll();
 		}
 	});
 
