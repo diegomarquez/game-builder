@@ -113,6 +113,19 @@ define(["game-object-container", "viewports"], function(Container, Viewports){
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>isChild</strong></p>
+		 *
+		 * 
+		 * @return {Boolean}
+		 */
+		isChild: function() {
+			return false;
+		},
+		/**
+		 * --------------------------------
+		 */
 	});
 
 	return new Root();

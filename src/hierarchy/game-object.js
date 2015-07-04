@@ -1021,7 +1021,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			if (!this.parent) { 
 				return false;
 			} else {
-				return !(this.parent.typeName() == 'Group' || this.parent.typeName() == 'Root');
+				return this.parent.typeName() == 'GameObjectContainer';
 			}
 		},
 		/**

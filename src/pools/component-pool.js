@@ -7,6 +7,7 @@
  * [pool](@@pool@@)
  *
  * Depends of:
+ * [component-configuration](@@component-configuration@@)
  * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
@@ -65,51 +66,24 @@ define(function(require) {
 		/**
 		 * <p style='color:#AD071D'><strong>createConfiguration</strong></p>
 		 *
-		 * Creates a configuration for the given type of pooled object.
+		 * Creates a [component-configuration](@@component-configuration@@) for the given type of pooled object.
 		 * 
-		 * @param  {String} alias The id that will be used to retrieve this configuration
-		 * @param  {String} type  With this id the configuration has the information needed
+		 * @param  {String} alias The id that will be used to retrieve this [component-configuration](@@component-configuration@@)
+		 * @param  {String} type  With this id the [component-configuration](@@component-configuration@@) has the information needed
 		 *                        to know to which pool of objects it refers to
 		 *
-		 * @return {Object}       A configuration object. Nothing too fancy
+		 * @return {Object}       A [component-configuration](@@component-configuration@@) object.
 		 */
 		createConfiguration: function(alias, type) {
 			// If the configuration already exists, return it
 			if (this.configurations[alias]) {
 				return this.configurations[alias];
 			}
-			
-			var self = this;
 
-			// Configuration objects for [components](@@component@@)
-			// contain the arguments that this configuration will apply
-			var configuration = {
-				componentId: type,
-				componentArgs: null,
-				alias: alias,
-
-				// Returns the id of the pool this configuration refers to
-				typeId: function() {
-					return type;
-				},
-
-				configurationId: function() {
-					return alias;
-				},
-
-				// Set which arguments this configuration will apply to a
-				// [component](@@component@@)
-				args: function(args) {
-					this.componentArgs = args;
-					self.execute(self.UPDATE_CONFIGURATION, this);
-					return this;
-				}
-			}
-
-			this.configurations[alias] = configuration;
-			this.execute(this.CREATE_CONFIGURATION, configuration);
+			this.configurations[alias] = new (require('component-configuration'))(this, type, alias);
+			this.execute(this.CREATE_CONFIGURATION, this.configurations[alias]);
 		
-			return configuration;
+			return this.configurations[alias];
 		},
 		/**
 		 * --------------------------------

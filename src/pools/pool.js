@@ -524,6 +524,22 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
     /**
      * --------------------------------
      */
+    
+    /**
+     * <p style='color:#AD071D'><strong>configurationExists</strong></p>
+     *
+     * Check if the the configuration with the specified id exists or not
+     *
+     * @param {String} id
+     * 
+     * @return {Bollean}
+     */
+    configurationExists: function(id) {
+    	return !!this.configurations[id];
+    },
+    /**
+     * --------------------------------
+     */
 
     /**
      * <p style='color:#AD071D'><strong>toString</strong></p>

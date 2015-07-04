@@ -114,6 +114,19 @@ define(["game-object-container", "util"], function(Container, Util){
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>isChild</strong></p>
+		 *
+		 * 
+		 * @return {Boolean}
+		 */
+		isChild: function() {
+			return false;
+		},
+		/**
+		 * --------------------------------
+		 */
 	});
 
 	return Group;
