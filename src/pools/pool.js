@@ -540,6 +540,34 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
     /**
      * --------------------------------
      */
+    
+    /**
+     * <p style='color:#AD071D'><strong>updateConfigurationId</strong></p>
+     *
+     * Updates the id of the configuration, along with the id of all the active [game-objects](@@game-object@@)
+     * using that configuration
+     * 
+     * @param  {String} oldId Id to update
+     * @param  {String} newId New id
+     *
+     */
+    updateConfigurationId: function(oldId, newId) {
+    	this.configurations[newId] = this.configurations[oldId];
+    	delete this.configurations[oldId];
+
+    	var poolId = this.configurations[newId].typeId();
+
+    	var activeObjects = this.getActiveObjects(poolId);
+
+    	for (var i = 0; i < activeObjects.length; i++) {
+    		if (activeObjects[i].typeId === oldId) {
+    			activeObjects[i].typeId = newId;
+    		}
+    	}
+    },
+    /**
+     * --------------------------------
+     */
 
     /**
      * <p style='color:#AD071D'><strong>toString</strong></p>
