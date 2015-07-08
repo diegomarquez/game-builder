@@ -34,8 +34,15 @@ define(function(require) {
 		this.components = [];
 		this.renderer = null;
 
-		this.pool = pool;
+		Object.defineProperty(this, "pool", { 
+			configurable: false,
+			enumerable: false,
+			writable: false,
+			value: pool
+		});
 	};
+
+	
 
 	/**
 	 * <p style='color:#AD071D'><strong>typeId</strong></p>

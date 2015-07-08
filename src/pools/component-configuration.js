@@ -25,7 +25,12 @@ define(function(require) {
 
 		this.componentArgs = null;
 
-		this.pool = pool;
+		Object.defineProperty(this, "pool", { 
+			configurable: false,
+			enumerable: false,
+			writable: false,
+			value: pool
+		});
 	};
 
 	/**
