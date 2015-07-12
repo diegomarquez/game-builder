@@ -166,19 +166,19 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 		// A pool object contains an array of objects, and a variable
 		// of the type of the objects it contains.
 		if (this.pools[alias] == null) {
-		this.pools[alias] = {
-			objects: [],
-			type: type
-		};
-		
-		this.addInitialObjectsToPool(amount, alias);
+			this.pools[alias] = {
+				objects: [],
+				type: type
+			};
+			
+			this.addInitialObjectsToPool(amount, alias);
 
-		this.execute(this.INIT, this.pools[alias]);
+			this.execute(this.INIT, this.pools[alias]);
 		}
 
 		// Objects that are active on a given pool at any given time.
 		if (this.active[alias] == null) {
-		this.active[alias] = [];
+			this.active[alias] = [];
 		}
 	},
 	/**
@@ -201,18 +201,18 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 		// A pool object contains an array of objects, and a variable
 		// of the type of the objects it contains.
 		if (this.pools[alias] == null) {
-		this.pools[alias] = {
-			objects: [],
-			type: type
-		};
+			this.pools[alias] = {
+				objects: [],
+				type: type
+			};
 
-		this.pools[alias].dynamic = true;
-		this.execute(this.INIT, this.pools[alias]);
+			this.pools[alias].dynamic = true;
+			this.execute(this.INIT, this.pools[alias]);
 		}
 
 		// Objects that are active on a given pool at any given time.
 		if (this.active[alias] == null) {
-		this.active[alias] = [];
+			this.active[alias] = [];
 		}
 	},
 	/**
@@ -263,7 +263,7 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 		var result = 0;
 
 		for (var k in this.pools) {
-		result += this.pools[k].objects.length;
+			result += this.pools[k].objects.length;
 		}
 
 		return result;
@@ -283,7 +283,7 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 		var result = 0;
 
 		for (var k in this.active) {
-		result += this.active[k].length;
+			result += this.active[k].length;
 		}
 
 		return result;
@@ -378,13 +378,13 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 	 */
 	createNewIfNeeded: function(type, force) {
 		if (force) {
-		this.createPooledObject(type);
-		return true;
+			this.createPooledObject(type);
+			return true;
 		}
 
 		if(!this.pools[type].maxAmount) {
-		this.createPooledObject(type);
-		return true;
+			this.createPooledObject(type);
+			return true;
 		}
 
 		return false;
@@ -426,7 +426,7 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 		this.clearConfigurations();
 
 		for (var k in this.pools) {
-		Util.destroyObject(this.pools[k]);
+			Util.destroyObject(this.pools[k]);
 		}
 
 		this.pools = {};
@@ -447,19 +447,19 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 		var k;
 
 		for(k in this.pools) {
-		var pool = this.pools[k].objects;
+			var pool = this.pools[k].objects;
 
-		while (pool.length > 0) {
-			Util.destroyObject(pool.pop());
-		}
+			while (pool.length > 0) {
+				Util.destroyObject(pool.pop());
+			}
 		}
 
 		for(k in this.active) {
-		var active = this.active[k];
+			var active = this.active[k];
 
-		while (active.length > 0){
-			Util.destroyObject(active.pop());
-		}
+			while (active.length > 0){
+				Util.destroyObject(active.pop());
+			}
 		}
 
 		this.execute(this.CLEAR_OBJECTS);
@@ -479,10 +479,10 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 		var configuration = this.configurations[configurationId];
 
 		if (configuration) {
-		Util.destroyObject(configuration);
-		delete this.configurations[configurationId];
+			Util.destroyObject(configuration);
+			delete this.configurations[configurationId];
 
-		this.execute(this.CLEAR_CONFIGURATION, configurationId);
+			this.execute(this.CLEAR_CONFIGURATION, configurationId);
 		}
 	},
 	/**
@@ -497,7 +497,7 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 	 */
 	clearConfigurations: function() {
 		for(var k in this.configurations) {
-		this.clearConfiguration(k);
+			this.clearConfiguration(k);
 		}
 
 		this.configurations = {};
@@ -519,7 +519,7 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 		var r = [];
 
 		for (var k in this.configurations) {
-		r.push(k);
+			r.push(k);
 		}
 
 		return r;
@@ -563,9 +563,9 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 		var activeObjects = this.getActiveObjects(poolId);
 
 		for (var i = 0; i < activeObjects.length; i++) {
-		if (activeObjects[i].typeId === oldId) {
-			activeObjects[i].typeId = newId;
-		}
+			if (activeObjects[i].typeId === oldId) {
+				activeObjects[i].typeId = newId;
+			}
 		}
 	},
 	/**
@@ -581,19 +581,19 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 	 */
 	toString: function() {
 		var r = {
-		name: this.getName()
+			name: this.getName()
 		}
 
 		var total = 0;
 
 		for (var k in this.pools) {
-		r[k] = {
-			pooled: this.pools[k].objects.length,
-			active: this.active[k].length,
-			total: this.pools[k].objects.length + this.active[k].length
-		}
+			r[k] = {
+				pooled: this.pools[k].objects.length,
+				active: this.active[k].length,
+				total: this.pools[k].objects.length + this.active[k].length
+			}
 
-		total += r[k].total;
+			total += r[k].total;
 		}
 
 		r['total'] = total;
