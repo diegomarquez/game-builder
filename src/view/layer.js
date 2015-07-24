@@ -199,6 +199,38 @@ define(["delegate"], function(Delegate) {
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>moveGameObjectToFront</strong></p>
+		 *
+		 * Moves the specified [game-object](@@game-object@@) to the front of the layer
+		 * This means it becomes the last object to be rendered
+		 * 
+		 * @param  {Object} go 
+		 */
+		moveGameObjectToFront: function(go) {
+			this.gameObjects.splice(this.gameObjects.indexOf(go), 1);
+			this.gameObjects.push(go);
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>moveGameObjectToBack</strong></p>
+		 *
+		 * Moves the specified [game-object](@@game-object@@) to the back of the layer
+		 * This means it becomes the first object to be rendered
+		 * 
+		 * @param  {Object} go 
+		 */
+		moveGameObjectToBack: function(go) {
+			this.gameObjects.splice(this.gameObjects.indexOf(go), 1);
+			this.gameObjects.unshift(go);
+		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>isVisible</strong></p>
