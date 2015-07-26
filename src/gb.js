@@ -540,18 +540,27 @@ define(function(require) {
 		 */
 	});
 
-	Object.defineProperty(Gb.prototype, 'game', { get: function() { return require('game'); } });
-	Object.defineProperty(Gb.prototype, 'groups', { get: function() { return require('groups'); } });
-	Object.defineProperty(Gb.prototype, 'viewports', { get: function() { return require('viewports'); } });
-	
-	Object.defineProperty(Gb.prototype, 'assembler', { get: function() { return require('assembler'); } });
-	Object.defineProperty(Gb.prototype, 'reclaimer', { get: function() { return require('reclaimer'); } });
+	var defineProperty = function(name, value) {
+		Object.defineProperty(Gb.prototype, name, { 
+			configurable: false,
+			enumerable: false,
+			writable: false,
+			value: value
+		});	
+	}
 
-	Object.defineProperty(Gb.prototype, 'goPool', { get: function() { return require('game-object-pool'); } });
-	Object.defineProperty(Gb.prototype, 'coPool', { get: function() { return require('component-pool'); } });
-	Object.defineProperty(Gb.prototype, 'jsonCache', { get: function() { return require('json-cache'); } });
+	defineProperty("game", require('game'));
+	defineProperty("groups", require('groups'));
+	defineProperty("viewports", require('viewports'));
 
-	Object.defineProperty(Gb.prototype, 'GAME_OBJECT_ADDED', { get: function() { return 'game-object-added'; } });
+	defineProperty("assembler", require('assembler'));
+	defineProperty("reclaimer", require('reclaimer'));
+
+	defineProperty("goPool", require('game-object-pool'));
+	defineProperty("coPool", require('component-pool'));
+	defineProperty("jsonCache", require('json-cache'));
+
+	defineProperty("GAME_OBJECT_ADDED", 'game-object-added');
 
 	return new Gb();
 });
