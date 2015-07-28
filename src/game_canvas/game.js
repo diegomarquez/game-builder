@@ -231,14 +231,8 @@ define(function(require) {
         // Execute all create events
         self.execute(self.CREATE);
 
-        var now;
-
         mainLoop = function() {
-          self.lastAnimationFrameId = window.requestAnimationFrame(mainLoop);
-
-          now = Date.now();
-          self.delta = (now - self.lastUpdate) / 1000;
-          self.lastUpdate = now;
+          self.delta = (Date.now() - self.lastUpdate) / 1000;
 
           // Execute all update extensions
           self.execute_extensions(self.UPDATE, self.delta);
@@ -250,6 +244,10 @@ define(function(require) {
           root.draw(self.context);
           // Recycle any [game-objects](@@game-object@@) marked for removal
           reclaimer.claimMarked();
+
+          self.lastUpdate = Date.now();
+
+          self.lastAnimationFrameId = window.requestAnimationFrame(mainLoop);
         }
 
         var vendors = ['ms', 'moz', 'webkit', 'o'];
