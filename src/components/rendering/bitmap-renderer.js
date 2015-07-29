@@ -56,6 +56,10 @@ define(["renderer", "image-cache"], function(Renderer, ImageCache) {
 		 * It sends the path configured to the [image-cache](@@image-cache@@) module.
 		 */
 		start: function(parent) {	
+			if (!this.path) {
+				ErrorPrinter.missingArgumentError('Bitmap Renderer', 'path');
+			}
+
 			ImageCache.cache(this.path);
 		},
 		/**

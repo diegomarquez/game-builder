@@ -1,5 +1,5 @@
 /**
- * # animation-path-renderer.js
+ * # animation-bitmap-renderer.js
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
@@ -7,18 +7,16 @@
  * [renderer](@@renderer@@)
  *
  * Depends of: 
- * [path-cache](@@path-cache@@)
+ * [image-cache](@@image-cache@@)
  * [error-printer](@@error-printer@@)
- * [util](@@util@@) 
- * [game](@@game@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
- * This module is similar to [path-renderer](@@path-renderer@@) with the difference that it let's you define many drawings that will
- * be played in a sequence to create a simple animation. This object provides basic functionality, to play, stop and pause the animation.
+ * This module is similar to [bitmap-renderer](@@bitmap-renderer@@) with the difference that it takes an image containing a strip of frames
+ * for an animation. This object provides basic functionality, to play, stop and pause the animation.
  * It assumes all the provided frames are in the correct sequence, that they all form part of the same animation and that the animation loops 
  *
- * For a little bit more control (and complexity) try using [animations-path-renderer](@@animations-path-renderer@@)
+ * For a little bit more control (and complexity) try using [animations-bitmap-renderer](@@animations-bitmap-renderer@@)
  *
  * This renderer can receive a bunch of configuration options
  * when setting it up in the [component-pool](@@component-pool@@). ej.
@@ -26,38 +24,19 @@
  * ``` javascript
  * gb.coPool.createConfiguration("PathAnimation", 'Path_Animation_Renderer')
 	.args({ 
-		//This name is used to identify the cached drawings
-		//This is required
-		name: 'RendererName',
-
-		//These set the total width and height of the paths in the animation
-		//This argument is only required if the renderer does not provide it. 
-		width: 100,
-		height: 100,
 		
+		//These set the width and height of each frame of the animation
+		//This argument is only required if the renderer does not provide it. 
+		frameWidth: 100,
+		frameHeight: 100,
+		
+		//The amount of frames the animation has, if the value is not passed in
+		//the module tries to guess it
+		frameCount: 2,
+
 		//These number defines the amount of time that each frame will be displayed.
 		//It is in seconds and it is required
 		frameDelay: 0.1,
-		
-		//Each element of this array defines a frame of animation
-		//It is required and can have as many elements as needed.
-		framePaths: [
-			function(context) {
-				draw.rectangle(context, 0, 0, 70, 30, "#FF0000", null, 1);
-			},
-			function(context) {
-				draw.rectangle(context, 0, 0, 70, 30, "#00FF00", null, 1);
-			},
-			function(context) {
-				draw.rectangle(context, 0, 0, 70, 30, "#0000FF", null, 1);
-			},
-			function(context) {
-				draw.rectangle(context, 0, 0, 70, 30, "#FFFFFF", null, 1);
-			},
-			function(context) {
-				draw.rectangle(context, 0, 0, 70, 30, "#00FFFF", null, 1);
-			}
-		],
 	
 		//This boolean indicates wheter the animation should loop after completing or just play once
 		//It is false by default
@@ -96,19 +75,24 @@
 /**
  * --------------------------------
  */
-define(["renderer", "path-cache", "error-printer", "util", "game"], function(Renderer, PathCache, ErrorPrinter, Util, Game) {
+define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCache, ErrorPrinter) {
 
-	var AnimationPathRenderer = Renderer.extend({
+	var canvas = null;
+
+	var AnimationBitmapRenderer = Renderer.extend({
 
 		init: function() {
 			this._super();
 
 			this.loop = false;
-			this.width = null;
-			this.height = null;
-			this.name = null;
-			this.frameDelay = null;
-			this.framePaths = null;
+			this.frameWidth = 0;
+			this.frameHeight = 0;
+			this.frameDelay = 0;
+			this.frameCount = 0;
+			this.path = '';
+			this.finishLoading = false;
+			this.frameIndex = 0;
+			this.delayTotal = 0;
 		},
 
 		/**
@@ -120,33 +104,24 @@ define(["renderer", "path-cache", "error-printer", "util", "game"], function(Ren
 		 * @throws {Error} If width, height, name, frameDelay or framePaths properties are not set
 		 */
 		start: function(parent) { 
-			if (!this.width && !this.height) {
-				ErrorPrinter.missingArgumentError('Animation Path Renderer', 'width', 'height');
-			}
-
-			if (!this.name) {
-				ErrorPrinter.missingArgumentError('Animation Path Renderer', 'name');
+			if (!this.frameWidth && !this.frameHeight) {
+				ErrorPrinter.missingArgumentError('Animation Bitmap Renderer', 'frameWidth', 'frameHeight');
 			}
 
 			if (!this.frameDelay) {
-				ErrorPrinter.missingArgumentError('Animation Path Renderer', 'frameDelay');
+				ErrorPrinter.missingArgumentError('Animation Bitmap Renderer', 'frameDelay');
 			}
 
-			if (!this.framePaths) {
-				ErrorPrinter.missingArgumentError('Animation Path Renderer', 'framePaths');
-			} else {
-				if (!Util.isArray(this.framePaths)) {
-					ErrorPrinter.wrongTypeArgumentError('Animation Path Renderer', 'framePaths', 'Array');  
-				}
+			if (!this.path) {
+				ErrorPrinter.missingArgumentError('Animation Bitmap Renderer', 'path');
 			}
 
-			for (var i = 0; i < this.framePaths.length; i++) {
-				PathCache.cache(this.name + '_' + i.toString(), this.width, this.height, function (frameIndex) {
-					return function (context) {
-						this.framePaths[frameIndex].call(this, context);  
-					}.bind(this)
-				}.bind(this)(i));
-			}
+			var self = this;
+
+			ImageCache.cacheStrip(this.path, this.frameWidth, this.frameHeight, this.frameCount, function(frameCount) {
+				self.finishLoading = true;
+				self.frameCount = frameCount;
+			});
 
 			this.stop();
 		},
@@ -162,13 +137,13 @@ define(["renderer", "path-cache", "error-printer", "util", "game"], function(Ren
 		 * @param  {Number} delta The time between the current update and the last
 		 */
 		update: function(delta) {
-			if (this.isPlaying) {
+			if (this.isPlaying && this.finishLoading) {
 				this.delayTotal += delta;
 			
 				if (this.delayTotal > this.frameDelay) {
 					this.delayTotal -= this.frameDelay;
 
-					if (this.frameIndex < this.framePaths.length-1) {
+					if (this.frameIndex < this.frameCount-1) {
 						this.frameIndex++;
 					} else {
 						if (this.loop) {
@@ -180,7 +155,7 @@ define(["renderer", "path-cache", "error-printer", "util", "game"], function(Ren
 						this.execute(this.COMPLETE);
 					}
 
-					this.currentFrameName = this.name + '_' + this.frameIndex.toString();
+					this.currentFrameName = this.path + '_' + this.frameIndex.toString();
 				} 
 			}
 		},
@@ -195,44 +170,17 @@ define(["renderer", "path-cache", "error-printer", "util", "game"], function(Ren
 		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
 		 */
 		draw: function(context, viewport) {			
-			context.drawImage(PathCache.get(this.currentFrameName), 
+			canvas = ImageCache.get(this.currentFrameName);
+
+			if (!canvas)
+				return;
+
+			context.drawImage(canvas, 
 				Math.floor(this.rendererOffsetX()), 
 				Math.floor(this.rendererOffsetY()), 
 				Math.floor(this.rendererWidth()), 
 				Math.floor(this.rendererHeight())
 			)
-		},
-		/**
-		 * --------------------------------
-		 */
-		
-		/**
-		 * <p style='color:#AD071D'><strong>rendererOffsetX</strong></p>
-		 *
-		 * @return {Number} The offset in the X axis of the renderer
-		 */
-		rendererOffsetX: function() { 
-			if (this.offset == 'center') {
-				return -this.rendererWidth()/2;
-			} else {
-				return this.offsetX; 
-			}
-		},
-		/**
-		 * --------------------------------
-		 */
-
-		/**
-		 * <p style='color:#AD071D'><strong>rendererOffsetY</strong></p>
-		 *
-		 * @return {Number} The offset in the Y axis of the renderer
-		 */
-		rendererOffsetY: function() { 
-			if (this.offset == 'center') {
-				return -this.rendererHeight()/2;
-			} else {
-				return this.offsetY;  
-			}
 		},
 		/**
 		 * --------------------------------
@@ -272,13 +220,65 @@ define(["renderer", "path-cache", "error-printer", "util", "game"], function(Ren
 		 */
 		pause: function() {
 			this.isPlaying = false;
-		}
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>rendererOffsetX</strong></p>
+		 *
+		 * @return {Number} The offset in the X axis of the renderer
+		 */
+		rendererOffsetX: function() { 
+			if (this.offset == 'center') {
+				return -this.rendererWidth()/2;
+			} else {
+				return this.offsetX; 
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererOffsetY</strong></p>
+		 *
+		 * @return {Number} The offset in the Y axis of the renderer
+		 */
+		rendererOffsetY: function() { 
+			if (this.offset == 'center') {
+				return -this.rendererHeight()/2;
+			} else {
+				return this.offsetY;  
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererWidth</strong></p>
+		 *
+		 * @return {Number} The width of the renderer
+		 */
+		rendererWidth: function() { return this.frameWidth; },
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererHeight</strong></p>
+		 *
+		 * @return {Number} The height of the renderer
+		 */
+		rendererHeight: function() { return this.frameHeight; }
 		/**
 		 * --------------------------------
 		 */
 	});
 
-	Object.defineProperty(AnimationPathRenderer.prototype, "COMPLETE", { get: function() { return 'complete'; } });
+	Object.defineProperty(AnimationBitmapRenderer.prototype, "COMPLETE", { get: function() { return 'complete'; } });
 
-	return AnimationPathRenderer;
+	return AnimationBitmapRenderer;
 });
