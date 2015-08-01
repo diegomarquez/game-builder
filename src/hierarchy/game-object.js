@@ -795,6 +795,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			this.canUpdate = false;
 			this.canDraw = false;
 			this.parent = null;
+
+			this.typeId = null;
 		},
 		/**
 		 * --------------------------------
@@ -1023,6 +1025,20 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			} else {
 				return this.parent.typeName() == 'GameObjectContainer';
 			}
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>isPooled</strong></p>
+		 *
+		 * If the object has a typeId it means it is active, otherwise it must have been recycled
+		 * 
+		 * @return {Boolean}
+		 */
+		isActive: function() {
+			return !!this.typeId;
 		},
 		/**
 		 * --------------------------------
