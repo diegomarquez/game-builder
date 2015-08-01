@@ -209,8 +209,12 @@ define(["delegate"], function(Delegate) {
 		 * @param  {Object} go 
 		 */
 		moveGameObjectToFront: function(go) {
-			this.gameObjects.splice(this.gameObjects.indexOf(go), 1);
-			this.gameObjects.push(go);
+			var index = this.gameObjects.indexOf(go);
+
+			if (index != -1) {
+				this.gameObjects.splice(index, 1);
+				this.gameObjects.push(go);	
+			}
 		},
 		/**
 		 * --------------------------------
@@ -225,8 +229,12 @@ define(["delegate"], function(Delegate) {
 		 * @param  {Object} go 
 		 */
 		moveGameObjectToBack: function(go) {
-			this.gameObjects.splice(this.gameObjects.indexOf(go), 1);
-			this.gameObjects.unshift(go);
+			var index = this.gameObjects.indexOf(go);
+
+			if (index != -1) {
+				this.gameObjects.splice(index, 1);
+				this.gameObjects.unshift(go);
+			}
 		},
 		/**
 		 * --------------------------------
