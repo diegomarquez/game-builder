@@ -123,7 +123,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	 * @param  {Object} go [game-object](@@game-object@@) to recycle
 	 */
 	Reclaimer.prototype.mark = function(go) {	
-		if (marked.indexOf(go) == -1) { 
+		if (marked.indexOf(go) == -1 && go.isActive()) { 
 			marked.push(go);
 
 			go.once(go.RECYCLE, this, function (go) {
