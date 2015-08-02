@@ -39,8 +39,12 @@
 		frameDelay: 0.1,
 	
 		//This boolean indicates wheter the animation should loop after completing or just play once
-		//It is false by default
+		//It is false by default. This setting has precendence over pingPong
 		loop: false,
+	
+		//This booelan indicates wheter the animation should play backwards once it reaches the end or gets back to the beginning
+		//It is false by default
+		pingPong: false,
 
 		//Use this if you want the registration point of the image to be the center
 		//This is optional
@@ -64,7 +68,14 @@
  * 
  * ``` javascript  
  * gameObject.renderer.on(gameObject.renderer.COMPLETE, function() {});
- * ``` 
+ * ```
+ *
+ * ### **COMPLETE_BACK** 
+ * When the animation reaches the first frame while in ping pong
+ * 
+ * ``` javascript  
+ * gameObject.renderer.on(gameObject.renderer.COMPLETE_BACK, function() {});
+ * ```
  */
 
 /**
@@ -85,6 +96,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 			this._super();
 
 			this.loop = false;
+			this.pingPong = false;
 			this.frameWidth = 0;
 			this.frameHeight = 0;
 			this.frameDelay = 0;
@@ -93,6 +105,8 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 			this.finishLoading = false;
 			this.frameIndex = 0;
 			this.delayTotal = 0;
+
+			this.direction = 1;
 		},
 
 		/**
@@ -143,19 +157,39 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 				if (this.delayTotal > this.frameDelay) {
 					this.delayTotal -= this.frameDelay;
 
-					if (this.frameIndex < this.frameCount-1) {
-						this.frameIndex++;
-					} else {
-						if (this.loop) {
-							this.frameIndex = 0;  
+					if (this.direction == 1) {
+						if (this.frameIndex < this.frameCount-1) {
+							this.frameIndex++;
 						} else {
-							this.pause();
+							if (this.loop) {
+								this.frameIndex = 0;  
+							} else if (this.pingPong) {
+								this.direction = -1;
+							} else {
+								this.pause();
+							}
+
+							this.execute(this.COMPLETE);
 						}
 
-						this.execute(this.COMPLETE);
+						this.currentFrameName = this.path + '_' + this.frameIndex.toString();
+
+						return;
 					}
 
-					this.currentFrameName = this.path + '_' + this.frameIndex.toString();
+					if (this.direction == -1) {
+						if (this.frameIndex > 0) {
+							this.frameIndex--;
+						} else {
+							this.direction = 1;
+
+							this.execute(this.COMPLETE_BACK);
+						}
+
+						this.currentFrameName = this.path + '_' + this.frameIndex.toString();
+
+						return;
+					}
 				} 
 			}
 		},
@@ -169,7 +203,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 * @param  {Context 2D} context     [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
 		 */
-		draw: function(context, viewport) {			
+		draw: function(context, viewport) {
 			canvas = ImageCache.get(this.currentFrameName);
 
 			if (!canvas)
@@ -207,7 +241,8 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 			this.isPlaying = false;
 			this.delayTotal = 0;
 			this.frameIndex = 0;
-			this.currentFrameName = this.name + '_' + this.frameIndex.toString();
+			this.direction = 1;
+			this.currentFrameName = this.path + '_' + this.frameIndex.toString();
 		},
 		/**
 		 * --------------------------------
@@ -279,6 +314,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 	});
 
 	Object.defineProperty(AnimationBitmapRenderer.prototype, "COMPLETE", { get: function() { return 'complete'; } });
+	Object.defineProperty(AnimationBitmapRenderer.prototype, "COMPLETE_BACK", { get: function() { return 'complete_back'; } });
 
 	return AnimationBitmapRenderer;
 });
