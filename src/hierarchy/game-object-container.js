@@ -39,6 +39,8 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 	var GameObjectContainer = GameObject.extend({
 		init: function() {
 			this._super();
+
+			this.childs = null;
 		},
 
 		/**
@@ -51,7 +53,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 
 			if(!this.childs) return;
 
-			for(var i=0; i<this.childs.length; i++){
+			for(var i=0; i<this.childs.length; i++) {
 				this.childs[i].start();
 			}
 		},
