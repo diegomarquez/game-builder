@@ -6,8 +6,10 @@
  * Inherits from: 
  * [renderer](@@renderer@@)
  *
- * Depends of: [image-cache](@@image-cache@@)
- *
+ * Depends of: 
+ * [image-cache](@@image-cache@@)
+ * [error-printer](@@error-printer@@)
+ * 
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
  * Mainly this is a wrapper to the [Image Object](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement?redirectlocale=en-US&redirectslug=DOM%2FHTMLImageElement)
@@ -46,7 +48,7 @@
 /**
  * --------------------------------
  */
-define(["renderer", "image-cache"], function(Renderer, ImageCache) {
+define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCache, ErrorPrinter) {
 
 	var image = null;
 
