@@ -379,6 +379,8 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 * @return {Object} An object like the one set in the **setChildOptions** method
 		 */
 		getChildOptions: function(child) {
+			if (!this.childrenOptions) this.childrenOptions = {};
+
 			if (this.childrenOptions[child.uid]) {
 				return this.childrenOptions[child.uid];	
 			} else {
