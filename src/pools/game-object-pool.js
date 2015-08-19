@@ -171,7 +171,11 @@ define(function(require) {
 		 * @return {Object} The configuration object requested
 		 */
 		getConfiguration: function(alias, nestedCall, createNew) {
-			var configuration = this.getConfigurationObject(alias);
+			if(!this.configurations[alias]) {
+				ErrorPrinter.printError('Game Object Pool', 'Configuration with id: '  + alias + ' does not exist');
+			}
+
+			var configuration = this.configurations[alias];
 			var pool = this.pools[configuration.type];
 
 			if(!nestedCall && !pool.maxAmount && !pool.dynamic) {
@@ -210,9 +214,7 @@ define(function(require) {
 		 * @return {Object} The configuration object requested
 		 */
 		getConfigurationObject: function(alias) {
-			var configuration = this.configurations[alias]
-
-			if(!configuration) {
+			if(!this.configurations[alias]) {
 				ErrorPrinter.printError('Game Object Pool', 'Configuration with id: '  + alias + ' does not exist');
 			}
 

@@ -377,13 +377,23 @@ define(["delegate", "util", "error-printer"], function(Delegate, Util, ErrorPrin
 	 * @return {Boolean}      True or false depending if an object was created or not
 	 */
 	createNewIfNeeded: function(type, force) {
+		var pool;
+
 		if (force) {
-			this.createPooledObject(type);
+			pool = this.pools[type];
+
+			pool.objects.push(new pool.type());
+			pool.objects[pool.objects.length-1].poolId = type;
+
 			return true;
 		}
 
 		if(!this.pools[type].maxAmount) {
-			this.createPooledObject(type);
+			pool = this.pools[type];
+
+			pool.objects.push(new pool.type());
+			pool.objects[pool.objects.length-1].poolId = type;
+			
 			return true;
 		}
 

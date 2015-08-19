@@ -41,41 +41,6 @@
  * --------------------------------
  */
 define(function(require) {
-	var processViewportArgument = function(vports) {
-		var v;
-
-		if (typeof vports == 'string') {
-			if (this.viewportsAliases[vports]) {
-				v = this.viewportsAliases[vports];
-			} else {
-				require('error-printer').printError('Gb', 'Viewport shortcut ' + vports + ' does not exist.');
-			}
-		} else {
-			if (Object.prototype.toString.call(vports) != '[object Array]') {
-				require('error-printer').printError('Gb', 'Viewport argument must be an array');
-			} else {
-				v = vports; 
-			}
-		}
-
-		return v;
-	}
-
-	var addToViewPorts = function(go, vports) {
-		var v = processViewportArgument.call(this, vports);
-
-		for (var i=0; i<v.length; i++) {
-			this.viewports.get(v[i].viewport).addGameObject(v[i].layer, go);
-		}
-	}
-
-	var removeFromViewPorts = function(go, vports) {
-		var v = processViewportArgument.call(this, vports);
-
-		for (var i=0; i<v.length; i++) {
-			this.viewports.get(v[i].viewport).removeGameObject(v[i].layer, go);
-		}
-	}
 
 	var toggle = function(state, prop) {
 		if (state === false || state === true) {
@@ -172,7 +137,10 @@ define(function(require) {
 		 * @return {Object} The [game-object](@@game-object@@) that was just assembled.
 		 */
 		add: function (goId, groupId, vports, args) {
-			var go = this.getGameObject(goId, groupId, vports, args, 'get'); 
+			var go = this.assembler.get(goId, args, false, false);
+			this.groups.get(groupId).add(go);
+			this.addToViewports(go, vports);
+
 			go.start();
 
 			this.execute(this.GAME_OBJECT_ADDED, go);
@@ -201,7 +169,10 @@ define(function(require) {
 		 * @return {Object} The [game-object](@@game-object@@) that was just assembled.
 		 */
 		create: function (goId, groupId, vports, args) {
-			var go = this.getGameObject(goId, groupId, vports, args, 'create');
+			var go = this.assembler.get(goId, args, false, true);
+			this.groups.get(groupId).add(go);
+			this.addToViewports(go, vports);
+
 			go.start();
 
 			this.execute(this.GAME_OBJECT_ADDED, go);
@@ -230,9 +201,17 @@ define(function(require) {
 		 * @return {Object} The [game-object](@@game-object@@) that was just assembled.
 		 */
 		getGameObject: function(goId, groupId, vports, args, method) {
-			var go = this.assembler[method](goId, args);
+			var go;
+
+			if (method == 'create') {
+				go = this.assembler.get(goId, args, false, true);
+			}
+			else {
+				go = this.assembler.get(goId, args, false, false);
+			}
+
 			this.groups.get(groupId).add(go);
-			addToViewPorts.call(this, go, vports);
+			this.addToViewports(go, vports);
 			
 			return go;
 		},
@@ -261,12 +240,20 @@ define(function(require) {
 		 * @return {Object} The child [game-object](@@game-object@@)
 		 */
 		addChildTo: function(parent, chidlGoId, vports, args, method, start) {
-			var child = this.assembler[method](chidlGoId, args);
-		
+			
+			var child;
+
+			if (method == 'create') {
+				child = this.assembler.get(chidlGoId, args, false, true);
+			}
+			else {
+				child = this.assembler.get(chidlGoId, args, false, false);
+			}
+
 			parent.add(child);
 
 			if (vports) {
-				addToViewPorts.call(this, child, vports);   
+				this.addToViewports(child, vports);   
 				parent.setChildOptions(child, { draw: false });
 			}
 			
@@ -296,7 +283,25 @@ define(function(require) {
 		 *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
 		 */
 		addToViewports: function(go, vports) {
-			addToViewPorts.call(this, go, vports);  
+			var v;
+
+			if (typeof vports == 'string') {
+				if (this.viewportsAliases[vports]) {
+					v = this.viewportsAliases[vports];
+				} else {
+					require('error-printer').printError('Gb', 'Viewport shortcut ' + vports + ' does not exist.');
+				}
+			} else {
+				if (Object.prototype.toString.call(vports) != '[object Array]') {
+					require('error-printer').printError('Gb', 'Viewport argument must be an array');
+				} else {
+					v = vports; 
+				}
+			}
+
+			for (var i=0; i < v.length; i++) {
+				this.viewports.get(v[i].viewport).addGameObject(v[i].layer, go);
+			}
 		},
 		/**
 		 * --------------------------------
@@ -313,7 +318,25 @@ define(function(require) {
 		 *                              If it is a string, it is used to pick one of the configurations already defined through **setViewportShortCut**
 		 */
 		removeFromViewports: function(go, vports) {
-			removeFromViewPorts.call(this, go, vports); 
+			var v;
+
+			if (typeof vports == 'string') {
+				if (this.viewportsAliases[vports]) {
+					v = this.viewportsAliases[vports];
+				} else {
+					require('error-printer').printError('Gb', 'Viewport shortcut ' + vports + ' does not exist.');
+				}
+			} else {
+				if (Object.prototype.toString.call(vports) != '[object Array]') {
+					require('error-printer').printError('Gb', 'Viewport argument must be an array');
+				} else {
+					v = vports; 
+				}
+			}
+
+			for (var i=0; i<v.length; i++) {
+				this.viewports.get(v[i].viewport).removeGameObject(v[i].layer, go);
+			}
 		},
 		/**
 		 * --------------------------------
@@ -456,7 +479,7 @@ define(function(require) {
 			var go = this.assembler.get(goId);
 			this.groups.get(groupId).add(go);
 			
-			addToViewPorts.call(this, go, vports);
+			this.addToViewports(go, vports);
 			
 			go.renderer.text = text;
 			go.start();
