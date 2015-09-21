@@ -364,6 +364,8 @@ define(function(require) {
 
 			this.execute(this.REMOVE);
 
+			this.removeAll();
+
 			this.destroy();
 		},
 		/**
