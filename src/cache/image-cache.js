@@ -96,6 +96,9 @@ define(function(require) {
 	  				canvas.width = frameWidth;
 	  				canvas.height = frameHeight;
 
+					canvas.getContext("2d").mozImageSmoothingEnabled = false;
+					canvas.getContext("2d").imageSmoothingEnabled = false;
+
 	  				canvas.getContext("2d").drawImage(image, frameWidth*i, 0, frameWidth, frameHeight, 0, 0, frameWidth, frameHeight);
 
 	  				self.cacheObject[path + '_' + i] = canvas;
