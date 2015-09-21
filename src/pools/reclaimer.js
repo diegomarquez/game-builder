@@ -103,7 +103,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	 * 
 	 * @param  {Object} go [game-object](@@game-object@@) to recycle
 	 */
-	Reclaimer.prototype.claim = function(go) {	
+	Reclaimer.prototype.claim = function(go) {
 		if (go.parent) {
 			go.parent.remove(go);
 		}
@@ -127,7 +127,11 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 			marked.push(go);
 
 			go.once(go.RECYCLE, this, function (go) {
-				marked.splice(marked.indexOf(go), 1);
+				var index = marked.indexOf(go);
+
+				if (index != -1) {
+					marked.splice(index, 1);
+				}
 			}); 	
 		}
 	},
@@ -142,7 +146,9 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	 */
 	Reclaimer.prototype.claimMarked = function() {
 		for (var i = marked.length-1; i >= 0; i--) {
-			this.claim(marked[i]);
+			if (marked[i]) {
+				this.claim(marked[i]);
+			}
 		}
 
 		if (this.clearObjectsFromPools) {
