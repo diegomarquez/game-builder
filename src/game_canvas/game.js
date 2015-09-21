@@ -231,8 +231,8 @@ define(function(require) {
         // Execute all create events
         self.execute(self.CREATE);
 
-        mainLoop = function() {
-          self.delta = (Date.now() - self.lastUpdate) / 1000;
+        mainLoop = function(time) {
+          self.delta = (time - self.lastUpdate) / 1000;
 
           // Execute all update extensions
           self.execute_extensions(self.UPDATE, self.delta);
@@ -245,7 +245,7 @@ define(function(require) {
           // Recycle any [game-objects](@@game-object@@) marked for removal
           reclaimer.claimMarked();
 
-          self.lastUpdate = Date.now();
+          self.lastUpdate = time;
 
           self.lastAnimationFrameId = window.requestAnimationFrame(mainLoop);
         }
