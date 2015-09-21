@@ -294,6 +294,10 @@ define(["class", "util"], function(Class, Util) {
 		 * @param  {String} [method='call'] Whether to use **call** or **apply** to execute the callbacks. This affects how the arguments are interpreted.
 		 */
 		execute: function(name, args, method) {
+
+			if (!this.callbackList)
+				throw new Error('No callback list found, did you forget to call init._super() ?');
+
 			var list = this.callbackList[name];
 
 			if (!list) return;
