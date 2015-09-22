@@ -209,9 +209,6 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 			if (!canvas)
 				return;
 
-			context.mozImageSmoothingEnabled = false;
-			context.imageSmoothingEnabled = false;
-
 			context.drawImage(canvas, 
 				Math.floor(this.rendererOffsetX()), 
 				Math.floor(this.rendererOffsetY()), 
