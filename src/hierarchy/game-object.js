@@ -976,6 +976,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		hasRenderer: function() {
 			return !!this.renderer;
 		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>hasComponents</strong></p>
@@ -989,6 +992,23 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 
 			return false;
 		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>getComponents</strong></p>
+		 *
+		 * Gets the array of [component](@@component@@) objects
+		 * 
+		 * @return {Array} [description]
+		 */
+		getComponents: function() {
+			return this.components;
+		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>isContainer</strong></p>
