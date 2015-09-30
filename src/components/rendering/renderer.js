@@ -34,14 +34,21 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		init: function() {
 			this._super();
 
-			this.offsetX = 0;
-			this.offsetY = 0;
-
-			this.debugColor = "#FFFF00";
+			this.reset();
 		},
 		/**
 		 * --------------------------------
 		 */
+		
+		reset: function() {
+			this._super();
+
+			this.offsetX = 0;
+			this.offsetY = 0;
+			this.offset = '';
+
+			this.debugColor = "#FFFF00";
+		},
 
 		/**
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
