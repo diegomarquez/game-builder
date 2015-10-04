@@ -402,22 +402,22 @@ define(function() {
 
 		context.beginPath();
 
-		var diffX, diffY;
+		var midX, midY;
 		var anchorX, anchorY;
 		var normalSide = positive;
 
 		for (var i = 1; i < points.length; i++) {
-			diffX = (points[i].x + points[i-1].x)/2; 
-			diffY = (points[i].y + points[i-1].y)/2;
+			midX = (points[i-1].x + points[i].x)/2; 
+			midY = (points[i-1].y + points[i].y)/2;
 
-			var angle = Math.atan2(diffY, diffX) + Math.PI/2;
+			var angle = Math.atan2(points[i-1].y - points[i].y, points[i-1].x - points[i].x) + Math.PI/2;
 
 			if (normalSide) {
-				anchorX = diffX + Math.cos(angle) * anchorDistance;
-				anchorY = diffY + Math.sin(angle) * anchorDistance;
+				anchorX = midX + Math.cos(angle) * anchorDistance;
+				anchorY = midY + Math.sin(angle) * anchorDistance;
 			} else {
-				anchorX = diffX + Math.cos(angle) * -anchorDistance;
-				anchorY = diffY + Math.sin(angle) * -anchorDistance;
+				anchorX = midX + Math.cos(angle) * -anchorDistance;
+				anchorY = midY + Math.sin(angle) * -anchorDistance;
 			}
 
 			context.moveTo((points[i-1].x * scale) + x, (points[i-1].y * scale) + y);
@@ -478,7 +478,7 @@ define(function() {
 		var currentAbsoluteX, currentAbsoluteY; 
 
 		for (var i = 1; i < points.length; i++) {
-			diffX = ((points[i].x + lastAbsoluteX)  + lastAbsoluteX)/2; 
+			diffX = ((points[i].x + lastAbsoluteX) + lastAbsoluteX)/2; 
 			diffY = ((points[i].y + lastAbsoluteY) + lastAbsoluteY)/2;
 
 			var angle = Math.atan2(diffY, diffX) + Math.PI/2;
