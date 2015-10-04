@@ -118,6 +118,8 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 * @throws {Error} If width, height, name, frameDelay or framePaths properties are not set
 		 */
 		start: function(parent) { 
+			this._super(parent);
+
 			if (!this.frameWidth && !this.frameHeight) {
 				ErrorPrinter.missingArgumentError('Animation Bitmap Renderer', 'frameWidth', 'frameHeight');
 			}
