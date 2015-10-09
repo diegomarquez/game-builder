@@ -233,6 +233,12 @@ define(function(require) {
 		keyboard.execute('keydown' + event.keyCode.toString(), event);
 	}, false);
 
+	window.addEventListener('blur', function(event){
+		for (var k in pressed) {
+			delete pressed[k];
+		}
+	}, false);
+
 	// Prevent default behaviour of keys in the browser
 	document.onkeydown = function(event) {
 		if (keyboard.skipDefaultBehaviour.indexOf(event.keyCode) != -1) {
