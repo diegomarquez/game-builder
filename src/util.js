@@ -27,6 +27,23 @@
 define(function() {
 	var Utils = function() {}
 
+	Utils.prototype.distance = function(x1, y1, x2, y2) {
+		var deltaX = x1 - x2;
+		var deltaY = y1 - y2;
+
+		return Math.sqrt((deltaX*deltaX) + (deltaY*deltaY))
+	}
+
+	Utils.prototype.polylineLength = function(polyline) {
+		var result = 0;
+
+		for (var i = 0; i < polyline.length-1; i++) {
+			result += this.distance(polyline[i].x, polyline[i].y, polyline[i+1].x, polyline[i+1].y);
+		}
+
+		return result;
+	}
+
 	/**
 	 * <p style='color:#AD071D'><strong>normalize</strong></p>
 	 *
