@@ -234,16 +234,18 @@ define(function(require) {
         mainLoop = function(time) {
           self.delta = (time - self.lastUpdate) / 1000;
 
-          // Execute all update extensions
-          self.execute_extensions(self.UPDATE, self.delta);
-          // Update all [game-objects](@@game-object@@)
-          root.update(self.delta);
-          // Execute all update events
-          self.execute(self.UPDATE, self.delta);
-          // Draw to all the [viewports](@@viewport@@)
-          root.draw(self.context);
-          // Recycle any [game-objects](@@game-object@@) marked for removal
-          reclaimer.claimMarked();
+          if (self.delta >= 0 &&  self.delta < 1) {
+          	// Execute all update extensions
+          	self.execute_extensions(self.UPDATE, self.delta);
+          	// Update all [game-objects](@@game-object@@)
+          	root.update(self.delta);
+          	// Execute all update events
+          	self.execute(self.UPDATE, self.delta);
+          	// Draw to all the [viewports](@@viewport@@)
+          	root.draw(self.context);
+          	// Recycle any [game-objects](@@game-object@@) marked for removal
+          	reclaimer.claimMarked();
+          }
 
           self.lastUpdate = time;
 
@@ -310,6 +312,7 @@ define(function(require) {
         if (!self.initialized) {
           setupUpdateLoop();
         } else {
+
           if (self.focus) {
             self.blur = true;
             self.focus = false;
