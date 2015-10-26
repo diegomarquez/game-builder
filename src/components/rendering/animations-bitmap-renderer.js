@@ -341,6 +341,18 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 */
 		
 		/**
+		 * <p style='color:#AD071D'><strong>resume</strong></p>
+		 *
+		 * Resumes the current animation
+		 */
+		resume: function() {
+			this.isPlaying = true;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
 		 * <p style='color:#AD071D'><strong>rendererOffsetX</strong></p>
 		 *
 		 * @return {Number} The offset in the X axis of the renderer
