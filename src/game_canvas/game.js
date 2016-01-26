@@ -150,6 +150,8 @@ define(function(require) {
       if (this.initialized && ex.type() == this.CREATE) {
       	ex.execute(args);
       }
+
+      this.execute(this.EXTENSION_ADDED, ex);
     },
     /**
      * --------------------------------
@@ -361,6 +363,8 @@ define(function(require) {
   Object.defineProperty(Game.prototype, "UPDATE", { get: function() { return 'update'; } });
   Object.defineProperty(Game.prototype, "FOCUS", { get: function() { return 'focus'; } });
   Object.defineProperty(Game.prototype, "BLUR", { get: function() { return 'blur'; } });
+
+  Object.defineProperty(Game.prototype, "EXTENSION_ADDED", { get: function() { return 'extension_added'; } });
 
   Object.defineProperty(Game.prototype, "CHANGE_WIDTH", { get: function() { return 'change_width'; } });
   Object.defineProperty(Game.prototype, "CHANGE_HEIGHT", { get: function() { return 'change_height'; } });
