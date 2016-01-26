@@ -255,6 +255,22 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 */
 		
 		/**
+		 * <p style='color:#AD071D'><strong>isAtLabel</strong></p>
+		 *
+		 * Check if the specified label is the current one
+		 * 
+		 * @param  {String}  selectedLabel
+		 *
+		 * @return {Boolean} Wether the label is active or not
+		 */
+		 isAtLabel: function(selectedLabel) {	
+		 	return this.labels[selectedLabel] === this.currentLabel;
+		 },
+		 /**
+		  * --------------------------------
+		  */
+
+		/**
 		 * <p style='color:#AD071D'><strong>play</strong></p>
 		 *
 		 * Plays the animation defined by the specified label
