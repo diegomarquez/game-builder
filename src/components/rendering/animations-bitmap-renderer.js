@@ -181,7 +181,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		update: function(delta) {
 			if (this.isPlaying && this.finishLoading) {
 				
-				if (this.currentFrames.length == 1) {
+				if (this.currentFrames.length === 1) {
 					this.currentFrameName = this.path + '_' + this.currentFrames[0].toString();
 					return;
 				}
@@ -191,7 +191,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 				if (this.delayTotal > this.frameDelay) {
 					this.delayTotal -= this.frameDelay;
 
-					if (this.direction == 1) {
+					if (this.direction === 1) {
 						if (this.frameIndex < this.currentFrames.length-1) {
 							this.frameIndex++;
 						} else {
@@ -211,12 +211,33 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 						return;
 					}
 
-					if (this.direction == -1) {
+					if (this.direction === -1) {
 						if (this.frameIndex > 0) {
 							this.frameIndex--;
 						} else {
 							this.direction = 1;
 
+							this.execute(this.COMPLETE_BACK);
+						}
+
+						this.currentFrameName = this.path + '_' + this.currentFrames[this.frameIndex].toString();
+
+						return;
+					}
+
+					if (this.direction === -2) {
+						if (this.frameIndex > 0) {
+							this.frameIndex--;
+						} else {
+
+							if (this.loop) {
+								this.frameIndex = this.currentFrames.length-1;  
+							} else if (this.pingPong) {
+								this.direction = 1;	
+							} else {
+								this.pause();
+							}
+							
 							this.execute(this.COMPLETE_BACK);
 						}
 
@@ -289,6 +310,21 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 			this.delayTotal = 0;
 			this.frameIndex = 0;
 			this.currentFrameName = this.path + '_' + this.currentFrames[0].toString();
+			this.direction = 1;
+
+			this.isPlaying = true;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>reverse</strong></p>
+		 *
+		 * Reverse the animation playback to the first frame of the current label
+		 */
+		reverse: function() {
+			this.direction = -2;
 
 			this.isPlaying = true;
 		},
@@ -313,6 +349,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 			this.delayTotal = 0;
 			this.frameIndex = 0;
 			this.currentFrameName = this.path + '_' + this.currentFrames[0].toString();
+			this.direction = 1;
 
 			this.isPlaying = true;
 		},
@@ -337,6 +374,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 			this.delayTotal = 0;
 			this.frameIndex = 0;
 			this.currentFrameName = this.path + '_' + this.currentFrames[0].toString();
+			this.direction = 1;
 
 			this.isPlaying = false;
 		},
