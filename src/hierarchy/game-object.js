@@ -1063,6 +1063,34 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>isRunning</strong></p>
+		 *
+		 * Whether the game object is being updated ot not
+		 * 
+		 * @return {Boolean}
+		 */
+		isRunning: function() {
+			return this.canUpdate;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>isRunning</strong></p>
+		 *
+		 * Whether the game object is being drawn
+		 * 
+		 * @return {Boolean}
+		 */
+		isDrawing: function() {
+			return this.canDraw;
+		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
