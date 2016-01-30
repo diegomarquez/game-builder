@@ -274,6 +274,46 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 */
 		
 		/**
+		 * <p style='color:#AD071D'><strong>stop</strong></p>
+		 *
+		 * Prevents updating on itself and all of it's children
+		 *
+		 * @param {Boolean} [skipEvent=false]
+		 */
+		stop: function(skipEvent) {
+			this._super(skipEvent);
+
+			if(!this.childs) return;
+
+			for(var i=0; i<this.childs.length; i++){
+				this.childs[i].stop(skipEvent);
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>run</strong></p>
+		 *
+		 * Enables updating on itself and all of it's childdren
+		 *
+		 * @param {Boolean} [skipEvent=false]
+		 */
+		run: function(skipEvent) {
+			this._super(skipEvent);
+
+			if(!this.childs) return;
+
+			for(var i=0; i<this.childs.length; i++){
+				this.childs[i].run(skipEvent);
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
 		 * <p style='color:#AD071D'><strong>toggleVisibility</strong></p>
 		 *
 		 * Toggles the rendering of itself and all of it's children
