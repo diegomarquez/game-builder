@@ -146,7 +146,7 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 		 * @return {Number} The offset in the X axis of the renderer
 		 */
 		rendererOffsetX: function() { 
-			if (this.offset == 'center') {
+			if (this.offset === 'center') {
 				return -this.rendererWidth()/2;
 			} else {
 				return this.offsetX; 
@@ -162,7 +162,7 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 		 * @return {Number} The offset in the Y axis of the renderer
 		 */
 		rendererOffsetY: function() { 
-			if (this.offset == 'center') {
+			if (this.offset === 'center') {
 				return -this.rendererHeight()/2;
 			} else {
 				return this.offsetY;  

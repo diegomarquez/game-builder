@@ -638,7 +638,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 				p3 = m.transformPoint(rOffsetX + rWidth, rOffsetY + rHeight, p3);
 				p4 = m.transformPoint(rOffsetX, rOffsetY + rHeight, p4);
 
-				// Viewports matrix
+				// Viewport's matrix
 				vm = this.getMatrix();
 			
 				// Get the canvas coordinates of the game object's corners to build the game object collider that will work in canvas space

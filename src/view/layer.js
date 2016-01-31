@@ -23,7 +23,6 @@
  * --------------------------------
  */
 define(["delegate"], function(Delegate) {
-		var r = {};
 
 		var Layer = Delegate.extend({
 

@@ -36,6 +36,9 @@ define(["component", "vector-2D", "error-printer"], function(Component, Vector2D
 		init: function() {
 			this._super();
 
+			this.width = 0;
+			this.height = 0;
+
 			this.reset();
 		},
 		/**
@@ -195,20 +198,22 @@ define(["component", "vector-2D", "error-printer"], function(Component, Vector2D
 
 			context.translate(-0.5, -0.5);
 
+			var m = this.parent.getMatrix();
+
 			// Top Left 
-			r = this.parent.getMatrix().transformPoint(this.rendererLeft(), this.rendererTop(), r); 
+			r = m.transformPoint(this.rendererLeft(), this.rendererTop(), r); 
 			context.moveTo(Math.round(r.x), Math.round(r.y));
 
 			// Top Right
-			r = this.parent.getMatrix().transformPoint(this.rendererRight(), this.rendererTop(), r); 
+			r = m.transformPoint(this.rendererRight(), this.rendererTop(), r); 
 			context.lineTo(Math.round(r.x), Math.round(r.y));			
 
 			// Bottom Right
-			r = this.parent.getMatrix().transformPoint(this.rendererRight(), this.rendererBottom(), r); 
+			r = m.transformPoint(this.rendererRight(), this.rendererBottom(), r); 
 			context.lineTo(Math.round(r.x), Math.round(r.y));			
 
 			// Bottom Left
-			r = this.parent.getMatrix().transformPoint(this.rendererLeft(), this.rendererBottom(), r); 
+			r = m.transformPoint(this.rendererLeft(), this.rendererBottom(), r); 
 			context.lineTo(Math.round(r.x), Math.round(r.y));
 
 			context.closePath();

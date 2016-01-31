@@ -88,276 +88,301 @@
  * --------------------------------
  */
 define(function(require) {
-  var delegate = require("delegate");
-  var root = require("root");
-  var reclaimer = require("reclaimer");
+	var delegate = require("delegate");
+	var root = require("root");
+	var reclaimer = require("reclaimer");
 
-  var Game = delegate.extend({
-    init: function() {
-      this._super();
+	var blur = false;
+	var self = null;
 
-      this.focus = true;
-      this.blur = true;
-      this.initialized = false;
-      this.lastUpdate = null;
-      this.lastAnimationFrameId = null;
-      this.delta = null;
+	var Game = delegate.extend({
+		init: function() {
+			this._super();
 
-      // A reference to the main div in the corresponding index.html file
-      this.mainContainer = null;
-      // A reference to the canvas
-      this.canvas = null;
-      // A reference to the context of the canvas
-      this.context = null;
-    },
+			this.focus = true;
+			this.blur = true;
+			this.initialized = false;
+			this.lastUpdate = null;
+			this.lastAnimationFrameId = null;
+			this.delta = null;
 
-    /**
-     * <p style='color:#AD071D'><strong>execute_extensions</strong></p>
-     *
-     * Executes all the extensions for the given state of the application
-     *
-     * @param  {String} state The state of the application. ej. 'create'
-     */
-    execute_extensions: function(state, args) {
-      for(var i=0; i<this.extensions[state].length; i++) {
-      	var ex = this.extensions[state][i];
+			// A reference to the main div in the corresponding index.html file
+			this.mainContainer = null;
+			// A reference to the canvas
+			this.canvas = null;
+			// A reference to the context of the canvas
+			this.context = null;
 
-        ex.extension.execute(ex.args, args);
-      }
-    },
-    /**
-     * --------------------------------
-     */
+			self = this;
+		},
 
-    /**
-     * <p style='color:#AD071D'><strong>add_extension</strong></p>
-     *
-     * Use this to add extensions. If the extension has already been added this method call does nothing.
-     *
-     * @param {[extension](@@extension@@)} extensionModule A module that extends [extension](@@extension@@)
-     * @param {Object=null} args An object with arguments that will be passed to the extension when it is executed
-     */
-    add_extension: function(extensionModule, args) {
-      if (this.get_extension(extensionModule)) return;
+		/**
+		 * <p style='color:#AD071D'><strong>execute_extensions</strong></p>
+		 *
+		 * Executes all the extensions for the given state of the application
+		 *
+		 * @param  {String} state The state of the application. ej. 'create'
+		 */
+		execute_extensions: function(state, args) {
+			for(var i=0; i<this.extensions[state].length; i++) {
+				var ex = this.extensions[state][i];
 
-      var ex = new extensionModule();
+				ex.extension.execute(ex.args, args);
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
 
-      this.extensions[ex.type()].push({
-      	extension: ex,
-      	args: args
-      });
+	    /**
+	     * <p style='color:#AD071D'><strong>add_extension</strong></p>
+	     *
+	     * Use this to add extensions. If the extension has already been added this method call does nothing.
+	     *
+	     * @param {[extension](@@extension@@)} extensionModule A module that extends [extension](@@extension@@)
+	     * @param {Object=null} args An object with arguments that will be passed to the extension when it is executed
+	     */
+	    add_extension: function(extensionModule, args) {
+			if (this.get_extension(extensionModule))
+				return;
 
-      if (this.initialized && ex.type() == this.CREATE) {
-      	ex.execute(args);
-      }
+			var ex = new extensionModule();
 
-      this.execute(this.EXTENSION_ADDED, ex);
-    },
-    /**
-     * --------------------------------
-     */
-    
-    /**
-     * <p style='color:#AD071D'><strong>get_extension</strong></p>
-     *
-     * Use this to get an instance of a currently active [extension](@@extension@@).
-     *
-     * @param {[extension](@@extension@@)} extensionModule The constructor for the [extension](@@extension@@) to retrieve
-     *
-     * @return {[extension](@@extension@@)} The matching [extension](@@extension@@) 
-     */
-    get_extension: function(extensionModule) {
-      for (var t in this.extensions) {
-    		var list = this.extensions[t];
-    		
-    		for (var i = list.length-1; i >= 0; i--) {
-	    		if (list[i].extension.constructor === extensionModule) {
-	    			return list[i].extension;
-	    		}
-	    	}	
-    	}
-    },
-    /**
-     * --------------------------------
-     */
-    
-    /**
-     * <p style='color:#AD071D'><strong>remove_extension</strong></p>
-     *
-     * Use this to remove extensions.
-     *
-     * @param {[extension](@@extension@@)} extensionModule The [extension](@@extension@@) module to remove
-     */
-    remove_extension: function(extensionModule) {     
-    	for (var t in this.extensions) {
-    		var list = this.extensions[t];
+			this.extensions[ex.type()].push({
+				extension: ex,
+				args: args
+			});
 
-    		for (var i = list.length-1; i >= 0; i--) {
-	    		if (list[i].extension.constructor === extensionModule) {
-	    			list[i].extension.destroy();
-	    			list.splice(i, 1);
-	    		}
-	    	}	
-    	}
-    },
-    /**
-     * --------------------------------
-     */
+			if (this.initialized && ex.type() == this.CREATE) {
+				ex.execute(args);
+			}
 
-    /**
-     * <p style='color:#AD071D'><strong>create</strong></p>
-     *
-     * The main method that will kick start everything.
-     *
-     * This method does a bunch of things. The main one being setting up the update loop
-     * using [request animation frame](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/)
-     *
-     * The focus and blur events are also setup here.
-     *
-     * If the application does not have focus as soon as it starts, it waits until it has focus
-     * to setup the update loop.
-     */
-    create: function() {
-      this.mainContainer = document.getElementById('main');
-      this.canvas = document.getElementById('game');
-      this.context = this.canvas.getContext("2d");
+			this.execute(this.EXTENSION_ADDED, ex);
+	    },
+	    /**
+	     * --------------------------------
+	     */
+	    
+	    /**
+	     * <p style='color:#AD071D'><strong>get_extension</strong></p>
+	     *
+	     * Use this to get an instance of a currently active [extension](@@extension@@).
+	     *
+	     * @param {[extension](@@extension@@)} extensionModule The constructor for the [extension](@@extension@@) to retrieve
+	     *
+	     * @return {[extension](@@extension@@)} The matching [extension](@@extension@@) 
+	     */
+	    get_extension: function(extensionModule) {
+	      for (var t in this.extensions) {
+	    		var list = this.extensions[t];
+	    		
+	    		for (var i = list.length-1; i >= 0; i--) {
+		    		if (list[i].extension.constructor === extensionModule) {
+		    			return list[i].extension;
+		    		}
+		    	}	
+	    	}
+	    },
+	    /**
+	     * --------------------------------
+	     */
+	    
+	    /**
+	     * <p style='color:#AD071D'><strong>remove_extension</strong></p>
+	     *
+	     * Use this to remove extensions.
+	     *
+	     * @param {[extension](@@extension@@)} extensionModule The [extension](@@extension@@) module to remove
+	     */
+	    remove_extension: function(extensionModule) {     
+	    	for (var t in this.extensions) {
+	    		var list = this.extensions[t];
 
-      var mainLoop;
-      var self = this;
+	    		for (var i = list.length-1; i >= 0; i--) {
+		    		if (list[i].extension.constructor === extensionModule) {
+		    			list[i].extension.destroy();
+		    			list.splice(i, 1);
+		    		}
+		    	}	
+	    	}
+	    },
+	    /**
+	     * --------------------------------
+	     */
 
-      // When this is called the application has trully started.
-      var setupUpdateLoop = function() {
-        self.initialized = true;
-        // Execute all create extensions
-        self.execute_extensions(self.CREATE);
-        // Execute all create events
-        self.execute(self.CREATE);
+	    /**
+	     * <p style='color:#AD071D'><strong>create</strong></p>
+	     *
+	     * The main method that will kick start everything.
+	     *
+	     * This method does a bunch of things. The main one being setting up the update loop
+	     * using [request animation frame](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/)
+	     *
+	     * The focus and blur events are also setup here.
+	     *
+	     * If the application does not have focus as soon as it starts, it waits until it has focus
+	     * to setup the update loop.
+	     */
+	    create: function() {
+			this.mainContainer = document.getElementById('main');
+			this.canvas = document.getElementById('game');
+			this.context = this.canvas.getContext("2d");
 
-        mainLoop = function(time) {
-          self.delta = (time - self.lastUpdate) / 1000;
+			// References to the blur and focus callbacks
+			// The [pause](@@pause@@) and [resume](@@resume@@)
+			// extensions use these.
+			this.blurAction = this.onBlur;
+			this.focusAction = this.onFocus;
 
-          if (self.delta >= 0 &&  self.delta < 1) {
-          	// Execute all update extensions
-          	self.execute_extensions(self.UPDATE, self.delta);
-          	// Update all [game-objects](@@game-object@@)
-          	root.update(self.delta);
-          	// Execute all update events
-          	self.execute(self.UPDATE, self.delta);
-          	// Draw to all the [viewports](@@viewport@@)
-          	root.draw(self.context);
-          	// Recycle any [game-objects](@@game-object@@) marked for removal
-          	reclaimer.claimMarked();
-          }
+			// Actually setting up the listener to the events
+			// window dispatches.
+			window.addEventListener("blur", this.onBlur);
+			window.addEventListener("focus", this.onFocus);
 
-          self.lastUpdate = time;
+			// Making sure we have focus setting up the update loop.
+			// If there is no focus, wait until it is gained to setup the update loop.
+			if (document.hasFocus()) {
+				this.setupUpdateLoop();
+			}
+	    },
+	    /**
+	     * --------------------------------
+	     */
+	    
+	    /**
+	     * <p style='color:#AD071D'><strong>mainLoop</strong></p>
+	     *
+	     * The main game loop
+	     */
+	    mainLoop: function(time) {
+			self.delta = (time - self.lastUpdate) / 1000;
 
-          self.lastAnimationFrameId = window.requestAnimationFrame(mainLoop);
-        }
+			if (self.delta >= 0 &&  self.delta < 1) {
+				// Execute all update extensions
+				self.execute_extensions('update', self.delta);
+				// Update all [game-objects](@@game-object@@)
+				root.update(self.delta);
+				// Execute all update events
+				self.execute('update', self.delta);
+				// Draw to all the [viewports](@@viewport@@)
+				root.draw(self.context);
+				// Recycle any [game-objects](@@game-object@@) marked for removal
+				reclaimer.claimMarked();
+			}
 
-        var vendors = ['ms', 'moz', 'webkit', 'o'];
+			self.lastUpdate = time;
 
-        for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-          window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
-          window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
-        }
+			self.lastAnimationFrameId = window.requestAnimationFrame(self.mainLoop);
 
-        if (!window.requestAnimationFrame) {
-          window.requestAnimationFrame = function(callback) {
-            return window.setTimeout(callback, 1000 / 60);;
-          };
-        }
+	    },
+	    /**
+	     * --------------------------------
+	     */
+	    
+	  	/**
+	  	 * <p style='color:#AD071D'><strong>setupUpdateLoop</strong></p>
+	  	 *
+	  	 * When this is called the application has started
+	  	 */
+	    setupUpdateLoop: function() {
+	    	this.initialized = true;
+	        // Execute all create extensions
+	        this.execute_extensions(this.CREATE);
+	        // Execute all create events
+	        this.execute(this.CREATE);
 
-        if (!window.cancelAnimationFrame) {
-          window.cancelAnimationFrame = function(id) {
-            window.clearTimeout(id);
-          };
-        }
+	        var vendors = ['ms', 'moz', 'webkit', 'o'];
 
-        self.lastUpdate = Date.now();
+	        for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+				window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+				window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+	        }
 
-        self.lastAnimationFrameId = window.requestAnimationFrame(mainLoop);
-      };
+	        if (!window.requestAnimationFrame) {
+				window.requestAnimationFrame = function(callback) {
+					return window.setTimeout(callback, 1000 / 60);;
+				};
+	        }
 
-      // The blur and focus event callbacks
-      // Plus additional logic so that they don't get executed
-      // more than needed.
-      var blur = false;
+	        if (!window.cancelAnimationFrame) {
+				window.cancelAnimationFrame = function(id) {
+					window.clearTimeout(id);
+				};
+	        }
 
-      var onBlur = function() {
-        var oldBlur = self.blur;
+	        this.lastUpdate = Date.now();
 
-        if (self.blur) {
-          self.blur = false;
-          self.focus = true;
+	        this.lastAnimationFrameId = window.requestAnimationFrame(this.mainLoop);
+	    },
+	    /**
+	     * --------------------------------
+	     */
+	    
+	    /**
+	     * <p style='color:#AD071D'><strong>onFocus</strong></p>
+	     */
+	    onFocus: function() {
+	    	var oldFocus = self.focus;
 
-          if (!blur) {
-            // Execute all blur state extensions
-            self.execute_extensions(self.BLUR);
-            // Execute all blur events
-            self.execute(self.BLUR);
+	        // In the case the game is not already created when the document gains focus
+	        // for the first time, it is created here.
+	        if (!self.initialized) {
+	        	self.setupUpdateLoop();
+	        } else {
+				if (self.focus) {
+					self.blur = true;
+					self.focus = false;
 
-            blur = true;
+					if (blur) {
+						// Execute all focus state extensions
+						self.execute_extensions(self.FOCUS);
+						// Execute all blur events
+						self.execute(self.FOCUS);
 
-            // Cancel the main game loop
-            window.cancelAnimationFrame(self.lastAnimationFrameId);
-          }
-        }
+						blur = false;
 
-        return oldBlur;
-      };
+						// Re-start the main game loop
+						self.lastUpdate = Date.now();
+						self.lastAnimationFrameId = window.requestAnimationFrame(self.mainLoop);
+					}
+				}
+	        }
 
-      var onFocus = function() {
-        var oldFocus = self.focus;
+	        return oldFocus;
+	    },
+	    /**
+	     * --------------------------------
+	     */
 
-        // In the case the game is not already created when the document gains focus
-        // for the first time, it is created here.
-        if (!self.initialized) {
-          setupUpdateLoop();
-        } else {
+	    /**
+	     * <p style='color:#AD071D'><strong>onBlur</strong></p>
+	     */
+	    onBlur: function() {
+	    	var oldBlur = self.blur;
 
-          if (self.focus) {
-            self.blur = true;
-            self.focus = false;
+	        if (self.blur) {
+				self.blur = false;
+				self.focus = true;
 
-            if (blur) {
-              // Execute all focus state extensions
-              self.execute_extensions(self.FOCUS);
-              // Execute all blur events
-              self.execute(self.FOCUS);
+				if (!blur) {
+					// Execute all blur state extensions
+					self.execute_extensions(self.BLUR);
+					// Execute all blur events
+					self.execute(self.BLUR);
 
-              blur = false;
+					blur = true;
 
-              // Re-start the main game loop
-              self.lastUpdate = Date.now();
-              self.lastAnimationFrameId = window.requestAnimationFrame(mainLoop);
-            }
-          }
-        }
+					// Cancel the main game loop
+					window.cancelAnimationFrame(self.lastAnimationFrameId);
+				}
+	        }
 
-        return oldFocus;
-      }
-
-      // References to the blur and focus callbacks
-      // The [pause](@@pause@@) and [resume](@@resume@@)
-      // extensions use these.
-      this.blurAction = onBlur;
-      this.focusAction = onFocus;
-
-      // Actually setting up the listener to the events
-      // window dispatches.
-      window.addEventListener("blur", onBlur);
-      window.addEventListener("focus", onFocus);
-
-      // Making sure we have focus setting up the update loop.
-      // If there is no focus, wait until it is gained to setup the update loop.
-      if (document.hasFocus()) {
-        setupUpdateLoop();
-      }
-    }
-    /**
-     * --------------------------------
-     */
-  });
+	        return oldBlur;
+	    }
+	    /**
+	     * --------------------------------
+	     */
+	});
 
   Object.defineProperty(Game.prototype, "CREATE", { get: function() { return 'create'; } });
   Object.defineProperty(Game.prototype, "UPDATE", { get: function() { return 'update'; } });
