@@ -206,6 +206,28 @@ define(["renderer", "path-cache", "error-printer", "util", "game"], function(Ren
 		 * --------------------------------
 		 */
 		
+		 /**
+		 * <p style='color:#AD071D'><strong>recycle</strong></p>
+		 *
+		 * Called by the parent [game-object](@@game-object@@) 
+		 * when it is sent back to it's pool for reuse.
+		 *
+		 * @param  {Object} parent [game-object](@@game-object@@) using this component
+		 */
+		recycle: function(parent) {
+			this.loop = false;
+			this.width = null;
+			this.height = null;
+			this.name = null;
+			this.frameDelay = null;
+			this.framePaths = null;
+
+			this._super(parent);
+		},
+		/**
+		 * --------------------------------
+		 */
+
 		/**
 		 * <p style='color:#AD071D'><strong>rendererOffsetX</strong></p>
 		 *

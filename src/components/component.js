@@ -127,7 +127,7 @@ define(["delegate", "util"], function(Delegate, Util) {
 		/**
 		 * <p style='color:#AD071D'><strong>reset</strong></p>
 		 *
-		 * Not so interesting mehtod, it just resets some properties right
+		 * Not so interesting method, it just resets some properties right
 		 * before the [assembler](@@assembler@@) module starts putting together
 		 * a component.
 		 */

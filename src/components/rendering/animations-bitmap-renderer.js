@@ -189,6 +189,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 				this.delayTotal += delta;
 			
 				if (this.delayTotal > this.frameDelay) {
+					
 					this.delayTotal -= this.frameDelay;
 
 					if (this.direction === 1) {
@@ -270,6 +271,41 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 				Math.floor(this.rendererWidth()), 
 				Math.floor(this.rendererHeight())
 			)
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>recycle</strong></p>
+		 *
+		 * Called by the parent [game-object](@@game-object@@) 
+		 * when it is sent back to it's pool for reuse.
+		 *
+		 * @param  {Object} parent [game-object](@@game-object@@) using this component
+		 */
+		recycle: function(parent) {
+			this.loop = false;
+			this.pingPong = false;
+			this.frameWidth = 0;
+			this.frameHeight = 0;
+			this.frameDelay = 0;
+			this.frameCount = 0;
+			this.path = '';
+			this.finishLoading = false;
+			this.frameIndex = 0;
+			this.delayTotal = 0;
+
+			this.direction = 1;
+
+			this.currentFrames = null;
+			this.currentLabel = null;
+			this.labels = null;
+			this.startingLabel = '';
+
+			this.isPlaying = false;
+
+			this._super(parent);
 		},
 		/**
 		 * --------------------------------

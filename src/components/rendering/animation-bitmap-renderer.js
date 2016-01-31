@@ -223,6 +223,34 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 */
 		
 		/**
+		 * <p style='color:#AD071D'><strong>recycle</strong></p>
+		 *
+		 * Called by the parent [game-object](@@game-object@@) 
+		 * when it is sent back to it's pool for reuse.
+		 *
+		 * @param  {Object} parent [game-object](@@game-object@@) using this component
+		 */
+		recycle: function(parent) {
+			this.loop = false;
+			this.pingPong = false;
+			this.frameWidth = 0;
+			this.frameHeight = 0;
+			this.frameDelay = 0;
+			this.frameCount = 0;
+			this.path = '';
+			this.finishLoading = false;
+			this.frameIndex = 0;
+			this.delayTotal = 0;
+
+			this.direction = 1;
+
+			this._super(parent);
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
 		 * <p style='color:#AD071D'><strong>play</strong></p>
 		 *
 		 * Plays the animation from the current frame
