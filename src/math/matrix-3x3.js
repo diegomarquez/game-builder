@@ -218,7 +218,6 @@ define(function() {
 	};
 
 	p.transformPoint = function(x, y, pt) {
-		pt = pt || {};
 		pt.x = x*this.a+y*this.c+this.tx;
 		pt.y = x*this.b+y*this.d+this.ty;
 		return pt;

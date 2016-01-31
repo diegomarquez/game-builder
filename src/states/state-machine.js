@@ -142,7 +142,9 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		 * Execute the update actions of the state machine. 
 		 */
 		update: function() {
-			this.states[this.currentStateId].update(arguments);
+			var state = this.states[this.currentStateId];
+
+			state.update.apply(state, arguments);
 		},
 		/**
 		 * --------------------------------
@@ -300,7 +302,8 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 	 */
 	
 	var executeStateAction = function(stateId, action, args) {
-		if (this.isBlocked || this.states == null) { return; }
+		if (this.isBlocked || this.states == null)
+			return;
 
 		try {
 			this.states[stateId][action](args);	
@@ -313,7 +316,7 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 				console.error(e.stack);
 			}
 
-			ErrorPrinter.printError('State', 'State with name: ' + this.states[stateId].name + ' caused an un expected error.', e);
+			ErrorPrinter.printError('State', 'State with name: ' + this.states[stateId].name + ' caused an unexpected error.', e);
 		}
 
 		this.currentStateId = stateId;

@@ -15,7 +15,6 @@
  * [sat](@@sat@@)
  * [vector-2D](@@vector-2D@@)
  * [error-printer](@@error-printer@@)
- * [util](@@util@@)
  * 
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -75,11 +74,11 @@
 /**
  * --------------------------------
  */
-define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "error-printer", "util"], function(Delegate, Layer, Reclaimer, Matrix, SAT, Vector2D, ErrorPrinter, Util){
-	var p1 = {};
-	var p2 = {};
-	var p3 = {};
-	var p4 = {};
+define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "error-printer"], function(Delegate, Layer, Reclaimer, Matrix, SAT, Vector2D, ErrorPrinter){
+	var p1 = new Vector2D();
+	var p2 = new Vector2D();
+	var p3 = new Vector2D();
+	var p4 = new Vector2D();
 	var m = null;
 	var vm = null;
 	var r = null;

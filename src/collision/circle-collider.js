@@ -50,7 +50,7 @@
 define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 	function(CollisionComponent, SAT, CollisionResolver, Vector2D){
 
-	var p = {};
+	var p = new Vector2D();
 	
 	var CircleCollider = CollisionComponent.extend({
 		/**

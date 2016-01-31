@@ -7,6 +7,7 @@
  * [component](@@component@@)
  *
  * Depends of:
+ * [vector-2D](@@vector-2D@@)
  * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
@@ -22,8 +23,9 @@
 /**
  * --------------------------------
  */
-define(["component", "error-printer"], function(Component, ErrorPrinter) {
-	var r = {}
+define(["component", "vector-2D", "error-printer"], function(Component, Vector2D, ErrorPrinter) {
+	
+	var r = new Vector2D();
 
 	var Renderer = Component.extend({
 		/**
@@ -194,13 +196,20 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 			context.translate(-0.5, -0.5);
 
 			// Top Left 
-			drawLineAndPoint.call(this, context, this.rendererLeft(), this.rendererTop(), 'moveTo');
+			r = this.parent.getMatrix().transformPoint(this.rendererLeft(), this.rendererTop(), r); 
+			context.moveTo(Math.round(r.x), Math.round(r.y));
+
 			// Top Right
-			drawLineAndPoint.call(this, context, this.rendererRight(), this.rendererTop(), 'lineTo');
+			r = this.parent.getMatrix().transformPoint(this.rendererRight(), this.rendererTop(), r); 
+			context.lineTo(Math.round(r.x), Math.round(r.y));			
+
 			// Bottom Right
-			drawLineAndPoint.call(this, context, this.rendererRight(), this.rendererBottom(), 'lineTo');
+			r = this.parent.getMatrix().transformPoint(this.rendererRight(), this.rendererBottom(), r); 
+			context.lineTo(Math.round(r.x), Math.round(r.y));			
+
 			// Bottom Left
-			drawLineAndPoint.call(this, context, this.rendererLeft(), this.rendererBottom(), 'lineTo');
+			r = this.parent.getMatrix().transformPoint(this.rendererLeft(), this.rendererBottom(), r); 
+			context.lineTo(Math.round(r.x), Math.round(r.y));
 
 			context.closePath();
 
@@ -211,11 +220,6 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 * --------------------------------
 		 */
 	});
-
-	var drawLineAndPoint = function(context, offsetX, offsetY, lineMethod) {
-		r = this.parent.getMatrix().transformPoint(offsetX, offsetY, r); 
-		context[lineMethod](Math.round(r.x), Math.round(r.y));
-	}
 
 	return Renderer;
 });
