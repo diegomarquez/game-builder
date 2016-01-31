@@ -44,7 +44,6 @@ define(["delegate"], function(Delegate) {
 		 * --------------------------------
 		 */
 
-
 		/**
 		 * <p style='color:#AD071D'><strong>add</strong></p>
 		 *

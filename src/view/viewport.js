@@ -92,21 +92,6 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 	var right = 0;
 	var bottom = 0;
 
-	var canvasCollider = new SAT.FixedSizePolygon(
-		new Vector2D(),
-		[ new Vector2D(), new Vector2D(), new Vector2D(), new Vector2D() ]
-	);
-
-	var viewportCollider = new SAT.FixedSizePolygon(
-		new Vector2D(),
-		[ new Vector2D(), new Vector2D(), new Vector2D(), new Vector2D() ]
-	);
-
-	var gameObjectCollider = new SAT.FixedSizePolygon(
-		new Vector2D(),
-		[ new Vector2D(), new Vector2D(), new Vector2D(), new Vector2D() ]
-	);
-
 	var Viewport = Delegate.extend({
 
 		/**
@@ -549,29 +534,13 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 				rHeight = 1;
 			}
 
+			// Get the world coordinates of the game object corners
+			p1 = m.transformPoint(rOffsetX, rOffsetY, p1);
+			p2 = m.transformPoint(rOffsetX + rWidth, rOffsetY, p2);
+			p3 = m.transformPoint(rOffsetX + rWidth, rOffsetY + rHeight, p3);
+			p4 = m.transformPoint(rOffsetX, rOffsetY + rHeight, p4);
+
 			if (this.Culling) {
-				// If the viewport is performing culling logic...
-				// Do a collision test between the viewport and the game object
-
-				// Build the viewport collider
-				viewportCollider.points[0].x = -this.x;
-				viewportCollider.points[0].y = -this.y;
-
-				viewportCollider.points[1].x = -this.x + this.Width;
-				viewportCollider.points[1].y = -this.y;
-
-				viewportCollider.points[2].x = -this.x + this.Width;
-				viewportCollider.points[2].y = -this.y + this.Height;
-
-				viewportCollider.points[3].x = -this.x;
-				viewportCollider.points[3].y = -this.y + this.Height;
-
-				// Get the world coordinates of the game object corners
-				p1 = m.transformPoint(rOffsetX, rOffsetY, p1);
-				p2 = m.transformPoint(rOffsetX + rWidth, rOffsetY, p2);
-				p3 = m.transformPoint(rOffsetX + rWidth, rOffsetY + rHeight, p3);
-				p4 = m.transformPoint(rOffsetX, rOffsetY + rHeight, p4);
-
 				// Place the coordinates found in arrays to calculate the minimum and maximum values
 				goxp[0] = p1.x * this.ScaleX;
 				goxp[1] = p2.x * this.ScaleX;
@@ -589,55 +558,18 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 				bottom = Math.max.apply(null, goyp);
 
 				// The game object is surely outside the viewport
-				if (left > viewportCollider.points[2].x || viewportCollider.points[0].x > right || 
-					top > viewportCollider.points[2].y || viewportCollider.points[0].y > bottom)
+				if (left > -this.x + this.Width || -this.x > right || top > -this.y + this.Height || -this.y > bottom)
 				{
 					// Set the game object as not visible in this viewport
 					go.setViewportVisibility(this.name, false);
 					return false;
+				} else {
+					// Set the game object as not visible in this viewport
+					go.setViewportVisibility(this.name, true);
+					return true;
 				}
 
-				// Build the game object collider with the world positions of it's corners, adjusting for the scale of the viewport
-				gameObjectCollider.points[0].x = goxp[0];
-				gameObjectCollider.points[0].y = goyp[0];
-				gameObjectCollider.points[1].x = goxp[1];
-				gameObjectCollider.points[1].y = goyp[1];
-				gameObjectCollider.points[2].x = goxp[2];
-				gameObjectCollider.points[2].y = goyp[2];
-				gameObjectCollider.points[3].x = goxp[3];
-				gameObjectCollider.points[3].y = goyp[3];
-
-				viewportCollider.recalc();
-				gameObjectCollider.recalc();
-
-				// Test if the viewport is colliding with the game object, and tell the game object if it is visible in this viewport or not
-				go.setViewportVisibility(this.name, SAT.testPolygonPolygon(viewportCollider, gameObjectCollider));
-
-				return go.getViewportVisibility(this.name);
-
 			} else {
-				// If the viewport is not performing culling logic...
-				// Do a collision test between the canvas and the game object
-
-				// Build the collider for the canvas
-				canvasCollider.points[0].x = 0;
-				canvasCollider.points[0].y = 0;
-
-				canvasCollider.points[1].x = context.canvas.width;
-				canvasCollider.points[1].y = 0;
-
-				canvasCollider.points[2].x = context.canvas.width;
-				canvasCollider.points[2].y = context.canvas.height;
-
-				canvasCollider.points[3].x = 0;
-				canvasCollider.points[3].y = context.canvas.height;
-
-				// Get the world coordinates of the game object corners
-				p1 = m.transformPoint(rOffsetX, rOffsetY, p1);
-				p2 = m.transformPoint(rOffsetX + rWidth, rOffsetY, p2);
-				p3 = m.transformPoint(rOffsetX + rWidth, rOffsetY + rHeight, p3);
-				p4 = m.transformPoint(rOffsetX, rOffsetY + rHeight, p4);
-
 				// Viewport's matrix
 				vm = this.getMatrix();
 			
@@ -664,33 +596,17 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 				bottom = Math.max.apply(null, goyp);
 
 				// The game object is surely not visible in th canvas
-				if (left > canvasCollider.points[2].x || canvasCollider.points[0].x > right || 
-					top > canvasCollider.points[2].y || canvasCollider.points[0].y > bottom)
+				if (left > context.canvas.width || 0 > right || top > context.canvas.height || 0 > bottom)
 				{
 					// Set the game object as not visible in this viewport
 					go.setViewportVisibility(this.name, false);
 					return false;
+				} else {
+					// Set the game object as not visible in this viewport
+					go.setViewportVisibility(this.name, true);
+					return true;
 				}
-
-				gameObjectCollider.points[0].x = goxp[0];
-				gameObjectCollider.points[0].y = goyp[0];
-				gameObjectCollider.points[1].x = goxp[1];
-				gameObjectCollider.points[1].y = goyp[1];
-				gameObjectCollider.points[2].x = goxp[2];
-				gameObjectCollider.points[2].y = goyp[2];
-				gameObjectCollider.points[3].x = goxp[3];
-				gameObjectCollider.points[3].y = goyp[3];
-
-				canvasCollider.recalc();
-				gameObjectCollider.recalc();
-
-				// Test if the canvas is colliding with the game object, and tell the game object if it is visible in the canvas or not
-				go.setViewportVisibility(this.name, SAT.testPolygonPolygon(canvasCollider, gameObjectCollider));
-
-				return go.getViewportVisibility(this.name);
-			}   
-
-						
+			}		
 		},
 		/**
 		 * --------------------------------
