@@ -86,6 +86,13 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 	var rOffsetX, rOffsetY, rWidth, rHeight;
 	var x, y, w, h;
 
+	var goxp = [0, 0, 0, 0];
+	var goyp = [0, 0, 0, 0];
+	var left = 0;
+	var top = 0;
+	var right = 0;
+	var bottom = 0;
+
 	var canvasCollider = new SAT.FixedSizePolygon(
 		new Vector2D(),
 		[ new Vector2D(), new Vector2D(), new Vector2D(), new Vector2D() ]
@@ -566,26 +573,50 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 				p3 = m.transformPoint(rOffsetX + rWidth, rOffsetY + rHeight, p3);
 				p4 = m.transformPoint(rOffsetX, rOffsetY + rHeight, p4);
 
-				// Build the game object collider with the world positions of it's corners, adjusting for the scale if the viewport
-				gameObjectCollider.points[0].x = p1.x * this.ScaleX;
-				gameObjectCollider.points[0].y = p1.y * this.ScaleY;
+				// Place the coordinates found in arrays to calculate the minimum and maximum values
+				goxp[0] = p1.x * this.ScaleX;
+				goxp[1] = p2.x * this.ScaleX;
+				goxp[2] = p3.x * this.ScaleX;
+				goxp[3] = p4.x * this.ScaleX;
 
-				gameObjectCollider.points[1].x = p2.x * this.ScaleX;
-				gameObjectCollider.points[1].y = p2.y * this.ScaleY;
+				goyp[0] = p1.y * this.ScaleY;
+				goyp[1] = p2.y * this.ScaleY;
+				goyp[2] = p3.y * this.ScaleY;
+				goyp[3] = p4.y * this.ScaleY;
 
-				gameObjectCollider.points[2].x = p3.x * this.ScaleX;
-				gameObjectCollider.points[2].y = p3.y * this.ScaleY;
+				left = Math.min.apply(null, goxp);
+				top = Math.min.apply(null, goyp);
+				right = Math.max.apply(null, goxp);
+				bottom = Math.max.apply(null, goyp);
 
-				gameObjectCollider.points[3].x = p4.x * this.ScaleX;
-				gameObjectCollider.points[3].y = p4.y * this.ScaleY;
+				// The game object is surely outside the viewport
+				if (left > viewportCollider.points[2].x || viewportCollider.points[0].x > right || 
+					top > viewportCollider.points[2].y || viewportCollider.points[0].y > bottom)
+				{
+					// Set the game object as not visible in this viewport
+					go.setViewportVisibility(this.name, false);
+					return false;
+				}
+
+				// Build the game object collider with the world positions of it's corners, adjusting for the scale of the viewport
+				gameObjectCollider.points[0].x = goxp[0];
+				gameObjectCollider.points[0].y = goyp[0];
+				gameObjectCollider.points[1].x = goxp[1];
+				gameObjectCollider.points[1].y = goyp[1];
+				gameObjectCollider.points[2].x = goxp[2];
+				gameObjectCollider.points[2].y = goyp[2];
+				gameObjectCollider.points[3].x = goxp[3];
+				gameObjectCollider.points[3].y = goyp[3];
 
 				viewportCollider.recalc();
 				gameObjectCollider.recalc();
 
 				// Test if the viewport is colliding with the game object, and tell the game object if it is visible in this viewport or not
 				go.setViewportVisibility(this.name, SAT.testPolygonPolygon(viewportCollider, gameObjectCollider));
-			} 
-			else {
+
+				return go.getViewportVisibility(this.name);
+
+			} else {
 				// If the viewport is not performing culling logic...
 				// Do a collision test between the canvas and the game object
 
@@ -611,32 +642,56 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 				// Viewports matrix
 				vm = this.getMatrix();
 			
-				// Get the canvas coordinates of the game object's corners to build the game object collider that will work in canvas splace
+				// Get the canvas coordinates of the game object's corners to build the game object collider that will work in canvas space
 				p1 = vm.transformPoint(p1.x, p1.y, p1);
 				p2 = vm.transformPoint(p2.x, p2.y, p2);
 				p3 = vm.transformPoint(p3.x, p3.y, p3);
 				p4 = vm.transformPoint(p4.x, p4.y, p4);
 
-				gameObjectCollider.points[0].x = p1.x;
-				gameObjectCollider.points[0].y = p1.y;
+				// Place the coordinates found in arrays to calculate the minimum and maximum values
+				goxp[0] = p1.x;
+				goxp[1] = p2.x;
+				goxp[2] = p3.x;
+				goxp[3] = p4.x;
 
-				gameObjectCollider.points[1].x = p2.x;
-				gameObjectCollider.points[1].y = p2.y;
+				goyp[0] = p1.y;
+				goyp[1] = p2.y;
+				goyp[2] = p3.y;
+				goyp[3] = p4.y;
 
-				gameObjectCollider.points[2].x = p3.x;
-				gameObjectCollider.points[2].y = p3.y;
+				left = Math.min.apply(null, goxp);
+				top = Math.min.apply(null, goyp);
+				right = Math.max.apply(null, goxp);
+				bottom = Math.max.apply(null, goyp);
 
-				gameObjectCollider.points[3].x = p4.x;
-				gameObjectCollider.points[3].y = p4.y;
+				// The game object is surely not visible in th canvas
+				if (left > canvasCollider.points[2].x || canvasCollider.points[0].x > right || 
+					top > canvasCollider.points[2].y || canvasCollider.points[0].y > bottom)
+				{
+					// Set the game object as not visible in this viewport
+					go.setViewportVisibility(this.name, false);
+					return false;
+				}
+
+				gameObjectCollider.points[0].x = goxp[0];
+				gameObjectCollider.points[0].y = goyp[0];
+				gameObjectCollider.points[1].x = goxp[1];
+				gameObjectCollider.points[1].y = goyp[1];
+				gameObjectCollider.points[2].x = goxp[2];
+				gameObjectCollider.points[2].y = goyp[2];
+				gameObjectCollider.points[3].x = goxp[3];
+				gameObjectCollider.points[3].y = goyp[3];
 
 				canvasCollider.recalc();
 				gameObjectCollider.recalc();
 
 				// Test if the canvas is colliding with the game object, and tell the game object if it is visible in the canvas or not
 				go.setViewportVisibility(this.name, SAT.testPolygonPolygon(canvasCollider, gameObjectCollider));
+
+				return go.getViewportVisibility(this.name);
 			}   
 
-			return go.getViewportVisibility(this.name);
+						
 		},
 		/**
 		 * --------------------------------
