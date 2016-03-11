@@ -65,9 +65,13 @@
  */
 define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 
-	var image;
-
 	var TextRenderer = Renderer.extend({
+		init: function() {
+			this._super();
+
+			this.cache = TextCache;
+		},
+
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -83,7 +87,7 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 			this.fontFamily = this.font            || 'Arial';
 			this.background = this.backgroundColor || 'rgba(100%, 100%, 100%, 0)';
 
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		},
 		/**
 		 * --------------------------------
@@ -99,8 +103,7 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
 		 */
 		draw: function(context, viewport) {
-			image = TextCache.get(this.name);
-			context.drawImage(image, 
+			context.drawImage(this.cache.get(this.name), 
 				Math.floor(this.rendererOffsetX()), 
 				Math.floor(this.rendererOffsetY()), 
 				Math.floor(this.rendererWidth()), 
@@ -148,7 +151,7 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 		 *
 		 * @return {Number} The width of the renderer
 		 */
-		rendererWidth: function() { return TextCache.get(this.name).width; },
+		rendererWidth: function() { return this.cache.get(this.name).width; },
 		/**
 		 * --------------------------------
 		 */
@@ -158,7 +161,7 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 		 *
 		 * @return {Number} The height of the renderer
 		 */
-		rendererHeight: function() { return TextCache.get(this.name).height; }
+		rendererHeight: function() { return this.cache.get(this.name).height; }
 		/**
 		 * --------------------------------
 		 */
@@ -169,56 +172,56 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 	Object.defineProperty(TextRenderer.prototype, "Align", { 
 		set: function(value) { 
 			this.align = value;
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		} 
 	});
 	
 	Object.defineProperty(TextRenderer.prototype, "LineWidth", { 
 		set: function(value) { 
 			this.lineWidth = value;
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		}
 	});
 	
 	Object.defineProperty(TextRenderer.prototype, "FillColor", { 
 		set: function(value) { 
 			this.fillColor = value;
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		}
 	});
 
 	Object.defineProperty(TextRenderer.prototype, "StrokeColor", { 
 		set: function(value) { 
 			this.strokeColor = value;
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		}
 	});
 	
 	Object.defineProperty(TextRenderer.prototype, "Font", { 
 		set: function(value) { 
 			this.fontFamily = value;
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		}
 	});
 	
 	Object.defineProperty(TextRenderer.prototype, "Size", { 
 		set: function(value) { 
 			this.size = value;
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		}
 	});
 
 	Object.defineProperty(TextRenderer.prototype, "Text", { 
 		set: function(value) { 
 			this.text = value;
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		}
 	});
 
 	Object.defineProperty(TextRenderer.prototype, "Background", { 
 		set: function(value) { 
 			this.background = value;
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		}
 	});
 

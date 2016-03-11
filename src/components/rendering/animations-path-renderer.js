@@ -7,10 +7,7 @@
  * [renderer](@@renderer@@)
  *
  * Depends of: 
- * [path-cache](@@path-cache@@)
  * [error-printer](@@error-printer@@)
- * [util](@@util@@)	
- * [game](@@game@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -112,9 +109,7 @@
 /**
  * --------------------------------
  */
-define(["animation-path-renderer", "path-cache", "error-printer", "util", "game"], function(AnimationPathRenderer, PathCache, ErrorPrinter, Util, Game) {
-
-	var canvas;
+define(["animation-path-renderer", "error-printer"], function(AnimationPathRenderer, ErrorPrinter) {
 
 	var AnimationsPathRenderer = AnimationPathRenderer.extend({
 		/**

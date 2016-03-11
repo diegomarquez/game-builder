@@ -318,24 +318,24 @@ define(["class", "util"], function(Class, Util) {
 				}
 			}
 
-			removeAllNulls(list);
-		}
+			this.removeAllNulls(list);
+		},
 		/**
 		 * --------------------------------
 		 */
-	});
+		
+		removeAllNulls: function(list) {
+			if (!list) return;
 
-	var removeAllNulls = function(list) {
-		if (!list) return;
+			for (var i = list.length - 1; i >= 0; i--) {
+				var callbackObject = list[i];
 
-		for (var i = list.length - 1; i >= 0; i--) {
-			var callbackObject = list[i];
-
-			if (!callbackObject) {
-				list.splice(i, 1);
+				if (!callbackObject) {
+					list.splice(i, 1);
+				}
 			}
 		}
-	}
+	});
 
 	var filterCallbacks = function(test) {
 		for (var k in this.callbackList) {

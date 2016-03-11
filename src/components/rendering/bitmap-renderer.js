@@ -50,9 +50,13 @@
  */
 define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCache, ErrorPrinter) {
 
-	var image = null;
-
 	var BitmapRenderer = Renderer.extend({
+		init: function() {
+			this._super();
+
+			this.cache = ImageCache;
+		},
+
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -64,7 +68,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 				ErrorPrinter.missingArgumentError('Bitmap Renderer', 'path');
 			}
 
-			ImageCache.cache(this.path);
+			this.cache.cache(this.path);
 		},
 		/**
 		 * --------------------------------
@@ -80,7 +84,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
 		 */
 		draw: function(context, viewport) {
-			image = ImageCache.get(this.path);
+			var image = this.cache.get(this.path);
 
 			if (!image)
 				return;
@@ -133,7 +137,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 *
 		 * @return {Number} The width of the renderer
 		 */
-		rendererWidth: function() { return ImageCache.get(this.path).width; },
+		rendererWidth: function() { return this.cache.get(this.path).width; },
 		/**
 		 * --------------------------------
 		 */
@@ -143,7 +147,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 *
 		 * @return {Number} The height of the renderer
 		 */
-		rendererHeight: function() { return ImageCache.get(this.path).height; }
+		rendererHeight: function() { return this.cache.get(this.path).height; }
 		/**
 		 * --------------------------------
 		 */

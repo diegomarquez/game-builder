@@ -67,9 +67,13 @@
  */
 define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache, ErrorPrinter) {
 
-	var canvas;
-
 	var PathRenderer = Renderer.extend({
+		init: function() {
+			this._super();
+
+			this.cache = PathCache;
+		},
+
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -89,7 +93,7 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 				ErrorPrinter.missingArgumentError('Path Renderer', 'name');
 			}
 
-			PathCache.cache(this.name, this.width, this.height, function(context) {
+			this.cache.cache(this.name, this.width, this.height, function(context) {
 				this.drawPath(context);	
 			}.bind(this));
 		},
@@ -127,8 +131,7 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 			if (this.skipCache) {
 				this.drawPath(context, viewport);
 			} else {
-				canvas = PathCache.get(this.name);
-				context.drawImage(canvas, 
+				context.drawImage(this.cache.get(this.name), 
 					Math.floor(this.rendererOffsetX()), 
 					Math.floor(this.rendererOffsetY()), 
 					Math.floor(this.rendererWidth()), 

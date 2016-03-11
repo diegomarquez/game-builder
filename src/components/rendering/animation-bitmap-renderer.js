@@ -88,8 +88,6 @@
  */
 define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCache, ErrorPrinter) {
 
-	var canvas = null;
-
 	var AnimationBitmapRenderer = Renderer.extend({
 
 		init: function() {
@@ -107,6 +105,8 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 			this.delayTotal = 0;
 
 			this.direction = 1;
+
+			this.cache = ImageCache;
 		},
 
 		/**
@@ -134,7 +134,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 
 			var self = this;
 
-			ImageCache.cacheStrip(this.path, this.frameWidth, this.frameHeight, this.frameCount, function(frameCount) {
+			this.cache.cacheStrip(this.path, this.frameWidth, this.frameHeight, this.frameCount, function(frameCount) {
 				self.finishLoading = true;
 				self.frameCount = frameCount;
 			});
@@ -206,7 +206,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
 		 */
 		draw: function(context, viewport) {
-			canvas = ImageCache.get(this.currentFrameName);
+			var canvas = this.cache.get(this.currentFrameName);
 
 			if (!canvas)
 				return;

@@ -30,9 +30,10 @@
  * --------------------------------
  */
 define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObjectPool, ComponentPool, ErrorPrinter) {
-	var marked = [];
-
-	var Reclaimer = function() {};
+	
+	var Reclaimer = function() {
+		this.marked = [];
+	};
 
 	/**
 	 * <p style='color:#AD071D'><strong>claimWithId</strong></p>
@@ -123,14 +124,14 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	 * @param  {Object} go [game-object](@@game-object@@) to recycle
 	 */
 	Reclaimer.prototype.mark = function(go) {	
-		if (marked.indexOf(go) == -1 && go.isActive()) { 
-			marked.push(go);
+		if (this.marked.indexOf(go) == -1 && go.isActive()) { 
+			this.marked.push(go);
 
 			go.once(go.RECYCLE, this, function (go) {
-				var index = marked.indexOf(go);
+				var index = this.marked.indexOf(go);
 
 				if (index != -1) {
-					marked.splice(index, 1);
+					this.marked.splice(index, 1);
 				}
 			}); 	
 		}
@@ -145,9 +146,9 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	 * Claims all the [game-objects](@@game-object@@) marked for removal with the **mark** method.
 	 */
 	Reclaimer.prototype.claimMarked = function() {
-		for (var i = marked.length-1; i >= 0; i--) {
-			if (marked[i]) {
-				this.claim(marked[i]);
+		for (var i = this.marked.length-1; i >= 0; i--) {
+			if (this.marked[i]) {
+				this.claim(this.marked[i]);
 			}
 		}
 

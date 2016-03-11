@@ -10,7 +10,6 @@
  * [path-cache](@@path-cache@@)
  * [error-printer](@@error-printer@@)
  * [util](@@util@@) 
- * [game](@@game@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -96,7 +95,7 @@
 /**
  * --------------------------------
  */
-define(["renderer", "path-cache", "error-printer", "util", "game"], function(Renderer, PathCache, ErrorPrinter, Util, Game) {
+define(["renderer", "path-cache", "error-printer", "util"], function(Renderer, PathCache, ErrorPrinter, Util) {
 
 	var AnimationPathRenderer = Renderer.extend({
 
@@ -109,6 +108,8 @@ define(["renderer", "path-cache", "error-printer", "util", "game"], function(Ren
 			this.name = null;
 			this.frameDelay = null;
 			this.framePaths = null;
+
+			this.cache = PathCache;
 		},
 
 		/**
@@ -141,7 +142,7 @@ define(["renderer", "path-cache", "error-printer", "util", "game"], function(Ren
 			}
 
 			for (var i = 0; i < this.framePaths.length; i++) {
-				PathCache.cache(this.name + '_' + i.toString(), this.width, this.height, function (frameIndex) {
+				this.cache.cache(this.name + '_' + i.toString(), this.width, this.height, function (frameIndex) {
 					return function (context) {
 						this.framePaths[frameIndex].call(this, context);  
 					}.bind(this)
@@ -195,7 +196,7 @@ define(["renderer", "path-cache", "error-printer", "util", "game"], function(Ren
 		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
 		 */
 		draw: function(context, viewport) {			
-			context.drawImage(PathCache.get(this.currentFrameName), 
+			context.drawImage(this.cache.get(this.currentFrameName), 
 				Math.floor(this.rendererOffsetX()), 
 				Math.floor(this.rendererOffsetY()), 
 				Math.floor(this.rendererWidth()), 
