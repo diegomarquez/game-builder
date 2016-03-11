@@ -305,20 +305,7 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		if (this.isBlocked || this.states == null)
 			return;
 
-		try {
-			this.states[stateId][action](args);	
-		} catch(e) {
-			if (e.message) {
-				console.error(e.message);
-			}
-
-			if (e.stack) {
-				console.error(e.stack);
-			}
-
-			ErrorPrinter.printError('State', 'State with name: ' + this.states[stateId].name + ' caused an unexpected error.', e);
-		}
-
+		this.states[stateId][action](args);	
 		this.currentStateId = stateId;
 	}
 
