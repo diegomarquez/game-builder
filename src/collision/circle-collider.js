@@ -49,10 +49,17 @@
  */
 define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 	function(CollisionComponent, SAT, CollisionResolver, Vector2D){
-
-	var p = new Vector2D();
 	
 	var CircleCollider = CollisionComponent.extend({
+		init: function() {
+			this._super();
+
+			this.p = new Vector2D();
+
+			this.collider 	  = new SAT.Circle(new Vector2D(0, 0), this.radius);
+			this.colliderType = CollisionResolver.circleCollider;
+		},
+
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -63,8 +70,9 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 		start: function() {
 			this._super();
 
-			this.collider 	  = new SAT.Circle(new Vector2D(0, 0), this.radius);
-			this.colliderType = CollisionResolver.circleCollider;
+			this.collider.pos.x = 0;
+			this.collider.pos.y = 0;
+			this.collider.r = this.radius;
 		},
 		/**
 		 * --------------------------------
@@ -78,7 +86,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 		 * The collider follows the position of it's parent.
 		 */
 		update: function() {
-			p = this.parent.matrix.transformPoint(0, 0, p);	
+			var p = this.parent.matrix.transformPoint(0, 0, this.p);	
 
 			this.collider.pos.x = p.x;
 			this.collider.pos.y = p.y;
@@ -102,7 +110,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 		debug_draw: function(context, viewport, draw, gb) {
 			if (!gb.colliderDebug) return;
 
-			p = this.parent.matrix.transformPoint(0, 0, p);		
+			var p = this.parent.matrix.transformPoint(0, 0, this.p);		
 			draw.circle(context, p.x, p.y, this.collider.r, null, this.debugColor, 2);
 			this._super();
 		} 

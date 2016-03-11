@@ -31,15 +31,16 @@
 /**
  * --------------------------------
  */
-define(['component', 'collision-resolver', 'error-printer', 'game-object', 'sat'], function(Component, CollisionResolver, ErrorPrinter, GameObject, SAT) {
-
-	var collisionList = null;
-	var collisionOpponent = null;
-	var collideEventName = 'collide';
-
-	var onCollideArguments = [null, null];
+define(['component', 'collision-resolver', 'error-printer', 'game-object'], function(Component, CollisionResolver, ErrorPrinter, GameObject) {
 
 	var CollisionComponent = Component.extend({
+		init: function() {
+			this._super();
+
+			this.collisionResolver = CollisionResolver;
+			this.onCollideArguments = [null, null];
+		},
+
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -55,7 +56,7 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object', 'sat'
 
 			this.checkingCollisions = true;
 			
-			CollisionResolver.addToCollisionList(this);
+			this.collisionResolver.addToCollisionList(this);
 
 			if(!this.parent.onCollide) {
 				ErrorPrinter.printError('Collision Component', "GameObject with typeId: " + this.parent.typeId + ", needs to define an onCollide method, yo.");
@@ -75,22 +76,22 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object', 'sat'
 		 * A bunch of callbacks will be executed notifying the objects involved.
 		 */
 		update: function() {
-			collisionList = CollisionResolver.collisionLists[this.id];
+			var collisionList = this.collisionResolver.collisionLists[this.id];
 
 			if (collisionList != null) {
 				for (k = 0; k < collisionList.length; k++) {
-					collisionOpponent = collisionList[k];
+					var collisionOpponent = collisionList[k];
 
 					if (!collisionOpponent.checkingCollisions) continue;
 
-					if (CollisionResolver.areColliding(this, collisionOpponent)) {
+					if (this.collisionResolver.areColliding(this, collisionOpponent)) {
 						if (!this.checkingCollisions) break;
 		
 						var response, invertedResponse;
 
 						if (collisionOpponent.getResponse || this.getResponse) {
-							response = CollisionResolver.getLastResponse();
-							invertedResponse = CollisionResolver.getLastInvertedResponse();
+							response = this.collisionResolver.getLastResponse();
+							invertedResponse = this.collisionResolver.getLastInvertedResponse();
 						} else {
 							response = null;
 							invertedResponse = null;
@@ -100,10 +101,10 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object', 'sat'
 							this.onCollide(collisionOpponent, response);
 
 							if (collisionOpponent.parent && this.parent) {
-								onCollideArguments[0] = collisionOpponent.parent;
-								onCollideArguments[1] = response;
+								this.onCollideArguments[0] = collisionOpponent.parent;
+								this.onCollideArguments[1] = response;
 
-								this.parent.execute(collideEventName, onCollideArguments, 'apply');
+								this.parent.execute('collide', this.onCollideArguments, 'apply');
 							}
 
 							if (collisionOpponent.parent && this.parent) {
@@ -117,10 +118,10 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object', 'sat'
 							collisionOpponent.onCollide(this, invertedResponse);
 							
 							if (collisionOpponent.parent && this.parent) {
-								onCollideArguments[0] = this.parent;
-								onCollideArguments[1] =  invertedResponse;
+								this.onCollideArguments[0] = this.parent;
+								this.onCollideArguments[1] =  invertedResponse;
 								
-								collisionOpponent.parent.execute(collideEventName, onCollideArguments, 'apply');	
+								collisionOpponent.parent.execute('collide', this.onCollideArguments, 'apply');	
 							}
 
 							if (collisionOpponent.parent && this.parent) {
@@ -159,7 +160,7 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object', 'sat'
 		 */
 		removed: function(parent) {
 			this.checkingCollisions = false;
-			CollisionResolver.removeFromCollisionList(this);
+			this.collisionResolver.removeFromCollisionList(this);
 		},
 
 		/**
@@ -201,7 +202,7 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object', 'sat'
 		 */
 	});
 
-	Object.defineProperty(GameObject.prototype, "COLLIDE", { get: function() { return collideEventName; } });
+	Object.defineProperty(GameObject.prototype, "COLLIDE", { get: function() { return 'collide'; } });
 
 	return CollisionComponent;
 });

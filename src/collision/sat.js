@@ -71,6 +71,20 @@ define(['vector-2D'], function(Vector) {
     this.recalc();
   };
 
+  FixedSizePolygon.prototype.update = function(points) {    
+    this['points'] = this.points = points || [];
+    
+    this.edges.length = 0;
+    this.normals.length = 0;
+
+    for(var i=0; i<this.points.length; i++) {
+      this.edges.push(new Vector());
+      this.normals.push(new Vector());
+    }
+
+    this.recalc();
+  };
+
   FixedSizePolygon.prototype.recalc = function() {    
     for (var i = 0; i < this.points.length; i++) {
       var p = i < this.points.length - 1 ? this.points[i + 1] : this.points[0];

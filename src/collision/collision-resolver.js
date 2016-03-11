@@ -36,6 +36,7 @@
  * --------------------------------
  */
 define(['sat'], function(SAT) {
+	
 	var CollisionResolver = function() {
 		this.collisionLists = {};
 		this.toCollideCache = {};

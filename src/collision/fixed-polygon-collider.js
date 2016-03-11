@@ -60,10 +60,16 @@
 define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 	function(CollisionComponent, SAT, CollisionResolver, Vector2D) {
 
-		var p = new Vector2D();
-		var m = null;
-
 		var FixedPolygonCollider = CollisionComponent.extend({
+			init: function() {
+				this._super();
+
+				this.p = new Vector2D();
+
+				this.collider = new SAT.FixedSizePolygon(new Vector2D(0, 0));
+				this.colliderType = CollisionResolver.fixedPolygonCollider;
+			},
+
 			/**
 			 * <p style='color:#AD071D'><strong>configure</strong></p>
 			 *
@@ -106,7 +112,11 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 				this._super();
 
 				this.pointCount = this.points.length;
-				this.pointsCopy = [];
+
+				if (this.pointsCopy)
+					this.pointsCopy.length = 0;
+				else
+					this.pointsCopy = [];
 
 				var copy = JSON.parse(JSON.stringify(this.points));
 				var points = [];
@@ -116,8 +126,9 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 					points.push(new Vector2D(copy[i].x, copy[i].y));
 				}
 
-				this.collider = new SAT.FixedSizePolygon(new Vector2D(0, 0), points);
-				this.colliderType = CollisionResolver.fixedPolygonCollider;
+				this.collider.pos.x = 0;
+				this.collider.pos.y = 0;
+				this.collider.update(points);				
 			},
 			/**
 			 * --------------------------------
@@ -131,7 +142,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 * The collider follows the position of it's parent.
 			 */
 			update: function() {
-				p = this.parent.getMatrix().transformPoint(0, 0, p);
+				var p = this.parent.getMatrix().transformPoint(0, 0, this.p);
 
 				this.collider.pos.x = p.x;
 				this.collider.pos.y = p.y;
@@ -158,7 +169,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			debug_draw: function(context, viewport, draw, gb) {
 				if (!gb.colliderDebug) return;
 				
-				p = this.parent.getMatrix().transformPoint(0, 0, p);
+				var p = this.parent.getMatrix().transformPoint(0, 0, this.p);
 
 				context.save();
 
