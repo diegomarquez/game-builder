@@ -89,7 +89,7 @@ define(function(require) {
 			
 			this.gameObjectPool = gb.goPool;
 			this.componentPool 	= gb.coPool;
-			this.canvas 				= gb.canvas;
+			this.canvas 		= gb.canvas;
 			this.assetMap       = gb.assetMap();
 		},
 		
@@ -223,7 +223,7 @@ define(function(require) {
 	});
 
 	var getModuleName = function(moduleGetter) {
-		return moduleGetter.toString().match(/require\(['|"](.*?)['|"]\)/)[1]
+		return moduleGetter.toString().match(/\(['|"](.*?)['|"]\)/)[1]
 	}
 
 	var addPoolIdGetter = function(name) {
