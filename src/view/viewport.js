@@ -75,23 +75,6 @@
  * --------------------------------
  */
 define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "error-printer"], function(Delegate, Layer, Reclaimer, Matrix, SAT, Vector2D, ErrorPrinter){
-	var p1 = new Vector2D();
-	var p2 = new Vector2D();
-	var p3 = new Vector2D();
-	var p4 = new Vector2D();
-	var m = null;
-	var vm = null;
-	var r = null;
-	var rOffsetX, rOffsetY, rWidth, rHeight;
-	var x, y, w, h;
-
-	var goxp = [0, 0, 0, 0];
-	var goyp = [0, 0, 0, 0];
-	var left = 0;
-	var top = 0;
-	var right = 0;
-	var bottom = 0;
-
 	var Viewport = Delegate.extend({
 
 		/**
@@ -134,6 +117,20 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 
 			this.layers = [];
 			this.matrix = new Matrix();
+
+			this.p1 = new Vector2D();
+			this.p2 = new Vector2D();
+			this.p3 = new Vector2D();
+			this.p4 = new Vector2D();
+			this.rOffsetX;
+			this.rOffsetY;
+			this.rWidth;
+			this.rHeight;
+
+			this.left = 0;
+			this.top = 0;
+			this.right = 0;
+			this.bottom = 0;
 		},
 		/**
 		 * --------------------------------
@@ -517,48 +514,92 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 		 * @return {Boolean} Whether the [game-object](@@game-object@@) is in the visible area of the viewport or not
 		 */
 		isGameObjectInside: function(go, context) {
-			r = go.renderer;
-			m = go.getMatrix();
+			var r = go.renderer;
+			var m = go.getMatrix();
+			var tmp;
 
 			if (r) {
 				// Game Objects with renderers take dimentions from them
-				rOffsetX = r.rendererOffsetX();
-				rOffsetY = r.rendererOffsetY();
-				rWidth = r.rendererWidth();
-				rHeight = r.rendererHeight();
+				this.rOffsetX = r.rendererOffsetX();
+				this.rOffsetY = r.rendererOffsetY();
+				this.rWidth = r.rendererWidth();
+				this.rHeight = r.rendererHeight();
 			} else {
 				// Game Objects with no renderers take default dimentions
-				rOffsetX = 0;
-				rOffsetY = 0;
-				rWidth = 1;
-				rHeight = 1;
+				this.rOffsetX = 0;
+				this.rOffsetY = 0;
+				this.rWidth = 1;
+				this.rHeight = 1;
 			}
 
 			// Get the world coordinates of the game object corners
-			p1 = m.transformPoint(rOffsetX, rOffsetY, p1);
-			p2 = m.transformPoint(rOffsetX + rWidth, rOffsetY, p2);
-			p3 = m.transformPoint(rOffsetX + rWidth, rOffsetY + rHeight, p3);
-			p4 = m.transformPoint(rOffsetX, rOffsetY + rHeight, p4);
+			this.p1 = m.transformPoint(this.rOffsetX, this.rOffsetY, this.p1);
+			this.p2 = m.transformPoint(this.rOffsetX + this.rWidth, this.rOffsetY, this.p2);
+			this.p3 = m.transformPoint(this.rOffsetX + this.rWidth, this.rOffsetY + this.rHeight, this.p3);
+			this.p4 = m.transformPoint(this.rOffsetX, this.rOffsetY + this.rHeight, this.p4);
 
 			if (this.Culling) {
-				// Place the coordinates found in arrays to calculate the minimum and maximum values
-				goxp[0] = p1.x * this.ScaleX;
-				goxp[1] = p2.x * this.ScaleX;
-				goxp[2] = p3.x * this.ScaleX;
-				goxp[3] = p4.x * this.ScaleX;
+				// Calculate left and right most values
+				this.left = this.p1.x;
+				this.right = this.p2.x;
+				
+				if (this.left > this.right) {
+					tmp = this.left;
 
-				goyp[0] = p1.y * this.ScaleY;
-				goyp[1] = p2.y * this.ScaleY;
-				goyp[2] = p3.y * this.ScaleY;
-				goyp[3] = p4.y * this.ScaleY;
+					this.left = this.right;
+					this.right = tmp;
+				}
+				
+				if (this.p3.x < this.left) {
+					this.left = this.p3.x;
+				}
 
-				left = Math.min.apply(null, goxp);
-				top = Math.min.apply(null, goyp);
-				right = Math.max.apply(null, goxp);
-				bottom = Math.max.apply(null, goyp);
+				if (this.p3.x > this.right) {
+					this.right = this.p3.x;
+				}
+
+				if (this.p4.x < this.left) {
+					this.left = this.p4.x;
+				}
+
+				if (this.p4.x > this.right) {
+					this.right = this.p4.x;
+				}
+				
+				// Calculate top and bottom most value
+				this.top = this.p1.y;
+				this.bottom = this.p2.y;
+				
+				if (this.top > this.bottom) {
+					tmp = this.top;
+
+					this.top = this.bottom;
+					this.bottom = tmp;
+				}
+
+				if (this.p3.y < this.top) {
+					this.top = this.p3.y;
+				}
+
+				if (this.p3.y > this.bottom) {
+					this.bottom = this.p3.y;
+				}
+
+				if (this.p4.y < this.top) {
+					this.top = this.p4.y;
+				}
+
+				if (this.p4.y > this.bottom) {
+					this.bottom = this.p4.y;
+				}
+
+				this.left *= this.ScaleX;
+				this.top *= this.ScaleY;
+				this.right *= this.ScaleX;
+				this.bottom *= this.ScaleY;
 
 				// The game object is surely outside the viewport
-				if (left > -this.x + this.Width || -this.x > right || top > -this.y + this.Height || -this.y > bottom)
+				if (this.left > -this.x + this.Width || -this.x > this.right || this.top > -this.y + this.Height || -this.y > this.bottom)
 				{
 					// Set the game object as not visible in this viewport
 					go.setViewportVisibility(this.name, false);
@@ -571,32 +612,75 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 
 			} else {
 				// Viewport's matrix
-				vm = this.getMatrix();
+				var vm = this.getMatrix();
 			
 				// Get the canvas coordinates of the game object's corners to build the game object collider that will work in canvas space
-				p1 = vm.transformPoint(p1.x, p1.y, p1);
-				p2 = vm.transformPoint(p2.x, p2.y, p2);
-				p3 = vm.transformPoint(p3.x, p3.y, p3);
-				p4 = vm.transformPoint(p4.x, p4.y, p4);
+				this.p1 = vm.transformPoint(this.p1.x, this.p1.y, this.p1);
+				this.p2 = vm.transformPoint(this.p2.x, this.p2.y, this.p2);
+				this.p3 = vm.transformPoint(this.p3.x, this.p3.y, this.p3);
+				this.p4 = vm.transformPoint(this.p4.x, this.p4.y, this.p4);
 
-				// Place the coordinates found in arrays to calculate the minimum and maximum values
-				goxp[0] = p1.x;
-				goxp[1] = p2.x;
-				goxp[2] = p3.x;
-				goxp[3] = p4.x;
+				// Calculate left and right most values
+				this.left = this.p1.x;
+				this.right = this.p2.x;
+				
+				if (this.left > this.right) {
+					tmp = this.left;
 
-				goyp[0] = p1.y;
-				goyp[1] = p2.y;
-				goyp[2] = p3.y;
-				goyp[3] = p4.y;
+					this.left = this.right;
+					this.right = tmp;
+				}
+				
+				if (this.p3.x < this.left) {
+					this.left = this.p3.x;
+				}
 
-				left = Math.min.apply(null, goxp);
-				top = Math.min.apply(null, goyp);
-				right = Math.max.apply(null, goxp);
-				bottom = Math.max.apply(null, goyp);
+				if (this.p3.x > this.right) {
+					this.right = this.p3.x;
+				}
+
+				if (this.p4.x < this.left) {
+					this.left = this.p4.x;
+				}
+
+				if (this.p4.x > this.right) {
+					this.right = this.p4.x;
+				}
+				
+				// Calculate top and bottom most value
+				this.top = this.p1.y;
+				this.bottom = this.p2.y;
+				
+				if (this.top > this.bottom) {
+					tmp = this.top;
+
+					this.top = this.bottom;
+					this.bottom = tmp;
+				}
+
+				if (this.p3.y < this.top) {
+					this.top = this.p3.y;
+				}
+
+				if (this.p3.y > this.bottom) {
+					this.bottom = this.p3.y;
+				}
+
+				if (this.p4.y < this.top) {
+					this.top = this.p4.y;
+				}
+
+				if (this.p4.y > this.bottom) {
+					this.bottom = this.p4.y;
+				}
+
+				this.left *= this.ScaleX;
+				this.top *= this.ScaleY;
+				this.right *= this.ScaleX;
+				this.bottom *= this.ScaleY;
 
 				// The game object is surely not visible in th canvas
-				if (left > context.canvas.width || 0 > right || top > context.canvas.height || 0 > bottom)
+				if (this.left > context.canvas.width || 0 > this.right || this.top > context.canvas.height || 0 > this.bottom)
 				{
 					// Set the game object as not visible in this viewport
 					go.setViewportVisibility(this.name, false);

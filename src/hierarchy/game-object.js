@@ -152,8 +152,7 @@
  * --------------------------------
  */
 define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-finder"], function(Delegate, Matrix, DebugDraw, Util, ComponentFinder) {
-	var go, r;
-
+	
 	var GameObject = Delegate.extend({
 		init: function() {
 			this._super();
@@ -237,6 +236,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			// This boolean signals that a transformation has taken place and hence the object can be drawn afterwards. 
 			// If an object tries to draw itself before a transformation has occured, the drawing will be skipped to avoid graphical glitches.
 			this.isTransformed = false;
+
+			this.decomposed = null;
 		},
 		/**
 		 * --------------------------------
@@ -548,7 +549,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 				}
 			}
 			
-			DebugDraw.gameObject.call(this, context, viewport);
+			DebugDraw.gameObject(this, context, viewport);
 
 			context.restore();
 		},
@@ -885,7 +886,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 				m = new Matrix().identity();
 			}
 
-			go = this;
+			var go = this;
 
 			while (go != null) {
 				if (options) {
@@ -947,7 +948,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 				m = new Matrix().identity();
 			}
 
-			go = this;
+			var go = this;
 
 			while (go != null) {
 				if (options) {
@@ -1106,11 +1107,11 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		debug_draw: function(context, viewport, draw, gb) {
 			if(!gb.gameObjectDebug) return;
 
-			r = this.matrix.decompose(r);
+			this.decomposed = this.matrix.decompose(this.decomposed);
 				
 			// Draw the center of the object
 			context.save();
-			context.translate(r.x, r.y);
+			context.translate(this.decomposed.x, this.decomposed.y);
 			draw.circle(context, 0, 0, 2, this.debugColor, null, 1);
 			context.restore();
 		}

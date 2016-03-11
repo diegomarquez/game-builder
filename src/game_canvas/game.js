@@ -88,14 +88,10 @@
  * --------------------------------
  */
 define(function(require) {
-	var delegate = require("delegate");
-	var root = require("root");
-	var reclaimer = require("reclaimer");
-
 	var blur = false;
 	var self = null;
 
-	var Game = delegate.extend({
+	var Game = require("delegate").extend({
 		init: function() {
 			this._super();
 
@@ -114,6 +110,11 @@ define(function(require) {
 			this.context = null;
 
 			self = this;
+
+			this.bindedMainLoop = null;
+
+			this.root = require("root");
+			this.reclaimer = require("reclaimer");
 		},
 
 		/**
@@ -255,24 +256,24 @@ define(function(require) {
 	     * The main game loop
 	     */
 	    mainLoop: function(time) {
-			self.delta = (time - self.lastUpdate) / 1000;
+			this.delta = (time - this.lastUpdate) / 1000;
 
-			if (self.delta >= 0 &&  self.delta < 1) {
+			if (this.delta >= 0 &&  this.delta < 1) {
 				// Execute all update extensions
-				self.execute_extensions('update', self.delta);
+				this.execute_extensions('update', this.delta);
 				// Update all [game-objects](@@game-object@@)
-				root.update(self.delta);
+				this.root.update(this.delta);
 				// Execute all update events
-				self.execute('update', self.delta);
+				this.execute('update', this.delta);
 				// Draw to all the [viewports](@@viewport@@)
-				root.draw(self.context);
+				this.root.draw(this.context);
 				// Recycle any [game-objects](@@game-object@@) marked for removal
-				reclaimer.claimMarked();
+				this.reclaimer.claimMarked();
 			}
 
-			self.lastUpdate = time;
+			this.lastUpdate = time;
 
-			self.lastAnimationFrameId = window.requestAnimationFrame(self.mainLoop);
+			this.lastAnimationFrameId = window.requestAnimationFrame(this.bindedMainLoop);
 
 	    },
 	    /**
@@ -312,7 +313,9 @@ define(function(require) {
 
 	        this.lastUpdate = Date.now();
 
-	        this.lastAnimationFrameId = window.requestAnimationFrame(this.mainLoop);
+	        this.bindedMainLoop = this.mainLoop.bind(this);
+
+	        this.lastAnimationFrameId = window.requestAnimationFrame(this.bindedMainLoop);
 	    },
 	    /**
 	     * --------------------------------
@@ -343,7 +346,7 @@ define(function(require) {
 
 						// Re-start the main game loop
 						self.lastUpdate = Date.now();
-						self.lastAnimationFrameId = window.requestAnimationFrame(self.mainLoop);
+						self.lastAnimationFrameId = window.requestAnimationFrame(self.bindedMainLoop);
 					}
 				}
 	        }
@@ -384,46 +387,46 @@ define(function(require) {
 	     */
 	});
 
-  Object.defineProperty(Game.prototype, "CREATE", { get: function() { return 'create'; } });
-  Object.defineProperty(Game.prototype, "UPDATE", { get: function() { return 'update'; } });
-  Object.defineProperty(Game.prototype, "FOCUS", { get: function() { return 'focus'; } });
-  Object.defineProperty(Game.prototype, "BLUR", { get: function() { return 'blur'; } });
+	Object.defineProperty(Game.prototype, "CREATE", { get: function() { return 'create'; } });
+	Object.defineProperty(Game.prototype, "UPDATE", { get: function() { return 'update'; } });
+	Object.defineProperty(Game.prototype, "FOCUS", { get: function() { return 'focus'; } });
+	Object.defineProperty(Game.prototype, "BLUR", { get: function() { return 'blur'; } });
 
-  Object.defineProperty(Game.prototype, "EXTENSION_ADDED", { get: function() { return 'extension_added'; } });
+	Object.defineProperty(Game.prototype, "EXTENSION_ADDED", { get: function() { return 'extension_added'; } });
 
-  Object.defineProperty(Game.prototype, "CHANGE_WIDTH", { get: function() { return 'change_width'; } });
-  Object.defineProperty(Game.prototype, "CHANGE_HEIGHT", { get: function() { return 'change_height'; } });
+	Object.defineProperty(Game.prototype, "CHANGE_WIDTH", { get: function() { return 'change_width'; } });
+	Object.defineProperty(Game.prototype, "CHANGE_HEIGHT", { get: function() { return 'change_height'; } });
 
-  Object.defineProperty(Game.prototype, "WIDTH", { 
-  	get: function() {
-  		return this.canvas.width;
-  	},
-  	set: function (value) { 
-	  	this.canvas.width = value;
-	  	this.execute(this.CHANGE_WIDTH, value); 
-	  } 
+	Object.defineProperty(Game.prototype, "WIDTH", { 
+		get: function() {
+			return this.canvas.width;
+		},
+		set: function (value) { 
+			this.canvas.width = value;
+			this.execute(this.CHANGE_WIDTH, value); 
+		} 
 	});
 
-  Object.defineProperty(Game.prototype, "HEIGHT", { 
-  	get: function() {
-  		return this.canvas.height;
-  	},
-  	set: function (value) { 
-  		this.canvas.height = value;
-  		this.execute(this.CHANGE_HEIGHT, value); 
-  	} 
-  });
+	Object.defineProperty(Game.prototype, "HEIGHT", { 
+		get: function() {
+			return this.canvas.height;
+		},
+		set: function (value) { 
+			this.canvas.height = value;
+			this.execute(this.CHANGE_HEIGHT, value); 
+		} 
+	});
 
-  var game = new Game();
+	var game = new Game();
 
-  game.prototype = Game.prototype;
+	game.prototype = Game.prototype;
 
-  game.extensions = {
-    'create': [],
-    'update': [],
-    'focus': [],
-    'blur': []
-  };
+	game.extensions = {
+		'create': [],
+		'update': [],
+		'focus': [],
+		'blur': []
+	};
 
-  return game;
+	return game;
 });

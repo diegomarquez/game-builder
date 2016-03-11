@@ -24,8 +24,6 @@
  * --------------------------------
  */
 define(["component", "vector-2D", "error-printer"], function(Component, Vector2D, ErrorPrinter) {
-	
-	var r = new Vector2D();
 
 	var Renderer = Component.extend({
 		/**
@@ -40,6 +38,8 @@ define(["component", "vector-2D", "error-printer"], function(Component, Vector2D
 			this.height = 0;
 
 			this.reset();
+
+			this.workVector = new Vector2D();
 		},
 		/**
 		 * --------------------------------
@@ -201,20 +201,20 @@ define(["component", "vector-2D", "error-printer"], function(Component, Vector2D
 			var m = this.parent.getMatrix();
 
 			// Top Left 
-			r = m.transformPoint(this.rendererLeft(), this.rendererTop(), r); 
-			context.moveTo(Math.round(r.x), Math.round(r.y));
+			this.workVector = m.transformPoint(this.rendererLeft(), this.rendererTop(), this.workVector); 
+			context.moveTo(Math.round(this.workVector.x), Math.round(this.workVector.y));
 
 			// Top Right
-			r = m.transformPoint(this.rendererRight(), this.rendererTop(), r); 
-			context.lineTo(Math.round(r.x), Math.round(r.y));			
+			this.workVector = m.transformPoint(this.rendererRight(), this.rendererTop(), this.workVector); 
+			context.lineTo(Math.round(this.workVector.x), Math.round(this.workVector.y));			
 
 			// Bottom Right
-			r = m.transformPoint(this.rendererRight(), this.rendererBottom(), r); 
-			context.lineTo(Math.round(r.x), Math.round(r.y));			
+			this.workVector = m.transformPoint(this.rendererRight(), this.rendererBottom(), this.workVector); 
+			context.lineTo(Math.round(this.workVector.x), Math.round(this.workVector.y));			
 
 			// Bottom Left
-			r = m.transformPoint(this.rendererLeft(), this.rendererBottom(), r); 
-			context.lineTo(Math.round(r.x), Math.round(r.y));
+			this.workVector = m.transformPoint(this.rendererLeft(), this.rendererBottom(), this.workVector); 
+			context.lineTo(Math.round(this.workVector.x), Math.round(this.workVector.y));
 
 			context.closePath();
 

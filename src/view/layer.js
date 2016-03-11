@@ -136,7 +136,7 @@ define(["delegate"], function(Delegate) {
 					// Try to skip drawing as soon as possible
 					
 					// Draw only if inside the viewport and is allowed to be drawn
-					if (this.viewport.isGameObjectInside(go, context) && go.canDraw) {
+					if (go.canDraw && this.viewport.isGameObjectInside(go, context)) {
 						go.draw(context, this.viewport);    
 					}
 				}
