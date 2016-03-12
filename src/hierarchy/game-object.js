@@ -538,8 +538,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			var m = this.getMatrix();
 
 			context.transform(m.a, m.b, m.c, m.d, m.tx, m.ty);
-			
-			if (m.alpha != 1) {
+
+			if (m.alpha !== 1) {
 				 context.globalAlpha *= m.alpha;
 			}
 
