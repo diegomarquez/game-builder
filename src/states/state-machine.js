@@ -53,11 +53,12 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		 * Once the states have been added, call this method to go into
 		 * the first state, optionally sending some arguments.
 		 * 
-		 * @param  {Object} [args=null] Arguments to be sent to the initial state.  
+		 * @param  {Object} [args=null] Arguments to be sent to the initial state.
+		 * @param  {Number} [initState=null] State in which the state machine should start.  
 		 */
-		start: function(args) {
+		start: function(args, initState) {
 			this.unblock();
-			executeStateAction.call(this, 0, 'start', args);
+			executeStateAction.call(this, initState ? initState : 0, 'start', args);
 		},
 		/**
 		 * --------------------------------
