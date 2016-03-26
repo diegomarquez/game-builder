@@ -45,6 +45,11 @@ define(["component", "vector-2D", "error-printer"], function(Component, Vector2D
 		 * --------------------------------
 		 */
 		
+		/**
+		 * <p style='color:#AD071D'><strong>reset</strong></p>
+		 *
+		 * Reset for re-use
+		 */
 		reset: function() {
 			this._super();
 
@@ -54,6 +59,9 @@ define(["component", "vector-2D", "error-printer"], function(Component, Vector2D
 
 			this.debugColor = "#FFFF00";
 		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
