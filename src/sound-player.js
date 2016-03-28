@@ -320,11 +320,11 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 					ErrorPrinter.printError('Sound Player', 'Id: ' + id + ' is already in use');
 					soundAssetCount--;
 					continue;
+				}
 			
-
-				this.loadAudioTag.call(id, path, function() {
+				this.loadAudioTag(id, path, function() {
 					soundAssetCount--;
-					
+				
 					if (soundAssetCount <= 0) {
 						this.execute(this.ON_LOAD_ALL_COMPLETE);
 						this.isLoading = false;
@@ -351,7 +351,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 				ErrorPrinter.printError('Sound Player', 'Id: ' + id + ' is already in use');
 			}
 
-			this.loadAudioTag.call(this, id, path, function() {
+			this.loadAudioTag(id, path, function() {
 				this.execute(this.ON_LOAD_COMPLETE, id);
 			});
 		},
@@ -393,8 +393,6 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 		 * @param  {String} id Id of the sound to play
 		 */
 		playLoop: function(id) {
-			var self = this;
-
 			var soundList = this.preAssignedChannels[id] ? this.preAssignedChannels[id] : this.pooledChannels;
 			
 			if (soundList.length == 0) return;
@@ -402,11 +400,11 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 			var channel = this.getPooledChannel(soundList);
 
 			if(this.preAssignedChannels[id]) {
-				playChannelLoop.call(self, channel, soundList);
+				this.playChannelLoop(channel, soundList);
 			} else {
 				this.loadChannel(id, channel, function (channel) {
-					playChannelLoop.call(self, channel, soundList);
-				});
+					this.playChannelLoop(channel, soundList);
+				}.bind(this));
 			}
 		},
 		/**
@@ -642,7 +640,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 			}
 
 			channel.timer.on('complete', function() {
-				var c = this.owner;
+				var c = channel;
 
 				c.currentTime = 0;
 				c.pause();
@@ -675,7 +673,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 		 * @param  {String} id    Id of the sound to play
 		 * @param  {Audio} channel    Channel to be played in a loop
 		 */
-		var playChannelLoop = function(id, channel) {
+		playChannelLoop: function(id, channel) {
 			var soundList = this.preAssignedChannels[id] ? this.preAssignedChannels[id] : this.pooledChannels;
 
 			if (!this.canPlay(channel, soundList)) {
@@ -683,7 +681,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 			}
 
 			channel.timer.on('repeate', function() {
-				var c = this.owner;
+				var c = channel;
 
 				c.currentTime = 0;
 				c.play();
