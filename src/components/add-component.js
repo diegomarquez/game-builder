@@ -1,5 +1,5 @@
 /**
- * # sound-component.js
+ * # add-component.js
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
@@ -7,26 +7,26 @@
  * [component](@@component@@)
  *
  * Depends of:
- * [sound-player](@@sound-player@@)
+ * [gb](@@gb@@)
  * [error-printer](@@error-printer@@)
  * 
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- *
- * A [component](@@component@@) to encapsulate the logic needed to play a sound when the 
- * parent [game-object](@@game-object@@) executes a delegate.
+ * 
+ * A [component](@@component@@) to encapsulate the logic needed to add a [component](@@component@@) to 
+ * the parnet [game-object](@@game-object@@) when it executes a delegate.
  */
 
 /**
- * Play sounds on game objects
+ * Add components to game objects
  * --------------------------------
  */
 
 /**
  * --------------------------------
  */
-define(["component", "sound-player", "error-printer"], function(Component, SoundPlayer, ErrorPrinter) {
+define(["component", "gb", "error-printer"], function(Component, Gb, ErrorPrinter) {
 
-	var SoundComponent = Component.extend({
+	var AddComponent = Component.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>init</strong></p>
 		 *
@@ -35,11 +35,12 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 		init: function() {
 			this._super();
 
-			this.soundId = "";
+			this.componentId = "";
 			this.parentEvent = "";
-			this.playMode = "";
+			this.executeOnce = true;
+			this.componentArgs = null;
 
-			this.soundPlayer = SoundPlayer;
+			this.gb = Gb;
 
 			this.reset();
 		},
@@ -55,9 +56,10 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 		reset: function() {
 			this._super();
 
-			this.soundId = "";
+			this.componentId = "";
 			this.parentEvent = "";
-			this.playMode = "";
+			this.executeOnce = true;
+			this.componentArgs = null;
 		},
 		/**
 		 * --------------------------------
@@ -72,31 +74,23 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 		 * @param  {Object} parent [game-object](@@game-object@@) using this component 
 		 */
 		start: function(parent) {
-			if (!this.soundId) {
-				ErrorPrinter.missingArgumentError("SoundComponent", "soundId");
+			if (!this.componentId) {
+				ErrorPrinter.missingArgumentError("AddComponent", "componentId");
 			}
 
 			if (!this.parentEvent) {
-				ErrorPrinter.missingArgumentError("SoundComponent", "parentEvent");
+				ErrorPrinter.missingArgumentError("AddComponent", "parentEvent");
 			}
 
-			if (!this.playMode) {
-				ErrorPrinter.missingArgumentError("SoundComponent", "playMode");
+			if (this.executeOnce) {
+				parent.once(this.parentEvent, this, function() {
+					this.gb.addComponentTo(this.parent, this.componentId, this.componentArgs);
+				}, "add-component-delegate");
+			} else {
+				parent.on(this.parentEvent, this, function() {
+					this.gb.addComponentTo(this.parent, this.componentId, this.componentArgs);
+				}, false, false, false, "add-component-delegate");
 			}
-
-			parent.on(this.parentEvent, this, function() {
-
-				if (this.playMode === "single") {
-					this.soundPlayer.playSingle(this.soundId);
-					return;
-				}
-
-				if (this.playMode === "loop") {
-					this.soundPlayer.playLoop(this.soundId);
-					return;
-				}
-
-			}, false, false, false, "sound-player-delegate");
 		},
 		/**
 		 * --------------------------------
@@ -111,12 +105,12 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 		 * @param  {Object} parent [game-object](@@game-object@@) using this component
 		 */
 		recycle: function(parent) {
-			parent.levelCleanUp("sound-player-delegate");
+			parent.levelCleanUp("add-component-delegate");
 		}
 		/**
 		 * --------------------------------
 		 */
 	});
 
-	return SoundComponent;
+	return AddComponent;
 });
