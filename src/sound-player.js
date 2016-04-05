@@ -150,6 +150,11 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 			this.currentTime = new Date();
 
 			this.isLoading = false;
+
+			window.AudioContext = window.AudioContext || window.webkitAudioContext;
+			this.audioContext = new AudioContext();
+
+			this.audioBuffers = {};
 		},
 		/**
 		 * --------------------------------
@@ -345,7 +350,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 		 * @param {String} path A path to a sound file. Can be relative or absolute
 		 * @throws {Error} If the id sent is already in use.
 		 */
-		load: function(id, path) {
+		loadWithAudioTag: function(id, path) {
 			// If an audio tag with this id already exists, do nothing.
 			if (this.audioTags[id]) {
 				ErrorPrinter.printError('Sound Player', 'Id: ' + id + ' is already in use');
@@ -359,6 +364,64 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 		 * --------------------------------
 		 */
 		
+		/**
+		 * <p style='color:#AD071D'><strong>loadWithWebAudio</strong></p>
+		 *
+		 * Load audio data using the web audio API.
+		 * 
+		 * @param {String} id Use this identifier to later play the loaded sound  
+		 * @param {String} path A path to a sound file. Can be relative or absolute
+		 * @throws {Error} If the id sent is already in use.
+		 */
+		loadWithWebAudio: function(id, path) {
+			if (this.audioBuffers[id]) {
+				ErrorPrinter.printError('Sound Player', 'Id: ' + id + ' is already in use');
+			}
+
+			var request = new XMLHttpRequest();
+			
+			if (window.location.protocol === "file:") {
+				request.open('GET', "http://localhost:5000/" + path);
+			}
+			else {
+				request.open('GET', path);
+			}
+
+			request.responseType = 'arraybuffer';
+
+			request.onload = function() {
+				this.audioContext.decodeAudioData(request.response, function(buffer) {
+					this.audioBuffers[id] = buffer;
+				}.bind(this));
+			}.bind(this)
+
+			request.send();
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>playSingleBuffer</strong></p>
+		 *
+		 * Plays a sound 1 time.
+		 * 
+		 * @param  {String} id Id of the sound to play
+		 */
+		playSingleBuffer: function(id) {
+			if (!this.audioBuffers[id])
+				return;
+
+			var source = this.audioContext.createBufferSource();
+			
+			source.buffer = this.audioBuffers[id];
+			source.connect(this.audioContext.destination);
+			source.start(0);
+		},
+		/**
+		 * --------------------------------
+		 */
+
 		/**
 		 * <p style='color:#AD071D'><strong>playSingle</strong></p>
 		 *

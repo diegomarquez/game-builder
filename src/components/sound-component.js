@@ -91,6 +91,11 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 					return;
 				}
 
+				if (this.playMode === "single-buffer") {
+					this.soundPlayer.playSingleBuffer(this.soundId);
+					return;
+				}
+
 				if (this.playMode === "loop") {
 					this.soundPlayer.playLoop(this.soundId);
 					return;
