@@ -196,12 +196,28 @@ define(["renderer", "path-cache", "error-printer", "util"], function(Renderer, P
 		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
 		 */
 		draw: function(context, viewport) {			
-			context.drawImage(this.cache.get(this.currentFrameName), 
-				Math.floor(this.rendererOffsetX()), 
-				Math.floor(this.rendererOffsetY()), 
-				Math.floor(this.rendererWidth()), 
-				Math.floor(this.rendererHeight())
-			)
+			var canvas = this.cache.get(this.currentFrameName);
+
+			if (!canvas)
+				return;
+
+			if (this.tinted) {
+				var tintedCanvas = this.tintImage(this.currentFrameName, canvas);
+
+				context.drawImage(tintedCanvas,
+					Math.floor(this.rendererOffsetX()), 
+					Math.floor(this.rendererOffsetY()), 
+					Math.floor(this.rendererWidth()),
+					Math.floor(this.rendererHeight())
+				);
+			} else {
+				context.drawImage(canvas,
+					Math.floor(this.rendererOffsetX()), 
+					Math.floor(this.rendererOffsetY()), 
+					Math.floor(this.rendererWidth()),
+					Math.floor(this.rendererHeight())
+				);
+			}
 		},
 		/**
 		 * --------------------------------

@@ -52,8 +52,15 @@ define(function(require) {
 
 			var image = document.createElement('img');
 			
-			image.src = path;
-		
+			image.crossOrigin = "Anonymous";
+			
+			if (window.location.protocol === "file:") {
+				image.src = "http://localhost:5000/" + path;
+			}
+			else {
+				image.src = path;
+			}
+
 			this.cacheObject[path] = image;
 
 			this.execute(this.CACHE, this.cacheObject[path]);
@@ -116,8 +123,17 @@ define(function(require) {
 			}
 
 			var image = document.createElement('img');
+			
+			image.crossOrigin = "Anonymous";
+
 			image.addEventListener("load", onLoad);
-			image.src = path;
+			
+			if (window.location.protocol === "file:") {
+				image.src = "http://localhost:5000/" + path;
+			}
+			else {
+				image.src = path;
+			}
 		}
 		/**
 		 * --------------------------------

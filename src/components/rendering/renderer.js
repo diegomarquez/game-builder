@@ -9,6 +9,7 @@
  * Depends of:
  * [vector-2D](@@vector-2D@@)
  * [error-printer](@@error-printer@@)
+ * [rgb-canvas-cache](@@rgb-canvas-cache@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -23,7 +24,10 @@
 /**
  * --------------------------------
  */
-define(["component", "vector-2D", "error-printer"], function(Component, Vector2D, ErrorPrinter) {
+define(["component", "vector-2D", "error-printer", "rgb-canvas-cache"], function(Component, Vector2D, ErrorPrinter, RgbCanvasCache) {
+
+	var canvas = document.createElement("canvas");
+	var context = canvas.getContext("2d");
 
 	var Renderer = Component.extend({
 		/**
@@ -36,10 +40,22 @@ define(["component", "vector-2D", "error-printer"], function(Component, Vector2D
 
 			this.width = 0;
 			this.height = 0;
+			this.offsetX = 0;
+			this.offsetY = 0;
+			this.offset = "";
+			this.tinted = false;
+			this.tintRed = 0;
+			this.tintGreen = 0;
+			this.tintBlue = 0;
+			this.debugColor = "#FFFF00";
 
 			this.reset();
 
 			this.workVector = new Vector2D();
+			
+			this.tmpCanvas = canvas;
+			this.tmpContext = context;
+			this.rgbCanvasCache = RgbCanvasCache;
 		},
 		/**
 		 * --------------------------------
@@ -55,8 +71,11 @@ define(["component", "vector-2D", "error-printer"], function(Component, Vector2D
 
 			this.offsetX = 0;
 			this.offsetY = 0;
-			this.offset = '';
-
+			this.offset = "";
+			this.tinted = false;
+			this.tintRed = 0;
+			this.tintGreen = 0;
+			this.tintBlue = 0;
 			this.debugColor = "#FFFF00";
 		},
 		/**
@@ -75,6 +94,86 @@ define(["component", "vector-2D", "error-printer"], function(Component, Vector2D
 		 */
 		draw: function(context, viewport) {
 			ErrorPrinter.mustOverrideError('Renderer');
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>tint</strong></p>
+		 *
+		 * Enable tinting
+		 * 
+		 * @param  {Number} r Red channel amount between 0 and 255
+		 * @param  {Number} g Green channel amount between 0 and 255
+		 * @param  {Number} b Blue channel amount between 0 and 255
+		 */
+		tint: function(r, g, b) {
+			this.tinted = true;
+			this.tintRed = r;
+			this.tintGreen = g;
+			this.tintBlue = b;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>disableTint</strong></p>
+		 *
+		 * Disable tinting
+		 */
+		disableTint: function() {
+			this.tinted = false;
+		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>tintImage</strong></p>
+		 *
+		 * Logic to tint an image and cache it
+		 * 
+		 * @param  {Drawable} source Source image to tint
+		 * @param  {Number} r Red channel amount between 0 and 255
+		 * @param  {Number} g Green channel amount between 0 and 255
+		 * @param  {Number} b Blue channel amount between 0 and 255
+		 *
+		 * @return {Drawable} The tinted image
+		 */
+		tintImage: function(id, source) {
+			this.rgbCanvasCache.cache(id, source);
+
+			var channels = this.rgbCanvasCache.get(id);		
+			var canvas = this.tmpCanvas;
+			var context = this.tmpContext;
+
+	        canvas.width  = source.width;
+	        canvas.height = source.height;
+
+	        context.globalAlpha = 1;
+	        context.globalCompositeOperation = 'copy';
+	        context.drawImage(channels[3], 0, 0);
+
+	        context.globalCompositeOperation = 'lighter';
+
+	        if (this.tintRed > 0) {
+	            context.globalAlpha = this.tintRed / 255;
+	            context.drawImage(channels[0], 0, 0);
+	        }
+
+	        if (this.tintGreen > 0) {
+	            context.globalAlpha = this.tintGreen / 255;
+	            context.drawImage(channels[1], 0, 0);
+	        }
+
+	        if (this.tintBlue > 0) {
+	            context.globalAlpha = this.tintBlue / 255;
+	            context.drawImage(channels[2], 0, 0);
+	        }
+    
+			return canvas;
 		},
 		/**
 		 * --------------------------------

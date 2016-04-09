@@ -103,12 +103,28 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
 		 */
 		draw: function(context, viewport) {
-			context.drawImage(this.cache.get(this.name), 
-				Math.floor(this.rendererOffsetX()), 
-				Math.floor(this.rendererOffsetY()), 
-				Math.floor(this.rendererWidth()), 
-				Math.floor(this.rendererHeight())
-			);	
+			var canvas = this.cache.get(this.name);
+
+			if (!canvas)
+				return;
+
+			if (this.tinted) {
+				var tintedCanvas = this.tintImage(this.name, canvas);
+
+				context.drawImage(tintedCanvas,
+					Math.floor(this.rendererOffsetX()), 
+					Math.floor(this.rendererOffsetY()), 
+					Math.floor(this.rendererWidth()),
+					Math.floor(this.rendererHeight())
+				);
+			} else {
+				context.drawImage(canvas,
+					Math.floor(this.rendererOffsetX()), 
+					Math.floor(this.rendererOffsetY()), 
+					Math.floor(this.rendererWidth()),
+					Math.floor(this.rendererHeight())
+				);
+			}	
 		},
 		/**
 		 * --------------------------------

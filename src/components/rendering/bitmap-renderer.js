@@ -89,12 +89,23 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 			if (!image)
 				return;
 
-			context.drawImage(image, 
-				Math.floor(this.rendererOffsetX()), 
-				Math.floor(this.rendererOffsetY()), 
-				Math.floor(this.rendererWidth()), 
-				Math.floor(this.rendererHeight())
-			);
+			if (this.tinted) {
+				var tintedCanvas = this.tintImage(this.path, image);
+
+				context.drawImage(tintedCanvas,
+					Math.floor(this.rendererOffsetX()), 
+					Math.floor(this.rendererOffsetY()), 
+					Math.floor(this.rendererWidth()),
+					Math.floor(this.rendererHeight())
+				);
+			} else {
+				context.drawImage(image,
+					Math.floor(this.rendererOffsetX()), 
+					Math.floor(this.rendererOffsetY()), 
+					Math.floor(this.rendererWidth()),
+					Math.floor(this.rendererHeight())
+				);
+			}
 		},
 		/**
 		 * --------------------------------
