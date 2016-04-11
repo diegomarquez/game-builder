@@ -327,6 +327,8 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 					continue;
 				}
 			
+				var path = this.audioAssetPaths[id];
+
 				this.loadAudioTag(id, path, function() {
 					soundAssetCount--;
 				
@@ -463,10 +465,10 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 			var channel = this.getPooledChannel(soundList);
 
 			if(this.preAssignedChannels[id]) {
-				this.playChannelLoop(channel, soundList);
+				this.playChannelLoop(id, channel);
 			} else {
 				this.loadChannel(id, channel, function (channel) {
-					this.playChannelLoop(channel, soundList);
+					this.playChannelLoop(id, channel);
 				}.bind(this));
 			}
 		},
