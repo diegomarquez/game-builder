@@ -141,6 +141,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 			this._super();
 
 			this.audioTags = {};
+			this.audioBuffers = {};
 
 			this.audioAssetPaths = {};
 			this.pooledChannels = [];
@@ -153,8 +154,6 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 
 			window.AudioContext = window.AudioContext || window.webkitAudioContext;
 			this.audioContext = new AudioContext();
-
-			this.audioBuffers = {};
 		},
 		/**
 		 * --------------------------------
@@ -438,8 +437,17 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 
 			var channel = this.getPooledChannel(soundList);
 
-			if(this.preAssignedChannels[id]) {
+			if(this.preAssignedChannels[id] && channel && channel.loaded) {
 				this.playChannelSingle(id, channel);
+			} else if (this.preAssignedChannels[id] && channel && !channel.loaded) {
+
+				var onMD = function() {
+					channel.removeEventListener('loadedmetadata', onMD);
+					this.playChannelSingle(id, channel);
+				}.bind(this);
+
+				channel.addEventListener('loadedmetadata', onMD);
+
 			} else {
 				this.loadChannel(id, channel, function (channel) {
 					this.playChannelSingle(id, channel);
@@ -464,8 +472,17 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 
 			var channel = this.getPooledChannel(soundList);
 
-			if(this.preAssignedChannels[id]) {
+			if(this.preAssignedChannels[id] && channel && channel.loaded) {
 				this.playChannelLoop(id, channel);
+			} else if (this.preAssignedChannels[id] && channel && !channel.loaded) {
+
+				var onMD = function() {
+					channel.removeEventListener('loadedmetadata', onMD);
+					this.playChannelLoop(id, channel);
+				}.bind(this);
+
+				channel.addEventListener('loadedmetadata', onMD);
+
 			} else {
 				this.loadChannel(id, channel, function (channel) {
 					this.playChannelLoop(id, channel);
@@ -658,26 +675,26 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 			channel.loaded = false;
 
 			var onMD = function() {
-				this.removeEventListener('loadedmetadata', onMD);
+				channel.removeEventListener('loadedmetadata', onMD);
 
-				this.loaded = true;
+				channel.loaded = true;
 
 				if (onReady) {
-					onReady(this);
+					onReady(channel);
 				}
-			}.bind(channel);
+			};
 
 			var load = function() {
-				this.addEventListener('loadedmetadata', onMD);
+				channel.addEventListener('loadedmetadata', onMD);
 
-				this.id = id;
-				this.src = audio.src;
-				this.time = audio.duration;
+				channel.id = id;
+				channel.src = audio.src;
+				channel.time = audio.duration;
 
-				this.load();
+				channel.load();
 
 				audio.removeEventListener('canplaythrough', load);
-			}.bind(channel);
+			};
 
 			if (audio.readyState != 4) {
 				audio.addEventListener('canplaythrough', load);
