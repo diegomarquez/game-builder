@@ -863,6 +863,8 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 			this.preAssignedChannels[channel.id].push(channel);
 		} else {
 			this.pooledChannels.push(channel);
+			
+			channel.id = 'none';
 		}
 
 		this.activeChannels.splice(index, 1);
@@ -870,8 +872,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 		channel.currentTime = 0;
 		channel.pause();
 		channel.timer.stop();
-		channel.id = 'none';
-
+		
 		channel.timer.hardCleanUp();
 
 		this.execute(this.STOP);
