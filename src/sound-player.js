@@ -187,6 +187,10 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 					return this.timer.Stopped; 
 				}
 
+				channel.waitingToPlay = false;
+				channel.stopRequested = false;
+				channel.pauseRequested = false;
+
 				this.pooledChannels.push(channel);
 			}
 		},
@@ -737,11 +741,27 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 				this.execute(this.SINGLE_COMPLETE, c.id);
 			}.bind(this), true);
 
-			channel.timer.Delay(channel.time * 1000).RepeateCount(1).RemoveOnComplete(false).reset();
+			channel.waitingToPlay = true;
 
-			this.execute(this.PLAY_SINGLE, channel.id);
+			channel.play().then(function() {
 
-			channel.play();
+				channel.waitingToPlay = false;
+
+				if (channel.stopRequested) {
+					stopChannel.call(this, channel, soundList.indexOf(channel));
+					return;
+				}
+				
+				if (channel.pauseRequested) {
+					pauseChannel.call(this, channel, soundList.indexOf(channel));
+					return;
+				}
+
+				channel.timer.Delay(channel.time * 1000).RepeateCount(1).RemoveOnComplete(false).reset();
+
+				this.execute(this.PLAY_SINGLE, channel.id);
+
+			}.bind(this));
 		},
 		/**
 		 * --------------------------------
@@ -766,16 +786,45 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 				var c = channel;
 
 				c.currentTime = 0;
-				c.play();
+				
+				c.waitingToPlay = true;
 
-				this.execute(this.PLAY_LOOP, c.id);
+				c.play().then(function() {
+					c.waitingToPlay = false;
+
+					if (c.stopRequested) {
+						stopChannel.call(this, c, soundList.indexOf(c));
+						return;
+					}
+
+					if (c.pauseRequested) {
+						pauseChannel.call(this, c, soundList.indexOf(channel));
+						return;
+					}
+
+					this.execute(this.PLAY_LOOP, c.id);
+				}.bind(this));				
 			}.bind(this));
 
-			channel.timer.Delay(channel.time * 1000).RepeateCount(-1).RemoveOnComplete(false).reset();
+			channel.waitingToPlay = true;
 
-			channel.play();
+			channel.play().then(function() {
+				channel.waitingToPlay = false;
 
-			this.execute(this.PLAY_LOOP, channel.id);
+				if (channel.stopRequested) {
+					stopChannel.call(this, channel, soundList.indexOf(channel));
+					return;
+				}
+
+				if (channel.pauseRequested) {
+					pauseChannel.call(this, channel, soundList.indexOf(channel));
+					return;
+				}
+
+				channel.timer.Delay(channel.time * 1000).RepeateCount(-1).RemoveOnComplete(false).reset();
+
+				this.execute(this.PLAY_LOOP, channel.id);
+			}.bind(this));
 		},
 		/**
 		 * --------------------------------
@@ -852,6 +901,14 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 	}
 
 	var pauseChannel = function(channel) {
+		if (channel.waitingToPlay) {
+			channel.pauseRequested = true;
+
+			return;
+		}
+
+		channel.pauseRequested = false;
+
 		channel.timer.pause();
 		channel.pause();
 
@@ -859,6 +916,14 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 	};
 	
 	var stopChannel = function(channel, index) {
+		if (channel.waitingToPlay) {
+			channel.stopRequested = true;
+
+			return;
+		}
+
+		channel.stopRequested = false;
+
 		if(this.preAssignedChannels[channel.id]) {
 			this.preAssignedChannels[channel.id].push(channel);
 		} else {
@@ -879,10 +944,24 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 	};
 
 	var resumeChannel = function(channel) {
-		channel.play();
-		channel.timer.resume();
+		channel.waitingToPlay = true;
 
-		this.execute(this.RESUME);
+		channel.play().then(function() {
+			channel.waitingToPlay = false;
+
+			if (channel.stopRequested) {
+				stopChannel.call(this, channel, this.activeChannels.indexOf(channel));
+				return;
+			}
+			if (channel.pauseRequested) {
+				pauseChannel.call(this, channel, this.activeChannels.indexOf(channel));
+				return;
+			}
+
+			channel.timer.resume();
+
+			this.execute(this.RESUME);
+		}.bind(this));
 	};	
 
 	return new SoundPlayer();
