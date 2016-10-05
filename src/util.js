@@ -75,7 +75,7 @@ define(function() {
 	/**
 	 * <p style='color:#AD071D'><strong>map</strong></p>
 	 *
-	 * Convert the fiven value from the first range into the second range
+	 * Convert the given value from the first range into the second range
 	 *
 	 * @return {Number}
 	 */
@@ -428,6 +428,24 @@ define(function() {
 		if (o === false) return true; 
 
 		return false;
+	};
+	/**
+	 * --------------------------------
+	 */
+
+	 /**
+	 * <p style='color:#AD071D'><strong>wrapInRange</strong></p>
+	 *
+	 * Make a number 'wrap' in the given range
+	 * 
+	 * @param  {Number}  x The value to wrap
+	 * @param  {Number}  min Minimum value of the range
+	 * @param  {Number}  max Maximum value of the range
+	 *
+	 * @return {Number}
+	 */
+	Utils.prototype.wrapInRange = function(x, min, max) {
+		return x < min ?  max - (min - x) : x > max ? min + (x - max) : x;
 	};
 	/**
 	 * --------------------------------
