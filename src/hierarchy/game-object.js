@@ -235,6 +235,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 
 			// This boolean signals that a transformation has taken place and hence the object can be drawn afterwards. 
 			// If an object tries to draw itself before a transformation has occured, the drawing will be skipped to avoid graphical glitches.
+			// It can also be used when a component is added dynamically, to prevetn executing logic 
+			// in the update loop until the parent [game-object](@@game-object@@) has been transformed for
+			// the first time
 			this.isTransformed = false;
 
 			this.decomposed = null;
@@ -1088,6 +1091,21 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 */
 		isDrawing: function() {
 			return this.canDraw;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>transformedOnce</strong></p>
+		 *
+		 * Whether the game object has already gone throw the transformations
+		 * of it heriarchy or not
+		 * 
+		 * @return {Boolean}
+		 */
+		transformedOnce: function() {
+			return this.isTransformed;
 		},
 		/**
 		 * --------------------------------
