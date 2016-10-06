@@ -323,6 +323,13 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 
 			var soundAssetCount = Object.keys(this.audioAssetPaths).length;
 
+			if (soundAssetCount === 0) {
+				this.execute(this.ON_LOAD_ALL_COMPLETE);
+				this.isLoading = false;
+
+				return;
+			}
+
 			for (var id in this.audioAssetPaths) {
 				if (this.audioTags[id]) {
 					ErrorPrinter.printError('Sound Player', 'Id: ' + id + ' is already in use');
