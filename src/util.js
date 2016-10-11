@@ -451,6 +451,28 @@ define(function() {
 	 * --------------------------------
 	 */
 
+	/**
+	 * <p style='color:#AD071D'><strong>generateUUID</strong></p>
+	 *
+	 * Generate a random string
+	 *	 
+	 * @return {String}
+	 */
+	Utils.prototype.generateUUID = function() {
+	    var d = new Date().getTime();
+	    
+	    var uuid = 'xxxyxxxxxxxxyxxx'.replace(/[xy]/g, function(c) {
+	        var r = (d + Math.random()*16)%16 | 0;
+	        d = Math.floor(d/16);
+	        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+	    });
+
+	    return uuid;
+	};
+	/**
+	 * --------------------------------
+	 */
+
 	// These functions are helpers to get various types of random values. 
 	// They all use Math.random under the hood.
 	Utils.prototype.rand_f     = function (min, max) { return Math.random() * (max - min) + min; };
