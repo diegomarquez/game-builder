@@ -557,6 +557,28 @@ define(function(require) {
 		 */
 		toggleGameObjectDebug: function(state) {
 			toggle.call(this, state, 'gameObjectDebug');
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		 /**
+		 * <p style='color:#AD071D'><strong>getEnvironment</strong></p>
+		 *
+		 * Get the environment where the application is running
+		 * 
+		 * @return {String} Can be "dev" or "prod"
+		 */
+		 getEnvironment: function() {
+			var hostname = window.location.hostname;
+
+			if (hostname === 'localhost')
+				return 'dev';
+
+			if (hostname === '')
+				return 'dev';
+
+			return "prod";
 		}
 		/**
 		 * --------------------------------
