@@ -301,7 +301,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 		*/
 		hasId: function(id) {
 			return !!this.audioAssetPaths[id];
-		}
+		},
 		/**
 		* --------------------------------
 		*/
@@ -317,7 +317,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 		*/
 		getResourcePath: function(id) {
 			return this.audioAssetPaths[id];
-		}
+		},
 		/**
 		* --------------------------------
 		*/

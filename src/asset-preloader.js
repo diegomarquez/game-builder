@@ -64,7 +64,9 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 				ErrorPrinter.printError('Asset Preloader: path is not a url');
 			}
 
-			if (match === 'png' || match === 'gif' || match === 'jpeg') {
+			var extension = match[1];
+
+			if (extension === 'png' || extension === 'gif' || extension === 'jpeg') {
 				if (this.imagesToLoad.indexOf(path) === -1) {
 					this.imagesToLoad.push(path);
 				}
@@ -72,7 +74,7 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 				return;
 			}
 
-			if (match === 'opus' || match === 'weba' || match === 'ogg') {
+			if (extension === 'opus' || extension === 'weba' || extension === 'ogg') {
 				if (this.audioToLoad.indexOf(path) === -1) {
 					this.audioToLoad.push(path);
 				}
