@@ -291,6 +291,38 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 		*/
 
 		/**
+		*
+		* <p style='color:#AD071D'><strong>hasId</strong></p>
+		*
+		* Whether or not the sound player has the specified id registered.
+		*
+		* @param {String} id A registered id
+		* @return {Boolean}
+		*/
+		hasId: function(id) {
+			return !!this.audioAssetPaths[id];
+		}
+		/**
+		* --------------------------------
+		*/
+
+		/**
+		*
+		* <p style='color:#AD071D'><strong>getResourcePath</strong></p>
+		*
+		* Get the resource path associated with the specified id.
+		*
+		* @param {String} id A registered id
+		* @return {Boolean}
+		*/
+		getResourcePath: function(id) {
+			return this.audioAssetPaths[id];
+		}
+		/**
+		* --------------------------------
+		*/
+
+		/**
 		* <p style='color:#AD071D'><strong>assignChannels</strong></p>
 		*
 		* Set aside an amount of times a given id can be played at the same time.
@@ -487,7 +519,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 							return;
 						}
 					} else {
-						var maxAmount = this.maximumAmountOfBuffers - this.getAssignedCount();
+						var maxAmount = this.maximumAmountOfBuffers;
 
 						if (this.activeNoneAssignedBuffers < maxAmount) {
 							this.activeNoneAssignedBuffers++;
@@ -589,7 +621,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 							return;
 						}
 					} else {
-						var maxAmount = this.maximumAmountOfBuffers - this.getAssignedCount();
+						var maxAmount = this.maximumAmountOfBuffers;
 
 						if (this.activeNoneAssignedBuffers < maxAmount) {
 							this.activeNoneAssignedBuffers++;
