@@ -171,7 +171,7 @@ define(function(require) {
 			var configuration = this.configurations[alias]
 
 			if(!configuration) {
-				ErrorPrinter.printError('Component Pool', 'Configuration with id: '  + alias + ' does not exist');
+				require('error-printer').printError('Component Pool', 'Configuration with id: '  + alias + ' does not exist');
 			}
 
 			return this.configurations[alias];
