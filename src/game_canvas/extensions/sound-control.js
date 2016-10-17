@@ -5,18 +5,18 @@
  *
  * Inherits from: [extension](@@extension@@)
  *
- * Depends of: 
+ * Depends of:
  * [sound-player](@@sound-player@@)
  * [gb](@@gb@@)
  * [extension](@@extension@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
- * This extension takes care of pausing and resuming sound when needed.
+ *
+ * This extension takes care of pausing and resuming sound when the application looses focus.
  */
 
 /**
- * Pause and Resume all sound channels
+ * Pause and Resume all sound sources
  * --------------------------------
  */
 
@@ -34,24 +34,24 @@ define(["sound-player", "gb", "extension"], function(SoundPlayer, Gb, Extension)
 		},
 
 		execute: function() {
-			game.on(game.BLUR, this, function() {		
-				// Add a _'alreadyPaused'_ property with a value of true to all sound channels
+			game.on(game.BLUR, this, function() {
+				// Add a _'alreadyPaused'_ property with a value of true to all sound sources
 				// which are already paused
-				SoundPlayer.setPropertyToAll('alreadyPaused', true).which(function(channel) {
-					return channel.Paused();
+				SoundPlayer.setPropertyToAll('alreadyPaused', true).which(function(id, source) {
+					return source.Paused();
 				});
 
-				// Pause all the sound channels
+				// Pause all the sound sources
 				SoundPlayer.pauseAll().now();
 			}, false, false, false, 'sound-control');
 
 			game.on(game.FOCUS, this, function() {
-				// Resume all the sound channels which don't have an _'alreadyPaused'_ property
-				SoundPlayer.resumeAll().which(function(channel){
-					return !channel['alreadyPaused'];			
+				// Resume all the sound sources which don't have an _'alreadyPaused'_ property
+				SoundPlayer.resumeAll().which(function(id, source){
+					return !source['alreadyPaused'];
 				});
 
-				// Set the _'alreadyPaused'_ property to null on all sound channels
+				// Set the _'alreadyPaused'_ property to null on all sound sources
 				SoundPlayer.setPropertyToAll('alreadyPaused', null).now();
 			}, false, false, false, 'sound-control');
 		},
