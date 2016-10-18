@@ -504,7 +504,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 				} else {
 					loadWithAudioTag.call(this, id, path, function(id) {
 						this.playSingle(id);
-					});
+					}.bind(this));
 				}
 			}
 
@@ -558,7 +558,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 				} else {
 					loadWithWebAudio.call(this, id, path, function(id) {
 						this.playSingle(id);
-					});
+					}.bind(this));
 				}
 			}
 		},
@@ -603,7 +603,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 				else {
 					loadWithAudioTag.call(this, id, path, function(id) {
 						this.playLoop(id);
-					});
+					}.bind(this));
 				}
 
 			}
@@ -660,7 +660,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 				} else {
 					loadWithWebAudio.call(this, id, path, function(id) {
 						this.playLoop(id);
-					});
+					}.bind(this));
 				}
 			}
 		},
