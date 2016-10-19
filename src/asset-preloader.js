@@ -131,29 +131,56 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 				}
 			}
 
+			var audioContext = window.AudioContext || window.webkitAudioContext;
+
 			for (var i = 0; i < this.audioToLoad.length; i++) {
 				var path = this.audioToLoad[i];
 
-				var audio = document.createElement('audio');
+				if (audioContext) {
+					var request = new XMLHttpRequest();
 
-				audio.addEventListener('canplaythrough', function() {
-					audioToLoad--;
-
-					if (imagesToLoad === 0 && audioToLoad === 0) {
-						this.imagesToLoad.length = 0;
-						this.audioToLoad.length = 0;
-
-						this.execute(this.ON_LOAD_ALL_COMPLETE);
+					if (window.location.protocol === 'file:') {
+						request.open('GET', 'http://localhost:5000/' + path);
+					} else {
+						request.open('GET', path);
 					}
-				}.bind(this));
 
-				audio.preload = 'auto';
+					request.responseType = 'arraybuffer';
 
-				if (window.location.protocol === 'file:') {
-					audio.src = 'http://localhost:5000/' + path;
-				}
-				else {
-					audio.src = path;
+					request.onload = function() {
+						audioToLoad--;
+
+						if (imagesToLoad === 0 && audioToLoad === 0) {
+							this.imagesToLoad.length = 0;
+							this.audioToLoad.length = 0;
+
+							this.execute(this.ON_LOAD_ALL_COMPLETE);
+						}
+					}.bind(this);
+
+					request.send();
+				} else {
+					var audio = document.createElement('audio');
+
+					audio.addEventListener('canplaythrough', function() {
+						audioToLoad--;
+
+						if (imagesToLoad === 0 && audioToLoad === 0) {
+							this.imagesToLoad.length = 0;
+							this.audioToLoad.length = 0;
+
+							this.execute(this.ON_LOAD_ALL_COMPLETE);
+						}
+					}.bind(this));
+
+					audio.preload = 'auto';
+
+					if (window.location.protocol === 'file:') {
+						audio.src = 'http://localhost:5000/' + path;
+					}
+					else {
+						audio.src = path;
+					}
 				}
 			}
 		}
