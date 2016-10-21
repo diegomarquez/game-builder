@@ -64,7 +64,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 				this.p = new Vector2D();
 
 				this.collider = new SAT.FixedSizePolygon(new Vector2D(0, 0));
-				this.colliderType = CollisionResolver.fixedPolygonCollider;
+				this.colliderType = CollisionResolver.polygonCollider;
 			},
 
 			/**
@@ -145,7 +145,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 					var p = m.transformPoint(this.pointsCopy[i].x, this.pointsCopy[i].y, this.p);
 
 					this.collider.points[i].x = p.x;
-					this.collider.points[i].y = p.y;	
+					this.collider.points[i].y = p.y;
 				}
 
 				this.collider.recalc();
@@ -160,10 +160,10 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 			 *
 			 * Draw the polygon collider.
-			 * 
+			 *
 			 * This method is only executed if the **debug** property in [gb](@@gb@@)
 		 	 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
-			 * 
+			 *
 			 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 			 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
 			 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
@@ -176,10 +176,10 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 
 				context.save();
 
-				context.setTransform(1, 0, 0, 1, 0, 0);	
+				context.setTransform(1, 0, 0, 1, 0, 0);
 				
 				viewport.transformContext(context);
-				context.transform(m.a, m.b, m.c, m.d, m.tx, m.ty);				
+				context.transform(m.a, m.b, m.c, m.d, m.tx, m.ty);
 				draw.polygon(context, 0, 0, this.pointsCopy, null, this.debugColor, 2);
 				
 				context.restore();
