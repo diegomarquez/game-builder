@@ -313,11 +313,11 @@ define(["component", "vector-2D", "error-printer", "rgb-canvas-cache"], function
 
 			// Top Right
 			this.workVector = m.transformPoint(this.rendererRight(), this.rendererTop(), this.workVector); 
-			context.lineTo(Math.round(this.workVector.x), Math.round(this.workVector.y));			
+			context.lineTo(Math.round(this.workVector.x), Math.round(this.workVector.y));
 
 			// Bottom Right
 			this.workVector = m.transformPoint(this.rendererRight(), this.rendererBottom(), this.workVector); 
-			context.lineTo(Math.round(this.workVector.x), Math.round(this.workVector.y));			
+			context.lineTo(Math.round(this.workVector.x), Math.round(this.workVector.y));
 
 			// Bottom Left
 			this.workVector = m.transformPoint(this.rendererLeft(), this.rendererBottom(), this.workVector); 
