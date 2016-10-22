@@ -4,85 +4,85 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: [delegate](@@delegate@@)
- * 
+ *
  * Depends of:
  * [matrix-3x3](@@matrix-3x3@@)
  * [game-object-debug-draw](@@game-object-debug-draw@@)
  * [util](@@util@@)
  * [component-finder](@@component-finder@@)
- * 
+ *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This is the main thing in [Game-Builder](http://diegomarquez.github.io/game-builder). Everything
  * that you do will most likely be an extension of this, or something that creates objects like this one.
  *
- * ### Main features are: 
- * 
+ * ### Main features are:
+ *
  * Attaching [component](@@component@@) objects and a [renderer](@@renderer@@)
  * object. Why only one renderer? Because I thought it made more sense to have only one renderer for each type of object.
  *
  * Support for affine transformations thanks to the [matrix-3x3](@@matrix-3x3@@) module.
- * 
+ *
  * These objects extend [delegate](@@delegate@@) so they provide a few events to hook into:
  *
- * ### **START** 
- * When the game object is started 
- * 
- * Registered callbacks get the game object as argument 
- * ``` javascript  
+ * ### **START**
+ * When the game object is started
+ *
+ * Registered callbacks get the game object as argument
+ * ``` javascript
  * gameObject.on(gameObject.START, function(gameObject) {});
- * ``` 
+ * ```
  *
  * </br>
- * 
+ *
  * ### **RECYCLE**
- * When a game object is sent back to the game object pool. 
+ * When a game object is sent back to the game object pool.
  * This happens before destroying properties in the object.
- * 
+ *
  * Registered callbacks get the game object as argument
- * ``` javascript  
+ * ``` javascript
  * gameObject.on(gameObject.RECYCLE, function(gameObject) {});
  * ```
  *
  * </br>
- * 
+ *
  * ### **CLEAR**
  * When a game object is sent back to the game object pool.
  * This happens after destroying properties in the object.
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gameObject.on(gameObject.CLEAR, function() {});
  * ```
  *
  * </br>
- * 
+ *
  * ### **ADD**
- * When a game object is added to a parent [game-object-container](@@game-object-container@@) 
+ * When a game object is added to a parent [game-object-container](@@game-object-container@@)
  * The parent is sent to the registered callbacks as argument
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gameObject.on(gameObject.ADD, function(parent) {});
  * ```
  *
  * </br>
- * 
+ *
  * ### **REMOVE**
- * When a game object is removed from a parent [game-object-container](@@game-object-container@@) 
+ * When a game object is removed from a parent [game-object-container](@@game-object-container@@)
  * The parent is sent to the registered callbacks as argument
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gameObject.on(gameObject.REMOVE, function(parent) {});
  * ```
  *
  * </br>
- * 
+ *
  * ### **ADD_TO_VIEWPORT**
  * When a game object is added to a [viewport](@@viewport@@) + [layer](@@layer@@) pair
  *
  * An object that looks like this ``` [{viewport: 'ViewportName', layer:'LayerName'}] ```
  * is sent to all the registered callbacks as an argument
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gameObject.on(gameObject.ADD_TO_VIEWPORT, function(v) {});
  * ```
  *
@@ -93,52 +93,52 @@
  *
  * An object that looks like this ``` [{viewport: 'ViewportName', layer:'LayerName'}] ```
  * is sent to all the registered callbacks as an argument
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gameObject.on(gameObject.REMOVE_FROM_VIEWPORT, function(v) {});
  * ```
  *
  * </br>
- * 
+ *
  * ### **HIDE**
  * When a game object calls it's **hide** method
  *
  * Registered callbacks get the game object as argument
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gameObject.on(gameObject.HIDE, function(gameObject) {});
  * ```
- * 
+ *
  * </br>
- * 
+ *
  * ### **SHOW**
  * When a game object calls it's **show** method
  *
  * Registered callbacks get the game object as argument
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gameObject.on(gameObject.SHOW, function(gameObject) {});
  * ```
  *
  * </br>
- * 
+ *
  * ### **STOP**
  * When a game object calls it's **stop** method
  *
  * Registered callbacks get the game object as argument
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gameObject.on(gameObject.STOP, function(gameObject) {});
  * ```
- * 
+ *
  * </br>
- * 
+ *
  * ### **RUN**
  * When a game object calls it's **run** method
  *
  * Registered callbacks get the game object as argument
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gameObject.on(gameObject.RUN, function(gameObject) {});
  * ```
  */
@@ -152,7 +152,7 @@
  * --------------------------------
  */
 define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-finder"], function(Delegate, Matrix, DebugDraw, Util, ComponentFinder) {
-	
+
 	var GameObject = Delegate.extend({
 		init: function() {
 			this._super();
@@ -161,11 +161,11 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			/*
 			 * Any of the following properties can be set when configuring the
 			 * [game-object-pool](@@game-object-pool@@), like so:
-			 * 
+			 *
 			 * ``` javascript
 			 * gb.goPool.createConfiguration("GameObject_1", "GameObject")
 				.args({
-					x: 0, 
+					x: 0,
 					y: 0
 			 *	});
 			 * ```
@@ -175,7 +175,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			 *
 			 * You can also choose not to do that, and set the properties after
 			 * requesting a game object to the [assembler](@@assembler@@) module.
-			 */ 
+			 */
 
 			// A unique identifier assigned when the game object is built by the [assembler](@@assembler@@) module
 			// It changes every time the game object is recycled
@@ -233,9 +233,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			// property of [gb](@@gb@@) is set to true;
 			this.debugColor = "#FF00FF";
 
-			// This boolean signals that a transformation has taken place and hence the object can be drawn afterwards. 
+			// This boolean signals that a transformation has taken place and hence the object can be drawn afterwards.
 			// If an object tries to draw itself before a transformation has occured, the drawing will be skipped to avoid graphical glitches.
-			// It can also be used when a component is added dynamically, to prevetn executing logic 
+			// It can also be used when a component is added dynamically, to prevetn executing logic
 			// in the update loop until the parent [game-object](@@game-object@@) has been transformed for
 			// the first time
 			this.isTransformed = false;
@@ -287,7 +287,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>removed</strong></p>
 		 *
@@ -301,7 +301,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -332,8 +332,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 * <p style='color:#AD071D'><strong>update</strong></p>
 		 *
 		 * Called in each update cycle.
-		 * 
-		 * @param  {Number} delta Time ellapsed since the last update cycle
+		 *
+		 * @param {Number} delta Time ellapsed since the last update cycle
 		 */
 		update: function(delta) {},
 		/**
@@ -356,10 +356,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * <p style='color:#AD071D'><strong>configure</strong></p>
 		 *
-		 * Sets up the properties that were previously configured 
+		 * Sets up the properties that were previously configured
 		 * in the [game-object-pool](@@game-object-pool@@)
-		 * 
-		 * @param  {Object} args Object which properties will be used to set values on this game object
+		 *
+		 * @param {Object} args Object which properties will be used to set values on this game object
 		 */
 		configure: function(args) {
 			if (!args) return;
@@ -378,7 +378,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 
 						if (Util.isFunction(setter)) {
 							Util.defineSetter(this, ha, setter);
-						} 
+						}
 					} else {
 						this[ha] = args[ha];
 					}
@@ -432,7 +432,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 * <p style='color:#AD071D'><strong>addComponent</strong></p>
 		 *
 		 * Adds a component and notifies it was added through the **onAdded** callback.
-		 * 
+		 *
 		 * @param {Object} component [component](@@component@@) added
 		 */
 		addComponent: function(component) {
@@ -454,10 +454,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * <p style='color:#AD071D'><strong>removeComponent</strong></p>
 		 *
-		 * Removes a [component](@@component@@), and notifies it, 
+		 * Removes a [component](@@component@@), and notifies it,
 		 * it was removed through the **onRemoved** callback.
-		 * 
-		 * @param  {Object} component [component](@@component@@) to remove
+		 *
+		 * @param {Object} component [component](@@component@@) to remove
 		 */
 		removeComponent: function(component) {
 			if (!this.components) return;
@@ -497,7 +497,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>findComponents</strong></p>
 		 *
@@ -511,7 +511,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>transform</strong></p>
 		 *
@@ -529,9 +529,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
 		 * Draws the game-object into the specified Context 2D, using it's [matrix-3x3](@@matrix-3x3@@)
-		 * 
-		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		 * @param  {Object} viewport The [viewport](@@viewport@@) this objects is being drawn too
+		 *
+		 * @param {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+		 * @param {Object} viewport The [viewport](@@viewport@@) this objects is being drawn too
 		 */
 		draw: function(context, viewport) {
 			if (!this.isTransformed) return;
@@ -543,7 +543,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			context.transform(m.a, m.b, m.c, m.d, m.tx, m.ty);
 
 			if (m.alpha !== 1) {
-				 context.globalAlpha *= m.alpha;
+				context.globalAlpha *= m.alpha;
 			}
 
 			if (m.alpha > 0) {
@@ -551,7 +551,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 					this.renderer.draw(context, viewport);
 				}
 			}
-			
+
 			DebugDraw.gameObject(this, context, viewport);
 
 			context.restore();
@@ -571,7 +571,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			this.canDraw = false;
 
 			if (!skipEvent) {
-				this.execute(this.HIDE, this);	
+				this.execute(this.HIDE, this);
 			}
 		},
 		/**
@@ -595,7 +595,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>toggleVisibility</strong></p>
 		 *
@@ -608,17 +608,17 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 
 			if (!skipEvent) {
 				if (this.canDraw) {
-					this.execute(this.SHOW, this);	
+					this.execute(this.SHOW, this);
 				}
 				else {
-					this.execute(this.HIDE, this);	
+					this.execute(this.HIDE, this);
 				}
 			}
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>stop</strong></p>
 		 *
@@ -654,21 +654,21 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>hasViewport</strong></p>
 		 *
 		 * Wheter or not this game-object is part of any viewport
-		 * 
+		 *
 		 * @return {Boolean}
 		 */
 		hasViewport: function() {
-			return this.viewports.length > 0; 
+			return this.viewports.length > 0;
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>addToViewport</strong></p>
 		 *
@@ -676,17 +676,17 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 *
 		 * @param {String} viewportName Name of the new viewport this object belongs to
 		 * @param {String} layerName Name of the layer in the specified viewport
-		 * 
+		 *
 		 */
 		addToViewportList: function(viewportName, layerName) {
 			var v = { viewport: viewportName, layer: layerName }
-			this.viewports.push(v);	
-    		this.execute(this.ADD_TO_VIEWPORT, [v]);
+			this.viewports.push(v);
+			this.execute(this.ADD_TO_VIEWPORT, [v]);
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>removeFromViewport</strong></p>
 		 *
@@ -694,7 +694,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 *
 		 * @param {String} viewportName Name of the viewport to remove from this game objects list
 		 * @param {String} layerName Name of the layer in the specified viewport
-		 * 
+		 *
 		 */
 		removeFromViewportList: function(viewportName, layerName) {
 			for (var i = this.viewports.length-1; i >= 0; i--) {
@@ -709,13 +709,13 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>setViewportVisibility</strong></p>
 		 *
 		 * Set the visible state of the game-object in the specified viewport
 		 * This is for checking purposes only, it doesn't actually affect the rendering
-		 * 
+		 *
 		 * @param {String} viewportName The name of the [viewport](@@viewport@@) to associate visibility with
 		 * @param {Boolean} visible Wheter the game-object is visible or not in the specified [viewport](@@viewport@@)
 		 */
@@ -739,7 +739,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>getViewportList</strong></p>
 		 *
@@ -762,7 +762,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>getUpdateGroup</strong></p>
 		 *
@@ -772,7 +772,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			var go = this;
 
 			while (!go.updateGroup) {
-				go = go.parent;				
+				go = go.parent;
 			}
 
 			return go.updateGroup;
@@ -811,14 +811,14 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 *
 		 * Sets all the properties of the game object to the specified values,
 		 * assuming defaults if not specified.
-		 * 
-		 * @param  {Number} x        Local X coordinate
-		 * @param  {Number} y        Local Y coordinate
-		 * @param  {Number} scaleX   Scale on the X axis
-		 * @param  {Number} scaleY   Scale on the Y axis
-		 * @param  {Number} rotation Rotation in degrees
-		 * @param  {Number} centerX  Registration point X coordinate. This value is added to the x coordinate.
-		 * @param  {Number} centerY  Registration point Y coordinate. This value is added to the x coordinate.
+		 *
+		 * @param {Number} x Local X coordinate
+		 * @param {Number} y Local Y coordinate
+		 * @param {Number} scaleX Scale on the X axis
+		 * @param {Number} scaleY Scale on the Y axis
+		 * @param {Number} rotation Rotation in degrees
+		 * @param {Number} centerX Registration point X coordinate. This value is added to the x coordinate.
+		 * @param {Number} centerY Registration point Y coordinate. This value is added to the x coordinate.
 		 */
 		resetTransform: function(x, y, scaleX, scaleY, rotation, centerX, centerY) {
 			this.x = x || 0;
@@ -837,15 +837,15 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 * <p style='color:#AD071D'><strong>setTransform</strong></p>
 		 *
 		 * Sets all the properties of the game object to the specified values,
-		 * ommiting unspecified properties 
-		 * 
-		 * @param  {Number} x        Local X coordinate
-		 * @param  {Number} y        Local Y coordinate
-		 * @param  {Number} scaleX   Scale on the X axis
-		 * @param  {Number} scaleY   Scale on the Y axis
-		 * @param  {Number} rotation Rotation in degrees
-		 * @param  {Number} centerX  Registration point X coordinate. This value is added to the x coordinate.
-		 * @param  {Number} centerY  Registration point Y coordinate. This value is added to the x coordinate.
+		 * ommiting unspecified properties
+		 *
+		 * @param {Number} x Local X coordinate
+		 * @param {Number} y Local Y coordinate
+		 * @param {Number} scaleX Scale on the X axis
+		 * @param {Number} scaleY Scale on the Y axis
+		 * @param {Number} rotation Rotation in degrees
+		 * @param {Number} centerX Registration point X coordinate. This value is added to the x coordinate.
+		 * @param {Number} centerY Registration point Y coordinate. This value is added to the x coordinate.
 		 */
 		setTransform: function(x, y, scaleX, scaleY, rotation, centerX, centerY) {
 			if (x) this.x = x;
@@ -874,11 +874,11 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 	{
 		 		// Setting this to true will get the concatenated matrix, with out taking into account the viewportOffset variables
 				noViewportOffsets: true
-		 	}	  
+		 	}
 		 * ```
-		 * 
-		 * @param  {[matrix-3x3](@@matrix-3x3@@)} m A matrix object into which to put result.
-		 * @param  {Object} [options=null] Options to apply when concatenating the matrix. 
+		 *
+		 * @param {[matrix-3x3](@@matrix-3x3@@)} m A matrix object into which to put result.
+		 * @param {Object} [options=null] Options to apply when concatenating the matrix.
 		 *
 		 * @return {Object} The concatenated [matrix-3x3](@@matrix-3x3@@)
 		 */
@@ -897,9 +897,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 						m.prependTransform(go.x, go.y, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
 						go = go.parent;
 						continue;
-					} 
-				} 
-				
+					}
+				}
+
 				m.prependTransform(go.x + go.viewportOffsetX, go.y + go.viewportOffsetY, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
 				go = go.parent;
 			}
@@ -909,10 +909,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>getMatrix</strong></p>
-		 * 
+		 *
 		 * @return {[matrix-3x3](@@matrix-3x3@@)} The concatenated matrix of this game object
 		 */
 		getMatrix: function() {
@@ -935,12 +935,12 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 	{
 		 		// Setting this to true will get the concatenated matrix, with out taking into account the viewportOffset variables
 				noViewportOffsets: true
-		 	}	  
+		 	}
 		 * ```
-		 * 
-		 * @param  {Object} r On object into which to put the result of this operation.
-		 * @param  {[matrix-3x3](@@matrix-3x3@@)} m matrix object to work with.
-		 * @param  {Object} [options] Options to apply when concatenating the matrix.
+		 *
+		 * @param {Object} r On object into which to put the result of this operation.
+		 * @param {[matrix-3x3](@@matrix-3x3@@)} m matrix object to work with.
+		 * @param {Object} [options] Options to apply when concatenating the matrix.
 		 *
 		 * @return {Object} Contains the individual properties of a trandformation. ej. x, y, rotation, scale
 		 */
@@ -959,9 +959,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 						m.prependTransform(go.x, go.y, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
 						go = go.parent;
 						continue;
-					} 
-				} 
-				
+					}
+				}
+
 				m.prependTransform(go.x + go.viewportOffsetX, go.y + go.viewportOffsetY, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
 				go = go.parent;
 			}
@@ -971,7 +971,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>hasRenderer</strong></p>
 		 *
@@ -1004,7 +1004,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 * <p style='color:#AD071D'><strong>getComponents</strong></p>
 		 *
 		 * Gets the array of [component](@@component@@) objects
-		 * 
+		 *
 		 * @return {Array} [description]
 		 */
 		getComponents: function() {
@@ -1025,7 +1025,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>typeName</strong></p>
 		 *
@@ -1044,7 +1044,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 * @return {Boolean} Wheter this game object is a child of a container or not
 		 */
 		isChild: function() {
-			if (!this.parent) { 
+			if (!this.parent) {
 				return false;
 			} else {
 				return this.parent.typeName() == 'GameObjectContainer';
@@ -1053,12 +1053,12 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>isPooled</strong></p>
 		 *
 		 * If the object has a typeId it means it is active, otherwise it must have been recycled
-		 * 
+		 *
 		 * @return {Boolean}
 		 */
 		isActive: function() {
@@ -1067,12 +1067,12 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>isRunning</strong></p>
 		 *
 		 * Whether the game object is being updated ot not
-		 * 
+		 *
 		 * @return {Boolean}
 		 */
 		isRunning: function() {
@@ -1081,12 +1081,12 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>isRunning</strong></p>
 		 *
 		 * Whether the game object is being drawn
-		 * 
+		 *
 		 * @return {Boolean}
 		 */
 		isDrawing: function() {
@@ -1101,7 +1101,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 *
 		 * Whether the game object has already gone throw the transformations
 		 * of it heriarchy or not
-		 * 
+		 *
 		 * @return {Boolean}
 		 */
 		transformedOnce: function() {
@@ -1116,17 +1116,17 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 *
 		 * This method is only executed if the **debug** property in [gb](@@gb@@)
 		 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
-		 * 
-		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
-		 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
-		 * @param  {Object} gb     A reference to the [gb](@@gb@@) module
+		 *
+		 * @param {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+		 * @param {Object} viewport A reference to the current [viewport](@@viewport@@)
+		 * @param {Object} draw A reference to the [draw](@@draw@@) module
+		 * @param {Object} gb A reference to the [gb](@@gb@@) module
 		 */
 		debug_draw: function(context, viewport, draw, gb) {
 			if(!gb.gameObjectDebug) return;
 
 			this.decomposed = this.matrix.decompose(this.decomposed);
-				
+
 			// Draw the center of the object
 			context.save();
 			context.translate(this.decomposed.x, this.decomposed.y);

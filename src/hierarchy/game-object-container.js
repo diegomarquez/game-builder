@@ -3,7 +3,7 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: 
+ * Inherits from:
  * [game-object](@@game-object@@)
  *
  * Depends of:
@@ -11,13 +11,13 @@
  * [child-finder](@@child-finder@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This modules defines a container for [game-objects](@@game-object@@), which in turn
  * is a [game-object](@@game-object@@) itself. Being a parent means that all of it's child
  * [game-objects](@@game-object@@) will follow it according to it's transformation matrix.
  *
- * It's a pretty usefull behaviour to form more complex displays out of smaller, more manageable 
- * pieces. 
+ * It's a pretty usefull behaviour to form more complex displays out of smaller, more manageable
+ * pieces.
  *
  * A note on drawing: A container will execute it's renderer code, and then the rendering code
  * of it's children. This means that the parent drawing will show up, below it's children's.
@@ -67,7 +67,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 * Adds the specified child [game-object](@@game-object@@) to this container.
 		 * If the child already is part of another parent, it is removed from it
 		 * and added to this one.
-		 * 
+		 *
 		 * @param {Object} child The child [game-object](@@game-object@@) to add
 		 */
 		add: function(child) {
@@ -83,8 +83,8 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 
 			this.childs.push(child);
 			child.added(this);
-			
-			return child;	
+
+			return child;
 		},
 		/**
 		 * --------------------------------
@@ -94,7 +94,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 * <p style='color:#AD071D'><strong>remove</strong></p>
 		 *
 		 * Removes the specified child [game-object](@@game-object@@) from this container.
-		 * 
+		 *
 		 * @param {Object} child The child [game-object](@@game-object@@) to remove
 		 */
 		remove: function(child) {
@@ -104,10 +104,10 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 
 			if(!this.childs) return;
 
-			this.childs.splice(this.childs.indexOf(child), 1); 
+			this.childs.splice(this.childs.indexOf(child), 1);
 
 			if (this.childrenOptions && this.childrenOptions[child.uid]) {
-				delete this.childrenOptions[child.uid];	
+				delete this.childrenOptions[child.uid];
 			}
 
 			child.removed(this);
@@ -120,8 +120,8 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 * <p style='color:#AD071D'><strong>update</strong></p>
 		 *
 		 * Updates all of it's children.
-		 * 
-		 * @param  {Number} delta Time ellapsed since the last update
+		 *
+		 * @param {Number} delta Time ellapsed since the last update
 		 */
 		update: function(delta) {
 			this.transform();
@@ -137,11 +137,11 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 				if(!child.canUpdate) continue;
 
 				if (this.childrenOptions && this.childrenOptions[child.uid]) {
-					if(!this.childrenOptions[child.uid].update) continue;	
+					if(!this.childrenOptions[child.uid].update) continue;
 				}
 
 				child.update(delta);
-				
+
 				hasRenderer = child.hasRenderer();
 
 				if(!child.hasComponents()) {
@@ -150,24 +150,24 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 					}
 
 					if (!child.isContainer()) {
-						child.transform();	
+						child.transform();
 					}
-				} 
+				}
 				else {
 					if (child.transformedOnce()) {
 						for(var k=0; k<child.components.length; k++) {
 							if(child.components[k].update && child.components[k].isEnabled()) {
 								child.components[k].update(delta);
 							}
-						}	
+						}
 					}
 
 					if (hasRenderer) {
 						child.renderer.update(delta);
-					}	
-					
+					}
+
 					if (!child.isContainer()) {
-						child.transform();	
+						child.transform();
 					}
 				}
 			}
@@ -182,31 +182,31 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 * Draws the game-object into the specified Context 2D, using it's [matrix-3x3](@@matrix-3x3@@)
 		 *
 		 * Then it draws all of it's children
-		 * 
-		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		 * @param  {Object} viewport The [viewport](@@viewport@@) this objects is being drawn too
+		 *
+		 * @param {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+		 * @param {Object} viewport The [viewport](@@viewport@@) this objects is being drawn too
 		 */
-		draw: function(context, viewport) {	
+		draw: function(context, viewport) {
 			// Draw only if inside the viewport and is allowed to be drawn
 			if (this.canDraw && viewport.isGameObjectInside(this, context)) {
-				this._super(context, viewport);	
+				this._super(context, viewport);
 			}
 
 			if(!this.childs) return;
-						
+
 			var child = null;
 
 			for(var i=0; i<this.childs.length; i++){
 				child = this.childs[i];
 
 				if (child.isContainer()) {
-					// If the child is a container game object... 
+					// If the child is a container game object...
 					// Call draw method, it will figure out if it actually needs to be drawn, and do the same for it's children
 					child.draw(context, viewport);
 				} else {
 					// If the child is a regular game object...
 					// Try to skip drawing as soon as possible
-				
+
 					// Draw only if inside the viewport and is allowed to be drawn
 					if (child.canDraw && viewport.isGameObjectInside(child, context)) {
 						// If there are options for this child, apply them
@@ -216,9 +216,9 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 							}
 						} else {
 							// If there are no options, just draw the child
-							child.draw(context, viewport);	
+							child.draw(context, viewport);
 						}
-					}											
+					}
 				}
 			}
 		},
@@ -241,7 +241,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 
 				for(var i=0; i<this.childs.length; i++){
 					this.childs[i].hide();
-				}	
+				}
 			} else {
 				return VisibilityControl.user(this).hide(this._super);
 			}
@@ -265,7 +265,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 
 				for(var i=0; i<this.childs.length; i++){
 					this.childs[i].show();
-				}	
+				}
 			} else {
 				return VisibilityControl.user(this).show(this._super);
 			}
@@ -273,7 +273,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>stop</strong></p>
 		 *
@@ -313,7 +313,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>toggleVisibility</strong></p>
 		 *
@@ -329,7 +329,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 
 				for(var i=0; i<this.childs.length; i++){
 					this.childs[i].toggleVisibility();
-				}	
+				}
 			} else {
 				return VisibilityControl.user(this).toggle(this._super);
 			}
@@ -337,7 +337,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>addToViewport</strong></p>
 		 *
@@ -359,7 +359,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>removeFromViewport</strong></p>
 		 *
@@ -368,7 +368,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 *
 		 * @param {String} viewportName Name of the [viewport](@@viewport@@) to remove from this game objects list
 		 * @param {String} layerName Name of the [layer](@@layer@@) in the specified viewport
-		 * 
+		 *
 		 */
 		removeFromViewportList: function(viewportName, layerName) {
 			this._super(viewportName, layerName);
@@ -382,7 +382,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>setChildOptions</strong></p>
 		 *
@@ -392,8 +392,8 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 * is drawn or updated on this container. The properties will be evaluated as truthy or falsy.
 		 *
 		 * If the keys are not provided, they are added and set to **true** by default
-		 * 
-		 * @param {Object} child   Child [game-object](@@game-object@@) to set options to
+		 *
+		 * @param {Object} child Child [game-object](@@game-object@@) to set options to
 		 * @param {Object} options Options that will be applied to the specified child on this container
 		 */
 		setChildOptions: function(child, options) {
@@ -409,13 +409,13 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>getChildOptions</strong></p>
 		 *
 		 * Get the options set in the **setChildOptions** method for the specified child [game-object](@@game-object@@)
-		 * 
-		 * @param  {Object} child A child [game-obejct](@@game-obejct@@) of this container
+		 *
+		 * @param {Object} child A child [game-obejct](@@game-obejct@@) of this container
 		 *
 		 * @return {Object} An object like the one set in the **setChildOptions** method
 		 */
@@ -423,7 +423,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 			if (!this.childrenOptions) this.childrenOptions = {};
 
 			if (this.childrenOptions[child.uid]) {
-				return this.childrenOptions[child.uid];	
+				return this.childrenOptions[child.uid];
 			} else {
 				this.setChildOptions(child);
 				return this.childrenOptions[child.uid];
@@ -432,16 +432,16 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>findChildren</strong></p>
 		 *
-		 * Gets a reference to the [child-finder](@@child-finder@@) object, to search for children of this container 
+		 * Gets a reference to the [child-finder](@@child-finder@@) object, to search for children of this container
 		 *
 		 * @return {Object}
 		 */
 		findChildren: function() {
-			return ChildFinder.user(this);	
+			return ChildFinder.user(this);
 		},
 		/**
 		 * --------------------------------
@@ -460,7 +460,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 				}
 
 				this.childs.length = 0;
-				this.childs = null;	
+				this.childs = null;
 			}
 
 			this._super();
@@ -476,7 +476,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 * It also removes all the childs.
 		 */
 		clear: function() {
-			if(this.childs) {				
+			if(this.childs) {
 				while(this.childs.length) {
 					this.childs.pop().clear();
 				}
@@ -492,7 +492,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>isContainer</strong></p>
 		 *
@@ -502,10 +502,10 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 			return true;
 		},
 		/**
-		 * 
+		 *
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>typeName</strong></p>
 		 *
