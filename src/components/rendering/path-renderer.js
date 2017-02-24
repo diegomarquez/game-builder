@@ -166,7 +166,7 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 		 */
 		rendererOffsetX: function() { 
 			if (this.offset === 'center') {
-				return -this.rendererWidth()/2;
+				return -this.rendererWidth() / 2 + this.offsetX;
 			} else {
 				return this.offsetX; 
 			}
@@ -182,7 +182,7 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 		 */
 		rendererOffsetY: function() { 
 			if (this.offset === 'center') {
-				return -this.rendererHeight()/2;
+				return -this.rendererHeight() / 2 + this.offsetY;
 			} else {
 				return this.offsetY;  
 			}

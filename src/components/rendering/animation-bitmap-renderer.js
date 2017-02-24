@@ -308,7 +308,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 */
 		rendererOffsetX: function() { 
 			if (this.offset == 'center') {
-				return -this.rendererWidth()/2;
+				return -this.rendererWidth() / 2 + this.offsetX;
 			} else {
 				return this.offsetX; 
 			}
@@ -322,11 +322,11 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 *
 		 * @return {Number} The offset in the Y axis of the renderer
 		 */
-		rendererOffsetY: function() { 
+		rendererOffsetY: function() {
 			if (this.offset == 'center') {
-				return -this.rendererHeight()/2;
+				return -this.rendererHeight() / 2 + this.offsetY;
 			} else {
-				return this.offsetY;  
+				return this.offsetY;
 			}
 		},
 		/**
