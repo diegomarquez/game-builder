@@ -148,6 +148,8 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 			
 			if (window.AudioContext)
 				this.audioContext = new window.AudioContext();
+
+			this.pooledBufferNodes = {};
 		},
 		/**
 		* --------------------------------
@@ -528,7 +530,17 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 						}
 					}
 
-					var bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext);
+					var bufferNode;
+
+					if (!this.pooledBufferNodes[id]) {
+						bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, false);
+					} else if (!this.pooledBufferNodes[id].length) {
+						bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, false);
+					}else {
+						bufferNode = this.pooledBufferNodes[id].pop();
+
+						bufferNode.update(this.audioBuffers[id], false);
+					}
 
 					if (!this.activeBufferNodes[id]) {
 						this.activeBufferNodes[id] = [];
@@ -542,6 +554,12 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 						if (index !== -1) {
 							this.activeBufferNodes[id].splice(index, 1);
 						}
+
+						if (!this.pooledBufferNodes[id]) {
+							this.pooledBufferNodes[id] = [];
+						}
+
+						this.pooledBufferNodes[id].push(bufferNode);
 
 						if (this.preAssignedBuffers[id]) {
 							this.activePreAssignedBuffers[id]--;
@@ -610,7 +628,17 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 
 			if (type === 'web-audio') {
 				if (this.audioBuffers[id]) {
-					var bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, true);
+					var bufferNode;
+
+					if (!this.pooledBufferNodes[id]) {
+						bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, true);
+					} else if (!this.pooledBufferNodes[id].length) {
+						bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, true);	
+					} else {
+						bufferNode = this.pooledBufferNodes[id].pop();
+
+						bufferNode.update(this.audioBuffers[id], true);
+					}
 
 					if (this.preAssignedBuffers[id]) {
 						var maxAmount = this.preAssignedBuffers[id];
@@ -642,6 +670,12 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 						if (index !== -1) {
 							this.activeBufferNodes[id].splice(index, 1);
 						}
+
+						if (!this.pooledBufferNodes[id]) {
+							this.pooledBufferNodes[id] = [];
+						}
+
+						this.pooledBufferNodes[id].push(bufferNode);
 
 						if (this.preAssignedBuffers[id]) {
 							this.activePreAssignedBuffers[id]--;
@@ -1265,6 +1299,8 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 		var pausedAt = 0;
 		var playing = false;
 		var paused = false;
+		var buff = buffer;
+		var l = loop;
 
 		function play() {
 			if (playing)
@@ -1277,10 +1313,10 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 
 			sourceNode = context.createBufferSource();
 			sourceNode.connect(context.destination);
-			sourceNode.buffer = buffer;
+			sourceNode.buffer = buff;
 
 			sourceNode.onended = function() {
-				if (loop) {
+				if (l) {
 					if (sourceNode) {
 						sourceNode.disconnect();
 						sourceNode.stop(0);
@@ -1367,6 +1403,17 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 			return buffer.duration;
 		};
 
+		function updateBuffer(newBuffer, newLoop) {
+			buff = newBuffer;
+			l = newLoop;
+
+			sourceNode = null;
+			startedAt = 0;
+			pausedAt = 0;
+			playing = false;
+			paused = false;
+		}
+
 		var sound = {
 			currentTime: getCurrentTime,
 			duration: getDuration,
@@ -1376,6 +1423,13 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 			stop: stop,
 			onEnded: null,
 			onLoop: null,
+
+			update: function(buffer, loop) {
+				updateBuffer(buffer, loop);
+
+				this.onEnded = null;
+				this.onLoop = null;
+			},
 
 			Playing: function() {
 				return playing;

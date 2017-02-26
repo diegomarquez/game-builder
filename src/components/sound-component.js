@@ -38,6 +38,7 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 			this.soundId = "";
 			this.parentEvent = "";
 			this.playMode = "";
+			this.stopParentEvent = "";
 
 			this.soundPlayer = SoundPlayer;
 
@@ -58,6 +59,7 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 			this.soundId = "";
 			this.parentEvent = "";
 			this.playMode = "";
+			this.stopParentEvent = "";
 		},
 		/**
 		* --------------------------------
@@ -85,18 +87,19 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 			}
 
 			parent.on(this.parentEvent, this, function() {
-
 				if (this.playMode === "single") {
 					this.soundPlayer.playSingle(this.soundId);
-					return;
 				}
-
-				if (this.playMode === "loop") {
+				else if (this.playMode === "loop") {
 					this.soundPlayer.playLoop(this.soundId);
-					return;
 				}
-
 			}, false, false, false, "sound-player-delegate");
+
+			if (this.stopParentEvent) {
+				parent.on(this.stopParentEvent, this, function() {
+					this.soundPlayer.stop(this.soundId);
+				}, false, false, false, "sound-player-delegate");
+			}
 		},
 		/**
 		* --------------------------------
