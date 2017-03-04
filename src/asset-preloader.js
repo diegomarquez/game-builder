@@ -125,8 +125,7 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 
 				if (window.location.protocol === 'file:') {
 					image.src = 'http://localhost:5000/' + path;
-				}
-				else {
+				} else {
 					image.src = path;
 				}
 			}
