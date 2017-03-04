@@ -45,6 +45,39 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 
 			this.imagesToLoad = [];
 			this.audioToLoad = [];
+
+			this.cachedImages = {};
+			this.cachedAudio = {};
+		},
+		/**
+		* --------------------------------
+		*/
+
+		/**
+		* <p style='color:#AD071D'><strong>getCachedImage</strong></p>
+		*
+		* Get an image that has been previously cached
+		*
+		* @param {Strin} id The path to the resource
+		* @return {Image}
+		*/
+		getCachedImage: function(id) {
+			return this.cachedImages[id];
+		},
+		/**
+		* --------------------------------
+		*/
+
+		/**
+		* <p style='color:#AD071D'><strong>getCachedAudio</strong></p>
+		*
+		* Get an audio element or an ArrayBuffer that has been previously cached
+		*
+		* @param {String} id The path to the resource
+		* @return {Audio || ArrayBuffer}
+		*/
+		getCachedAudio: function(id) {
+			return this.cachedAudio[id];
 		},
 		/**
 		* --------------------------------
@@ -67,6 +100,9 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 			var extension = match[1];
 
 			if (extension === 'png' || extension === 'gif' || extension === 'jpeg') {
+				if (this.cachedImages[path])
+					return;
+
 				if (this.imagesToLoad.indexOf(path) === -1) {
 					this.imagesToLoad.push(path);
 				}
@@ -75,6 +111,9 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 			}
 
 			if (extension === 'opus' || extension === 'weba' || extension === 'ogg') {
+				if (this.cachedAudio[path])
+					return;
+
 				if (this.audioToLoad.indexOf(path) === -1) {
 					this.audioToLoad.push(path);
 				}
@@ -110,7 +149,9 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 
 				var image = document.createElement('img');
 
-				image.addEventListener('load', function() {
+				image.addEventListener('load', function(event) {
+					this.cachedImages[event.target.src] = event.target;
+
 					imagesToLoad--;
 
 					if (imagesToLoad === 0 && audioToLoad === 0) {
@@ -146,7 +187,9 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 
 					request.responseType = 'arraybuffer';
 
-					request.onload = function() {
+					request.addEventListener('load', function(event) {
+						this.cachedAudio[event.target.gru()] = event.target.response;
+
 						audioToLoad--;
 
 						if (imagesToLoad === 0 && audioToLoad === 0) {
@@ -155,13 +198,21 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 
 							this.execute(this.ON_LOAD_ALL_COMPLETE);
 						}
-					}.bind(this);
+					}.bind(this));
+
+					request.gru = function(p) {
+						return function() {
+							return p;
+						}
+					}(path);
 
 					request.send();
 				} else {
 					var audio = document.createElement('audio');
 
-					audio.addEventListener('canplaythrough', function() {
+					audio.addEventListener('canplaythrough', function(event) {
+						this.cachedAudio[event.target.src] = event.target;
+
 						audioToLoad--;
 
 						if (imagesToLoad === 0 && audioToLoad === 0) {

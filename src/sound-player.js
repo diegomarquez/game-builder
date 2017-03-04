@@ -8,6 +8,7 @@
  *
  * Depends of:
  * [timer-factory](@@timer-factory@@)
+ * [asset-preloader](@@asset-preloader@@)
  * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
@@ -111,7 +112,7 @@
 /**
  * --------------------------------
  */
-define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerFactory, ErrorPrinter) {
+define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], function(Delegate, TimerFactory, AssetPreloader, ErrorPrinter) {
 	var SoundPlayer = Delegate.extend({
 		/**
 		* <p style='color:#AD071D'><strong>init</strong></p>
@@ -456,13 +457,13 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 						} else {
 							checkAllAssetsLoaded();
 						}
-					});
+					}, AssetPreloader);
 				}
 
 				if (type === 'web-audio') {
 					loadWithWebAudio.call(this, id, path, function() {
 						checkAllAssetsLoaded();
-					});
+					}, AssetPreloader);
 				}
 			}
 		},
@@ -506,7 +507,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 				} else {
 					loadWithAudioTag.call(this, id, path, function(id) {
 						this.playSingle(id);
-					}.bind(this));
+					}.bind(this), AssetPreloader);
 				}
 			}
 
@@ -576,7 +577,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 				} else {
 					loadWithWebAudio.call(this, id, path, function(id) {
 						this.playSingle(id);
-					}.bind(this));
+					}.bind(this), AssetPreloader);
 				}
 			}
 		},
@@ -621,7 +622,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 				else {
 					loadWithAudioTag.call(this, id, path, function(id) {
 						this.playLoop(id);
-					}.bind(this));
+					}.bind(this), AssetPreloader);
 				}
 
 			}
@@ -694,7 +695,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 				} else {
 					loadWithWebAudio.call(this, id, path, function(id) {
 						this.playLoop(id);
-					}.bind(this));
+					}.bind(this), AssetPreloader);
 				}
 			}
 		},
@@ -1073,7 +1074,7 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 		object[args[0]] = args[1];
 	};
 
-	var loadWithAudioTag = function(id, path, onComplete) {
+	var loadWithAudioTag = function(id, path, onComplete, assetPreloader) {
 		if (this.audioTags[id]) {
 			ErrorPrinter.printError('Sound Player', 'Id: ' + id + ' is already in use');
 		}
@@ -1083,10 +1084,10 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 				onComplete(id);
 
 			this.execute(this.ON_LOAD_COMPLETE, id);
-		});
+		}, assetPreloader);
 	};
 
-	var loadWithWebAudio = function(id, path, onComplete) {
+	var loadWithWebAudio = function(id, path, onComplete, assetPreloader) {
 		if (this.audioBuffers[id]) {
 			ErrorPrinter.printError('Sound Player', 'Id: ' + id + ' is already in use');
 		}
@@ -1095,29 +1096,41 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 			return;
 		}
 
-		var request = new XMLHttpRequest();
+		this.audioBuffersLoading[id] = true;
 
-		if (window.location.protocol === "file:") {
-			request.open('GET', "http://localhost:5000/" + path);
-		} else {
-			request.open('GET', path);
-		}
+		var cachedArrayBuffer = assetPreloader.getCachedAudio(path);
 
-		request.responseType = 'arraybuffer';
-
-		request.onload = function() {
-			this.audioContext.decodeAudioData(request.response, function(buffer) {
+		if (cachedArrayBuffer) {
+			this.audioContext.decodeAudioData(cachedArrayBuffer, function(buffer) {
 				this.audioBuffers[id] = buffer;
 				this.audioBuffersLoading[id] = false;
 
 				if (onComplete)
 					onComplete(id);
 			}.bind(this));
-		}.bind(this)
+		} else {
+			var request = new XMLHttpRequest();
 
-		this.audioBuffersLoading[id] = true;
+			if (window.location.protocol === 'file:') {
+				request.open('GET', 'http://localhost:5000/' + path);
+			} else {
+				request.open('GET', path);
+			}
 
-		request.send();
+			request.responseType = 'arraybuffer';
+
+			request.onload = function() {
+				this.audioContext.decodeAudioData(request.response, function(buffer) {
+					this.audioBuffers[id] = buffer;
+					this.audioBuffersLoading[id] = false;
+
+					if (onComplete)
+						onComplete(id);
+				}.bind(this));
+			}.bind(this);
+
+			request.send();
+		}
 	};
 
 	var getPooledChannel = function(fromList) {
@@ -1127,23 +1140,35 @@ define(['delegate', 'timer-factory', 'error-printer'], function(Delegate, TimerF
 		return fromList.pop();
 	};
 
-	var loadAudioTag = function(id, path, onComplete) {
+	var loadAudioTag = function(id, path, onComplete, assetPreloader) {
 		if (this.audioTagsLoading[id])
 			return;
 
-		var audio = document.createElement("audio");
+		var cachedAudioElement = assetPreloader.getCachedAudio(path);
 
-		audio.setAttribute("src", path);
-		audio.setAttribute("preload", "auto");
+		var audio;
 
-		audio.addEventListener("canplaythrough", function() {
+		if (cachedAudioElement) {
+			audio = cachedAudioElement;
 			this.audioTagsLoading[id] = false;
+			this.audioTags[id] = cachedAudioElement;
 
-			onComplete.call(this)
-		}.bind(this));
+			onComplete.call(this);
+		} else {
+			audio = document.createElement("audio");
 
-		this.audioTags[id] = audio;
-		this.audioTagsLoading[id] = true;
+			audio.setAttribute("src", path);
+			audio.setAttribute("preload", "auto");
+
+			audio.addEventListener("canplaythrough", function() {
+				this.audioTagsLoading[id] = false;
+
+				onComplete.call(this)
+			}.bind(this));
+
+			this.audioTags[id] = audio;
+			this.audioTagsLoading[id] = true;
+		}
 
 		document.body.appendChild(audio);
 	};
