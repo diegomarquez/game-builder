@@ -150,7 +150,7 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 				var image = document.createElement('img');
 
 				image.addEventListener('load', function(event) {
-					this.cachedImages[event.target.src] = event.target;
+					this.cachedImages[event.target.gru()] = event.target;
 
 					imagesToLoad--;
 
@@ -161,6 +161,12 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 						this.execute(this.ON_LOAD_ALL_COMPLETE);
 					}
 				}.bind(this));
+
+				image.gru = function(p) {
+					return function() {
+						return p;
+					}
+				}(path);
 
 				image.crossOrigin = 'Anonymous';
 
@@ -211,7 +217,7 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 					var audio = document.createElement('audio');
 
 					audio.addEventListener('canplaythrough', function(event) {
-						this.cachedAudio[event.target.src] = event.target;
+						this.cachedAudio[event.target.gru()] = event.target;
 
 						audioToLoad--;
 
@@ -222,6 +228,12 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 							this.execute(this.ON_LOAD_ALL_COMPLETE);
 						}
 					}.bind(this));
+
+					audio.gru = function(p) {
+						return function() {
+							return p;
+						}
+					}(path);
 
 					audio.preload = 'auto';
 
