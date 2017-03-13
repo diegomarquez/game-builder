@@ -40,6 +40,9 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 			this.playMode = "";
 			this.stopParentEvent = "";
 			this.executeOnce = false;
+			
+			this.offScreenPlay = true;
+			this.offScreenViewport = "Main";
 
 			this.soundPlayer = SoundPlayer;
 
@@ -62,6 +65,9 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 			this.playMode = "";
 			this.stopParentEvent = "";
 			this.executeOnce = false;
+
+			this.offScreenPlay = true;
+			this.offScreenViewport = "Main";
 		},
 		/**
 		* --------------------------------
@@ -90,6 +96,10 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 
 			if (this.executeOnce) {
 				parent.once(this.parentEvent, this, function() {
+					if (!this.offScreenPlay && !parent.getViewportVisibility(this.offScreenViewport)) {
+						return;
+					}
+
 					if (this.playMode === "single") {
 						this.soundPlayer.playSingle(this.soundId);
 					}
@@ -105,6 +115,10 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 				}
 			} else {
 				parent.on(this.parentEvent, this, function() {
+					if (!this.offScreenPlay && !parent.getViewportVisibility(this.offScreenViewport)) {
+						return;
+					}
+
 					if (this.playMode === "single") {
 						this.soundPlayer.playSingle(this.soundId);
 					}
