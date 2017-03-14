@@ -1343,24 +1343,12 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 			sourceNode = context.createBufferSource();
 			sourceNode.connect(context.destination);
 			sourceNode.buffer = buff;
+			sourceNode.loop = l;
 
 			sourceNode.onended = function() {
 				if (l) {
-					if (sourceNode) {
-						sourceNode.disconnect();
-						sourceNode.stop(0);
-						sourceNode = null;
-					}
-
-					pausedAt = 0;
-					startedAt = 0;
-					playing = false;
-					paused = false;
-
 					if (sound.onLoop)
 						sound.onLoop();
-
-					play();
 				} else {
 					if (sound.onEnded && !paused) {
 						sound.onEnded();
