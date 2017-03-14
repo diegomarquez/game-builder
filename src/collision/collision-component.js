@@ -97,7 +97,7 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object'], func
 							invertedResponse = null;
 						}
 
-						if (collisionOpponent.parent && this.parent) {							
+						if (collisionOpponent.parent && this.parent) {
 							this.onCollide(collisionOpponent, response);
 
 							if (collisionOpponent.parent && this.parent) {
@@ -121,11 +121,11 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object'], func
 								this.onCollideArguments[0] = this.parent;
 								this.onCollideArguments[1] =  invertedResponse;
 								
-								collisionOpponent.parent.execute('collide', this.onCollideArguments, 'apply');	
+								collisionOpponent.parent.execute('collide', this.onCollideArguments, 'apply');
 							}
 
 							if (collisionOpponent.parent && this.parent) {
-								collisionOpponent.parent.onCollide(this.parent, invertedResponse);	
+								collisionOpponent.parent.onCollide(this.parent, invertedResponse);
 							}
 						}
 					}

@@ -6,6 +6,7 @@
  * Inherits from:
  *
  * Depends of:
+ * [asset-map](@@asset-map@@)
  * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
@@ -33,7 +34,7 @@
  * --------------------------------
  */
 
-define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
+define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, ErrorPrinter) {
 	var AssetPreloader = Delegate.extend({
 		/**
 		* <p style='color:#AD071D'><strong>init</strong></p>
@@ -48,6 +49,8 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 
 			this.cachedImages = {};
 			this.cachedAudio = {};
+			
+			this.supportedAudioFormat = "";
 		},
 		/**
 		* --------------------------------
@@ -110,7 +113,7 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 				return;
 			}
 
-			if (extension === 'opus' || extension === 'weba' || extension === 'ogg') {
+			if (extension === 'opus' || extension === 'weba' || extension === 'ogg' || extension === "mp3") {
 				if (this.cachedAudio[path])
 					return;
 
@@ -182,6 +185,8 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 			for (var i = 0; i < this.audioToLoad.length; i++) {
 				var path = this.audioToLoad[i];
 
+				path = this.convertPathToSupportedAudioFormat(path);
+
 				if (audioContext) {
 					var request = new XMLHttpRequest();
 
@@ -245,6 +250,45 @@ define(['delegate', 'error-printer'], function(Delegate, ErrorPrinter) {
 					}
 				}
 			}
+		},
+		/**
+		* --------------------------------
+		*/
+		
+		convertPathToSupportedAudioFormat: function(path) {
+			return path.replace(/(^.+\.)(.+?)(?=(\?.+))/, "$1" + this.supportedAudioFormat);
+		},
+		/**
+		* --------------------------------
+		*/
+		
+		findSupportedAudioFormat: function(onComplete) {
+			var loadAudioFile = function(path, supportedFormat) {
+				var audio = document.createElement('audio');
+				
+				audio.addEventListener('canplaythrough', function(event) {
+					if (!this.supportedAudioFormat) {
+						this.supportedAudioFormat = supportedFormat;
+						
+						onComplete();
+					}
+				}.bind(this));
+				
+				audio.addEventListener('error', function(event) {
+					console.log(supportedFormat + " is not supported");
+				}.bind(this));
+				
+				audio.preload = 'auto';
+				
+				if (window.location.protocol === 'file:') {
+					audio.src = 'http://localhost:5000/' + path;
+				} else {
+					audio.src = path;
+				}
+			}.bind(this);
+			
+			loadAudioFile(AssetMap.get()['AUDIO-SAMPLE.OGG'], "ogg");
+			loadAudioFile(AssetMap.get()['AUDIO-SAMPLE.MP3'], "mp3");
 		}
 		/**
 		* --------------------------------

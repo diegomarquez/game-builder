@@ -153,7 +153,7 @@ define(['sat'], function(SAT) {
 			return this.collisionMethodPairs[collisionMethodKey](first.collider, second.collider, this.response);
 		} else {
 			return this.collisionMethodPairs[collisionMethodKey](first.collider, second.collider);
-		}		
+		}
 	};
 	/**
 	 * --------------------------------

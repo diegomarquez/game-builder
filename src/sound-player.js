@@ -274,7 +274,8 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		* @param {Boolean = false} dynamicLoad If unspecified or false, the sounds will be loaded with **loadAll**. Otherwise they will be loaded when needed.
 		*/
 		add: function(id, path, dynamicLoad) {
-			this.audioAssetPaths[id] = path;
+			// Ensure the supported audio format is being used
+			this.audioAssetPaths[id] = AssetPreloader.convertPathToSupportedAudioFormat(path);
 
 			var type = "";
 
@@ -479,6 +480,9 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		* @param {String} id Id of the sound to play
 		*/
 		playSingle: function(id) {
+			
+			debugger;
+			
 			var path = this.audioAssetPaths[id];
 			var type = this.audioAssetInfo[id].type;
 

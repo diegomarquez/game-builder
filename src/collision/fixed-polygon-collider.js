@@ -128,7 +128,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 
 				this.collider.pos.x = 0;
 				this.collider.pos.y = 0;
-				this.collider.update(points);				
+				this.collider.update(points);
 			},
 			/**
 			 * --------------------------------

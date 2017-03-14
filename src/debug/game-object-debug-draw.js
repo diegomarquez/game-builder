@@ -66,7 +66,7 @@ define(function(require){
 			// Store current context
 			context.save();
 			// Reset transformation
-			context.setTransform(1, 0, 0, 1, 0, 0);			
+			context.setTransform(1, 0, 0, 1, 0, 0);
 			// Apply transformations for the current [viewport](@@viewport@@)
 			viewport.transformContext(context);
 
@@ -76,7 +76,7 @@ define(function(require){
 	    	}
 
 			if (go.components) {
-				// Draw whatever the [components](@@component@@) want to draw in debug mode
+				// Draw whatever the [components](@@component@@) wants to draw in debug mode
 				for(var i=0; i<go.components.length; i++) {
 					go.components[i].debug_draw(context, viewport, draw, gb);
 				}
