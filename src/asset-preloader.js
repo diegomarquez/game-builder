@@ -274,10 +274,6 @@ define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, 
 					}
 				}.bind(this));
 				
-				audio.addEventListener('error', function(event) {
-					console.log(supportedFormat + " is not supported");
-				}.bind(this));
-				
 				audio.preload = 'auto';
 				
 				if (window.location.protocol === 'file:') {

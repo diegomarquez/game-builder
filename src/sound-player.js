@@ -480,9 +480,6 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		* @param {String} id Id of the sound to play
 		*/
 		playSingle: function(id) {
-			
-			debugger;
-			
 			var path = this.audioAssetPaths[id];
 			var type = this.audioAssetInfo[id].type;
 
