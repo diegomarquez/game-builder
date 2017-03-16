@@ -93,7 +93,7 @@ define(function(require) {
 			context.fillRect(0, 0, canvas.width, canvas.height);
 
 			// Set text drawing properties
-		 	context.textBaseline = "top";
+			context.textBaseline = "middle";
 			context.textAlign = textAttributes.align;
 			context.lineWidth = textAttributes.lineWidth;
 			context.fillStyle = textAttributes.fill;
@@ -101,8 +101,8 @@ define(function(require) {
 			context.font = textAttributes.font;
 			
 			// Draw the text
-			context.fillText(textAttributes.text, 0, 0);
-			context.strokeText(textAttributes.text, 0, 0);
+			context.fillText(textAttributes.text, 0, canvas.height / 2);
+			context.strokeText(textAttributes.text, 0, canvas.height / 2);
 
 			// Cache the canvas for later use
 			this.cacheObject[id] = canvas;

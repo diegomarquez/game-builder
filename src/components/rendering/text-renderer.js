@@ -82,7 +82,7 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 			this.align      = this.align           || "start";
 			this.lineWidth  = this.lineWidth       || 1;
 			this.fill       = this.fillColor       || "#000000";
-			this.stroke     = this.strokeColor     || "#FFFFFF";	
+			this.stroke     = this.strokeColor     || "#FFFFFF";
 			this.size       = this.size            || 10;
 			this.fontFamily = this.font            || 'Arial';
 			this.background = this.backgroundColor || 'rgba(100%, 100%, 100%, 0)';
