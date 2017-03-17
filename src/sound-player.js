@@ -272,8 +272,9 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		* @param {String} id Use this identifier to later play the loaded sound
 		* @param {String} path A path to a sound file. Can be relative or absolute
 		* @param {Boolean = false} dynamicLoad If unspecified or false, the sounds will be loaded with **loadAll**. Otherwise they will be loaded when needed.
+		* @param {String = ""} group Use this id to control all sounds with the same group id at the same time
 		*/
-		add: function(id, path, dynamicLoad) {
+		add: function(id, path, dynamicLoad, group) {
 			// Ensure the supported audio format is being used
 			this.audioAssetPaths[id] = AssetPreloader.convertPathToSupportedAudioFormat(path);
 
@@ -287,7 +288,8 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 
 			this.audioAssetInfo[id] = {
 				type: type,
-				dynamic: !!dynamicLoad
+				dynamic: !!dynamicLoad,
+				group: group || ""
 			};
 		},
 		/**
@@ -482,6 +484,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		playSingle: function(id) {
 			var path = this.audioAssetPaths[id];
 			var type = this.audioAssetInfo[id].type;
+			var group = this.audioAssetInfo[id].group;
 
 			if (type === 'audio-tag') {
 				if (this.audioTags[id]) {
@@ -492,9 +495,11 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 					var channel = getPooledChannel.call(this, soundList);
 
 					if(this.preAssignedChannels[id] && channel && channel.loaded) {
+						channel.group = group;
 						playChannelSingle.call(this, id, channel);
 					} else if (this.preAssignedChannels[id] && channel && !channel.loaded) {
 						var onMD = function() {
+							channel.group = group;
 							channel.removeEventListener('loadedmetadata', onMD);
 							playChannelSingle.call(this, id, channel);
 						}.bind(this);
@@ -502,6 +507,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 						channel.addEventListener('loadedmetadata', onMD);
 					} else {
 						loadChannel.call(this, id, channel, function (channel) {
+							channel.group = group;
 							playChannelSingle.call(this, id, channel);
 						}.bind(this));
 					}
@@ -548,6 +554,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 						this.activeBufferNodes[id] = [];
 					}
 
+					bufferNode.group = group;
 					this.activeBufferNodes[id].push(bufferNode);
 
 					bufferNode.onEnded = function() {
@@ -596,6 +603,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		playLoop: function(id) {
 			var path = this.audioAssetPaths[id];
 			var type = this.audioAssetInfo[id].type;
+			var group = this.audioAssetInfo[id].group;
 
 			if (type === 'audio-tag') {
 				if (this.audioTags[id]) {
@@ -606,9 +614,11 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 					var channel = getPooledChannel.call(this, soundList);
 
 					if(this.preAssignedChannels[id] && channel && channel.loaded) {
+						channel.group = group;
 						playChannelLoop.call(this, id, channel);
 					} else if (this.preAssignedChannels[id] && channel && !channel.loaded) {
 						var onMD = function() {
+							channel.group = group;
 							channel.removeEventListener('loadedmetadata', onMD);
 							playChannelLoop.call(this, id, channel);
 						}.bind(this);
@@ -616,6 +626,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 						channel.addEventListener('loadedmetadata', onMD);
 					} else {
 						loadChannel.call(this, id, channel, function (channel) {
+							channel.group = group;
 							playChannelLoop.call(this, id, channel);
 						}.bind(this));
 					}
@@ -641,7 +652,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 
 						bufferNode.update(this.audioBuffers[id], true);
 					}
-
+					
 					if (this.preAssignedBuffers[id]) {
 						var maxAmount = this.preAssignedBuffers[id];
 
@@ -663,7 +674,8 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 					if (!this.activeBufferNodes[id]) {
 						this.activeBufferNodes[id] = [];
 					}
-
+					
+					bufferNode.group = group;
 					this.activeBufferNodes[id].push(bufferNode);
 
 					bufferNode.onEnded = function() {
@@ -708,31 +720,57 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		* <p style='color:#AD071D'><strong>pause</strong></p>
 		*
 		* Pauses all the channels playing a sound with the given id.
+		* If the Id is not found, the passed in argument will be treated as a group id and all sounds sharing it
+		* will be paused.
 		*
-		* @param {String} id Id of the sound to pause
+		* @param {String} id Id or group of the sound to pause
 		*/
 		pause: function(id) {
-			if (!this.audioAssetInfo[id]) return;
-
-			var type = this.audioAssetInfo[id].type;
-
-			if (type === "audio-tag") {
-				for (var i = 0; i < this.activeChannels.length; i++) {
-					var channel = this.activeChannels[i];
-
-					if (channel.id == id) {
-						pauseChannel.call(this, channel);
+			if (this.audioAssetInfo[id]) {
+				var type = this.audioAssetInfo[id].type;
+				
+				if (type === "audio-tag") {
+					for (var i = 0; i < this.activeChannels.length; i++) {
+						var channel = this.activeChannels[i];
+						
+						if (channel.id == id) {
+							pauseChannel.call(this, channel);
+						}
 					}
 				}
-			}
-
-			if (type === "web-audio") {
-				var activeBuffers = this.activeBufferNodes[id];
-
-				if (!activeBuffers) return;
-
-				for (var i = 0; i < activeBuffers.length; i++) {
-					activeBuffers[i].pause();
+				
+				if (type === "web-audio") {
+					var activeBuffers = this.activeBufferNodes[id];
+					
+					if (!activeBuffers) return;
+					
+					for (var i = 0; i < activeBuffers.length; i++) {
+						activeBuffers[i].pause();
+					}
+				}
+			} else {
+				if (this.activeChannels) {
+					for (var i = 0; i < this.activeChannels.length; i++) {
+						var channel = this.activeChannels[i];
+						
+						if (channel.group == id) {
+							pauseChannel.call(this, channel);
+						}
+					}
+				}
+				
+				if (this.activeBufferNodes) {
+					for (var k in this.activeBufferNodes) {
+						var bufferNodes = this.activeBufferNodes[k];
+						
+						for (var i = 0; i < bufferNodes.length; i++) {
+							var bufferNode = bufferNodes[i];
+							
+							if (bufferNode.group === id) {
+								bufferNode.pause();
+							}
+						}
+					}
 				}
 			}
 		},
@@ -744,31 +782,57 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		* <p style='color:#AD071D'><strong>stop</strong></p>
 		*
 		* Stops all the channels playing a sound with the given id.
+		* If the Id is not found, the passed in argument will be treated as a group id and all sounds sharing it
+		* will be stopped.
 		*
-		* @param {String} id Id of the sound to stop
+		* @param {String} id Id or group of the sound to stop
 		*/
 		stop: function(id) {
-			if (!this.audioAssetInfo[id]) return;
-
-			var type = this.audioAssetInfo[id].type;
-
-			if (type === "audio-tag") {
-				for (var i = this.activeChannels.length - 1; i >= 0; i--) {
-					var channel = this.activeChannels[i];
-
-					if (channel.id == id) {
-						stopChannel.call(this, channel, i);
+			if (this.audioAssetInfo[id]) {
+				var type = this.audioAssetInfo[id].type;
+	
+				if (type === "audio-tag") {
+					for (var i = this.activeChannels.length - 1; i >= 0; i--) {
+						var channel = this.activeChannels[i];
+	
+						if (channel.id == id) {
+							stopChannel.call(this, channel, i);
+						}
 					}
 				}
-			}
-
-			if (type === "web-audio") {
-				var activeBuffers = this.activeBufferNodes[id];
-
-				if (!activeBuffers) return;
-
-				for (var i = 0; i < activeBuffers.length; i++) {
-					activeBuffers[i].stop();
+	
+				if (type === "web-audio") {
+					var activeBuffers = this.activeBufferNodes[id];
+	
+					if (!activeBuffers) return;
+	
+					for (var i = 0; i < activeBuffers.length; i++) {
+						activeBuffers[i].stop();
+					}
+				}
+			} else {
+				if (this.activeChannels) {
+					for (var i = 0; i < this.activeChannels.length; i++) {
+						var channel = this.activeChannels[i];
+						
+						if (channel.group == id) {
+							stopChannel.call(this, channel);
+						}
+					}
+				}
+				
+				if (this.activeBufferNodes) {
+					for (var k in this.activeBufferNodes) {
+						var bufferNodes = this.activeBufferNodes[k];
+						
+						for (var i = 0; i < bufferNodes.length; i++) {
+							var bufferNode = bufferNodes[i];
+							
+							if (bufferNode.group === id) {
+								bufferNode.stop();
+							}
+						}
+					}
 				}
 			}
 		},
@@ -780,31 +844,57 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		* <p style='color:#AD071D'><strong>resume</strong></p>
 		*
 		* Resumes all the channels paused with the given id.
+		* If the Id is not found, the passed in argument will be treated as a group id and all sounds sharing it
+		* will be resumed.
 		*
-		* @param {String} id Id of the sound to stop
+		* @param {String} id Id or group of the sound to resume
 		*/
 		resume: function(id) {
-			if (!this.audioAssetInfo[id]) return;
-
-			var type = this.audioAssetInfo[id].type;
-
-			if (type === "audio-tag") {
-				for (var i = 0; i < this.activeChannels.length; i++) {
-					var channel = this.activeChannels[i];
-
-					if (channel.id == id) {
-						resumeChannel.call(this, channel);
+			if (this.audioAssetInfo[id]) {
+				var type = this.audioAssetInfo[id].type;
+	
+				if (type === "audio-tag") {
+					for (var i = 0; i < this.activeChannels.length; i++) {
+						var channel = this.activeChannels[i];
+	
+						if (channel.id == id) {
+							resumeChannel.call(this, channel);
+						}
 					}
 				}
-			}
-
-			if (type === "web-audio") {
-				var activeBuffers = this.activeBufferNodes[id];
-
-				if (!activeBuffers) return;
-
-				for (var i = 0; i < activeBuffers.length; i++) {
-					activeBuffers[i].resume();
+	
+				if (type === "web-audio") {
+					var activeBuffers = this.activeBufferNodes[id];
+	
+					if (!activeBuffers) return;
+	
+					for (var i = 0; i < activeBuffers.length; i++) {
+						activeBuffers[i].resume();
+					}
+				}
+			} else {
+				if (this.activeChannels) {
+					for (var i = 0; i < this.activeChannels.length; i++) {
+						var channel = this.activeChannels[i];
+						
+						if (channel.group == id) {
+							resumeChannel.call(this, channel);
+						}
+					}
+				}
+				
+				if (this.activeBufferNodes) {
+					for (var k in this.activeBufferNodes) {
+						var bufferNodes = this.activeBufferNodes[k];
+						
+						for (var i = 0; i < bufferNodes.length; i++) {
+							var bufferNode = bufferNodes[i];
+							
+							if (bufferNode.group === id) {
+								bufferNode.resume();
+							}
+						}
+					}
 				}
 			}
 		},
@@ -1437,6 +1527,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 			stop: stop,
 			onEnded: null,
 			onLoop: null,
+			group: "",
 
 			update: function(buffer, loop) {
 				updateBuffer(buffer, loop);
