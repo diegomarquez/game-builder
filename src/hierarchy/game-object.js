@@ -628,7 +628,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 */
 		stop: function(skipEvent) {
 			this.canUpdate = false;
-
+			
 			if (!skipEvent) {
 				this.execute(this.STOP, this);
 			}

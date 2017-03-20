@@ -151,6 +151,8 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 				this.audioContext = new window.AudioContext();
 
 			this.pooledBufferNodes = {};
+			
+			this.blocked = false;
 		},
 		/**
 		* --------------------------------
@@ -473,7 +475,31 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		/**
 		* --------------------------------
 		*/
-
+		
+		/**
+		* <p style='color:#AD071D'><strong>disableNewPlayback</strong></p>
+		*
+		* Disable the methods that play sound.
+		*/
+		disableNewPlayback: function() {
+			this.blocked = true;
+		},
+		/**
+		* --------------------------------
+		*/
+		
+		/**
+		* <p style='color:#AD071D'><strong>enableNewPlayback</strong></p>
+		*
+		* Enable the methods that play sound.
+		*/
+		enableNewPlayback: function() {
+			this.blocked = false;
+		},
+		/**
+		* --------------------------------
+		*/
+		
 		/**
 		* <p style='color:#AD071D'><strong>playSingle</strong></p>
 		*
@@ -482,6 +508,9 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		* @param {String} id Id of the sound to play
 		*/
 		playSingle: function(id) {
+			if (this.blocked)
+				return;
+			
 			var path = this.audioAssetPaths[id];
 			var type = this.audioAssetInfo[id].type;
 			var group = this.audioAssetInfo[id].group;
@@ -601,6 +630,9 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		* @param {String} id Id of the sound to play
 		*/
 		playLoop: function(id) {
+			if (this.blocked)
+				return;
+			
 			var path = this.audioAssetPaths[id];
 			var type = this.audioAssetInfo[id].type;
 			var group = this.audioAssetInfo[id].group;
@@ -646,7 +678,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 					if (!this.pooledBufferNodes[id]) {
 						bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, true);
 					} else if (!this.pooledBufferNodes[id].length) {
-						bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, true);	
+						bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, true);
 					} else {
 						bufferNode = this.pooledBufferNodes[id].pop();
 
@@ -730,7 +762,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 				var type = this.audioAssetInfo[id].type;
 				
 				if (type === "audio-tag") {
-					for (var i = 0; i < this.activeChannels.length; i++) {
+					for (var i = this.activeChannels.length - 1; i >= 0 ; i--) {
 						var channel = this.activeChannels[i];
 						
 						if (channel.id == id) {
@@ -744,13 +776,13 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 					
 					if (!activeBuffers) return;
 					
-					for (var i = 0; i < activeBuffers.length; i++) {
+					for (var i = activeBuffers.length - 1; i >= 0 ; i--) {
 						activeBuffers[i].pause();
 					}
 				}
 			} else {
 				if (this.activeChannels) {
-					for (var i = 0; i < this.activeChannels.length; i++) {
+					for (var i = this.activeChannels.length - 1; i >= 0; i--) {
 						var channel = this.activeChannels[i];
 						
 						if (channel.group == id) {
@@ -763,7 +795,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 					for (var k in this.activeBufferNodes) {
 						var bufferNodes = this.activeBufferNodes[k];
 						
-						for (var i = 0; i < bufferNodes.length; i++) {
+						for (var i = bufferNodes.length - 1; i >= 0; i--) {
 							var bufferNode = bufferNodes[i];
 							
 							if (bufferNode.group === id) {
@@ -790,29 +822,29 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		stop: function(id) {
 			if (this.audioAssetInfo[id]) {
 				var type = this.audioAssetInfo[id].type;
-	
+				
 				if (type === "audio-tag") {
-					for (var i = this.activeChannels.length - 1; i >= 0; i--) {
+					for (var i = this.activeChannels.length - 1; i >= 0 ; i--) {
 						var channel = this.activeChannels[i];
-	
+						
 						if (channel.id == id) {
-							stopChannel.call(this, channel, i);
+							stopChannel.call(this, channel);
 						}
 					}
 				}
-	
+				
 				if (type === "web-audio") {
 					var activeBuffers = this.activeBufferNodes[id];
-	
+					
 					if (!activeBuffers) return;
-	
-					for (var i = 0; i < activeBuffers.length; i++) {
+					
+					for (var i = activeBuffers.length - 1; i >= 0 ; i--) {
 						activeBuffers[i].stop();
 					}
 				}
 			} else {
 				if (this.activeChannels) {
-					for (var i = 0; i < this.activeChannels.length; i++) {
+					for (var i = this.activeChannels.length - 1; i >= 0; i--) {
 						var channel = this.activeChannels[i];
 						
 						if (channel.group == id) {
@@ -825,7 +857,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 					for (var k in this.activeBufferNodes) {
 						var bufferNodes = this.activeBufferNodes[k];
 						
-						for (var i = 0; i < bufferNodes.length; i++) {
+						for (var i = bufferNodes.length - 1; i >= 0; i--) {
 							var bufferNode = bufferNodes[i];
 							
 							if (bufferNode.group === id) {
@@ -852,29 +884,29 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		resume: function(id) {
 			if (this.audioAssetInfo[id]) {
 				var type = this.audioAssetInfo[id].type;
-	
+				
 				if (type === "audio-tag") {
-					for (var i = 0; i < this.activeChannels.length; i++) {
+					for (var i = this.activeChannels.length - 1; i >= 0 ; i--) {
 						var channel = this.activeChannels[i];
-	
+						
 						if (channel.id == id) {
 							resumeChannel.call(this, channel);
 						}
 					}
 				}
-	
+				
 				if (type === "web-audio") {
 					var activeBuffers = this.activeBufferNodes[id];
-	
+					
 					if (!activeBuffers) return;
-	
-					for (var i = 0; i < activeBuffers.length; i++) {
+					
+					for (var i = activeBuffers.length - 1; i >= 0 ; i--) {
 						activeBuffers[i].resume();
 					}
 				}
 			} else {
 				if (this.activeChannels) {
-					for (var i = 0; i < this.activeChannels.length; i++) {
+					for (var i = this.activeChannels.length - 1; i >= 0; i--) {
 						var channel = this.activeChannels[i];
 						
 						if (channel.group == id) {
@@ -887,7 +919,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 					for (var k in this.activeBufferNodes) {
 						var bufferNodes = this.activeBufferNodes[k];
 						
-						for (var i = 0; i < bufferNodes.length; i++) {
+						for (var i = bufferNodes.length - 1; i >= 0; i--) {
 							var bufferNode = bufferNodes[i];
 							
 							if (bufferNode.group === id) {
