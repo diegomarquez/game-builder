@@ -506,9 +506,10 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		* Plays a sound 1 time.
 		*
 		* @param {String} id Id of the sound to play
+		* @param {Boolean = false} force Force playback if it is blocked
 		*/
-		playSingle: function(id) {
-			if (this.blocked)
+		playSingle: function(id, force) {
+			if (this.blocked && !force)
 				return;
 			
 			var path = this.audioAssetPaths[id];
@@ -541,8 +542,10 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 						}.bind(this));
 					}
 				} else {
+					var forcePlayBack = !this.blocked;
+					
 					loadWithAudioTag.call(this, id, path, function(id) {
-						this.playSingle(id);
+						this.playSingle(id, forcePlayBack);
 					}.bind(this), AssetPreloader);
 				}
 			}
@@ -612,8 +615,10 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 
 					this.execute(this.PLAY_SINGLE, id);
 				} else {
+					var forcePlayBack = !this.blocked;
+					
 					loadWithWebAudio.call(this, id, path, function(id) {
-						this.playSingle(id);
+						this.playSingle(id, forcePlayBack);
 					}.bind(this), AssetPreloader);
 				}
 			}
@@ -628,9 +633,10 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		* Plays a sound continuosly, until it is stopped manually.
 		*
 		* @param {String} id Id of the sound to play
+		* @param {Boolean = false} force Force playback if it is blocked
 		*/
-		playLoop: function(id) {
-			if (this.blocked)
+		playLoop: function(id, force) {
+			if (this.blocked && !force)
 				return;
 			
 			var path = this.audioAssetPaths[id];
@@ -664,11 +670,12 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 					}
 				}
 				else {
+					var forcePlayBack = !this.blocked;
+					
 					loadWithAudioTag.call(this, id, path, function(id) {
-						this.playLoop(id);
+						this.playLoop(id, forcePlayBack);
 					}.bind(this), AssetPreloader);
 				}
-
 			}
 
 			if (type === 'web-audio') {
@@ -738,8 +745,10 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 
 					this.execute(this.PLAY_LOOP, id);
 				} else {
+					var forcePlayBack = !this.blocked;
+					
 					loadWithWebAudio.call(this, id, path, function(id) {
-						this.playLoop(id);
+						this.playLoop(id, forcePlayBack);
 					}.bind(this), AssetPreloader);
 				}
 			}
