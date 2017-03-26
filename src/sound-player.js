@@ -10,6 +10,7 @@
  * [timer-factory](@@timer-factory@@)
  * [asset-preloader](@@asset-preloader@@)
  * [error-printer](@@error-printer@@)
+ * [util](@@util@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -112,7 +113,7 @@
 /**
  * --------------------------------
  */
-define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], function(Delegate, TimerFactory, AssetPreloader, ErrorPrinter) {
+define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util'], function(Delegate, TimerFactory, AssetPreloader, ErrorPrinter, Util) {
 	var SoundPlayer = Delegate.extend({
 		/**
 		* <p style='color:#AD071D'><strong>init</strong></p>
@@ -153,6 +154,8 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 			this.pooledBufferNodes = {};
 			
 			this.blocked = false;
+			this.remainEnabled = [];
+			this.remainDisabled = [];
 		},
 		/**
 		* --------------------------------
@@ -480,8 +483,24 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		* <p style='color:#AD071D'><strong>disableNewPlayback</strong></p>
 		*
 		* Disable the methods that play sound.
+		*
+		* @param {String|Array} remainEnabled optional sound ids or group ids that will still be playable
 		*/
-		disableNewPlayback: function() {
+		disableNewPlayback: function(remainEnabled) {
+			if (util.isString(remainEnabled)) {
+				if (this.remainEnabled.indexOf(remainEnabled) === -1) {
+					this.remainEnabled.push(remainEnabled);
+				}
+			} else if (util.isArray(remainEnabled)) {
+				for (var i = 0; i < remainEnabled.length; i++) {
+					var o = remainEnabled[i];
+
+					if (util.isString(o) && this.remainEnabled.indexOf(o) === -1) {
+						this.remainEnabled.push(o);
+					}
+				}
+			}
+
 			this.blocked = true;
 		},
 		/**
@@ -492,8 +511,24 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		* <p style='color:#AD071D'><strong>enableNewPlayback</strong></p>
 		*
 		* Enable the methods that play sound.
+		*
+		* @param {String|Array} remainDisabled optional sound ids or group ids that will remain blocked
 		*/
-		enableNewPlayback: function() {
+		enableNewPlayback: function(remainDisabled) {
+			if (util.isString(remainDisabled)) {
+				if (this.remainDisabled.indexOf(remainDisabled) === -1) {
+					this.remainDisabled.push(remainDisabled);
+				}
+			} else if (util.isArray(remainDisabled)) {
+				for (var i = 0; i < remainDisabled.length; i++) {
+					var k = remainDisabled[i];
+
+					if (util.isString(k) && this.remainDisabled.indexOf(k) === -1) {
+						this.remainDisabled.push(k);
+					}
+				}
+			}
+
 			this.blocked = false;
 		},
 		/**
@@ -509,12 +544,29 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		* @param {Boolean = false} force Force playback if it is blocked
 		*/
 		playSingle: function(id, force) {
-			if (this.blocked && !force)
-				return;
-			
 			var path = this.audioAssetPaths[id];
 			var type = this.audioAssetInfo[id].type;
 			var group = this.audioAssetInfo[id].group;
+
+			if (!force) {
+				if (this.blocked) {
+					if (this.remainEnabled.indexOf(id) === -1) {
+						return;
+					}
+
+					if (this.remainEnabled.indexOf(group) === -1) {
+						return;
+					}
+				} else {
+					if (this.remainDisabled.indexOf(id) !== -1) {
+						return;
+					}
+
+					if (this.remainDisabled.indexOf(group) !== -1) {
+						return;
+					}
+				}
+			}
 
 			if (type === 'audio-tag') {
 				if (this.audioTags[id]) {
@@ -636,12 +688,29 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer'], functi
 		* @param {Boolean = false} force Force playback if it is blocked
 		*/
 		playLoop: function(id, force) {
-			if (this.blocked && !force)
-				return;
-			
 			var path = this.audioAssetPaths[id];
 			var type = this.audioAssetInfo[id].type;
 			var group = this.audioAssetInfo[id].group;
+
+			if (!force) {
+				if (this.blocked) {
+					if (this.remainEnabled.indexOf(id) === -1) {
+						return;
+					}
+
+					if (this.remainEnabled.indexOf(group) === -1) {
+						return;
+					}
+				} else {
+					if (this.remainDisabled.indexOf(id) !== -1) {
+						return;
+					}
+
+					if (this.remainDisabled.indexOf(group) !== -1) {
+						return;
+					}
+				}
+			}
 
 			if (type === 'audio-tag') {
 				if (this.audioTags[id]) {
