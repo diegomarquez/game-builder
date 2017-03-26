@@ -499,6 +499,8 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 						this.remainEnabled.push(o);
 					}
 				}
+			} else {
+				this.remainEnabled.length = 0;
 			}
 
 			this.blocked = true;
@@ -527,6 +529,8 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 						this.remainDisabled.push(k);
 					}
 				}
+			} else {
+				this.remainDisabled.length = 0;
 			}
 
 			this.blocked = false;
