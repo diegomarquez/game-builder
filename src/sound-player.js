@@ -487,15 +487,15 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 		* @param {String|Array} remainEnabled optional sound ids or group ids that will still be playable
 		*/
 		disableNewPlayback: function(remainEnabled) {
-			if (util.isString(remainEnabled)) {
+			if (Util.isString(remainEnabled)) {
 				if (this.remainEnabled.indexOf(remainEnabled) === -1) {
 					this.remainEnabled.push(remainEnabled);
 				}
-			} else if (util.isArray(remainEnabled)) {
+			} else if (Util.isArray(remainEnabled)) {
 				for (var i = 0; i < remainEnabled.length; i++) {
 					var o = remainEnabled[i];
 
-					if (util.isString(o) && this.remainEnabled.indexOf(o) === -1) {
+					if (Util.isString(o) && this.remainEnabled.indexOf(o) === -1) {
 						this.remainEnabled.push(o);
 					}
 				}
@@ -517,15 +517,15 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 		* @param {String|Array} remainDisabled optional sound ids or group ids that will remain blocked
 		*/
 		enableNewPlayback: function(remainDisabled) {
-			if (util.isString(remainDisabled)) {
+			if (Util.isString(remainDisabled)) {
 				if (this.remainDisabled.indexOf(remainDisabled) === -1) {
 					this.remainDisabled.push(remainDisabled);
 				}
-			} else if (util.isArray(remainDisabled)) {
+			} else if (Util.isArray(remainDisabled)) {
 				for (var i = 0; i < remainDisabled.length; i++) {
 					var k = remainDisabled[i];
 
-					if (util.isString(k) && this.remainDisabled.indexOf(k) === -1) {
+					if (Util.isString(k) && this.remainDisabled.indexOf(k) === -1) {
 						this.remainDisabled.push(k);
 					}
 				}
