@@ -454,7 +454,7 @@ define(function() {
 	/**
 	 * <p style='color:#AD071D'><strong>generateUUID</strong></p>
 	 *
-	 * Generate a random string
+	 * Generate a sufficiently random string
 	 *	 
 	 * @return {String}
 	 */

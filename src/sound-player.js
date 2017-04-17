@@ -190,6 +190,9 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 						return this.timer.Stopped;
 					}
 
+					channel.id = "";
+					channel.group = "";
+					channel.uuid = "";
 					channel.waitingToPlay = false;
 					channel.stopRequested = false;
 					channel.pauseRequested = false;
@@ -547,27 +550,20 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 		* @param {String} id Id of the sound to play
 		* @param {Boolean = false} force Force playback if it is blocked
 		*/
-		playSingle: function(id, force) {
+		playSingle: function(id, force, uuid) {
 			var path = this.audioAssetPaths[id];
 			var type = this.audioAssetInfo[id].type;
 			var group = this.audioAssetInfo[id].group;
+			var uniqueId = uuid ? uuid : Util.generateUUID();
 
 			if (!force) {
 				if (this.blocked) {
-					if (this.remainEnabled.indexOf(id) === -1) {
-						return;
-					}
-
-					if (this.remainEnabled.indexOf(group) === -1) {
-						return;
+					if (this.remainEnabled.indexOf(id) === -1 && this.remainEnabled.indexOf(group) === -1) {
+						return -1;
 					}
 				} else {
-					if (this.remainDisabled.indexOf(id) !== -1) {
-						return;
-					}
-
-					if (this.remainDisabled.indexOf(group) !== -1) {
-						return;
+					if (this.remainDisabled.indexOf(id) !== -1 || this.remainDisabled.indexOf(group) !== -1) {
+						return -1;
 					}
 				}
 			}
@@ -576,15 +572,19 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 				if (this.audioTags[id]) {
 					var soundList = this.preAssignedChannels[id] ? this.preAssignedChannels[id] : this.pooledChannels;
 
-					if (soundList.length == 0) return;
+					if (soundList.length == 0) {
+						return -1;
+					}
 
 					var channel = getPooledChannel.call(this, soundList);
 
 					if(this.preAssignedChannels[id] && channel && channel.loaded) {
+						channel.uuid = uniqueId;
 						channel.group = group;
 						playChannelSingle.call(this, id, channel);
 					} else if (this.preAssignedChannels[id] && channel && !channel.loaded) {
 						var onMD = function() {
+							channel.uuid = uniqueId;
 							channel.group = group;
 							channel.removeEventListener('loadedmetadata', onMD);
 							playChannelSingle.call(this, id, channel);
@@ -593,6 +593,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 						channel.addEventListener('loadedmetadata', onMD);
 					} else {
 						loadChannel.call(this, id, channel, function (channel) {
+							channel.uuid = uniqueId;
 							channel.group = group;
 							playChannelSingle.call(this, id, channel);
 						}.bind(this));
@@ -601,9 +602,11 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 					var forcePlayBack = !this.blocked;
 					
 					loadWithAudioTag.call(this, id, path, function(id) {
-						this.playSingle(id, forcePlayBack);
+						this.playSingle(id, forcePlayBack, uniqueId);
 					}.bind(this), AssetPreloader);
 				}
+
+				return uniqueId;
 			}
 
 			if (type === 'web-audio') {
@@ -614,7 +617,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 						if (this.activePreAssignedBuffers[id] < maxAmount) {
 							this.activePreAssignedBuffers[id]++;
 						} else {
-							return;
+							return -1;
 						}
 					} else {
 						var maxAmount = this.maximumAmountOfBuffers;
@@ -622,7 +625,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 						if (this.activeNoneAssignedBuffers < maxAmount) {
 							this.activeNoneAssignedBuffers++;
 						} else {
-							return;
+							return -1;
 						}
 					}
 
@@ -642,6 +645,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 						this.activeBufferNodes[id] = [];
 					}
 
+					bufferNode.uuid = uniqueId;
 					bufferNode.group = group;
 					this.activeBufferNodes[id].push(bufferNode);
 
@@ -674,9 +678,11 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 					var forcePlayBack = !this.blocked;
 					
 					loadWithWebAudio.call(this, id, path, function(id) {
-						this.playSingle(id, forcePlayBack);
+						this.playSingle(id, forcePlayBack, uniqueId);
 					}.bind(this), AssetPreloader);
 				}
+
+				return uniqueId;
 			}
 		},
 		/**
@@ -691,27 +697,20 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 		* @param {String} id Id of the sound to play
 		* @param {Boolean = false} force Force playback if it is blocked
 		*/
-		playLoop: function(id, force) {
+		playLoop: function(id, force, uuid) {
 			var path = this.audioAssetPaths[id];
 			var type = this.audioAssetInfo[id].type;
 			var group = this.audioAssetInfo[id].group;
+			var uniqueId = uuid ? uuid : Util.generateUUID();
 
 			if (!force) {
 				if (this.blocked) {
-					if (this.remainEnabled.indexOf(id) === -1) {
-						return;
-					}
-
-					if (this.remainEnabled.indexOf(group) === -1) {
-						return;
+					if (this.remainEnabled.indexOf(id) === -1 && this.remainEnabled.indexOf(group) === -1) {
+						return -1;
 					}
 				} else {
-					if (this.remainDisabled.indexOf(id) !== -1) {
-						return;
-					}
-
-					if (this.remainDisabled.indexOf(group) !== -1) {
-						return;
+					if (this.remainDisabled.indexOf(id) !== -1 || this.remainDisabled.indexOf(group) !== -1) {
+						return -1;
 					}
 				}
 			}
@@ -720,15 +719,19 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 				if (this.audioTags[id]) {
 					var soundList = this.preAssignedChannels[id] ? this.preAssignedChannels[id] : this.pooledChannels;
 
-					if (soundList.length == 0) return;
+					if (soundList.length == 0) {
+						return -1;
+					}
 
 					var channel = getPooledChannel.call(this, soundList);
 
 					if(this.preAssignedChannels[id] && channel && channel.loaded) {
+						channel.uuid = uniqueId;
 						channel.group = group;
 						playChannelLoop.call(this, id, channel);
 					} else if (this.preAssignedChannels[id] && channel && !channel.loaded) {
 						var onMD = function() {
+							channel.uuid = uniqueId;
 							channel.group = group;
 							channel.removeEventListener('loadedmetadata', onMD);
 							playChannelLoop.call(this, id, channel);
@@ -737,6 +740,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 						channel.addEventListener('loadedmetadata', onMD);
 					} else {
 						loadChannel.call(this, id, channel, function (channel) {
+							channel.uuid = uniqueId;
 							channel.group = group;
 							playChannelLoop.call(this, id, channel);
 						}.bind(this));
@@ -746,9 +750,11 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 					var forcePlayBack = !this.blocked;
 					
 					loadWithAudioTag.call(this, id, path, function(id) {
-						this.playLoop(id, forcePlayBack);
+						this.playLoop(id, forcePlayBack, uniqueId);
 					}.bind(this), AssetPreloader);
 				}
+
+				return uniqueId;
 			}
 
 			if (type === 'web-audio') {
@@ -771,7 +777,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 						if (this.activePreAssignedBuffers[id] < maxAmount) {
 							this.activePreAssignedBuffers[id]++;
 						} else {
-							return;
+							return -1;
 						}
 					} else {
 						var maxAmount = this.maximumAmountOfBuffers;
@@ -779,7 +785,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 						if (this.activeNoneAssignedBuffers < maxAmount) {
 							this.activeNoneAssignedBuffers++;
 						} else {
-							return;
+							return -1;
 						}
 					}
 
@@ -787,6 +793,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 						this.activeBufferNodes[id] = [];
 					}
 					
+					bufferNode.uuid = uniqueId;
 					bufferNode.group = group;
 					this.activeBufferNodes[id].push(bufferNode);
 
@@ -821,9 +828,11 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 					var forcePlayBack = !this.blocked;
 					
 					loadWithWebAudio.call(this, id, path, function(id) {
-						this.playLoop(id, forcePlayBack);
+						this.playLoop(id, forcePlayBack, uniqueId);
 					}.bind(this), AssetPreloader);
 				}
+
+				return uniqueId;
 			}
 		},
 		/**
@@ -836,6 +845,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 		* Pauses all the channels playing a sound with the given id.
 		* If the Id is not found, the passed in argument will be treated as a group id and all sounds sharing it
 		* will be paused.
+		* If the passed is is not a group it will be treated as a unique id that can be used to address a single sound
 		*
 		* @param {String} id Id or group of the sound to pause
 		*/
@@ -864,23 +874,50 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 				}
 			} else {
 				if (this.activeChannels) {
-					for (var i = this.activeChannels.length - 1; i >= 0; i--) {
-						var channel = this.activeChannels[i];
+					var channel;
+					var i;
+
+					for (i = this.activeChannels.length - 1; i >= 0; i--) {
+						channel = this.activeChannels[i];
 						
 						if (channel.group == id) {
+							pauseChannel.call(this, channel);
+						}
+					}
+
+					for (i = this.activeChannels.length - 1; i >= 0; i--) {
+						channel = this.activeChannels[i];
+						
+						if (channel.uuid == id) {
 							pauseChannel.call(this, channel);
 						}
 					}
 				}
 				
 				if (this.activeBufferNodes) {
-					for (var k in this.activeBufferNodes) {
-						var bufferNodes = this.activeBufferNodes[k];
+					var bufferNodes;
+					var bufferNode;
+					var k, i;
+
+					for (k in this.activeBufferNodes) {
+						bufferNodes = this.activeBufferNodes[k];
 						
-						for (var i = bufferNodes.length - 1; i >= 0; i--) {
-							var bufferNode = bufferNodes[i];
+						for (i = bufferNodes.length - 1; i >= 0; i--) {
+							bufferNode = bufferNodes[i];
 							
 							if (bufferNode.group === id) {
+								bufferNode.pause();
+							}
+						}
+					}
+
+					for (k in this.activeBufferNodes) {
+						bufferNodes = this.activeBufferNodes[k];
+						
+						for (i = bufferNodes.length - 1; i >= 0; i--) {
+							bufferNode = bufferNodes[i];
+							
+							if (bufferNode.uuid === id) {
 								bufferNode.pause();
 							}
 						}
@@ -898,6 +935,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 		* Stops all the channels playing a sound with the given id.
 		* If the Id is not found, the passed in argument will be treated as a group id and all sounds sharing it
 		* will be stopped.
+		* If the passed is is not a group it will be treated as a unique id that can be used to address a single sound
 		*
 		* @param {String} id Id or group of the sound to stop
 		*/
@@ -926,23 +964,50 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 				}
 			} else {
 				if (this.activeChannels) {
-					for (var i = this.activeChannels.length - 1; i >= 0; i--) {
-						var channel = this.activeChannels[i];
+					var channel;
+					var i;
+
+					for (i = this.activeChannels.length - 1; i >= 0; i--) {
+						channel = this.activeChannels[i];
 						
 						if (channel.group == id) {
+							stopChannel.call(this, channel);
+						}
+					}
+
+					for (i = this.activeChannels.length - 1; i >= 0; i--) {
+						channel = this.activeChannels[i];
+						
+						if (channel.uuid == id) {
 							stopChannel.call(this, channel);
 						}
 					}
 				}
 				
 				if (this.activeBufferNodes) {
-					for (var k in this.activeBufferNodes) {
-						var bufferNodes = this.activeBufferNodes[k];
+					var bufferNodes;
+					var bufferNode;
+					var k, i;
+
+					for (k in this.activeBufferNodes) {
+						bufferNodes = this.activeBufferNodes[k];
 						
-						for (var i = bufferNodes.length - 1; i >= 0; i--) {
-							var bufferNode = bufferNodes[i];
+						for (i = bufferNodes.length - 1; i >= 0; i--) {
+							bufferNode = bufferNodes[i];
 							
 							if (bufferNode.group === id) {
+								bufferNode.stop();
+							}
+						}
+					}
+
+					for (k in this.activeBufferNodes) {
+						bufferNodes = this.activeBufferNodes[k];
+						
+						for (i = bufferNodes.length - 1; i >= 0; i--) {
+							bufferNode = bufferNodes[i];
+							
+							if (bufferNode.uuid === id) {
 								bufferNode.stop();
 							}
 						}
@@ -960,6 +1025,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 		* Resumes all the channels paused with the given id.
 		* If the Id is not found, the passed in argument will be treated as a group id and all sounds sharing it
 		* will be resumed.
+		* If the passed is is not a group it will be treated as a unique id that can be used to address a single sound
 		*
 		* @param {String} id Id or group of the sound to resume
 		*/
@@ -988,23 +1054,50 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 				}
 			} else {
 				if (this.activeChannels) {
-					for (var i = this.activeChannels.length - 1; i >= 0; i--) {
-						var channel = this.activeChannels[i];
+					var channel;
+					var i;
+
+					for (i = this.activeChannels.length - 1; i >= 0; i--) {
+						channel = this.activeChannels[i];
 						
 						if (channel.group == id) {
+							resumeChannel.call(this, channel);
+						}
+					}
+
+					for (i = this.activeChannels.length - 1; i >= 0; i--) {
+						channel = this.activeChannels[i];
+						
+						if (channel.uuid == id) {
 							resumeChannel.call(this, channel);
 						}
 					}
 				}
 				
 				if (this.activeBufferNodes) {
-					for (var k in this.activeBufferNodes) {
-						var bufferNodes = this.activeBufferNodes[k];
+					var bufferNodes;
+					var bufferNode;
+					var k, i;
+
+					for (k in this.activeBufferNodes) {
+						bufferNodes = this.activeBufferNodes[k];
 						
-						for (var i = bufferNodes.length - 1; i >= 0; i--) {
-							var bufferNode = bufferNodes[i];
+						for (i = bufferNodes.length - 1; i >= 0; i--) {
+							bufferNode = bufferNodes[i];
 							
 							if (bufferNode.group === id) {
+								bufferNode.resume();
+							}
+						}
+					}
+
+					for (k in this.activeBufferNodes) {
+						bufferNodes = this.activeBufferNodes[k];
+						
+						for (i = bufferNodes.length - 1; i >= 0; i--) {
+							bufferNode = bufferNodes[i];
+							
+							if (bufferNode.uuid === id) {
 								bufferNode.resume();
 							}
 						}
@@ -1642,6 +1735,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 			onEnded: null,
 			onLoop: null,
 			group: "",
+			uuid: "",
 
 			update: function(buffer, loop) {
 				updateBuffer(buffer, loop);

@@ -46,6 +46,8 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 
 			this.soundPlayer = SoundPlayer;
 
+			this.soundUniqueId = "";
+
 			this.reset();
 		},
 		/**
@@ -65,6 +67,7 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 			this.playMode = "";
 			this.stopParentEvent = "";
 			this.executeOnce = false;
+			this.soundUniqueId = "";
 
 			this.offScreenPlay = true;
 			this.offScreenViewport = "Main";
@@ -96,21 +99,23 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 
 			if (this.executeOnce) {
 				parent.once(this.parentEvent, this, function() {
+
+
 					if (!this.offScreenPlay && !parent.getViewportVisibility(this.offScreenViewport)) {
 						return;
 					}
 
 					if (this.playMode === "single") {
-						this.soundPlayer.playSingle(this.soundId);
+						this.soundUniqueId = this.soundPlayer.playSingle(this.soundId);
 					}
 					else if (this.playMode === "loop") {
-						this.soundPlayer.playLoop(this.soundId);
+						this.soundUniqueId = this.soundPlayer.playLoop(this.soundId);
 					}
 				}, false, false, false, "sound-player-delegate");
 
 				if (this.stopParentEvent) {
 					parent.once(this.stopParentEvent, this, function() {
-						this.soundPlayer.stop(this.soundId);
+						this.soundPlayer.stop(this.soundUniqueId);
 					}, false, false, false, "sound-player-delegate");
 				}
 			} else {
@@ -120,16 +125,16 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 					}
 
 					if (this.playMode === "single") {
-						this.soundPlayer.playSingle(this.soundId);
+						this.soundUniqueId = this.soundPlayer.playSingle(this.soundId);
 					}
 					else if (this.playMode === "loop") {
-						this.soundPlayer.playLoop(this.soundId);
+						this.soundUniqueId = this.soundPlayer.playLoop(this.soundId);
 					}
 				}, false, false, false, "sound-player-delegate");
 
 				if (this.stopParentEvent) {
 					parent.on(this.stopParentEvent, this, function() {
-						this.soundPlayer.stop(this.soundId);
+						this.soundPlayer.stop(this.soundUniqueId);
 					}, false, false, false, "sound-player-delegate");
 				}
 			}
