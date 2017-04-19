@@ -511,6 +511,11 @@ define(function() {
 	/**
 	 * --------------------------------
 	 */
+	
+	 DrawUtils.prototype.calculatePointInQuadraticCurve = function(startX, startY, anchorX, anchorY, endX, endY, p) {
+		x = (1 - p) * (1 - p) * startX + 2 * (1 - p) * p * anchorX + p * p * endX;
+		y = (1 - p) * (1 - p) * startY + 2 * (1 - p) * p * anchorY + p * p * endY;
+	 }
 
 	return new DrawUtils()
 });

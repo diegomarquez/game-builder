@@ -279,12 +279,13 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 		*
 		* @param {String} id Use this identifier to later play the loaded sound
 		* @param {String} path A path to a sound file. Can be relative or absolute
-		* @param {Boolean = false} dynamicLoad If unspecified or false, the sounds will be loaded with **loadAll**. Otherwise they will be loaded when needed.
-		* @param {String = ""} group Use this id to control all sounds with the same group id at the same time
+		* @param {Object = undefined} options Various optional options
 		*/
-		add: function(id, path, dynamicLoad, group) {
+		add: function(id, path, options) {
 			// Ensure the supported audio format is being used
 			this.audioAssetPaths[id] = AssetPreloader.convertPathToSupportedAudioFormat(path);
+
+			var o = options || {};
 
 			var type = "";
 
@@ -294,10 +295,27 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 				type = "audio-tag";
 			}
 
+			var v;
+
+			if (typeof o.volume === "undefined") {
+				v = 1;
+			} else if (typeof o.volume === "number") {
+				v = o.volume;
+
+				if (v < 0)
+					v = 0;
+
+				if (v > 1)
+					v = 1;
+			} else {
+				v = 1;
+			}
+
 			this.audioAssetInfo[id] = {
 				type: type,
-				dynamic: !!dynamicLoad,
-				group: group || ""
+				dynamic: !!o.dynamicLoad,
+				group: o.group || "",
+				volume: v
 			};
 		},
 		/**
@@ -554,6 +572,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 			var path = this.audioAssetPaths[id];
 			var type = this.audioAssetInfo[id].type;
 			var group = this.audioAssetInfo[id].group;
+			var volume = this.audioAssetInfo[id].volume;
 			var uniqueId = uuid ? uuid : Util.generateUUID();
 
 			if (!force) {
@@ -581,11 +600,15 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 					if(this.preAssignedChannels[id] && channel && channel.loaded) {
 						channel.uuid = uniqueId;
 						channel.group = group;
+						channel.volume = volume;
+
 						playChannelSingle.call(this, id, channel);
 					} else if (this.preAssignedChannels[id] && channel && !channel.loaded) {
 						var onMD = function() {
 							channel.uuid = uniqueId;
 							channel.group = group;
+							channel.volume = volume;
+
 							channel.removeEventListener('loadedmetadata', onMD);
 							playChannelSingle.call(this, id, channel);
 						}.bind(this);
@@ -595,6 +618,8 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 						loadChannel.call(this, id, channel, function (channel) {
 							channel.uuid = uniqueId;
 							channel.group = group;
+							channel.volume = volume;
+
 							playChannelSingle.call(this, id, channel);
 						}.bind(this));
 					}
@@ -632,13 +657,13 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 					var bufferNode;
 
 					if (!this.pooledBufferNodes[id]) {
-						bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, false);
+						bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, false, volume);
 					} else if (!this.pooledBufferNodes[id].length) {
-						bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, false);
+						bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, false, volume);
 					}else {
 						bufferNode = this.pooledBufferNodes[id].pop();
 
-						bufferNode.update(this.audioBuffers[id], false);
+						bufferNode.update(this.audioBuffers[id], false, volume);
 					}
 
 					if (!this.activeBufferNodes[id]) {
@@ -701,6 +726,7 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 			var path = this.audioAssetPaths[id];
 			var type = this.audioAssetInfo[id].type;
 			var group = this.audioAssetInfo[id].group;
+			var volume = this.audioAssetInfo[id].volume;
 			var uniqueId = uuid ? uuid : Util.generateUUID();
 
 			if (!force) {
@@ -728,11 +754,15 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 					if(this.preAssignedChannels[id] && channel && channel.loaded) {
 						channel.uuid = uniqueId;
 						channel.group = group;
+						channel.volume = volume;
+
 						playChannelLoop.call(this, id, channel);
 					} else if (this.preAssignedChannels[id] && channel && !channel.loaded) {
 						var onMD = function() {
 							channel.uuid = uniqueId;
 							channel.group = group;
+							channel.volume = volume;
+
 							channel.removeEventListener('loadedmetadata', onMD);
 							playChannelLoop.call(this, id, channel);
 						}.bind(this);
@@ -742,6 +772,8 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 						loadChannel.call(this, id, channel, function (channel) {
 							channel.uuid = uniqueId;
 							channel.group = group;
+							channel.volume = volume;
+
 							playChannelLoop.call(this, id, channel);
 						}.bind(this));
 					}
@@ -762,13 +794,13 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 					var bufferNode;
 
 					if (!this.pooledBufferNodes[id]) {
-						bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, true);
+						bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, true, volume);
 					} else if (!this.pooledBufferNodes[id].length) {
-						bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, true);
+						bufferNode = createBufferSourceNode(this.audioBuffers[id], this.audioContext, true, volume);
 					} else {
 						bufferNode = this.pooledBufferNodes[id].pop();
 
-						bufferNode.update(this.audioBuffers[id], true);
+						bufferNode.update(this.audioBuffers[id], true, volume);
 					}
 					
 					if (this.preAssignedBuffers[id]) {
@@ -1616,14 +1648,16 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 		return true;
 	}
 
-	var createBufferSourceNode = function(buffer, context, loop) {
+	var createBufferSourceNode = function(buffer, context, loop, volume) {
 		var sourceNode = null;
+		var gainNode = null;
 		var startedAt = 0;
 		var pausedAt = 0;
 		var playing = false;
 		var paused = false;
 		var buff = buffer;
 		var l = loop;
+		var v = volume;
 
 		function play() {
 			if (playing)
@@ -1633,11 +1667,16 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 				return;
 
 			var offset = pausedAt;
-
+			
 			sourceNode = context.createBufferSource();
-			sourceNode.connect(context.destination);
+			gainNode = context.createGain();
+			
+			sourceNode.connect(gainNode);
+			gainNode.connect(context.destination);
+
 			sourceNode.buffer = buff;
 			sourceNode.loop = l;
+			gainNode.gain.value = volume;
 
 			sourceNode.onended = function() {
 				if (l) {
@@ -1714,11 +1753,13 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 			return buffer.duration;
 		};
 
-		function updateBuffer(newBuffer, newLoop) {
+		function updateBuffer(newBuffer, newLoop, volume) {
 			buff = newBuffer;
 			l = newLoop;
+			v = volume;
 
 			sourceNode = null;
+			gainNode = null;
 			startedAt = 0;
 			pausedAt = 0;
 			playing = false;
