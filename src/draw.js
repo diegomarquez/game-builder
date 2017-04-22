@@ -439,6 +439,124 @@ define(function() {
 	 */
 	
 	/**
+	  * <p style='color:#AD071D'><strong>quadraticPolygonAuto</strong></p>
+	  *
+	  * This is like the polygon but the lines between vertexes are drawn as quadratic curves.
+	  * The anchor points for the quadratic curves are generated, by calculating the normals between each pair of points.
+	  * The anchor points are generated alternating sides.
+	  * More curves are generated between the connection points to achieve smoother connections
+	  * 
+	  * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+	  * @param  {Number} x           X coordinate registration point. All the points of the polygon are relative to this
+	  * @param  {Number} y           Y coordinate registration point. All the points of the polygon are relative to this
+	  * @param  {Number} anchorDistance Distance to which generated anchor points are placed from thir respective segments
+	  * @param  {String} points      An array of objects with the following form, {x:x, y:y}.
+	  * @param  {String|Number} [fillColor=null]   Fill color for the polygon can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number (If you are into that kind of bullshit)
+	  * @param  {String|Number} [strokeColor=null] Stroke color for the polygon can be a [hex string](http://www.javascripter.net/faq/hextorgb.htm) or a number (If you are into that kind of bullshit)
+	  * @param  {Number} [lineWidth=null]   Line width
+	  * @param  {Number} [scale=1] Scale of the polygon. This can be usefull to avoid recalculating vertex position
+	  * @param  {Boolean} [positive=false] On which side the anchor points should start alternation
+	  * @param  {Boolean} [close=true] Whether the path should be closed or not
+	  */
+	DrawUtils.prototype.quadraticPolygonAutoSmooth = function(context, x, y, anchorDistance, points, fillColor, strokeColor, lineWidth, scale, positive, close) {
+		if (strokeColor) context.strokeStyle = strokeColor;
+		if (lineWidth) context.lineWidth = lineWidth;
+		if (fillColor) context.fillStyle = fillColor;
+
+		if (close === undefined) close = true;
+
+		if (!scale) scale = 1;
+
+		context.beginPath();
+
+		var normalSide = positive;
+
+		var firstMidX, firstMidY;
+		var secondMidX, secondMidY;
+		var firstAnchorX, firstAnchorY;
+		var secondAnchorX, secondAnchorY;
+		
+		var firstSmoothX, firstSmoothY;
+		var secondSmoothX, secondSmoothY;
+		var thirdSmoothX, thirdSmoothY;
+
+		var begin = points[0];
+		var end = points[points.length-1];
+
+		for (var i = 0; i < points.length; i++) {
+			var last;
+			var current;
+			var next;
+
+			if (i === points.length-1) {
+				last = points[i-1];
+				current = points[i];
+				next = points[0];
+			} else if (i === 0) {
+				last = points[points.length-1];
+				current = points[i];
+				next = points[1]
+			} else {
+				last = points[i-1];
+				current = points[i];
+				next = points[i+1];
+			}
+
+			firstMidX = (last.x + current.x)/2;
+			firstMidY = (last.y + current.y)/2;
+
+			secondMidX = (current.x + next.x)/2;
+			secondMidY = (current.y + next.y)/2;
+
+			var firstAngle = Math.atan2(last.y - current.y, last.x - current.x) + Math.PI/2;
+			var secondAngle = Math.atan2(current.y - next.y, current.x - next.x) + Math.PI/2;
+
+			// Generate the first anchor point
+			if (normalSide) {
+				firstAnchorX = firstMidX + Math.cos(firstAngle) * anchorDistance;
+				firstAnchorY = firstMidY + Math.sin(firstAngle) * anchorDistance;
+			} else {
+				firstAnchorX = firstMidX + Math.cos(firstAngle) * -anchorDistance;
+				firstAnchorY = firstMidY + Math.sin(firstAngle) * -anchorDistance;
+			}
+
+			normalSide = !normalSide;
+
+			// Generate the second anchor point
+			if (normalSide) {
+				secondAnchorX = secondMidX + Math.cos(secondAngle) * anchorDistance;
+				secondAnchorY = secondMidY + Math.sin(secondAngle) * anchorDistance;
+			} else {
+				secondAnchorX = secondMidX + Math.cos(secondAngle) * -anchorDistance;
+				secondAnchorY = secondMidY + Math.sin(secondAngle) * -anchorDistance;
+			}
+
+			// Generate the points for the smoothing curve
+			firstSmoothX = this.calculatePointInQuadraticCurveX(last.x, last.y, firstAnchorX, firstAnchorY, current.x, current.y, 0.2);
+			firstSmoothY = this.calculatePointInQuadraticCurveY(last.x, last.y, firstAnchorX, firstAnchorY, current.x, current.y, 0.2);
+
+			secondSmoothX = this.calculatePointInQuadraticCurveX(last.x, last.y, firstAnchorX, firstAnchorY, current.x, current.y, 0.8);
+			secondSmoothY = this.calculatePointInQuadraticCurveY(last.x, last.y, firstAnchorX, firstAnchorY, current.x, current.y, 0.8);
+			
+			thirdSmoothX = this.calculatePointInQuadraticCurveX(current.x, current.y, secondAnchorX, secondAnchorY, next.x, next.y, 0.2);
+			thirdSmoothY = this.calculatePointInQuadraticCurveY(current.x, current.y, secondAnchorX, secondAnchorY, next.x, next.y, 0.2);
+
+			context.moveTo((firstSmoothX * scale) + x, (firstSmoothY * scale) + y);
+			context.quadraticCurveTo((firstAnchorX * scale) + x, (firstAnchorY * scale) + y, (secondSmoothX * scale) + x, (secondSmoothY * scale) + y);
+			context.quadraticCurveTo((current.x * scale) + x, (current.y * scale) + y, (thirdSmoothX * scale) + x, (thirdSmoothY * scale) + y);
+		}
+
+		if (close)
+			context.closePath();
+		
+		if (fillColor) context.fill();
+		if (strokeColor) context.stroke();
+	}
+	/**
+	 * --------------------------------
+	 */
+	
+	/**
 	  * <p style='color:#AD071D'><strong>realtiveQuadraticPolygonAuto</strong></p>
 	  *
 	  * This is like the polygon but the lines between vertexes are drawn as quadratic curves.
@@ -512,9 +630,13 @@ define(function() {
 	 * --------------------------------
 	 */
 	
-	 DrawUtils.prototype.calculatePointInQuadraticCurve = function(startX, startY, anchorX, anchorY, endX, endY, p) {
-		x = (1 - p) * (1 - p) * startX + 2 * (1 - p) * p * anchorX + p * p * endX;
-		y = (1 - p) * (1 - p) * startY + 2 * (1 - p) * p * anchorY + p * p * endY;
+	 DrawUtils.prototype.calculatePointInQuadraticCurveX = function(startX, startY, anchorX, anchorY, endX, endY, p) {
+		return (1 - p) * (1 - p) * startX + 2 * (1 - p) * p * anchorX + p * p * endX;
+		
+	 }
+
+	 DrawUtils.prototype.calculatePointInQuadraticCurveY = function(startX, startY, anchorX, anchorY, endX, endY, p) {
+		return (1 - p) * (1 - p) * startY + 2 * (1 - p) * p * anchorY + p * p * endY;
 	 }
 
 	return new DrawUtils()
