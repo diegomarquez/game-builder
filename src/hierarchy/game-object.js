@@ -971,6 +971,42 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>localToGlobal</strong></p>
+		 *
+		 * Convert a point from the game object's local coordinate space to the root global coordinate space
+		 *
+		 * @param {[matrix-3x3](@@matrix-3x3@@)} m matrix object to work with.
+		 * @param  {NUmber} x The local x coordinate to transform to global space
+		 * @param  {NUmber} y The local y coordinate to transform to global space
+		 * @param  {Object} pt On object into which to put the result of this operation.
+		 * @return {Object} An object with the result of the transformation
+		 */
+		localToGlobal: function(m, x, y, pt) {
+			return this.concatenateMatrix(m).transformPoint(x, y, pt || {});
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>globalToLocal</strong></p>
+		 *
+		 * Convert a point from root global coordinate space to the local coordinate space of this game object
+		 *
+		 * @param {[matrix-3x3](@@matrix-3x3@@)} m matrix object to work with.
+		 * @param  {NUmber} x The global x coordinate to transform to local space
+		 * @param  {NUmber} y The global y coordinate to transform to local space
+		 * @param  {Object} pt On object into which to put the result of this operation.
+		 * @return {Object} An object with the result of the transformation
+		 */
+		globalToLocal: function(m, x, y, pt) {
+			return this.concatenateMatrix(m).invert().transformPoint(x, y, pt || {});
+		},
+		/**
+		 * --------------------------------
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>hasRenderer</strong></p>
