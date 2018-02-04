@@ -63,14 +63,20 @@ define(function(require) {
       }
 
       var self = this;
+      var oldDefineAmd = define.amd;
+      define.amd = null;
 
     	config.data.active = function() {
-    		onLoad();	
+    		define.amd = oldDefineAmd;
+        
+        onLoad();
     	};
 
     	config.data.inactive = function() {
+        define.amd = oldDefineAmd;
+
         require('error-printer').printError('Font Loader', 'No fonts are available');
-    		onLoad();	
+    		onLoad();
     	};
 
       config.data.fontinactive = function(familyName) {
@@ -80,7 +86,12 @@ define(function(require) {
     	var protocol = document.location.protocol === 'https:' ? 'https' : 'http';
 
     	loadScript(protocol + '://ajax.googleapis.com/ajax/libs/webfont/' + config.version + '/webfont.js', function() {
-    		WebFont.load(config.data);
+        if (window.WebFont) {
+    		  window.WebFont.load(config.data);
+        } else {
+          console.log("fail to load web font loader");
+          onLoad();
+        }
     	});
     }
     /**
@@ -90,16 +101,19 @@ define(function(require) {
     var loadScript = function(src, callback) {
 		  var s, r, t;
 		  
-		  r = false;
 		  s = document.createElement('script');
 		  s.type = 'text/javascript';
 		  s.src = src;
-		  s.onload = s.onreadystatechange = function() {
-		    if (!r && (!this.readyState || this.readyState == 'complete') ) {
-		      r = true;
-		      callback();
-		    }
+		  
+      s.onload = function() {
+		    callback();
 		  }
+
+      s.onreadystatechange = function() {
+        if (this.readyState == 'complete') {
+          callback();
+        }
+      }
 		  
 		  t = document.getElementsByTagName('script')[0];
 		  t.parentNode.insertBefore(s, t);
