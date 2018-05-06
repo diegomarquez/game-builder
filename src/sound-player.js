@@ -156,6 +156,20 @@ define(['delegate', 'timer-factory', 'asset-preloader', 'error-printer', 'util']
 			this.blocked = false;
 			this.remainEnabled = [];
 			this.remainDisabled = [];
+
+			document.addEventListener("keydown", function() {
+				if (this.audioContext) {
+					if (this.audioContext.state === "suspended")
+						this.audioContext.resume();
+				}
+			}.bind(this), true);
+
+			document.addEventListener("click", function() {
+				if (this.audioContext) {
+					if (this.audioContext.state === "suspended")
+						this.audioContext.resume();
+				}
+			}.bind(this), true);
 		},
 		/**
 		* --------------------------------
