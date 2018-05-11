@@ -36,7 +36,7 @@
  * --------------------------------
  */
 define(['sat'], function(SAT) {
-	
+
 	var CollisionResolver = function() {
 		this.collisionLists = {};
 		this.toCollideCache = {};
@@ -111,7 +111,7 @@ define(['sat'], function(SAT) {
 	/**
 	 * --------------------------------
 	 */
-	
+
 	/**
 	 * <p style='color:#AD071D'><strong>removeCollisionPair</strong></p>
 	 *
@@ -149,7 +149,7 @@ define(['sat'], function(SAT) {
 		if (first.getResponse || second.getResponse) {
 			this.invertedResponse.clear();
 			this.response.clear();
-			
+
 			return this.collisionMethodPairs[collisionMethodKey](first.collider, second.collider, this.response);
 		} else {
 			return this.collisionMethodPairs[collisionMethodKey](first.collider, second.collider);
@@ -158,7 +158,7 @@ define(['sat'], function(SAT) {
 	/**
 	 * --------------------------------
 	 */
-	
+
 	/**
 	 * <p style='color:#AD071D'><strong>getLastResponse</strong></p>
 	 *
@@ -172,7 +172,7 @@ define(['sat'], function(SAT) {
 	/**
 	 * --------------------------------
 	 */
-	
+
 	/**
 	 * <p style='color:#AD071D'><strong>getLastInvertedResponse</strong></p>
 	 *
@@ -193,7 +193,7 @@ define(['sat'], function(SAT) {
 	// These variables are used by the concrete implementations of colliders to decide what
 	// type of collider they are, and hence, which method should be used when checking for collisions
 	// between them.
-	CollisionResolver.prototype.circleCollider  = 'circle';
+	CollisionResolver.prototype.circleCollider = 'circle';
 	CollisionResolver.prototype.polygonCollider = 'polygon';
 	CollisionResolver.prototype.fixedPolygonCollider = 'fixed';
 
@@ -206,7 +206,7 @@ define(['sat'], function(SAT) {
 		'polygonfixed': SAT.testPolygonPolygon,
 		'fixedcircle': SAT.testPolygonCircle,
 		'fixedpolygon': SAT.testPolygonPolygon,
-		'fixedfixed': SAT.testPolygonPolygon 
+		'fixedfixed': SAT.testPolygonPolygon
 	}
 
 	return new CollisionResolver();

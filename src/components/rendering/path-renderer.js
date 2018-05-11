@@ -82,7 +82,7 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 		 *
 		 * @throws {Error} If width and height properties are not set
 		 */
-		start: function(parent) {	
+		start: function(parent) {
 			if (this.skipCache) return;
 
 			if (!this.width && !this.height) {
@@ -94,7 +94,7 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 			}
 
 			this.cache.cache(this.name, this.width, this.height, function(context) {
-				this.drawPath(context);	
+				this.drawPath(context);
 			}.bind(this));
 		},
 		/**
@@ -140,35 +140,35 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 					var tintedCanvas = this.tintImage(this.name, canvas);
 
 					context.drawImage(tintedCanvas,
-						Math.floor(this.rendererOffsetX()), 
-						Math.floor(this.rendererOffsetY()), 
+						Math.floor(this.rendererOffsetX()),
+						Math.floor(this.rendererOffsetY()),
 						Math.floor(this.rendererWidth()),
 						Math.floor(this.rendererHeight())
 					);
 				} else {
 					context.drawImage(canvas,
-						Math.floor(this.rendererOffsetX()), 
-						Math.floor(this.rendererOffsetY()), 
+						Math.floor(this.rendererOffsetX()),
+						Math.floor(this.rendererOffsetY()),
 						Math.floor(this.rendererWidth()),
 						Math.floor(this.rendererHeight())
 					);
-				}	
+				}
 			}
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>rendererOffsetX</strong></p>
 		 *
 		 * @return {Number} The offset in the X axis of the renderer
 		 */
-		rendererOffsetX: function() { 
+		rendererOffsetX: function() {
 			if (this.offset === 'center') {
 				return -this.rendererWidth() / 2 + this.offsetX;
 			} else {
-				return this.offsetX; 
+				return this.offsetX;
 			}
 		},
 		/**
@@ -180,11 +180,11 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 		 *
 		 * @return {Number} The offset in the Y axis of the renderer
 		 */
-		rendererOffsetY: function() { 
+		rendererOffsetY: function() {
 			if (this.offset === 'center') {
 				return -this.rendererHeight() / 2 + this.offsetY;
 			} else {
-				return this.offsetY;  
+				return this.offsetY;
 			}
 		},
 		/**

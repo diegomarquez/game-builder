@@ -63,7 +63,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 * This is called by the [game-object](@@game-object@@) using this renderer.
 		 * It sends the path configured to the [image-cache](@@image-cache@@) module.
 		 */
-		start: function(parent) {	
+		start: function(parent) {
 			if (!this.path) {
 				ErrorPrinter.missingArgumentError('Bitmap Renderer', 'path');
 			}
@@ -93,15 +93,15 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 				var tintedCanvas = this.tintImage(this.path, image);
 
 				context.drawImage(tintedCanvas,
-					Math.floor(this.rendererOffsetX()), 
-					Math.floor(this.rendererOffsetY()), 
+					Math.floor(this.rendererOffsetX()),
+					Math.floor(this.rendererOffsetY()),
 					Math.floor(this.rendererWidth()),
 					Math.floor(this.rendererHeight())
 				);
 			} else {
 				context.drawImage(image,
-					Math.floor(this.rendererOffsetX()), 
-					Math.floor(this.rendererOffsetY()), 
+					Math.floor(this.rendererOffsetX()),
+					Math.floor(this.rendererOffsetY()),
 					Math.floor(this.rendererWidth()),
 					Math.floor(this.rendererHeight())
 				);
@@ -110,17 +110,17 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>rendererOffsetX</strong></p>
 		 *
 		 * @return {Number} The offset in the X axis of the renderer
 		 */
-		rendererOffsetX: function() { 
+		rendererOffsetX: function() {
 			if (this.offset == 'center') {
 				return -this.rendererWidth() / 2 + this.offsetX;
 			} else {
-				return this.offsetX; 
+				return this.offsetX;
 			}
 		},
 		/**
@@ -132,23 +132,26 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 *
 		 * @return {Number} The offset in the Y axis of the renderer
 		 */
-		rendererOffsetY: function() { 
+		rendererOffsetY: function() {
 			if (this.offset == 'center') {
 				return -this.rendererHeight() / 2 + this.offsetY;
 			} else {
-				return this.offsetY;  
+				return this.offsetY;
 			}
 		},
 		/**
 		 * --------------------------------
-		 */ 
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>rendererWidth</strong></p>
 		 *
 		 * @return {Number} The width of the renderer
 		 */
-		rendererWidth: function() { return this.cache.get(this.path).width; },
+		rendererWidth: function() {
+			return this.cache.get(this.path)
+				.width;
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -158,7 +161,10 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 *
 		 * @return {Number} The height of the renderer
 		 */
-		rendererHeight: function() { return this.cache.get(this.path).height; }
+		rendererHeight: function() {
+			return this.cache.get(this.path)
+				.height;
+		}
 		/**
 		 * --------------------------------
 		 */

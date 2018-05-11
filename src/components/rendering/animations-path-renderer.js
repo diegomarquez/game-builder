@@ -120,14 +120,14 @@ define(["animation-path-renderer", "error-printer"], function(AnimationPathRende
 		 *
 		 * @throws {Error} If width, height, name, frameDelay or framePaths properties are not set
 		 */
-		start: function(parent) {	
+		start: function(parent) {
 			if (!this.labels) {
 				ErrorPrinter.missingArgumentError('Animation Path Renderer', 'labels');
 			}
 
 			if (!this.startingLabel) {
 				ErrorPrinter.missingArgumentError('Animation Path Renderer', 'startingLabel');
-			}  
+			}
 
 			this.currentFrames = null;
 			this.currentLabel = null;
@@ -148,29 +148,29 @@ define(["animation-path-renderer", "error-printer"], function(AnimationPathRende
 		update: function(delta) {
 			if (this.isPlaying) {
 				if (this.currentFrames.length > 1) {
-      				this.delayTotal += delta;	
+					this.delayTotal += delta;
 
 					if (this.delayTotal > this.frameDelay) {
-				      	this.delayTotal -= this.frameDelay;
+						this.delayTotal -= this.frameDelay;
 
-				      	if (this.frameIndex < this.currentFrames.length-1) {
-				      		this.frameIndex++;
-				      	} else {		
-				      		if (!this.loop) {
-				      			this.execute(this.COMPLETE, this.currentLabel);
-				      			this.pause();
-				      		} else {
-				      			this.frameIndex = 0;
-				      			this.execute(this.LOOP, this.currentLabel);
-				      		}
-				      	}
+						if (this.frameIndex < this.currentFrames.length - 1) {
+							this.frameIndex++;
+						} else {
+							if (!this.loop) {
+								this.execute(this.COMPLETE, this.currentLabel);
+								this.pause();
+							} else {
+								this.frameIndex = 0;
+								this.execute(this.LOOP, this.currentLabel);
+							}
+						}
 
-				      	this.currentFrameName = this.name + '_' + this.currentFrames[this.frameIndex].toString();
-				    }
-		      	}
+						this.currentFrameName = this.name + '_' + this.currentFrames[this.frameIndex].toString();
+					}
+				}
 			}
 		},
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>play</strong></p>
 		 *
@@ -256,7 +256,11 @@ define(["animation-path-renderer", "error-printer"], function(AnimationPathRende
 		 */
 	});
 
-	Object.defineProperty(AnimationsPathRenderer.prototype, "LOOP", { get: function() { return 'loop'; } });
+	Object.defineProperty(AnimationsPathRenderer.prototype, "LOOP", {
+		get: function() {
+			return 'loop';
+		}
+	});
 
 	return AnimationsPathRenderer;
 });

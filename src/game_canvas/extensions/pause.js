@@ -5,28 +5,28 @@
  *
  * Inherits from: [extension](@@extension@@)
  *
- * Depends of: 
+ * Depends of:
  * [groups](@@groups@@)
  * [viewports](@@viewports@@)
  * [gb](@@gb@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This module defines an extension that uses [groups](@@groups@@) to halt all update activity
  * when the application looses focus.
  *
  * It also uses [viewports](@@viewports@@) to check if there were any [layers](@@layer@@) already hiding before pausing.
  * The extension needs to check that so that things that were hiding before pausing, remain hiding after resuming.
- * 
+ *
  * The extension also adds a **pause** method to [game](@@game@@) to be able to pause the application
  * manually.
  *
- * This Extension adds an event [game](@@game@@) can hook into: 
+ * This Extension adds an event [game](@@game@@) can hook into:
  *
- * ### **PAUSE** 
+ * ### **PAUSE**
  * When the application is paused manually
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * game.on(game.PAUSE, function() {});
  * ```
  */
@@ -44,18 +44,18 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 
 	var Pause = Extension.extend({
 		init: function() {
-			Object.defineProperty(game.prototype, "PAUSE", { 
+			Object.defineProperty(game.prototype, "PAUSE", {
 				configurable: true,
-				get: function() { 
-					return 'pause'; 
-				} 
+				get: function() {
+					return 'pause';
+				}
 			});
 
 			game.pause = function() {
-				if(game.blurAction()) {
+				if (game.blurAction()) {
 					game.execute(game.PAUSE);
 					window.removeEventListener("blur", game.blurAction);
-					window.removeEventListener("focus", game.focusAction);	
+					window.removeEventListener("focus", game.focusAction);
 				}
 			}
 		},
@@ -67,7 +67,7 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 		},
 
 		execute: function() {
-			Groups.all('stop', 'update', function (group) {
+			Groups.all('stop', 'update', function(group) {
 				return !group.updateAlreadyStopped;
 			}, true);
 		},

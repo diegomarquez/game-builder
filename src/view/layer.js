@@ -24,7 +24,7 @@
  */
 define(["delegate"], function(Delegate) {
 
-		var Layer = Delegate.extend({
+	var Layer = Delegate.extend({
 
 		/**
 		 * <p style='color:#AD071D'><strong>init</strong></p>
@@ -54,7 +54,7 @@ define(["delegate"], function(Delegate) {
 		 * @return {Object|null} The [game-object](@@game-object@@) that was just added or null if the [game-object](@@game-object@@) was already part of the layer
 		 */
 		add: function(go) {
-			var index = this.gameObjects.indexOf(go); 
+			var index = this.gameObjects.indexOf(go);
 
 			if (index == -1) {
 				this.gameObjects.push(go);
@@ -118,8 +118,8 @@ define(["delegate"], function(Delegate) {
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
 		 * Draws all the [game-objects](@@game-object@@)
-		 * 
-		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+		 *
+		 * @param {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 		 */
 		draw: function(context) {
 			if (!this.visible) return;
@@ -134,10 +134,10 @@ define(["delegate"], function(Delegate) {
 				} else {
 					// If the game object is a regular game object...
 					// Try to skip drawing as soon as possible
-					
+
 					// Draw only if inside the viewport and is allowed to be drawn
 					if (go.canDraw && this.viewport.isGameObjectInside(go, context)) {
-						go.draw(context, this.viewport);    
+						go.draw(context, this.viewport);
 					}
 				}
 			}
@@ -157,7 +157,7 @@ define(["delegate"], function(Delegate) {
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>showGameObjects</strong></p>
 		 *
@@ -197,21 +197,21 @@ define(["delegate"], function(Delegate) {
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>moveGameObjectToFront</strong></p>
 		 *
 		 * Moves the specified [game-object](@@game-object@@) to the front of the layer
 		 * This means it becomes the last object to be rendered
-		 * 
-		 * @param  {Object} go 
+		 *
+		 * @param {Object} go
 		 */
 		moveGameObjectToFront: function(go) {
 			var index = this.gameObjects.indexOf(go);
 
 			if (index != -1) {
 				this.gameObjects.splice(index, 1);
-				this.gameObjects.push(go);	
+				this.gameObjects.push(go);
 			}
 		},
 		/**
@@ -223,8 +223,8 @@ define(["delegate"], function(Delegate) {
 		 *
 		 * Moves the specified [game-object](@@game-object@@) to the back of the layer
 		 * This means it becomes the first object to be rendered
-		 * 
-		 * @param  {Object} go 
+		 *
+		 * @param {Object} go
 		 */
 		moveGameObjectToBack: function(go) {
 			var index = this.gameObjects.indexOf(go);

@@ -142,7 +142,8 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 * The collider follows the position of it's parent.
 			 */
 			update: function() {
-				var p = this.parent.getMatrix().transformPoint(0, 0, this.p);
+				var p = this.parent.getMatrix()
+					.transformPoint(0, 0, this.p);
 
 				this.collider.pos.x = p.x;
 				this.collider.pos.y = p.y;
@@ -159,7 +160,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 * Draw the fixed polygon collider
 			 * 
 			 * This method is only executed if the **debug** property in [gb](@@gb@@)
-		 	 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
+			 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
 			 * 
 			 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 			 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
@@ -168,15 +169,16 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 */
 			debug_draw: function(context, viewport, draw, gb) {
 				if (!gb.colliderDebug) return;
-				
-				var p = this.parent.getMatrix().transformPoint(0, 0, this.p);
+
+				var p = this.parent.getMatrix()
+					.transformPoint(0, 0, this.p);
 
 				context.save();
 
-				context.setTransform(1, 0, 0, 1, 0, 0);			
+				context.setTransform(1, 0, 0, 1, 0, 0);
 				context.translate(p.x, p.y);
 				draw.polygon(context, 0, 0, this.pointsCopy, null, this.debugColor, 2);
-				
+
 				context.restore();
 
 				this._super();

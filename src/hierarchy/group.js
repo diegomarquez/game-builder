@@ -8,7 +8,7 @@
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This module defines a special kind of [game-object-container](@@game-object-container@@).
  *
  * It's only purpose it be used by [groups](@@groups@@) as a way to organize the updating loop
@@ -25,14 +25,14 @@
 /**
  * --------------------------------
  */
-define(["game-object-container", "util"], function(Container, Util){
+define(["game-object-container", "util"], function(Container, Util) {
 	var Group = Container.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>init</strong></p>
 		 *
 		 * Constructor
-		 * 
-		 * @param  {String} name The name of the group
+		 *
+		 * @param {String} name The name of the group
 		 */
 		init: function(name) {
 			this._super();
@@ -44,7 +44,7 @@ define(["game-object-container", "util"], function(Container, Util){
 		/**
 		 * --------------------------------
 		 */
-		
+
 		start: function() {
 			this._super();
 
@@ -71,11 +71,11 @@ define(["game-object-container", "util"], function(Container, Util){
 		 * Adds the specified child [game-object](@@game-object@@) to this container.
 		 * If the child already is part of another parent, it is removed from it
 		 * and added to this one.
-		 * 
+		 *
 		 * @param {Object} child The child [game-object](@@game-object@@) to add
 		 */
 		add: function(child) {
-			this._super(child);	
+			this._super(child);
 
 			child.updateGroup = this.groupName;
 		},
@@ -86,14 +86,15 @@ define(["game-object-container", "util"], function(Container, Util){
 		/**
 		 * <p style='color:#AD071D'><strong>clear</strong></p>
 		 *
-		 * This is normally called through [groups](@@groups@@) to empty a 
+		 * This is normally called through [groups](@@groups@@) to empty a
 		 * group, but it could be called manually, assuming you can get a hold
 		 * of a reference.
 		 */
 		clear: function() {
-			if(this.childs) {	
-				while(this.childs.length) {
-					this.childs.pop().clear();
+			if (this.childs) {
+				while (this.childs.length) {
+					this.childs.pop()
+						.clear();
 				}
 
 				this.childs.length = 0;
@@ -114,11 +115,11 @@ define(["game-object-container", "util"], function(Container, Util){
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>isChild</strong></p>
 		 *
-		 * 
+		 *
 		 * @return {Boolean}
 		 */
 		isChild: function() {

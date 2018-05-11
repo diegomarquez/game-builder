@@ -3,16 +3,16 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: 
+ * Inherits from:
  * [component](@@component@@)
  *
  * Depends of:
  * [gb](@@gb@@)
  * [error-printer](@@error-printer@@)
- * 
+ *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
- * A [component](@@component@@) to encapsulate the logic needed to add a [component](@@component@@) to 
+ *
+ * A [component](@@component@@) to encapsulate the logic needed to add a [component](@@component@@) to
  * the parnet [game-object](@@game-object@@) when it executes a delegate.
  */
 
@@ -47,7 +47,7 @@ define(["component", "gb", "error-printer"], function(Component, Gb, ErrorPrinte
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>reset</strong></p>
 		 *
@@ -64,14 +64,14 @@ define(["component", "gb", "error-printer"], function(Component, Gb, ErrorPrinte
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
 		 * Called by the parent [game-object](@@game-object@@) when
 		 * it is started
 		 *
-		 * @param  {Object} parent [game-object](@@game-object@@) using this component 
+		 * @param {Object} parent [game-object](@@game-object@@) using this component
 		 */
 		start: function(parent) {
 			if (!this.componentId) {
@@ -95,14 +95,14 @@ define(["component", "gb", "error-printer"], function(Component, Gb, ErrorPrinte
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>recycle</strong></p>
 		 *
-		 * Called by the parent [game-object](@@game-object@@) 
+		 * Called by the parent [game-object](@@game-object@@)
 		 * when it is sent back to it's pool for reuse.
 		 *
-		 * @param  {Object} parent [game-object](@@game-object@@) using this component
+		 * @param {Object} parent [game-object](@@game-object@@) using this component
 		 */
 		recycle: function(parent) {
 			parent.levelCleanUp("add-component-delegate");

@@ -37,22 +37,26 @@ define(["sound-player", "gb", "extension"], function(SoundPlayer, Gb, Extension)
 			game.on(game.BLUR, this, function() {
 				// Add a _'alreadyPaused'_ property with a value of true to all sound sources
 				// which are already paused
-				SoundPlayer.setPropertyToAll('alreadyPaused', true).which(function(id, source) {
-					return source.Paused();
-				});
+				SoundPlayer.setPropertyToAll('alreadyPaused', true)
+					.which(function(id, source) {
+						return source.Paused();
+					});
 
 				// Pause all the sound sources
-				SoundPlayer.pauseAll().now();
+				SoundPlayer.pauseAll()
+					.now();
 			}, false, false, false, 'sound-control');
 
 			game.on(game.FOCUS, this, function() {
 				// Resume all the sound sources which don't have an _'alreadyPaused'_ property
-				SoundPlayer.resumeAll().which(function(id, source){
-					return !source['alreadyPaused'];
-				});
+				SoundPlayer.resumeAll()
+					.which(function(id, source) {
+						return !source['alreadyPaused'];
+					});
 
 				// Set the _'alreadyPaused'_ property to null on all sound sources
-				SoundPlayer.setPropertyToAll('alreadyPaused', null).now();
+				SoundPlayer.setPropertyToAll('alreadyPaused', null)
+					.now();
 			}, false, false, false, 'sound-control');
 		},
 

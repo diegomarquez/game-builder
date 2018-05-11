@@ -37,10 +37,10 @@
 define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, ErrorPrinter) {
 	var AssetPreloader = Delegate.extend({
 		/**
-		* <p style='color:#AD071D'><strong>init</strong></p>
-		*
-		* Constructor
-		*/
+		 * <p style='color:#AD071D'><strong>init</strong></p>
+		 *
+		 * Constructor
+		 */
 		init: function() {
 			this._super();
 
@@ -49,50 +49,50 @@ define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, 
 
 			this.cachedImages = {};
 			this.cachedAudio = {};
-			
+
 			this.supportedAudioFormat = "";
 		},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>getCachedImage</strong></p>
-		*
-		* Get an image that has been previously cached
-		*
-		* @param {Strin} id The path to the resource
-		* @return {Image}
-		*/
+		 * <p style='color:#AD071D'><strong>getCachedImage</strong></p>
+		 *
+		 * Get an image that has been previously cached
+		 *
+		 * @param {Strin} id The path to the resource
+		 * @return {Image}
+		 */
 		getCachedImage: function(id) {
 			return this.cachedImages[id];
 		},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>getCachedAudio</strong></p>
-		*
-		* Get an audio element or an ArrayBuffer that has been previously cached
-		*
-		* @param {String} id The path to the resource
-		* @return {Audio || ArrayBuffer}
-		*/
+		 * <p style='color:#AD071D'><strong>getCachedAudio</strong></p>
+		 *
+		 * Get an audio element or an ArrayBuffer that has been previously cached
+		 *
+		 * @param {String} id The path to the resource
+		 * @return {Audio || ArrayBuffer}
+		 */
 		getCachedAudio: function(id) {
 			return this.cachedAudio[id];
 		},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>addAsset</strong></p>
-		*
-		* Add an asset to be loaded.
-		*
-		* @param {String} path A path to a graphical asset
-		*/
+		 * <p style='color:#AD071D'><strong>addAsset</strong></p>
+		 *
+		 * Add an asset to be loaded.
+		 *
+		 * @param {String} path A path to a graphical asset
+		 */
 		addAsset: function(path) {
 			var match = path.match(/^.+\.(.+?)(?=\?|$)/);
 
@@ -127,17 +127,17 @@ define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, 
 			ErrorPrinter.printError('Asset Preloader: file type is not supported');
 		},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>loadAll</strong></p>
-		*
-		* Start loading all the provided assets and fire the ON_LOAD_ALL_COMPLETE when
-		* eerything is done loading
-		*
-		* @param {String} id Id of the sound that has channels assigned
-		*/
+		 * <p style='color:#AD071D'><strong>loadAll</strong></p>
+		 *
+		 * Start loading all the provided assets and fire the ON_LOAD_ALL_COMPLETE when
+		 * eerything is done loading
+		 *
+		 * @param {String} id Id of the sound that has channels assigned
+		 */
 		loadAll: function() {
 			var imagesToLoad = this.imagesToLoad.length;
 			var audioToLoad = this.audioToLoad.length;
@@ -244,54 +244,57 @@ define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, 
 
 					if (window.location.protocol === 'file:') {
 						audio.src = 'http://localhost:5000/' + path;
-					}
-					else {
+					} else {
 						audio.src = path;
 					}
 				}
 			}
 		},
 		/**
-		* --------------------------------
-		*/
-		
+		 * --------------------------------
+		 */
+
 		convertPathToSupportedAudioFormat: function(path) {
 			return path.replace(/(^.+\.)(.+?)(?=(\?.+))/, "$1" + this.supportedAudioFormat);
 		},
 		/**
-		* --------------------------------
-		*/
-		
+		 * --------------------------------
+		 */
+
 		findSupportedAudioFormat: function(onComplete) {
 			var loadAudioFile = function(path, supportedFormat) {
 				var audio = document.createElement('audio');
-				
+
 				audio.addEventListener('canplaythrough', function(event) {
 					if (!this.supportedAudioFormat) {
 						this.supportedAudioFormat = supportedFormat;
-						
+
 						onComplete();
 					}
 				}.bind(this));
-				
+
 				audio.preload = 'auto';
-				
+
 				if (window.location.protocol === 'file:') {
 					audio.src = 'http://localhost:5000/' + path;
 				} else {
 					audio.src = path;
 				}
 			}.bind(this);
-			
+
 			loadAudioFile(AssetMap.get()['AUDIO-SAMPLE.OGG'], "ogg");
 			loadAudioFile(AssetMap.get()['AUDIO-SAMPLE.MP3'], "mp3");
 		}
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 	});
 
-	Object.defineProperty(AssetPreloader.prototype, 'ON_LOAD_ALL_COMPLETE', { get: function() { return 'load_all_complete'; } });
+	Object.defineProperty(AssetPreloader.prototype, 'ON_LOAD_ALL_COMPLETE', {
+		get: function() {
+			return 'load_all_complete';
+		}
+	});
 
 	return new AssetPreloader();
 });

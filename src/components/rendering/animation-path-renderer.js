@@ -120,7 +120,7 @@ define(["renderer", "path-cache", "error-printer", "util"], function(Renderer, P
 		 *
 		 * @throws {Error} If width, height, name, frameDelay or framePaths properties are not set
 		 */
-		start: function(parent) { 
+		start: function(parent) {
 			if (!this.width && !this.height) {
 				ErrorPrinter.missingArgumentError('Animation Path Renderer', 'width', 'height');
 			}
@@ -137,14 +137,14 @@ define(["renderer", "path-cache", "error-printer", "util"], function(Renderer, P
 				ErrorPrinter.missingArgumentError('Animation Path Renderer', 'framePaths');
 			} else {
 				if (!Util.isArray(this.framePaths)) {
-					ErrorPrinter.wrongTypeArgumentError('Animation Path Renderer', 'framePaths', 'Array');  
+					ErrorPrinter.wrongTypeArgumentError('Animation Path Renderer', 'framePaths', 'Array');
 				}
 			}
 
 			for (var i = 0; i < this.framePaths.length; i++) {
-				this.cache.cache(this.name + '_' + i.toString(), this.width, this.height, function (frameIndex) {
-					return function (context) {
-						this.framePaths[frameIndex].call(this, context);  
+				this.cache.cache(this.name + '_' + i.toString(), this.width, this.height, function(frameIndex) {
+					return function(context) {
+						this.framePaths[frameIndex].call(this, context);
 					}.bind(this)
 				}.bind(this)(i));
 			}
@@ -165,15 +165,15 @@ define(["renderer", "path-cache", "error-printer", "util"], function(Renderer, P
 		update: function(delta) {
 			if (this.isPlaying) {
 				this.delayTotal += delta;
-			
+
 				if (this.delayTotal > this.frameDelay) {
 					this.delayTotal -= this.frameDelay;
 
-					if (this.frameIndex < this.framePaths.length-1) {
+					if (this.frameIndex < this.framePaths.length - 1) {
 						this.frameIndex++;
 					} else {
 						if (this.loop) {
-							this.frameIndex = 0;  
+							this.frameIndex = 0;
 						} else {
 							this.pause();
 						}
@@ -182,7 +182,7 @@ define(["renderer", "path-cache", "error-printer", "util"], function(Renderer, P
 					}
 
 					this.currentFrameName = this.name + '_' + this.frameIndex.toString();
-				} 
+				}
 			}
 		},
 
@@ -195,7 +195,7 @@ define(["renderer", "path-cache", "error-printer", "util"], function(Renderer, P
 		 * @param  {Context 2D} context     [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
 		 * @param  {Object} viewport     The [viewport](@@viewport@@) this renderer is being drawn to
 		 */
-		draw: function(context, viewport) {			
+		draw: function(context, viewport) {
 			var canvas = this.cache.get(this.currentFrameName);
 
 			if (!canvas)
@@ -205,15 +205,15 @@ define(["renderer", "path-cache", "error-printer", "util"], function(Renderer, P
 				var tintedCanvas = this.tintImage(this.currentFrameName, canvas);
 
 				context.drawImage(tintedCanvas,
-					Math.floor(this.rendererOffsetX()), 
-					Math.floor(this.rendererOffsetY()), 
+					Math.floor(this.rendererOffsetX()),
+					Math.floor(this.rendererOffsetY()),
 					Math.floor(this.rendererWidth()),
 					Math.floor(this.rendererHeight())
 				);
 			} else {
 				context.drawImage(canvas,
-					Math.floor(this.rendererOffsetX()), 
-					Math.floor(this.rendererOffsetY()), 
+					Math.floor(this.rendererOffsetX()),
+					Math.floor(this.rendererOffsetY()),
 					Math.floor(this.rendererWidth()),
 					Math.floor(this.rendererHeight())
 				);
@@ -228,11 +228,11 @@ define(["renderer", "path-cache", "error-printer", "util"], function(Renderer, P
 		 *
 		 * @return {Number} The offset in the X axis of the renderer
 		 */
-		rendererOffsetX: function() { 
+		rendererOffsetX: function() {
 			if (this.offset == 'center') {
 				return -this.rendererWidth() / 2 + this.offsetX;
 			} else {
-				return this.offsetX; 
+				return this.offsetX;
 			}
 		},
 		/**
@@ -244,17 +244,17 @@ define(["renderer", "path-cache", "error-printer", "util"], function(Renderer, P
 		 *
 		 * @return {Number} The offset in the Y axis of the renderer
 		 */
-		rendererOffsetY: function() { 
+		rendererOffsetY: function() {
 			if (this.offset == 'center') {
 				return -this.rendererHeight() / 2 + this.offsetY;
 			} else {
-				return this.offsetY;  
+				return this.offsetY;
 			}
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>play</strong></p>
 		 *
@@ -295,7 +295,11 @@ define(["renderer", "path-cache", "error-printer", "util"], function(Renderer, P
 		 */
 	});
 
-	Object.defineProperty(AnimationPathRenderer.prototype, "COMPLETE", { get: function() { return 'complete'; } });
+	Object.defineProperty(AnimationPathRenderer.prototype, "COMPLETE", {
+		get: function() {
+			return 'complete';
+		}
+	});
 
 	return AnimationPathRenderer;
 });

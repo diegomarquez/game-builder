@@ -8,7 +8,7 @@
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This module describes the kind of objects that are held by the [component-pool](@@component-pool@@)
  */
 
@@ -25,7 +25,7 @@ define(function(require) {
 
 		this.componentArgs = null;
 
-		Object.defineProperty(this, "pool", { 
+		Object.defineProperty(this, "pool", {
 			configurable: false,
 			enumerable: false,
 			writable: false,
@@ -37,7 +37,7 @@ define(function(require) {
 	 * <p style='color:#AD071D'><strong>typeId</strong></p>
 	 *
 	 * The id of the pool that this configuration takes [components](@@component@@) from
-	 * 
+	 *
 	 * @return {String}
 	 */
 	ComponentConfiguration.prototype.typeId = function() {
@@ -51,7 +51,7 @@ define(function(require) {
 	 * <p style='color:#AD071D'><strong>configurationId</strong></p>
 	 *
 	 * The id the activated [components](@@components@@) will get
-	 * 
+	 *
 	 * @return {String}
 	 */
 	ComponentConfiguration.prototype.configurationId = function() {
@@ -60,13 +60,13 @@ define(function(require) {
 	/**
 	 * --------------------------------
 	 */
-	
+
 	/**
 	 * <p style='color:#AD071D'><strong>args</strong></p>
 	 *
 	 * Set which arguments this configuration will apply to a[component](@@component@@)
-	 * 
-	 * @param  {Object} args
+	 *
+	 * @param {Object} args
 	 */
 	ComponentConfiguration.prototype.args = function(args) {
 		this.componentArgs = args;

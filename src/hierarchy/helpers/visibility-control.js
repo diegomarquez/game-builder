@@ -3,7 +3,7 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: 
+ * Inherits from:
  *
  * Depends of:
  *
@@ -16,8 +16,8 @@
  * to get a handle of this object.
  *
  * Ej.
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gameObject.hide(true).recurse().not().allWithType('AN_ID'));
  * ```
  *
@@ -51,12 +51,12 @@ define(function() {
 	 * <p style='color:#AD071D'><strong>user</strong></p>
 	 *
 	 * Chain this method to set the current [game-object-container](@@game-object-container@@) that will be affected
-	 * 
+	 *
 	 * @param {Object} user
 	 *
 	 * @return {Object} The 'this' pointer
 	 */
-	VisibilityControl.prototype.user = function (u) {
+	VisibilityControl.prototype.user = function(u) {
 		user = u;
 		recurse = false;
 		not = false;
@@ -69,7 +69,7 @@ define(function() {
 	/**
 	 * --------------------------------
 	 */
-	
+
 
 	/**
 	 * <p style='color:#AD071D'><strong>ommitSelf</strong></p>
@@ -78,7 +78,7 @@ define(function() {
 	 *
 	 * @return {Object} The 'this' pointer
 	 */
-	VisibilityControl.prototype.ommitSelf = function (u) {
+	VisibilityControl.prototype.ommitSelf = function(u) {
 		applyOnSelf = false;
 
 		return this;
@@ -87,18 +87,18 @@ define(function() {
 	 * --------------------------------
 	 */
 
-	
-	
+
+
 	/**
 	 * <p style='color:#AD071D'><strong>hide</strong></p>
 	 *
 	 * Chain this method to hide the user [game-object-container](@@game-object-container@@) and it's selected children
-	 * 
+	 *
 	 * @param {Function} uvm The **hide** method of the current user [game-object-container](@@game-object-container@@) super class
 	 *
 	 * @return {Object} The 'this' pointer
 	 */
-	VisibilityControl.prototype.hide = function (uvm) {
+	VisibilityControl.prototype.hide = function(uvm) {
 		visibility = false;
 		userVisibilityMethod = uvm;
 
@@ -107,17 +107,17 @@ define(function() {
 	/**
 	 * --------------------------------
 	 */
-	
+
 	/**
 	 * <p style='color:#AD071D'><strong>show</strong></p>
 	 *
 	 * Chain this method to show the user [game-object-container](@@game-object-container@@) and it's selected children
-	 * 
+	 *
 	 * @param {Function} uvm The **show** method of the current user [game-object-container](@@game-object-container@@) super class
 	 *
 	 * @return {Object} The 'this' pointer
 	 */
-	VisibilityControl.prototype.show = function (uvm) {
+	VisibilityControl.prototype.show = function(uvm) {
 		visibility = true;
 		userVisibilityMethod = uvm;
 
@@ -126,17 +126,17 @@ define(function() {
 	/**
 	 * --------------------------------
 	 */
-	
+
 	/**
 	 * <p style='color:#AD071D'><strong>show</strong></p>
 	 *
 	 * Chain this method to toggle the user visibility and it's selected children
-	 * 
+	 *
 	 * @param {Function} uvm The **toggleVisibility** method of the current user [game-object-container](@@game-object-container@@) super class
 	 *
 	 * @return {Object} The 'this' pointer
 	 */
-	VisibilityControl.prototype.toggle = function (uvm) {
+	VisibilityControl.prototype.toggle = function(uvm) {
 		toggle = true;
 		userVisibilityMethod = uvm;
 
@@ -145,29 +145,29 @@ define(function() {
 	/**
 	 * --------------------------------
 	 */
-	
+
 	/**
 	 * <p style='color:#AD071D'><strong>recurse</strong></p>
 	 *
 	 * Chain this method to search for children recursively
 	 */
-	VisibilityControl.prototype.recurse = function () {
+	VisibilityControl.prototype.recurse = function() {
 		recurse = true;
-		
+
 		return this;
 	};
 	/**
 	 * --------------------------------
 	 */
-	
+
 	/**
 	 * <p style='color:#AD071D'><strong>not</strong></p>
 	 *
 	 * Chain this method to negate the search criteria
 	 */
-	VisibilityControl.prototype.not = function () {
+	VisibilityControl.prototype.not = function() {
 		not = true;
-		
+
 		return this;
 	};
 	/**
@@ -178,10 +178,10 @@ define(function() {
 	 * <p style='color:#AD071D'><strong>all</strong></p>
 	 *
 	 * Chain this method to select all the children that return true for the given function
-	 * 
-	 * @param  {Function} f Test function to decide whether a child should change it's visibility. Receives a [game-object](@@game-object@@) as argument. Must return true or false.
+	 *
+	 * @param {Function} f Test function to decide whether a child should change it's visibility. Receives a [game-object](@@game-object@@) as argument. Must return true or false.
 	 */
-	VisibilityControl.prototype.all = function (f) {
+	VisibilityControl.prototype.all = function(f) {
 		common(all, f);
 	};
 	/**
@@ -192,10 +192,10 @@ define(function() {
 	 * <p style='color:#AD071D'><strong>allWithProp</strong></p>
 	 *
 	 * Chain this method to search for a matching property name
-	 * 
-	 * @param  {String} propName A property name to search for in the user [game-object-container](@@game-object-container@@) and it's children
+	 *
+	 * @param {String} propName A property name to search for in the user [game-object-container](@@game-object-container@@) and it's children
 	 */
-	VisibilityControl.prototype.allWithProp = function (propName) {
+	VisibilityControl.prototype.allWithProp = function(propName) {
 		common(withProp, propName);
 	};
 	/**
@@ -206,10 +206,10 @@ define(function() {
 	 * <p style='color:#AD071D'><strong>allWithType</strong></p>
 	 *
 	 * Chain this method to search for [game-objects](@@game-object@@) with a matching poolId or typeId
-	 * 
-	 * @param  {String} type
+	 *
+	 * @param {String} type
 	 */
-	VisibilityControl.prototype.allWithType = function (type) {
+	VisibilityControl.prototype.allWithType = function(type) {
 		common(withType, type);
 	};
 	/**
@@ -217,7 +217,7 @@ define(function() {
 	 */
 
 	var common = function(pass, args) {
-		if (user === null )
+		if (user === null)
 			return;
 
 		if (applyOnSelf) {
@@ -244,15 +244,18 @@ define(function() {
 	}
 
 	var all = function(f, v, t) {
-		iterate(find().all(f), v, t);
+		iterate(find()
+			.all(f), v, t);
 	}
 
 	var withProp = function(propName, v, t) {
-		iterate(find().allWithProp(propName), v, t);
+		iterate(find()
+			.allWithProp(propName), v, t);
 	}
 
 	var withType = function(type, v, t) {
-		iterate(find().allWithType(type), v, t);
+		iterate(find()
+			.allWithType(type), v, t);
 	}
 
 	var iterate = function(children, v, t) {

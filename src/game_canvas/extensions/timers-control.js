@@ -5,12 +5,12 @@
  *
  * Inherits from: [extension](@@extension@@)
  *
- * Depends of: 
+ * Depends of:
  * [timer-factory](@@timer-factory@@)
  * [gb](@@gb@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This extension takes care of pausing and resuming all timers when the application is paused or resumed.
  */
 
@@ -36,22 +36,24 @@ define(["timer-factory", "gb", "extension"], function(TimerFactory, Gb, Extensio
 			game.on(game.BLUR, this, function() {
 				// Add a _'alreadyPaused'_ property with a value of true to all timers
 				// which are already paused
-				TimerFactory.setProperty('alreadyPaused', true, function(timer, index, array){
+				TimerFactory.setProperty('alreadyPaused', true, function(timer, index, array) {
 					return timer.Paused;
 				});
 
 				// Pause all timers
-				TimerFactory.pauseAll().now();
+				TimerFactory.pauseAll()
+					.now();
 			}, false, false, false, 'timers-control');
 
 			game.on(game.FOCUS, this, function() {
 				// Resume all the timers which don't have an _'alreadyPaused'_ property
-				TimerFactory.resumeAll().which(function(timer, index, array) {
-					return !timer['alreadyPaused'];
-				});
+				TimerFactory.resumeAll()
+					.which(function(timer, index, array) {
+						return !timer['alreadyPaused'];
+					});
 
 				// Set the _'alreadyPaused'_ property to null on all timers
-				TimerFactory.setProperty('alreadyPaused', null, function(timer, index, array){
+				TimerFactory.setProperty('alreadyPaused', null, function(timer, index, array) {
 					return true;
 				});
 			}, false, false, false, 'timers-control');

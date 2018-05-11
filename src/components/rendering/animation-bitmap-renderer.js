@@ -117,7 +117,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 *
 		 * @throws {Error} If width, height, name, frameDelay or framePaths properties are not set
 		 */
-		start: function(parent) { 
+		start: function(parent) {
 			this._super(parent);
 
 			if (!this.frameWidth && !this.frameHeight) {
@@ -155,16 +155,16 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		update: function(delta) {
 			if (this.isPlaying && this.finishLoading) {
 				this.delayTotal += delta;
-			
+
 				if (this.delayTotal > this.frameDelay) {
 					this.delayTotal -= this.frameDelay;
 
 					if (this.direction == 1) {
-						if (this.frameIndex < this.frameCount-1) {
+						if (this.frameIndex < this.frameCount - 1) {
 							this.frameIndex++;
 						} else {
 							if (this.loop) {
-								this.frameIndex = 0;  
+								this.frameIndex = 0;
 							} else if (this.pingPong) {
 								this.direction = -1;
 							} else {
@@ -192,7 +192,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 
 						return;
 					}
-				} 
+				}
 			}
 		},
 
@@ -215,15 +215,15 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 				var tintedCanvas = this.tintImage(this.currentFrameName, canvas);
 
 				context.drawImage(tintedCanvas,
-					Math.floor(this.rendererOffsetX()), 
-					Math.floor(this.rendererOffsetY()), 
+					Math.floor(this.rendererOffsetX()),
+					Math.floor(this.rendererOffsetY()),
 					Math.floor(this.rendererWidth()),
 					Math.floor(this.rendererHeight())
 				);
 			} else {
 				context.drawImage(canvas,
-					Math.floor(this.rendererOffsetX()), 
-					Math.floor(this.rendererOffsetY()), 
+					Math.floor(this.rendererOffsetX()),
+					Math.floor(this.rendererOffsetY()),
 					Math.floor(this.rendererWidth()),
 					Math.floor(this.rendererHeight())
 				);
@@ -232,7 +232,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>recycle</strong></p>
 		 *
@@ -260,7 +260,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>play</strong></p>
 		 *
@@ -300,17 +300,17 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>rendererOffsetX</strong></p>
 		 *
 		 * @return {Number} The offset in the X axis of the renderer
 		 */
-		rendererOffsetX: function() { 
+		rendererOffsetX: function() {
 			if (this.offset == 'center') {
 				return -this.rendererWidth() / 2 + this.offsetX;
 			} else {
-				return this.offsetX; 
+				return this.offsetX;
 			}
 		},
 		/**
@@ -338,7 +338,9 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 *
 		 * @return {Number} The width of the renderer
 		 */
-		rendererWidth: function() { return this.frameWidth; },
+		rendererWidth: function() {
+			return this.frameWidth;
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -348,14 +350,24 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 *
 		 * @return {Number} The height of the renderer
 		 */
-		rendererHeight: function() { return this.frameHeight; }
+		rendererHeight: function() {
+			return this.frameHeight;
+		}
 		/**
 		 * --------------------------------
 		 */
 	});
 
-	Object.defineProperty(AnimationBitmapRenderer.prototype, "COMPLETE", { get: function() { return 'complete'; } });
-	Object.defineProperty(AnimationBitmapRenderer.prototype, "COMPLETE_BACK", { get: function() { return 'complete_back'; } });
+	Object.defineProperty(AnimationBitmapRenderer.prototype, "COMPLETE", {
+		get: function() {
+			return 'complete';
+		}
+	});
+	Object.defineProperty(AnimationBitmapRenderer.prototype, "COMPLETE_BACK", {
+		get: function() {
+			return 'complete_back';
+		}
+	});
 
 	return AnimationBitmapRenderer;
 });

@@ -37,7 +37,7 @@
  * found in the <a href=@@gb@@>gb</a> module. 
  * The way you get a hold to a reference to the <a href=@@component-pool@@>component-pool</a>
  * may vary.</strong>
- */		
+ */
 
 /**
  * Circles colliding
@@ -48,76 +48,76 @@
  * --------------------------------
  */
 define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
-	function(CollisionComponent, SAT, CollisionResolver, Vector2D){
-	
-	var CircleCollider = CollisionComponent.extend({
-		init: function() {
-			this._super();
+	function(CollisionComponent, SAT, CollisionResolver, Vector2D) {
 
-			this.p = new Vector2D();
+		var CircleCollider = CollisionComponent.extend({
+			init: function() {
+				this._super();
 
-			this.collider 	  = new SAT.Circle(new Vector2D(0, 0), this.radius);
-			this.colliderType = CollisionResolver.circleCollider;
-		},
+				this.p = new Vector2D();
 
-		/**
-		 * <p style='color:#AD071D'><strong>start</strong></p>
-		 *
-		 * Set up the collider.
-		 * 
-		 * Creates a Circle object defined in the [sat](@@sat@@) module.
-		 */
-		start: function() {
-			this._super();
+				this.collider = new SAT.Circle(new Vector2D(0, 0), this.radius);
+				this.colliderType = CollisionResolver.circleCollider;
+			},
 
-			this.collider.pos.x = 0;
-			this.collider.pos.y = 0;
-			this.collider.r = this.radius;
-		},
-		/**
-		 * --------------------------------
-		 */
-		
-		/**
-		 * <p style='color:#AD071D'><strong>update</strong></p>
-		 *
-		 * Updates the position of the collider.
-		 * 
-		 * The collider follows the position of it's parent.
-		 */
-		update: function() {
-			var p = this.parent.matrix.transformPoint(0, 0, this.p);	
+			/**
+			 * <p style='color:#AD071D'><strong>start</strong></p>
+			 *
+			 * Set up the collider.
+			 * 
+			 * Creates a Circle object defined in the [sat](@@sat@@) module.
+			 */
+			start: function() {
+				this._super();
 
-			this.collider.pos.x = p.x;
-			this.collider.pos.y = p.y;
+				this.collider.pos.x = 0;
+				this.collider.pos.y = 0;
+				this.collider.r = this.radius;
+			},
+			/**
+			 * --------------------------------
+			 */
 
-			this._super();
-		},
-		/**
-		 * --------------------------------
-		 */
+			/**
+			 * <p style='color:#AD071D'><strong>update</strong></p>
+			 *
+			 * Updates the position of the collider.
+			 * 
+			 * The collider follows the position of it's parent.
+			 */
+			update: function() {
+				var p = this.parent.matrix.transformPoint(0, 0, this.p);
 
-		/**
-		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
-		 *
-		 * Draw the circle collider.
-		 * 
-		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
-		 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
-		 * @param  {Object} gb     A reference to the [gb](@@gb@@) module
-		 */
-		debug_draw: function(context, viewport, draw, gb) {
-			if (!gb.colliderDebug) return;
+				this.collider.pos.x = p.x;
+				this.collider.pos.y = p.y;
 
-			var p = this.parent.matrix.transformPoint(0, 0, this.p);		
-			draw.circle(context, p.x, p.y, this.collider.r, null, this.debugColor, 2);
-			this._super();
-		} 
-		/**
-		 * --------------------------------
-		 */
+				this._super();
+			},
+			/**
+			 * --------------------------------
+			 */
+
+			/**
+			 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
+			 *
+			 * Draw the circle collider.
+			 * 
+			 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+			 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
+			 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
+			 * @param  {Object} gb     A reference to the [gb](@@gb@@) module
+			 */
+			debug_draw: function(context, viewport, draw, gb) {
+				if (!gb.colliderDebug) return;
+
+				var p = this.parent.matrix.transformPoint(0, 0, this.p);
+				draw.circle(context, p.x, p.y, this.collider.r, null, this.debugColor, 2);
+				this._super();
+			}
+			/**
+			 * --------------------------------
+			 */
+		});
+
+		return CircleCollider;
 	});
-
-	return CircleCollider;
-});

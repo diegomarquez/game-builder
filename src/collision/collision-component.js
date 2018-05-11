@@ -55,10 +55,10 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object'], func
 			this.debugColor = "#00FF00";
 
 			this.checkingCollisions = true;
-			
+
 			this.collisionResolver.addToCollisionList(this);
 
-			if(!this.parent.onCollide) {
+			if (!this.parent.onCollide) {
 				ErrorPrinter.printError('Collision Component', "GameObject with typeId: " + this.parent.typeId + ", needs to define an onCollide method, yo.");
 			}
 		},
@@ -86,7 +86,7 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object'], func
 
 					if (this.collisionResolver.areColliding(this, collisionOpponent)) {
 						if (!this.checkingCollisions) break;
-		
+
 						var response, invertedResponse;
 
 						if (collisionOpponent.getResponse || this.getResponse) {
@@ -116,11 +116,11 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object'], func
 
 						if (collisionOpponent.parent && this.parent) {
 							collisionOpponent.onCollide(this, invertedResponse);
-							
+
 							if (collisionOpponent.parent && this.parent) {
 								this.onCollideArguments[0] = this.parent;
-								this.onCollideArguments[1] =  invertedResponse;
-								
+								this.onCollideArguments[1] = invertedResponse;
+
 								collisionOpponent.parent.execute('collide', this.onCollideArguments, 'apply');
 							}
 
@@ -174,7 +174,7 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object'], func
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>enable</strong></p>
 		 *
@@ -202,7 +202,11 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object'], func
 		 */
 	});
 
-	Object.defineProperty(GameObject.prototype, "COLLIDE", { get: function() { return 'collide'; } });
+	Object.defineProperty(GameObject.prototype, "COLLIDE", {
+		get: function() {
+			return 'collide';
+		}
+	});
 
 	return CollisionComponent;
 });

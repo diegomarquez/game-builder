@@ -5,41 +5,41 @@
  *
  * Inherits from: [collision-component](@@collision-component@@)
  *
- * Depends of: 
+ * Depends of:
  * [sat](@@sat@@)
  * [collision-resolver](@@collision-resolver@@)
  * [vector-2D](@@vector-2D@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This module defines a component meant to be attached to a [game-object](@@game-object@@), to give it
  * the ability to collide against other [game-objects](@@game-object@@) with collider components.
  *
  * Polygon colliders are defined by a collection of [vector-2D](@@vector-2D@@) objects. They follow
  * not only the position of it's parent but also scale and rotation transformations.
  *
- * During the configuration of the [component-pool](@@component-pool@@) polygon colliders need to 
+ * During the configuration of the [component-pool](@@component-pool@@) polygon colliders need to
  * receive an object that looks similar to the following:
- * 
+ *
  * ``` javascript
  * gb.coPool.createConfiguration("Polygon_1", 'Polygon')
- 	.args({
- 		//Id used by the Collision Resolver
- 		id:'polygon-collider_ID', 
+	.args({
+		//Id used by the Collision Resolver
+		id:'polygon-collider_ID',
 
- 		//Array of points that define the polygon collider
- 		points:[ 
- 			{x: 0, y: 0},
- 			{x: 64, y: 0},
- 			{x: 64, y: 64},
- 			{x: 0, y: 64}
- 		]
+		//Array of points that define the polygon collider
+		points:[
+			{x: 0, y: 0},
+			{x: 64, y: 0},
+			{x: 64, y: 64},
+			{x: 0, y: 64}
+		]
  * });
  * ```
  * If it is not provided it will most likely fail in un-expected ways.
  *
  * <strong>Note 1: The snippet uses the reference to the <a href=@@component-pool@@>component-pool</a>
- * found in the <a href=@@gb@@>gb</a> module. 
+ * found in the <a href=@@gb@@>gb</a> module.
  * The way you get a hold to a reference to the <a href=@@component-pool@@>component-pool</a>
  * may vary.</strong>
  *
@@ -72,13 +72,13 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 *
 			 * Configures properties
 			 * set via the <a href=@@component-pool@@>component-pool</a>
-			 * 
-			 * This method is important as it applies all the configuration needed for 
+			 *
+			 * This method is important as it applies all the configuration needed for
 			 * the component to work as expected.
 			 *
 			 * Overriden in this module to handle different types for the **points** argument
-			 * 
-			 * @param  {Object} args An object with all the properties to write into the component
+			 *
+			 * @param {Object} args An object with all the properties to write into the component
 			 */
 			configure: function(args) {
 				this._super(args);
@@ -95,12 +95,12 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			/**
 			 * --------------------------------
 			 */
-			
+
 			/**
 			 * <p style='color:#AD071D'><strong>start</strong></p>
 			 *
 			 * Set up the collider.
-			 * 
+			 *
 			 * Creates a FixedSizePolygon object defined in the [sat](@@sat@@) module.
 			 * The polygon is said to be fixed of size becuase no more vertexes can be
 			 * added to it after it is created.
@@ -109,7 +109,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 				this._super();
 
 				this.pointCount = this.points.length;
-				
+
 				if (this.pointsCopy)
 					this.pointsCopy.length = 0;
 				else
@@ -121,7 +121,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 				for (var i = 0; i < this.pointCount; i++) {
 					this.pointsCopy.push(new Vector2D(copy[i].x, copy[i].y));
 					points.push(new Vector2D(copy[i].x, copy[i].y));
-				} 
+				}
 
 				this.collider.pos.x = 0;
 				this.collider.pos.y = 0;
@@ -135,13 +135,13 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 * <p style='color:#AD071D'><strong>update</strong></p>
 			 *
 			 * Updates the transformation of the collider.
-			 * 
+			 *
 			 * The collider follows it's parent along every matrix transformation.
 			 */
 			update: function() {
 				var m = this.parent.getMatrix();
 
-				for(var i=0; i<this.pointCount; i++) {
+				for (var i = 0; i < this.pointCount; i++) {
 					var p = m.transformPoint(this.pointsCopy[i].x, this.pointsCopy[i].y, this.p);
 
 					this.collider.points[i].x = p.x;
@@ -162,12 +162,12 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 * Draw the polygon collider.
 			 *
 			 * This method is only executed if the **debug** property in [gb](@@gb@@)
-		 	 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
+			 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
 			 *
-			 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-			 * @param  {Object} viewport A reference to the current [viewport](@@viewport@@)
-			 * @param  {Object} draw     A reference to the [draw](@@draw@@) module
-			 * @param  {Object} gb     A reference to the [gb](@@gb@@) module
+			 * @param {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+			 * @param {Object} viewport A reference to the current [viewport](@@viewport@@)
+			 * @param {Object} draw A reference to the [draw](@@draw@@) module
+			 * @param {Object} gb A reference to the [gb](@@gb@@) module
 			 */
 			debug_draw: function(context, viewport, draw, gb) {
 				if (!gb.colliderDebug) return;
@@ -177,11 +177,11 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 				context.save();
 
 				context.setTransform(1, 0, 0, 1, 0, 0);
-				
+
 				viewport.transformContext(context);
 				context.transform(m.a, m.b, m.c, m.d, m.tx, m.ty);
 				draw.polygon(context, 0, 0, this.pointsCopy, null, this.debugColor, 2);
-				
+
 				context.restore();
 
 				this._super();
@@ -189,7 +189,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			/**
 			 * --------------------------------
 			 */
-		});	
+		});
 
 		return PolygonCollider;
 	}

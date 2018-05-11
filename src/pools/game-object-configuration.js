@@ -8,7 +8,7 @@
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This module describes the kind of objects that are held by the [game-object-pool](@@game-object-pool@@)
  */
 
@@ -34,7 +34,7 @@ define(function(require) {
 		this.components = [];
 		this.renderer = null;
 
-		Object.defineProperty(this, "pool", { 
+		Object.defineProperty(this, "pool", {
 			configurable: false,
 			enumerable: false,
 			writable: false,
@@ -42,14 +42,14 @@ define(function(require) {
 		});
 	};
 
-	
+
 
 	/**
 	 * <p style='color:#AD071D'><strong>typeId</strong></p>
 	 *
 	 * The id of the pool that objects are going to be taken off when building the [game-object](@@game-object@@)
 	 * described in this configuration
-	 * 
+	 *
 	 * @return {String}
 	 */
 	GameObjectConfiguration.prototype.typeId = function() {
@@ -63,7 +63,7 @@ define(function(require) {
 	 * <p style='color:#AD071D'><strong>configurationId</strong></p>
 	 *
 	 * The id the built [game-object](@@game-object@@) will get
-	 * 
+	 *
 	 * @return {String}
 	 */
 	GameObjectConfiguration.prototype.configurationId = function() {
@@ -72,14 +72,14 @@ define(function(require) {
 	/**
 	 * --------------------------------
 	 */
-	
+
 	/**
 	 * <p style='color:#AD071D'><strong>args</strong></p>
 	 *
 	 * Set which arguments this configuration will apply to a [game-object](@@game-object@@). This method is chainable
-	 * 
-	 * @param  {Object} args
-	 *  
+	 *
+	 * @param {Object} args
+	 *
 	 * @return {Object}
 	 */
 	GameObjectConfiguration.prototype.args = function(args) {
@@ -94,9 +94,9 @@ define(function(require) {
 	/**
 	 * <p style='color:#AD071D'><strong>addChild</strong></p>
 	 *
-	 * Add a child, specifying an existing [game-object](@@game-object@@) configuration id, 
+	 * Add a child, specifying an existing [game-object](@@game-object@@) configuration id,
 	 * and arguments the child will take when initialized. This method is chainable
-	 * 
+	 *
 	 * @param {String} childId
 	 * @param {Object} args
 	 *
@@ -107,7 +107,7 @@ define(function(require) {
 			childId: childId,
 			args: args
 		});
-		
+
 		this.pool.execute(this.pool.UPDATE_CONFIGURATION, this);
 		return this;
 	}
@@ -118,9 +118,9 @@ define(function(require) {
 	/**
 	 * <p style='color:#AD071D'><strong>addComponent</strong></p>
 	 *
-	 * Add a [component](@@component@@), specifying an existing [component](@@component@@) configuration id, 
+	 * Add a [component](@@component@@), specifying an existing [component](@@component@@) configuration id,
 	 * and arguments the component will take when initialized. This method is chainable
-	 * 
+	 *
 	 * @param {String} componentId
 	 * @param {Object} args
 	 *
@@ -138,9 +138,9 @@ define(function(require) {
 	/**
 	 * <p style='color:#AD071D'><strong>setRenderer</strong></p>
 	 *
-	 * Set a renderer, specifying an existing [component](@@component@@) configuration id, 
+	 * Set a renderer, specifying an existing [component](@@component@@) configuration id,
 	 * and arguments the renderer will take when initialized. This method is chainable
-	 * 
+	 *
 	 * @param {String} rendererId
 	 * @param {Object} args
 	 *

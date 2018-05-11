@@ -5,13 +5,13 @@
  *
  * Inherits from: [extension](@@extension@@)
  *
- * Depends of: 
+ * Depends of:
  * [groups](@@groups@@)
  * [viewports](@@viewports@@)
  * [gb](@@gb@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This module defines an extension that uses [groups](@@groups@@) to resume all update activity
  * when the application gains focus.
  *
@@ -22,10 +22,10 @@
  *
  * This Extension adds an event [game](@@game@@) can hook into:
  *
- * ### **RESUME** 
+ * ### **RESUME**
  * When the application is resumed manually
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * game.on(game.RESUME, function() {});
  * ```
  */
@@ -44,13 +44,17 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 
 	var Resume = Extension.extend({
 		init: function() {
-			Object.defineProperty(game.prototype, "RESUME", { get: function() { return 'resume'; } });
+			Object.defineProperty(game.prototype, "RESUME", {
+				get: function() {
+					return 'resume';
+				}
+			});
 
 			game.constructor.prototype.resume = function() {
-				if(game.focusAction()) {
+				if (game.focusAction()) {
 					game.execute(game.RESUME);
 					window.addEventListener("blur", game.blurAction);
-					window.addEventListener("focus", game.focusAction);	
+					window.addEventListener("focus", game.focusAction);
 				}
 			}
 		},
@@ -62,7 +66,7 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 		},
 
 		execute: function() {
-			Groups.all('resume', 'update', function (group) {
+			Groups.all('resume', 'update', function(group) {
 				return !group.updateAlreadyStopped;
 			});
 		},

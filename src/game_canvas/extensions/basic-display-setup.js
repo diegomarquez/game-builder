@@ -3,26 +3,26 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: 
+ * Inherits from:
  * [extension](@@extension@@)
  *
- * Depends of: 
+ * Depends of:
  * [groups](@@groups@@)
  * [viewports](@@viewports@@)
  * [gb](@@gb@@)
  * [world](@@world@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
- * This module defines an extension that adds a bunch of [group](@@group@@) objects to the 
- * [groups](@@groups@@) object which control the update of [game-objects](@@game-object@@). 
- * The [viewport](@@viewport@@) objects are also defined here through 
+ *
+ * This module defines an extension that adds a bunch of [group](@@group@@) objects to the
+ * [groups](@@groups@@) object which control the update of [game-objects](@@game-object@@).
+ * The [viewport](@@viewport@@) objects are also defined here through
  * the [viewports](@@viewports@@) object, these objects control the rendering of [game-objects](@@game-object@@).
  *
  * Also set here, are some shortcuts that are used when adding a [game-object](@@game-object@@) to a [viewport](@@viewport@@)
- * [layer](@@layer@@). 
- * 
- * To use a different layout, you can always define a new extension just like this one and replace the 
+ * [layer](@@layer@@).
+ *
+ * To use a different layout, you can always define a new extension just like this one and replace the
  * relevant bits.
  */
 
@@ -43,7 +43,7 @@ define(["groups", "viewports", "gb", "world", "extension"], function(Groups, Vie
 		},
 
 		execute: function() {
-			// Configure the [world](@@world@@) object. 
+			// Configure the [world](@@world@@) object.
 			// For simplicity's sake it is the same size as the canvas
 			World.create(Gb.canvas.width, Gb.canvas.height);
 
@@ -62,9 +62,18 @@ define(["groups", "viewports", "gb", "world", "extension"], function(Groups, Vie
 			viewport.addLayer("Front");
 
 			// Set a bunch of shortcuts for [viewport](@@viewport@@) + [layer](@@layer@@) setups that will be used oftenly
-			Gb.setViewportShortCut('MainBack', [{viewport:'Main', layer:'Back'}]);
-			Gb.setViewportShortCut('MainMiddle', [{viewport:'Main', layer:'Middle'}]);
-			Gb.setViewportShortCut('MainFront', [{viewport:'Main', layer:'Front'}]);
+			Gb.setViewportShortCut('MainBack', [{
+				viewport: 'Main',
+				layer: 'Back'
+			}]);
+			Gb.setViewportShortCut('MainMiddle', [{
+				viewport: 'Main',
+				layer: 'Middle'
+			}]);
+			Gb.setViewportShortCut('MainFront', [{
+				viewport: 'Main',
+				layer: 'Front'
+			}]);
 		},
 
 		destroy: function() {

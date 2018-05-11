@@ -34,7 +34,7 @@
 /**
  * --------------------------------
  */
-define(["game-object", "visibility-control", "child-finder"], function(GameObject, VisibilityControl, ChildFinder){
+define(["game-object", "visibility-control", "child-finder"], function(GameObject, VisibilityControl, ChildFinder) {
 
 	var GameObjectContainer = GameObject.extend({
 		init: function() {
@@ -51,9 +51,9 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		start: function() {
 			this._super();
 
-			if(!this.childs) return;
+			if (!this.childs) return;
 
-			for(var i=0; i<this.childs.length; i++) {
+			for (var i = 0; i < this.childs.length; i++) {
 				this.childs[i].start();
 			}
 		},
@@ -71,11 +71,11 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 * @param {Object} child The child [game-object](@@game-object@@) to add
 		 */
 		add: function(child) {
-			if(!child) return;
+			if (!child) return;
 
-			if(!this.childs) this.childs = [];
+			if (!this.childs) this.childs = [];
 
-			if(child.parent) {
+			if (child.parent) {
 				child.parent.remove(child);
 			}
 
@@ -98,11 +98,11 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 * @param {Object} child The child [game-object](@@game-object@@) to remove
 		 */
 		remove: function(child) {
-			if(!child) return;
+			if (!child) return;
 
 			child.parent = null;
 
-			if(!this.childs) return;
+			if (!this.childs) return;
 
 			this.childs.splice(this.childs.indexOf(child), 1);
 
@@ -126,25 +126,25 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		update: function(delta) {
 			this.transform();
 
-			if(!this.childs) return;
+			if (!this.childs) return;
 
 			var child = null
 			var hasRenderer;
 
-			for(var i=0; i<this.childs.length; i++) {
+			for (var i = 0; i < this.childs.length; i++) {
 				child = this.childs[i];
 
-				if(!child.canUpdate) continue;
+				if (!child.canUpdate) continue;
 
 				if (this.childrenOptions && this.childrenOptions[child.uid]) {
-					if(!this.childrenOptions[child.uid].update) continue;
+					if (!this.childrenOptions[child.uid].update) continue;
 				}
 
 				child.update(delta);
 
 				hasRenderer = child.hasRenderer();
 
-				if(!child.hasComponents()) {
+				if (!child.hasComponents()) {
 					if (hasRenderer) {
 						child.renderer.update(delta);
 					}
@@ -152,11 +152,10 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 					if (!child.isContainer()) {
 						child.transform();
 					}
-				}
-				else {
+				} else {
 					if (child.transformedOnce()) {
-						for(var k=0; k<child.components.length; k++) {
-							if(child.components[k].update && child.components[k].isEnabled()) {
+						for (var k = 0; k < child.components.length; k++) {
+							if (child.components[k].update && child.components[k].isEnabled()) {
 								child.components[k].update(delta);
 							}
 						}
@@ -192,11 +191,11 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 				this._super(context, viewport);
 			}
 
-			if(!this.childs) return;
+			if (!this.childs) return;
 
 			var child = null;
 
-			for(var i=0; i<this.childs.length; i++){
+			for (var i = 0; i < this.childs.length; i++) {
 				child = this.childs[i];
 
 				if (child.isContainer()) {
@@ -211,7 +210,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 					if (child.canDraw && viewport.isGameObjectInside(child, context)) {
 						// If there are options for this child, apply them
 						if (this.childrenOptions && this.childrenOptions[child.uid]) {
-							if(this.childrenOptions[child.uid].draw) {
+							if (this.childrenOptions[child.uid].draw) {
 								child.draw(context, viewport);
 							}
 						} else {
@@ -237,13 +236,14 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 			if (!getControl) {
 				this._super();
 
-				if(!this.childs) return;
+				if (!this.childs) return;
 
-				for(var i=0; i<this.childs.length; i++){
+				for (var i = 0; i < this.childs.length; i++) {
 					this.childs[i].hide();
 				}
 			} else {
-				return VisibilityControl.user(this).hide(this._super);
+				return VisibilityControl.user(this)
+					.hide(this._super);
 			}
 		},
 		/**
@@ -261,13 +261,14 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 			if (!getControl) {
 				this._super();
 
-				if(!this.childs) return;
+				if (!this.childs) return;
 
-				for(var i=0; i<this.childs.length; i++){
+				for (var i = 0; i < this.childs.length; i++) {
 					this.childs[i].show();
 				}
 			} else {
-				return VisibilityControl.user(this).show(this._super);
+				return VisibilityControl.user(this)
+					.show(this._super);
 			}
 		},
 		/**
@@ -284,9 +285,9 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		stop: function(skipEvent) {
 			this._super(skipEvent);
 
-			if(!this.childs) return;
+			if (!this.childs) return;
 
-			for(var i=0; i<this.childs.length; i++){
+			for (var i = 0; i < this.childs.length; i++) {
 				this.childs[i].stop(skipEvent);
 			}
 		},
@@ -304,9 +305,9 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		run: function(skipEvent) {
 			this._super(skipEvent);
 
-			if(!this.childs) return;
+			if (!this.childs) return;
 
-			for(var i=0; i<this.childs.length; i++){
+			for (var i = 0; i < this.childs.length; i++) {
 				this.childs[i].run(skipEvent);
 			}
 		},
@@ -325,13 +326,14 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 			if (!getControl) {
 				this._super();
 
-				if(!this.childs) return;
+				if (!this.childs) return;
 
-				for(var i=0; i<this.childs.length; i++){
+				for (var i = 0; i < this.childs.length; i++) {
 					this.childs[i].toggleVisibility();
 				}
 			} else {
-				return VisibilityControl.user(this).toggle(this._super);
+				return VisibilityControl.user(this)
+					.toggle(this._super);
 			}
 		},
 		/**
@@ -350,9 +352,9 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		addToViewportList: function(viewportName, layerName) {
 			this._super(viewportName, layerName);
 
-			if(!this.childs) return;
+			if (!this.childs) return;
 
-			for(var i=0; i<this.childs.length; i++){
+			for (var i = 0; i < this.childs.length; i++) {
 				this.childs[i].addToViewportList(viewportName, layerName);
 			}
 		},
@@ -373,9 +375,9 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		removeFromViewportList: function(viewportName, layerName) {
 			this._super(viewportName, layerName);
 
-			if(!this.childs) return;
+			if (!this.childs) return;
 
-			for(var i=0; i<this.childs.length; i++){
+			for (var i = 0; i < this.childs.length; i++) {
 				this.childs[i].removeFromViewportList(viewportName, layerName);
 			}
 		},
@@ -401,8 +403,12 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 
 			options = options || {};
 
-			if (!options.hasOwnProperty('update')) { options.update = true; }
-			if (!options.hasOwnProperty('draw')) { options.draw = true; }
+			if (!options.hasOwnProperty('update')) {
+				options.update = true;
+			}
+			if (!options.hasOwnProperty('draw')) {
+				options.draw = true;
+			}
 
 			this.childrenOptions[child.uid] = options;
 		},
@@ -454,8 +460,8 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 * nulling every reference on it's way.
 		 */
 		recycle: function() {
-			if(this.childs) {
-				for(var i=0; i<this.childs.length; i++){
+			if (this.childs) {
+				for (var i = 0; i < this.childs.length; i++) {
 					this.childs[i].recycle();
 				}
 
@@ -476,9 +482,10 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 * It also removes all the childs.
 		 */
 		clear: function() {
-			if(this.childs) {
-				while(this.childs.length) {
-					this.childs.pop().clear();
+			if (this.childs) {
+				while (this.childs.length) {
+					this.childs.pop()
+						.clear();
 				}
 
 				this.childs.length = 0;

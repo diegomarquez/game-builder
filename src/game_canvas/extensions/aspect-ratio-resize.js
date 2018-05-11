@@ -5,11 +5,11 @@
  *
  * Inherits from: [extension](@@extension@@)
  *
- * Depends of: 
+ * Depends of:
  * [gb](@@gb@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This module defines an extension that will make the canvas scale to fit in the viewport
  * while maintening the original aspect ratio.
  */
@@ -43,9 +43,9 @@ define(["gb", "extension"], function(Gb, Extension) {
 				scale = scaleX < scaleY ? scaleX + ', ' + scaleX : scaleY + ', ' + scaleY;
 
 				container.style.webkitTransform = 'scale(' + scale + ')';
-				container.style.mozTransform    = 'scale(' + scale + ')';
-				container.style.msTransform     = 'scale(' + scale + ')';
-				container.style.oTransform      = 'scale(' + scale + ')';
+				container.style.mozTransform = 'scale(' + scale + ')';
+				container.style.msTransform = 'scale(' + scale + ')';
+				container.style.oTransform = 'scale(' + scale + ')';
 			};
 
 			this.container = Gb.game.mainContainer;
@@ -65,16 +65,16 @@ define(["gb", "extension"], function(Gb, Extension) {
 			this.initCanvasMarginLeft = canvasStyle.getPropertyValue("margin-left");
 			this.initCanvasMarginRight = canvasStyle.getPropertyValue("margin-right");
 
-			this.container.style.top      = '50%';
-			this.container.style.left     = '50%';
-			this.container.style.marginLeft = '-' + Gb.game.canvas.width/2 + 'px';
-			this.container.style.marginTop  = '-' + Gb.game.canvas.height/2 + 'px';
-			this.container.style.position   = 'fixed';
+			this.container.style.top = '50%';
+			this.container.style.left = '50%';
+			this.container.style.marginLeft = '-' + Gb.game.canvas.width / 2 + 'px';
+			this.container.style.marginTop = '-' + Gb.game.canvas.height / 2 + 'px';
+			this.container.style.position = 'fixed';
 
-			this.canvas.style.paddingLeft  = 0;
+			this.canvas.style.paddingLeft = 0;
 			this.canvas.style.paddingRight = 0;
-			this.canvas.style.marginLeft   = 'auto';
-			this.canvas.style.marginRight  = 'auto';
+			this.canvas.style.marginLeft = 'auto';
+			this.canvas.style.marginRight = 'auto';
 
 			resize(this.container, this.canvas);
 
@@ -82,25 +82,25 @@ define(["gb", "extension"], function(Gb, Extension) {
 				resize(this.container, this.canvas);
 			}.bind(this)
 
-			window.addEventListener('resize', this.resizeListener, false);      
+			window.addEventListener('resize', this.resizeListener, false);
 		},
 
 		destroy: function() {
-			this.container.style.top        = this.initContainerTop;
-			this.container.style.left       = this.initContainerLeft;
-			this.container.style.marginTop  = this.initContainerMarginTop;
+			this.container.style.top = this.initContainerTop;
+			this.container.style.left = this.initContainerLeft;
+			this.container.style.marginTop = this.initContainerMarginTop;
 			this.container.style.marginLeft = this.initContainerMarginLeft;
-			this.container.style.position   = this.initContainerPosition;
+			this.container.style.position = this.initContainerPosition;
 
 			this.container.style.webkitTransform = 'scale(1)';
-			this.container.style.mozTransform    = 'scale(1)';
-			this.container.style.msTransform     = 'scale(1)';
-			this.container.style.oTransform      = 'scale(1)';
+			this.container.style.mozTransform = 'scale(1)';
+			this.container.style.msTransform = 'scale(1)';
+			this.container.style.oTransform = 'scale(1)';
 
-			this.canvas.style.paddingLeft  = this.initCanvasPaddingLeft;
+			this.canvas.style.paddingLeft = this.initCanvasPaddingLeft;
 			this.canvas.style.paddingRight = this.initCanvasPaddingRight;
-			this.canvas.style.marginLeft   = this.initCanvasMarginLeft;
-			this.canvas.style.marginRight  = this.initCanvasMarginRight;
+			this.canvas.style.marginLeft = this.initCanvasMarginLeft;
+			this.canvas.style.marginRight = this.initCanvasMarginRight;
 
 			window.removeEventListener('resize', this.resizeListener);
 

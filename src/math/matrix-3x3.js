@@ -8,20 +8,20 @@
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
- * Similar to [sat](@@sat@@) and [vector-2D](@@vector-2D@@) 
+ *
+ * Similar to [sat](@@sat@@) and [vector-2D](@@vector-2D@@)
  * in that I took the code from somewhere else to make a requireJS module with it.
  * In this case the victim was [EaselJS](https://github.com/CreateJS/EaselJS/). Somewhere
  * in there is a javascript file that desribes a 3x3 matrix. So this is largely a copy/paste of that.
  *
  * Anyway, this module is very important for everything that has to do with rendering,
- * because matrix transformations are used in each [game-object](@@game-object@@) 
- * to apply a transformation to the context 2D property 
+ * because matrix transformations are used in each [game-object](@@game-object@@)
+ * to apply a transformation to the context 2D property
  * of the [Canvas](https://developer.mozilla.org/en-US/docs/HTML/Canvas)
  * modifying it's position and that of all sub-sequent rendering commands.
  *
  * If you want to know what all this methods do, you are better off going to the original code,
- * or better yet, reading up on 
+ * or better yet, reading up on
  * [Matrix Transformations](https://www.google.co.uk/search?q=Matrix+Affine+Transformations&oq=Matrix+Affine+Transformations&aqs=chrome..69i57j0l3.6454j0j7&sourceid=chrome&espv=210&es_sm=91&ie=UTF-8)
  */
 
@@ -175,14 +175,14 @@ define(function() {
 		var c1 = this.c;
 		var d1 = this.d;
 		var tx1 = this.tx;
-		var n = a1*d1-b1*c1;
+		var n = a1 * d1 - b1 * c1;
 
-		this.a = d1/n;
-		this.b = -b1/n;
-		this.c = -c1/n;
-		this.d = a1/n;
-		this.tx = (c1*this.ty-d1*tx1)/n;
-		this.ty = -(a1*this.ty-b1*tx1)/n;
+		this.a = d1 / n;
+		this.b = -b1 / n;
+		this.c = -c1 / n;
+		this.d = a1 / n;
+		this.tx = (c1 * this.ty - d1 * tx1) / n;
+		this.ty = -(a1 * this.ty - b1 * tx1) / n;
 		return this;
 	};
 
@@ -197,10 +197,10 @@ define(function() {
 		if (target == null) {
 			target = {};
 		}
-	
+
 		target.x = this.tx;
 		target.y = this.ty;
-		
+
 		target.scaleX = Math.sqrt(this.a * this.a + this.b * this.b);
 		target.scaleY = Math.sqrt(this.c * this.c + this.d * this.d);
 
@@ -218,8 +218,8 @@ define(function() {
 	};
 
 	p.transformPoint = function(x, y, pt) {
-		pt.x = x*this.a+y*this.c+this.tx;
-		pt.y = x*this.b+y*this.d+this.ty;
+		pt.x = x * this.a + y * this.c + this.tx;
+		pt.y = x * this.b + y * this.d + this.ty;
 		return pt;
 	};
 

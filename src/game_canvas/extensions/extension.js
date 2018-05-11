@@ -3,14 +3,14 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: 
+ * Inherits from:
  * [class](@@class@@)
  *
  * Depends of:
  * [error-printer](@@error-printer@@)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This module only exists to make the interface for an extension explicit.
  *
  * Extensions works with [game](@@game@@). They provide functionality that is common enough
@@ -18,20 +18,20 @@
  * of [Game-Builder](http://diegomarquez.github.io/game-builder).
  *
  * Extensions can be hooked into 4 parts of [game](@@game@@):
- * 
- * ### **INITIALIZATION** 
+ *
+ * ### **INITIALIZATION**
  * These extensions return the string **'create'** for their type.
  * They are executed once on the initialization of the application or if the application
  * has already started, get executed once as soon as they are added to [game](@@game@@)
- * 
+ *
  * ### **FOCUS**
  * These extensions return the string **'focus'** for their type.
  * They are executed each time the application gains focus.
- * 
+ *
  * ### **BLUR**
  * These extensions return the string **'blur'** for their type.
  * They are executed each time the application looses focus.
- * 
+ *
  * ### **UPDATE**
  * These extensions return the string **'update'** for their type.
  * They are executed on the main update loop.

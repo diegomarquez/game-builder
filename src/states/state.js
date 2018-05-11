@@ -41,8 +41,8 @@ define(["delegate"], function(Delegate) {
 		 * @param  {Object} scope Scope to be used by all the callbacks registered with this state
 		 * @param  {String} name  Name to later be able to retrieve a reference to the state if needed
 		 */
-		init: function(scope, name) { 
-			this._super(); 
+		init: function(scope, name) {
+			this._super();
 			this.scope = scope;
 			this.name = name;
 		},
@@ -50,9 +50,15 @@ define(["delegate"], function(Delegate) {
 		// Use these methods to add callbacks to each of the three phases of a state.
 		// These method are really just wrappers to the [delegate](@@delegate@@) this object is extending.
 		// Just a way to type less stuff when adding callbacks.
-		addStartAction: function(callback) { this.on('start', this.scope, callback); },
-		addUpdateAction: function(callback) { this.on('update', this.scope, callback); },
-		addCompleteAction: function(callback) { this.on('complete', this.scope, callback); },
+		addStartAction: function(callback) {
+			this.on('start', this.scope, callback);
+		},
+		addUpdateAction: function(callback) {
+			this.on('update', this.scope, callback);
+		},
+		addCompleteAction: function(callback) {
+			this.on('complete', this.scope, callback);
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -60,9 +66,15 @@ define(["delegate"], function(Delegate) {
 		// Use these methods to remove callbacks from each of the three phases of a state.
 		// These method are really just wrappers to the [delegate](@@delegate@@) this object is extending.
 		// Just a way to type less stuff when adding callbacks.
-		removeStartAction: function(callback) { this.remove('start', this.scope, callback); },
-		removeUpdateAction: function(callback) { this.remove('update', this.scope, callback); },
-		removeCompleteAction: function(callback) { this.remove('complete', this.scope, callback); },
+		removeStartAction: function(callback) {
+			this.remove('start', this.scope, callback);
+		},
+		removeUpdateAction: function(callback) {
+			this.remove('update', this.scope, callback);
+		},
+		removeCompleteAction: function(callback) {
+			this.remove('complete', this.scope, callback);
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -71,9 +83,15 @@ define(["delegate"], function(Delegate) {
 		// usually you leave that to the state machine.
 		// These method are really just wrappers to the [delegate](@@delegate@@) this object is extending.
 		// Just a way to type less stuff when adding callbacks.
-		start: function(args) { this.execute('start', args); },
-		update: function(args) { this.execute('update', args); },
-		complete: function(args) { this.execute('complete', args); }
+		start: function(args) {
+			this.execute('start', args);
+		},
+		update: function(args) {
+			this.execute('update', args);
+		},
+		complete: function(args) {
+			this.execute('complete', args);
+		}
 		/**
 		 * --------------------------------
 		 */
@@ -81,17 +99,29 @@ define(["delegate"], function(Delegate) {
 	/**
 	 * --------------------------------
 	 */
-	
+
 	// ### Getters for the types of events a state can fire to change control flow 
 	// If a state fires an event that does not correspond to the type of state machine it is part off,
 	// nothing will happen.
-	
+
 	// **next** must be used when a state is part of a **"fixed"** state machine 
-	Object.defineProperty(State.prototype, "NEXT", { get: function() { return 'next'; } });
+	Object.defineProperty(State.prototype, "NEXT", {
+		get: function() {
+			return 'next';
+		}
+	});
 	// **previous** must be used when a state is part of a **"fixed"** state machine
-	Object.defineProperty(State.prototype, "PREVIOUS", { get: function() { return 'previous'; } });
+	Object.defineProperty(State.prototype, "PREVIOUS", {
+		get: function() {
+			return 'previous';
+		}
+	});
 	// **change** must be used when a state is part of a **"loose"** state machine 
-	Object.defineProperty(State.prototype, "CHANGE", { get: function() { return 'change'; } });
+	Object.defineProperty(State.prototype, "CHANGE", {
+		get: function() {
+			return 'change';
+		}
+	});
 	/**
 	 * --------------------------------
 	 */

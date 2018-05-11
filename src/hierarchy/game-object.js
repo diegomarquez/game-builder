@@ -312,7 +312,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			this.canUpdate = true;
 			this.canDraw = true;
 
-			if(this.renderer) {
+			if (this.renderer) {
 				this.renderer.onStarted(this);
 			}
 
@@ -402,7 +402,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 * @param {Object} renderer [renderer](@@renderer@@) added
 		 */
 		setRenderer: function(renderer) {
-			if(!renderer) return;
+			if (!renderer) return;
 
 			this.renderer = renderer;
 			this.renderer.onAdded(this);
@@ -418,7 +418,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 * and **onRecycled** callbacks.
 		 */
 		removeRenderer: function() {
-			if(!this.renderer) return;
+			if (!this.renderer) return;
 
 			this.renderer.onRemoved(this);
 			this.renderer.onRecycled();
@@ -489,7 +489,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 					this.removeComponent(toRemove[i]);
 				}
 			} else {
-				for (var i=this.components.length-1; i>=0; i--) {
+				for (var i = this.components.length - 1; i >= 0; i--) {
 					this.removeComponent(this.components[i]);
 				}
 			}
@@ -547,7 +547,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			}
 
 			if (m.alpha > 0) {
-				if(this.renderer && this.renderer.isEnabled()) {
+				if (this.renderer && this.renderer.isEnabled()) {
 					this.renderer.draw(context, viewport);
 				}
 			}
@@ -609,8 +609,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			if (!skipEvent) {
 				if (this.canDraw) {
 					this.execute(this.SHOW, this);
-				}
-				else {
+				} else {
 					this.execute(this.HIDE, this);
 				}
 			}
@@ -628,7 +627,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 */
 		stop: function(skipEvent) {
 			this.canUpdate = false;
-			
+
 			if (!skipEvent) {
 				this.execute(this.STOP, this);
 			}
@@ -679,7 +678,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 *
 		 */
 		addToViewportList: function(viewportName, layerName) {
-			var v = { viewport: viewportName, layer: layerName }
+			var v = {
+				viewport: viewportName,
+				layer: layerName
+			}
 			this.viewports.push(v);
 			this.execute(this.ADD_TO_VIEWPORT, [v]);
 		},
@@ -697,7 +699,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 *
 		 */
 		removeFromViewportList: function(viewportName, layerName) {
-			for (var i = this.viewports.length-1; i >= 0; i--) {
+			for (var i = this.viewports.length - 1; i >= 0; i--) {
 				var v = this.viewports[i];
 
 				if (v.viewport === viewportName && v.layer === layerName) {
@@ -886,7 +888,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			if (m) {
 				m.identity();
 			} else {
-				m = new Matrix().identity();
+				m = new Matrix()
+					.identity();
 			}
 
 			var go = this;
@@ -948,7 +951,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			if (m) {
 				m.identity();
 			} else {
-				m = new Matrix().identity();
+				m = new Matrix()
+					.identity();
 			}
 
 			var go = this;
@@ -971,20 +975,21 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>localToGlobal</strong></p>
 		 *
 		 * Convert a point from the game object's local coordinate space to the root global coordinate space
 		 *
 		 * @param {[matrix-3x3](@@matrix-3x3@@)} m matrix object to work with.
-		 * @param  {NUmber} x The local x coordinate to transform to global space
-		 * @param  {NUmber} y The local y coordinate to transform to global space
-		 * @param  {Object} pt On object into which to put the result of this operation.
+		 * @param {NUmber} x The local x coordinate to transform to global space
+		 * @param {NUmber} y The local y coordinate to transform to global space
+		 * @param {Object} pt On object into which to put the result of this operation.
 		 * @return {Object} An object with the result of the transformation
 		 */
 		localToGlobal: function(m, x, y, pt) {
-			return this.concatenateMatrix(m).transformPoint(x, y, pt || {});
+			return this.concatenateMatrix(m)
+				.transformPoint(x, y, pt || {});
 		},
 		/**
 		 * --------------------------------
@@ -996,13 +1001,15 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 * Convert a point from root global coordinate space to the local coordinate space of this game object
 		 *
 		 * @param {[matrix-3x3](@@matrix-3x3@@)} m matrix object to work with.
-		 * @param  {NUmber} x The global x coordinate to transform to local space
-		 * @param  {NUmber} y The global y coordinate to transform to local space
-		 * @param  {Object} pt On object into which to put the result of this operation.
+		 * @param {NUmber} x The global x coordinate to transform to local space
+		 * @param {NUmber} y The global y coordinate to transform to local space
+		 * @param {Object} pt On object into which to put the result of this operation.
 		 * @return {Object} An object with the result of the transformation
 		 */
 		globalToLocal: function(m, x, y, pt) {
-			return this.concatenateMatrix(m).invert().transformPoint(x, y, pt || {});
+			return this.concatenateMatrix(m)
+				.invert()
+				.transformPoint(x, y, pt || {});
 		},
 		/**
 		 * --------------------------------
@@ -1159,7 +1166,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 * @param {Object} gb A reference to the [gb](@@gb@@) module
 		 */
 		debug_draw: function(context, viewport, draw, gb) {
-			if(!gb.gameObjectDebug) return;
+			if (!gb.gameObjectDebug) return;
 
 			this.decomposed = this.matrix.decompose(this.decomposed);
 
@@ -1174,21 +1181,73 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 		 */
 	});
 
-	Object.defineProperty(GameObject.prototype, "X", { get: function() { return this.x + this.viewportOffsetX; } });
-	Object.defineProperty(GameObject.prototype, "Y", { get: function() { return this.y + this.viewportOffsetY; } });
+	Object.defineProperty(GameObject.prototype, "X", {
+		get: function() {
+			return this.x + this.viewportOffsetX;
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "Y", {
+		get: function() {
+			return this.y + this.viewportOffsetY;
+		}
+	});
 
-	Object.defineProperty(GameObject.prototype, "START", { get: function() { return 'start'; } });
-	Object.defineProperty(GameObject.prototype, "RECYCLE", { get: function() { return 'recycle'; } });
-	Object.defineProperty(GameObject.prototype, "CLEAR", { get: function() { return 'clear'; } });
-	Object.defineProperty(GameObject.prototype, "ADD", { get: function() { return 'added'; } });
-	Object.defineProperty(GameObject.prototype, "REMOVE", { get: function() { return 'removed'; } });
-	Object.defineProperty(GameObject.prototype, "ADD_TO_VIEWPORT", { get: function() { return 'added_to_viewport'; } });
-	Object.defineProperty(GameObject.prototype, "REMOVE_FROM_VIEWPORT", { get: function() { return 'removed_from_viewport'; } });
+	Object.defineProperty(GameObject.prototype, "START", {
+		get: function() {
+			return 'start';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "RECYCLE", {
+		get: function() {
+			return 'recycle';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "CLEAR", {
+		get: function() {
+			return 'clear';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "ADD", {
+		get: function() {
+			return 'added';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "REMOVE", {
+		get: function() {
+			return 'removed';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "ADD_TO_VIEWPORT", {
+		get: function() {
+			return 'added_to_viewport';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "REMOVE_FROM_VIEWPORT", {
+		get: function() {
+			return 'removed_from_viewport';
+		}
+	});
 
-	Object.defineProperty(GameObject.prototype, "HIDE", { get: function() { return 'hide'; } });
-	Object.defineProperty(GameObject.prototype, "SHOW", { get: function() { return 'show'; } });
-	Object.defineProperty(GameObject.prototype, "STOP", { get: function() { return 'stop'; } });
-	Object.defineProperty(GameObject.prototype, "RUN", { get: function() { return 'run'; } });
+	Object.defineProperty(GameObject.prototype, "HIDE", {
+		get: function() {
+			return 'hide';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "SHOW", {
+		get: function() {
+			return 'show';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "STOP", {
+		get: function() {
+			return 'stop';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "RUN", {
+		get: function() {
+			return 'run';
+		}
+	});
 
 	return GameObject;
 });

@@ -52,7 +52,7 @@ define(["component", "vector-2D", "error-printer", "rgb-canvas-cache"], function
 			this.reset();
 
 			this.workVector = new Vector2D();
-			
+
 			this.tmpCanvas = canvas;
 			this.tmpContext = context;
 			this.rgbCanvasCache = RgbCanvasCache;
@@ -60,7 +60,7 @@ define(["component", "vector-2D", "error-printer", "rgb-canvas-cache"], function
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>reset</strong></p>
 		 *
@@ -98,7 +98,7 @@ define(["component", "vector-2D", "error-printer", "rgb-canvas-cache"], function
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>tint</strong></p>
 		 *
@@ -117,7 +117,7 @@ define(["component", "vector-2D", "error-printer", "rgb-canvas-cache"], function
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>disableTint</strong></p>
 		 *
@@ -129,7 +129,7 @@ define(["component", "vector-2D", "error-printer", "rgb-canvas-cache"], function
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>tintImage</strong></p>
 		 *
@@ -145,51 +145,51 @@ define(["component", "vector-2D", "error-printer", "rgb-canvas-cache"], function
 		tintImage: function(id, source) {
 			this.rgbCanvasCache.cache(id, source);
 
-			var channels = this.rgbCanvasCache.get(id);		
+			var channels = this.rgbCanvasCache.get(id);
 			var canvas = this.tmpCanvas;
 			var context = this.tmpContext;
 
-	        canvas.width  = source.width;
-	        canvas.height = source.height;
+			canvas.width = source.width;
+			canvas.height = source.height;
 
-	        context.globalAlpha = 1;
-	        context.globalCompositeOperation = 'copy';
-	        context.drawImage(channels[3], 0, 0);
+			context.globalAlpha = 1;
+			context.globalCompositeOperation = 'copy';
+			context.drawImage(channels[3], 0, 0);
 
-	        context.globalCompositeOperation = 'lighter';
+			context.globalCompositeOperation = 'lighter';
 
-	        if (this.tintRed > 0) {
-	            context.globalAlpha = this.tintRed / 255;
-	            context.drawImage(channels[0], 0, 0);
-	        }
+			if (this.tintRed > 0) {
+				context.globalAlpha = this.tintRed / 255;
+				context.drawImage(channels[0], 0, 0);
+			}
 
-	        if (this.tintGreen > 0) {
-	            context.globalAlpha = this.tintGreen / 255;
-	            context.drawImage(channels[1], 0, 0);
-	        }
+			if (this.tintGreen > 0) {
+				context.globalAlpha = this.tintGreen / 255;
+				context.drawImage(channels[1], 0, 0);
+			}
 
-	        if (this.tintBlue > 0) {
-	            context.globalAlpha = this.tintBlue / 255;
-	            context.drawImage(channels[2], 0, 0);
-	        }
-    
+			if (this.tintBlue > 0) {
+				context.globalAlpha = this.tintBlue / 255;
+				context.drawImage(channels[2], 0, 0);
+			}
+
 			return canvas;
 		},
 		/**
 		 * --------------------------------
 		 */
-		
-		 /**
+
+		/**
 		 * <p style='color:#AD071D'><strong>rendererWidth</strong></p>
 		 *
 		 * @return {Number} The width of the renderer
 		 */
-		rendererWidth: function() { 
+		rendererWidth: function() {
 			if (!this.width) {
 				ErrorPrinter.missingArgumentError('Renderer', 'width');
 			}
 
-			return this.width; 
+			return this.width;
 		},
 		/**
 		 * --------------------------------
@@ -200,12 +200,12 @@ define(["component", "vector-2D", "error-printer", "rgb-canvas-cache"], function
 		 *
 		 * @return {Number} The height of the renderer
 		 */
-		rendererHeight: function() { 
+		rendererHeight: function() {
 			if (!this.height) {
 				ErrorPrinter.missingArgumentError('Renderer', 'height');
 			}
 
-			return this.height; 
+			return this.height;
 		},
 		/**
 		 * --------------------------------
@@ -216,8 +216,8 @@ define(["component", "vector-2D", "error-printer", "rgb-canvas-cache"], function
 		 *
 		 * @return {Number} The offset in the X axis of the renderer
 		 */
-		rendererOffsetX: function() { 
-			return this.offsetX; 
+		rendererOffsetX: function() {
+			return this.offsetX;
 		},
 		/**
 		 * --------------------------------
@@ -228,8 +228,8 @@ define(["component", "vector-2D", "error-printer", "rgb-canvas-cache"], function
 		 *
 		 * @return {Number} The offset in the Y axis of the renderer
 		 */
-		rendererOffsetY: function() { 
-			return this.offsetY; 
+		rendererOffsetY: function() {
+			return this.offsetY;
 		},
 		/**
 		 * --------------------------------
@@ -282,7 +282,7 @@ define(["component", "vector-2D", "error-printer", "rgb-canvas-cache"], function
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 		 *
@@ -299,7 +299,7 @@ define(["component", "vector-2D", "error-printer", "rgb-canvas-cache"], function
 
 			context.save();
 			context.beginPath();
-			
+
 			context.strokeStyle = this.debugColor;
 			context.lineWidth = 1;
 
@@ -308,19 +308,19 @@ define(["component", "vector-2D", "error-printer", "rgb-canvas-cache"], function
 			var m = this.parent.getMatrix();
 
 			// Top Left 
-			this.workVector = m.transformPoint(this.rendererLeft(), this.rendererTop(), this.workVector); 
+			this.workVector = m.transformPoint(this.rendererLeft(), this.rendererTop(), this.workVector);
 			context.moveTo(Math.round(this.workVector.x), Math.round(this.workVector.y));
 
 			// Top Right
-			this.workVector = m.transformPoint(this.rendererRight(), this.rendererTop(), this.workVector); 
+			this.workVector = m.transformPoint(this.rendererRight(), this.rendererTop(), this.workVector);
 			context.lineTo(Math.round(this.workVector.x), Math.round(this.workVector.y));
 
 			// Bottom Right
-			this.workVector = m.transformPoint(this.rendererRight(), this.rendererBottom(), this.workVector); 
+			this.workVector = m.transformPoint(this.rendererRight(), this.rendererBottom(), this.workVector);
 			context.lineTo(Math.round(this.workVector.x), Math.round(this.workVector.y));
 
 			// Bottom Left
-			this.workVector = m.transformPoint(this.rendererLeft(), this.rendererBottom(), this.workVector); 
+			this.workVector = m.transformPoint(this.rendererLeft(), this.rendererBottom(), this.workVector);
 			context.lineTo(Math.round(this.workVector.x), Math.round(this.workVector.y));
 
 			context.closePath();

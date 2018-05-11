@@ -84,16 +84,16 @@ define(["delegate", "util"], function(Delegate, Util) {
 		},
 
 		/**
-		* <p style='color:#AD071D'><strong>configure</strong></p>
-		*
-		* Configures properties
-		* set via the <a href=@@component-pool@@>component-pool</a>
-		*
-		* This method is important as it applies all the configuration needed for
-		* the component to work as expected.
-		*
-		* @param {Object} args An object with all the properties to write into the component
-		*/
+		 * <p style='color:#AD071D'><strong>configure</strong></p>
+		 *
+		 * Configures properties
+		 * set via the <a href=@@component-pool@@>component-pool</a>
+		 *
+		 * This method is important as it applies all the configuration needed for
+		 * the component to work as expected.
+		 *
+		 * @param {Object} args An object with all the properties to write into the component
+		 */
 		configure: function(args) {
 			if (!args) return;
 
@@ -121,79 +121,79 @@ define(["delegate", "util"], function(Delegate, Util) {
 			this.args = args;
 		},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>reset</strong></p>
-		*
-		* Not so interesting method, it just resets some properties right
-		* before the [assembler](@@assembler@@) module starts putting together
-		* a component.
-		*/
+		 * <p style='color:#AD071D'><strong>reset</strong></p>
+		 *
+		 * Not so interesting method, it just resets some properties right
+		 * before the [assembler](@@assembler@@) module starts putting together
+		 * a component.
+		 */
 		reset: function() {
 			this.uid = null;
 			this.parent = null;
 			this.enabled = true;
 		},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>onStarted</strong></p>
-		*
-		* This is called once when the parent [game-object](@@game-object@@) is started or when the component is added
-		* dynamically to a [game-object](@@game-object@@)
-		*
-		* @param {Object} parent [game-object](@@game-object@@) using this component
-		*/
+		 * <p style='color:#AD071D'><strong>onStarted</strong></p>
+		 *
+		 * This is called once when the parent [game-object](@@game-object@@) is started or when the component is added
+		 * dynamically to a [game-object](@@game-object@@)
+		 *
+		 * @param {Object} parent [game-object](@@game-object@@) using this component
+		 */
 		onStarted: function(parent) {
 			this.start(parent);
 			this.execute(this.START, this);
 		},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>onAdded</strong></p>
-		*
-		* This is called by the parent [game-object](@@game-object@@) when it
-		* adds this component to it's list.
-		*
-		* @param {Object} parent [game-object](@@game-object@@) using this component
-		*/
+		 * <p style='color:#AD071D'><strong>onAdded</strong></p>
+		 *
+		 * This is called by the parent [game-object](@@game-object@@) when it
+		 * adds this component to it's list.
+		 *
+		 * @param {Object} parent [game-object](@@game-object@@) using this component
+		 */
 		onAdded: function(parent) {
 			this.parent = parent;
 			this.added(parent);
 			this.execute(this.ADD, this);
 		},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>onRemoved</strong></p>
-		*
-		* This is called by the parent [game-object](@@game-object@@) when it
-		* removes this component to it's list.
-		*/
+		 * <p style='color:#AD071D'><strong>onRemoved</strong></p>
+		 *
+		 * This is called by the parent [game-object](@@game-object@@) when it
+		 * removes this component to it's list.
+		 */
 		onRemoved: function(parent) {
 			this.removed(parent);
 			this.execute(this.REMOVE, this);
 			this.parent = null;
 		},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>onRecycled</strong></p>
-		*
-		* This is called by the parent [game-object](@@game-object@@) when it
-		* is destroying itself.
-		*/
+		 * <p style='color:#AD071D'><strong>onRecycled</strong></p>
+		 *
+		 * This is called by the parent [game-object](@@game-object@@) when it
+		 * is destroying itself.
+		 */
 		onRecycled: function(parent) {
 			this.enabled = false;
 
@@ -203,129 +203,145 @@ define(["delegate", "util"], function(Delegate, Util) {
 			this.hardCleanUp();
 		},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>added</strong></p>
-		*
-		* Much like **onAdded**, but this method is only meant to be overriden
-		* with out having to remember calling **_super**
-		*
-		* @param {Object} parent [game-object](@@game-object@@) using this component
-		*/
+		 * <p style='color:#AD071D'><strong>added</strong></p>
+		 *
+		 * Much like **onAdded**, but this method is only meant to be overriden
+		 * with out having to remember calling **_super**
+		 *
+		 * @param {Object} parent [game-object](@@game-object@@) using this component
+		 */
 		added: function(parent) {},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>removed</strong></p>
-		*
-		* Much like **onRemoved**, but this method is only meant to be overriden
-		* with out having to remember calling **_super**
-		*
-		* @param {Object} parent [game-object](@@game-object@@) using this component
-		*/
+		 * <p style='color:#AD071D'><strong>removed</strong></p>
+		 *
+		 * Much like **onRemoved**, but this method is only meant to be overriden
+		 * with out having to remember calling **_super**
+		 *
+		 * @param {Object} parent [game-object](@@game-object@@) using this component
+		 */
 		removed: function(parent) {},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>start</strong></p>
-		*
-		* Called by the parent [game-object](@@game-object@@) when
-		* it is started
-		*
-		* @param {Object} parent [game-object](@@game-object@@) using this component
-		*/
+		 * <p style='color:#AD071D'><strong>start</strong></p>
+		 *
+		 * Called by the parent [game-object](@@game-object@@) when
+		 * it is started
+		 *
+		 * @param {Object} parent [game-object](@@game-object@@) using this component
+		 */
 		start: function(parent) {},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>update</strong></p>
-		*
-		* Called by the parent [game-object](@@game-object@@)
-		* after updating itself.
-		*
-		* @param {Number} delta Time elapsed since last update cycle
-		*/
+		 * <p style='color:#AD071D'><strong>update</strong></p>
+		 *
+		 * Called by the parent [game-object](@@game-object@@)
+		 * after updating itself.
+		 *
+		 * @param {Number} delta Time elapsed since last update cycle
+		 */
 		update: function(delta) {},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>recycle</strong></p>
-		*
-		* Called by the parent [game-object](@@game-object@@)
-		* when it is sent back to it's pool for reuse.
-		*
-		* @param {Object} parent [game-object](@@game-object@@) using this component
-		*/
+		 * <p style='color:#AD071D'><strong>recycle</strong></p>
+		 *
+		 * Called by the parent [game-object](@@game-object@@)
+		 * when it is sent back to it's pool for reuse.
+		 *
+		 * @param {Object} parent [game-object](@@game-object@@) using this component
+		 */
 		recycle: function(parent) {},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>enable</strong></p>
-		*
-		* An enabled component will execute it's update logic
-		*/
+		 * <p style='color:#AD071D'><strong>enable</strong></p>
+		 *
+		 * An enabled component will execute it's update logic
+		 */
 		enable: function() {
 			this.enabled = true;
 		},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>disable</strong></p>
-		*
-		* A disabled component will not execute it's update logic
-		*/
+		 * <p style='color:#AD071D'><strong>disable</strong></p>
+		 *
+		 * A disabled component will not execute it's update logic
+		 */
 		disable: function() {
 			this.enabled = false;
 		},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>isEnabled</strong></p>
-		*
-		* Whether the components is enabled or not
-		*
-		* @return {Boolean}
-		*/
+		 * <p style='color:#AD071D'><strong>isEnabled</strong></p>
+		 *
+		 * Whether the components is enabled or not
+		 *
+		 * @return {Boolean}
+		 */
 		isEnabled: function() {
 			return this.enabled;
 		},
 
 		/**
-		* <p style='color:#AD071D'><strong>debug_draw</strong></p>
-		*
-		* This method is only executed if the **debug** property in [gb](@@gb@@)
-		* is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
-		*
-		* @param {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		* @param {Object} viewport A reference to the current [viewport](@@viewport@@)
-		* @param {Object} draw A reference to the [draw](@@draw@@) module
-		*/
+		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
+		 *
+		 * This method is only executed if the **debug** property in [gb](@@gb@@)
+		 * is set to true. It is better to leave the drawing to the [renderer](@@renderer@@) components.
+		 *
+		 * @param {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+		 * @param {Object} viewport A reference to the current [viewport](@@viewport@@)
+		 * @param {Object} draw A reference to the [draw](@@draw@@) module
+		 */
 		debug_draw: function(context, viewport, draw) {}
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 	});
 
-	Object.defineProperty(Component.prototype, "START", { get: function() { return 'started'; } });
-	Object.defineProperty(Component.prototype, "ADD", { get: function() { return 'added'; } });
-	Object.defineProperty(Component.prototype, "REMOVE", { get: function() { return 'removed'; } });
-	Object.defineProperty(Component.prototype, "RECYCLE", { get: function() { return 'recycled'; } });
+	Object.defineProperty(Component.prototype, "START", {
+		get: function() {
+			return 'started';
+		}
+	});
+	Object.defineProperty(Component.prototype, "ADD", {
+		get: function() {
+			return 'added';
+		}
+	});
+	Object.defineProperty(Component.prototype, "REMOVE", {
+		get: function() {
+			return 'removed';
+		}
+	});
+	Object.defineProperty(Component.prototype, "RECYCLE", {
+		get: function() {
+			return 'recycled';
+		}
+	});
 
 	return Component;
 });

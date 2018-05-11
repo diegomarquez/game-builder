@@ -6,7 +6,7 @@
  * Inherits from:
  * [delegate](@@delegate@@)
  *
- * Depends of: 
+ * Depends of:
  * [viewport](@@viewport@@)
  * [error-printer](@@error-printer@@)
  * [util](@@util@@)
@@ -17,47 +17,47 @@
  *
  * This module extends [delegate](@@delegate@@) so it provides a few events to hook into:
  *
- * ### **ADD** 
+ * ### **ADD**
  * When a [viewport](@@viewport@@) is added
- * 
- * Registered callbacks get the [viewports](@@viewports@@) as argument 
- * ``` javascript  
+ *
+ * Registered callbacks get the [viewports](@@viewports@@) as argument
+ * ``` javascript
  * gb.viewports.on(gb.viewports.ADD, function(viewports) {});
- * ``` 
+ * ```
  *
  * </br>
  *
- * ### **REMOVE** 
- * When a [viewport](@@viewport@@) is removed 
- * 
- * Registered callbacks get the [viewport](@@viewport@@) as argument 
- * ``` javascript  
+ * ### **REMOVE**
+ * When a [viewport](@@viewport@@) is removed
+ *
+ * Registered callbacks get the [viewport](@@viewport@@) as argument
+ * ``` javascript
  * gb.viewports.on(gb.viewports.REMOVE, function(viewport) {});
- * ``` 
+ * ```
  *
  * </br>
  *
- * ### **CHANGE** 
+ * ### **CHANGE**
  * When a [viewport](@@viewport@@) changes position
  *
- * Registered callbacks get the [viewport](@@viewport@@) as argument 
- * ``` javascript  
+ * Registered callbacks get the [viewport](@@viewport@@) as argument
+ * ``` javascript
  * gb.viewports.on(gb.viewports.CHANGE, function(viewport) {});
- * ``` 
+ * ```
  *
  * </br>
  *
- * ### **MOVE** 
+ * ### **MOVE**
  * When all the [viewport](@@viewport@@) is moved
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gb.viewports.on(gb.viewports.MOVE, function() {});
- * ``` 
+ * ```
  *
  * </br>
  *
  * <strong>Note: The snippet uses the reference to <a href=@@viewports@@>viewports</a>
- * found in the <a href=@@gb@@>gb</a> module. 
+ * found in the <a href=@@gb@@>gb</a> module.
  * The way you get a hold to a reference to <a href=@@viewports@@>viewports</a>
  * may vary.</strong>
  */
@@ -74,9 +74,9 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 
 	var viewports = {};
 	var viewportsArray = [];
-	
+
 	var ViewportContainer = Delegate.extend({
-		init: function () {
+		init: function() {
 			this._super();
 		},
 
@@ -84,66 +84,65 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		 * <p style='color:#AD071D'><strong>add</strong></p>
 		 *
 		 * Creates a new [viewport](@@viewport@@) and adds it to the container.
-		 * 
-		 * @param {String} name    Id of the new [viewport](@@viewport@@)
-		 * @param {Number} width   Width of the new [viewport](@@viewport@@)
-		 * @param {Number} height  Height of the new [viewport](@@viewport@@)
+		 *
+		 * @param {String} name Id of the new [viewport](@@viewport@@)
+		 * @param {Number} width Width of the new [viewport](@@viewport@@)
+		 * @param {Number} height Height of the new [viewport](@@viewport@@)
 		 * @param {Number} [offsetX=0] X offset relative to the top corner of the screen
 		 * @param {Number} [offsetY=0] Y offset relative to the top corner of the screen
 		 * @param {Number} [scaleX=1] X scale of the [viewport](@@viewport@@)
 		 * @param {Number} [scaleY=1] Y scale of the [viewport](@@viewport@@)
 		 * @param {Array} [layers=null] Y An array of strings with the names of [layer](@@layer@@) objects to add on the created [viewport](@@viewport@@)
 		 * @param {Number} [strokeColor=null] Color of the stroke around the [viewports](@@viewports@@)
-		 * @param {Number} [strokeWidth=null] Width of the stroke around the [viewport](@@viewport@@)		 
+		 * @param {Number} [strokeWidth=null] Width of the stroke around the [viewport](@@viewport@@)
 		 * @param {Boolean} [worldfit=false] Whether [viewport](@@viewport@@) should scale to fit the [world](@@world@@) size
 		 * @param {Boolean} [culling=true] Whether the viewport should perform culling when [game-objects](@@game-object@@) are drawn to it
 		 * @param {Boolean} [clipping=true] Whether the viewport should clip drawings that fall outside of it's viewing area
 		 *
 		 * @return {Object} The newly created [viewport](@@viewport@@). If it already exists, the existing one is returned
 		 */
-		add: function (name, width, height, offsetX, offsetY, scaleX, scaleY, layers, strokeColor, strokeWidth, worldFit, culling, clipping) {		
+		add: function(name, width, height, offsetX, offsetY, scaleX, scaleY, layers, strokeColor, strokeWidth, worldFit, culling, clipping) {
 			if (!viewports[name]) {
 				var v = create.apply(this, arguments);
 
 				viewports[name] = v;
 				viewportsArray.push(v);
-				
+
 				this.execute(this.ADD, v);
 
 				return v;
-			} 
+			}
 
 			return viewports[name];
 		},
 		/**
 		 * --------------------------------
 		 */
-		
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>addFromObject</strong></p>
 		 *
 		 * Creates a new [viewport](@@viewport@@) and adds it to the container.
-		 * 
+		 *
 		 * @param {Object} viewport An object with all the properties needed to create a [viewport](@@viewport@@)
 		 *
 		 * @return {Object} The newly created [viewport](@@viewport@@). If it already exists, the existing one is returned
 		 */
-		addFromObject: function (viewport) {
+		addFromObject: function(viewport) {
 			var name = viewport.name;
 
 			if (!viewports[name]) {
 				var v = create(
-					name, 
-					viewport.width, 
-					viewport.height, 
-					viewport.offsetX, 
-					viewport.offsetY, 
-					viewport.scaleX, 
-					viewport.scaleY, 
+					name,
+					viewport.width,
+					viewport.height,
+					viewport.offsetX,
+					viewport.offsetY,
+					viewport.scaleX,
+					viewport.scaleY,
 					viewport.layers,
-					viewport.stroke.color, 
-					viewport.stroke.width, 
+					viewport.stroke.color,
+					viewport.stroke.width,
 					viewport.worldFit,
 					viewport.culling,
 					viewport.clipping
@@ -153,7 +152,7 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 				viewportsArray.push(v);
 
 				this.execute(this.ADD, v);
-				
+
 				return v;
 			}
 
@@ -162,15 +161,15 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>remove</strong></p>
 		 *
 		 * Removes the specified [viewport](@@viewport@@)
-		 * 
-		 * @param {String} name    Id of the [viewport](@@viewport@@) to remove
+		 *
+		 * @param {String} name Id of the [viewport](@@viewport@@) to remove
 		 */
-		remove: function (name) {
+		remove: function(name) {
 			if (!viewports[name]) {
 				ErrorPrinter.printError('Viewports', 'Viewport with id:' + name + ' does not exist.');
 			}
@@ -178,19 +177,19 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 			var v = viewports[name];
 
 			viewportsArray.splice(viewportsArray.indexOf(v), 1);
-			
+
 			viewports[name] = null;
 			delete viewports[name];
-		
+
 			this.execute(this.REMOVE, v);
-			
+
 			v.destroy();
 		},
 		/**
 		 * --------------------------------
 		 */
-		
-		 /**
+
+		/**
 		 * <p style='color:#AD071D'><strong>change</strong></p>
 		 *
 		 * Change the position of the specified viewport
@@ -198,19 +197,19 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		 * @param {String} [name] Name [viewport](@@viewport@@) to change
 		 * @param {Number} [index] New index
 		 */
-		change: function (name, index) {
-	      var viewport = viewports[name];
-	      var viewportIndex = viewportsArray.indexOf(viewport);
+		change: function(name, index) {
+			var viewport = viewports[name];
+			var viewportIndex = viewportsArray.indexOf(viewport);
 
-	      viewportsArray.splice(viewportIndex, 1);
-	      viewportsArray.splice(index, 0, viewport);
+			viewportsArray.splice(viewportIndex, 1);
+			viewportsArray.splice(index, 0, viewport);
 
-	      this.execute(this.CHANGE, viewport);
+			this.execute(this.CHANGE, viewport);
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>after</strong></p>
 		 *
@@ -220,13 +219,13 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		 * @param {String} [name] Name [viewport](@@viewport@@) to change
 		 * @param {String} [other] Name [viewport](@@viewport@@) which should come before to the one in the first argument
 		 */
-		after: function (name, other) {
+		after: function(name, other) {
 			move.call(this, 'after', name, other);
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>before</strong></p>
 		 *
@@ -236,19 +235,19 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		 * @param {String} [name] Name [viewport](@@viewport@@) to change
 		 * @param {String} [other] Name [viewport](@@viewport@@) which should come after to the one in the first argument
 		 */
-		before: function (name, other) {
-	    move.call(this, 'before', name, other);
+		before: function(name, other) {
+			move.call(this, 'before', name, other);
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>removeAll</strong></p>
 		 *
 		 * Destroys all the [viewports](@@viewport@@)
 		 */
-		removeAll: function () {
+		removeAll: function() {
 			for (var i = viewportsArray.length - 1; i >= 0; i--) {
 				this.remove(viewportsArray[i].name);
 			}
@@ -261,12 +260,12 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		 * <p style='color:#AD071D'><strong>show</strong></p>
 		 *
 		 * Makes the specified [viewport](@@viewport@@) visible
-		 * 
-		 * @param  {String} name Id of the [viewport](@@viewport@@) to make visible
+		 *
+		 * @param {String} name Id of the [viewport](@@viewport@@) to make visible
 		 *
 		 * @throws {Error} If the id specified does not exist
 		 */
-		show: function (name) {
+		show: function(name) {
 			if (!viewports[name]) {
 				ErrorPrinter.printError('Viewports', 'Viewport with id:' + name + ' does not exist.');
 			}
@@ -281,12 +280,12 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		 * <p style='color:#AD071D'><strong>hide</strong></p>
 		 *
 		 * Makes the specified [viewport](@@viewport@@) invisible
-		 * 
-		 * @param  {String} name Id of the [viewport](@@viewport@@) to make invisible
+		 *
+		 * @param {String} name Id of the [viewport](@@viewport@@) to make invisible
 		 *
 		 * @throws {Error} If the id specified does not exist
 		 */
-		hide: function (name) { 
+		hide: function(name) {
 			if (!viewports[name]) {
 				ErrorPrinter.printError('Viewports', 'Viewport with id:' + name + ' does not exist.');
 			}
@@ -296,51 +295,51 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>get</strong></p>
-		 * 
+		 *
 		 * Get a reference to the specified [viewport](@@viewport@@)
-		 * 
-		 * @param  {String} name Id of the [viewport](@@viewport@@) to get
+		 *
+		 * @param {String} name Id of the [viewport](@@viewport@@) to get
 		 *
 		 * @throws {Error} If the id specified does not exist
 		 */
-		get: function (name) { 
+		get: function(name) {
 			if (!viewports[name]) {
 				ErrorPrinter.printError('Viewports', 'Viewport with id:' + name + ' does not exist.');
 			}
 
-			return viewports[name]; 
+			return viewports[name];
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>exists</strong></p>
-		 * 
-		 * @param  {String} name Id of the [viewport](@@viewport@@) to check
+		 *
+		 * @param {String} name Id of the [viewport](@@viewport@@) to check
 		 *
 		 * @throws {Boolean} Whether the [viewport](@@viewport@@) exists or not
 		 */
-		exists: function (name) { 
-			return viewports[name]; 
+		exists: function(name) {
+			return viewports[name];
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>iterate</strong></p>
 		 *
 		 * Iterate through all the viewports executing the callback function with each [viewport](@@viewport@@) as argument
-		 * 
-		 * @param  {Function} method The method to execute for each [viewport](@@viewport@@)
+		 *
+		 * @param {Function} method The method to execute for each [viewport](@@viewport@@)
 		 */
 		iterate: function(scope, method) {
 			for (var i = 0; i < viewportsArray.length; i++) {
-				method.call(scope, viewportsArray[i]); 
+				method.call(scope, viewportsArray[i]);
 			}
 		},
 		/**
@@ -354,13 +353,13 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		 *
 		 * @return {Object} An object with all the [viewport](@@viewport@@) objects
 		 */
-		all: function () { 
-			return viewports; 
+		all: function() {
+			return viewports;
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>allAsArray</strong></p>
 		 *
@@ -368,22 +367,28 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		 *
 		 * @return {Array} An array with all the [viewport](@@viewport@@) objects
 		 */
-		allAsArray: function () { 
-			return viewportsArray; 
+		allAsArray: function() {
+			return viewportsArray;
 		}
 		/**
 		 * --------------------------------
 		 */
 	});
 
-	var create = function (name, width, height, offsetX, offsetY, scaleX, scaleY, layers, strokeColor, strokeWidth, worldFit, culling, clipping) {
+	var create = function(name, width, height, offsetX, offsetY, scaleX, scaleY, layers, strokeColor, strokeWidth, worldFit, culling, clipping) {
 		var v = new Viewport(name, width, height, offsetX, offsetY, scaleX, scaleY);
 
 		v.setStroke(strokeWidth, strokeColor);
 
-		if (Util.isBoolean(worldFit)) { v.WorldFit = worldFit; }
-		if (Util.isBoolean(culling)) { v.Culling = culling; }
-		if (Util.isBoolean(clipping)) { v.Clipping = clipping; }
+		if (Util.isBoolean(worldFit)) {
+			v.WorldFit = worldFit;
+		}
+		if (Util.isBoolean(culling)) {
+			v.Culling = culling;
+		}
+		if (Util.isBoolean(clipping)) {
+			v.Clipping = clipping;
+		}
 
 		if (layers) {
 			for (var i = 0; i < layers.length; i++) {
@@ -402,7 +407,7 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		if (!viewports[pivot]) {
 			ErrorPrinter.printError('Viewports', 'Viewport with id:' + pivot + ' does not exist.');
 		}
-       
+
 		var current = viewports[current];
 		var pivot = viewports[pivot];
 
@@ -422,10 +427,26 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		this.execute(this.MOVE, current);
 	}
 
-	Object.defineProperty(ViewportContainer.prototype, "ADD", { get: function() { return 'add'; } });
-	Object.defineProperty(ViewportContainer.prototype, "REMOVE", { get: function() { return 'remove'; } });
-	Object.defineProperty(ViewportContainer.prototype, "CHANGE", { get: function() { return 'change'; } });
-	Object.defineProperty(ViewportContainer.prototype, "MOVE", { get: function() { return 'move'; } });
+	Object.defineProperty(ViewportContainer.prototype, "ADD", {
+		get: function() {
+			return 'add';
+		}
+	});
+	Object.defineProperty(ViewportContainer.prototype, "REMOVE", {
+		get: function() {
+			return 'remove';
+		}
+	});
+	Object.defineProperty(ViewportContainer.prototype, "CHANGE", {
+		get: function() {
+			return 'change';
+		}
+	});
+	Object.defineProperty(ViewportContainer.prototype, "MOVE", {
+		get: function() {
+			return 'move';
+		}
+	});
 
 	return new ViewportContainer();
 });

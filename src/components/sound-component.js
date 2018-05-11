@@ -28,10 +28,10 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 
 	var SoundComponent = Component.extend({
 		/**
-		* <p style='color:#AD071D'><strong>init</strong></p>
-		*
-		* Constructor
-		*/
+		 * <p style='color:#AD071D'><strong>init</strong></p>
+		 *
+		 * Constructor
+		 */
 		init: function() {
 			this._super();
 
@@ -40,7 +40,7 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 			this.playMode = "";
 			this.stopParentEvent = "";
 			this.executeOnce = false;
-			
+
 			this.offScreenPlay = true;
 			this.offScreenViewport = "Main";
 
@@ -51,14 +51,14 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 			this.reset();
 		},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>reset</strong></p>
-		*
-		* Reset for re-use
-		*/
+		 * <p style='color:#AD071D'><strong>reset</strong></p>
+		 *
+		 * Reset for re-use
+		 */
 		reset: function() {
 			this._super();
 
@@ -73,17 +73,17 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 			this.offScreenViewport = "Main";
 		},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>start</strong></p>
-		*
-		* Called by the parent [game-object](@@game-object@@) when
-		* it is started
-		*
-		* @param {Object} parent [game-object](@@game-object@@) using this component
-		*/
+		 * <p style='color:#AD071D'><strong>start</strong></p>
+		 *
+		 * Called by the parent [game-object](@@game-object@@) when
+		 * it is started
+		 *
+		 * @param {Object} parent [game-object](@@game-object@@) using this component
+		 */
 		start: function(parent) {
 			if (!this.soundId) {
 				ErrorPrinter.missingArgumentError("SoundComponent", "soundId");
@@ -107,8 +107,7 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 
 					if (this.playMode === "single") {
 						this.soundUniqueId = this.soundPlayer.playSingle(this.soundId);
-					}
-					else if (this.playMode === "loop") {
+					} else if (this.playMode === "loop") {
 						this.soundUniqueId = this.soundPlayer.playLoop(this.soundId);
 					}
 				}, false, false, false, "sound-player-delegate");
@@ -126,8 +125,7 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 
 					if (this.playMode === "single") {
 						this.soundUniqueId = this.soundPlayer.playSingle(this.soundId);
-					}
-					else if (this.playMode === "loop") {
+					} else if (this.playMode === "loop") {
 						this.soundUniqueId = this.soundPlayer.playLoop(this.soundId);
 					}
 				}, false, false, false, "sound-player-delegate");
@@ -140,23 +138,23 @@ define(["component", "sound-player", "error-printer"], function(Component, Sound
 			}
 		},
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 
 		/**
-		* <p style='color:#AD071D'><strong>recycle</strong></p>
-		*
-		* Called by the parent [game-object](@@game-object@@)
-		* when it is sent back to it's pool for reuse.
-		*
-		* @param {Object} parent [game-object](@@game-object@@) using this component
-		*/
+		 * <p style='color:#AD071D'><strong>recycle</strong></p>
+		 *
+		 * Called by the parent [game-object](@@game-object@@)
+		 * when it is sent back to it's pool for reuse.
+		 *
+		 * @param {Object} parent [game-object](@@game-object@@) using this component
+		 */
 		recycle: function(parent) {
 			parent.levelCleanUp("sound-player-delegate");
 		}
 		/**
-		* --------------------------------
-		*/
+		 * --------------------------------
+		 */
 	});
 
 	return SoundComponent;
