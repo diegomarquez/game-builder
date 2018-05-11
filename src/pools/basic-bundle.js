@@ -61,7 +61,7 @@ define(function(require) {
 			 * This method configures the [game-object-pool](@@game-object-pool@@) and the [component-pool](@@component-pool@@)
 			 * with the basic objects so it is not needed to define them repeatedly on other bundles
 			 *
-			 * @param  {Object} [args=null]
+			 * @param {Object} [args=null]
 			 */
 			create: function(args) {
 				this.createComponentPool(function() {
@@ -83,7 +83,7 @@ define(function(require) {
 				this.createComponentPool(function() {
 					return require('bitmap-renderer')
 				});
-				
+
 				this.createComponentPool(function() {
 					return require('text-renderer')
 				});
