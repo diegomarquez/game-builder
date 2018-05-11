@@ -2,9 +2,9 @@
  * # cache.js
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
  * ### [Find me on Github](https://github.com/diegomarquez)
- * 
+ *
  * Inherits from: [delegate](@@delegate@@)
- * 
+ *
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
@@ -12,28 +12,28 @@
  * This module defines a common interface for objects that behaive like a cache.
  *
  * The Cache object extends [delegate](@@delegate@@) so it provides a few events to hook into:
- * 
- * ### **CACHE** 
+ *
+ * ### **CACHE**
  * When something is registered in the cache
  *
- * ``` javascript  
+ * ``` javascript
  * cache.on(cache.CACHE, function(data) {});
  * ```
  *
  * </br>
- * 
- * ### **CLEAR** 
+ *
+ * ### **CLEAR**
  * When something is removed from the cache
  *
- * ``` javascript  
+ * ``` javascript
  * cache.on(cache.CLEAR, function(data) {});
  * ```
  * </br>
- * 
- * ### **CLEAR_ALL** 
+ *
+ * ### **CLEAR_ALL**
  * When everything is removed from the cache
  *
- * ``` javascript  
+ * ``` javascript
  * cache.on(cache.CLEAR_ALL, function() {});
  * ```
  */
@@ -84,9 +84,9 @@ define(function(require) {
 			/**
 			 * <p style='color:#AD071D'><strong>get</strong></p>
 			 *
-			 * @param  {String} id Id of the object to retrieve
+			 * @param {String} id Id of the object to retrieve
 			 *
-			 * @return {Object}    Cached object
+			 * @return {Object} Cached object
 			 */
 			get: function(id) {
 				return this.cacheObject[id];
@@ -98,7 +98,7 @@ define(function(require) {
 			/**
 			 * <p style='color:#AD071D'><strong>getTotalCount</strong></p>
 			 *
-			 * @return {Number}    Total amount of objects in the cache
+			 * @return {Number} Total amount of objects in the cache
 			 */
 			getTotalCount: function() {
 				return Object.keys(this.cacheObject)
@@ -111,7 +111,7 @@ define(function(require) {
 			/**
 			 * <p style='color:#AD071D'><strong>clear</strong></p>
 			 *
-			 * @param  {String} id Id of the cached object to remove
+			 * @param {String} id Id of the cached object to remove
 			 */
 			clear: function(id) {
 				delete this.cacheObject[id];

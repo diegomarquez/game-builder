@@ -2,22 +2,22 @@
  * # text-cache.js
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
  * ### [Find me on Github](https://github.com/diegomarquez)
- * 
- * Inherits from: 
+ *
+ * Inherits from:
  * [cache](@@cache@@)
- * 
+ *
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
- * This module is very similar to [image-cache](@@image-cache@@), but instead of caching 
- * [Images](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) it caches text drawn to a 
+ * This module is very similar to [image-cache](@@image-cache@@), but instead of caching
+ * [Images](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement) it caches text drawn to a
  * [Canvas](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas). Drawing text is quite taxing on the CPU, so drawing it once and then
  * keeping the rastered image can be a pretty good time saver.
  *
  * The module will cache dynamically generated [canvases](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas). A given canvas could
  * then be used to draw onto it to cache text for later use.
- * 
+ *
  * A few downsides are:
  *
  * 1. If for whatever reason your text is going to change alot, you are better not caching. Infact caching would
@@ -48,7 +48,7 @@ define(function(require) {
 			/**
 			 * <p style='color:#AD071D'><strong>cache</strong></p>
 			 *
-			 * @param  {String} id Id that will be used to retrieve the cached canvas
+			 * @param {String} id Id that will be used to retrieve the cached canvas
 			 * @param {Object} textAttributes Attributes of the piece of text to cache
 			 */
 			cache: function(id, textAttributes) {

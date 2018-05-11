@@ -2,9 +2,9 @@
  * # rgb-canvas-cache.js
  * ### By [Diego Enrique Marquez](http://treintipollo.com/)
  * ### [Find me on Github](https://github.com/diegomarquez)
- * 
+ *
  * Inherits from: [cache](@@cache@@)
- * 
+ *
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
@@ -39,8 +39,8 @@ define(function(require) {
 			/**
 			 * <p style='color:#AD071D'><strong>cache</strong></p>
 			 *
-			 * @param  {String} id Used to retrive the set of generated images later
-			 * @param  {Drawable} source The source image from which to generate red, green and blue version from 
+			 * @param {String} id Used to retrive the set of generated images later
+			 * @param {Drawable} source The source image from which to generate red, green and blue version from
 			 */
 			cache: function(id, source) {
 				if (this.cacheObject[id]) {
