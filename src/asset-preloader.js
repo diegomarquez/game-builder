@@ -129,7 +129,7 @@ define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, 
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>canPreload</strong></p>
 		 *

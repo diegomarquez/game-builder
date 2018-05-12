@@ -18,8 +18,7 @@
 define(['require', 'domready!', 'font-loader', 'asset-preloader', 'preload-map'], function(require, dom, fontLoader, assetPreloader, preloadMap) {
 	var assetsToPreload = preloadMap.get();
 
-	for (var filename in assetsToPreload)
-	{
+	for (var filename in assetsToPreload) {
 		var path = assetsToPreload[filename];
 
 		if (assetPreloader.canPreload(path)) {

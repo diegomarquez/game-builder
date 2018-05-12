@@ -103,108 +103,108 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	 * @param {Object} go [game-object](@@game-object@@) to recycle
 	 */
 	Reclaimer.prototype.claim = function(go) {
-		if (go.parent) {
-			go.parent.remove(go);
-		}
+			if (go.parent) {
+				go.parent.remove(go);
+			}
 
-		go.clear();
-	},
-	/**
-	 * --------------------------------
-	 */
+			go.clear();
+		},
+		/**
+		 * --------------------------------
+		 */
 
-	/**
-	 * <p style='color:#AD071D'><strong>mark</strong></p>
-	 *
-	 * Marks a [game-object](@@game-object@@) for removal. The last thing that [game](@@game@@) does in the update loop is calling
-	 * **claimMarked** to claim back all marked objects that are pending for recycling
-	 *
-	 * @param {Object} go [game-object](@@game-object@@) to recycle
-	 */
-	Reclaimer.prototype.mark = function(go) {
-		if (this.marked.indexOf(go) == -1 && go.isActive()) {
-			this.marked.push(go);
+		/**
+		 * <p style='color:#AD071D'><strong>mark</strong></p>
+		 *
+		 * Marks a [game-object](@@game-object@@) for removal. The last thing that [game](@@game@@) does in the update loop is calling
+		 * **claimMarked** to claim back all marked objects that are pending for recycling
+		 *
+		 * @param {Object} go [game-object](@@game-object@@) to recycle
+		 */
+		Reclaimer.prototype.mark = function(go) {
+			if (this.marked.indexOf(go) == -1 && go.isActive()) {
+				this.marked.push(go);
 
-			go.once(go.RECYCLE, this, function(go) {
-				var index = this.marked.indexOf(go);
+				go.once(go.RECYCLE, this, function(go) {
+					var index = this.marked.indexOf(go);
 
-				if (index != -1) {
-					this.marked.splice(index, 1);
+					if (index != -1) {
+						this.marked.splice(index, 1);
+					}
+				});
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>claimMarked</strong></p>
+		 *
+		 * Claims all the [game-objects](@@game-object@@) marked for removal with the **mark** method.
+		 */
+		Reclaimer.prototype.claimMarked = function() {
+			for (var i = this.marked.length - 1; i >= 0; i--) {
+				if (this.marked[i]) {
+					this.claim(this.marked[i]);
 				}
-			});
-		}
-	},
-	/**
-	 * --------------------------------
-	 */
-
-	/**
-	 * <p style='color:#AD071D'><strong>claimMarked</strong></p>
-	 *
-	 * Claims all the [game-objects](@@game-object@@) marked for removal with the **mark** method.
-	 */
-	Reclaimer.prototype.claimMarked = function() {
-		for (var i = this.marked.length - 1; i >= 0; i--) {
-			if (this.marked[i]) {
-				this.claim(this.marked[i]);
 			}
-		}
 
-		if (this.clearObjectsFromPools) {
-			GameObjectPool.clearObjects();
-			ComponentPool.clearObjects();
+			if (this.clearObjectsFromPools) {
+				GameObjectPool.clearObjects();
+				ComponentPool.clearObjects();
 
-			this.clearObjectsFromPools = false;
-		}
-
-		if (this.clearPools) {
-			GameObjectPool.clear();
-			ComponentPool.clear();
-
-			this.clearPools = false;
-		}
-	},
-	/**
-	 * --------------------------------
-	 */
-
-	/**
-	 * <p style='color:#AD071D'><strong>claim</strong></p>
-	 *
-	 * Claims all the children from a [game-object-container](@@game-object-container@@),
-	 * but does not claim the [game-object](@@game-object@@) itself.
-	 *
-	 * @param {Object} go [game-object-container](@@game-object-container@@) to remove children from
-	 */
-	Reclaimer.prototype.claimChildren = function(go) {
-		if (go.isContainer()) {
-			var children = go.findChildren()
-				.all();
-
-			for (var i = 0; i < children.length; i++) {
-				this.claim(children[i]);
+				this.clearObjectsFromPools = false;
 			}
-		}
-	},
-	/**
-	 * --------------------------------
-	 */
 
-	/**
-	 * <p style='color:#AD071D'><strong>claimType</strong></p>
-	 *
-	 * Calls **claimWithId** on all the active [game-objects](@@game-object@@)
-	 * that match the given type id.
-	 *
-	 * @param {String} typeName An id matching a existing type in [game-object-pool](@@game-object-pool@@)
-	 */
-	Reclaimer.prototype.claimType = function(typeName) {
-		var activeGameObjects = GameObjectPool.getActiveObjects(typeName);
+			if (this.clearPools) {
+				GameObjectPool.clear();
+				ComponentPool.clear();
 
-		for (var i = activeGameObjects.length - 1; i >= 0; i--) {
-			this.claimWithId(activeGameObjects[i], typeName);
-		}
-	};
+				this.clearPools = false;
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>claim</strong></p>
+		 *
+		 * Claims all the children from a [game-object-container](@@game-object-container@@),
+		 * but does not claim the [game-object](@@game-object@@) itself.
+		 *
+		 * @param {Object} go [game-object-container](@@game-object-container@@) to remove children from
+		 */
+		Reclaimer.prototype.claimChildren = function(go) {
+			if (go.isContainer()) {
+				var children = go.findChildren()
+					.all();
+
+				for (var i = 0; i < children.length; i++) {
+					this.claim(children[i]);
+				}
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>claimType</strong></p>
+		 *
+		 * Calls **claimWithId** on all the active [game-objects](@@game-object@@)
+		 * that match the given type id.
+		 *
+		 * @param {String} typeName An id matching a existing type in [game-object-pool](@@game-object-pool@@)
+		 */
+		Reclaimer.prototype.claimType = function(typeName) {
+			var activeGameObjects = GameObjectPool.getActiveObjects(typeName);
+
+			for (var i = activeGameObjects.length - 1; i >= 0; i--) {
+				this.claimWithId(activeGameObjects[i], typeName);
+			}
+		};
 	/**
 	 * --------------------------------
 	 */
