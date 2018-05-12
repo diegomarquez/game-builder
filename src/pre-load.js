@@ -25,7 +25,7 @@ define(['require', 'domready!', 'font-loader', 'asset-preloader'], function(requ
 
 		// Create main module
 		if (jobCount === 0)
-			require(["main"]);
+			require(['main']);
 	});
 
 	// Determine the audio format supported by the browser
@@ -34,6 +34,6 @@ define(['require', 'domready!', 'font-loader', 'asset-preloader'], function(requ
 
 		// Create main module
 		if (jobCount === 0)
-			require(["main"]);
+			require(['main']);
 	});
 });
