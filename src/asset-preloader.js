@@ -91,7 +91,7 @@ define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, 
 		 *
 		 * Add an asset to be loaded.
 		 *
-		 * @param {String} path A path to a graphical asset
+		 * @param {String} path A path to an asset
 		 */
 		addAsset: function(path) {
 			var match = path.match(/^.+\.(.+?)(?=\?|$)/);
@@ -126,6 +126,36 @@ define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, 
 
 			ErrorPrinter.printError('Asset Preloader: file type is not supported');
 		},
+		/**
+		 * --------------------------------
+		 */
+		
+		/**
+		 * <p style='color:#AD071D'><strong>canPreload</strong></p>
+		 *
+		 * Check if the asset can be prealoded
+		 *
+		 * @param {String} path A path to an asset
+		 */
+		canPreload: function(path) {
+			var match = path.match(/^.+\.(.+?)(?=\?|$)/);
+
+			if (!match) {
+				ErrorPrinter.printError('Asset Preloader: path is not a url');
+			}
+
+			var extension = match[1];
+
+			if (extension === 'png' || extension === 'gif' || extension === 'jpeg') {
+				return true;
+			}
+
+			if (extension === 'opus' || extension === 'weba' || extension === 'ogg' || extension === "mp3") {
+				return true;
+			}
+
+			return false;
+		}
 		/**
 		 * --------------------------------
 		 */

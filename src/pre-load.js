@@ -15,7 +15,24 @@
  * and determines which is the audio format supported by the browser.
  */
 
-define(['require', 'domready!', 'font-loader', 'asset-preloader'], function(require, dom, fontLoader, assetPreloader) {
+define(['require', 'domready!', 'font-loader', 'asset-preloader', 'preload-map'], function(require, dom, fontLoader, assetPreloader, preloadMap) {
+	var assetsToPreload = preloadMap.get();
+
+	for (var filename in assetsToPreload)
+	{
+		var path = assetsToPreload[filename];
+
+		if (assetPreloader.canPreload(path)) {
+			assetPreloader.addAsset(path);
+		}
+	}
+
+	// Wait for assets to be ready
+	assetPreloader.once(assetPreloader.ON_LOAD_ALL_COMPLETE, this, function() {
+		// Create main module
+		require(['main']);
+	});
+
 	var jobCount = 2;
 
 	// Start loading configured fonts
@@ -23,17 +40,17 @@ define(['require', 'domready!', 'font-loader', 'asset-preloader'], function(requ
 		// Now all fonts are loaded, and FOUT has been avoided.
 		jobCount--;
 
-		// Create main module
+		// Preload all configured assets
 		if (jobCount === 0)
-			require(['main']);
+			assetPreloader.loadAll();
 	});
 
 	// Determine the audio format supported by the browser
 	assetPreloader.findSupportedAudioFormat(function() {
 		jobCount--;
 
-		// Create main module
+		// Preload all configured assets
 		if (jobCount === 0)
-			require(['main']);
+			assetPreloader.loadAll();
 	});
 });
