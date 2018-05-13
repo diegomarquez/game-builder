@@ -45,7 +45,7 @@ define(["delegate"], function(Delegate) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>add</strong></p>
+		 * <p style='color:#AD071D'><strong>addGameObject</strong></p>
 		 *
 		 * Add a [game-object](@@game-object@@) to layer for rendering
 		 *
@@ -53,7 +53,7 @@ define(["delegate"], function(Delegate) {
 		 *
 		 * @return {Object|null} The [game-object](@@game-object@@) that was just added or null if the [game-object](@@game-object@@) was already part of the layer
 		 */
-		add: function(go) {
+		addGameObject: function(go) {
 			var index = this.gameObjects.indexOf(go);
 
 			if (index == -1) {
@@ -70,7 +70,7 @@ define(["delegate"], function(Delegate) {
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>remove</strong></p>
+		 * <p style='color:#AD071D'><strong>removeGameObject</strong></p>
 		 *
 		 * Remove a [game-object](@@game-object@@) from the layer
 		 *
@@ -78,7 +78,7 @@ define(["delegate"], function(Delegate) {
 		 *
 		 * @return {Object|null} The [game-object](@@game-object@@) that was just removed or null if the [game-object](@@game-object@@) was not part of the layer
 		 */
-		remove: function(go) {
+		removeGameObject: function(go) {
 			var index = this.gameObjects.indexOf(go);
 
 			if (index != -1) {
@@ -105,7 +105,7 @@ define(["delegate"], function(Delegate) {
 			var gos = [];
 
 			for (var i = 0; i < this.gameObjects.length; i++) {
-				gos.push(this.remove(this.gameObjects[i]));
+				gos.push(this.removeGameObject(this.gameObjects[i]));
 			}
 
 			return gos;

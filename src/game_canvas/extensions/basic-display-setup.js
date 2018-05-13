@@ -48,13 +48,13 @@ define(["groups", "viewports", "gb", "world", "extension"], function(Groups, Vie
 			World.create(Gb.canvas.width, Gb.canvas.height);
 
 			// Set a few update [groups](@@group@@)
-			Groups.add("First");
-			Groups.add("Second");
-			Groups.add("Third");
+			Groups.addGroup("First");
+			Groups.addGroup("Second");
+			Groups.addGroup("Third");
 
 			// Create a [viewport](@@viewport@@). It has a width and a height along with offset coordinates
 			// in case you don't want it to start in the top left corner of the canvas
-			var viewport = Viewports.add("Main", Gb.canvas.width, Gb.canvas.height, 0, 0);
+			var viewport = Viewports.addViewport("Main", Gb.canvas.width, Gb.canvas.height, 0, 0);
 
 			// Set the [layers](@@layer@@) this [viewport](@@viewport@@) will have
 			viewport.addLayer("Back");
@@ -77,11 +77,11 @@ define(["groups", "viewports", "gb", "world", "extension"], function(Groups, Vie
 		},
 
 		destroy: function() {
-			Groups.remove("First");
-			Groups.remove("Second");
-			Groups.remove("Third");
+			Groups.removeGroup("First");
+			Groups.removeGroup("Second");
+			Groups.removeGroup("Third");
 
-			Viewports.remove('Main');
+			Viewports.removeViewport('Main');
 
 			Gb.removeViewportShortCut('MainBack');
 			Gb.removeViewportShortCut('MainMiddle');

@@ -62,7 +62,7 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>add</strong></p>
+		 * <p style='color:#AD071D'><strong>addChild</strong></p>
 		 *
 		 * Adds the specified child [game-object](@@game-object@@) to this container.
 		 * If the child already is part of another parent, it is removed from it
@@ -70,13 +70,13 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 *
 		 * @param {Object} child The child [game-object](@@game-object@@) to add
 		 */
-		add: function(child) {
+		addChild: function(child) {
 			if (!child) return;
 
 			if (!this.childs) this.childs = [];
 
 			if (child.parent) {
-				child.parent.remove(child);
+				child.parent.removeChild(child);
 			}
 
 			child.parent = this;
@@ -91,13 +91,13 @@ define(["game-object", "visibility-control", "child-finder"], function(GameObjec
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>remove</strong></p>
+		 * <p style='color:#AD071D'><strong>removeChild</strong></p>
 		 *
 		 * Removes the specified child [game-object](@@game-object@@) from this container.
 		 *
 		 * @param {Object} child The child [game-object](@@game-object@@) to remove
 		 */
-		remove: function(child) {
+		removeChild: function(child) {
 			if (!child) return;
 
 			child.parent = null;

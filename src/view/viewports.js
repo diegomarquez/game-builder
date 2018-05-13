@@ -81,7 +81,7 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		},
 
 		/**
-		 * <p style='color:#AD071D'><strong>add</strong></p>
+		 * <p style='color:#AD071D'><strong>addViewport</strong></p>
 		 *
 		 * Creates a new [viewport](@@viewport@@) and adds it to the container.
 		 *
@@ -101,7 +101,7 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		 *
 		 * @return {Object} The newly created [viewport](@@viewport@@). If it already exists, the existing one is returned
 		 */
-		add: function(name, width, height, offsetX, offsetY, scaleX, scaleY, layers, strokeColor, strokeWidth, worldFit, culling, clipping) {
+		addViewport: function(name, width, height, offsetX, offsetY, scaleX, scaleY, layers, strokeColor, strokeWidth, worldFit, culling, clipping) {
 			if (!viewports[name]) {
 				var v = create.apply(this, arguments);
 
@@ -163,13 +163,13 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>remove</strong></p>
+		 * <p style='color:#AD071D'><strong>removeViewport</strong></p>
 		 *
 		 * Removes the specified [viewport](@@viewport@@)
 		 *
 		 * @param {String} name Id of the [viewport](@@viewport@@) to remove
 		 */
-		remove: function(name) {
+		removeViewport: function(name) {
 			if (!viewports[name]) {
 				ErrorPrinter.printError('Viewports', 'Viewport with id:' + name + ' does not exist.');
 			}
@@ -249,7 +249,7 @@ define(["delegate", "viewport", "error-printer", "util"], function(Delegate, Vie
 		 */
 		removeAll: function() {
 			for (var i = viewportsArray.length - 1; i >= 0; i--) {
-				this.remove(viewportsArray[i].name);
+				this.removeViewport(viewportsArray[i].name);
 			}
 		},
 		/**

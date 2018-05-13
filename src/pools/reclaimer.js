@@ -104,7 +104,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 	 */
 	Reclaimer.prototype.claim = function(go) {
 			if (go.parent) {
-				go.parent.remove(go);
+				go.parent.removeChild(go);
 			}
 
 			go.clear();

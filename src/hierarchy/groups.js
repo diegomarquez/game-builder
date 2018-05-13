@@ -100,10 +100,10 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
 		 *
 		 * @return {Object} The [group](@@group@@) that was just created
 		 */
-		add: function(name) {
+		addGroup: function(name) {
 			var group = new Group(name);
 
-			Root.add(group)
+			Root.addChild(group)
 				.start();
 			this.groups[name] = group;
 			this.groupsArray.push(group);
@@ -127,14 +127,14 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
 		 *
 		 * @param {String} name Id of the group to remove
 		 */
-		remove: function(name) {
+		removeGroup: function(name) {
 			var group = this.groups[name];
 
 			this.execute(this.REMOVE, group);
 
 			group.clear();
 
-			Root.remove(this.groups[name]);
+			Root.removeChild(this.groups[name]);
 
 			this.groupsArray.splice(this.groupsArray.indexOf(group), 1);
 			delete this.groups[name];
@@ -150,7 +150,7 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
 		 */
 		removeAll: function() {
 			for (var k in this.groups) {
-				this.remove(k);
+				this.removeGroup(k);
 			}
 
 			this.execute(this.REMOVE_ALL);

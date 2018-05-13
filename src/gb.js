@@ -140,7 +140,7 @@ define(function(require) {
 			add: function(goId, groupId, vports, args) {
 				var go = this.assembler.get(goId, args, false, false);
 				this.groups.get(groupId)
-					.add(go);
+					.addChild(go);
 				this.addToViewports(go, vports);
 
 				go.start();
@@ -173,7 +173,7 @@ define(function(require) {
 			create: function(goId, groupId, vports, args) {
 				var go = this.assembler.get(goId, args, false, true);
 				this.groups.get(groupId)
-					.add(go);
+					.addChild(go);
 				this.addToViewports(go, vports);
 
 				go.start();
@@ -213,7 +213,7 @@ define(function(require) {
 				}
 
 				this.groups.get(groupId)
-					.add(go);
+					.addChild(go);
 				this.addToViewports(go, vports);
 
 				return go;
@@ -252,7 +252,7 @@ define(function(require) {
 					child = this.assembler.get(chidlGoId, args, false, false);
 				}
 
-				parent.add(child);
+				parent.addChild(child);
 
 				if (vports) {
 					this.addToViewports(child, vports);
@@ -489,7 +489,7 @@ define(function(require) {
 			addText: function(goId, groupId, text, vports) {
 				var go = this.assembler.get(goId);
 				this.groups.get(groupId)
-					.add(go);
+					.addChild(go);
 
 				this.addToViewports(go, vports);
 

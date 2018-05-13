@@ -148,29 +148,13 @@ define(["class", "util"], function(Class, Util) {
 		/**
 		 * <p style='color:#AD071D'><strong>remove</strong></p>
 		 *
-		 * Alias for **removeDelegate**
-		 *
-		 * @param {String} name Id the funtion you want to remove is associated with
-		 * @param {Object} scope Scope used when adding the function
-		 * @param {Function} callback Function you want to remove
-		 */
-		remove: function(name, scope, callback) {
-			this.removeDelegate(name, scope, callback);
-		},
-		/**
-		 * --------------------------------
-		 */
-
-		/**
-		 * <p style='color:#AD071D'><strong>removeDelegate</strong></p>
-		 *
 		 * Removes the specified function from the array it is in.
 		 *
 		 * @param {String} name Id the funtion you want to remove is associated with
 		 * @param {Object} scope Scope used when adding the function
 		 * @param {Function} callback Function you want to remove
 		 */
-		removeDelegate: function(name, scope, callback) {
+		remove: function(name, scope, callback) {
 			var list = this.callbackList[name];
 
 			if (!list) return;

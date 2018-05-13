@@ -361,11 +361,11 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 		 */
 		addGameObject: function(layerName, go) {
 			var layer = findLayer.call(this, layerName);
-			var success = layer.add(go);
+			var success = layer.addGameObject(go);
 
 			if (success) {
 				go.on(go.RECYCLE, this, function(g) {
-					layer.remove(g);
+					layer.removeGameObject(g);
 				}, true);
 			}
 
@@ -386,7 +386,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 		removeGameObject: function(layerName, go) {
 			// Remove it from the old layer
 			findLayer.call(this, layerName)
-				.remove(go);
+				.removeGameObject(go);
 			recycleGameObjects(go);
 		},
 		/**

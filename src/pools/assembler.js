@@ -81,7 +81,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 				ErrorPrinter.printError('Assembler', 'Game Object with type: ' + configuration.type + ' is not a container, can not add childs to it');
 			}
 
-			pooledObject.add(this.get(configuration.childs[i].childId, configuration.childs[i].args, true));
+			pooledObject.addChild(this.get(configuration.childs[i].childId, configuration.childs[i].args, true));
 		}
 
 		// Adding the renderer configured for this object type

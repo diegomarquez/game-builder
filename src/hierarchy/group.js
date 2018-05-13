@@ -66,7 +66,7 @@ define(["game-object-container", "util"], function(Container, Util) {
 		},
 
 		/**
-		 * <p style='color:#AD071D'><strong>add</strong></p>
+		 * <p style='color:#AD071D'><strong>addChild</strong></p>
 		 *
 		 * Adds the specified child [game-object](@@game-object@@) to this container.
 		 * If the child already is part of another parent, it is removed from it
@@ -74,7 +74,7 @@ define(["game-object-container", "util"], function(Container, Util) {
 		 *
 		 * @param {Object} child The child [game-object](@@game-object@@) to add
 		 */
-		add: function(child) {
+		addChild: function(child) {
 			this._super(child);
 
 			child.updateGroup = this.groupName;
