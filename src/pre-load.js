@@ -15,8 +15,8 @@
  * and determines which is the audio format supported by the browser.
  */
 
-define(['require', 'domready!', 'font-loader', 'asset-preloader', 'preload-map'], function(require, dom, fontLoader, assetPreloader, preloadMap) {
-	var assetsToPreload = preloadMap.get();
+define(['require', 'domready!', 'font-loader', 'asset-preloader', 'preload-assets'], function(require, dom, fontLoader, assetPreloader, preloadAssets) {
+	var assetsToPreload = preloadAssets.get();
 
 	for (var filename in assetsToPreload) {
 		var path = assetsToPreload[filename];

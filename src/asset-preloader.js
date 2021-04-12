@@ -155,7 +155,7 @@ define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, 
 			}
 
 			return false;
-		}
+		},
 		/**
 		 * --------------------------------
 		 */
