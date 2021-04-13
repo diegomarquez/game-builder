@@ -99,6 +99,9 @@ define(function(require) {
 			this.blur = true;
 			this.initialized = false;
 			this.lastUpdate = null;
+			this.tickTime = 1000 / 60;
+			this.tickTimeTotal = 0;
+			this.lastTickTime = NaN;
 			this.lastAnimationFrameId = null;
 			this.delta = null;
 
@@ -174,10 +177,10 @@ define(function(require) {
 		 * @return {[extension](@@extension@@)} The matching [extension](@@extension@@)
 		 */
 		get_extension: function(extensionModule) {
-		  for (var t in this.extensions) {
+			for (var t in this.extensions) {
 				var list = this.extensions[t];
 
-				for (var i = list.length-1; i >= 0; i--) {
+				for (var i = list.length - 1; i >= 0; i--) {
 					if (list[i].extension.constructor === extensionModule) {
 						return list[i].extension;
 					}
@@ -199,7 +202,7 @@ define(function(require) {
 			for (var t in this.extensions) {
 				var list = this.extensions[t];
 
-				for (var i = list.length-1; i >= 0; i--) {
+				for (var i = list.length - 1; i >= 0; i--) {
 					if (list[i].extension.constructor === extensionModule) {
 						list[i].extension.destroy();
 						list.splice(i, 1);
@@ -256,25 +259,42 @@ define(function(require) {
 		 * The main game loop
 		 */
 		mainLoop: function(time) {
-			this.delta = (time - this.lastUpdate) / 1000;
+			this.lastAnimationFrameId = window.requestAnimationFrame(this.bindedMainLoop);
 
-			if (this.delta >= 0 && this.delta < 1) {
+			if (!this.lastUpdate)
+				this.lastUpdate = time;
+
+			this.tickTimeTotal += time - this.lastUpdate;
+
+			if (this.tickTimeTotal >= this.tickTime)
+			{
+				if (this.lastTickTime)
+				{
+					this.delta = (time - this.lastTickTime) / 1000;
+				}
+				else
+				{
+					this.delta = this.lastTickTime / 1000;
+				}
+
 				// Execute all update extensions
 				this.execute_extensions('update', this.delta);
 				// Update all [game-objects](@@game-object@@)
 				this.root.update(this.delta);
 				// Execute all update events
 				this.execute('update', this.delta);
+
+				this.lastTickTime = time;
+
 				// Draw to all the [viewports](@@viewport@@)
 				this.root.draw(this.context);
 				// Recycle any [game-objects](@@game-object@@) marked for removal
 				this.reclaimer.claimMarked();
+
+				this.tickTimeTotal -= this.tickTime;
 			}
 
 			this.lastUpdate = time;
-
-			this.lastAnimationFrameId = window.requestAnimationFrame(this.bindedMainLoop);
-
 		},
 		/**
 		 * --------------------------------
@@ -311,7 +331,9 @@ define(function(require) {
 				};
 			}
 
-			this.lastUpdate = Date.now();
+			this.lastUpdate = NaN;
+			this.tickTimeTotal = 0;
+			this.lastTickTime = NaN;
 
 			this.bindedMainLoop = this.mainLoop.bind(this);
 
@@ -345,7 +367,10 @@ define(function(require) {
 						blur = false;
 
 						// Re-start the main game loop
-						self.lastUpdate = Date.now();
+						self.lastUpdate = NaN;
+						self.tickTimeTotal = 0;
+						self.lastTickTime = NaN;
+						
 						self.lastAnimationFrameId = window.requestAnimationFrame(self.bindedMainLoop);
 					}
 				}
@@ -387,21 +412,49 @@ define(function(require) {
 		 */
 	});
 
-	Object.defineProperty(Game.prototype, "CREATE", { get: function() { return 'create'; } });
-	Object.defineProperty(Game.prototype, "UPDATE", { get: function() { return 'update'; } });
-	Object.defineProperty(Game.prototype, "FOCUS", { get: function() { return 'focus'; } });
-	Object.defineProperty(Game.prototype, "BLUR", { get: function() { return 'blur'; } });
+	Object.defineProperty(Game.prototype, "CREATE", {
+		get: function() {
+			return 'create';
+		}
+	});
+	Object.defineProperty(Game.prototype, "UPDATE", {
+		get: function() {
+			return 'update';
+		}
+	});
+	Object.defineProperty(Game.prototype, "FOCUS", {
+		get: function() {
+			return 'focus';
+		}
+	});
+	Object.defineProperty(Game.prototype, "BLUR", {
+		get: function() {
+			return 'blur';
+		}
+	});
 
-	Object.defineProperty(Game.prototype, "EXTENSION_ADDED", { get: function() { return 'extension_added'; } });
+	Object.defineProperty(Game.prototype, "EXTENSION_ADDED", {
+		get: function() {
+			return 'extension_added';
+		}
+	});
 
-	Object.defineProperty(Game.prototype, "CHANGE_WIDTH", { get: function() { return 'change_width'; } });
-	Object.defineProperty(Game.prototype, "CHANGE_HEIGHT", { get: function() { return 'change_height'; } });
+	Object.defineProperty(Game.prototype, "CHANGE_WIDTH", {
+		get: function() {
+			return 'change_width';
+		}
+	});
+	Object.defineProperty(Game.prototype, "CHANGE_HEIGHT", {
+		get: function() {
+			return 'change_height';
+		}
+	});
 
 	Object.defineProperty(Game.prototype, "WIDTH", {
 		get: function() {
 			return this.canvas.width;
 		},
-		set: function (value) {
+		set: function(value) {
 			this.canvas.width = value;
 			this.execute(this.CHANGE_WIDTH, value);
 		}
@@ -411,7 +464,7 @@ define(function(require) {
 		get: function() {
 			return this.canvas.height;
 		},
-		set: function (value) {
+		set: function(value) {
 			this.canvas.height = value;
 			this.execute(this.CHANGE_HEIGHT, value);
 		}
