@@ -274,7 +274,7 @@ define(function(require) {
 				}
 				else
 				{
-					this.delta = this.lastTickTime / 1000;
+					this.delta = 0;
 				}
 
 				// Execute all update extensions
