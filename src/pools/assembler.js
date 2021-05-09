@@ -77,7 +77,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 
 		// Adding nested childs configured for this object
 		for (i = 0; i < configuration.childs.length; i++) {
-			if (!pooledObject.add) {
+			if (!pooledObject.addChild) {
 				ErrorPrinter.printError('Assembler', 'Game Object with type: ' + configuration.type + ' is not a container, can not add childs to it');
 			}
 
