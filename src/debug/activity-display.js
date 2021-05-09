@@ -160,6 +160,7 @@ define(function(require) {
 				var infoButton = document.createElement('button');
 				infoButton.id = 'activity-display-button';
 				infoButton.innerText = 'Show Info';
+				displayElement.style.pointerEvents = 'all';
 				infoButton.style.visibility = hide ? 'hidden' : 'visible';
 
 				infoButton.addEventListener('click', function() {
