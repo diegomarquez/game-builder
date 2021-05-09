@@ -163,7 +163,7 @@ define(function(require) {
 			 *
 			 * Gets the requested configuration. It doesn't perform any type of validations.
 			 *
-			 * @param {String}alias Id of the [component](@@component@@) requested
+			 * @param {String} alias Id of the [component](@@component@@) requested
 			 *
 			 * @throws {Error} If the id provided does not match with any existing one
 			 *
