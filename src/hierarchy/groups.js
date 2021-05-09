@@ -86,7 +86,7 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
 		},
 
 		/**
-		 * <p style='color:#AD071D'><strong>add</strong></p>
+		 * <p style='color:#AD071D'><strong>addGroup</strong></p>
 		 *
 		 * Adds a new group. The group is managed in this object, but
 		 * it also is added to [root](@@root@@), which is what will make it update.
@@ -117,7 +117,7 @@ define(["delegate", "root", "group", "error-printer"], function(Delegate, Root, 
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>remove</strong></p>
+		 * <p style='color:#AD071D'><strong>removeGroup</strong></p>
 		 *
 		 * Removes a group from the array in this object, and also from the [root](@@root@@).
 		 * Prior to removing the group it also clears it from any [game-objects](@@game-object@@)
