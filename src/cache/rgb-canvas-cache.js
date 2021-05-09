@@ -9,7 +9,7 @@
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
- * This is used to separate an image into it's r red, green and blue components. Once the new images are created they are cached
+ * This is used to separate an image into it's red, green and blue components. Once the new images are created they are cached
  * and can be used to generate a tinted version of the original.
  */
 

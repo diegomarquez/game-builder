@@ -60,7 +60,7 @@ define(function(require) {
 			/**
 			 * <p style='color:#AD071D'><strong>name</strong></p>
 			 *
-			 * All childs of this module must implement this method. Arguments may vary
+			 * All children of this module must implement this method. Arguments may vary
 			 */
 			name: function() {
 				ErrorPrinter.mustOverrideError('Cache');
@@ -72,7 +72,7 @@ define(function(require) {
 			/**
 			 * <p style='color:#AD071D'><strong>cache</strong></p>
 			 *
-			 * All childs of this module must implement this method. Arguments may vary
+			 * All children of this module must implement this method. Arguments may vary
 			 */
 			cache: function() {
 				ErrorPrinter.mustOverrideError('Cache');
