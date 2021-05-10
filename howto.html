@@ -139,12 +139,6 @@
                 			<li>This .json is concatenated with the generated <em class="red-text">generated/asset-map.json</em> file. It should have key value pairs to remote resources. This values will be available at runtime through the <em class="red-text">asset-map</em> module</li>
                 		</ul>
                 	</li>
-                  <!-- PRELOAD ASSETS JSON -->
-                  <li>preload-assets.json</li>
-                    <ul class="description left-padding list-unstyled">
-                      <li>This .json indicates which of the assets from <em class="red-text">generated/asset-map.json</em> need to be preloaded before the application starts. It should have key value pairs like the ones that are automatically generated, so check the format of <em class="red-text">generated/asset-map.json</em> to see how they should be added in here
-                    </ul>
-                  </li>
                 	<!-- SHIM CONFIG JSON -->
                 	<li>shim-config.json</li>
                 		<ul class="description left-padding list-unstyled">
@@ -157,7 +151,7 @@
               <!-- GENERATED DESCRIPTION -->
               <li class="blue-text">generated/</li>
               <ul class="description left-padding list-unstyled">
-                <li>This is created when doing <em class="red-text">grunt</em> in the root of a project. It has two files</li>
+                <li>This is created when doing <em class="red-text">grunt</em> in the root of a project. It has three files</li>
 
                 <ul class="left-padding list-unstyled">
                 	<!-- ASSET MAP JSON -->
@@ -166,6 +160,13 @@
                 			<li>This .json contains key value pairs with URLs for all the assets that a project will use</li>
                 		</ul>
                 	</li>
+
+                  <!-- PRELOAD MAP JSON -->
+                  <li>preload-map.json</li>
+                    <ul class="description left-padding list-unstyled">
+                      <li>This .json contains key value pairs with URLs for all the assets that a project will preload before the application starts. To mark assets for preload include a special <em class="red-text">.preload</em> file in the same folder were assets exist. This only affects files in the same folder, so it is possible to just mark for preload a small portion of all the assets.</li>
+                    </ul>
+                  </li>
 
                 	<!-- CONFIG JS -->
                 	<li>config.js</li>
@@ -280,16 +281,16 @@
                 	<em class="red-text">requirejs</em> configuration among other smaller tasks.</li>
               </ul>
 
-              <!-- RUN DESCRIPTION -->
-              <li class="blue-text">run</li>
+              <!-- SERVE DESCRIPTION -->
+              <li class="blue-text">serve</li>
               <ul class="description left-padding list-unstyled">
-                <li>This task opens <em class="red-text">index.html</em> in the default browser.</li>
+                <li>This runs a development server and opens <em class="red-text">index.html</em> in the default browser.</li>
               </ul>
 
               <!-- REFRESH DESCRIPTION -->
               <li class="blue-text">refresh</li>
               <ul class="description left-padding list-unstyled">
-                <li>This task is like running <em class="red-text">setup</em> and then <em class="red-text">run</em>. It is usefull when adding new files or when work is being done on stylesheets.</li>
+                <li>This task is like running <em class="red-text">setup</em> and then <em class="red-text">serve</em>. It is usefull when adding new files or when work is being done on stylesheets.</li>
               </ul>
               
               <!-- BUILD-DEV DESCRIPTION -->
@@ -301,14 +302,14 @@
               <!-- BUILD_PROD DESCRIPTION -->
               <li class="blue-text">build-prod</li>
               <ul class="description left-padding list-unstyled">
-                <li>This task is just like <em class="red-text">build-dev</em> but all the source and stylesheets are minified</li>  
+                <li>This task is just like <em class="red-text">build-dev</em> but all the source and stylesheets are minified</li>
               </ul>
               
               <!-- DEFAULT DESCRIPTION -->
               <li class="blue-text">default</li>
               <ul class="description left-padding list-unstyled">
                 <li>The default task is just as calling <em class="red-text">setup</em></li>
-              </ul>              
+              </ul>
             </ul>
 
             <hr>
