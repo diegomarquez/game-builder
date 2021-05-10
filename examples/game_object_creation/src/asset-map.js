@@ -8,6 +8,8 @@ define(function() {
 	"ELEVATOR.MP3": "../common_assets/sound/elevator.mp3",
 	"HORSE.MP3": "../common_assets/sound/horse.mp3",
 	"SHEEP.MP3": "../common_assets/sound/sheep.mp3",
+	"AUDIO-SAMPLE.MP3": "../../game-builder/assets/audio-sample.mp3",
+	"AUDIO-SAMPLE.OGG": "../../game-builder/assets/audio-sample.ogg",
 	"TEST.JPG": "assets/images/test.jpg",
 	"TEST.MP3": "assets/sound/test.mp3",
 	"TEST.WAV": "assets/sound/test.wav",

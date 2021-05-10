@@ -29,7 +29,7 @@
     "tag": "0.8.2",
     "commit": "c68b434eb438394d1b069e38ba9d582c8d1fd28f"
   },
-  "_source": "git://github.com/janl/mustache.js.git",
+  "_source": "https://github.com/janl/mustache.js.git",
   "_target": "~0.8.1",
   "_originalSource": "mustache"
 }

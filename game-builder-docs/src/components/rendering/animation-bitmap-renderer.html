@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="en"><head><title>src/components/rendering/animation-bitmap-renderer</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../../"><meta name="groc-document-path" content="src/components/rendering/animation-bitmap-renderer"><meta name="groc-project-path" content="work/game-builder/src/components/rendering/animation-bitmap-renderer.js"><link rel="stylesheet" type="text/css" media="all" href="../../../assets/style.css"><script type="text/javascript" src="../../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/components/rendering/animation-bitmap-renderer.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="animation-bitmap-rendererjs">animation-bitmap-renderer.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from: 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a></p>
+
+<p>Depends of: 
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html">image-cache</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This module is similar to <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/bitmap-renderer.html">bitmap-renderer</a> with the difference that it takes an image containing a strip of frames
+for an animation. This object provides basic functionality, to play, stop and pause the animation.
+It assumes all the provided frames are in the correct sequence, that they all form part of the same animation and that the animation loops </p>
+
+<p>For a little bit more control (and complexity) try using <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/animations-bitmap-renderer.html">animations-bitmap-renderer</a></p>
+
+<p>This renderer can receive a bunch of configuration options
+when setting it up in the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a>. ej.</p>
+
+<pre><code class=" javascript">gb.coPool.createConfiguration("PathAnimation", 'Path_Animation_Renderer')
+    .args({ 
+
+        //These set the width and height of each frame of the animation
+        //This argument is only required if the renderer does not provide it. 
+        frameWidth: 100,
+        frameHeight: 100,
+
+        //The amount of frames the animation has, if the value is not passed in
+        //the module tries to guess it
+        frameCount: 2,
+
+        //These number defines the amount of time that each frame will be displayed.
+        //It is in seconds and it is required
+        frameDelay: 0.1,
+
+        //This boolean indicates wheter the animation should loop after completing or just play once
+        //It is false by default. This setting has precendence over pingPong
+        loop: false,
+
+        //This booelan indicates wheter the animation should play backwards once it reaches the end or gets back to the beginning
+        //It is false by default
+        pingPong: false,
+
+        //Use this if you want the registration point of the image to be the center
+        //This is optional
+        offset:'center',
+
+        //If offset is not provided this two are used
+        //These are optional and default to 0
+        offsetX:0,
+        offsetY:0, 
+ });
+</code></pre>
+
+<p><strong>Note: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
+found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
+The way you get a hold to a reference to the <a href=@@csomponent-pool@@>component-pool</a>
+may vary.</strong></p>
+
+<p>These objects extend <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html">delegate</a> so they provide a few events to hook into:</p>
+
+<h3 id="complete"><strong>COMPLETE</strong></h3>
+
+<p>When the animation reaches the last frame</p>
+
+<pre><code class=" javascript  ">gameObject.renderer.on(gameObject.renderer.COMPLETE, function() {});
+</code></pre>
+
+<h3 id="complete_back"><strong>COMPLETE_BACK</strong></h3>
+
+<p>When the animation reaches the first frame while in ping pong</p>
+
+<pre><code class=" javascript  ">gameObject.renderer.on(gameObject.renderer.COMPLETE_BACK, function() {});
+</code></pre></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="simple-animations-with-paths">Simple animations with paths</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;renderer&quot;</span><span class="p">,</span> <span class="s2">&quot;image-cache&quot;</span><span class="p">,</span> <span class="s2">&quot;error-printer&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Renderer</span><span class="p">,</span> <span class="nx">ImageCache</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">AnimationBitmapRenderer</span> <span class="o">=</span> <span class="nx">Renderer</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+
+    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">loop</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">pingPong</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">frameWidth</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">frameHeight</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">frameDelay</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">frameCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">path</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">finishLoading</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">frameIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">delayTotal</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">direction</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">cache</span> <span class="o">=</span> <span class="nx">ImageCache</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>start</strong></p>
+
+<p>This is called by the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> using this renderer.
+It caches all the resutls from calling the drawing methods in the <strong>framePaths</strong> array</p>
+
+<p><strong>Can throw an Error</strong><br/>(If width, height, name, frameDelay or framePaths properties are not set)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">(</span><span class="nx">parent</span><span class="p">);</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">frameWidth</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">frameHeight</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">missingArgumentError</span><span class="p">(</span><span class="s1">&#39;Animation Bitmap Renderer&#39;</span><span class="p">,</span> <span class="s1">&#39;frameWidth&#39;</span><span class="p">,</span> <span class="s1">&#39;frameHeight&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">frameDelay</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">missingArgumentError</span><span class="p">(</span><span class="s1">&#39;Animation Bitmap Renderer&#39;</span><span class="p">,</span> <span class="s1">&#39;frameDelay&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">missingArgumentError</span><span class="p">(</span><span class="s1">&#39;Animation Bitmap Renderer&#39;</span><span class="p">,</span> <span class="s1">&#39;path&#39;</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">cache</span><span class="p">.</span><span class="nx">cacheStrip</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">path</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">frameWidth</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">frameHeight</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">frameCount</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">frameCount</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">finishLoading</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="nx">self</span><span class="p">.</span><span class="nx">frameCount</span> <span class="o">=</span> <span class="nx">frameCount</span><span class="p">;</span>
+      <span class="p">});</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">stop</span><span class="p">();</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>update</strong></p>
+
+<p>Executes the logic needed to change frames</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>delta must be a Number.</strong><br/>(The time between the current update and the last)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">delta</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isPlaying</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">finishLoading</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">delayTotal</span> <span class="o">+=</span> <span class="nx">delta</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">delayTotal</span> <span class="o">&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">frameDelay</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">delayTotal</span> <span class="o">-=</span> <span class="k">this</span><span class="p">.</span><span class="nx">frameDelay</span><span class="p">;</span>
+
+          <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">direction</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">frameIndex</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">frameCount</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">frameIndex</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+              <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">loop</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">frameIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+              <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pingPong</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">direction</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+              <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">pause</span><span class="p">();</span>
+              <span class="p">}</span>
+
+              <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">COMPLETE</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">currentFrameName</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">path</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">frameIndex</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+
+            <span class="k">return</span><span class="p">;</span>
+          <span class="p">}</span>
+
+          <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">direction</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">frameIndex</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">frameIndex</span><span class="o">--</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">direction</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+              <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">COMPLETE_BACK</span><span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">this</span><span class="p">.</span><span class="nx">currentFrameName</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">path</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">frameIndex</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+
+            <span class="k">return</span><span class="p">;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>draw</strong></p>
+
+<p>Draws the cached path into the canvas, applying configured properties,
+like <strong>scaleX</strong>, <strong>scaleY</strong> and <strong>offsets</strong></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</p></li>
+<li><p><strong>viewport must be an Object.</strong><br/>(The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> this renderer is being drawn to)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">cache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">currentFrameName</span><span class="p">);</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">canvas</span><span class="p">)</span>
+        <span class="k">return</span><span class="p">;</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tinted</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">tintedCanvas</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">tintImage</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">currentFrameName</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">);</span>
+
+        <span class="nx">context</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">tintedCanvas</span><span class="p">,</span>
+          <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetX</span><span class="p">()),</span>
+          <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetY</span><span class="p">()),</span>
+          <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererWidth</span><span class="p">()),</span>
+          <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererHeight</span><span class="p">())</span>
+        <span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">context</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span>
+          <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetX</span><span class="p">()),</span>
+          <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetY</span><span class="p">()),</span>
+          <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererWidth</span><span class="p">()),</span>
+          <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererHeight</span><span class="p">())</span>
+        <span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>recycle</strong></p>
+
+<p>Called by the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> 
+when it is sent back to it's pool for reuse.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>parent must be an Object.</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> using this component)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">recycle</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">loop</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">pingPong</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">frameWidth</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">frameHeight</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">frameDelay</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">frameCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">path</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">finishLoading</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">frameIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">delayTotal</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">direction</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">(</span><span class="nx">parent</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>play</strong></p>
+
+<p>Plays the animation from the current frame</p></div></div><div class="code"><div class="wrapper">    <span class="nx">play</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">isPlaying</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>play</strong></p>
+
+<p>Stops and resets the animation to the first frame</p></div></div><div class="code"><div class="wrapper">    <span class="nx">stop</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">isPlaying</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">delayTotal</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">frameIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">direction</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">currentFrameName</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">path</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">frameIndex</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>play</strong></p>
+
+<p>Pauses the animation in the current frame</p></div></div><div class="code"><div class="wrapper">    <span class="nx">pause</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">isPlaying</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererOffsetX</strong></p>
+
+<p><strong>Returns a Number</strong><br/>(The offset in the X axis of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererOffsetX</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">offset</span> <span class="o">==</span> <span class="s1">&#39;center&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererWidth</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererOffsetY</strong></p>
+
+<p><strong>Returns a Number</strong><br/>(The offset in the Y axis of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererOffsetY</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">offset</span> <span class="o">==</span> <span class="s1">&#39;center&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererHeight</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererWidth</strong></p>
+
+<p><strong>Returns a Number</strong><br/>(The width of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererWidth</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">frameWidth</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererHeight</strong></p>
+
+<p><strong>Returns a Number</strong><br/>(The height of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererHeight</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">frameHeight</span><span class="p">;</span>
+    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">AnimationBitmapRenderer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;COMPLETE&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;complete&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">AnimationBitmapRenderer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;COMPLETE_BACK&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;complete_back&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="nx">AnimationBitmapRenderer</span><span class="p">;</span>
+<span class="p">});</span></div></div></div></div></body></html>

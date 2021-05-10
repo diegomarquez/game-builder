@@ -6,7 +6,7 @@
 
 <p>Inherits from:</p>
 
-<p>Depends of: </p>
+<p>Depends of:</p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
@@ -16,7 +16,9 @@
   <span class="kd">var</span> <span class="nx">ErrorPrinter</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span>
 
   <span class="kd">var</span> <span class="nx">getAnchor</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">origin</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">origin</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">trim</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/ /g</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="s1">&#39;#&#39;</span> <span class="o">+</span> <span class="nx">origin</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span>
+      <span class="p">.</span><span class="nx">trim</span><span class="p">()</span>
+      <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/ /g</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">);</span>
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>printError</strong></p>
 
 <p>Prints a nice error to console and link to the corresponding place in <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a>
@@ -34,7 +36,7 @@ website for a more detailed explanation.</p>
     <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">origin</span> <span class="o">+</span> <span class="s1">&#39; =&gt; &#39;</span> <span class="o">+</span> <span class="nx">message</span> <span class="o">+</span> <span class="s1">&#39;\nhttp://diegomarquez.github.io/game-builder/errors.html&#39;</span> <span class="o">+</span> <span class="nx">getAnchor</span><span class="p">(</span><span class="nx">origin</span><span class="p">));</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">throw</span> <span class="nx">e</span> 
+      <span class="k">throw</span> <span class="nx">e</span><span class="p">;</span>
     <span class="p">}</span>
   <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>mustOverrideError</strong></p>
 
@@ -48,7 +50,7 @@ website for a more detailed explanation.</p>
 
 <p><strong>Can throw an Error</strong><br/>(Always)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">mustOverrideError</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">origin</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">origin</span> <span class="o">+</span> <span class="s1">&#39; =&gt; &#39;</span> <span class="o">+</span> <span class="s1">&#39;This method must be overriden&#39;</span> <span class="o">+</span> <span class="s1">&#39;\nhttp://diegomarquez.github.io/game-builder/errors.html#common&#39;</span><span class="p">);</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>missingArgumentError</strong></p>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>missingArgumentError</strong></p>
 
 <p>Defines an error thrown when arguments are missing.</p>
 
@@ -61,11 +63,20 @@ website for a more detailed explanation.</p>
 <p><strong>Can throw an Error</strong><br/>(Always)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">missingArgumentError</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">origin</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
 
-    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">args</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">args</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">origin</span> <span class="o">+</span> <span class="s1">&#39; =&gt; &#39;</span> <span class="o">+</span> <span class="s1">&#39;Missing argument:&#39;</span> <span class="o">+</span> <span class="nx">args</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;\nhttp://diegomarquez.github.io/game-builder/errors.html&#39;</span> <span class="o">+</span> <span class="nx">getAnchor</span><span class="p">(</span><span class="nx">origin</span><span class="p">));</span>
     <span class="p">}</span>
-  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  
-  
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>wrongTypeArgumentError</strong></p>
 
-  <span class="k">return</span> <span class="k">new</span> <span class="nx">ErrorPrinter</span><span class="p">;</span>
+<p>Defines an error thrown when an argument has the wrong type.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>origin must be a String.</strong><br/>(An id to determine from which place this method was called.)</li>
+</ul>
+
+<p><strong>Can throw an Error</strong><br/>(Always)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">wrongTypeArgumentError</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">origin</span><span class="p">,</span> <span class="nx">property</span><span class="p">,</span> <span class="nx">expectedType</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">origin</span> <span class="o">+</span> <span class="s1">&#39; =&gt; &#39;</span> <span class="o">+</span> <span class="s1">&#39;Wrong type error: &#39;</span> <span class="o">+</span> <span class="nx">property</span> <span class="o">+</span> <span class="s1">&#39; must be of type&#39;</span> <span class="o">+</span> <span class="nx">expectedType</span> <span class="o">+</span> <span class="s1">&#39;\nhttp://diegomarquez.github.io/game-builder/errors.html&#39;</span> <span class="o">+</span> <span class="nx">getAnchor</span><span class="p">(</span><span class="nx">origin</span><span class="p">));</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="k">return</span> <span class="k">new</span> <span class="nx">ErrorPrinter</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

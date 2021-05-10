@@ -139,6 +139,12 @@
                 			<li>This .json is concatenated with the generated <em class="red-text">generated/asset-map.json</em> file. It should have key value pairs to remote resources. This values will be available at runtime through the <em class="red-text">asset-map</em> module</li>
                 		</ul>
                 	</li>
+                  <!-- PRELOAD ASSETS JSON -->
+                  <li>preload-assets.json</li>
+                    <ul class="description left-padding list-unstyled">
+                      <li>This .json indicates which of the assets from <em class="red-text">generated/asset-map.json</em> need to be preloaded before the application starts. It should have key value pairs like the ones that are automatically generated, so check the format of <em class="red-text">generated/asset-map.json</em> to see how they should be added in here
+                    </ul>
+                  </li>
                 	<!-- SHIM CONFIG JSON -->
                 	<li>shim-config.json</li>
                 		<ul class="description left-padding list-unstyled">
@@ -243,7 +249,15 @@
               <li>package.json</li>
               <ul class="description left-padding list-unstyled">
                 <li>This file is used by <em class="red-text">npm</em> to install dependencies. It also has other fields used
-                    by <em class="red-text">grunt</em>.</li>
+                    by <em class="red-text">grunt</em> tasks.</li>
+                    <ul class="description left-padding list-unstyled">
+                        <li><em class="orange-text">'additionalSrcPaths'</em> is a comma separated string were additional source code paths can be listed so they can be picked up by the build system when building the <em class="red-text">requirejs</em> configuration file</li>
+                        <li><em class="orange-text">'additionalAssetPaths'</em> is a comma separated string were additional asset paths can be added so they are included in the <em class="red-text">asset-map</em></li>
+                        <li><em class="orange-text">'frameworkRepo'</em> is the url from where Game-builder is downloaded from</li>
+                        <li><em class="orange-text">'framework'</em> is the location of Game-builder</li>
+                        <li><em class="orange-text">'lib' is the location of other libraries used</em></li>
+                        <li><em class="orange-text">'frameworkTag'</em> is the tag used when downloading Game-builder</li>
+                    </ul>
               </ul>
             </ul>
 

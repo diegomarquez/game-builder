@@ -30,6 +30,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
       "depth": 1,
       "children": [
         {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/asset-preloader.js",
+            "projectPath": "work/game-builder/src/asset-preloader.js",
+            "targetPath": "src/asset-preloader",
+            "pageTitle": "src/asset-preloader",
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "asset-preloader.js",
+                "slug": "asset-preloaderjs",
+                "isFileHeader": true
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Preload!",
+                    "slug": "preload"
+                  },
+                  "depth": 2
+                }
+              ]
+            },
+            "title": "asset-preloader.js"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Preload!",
+                "slug": "preload"
+              },
+              "depth": 2
+            }
+          ]
+        }, {
           "type": "folder",
           "data": {
             "path": "src/cache",
@@ -220,6 +271,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/cache/rgb-canvas-cache.js",
+                "projectPath": "work/game-builder/src/cache/rgb-canvas-cache.js",
+                "targetPath": "src/cache/rgb-canvas-cache",
+                "pageTitle": "src/cache/rgb-canvas-cache",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "rgb-canvas-cache.js",
+                    "slug": "rgb-canvas-cachejs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "RGB Image Cache",
+                        "slug": "rgb-image-cache"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "rgb-canvas-cache.js"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "RGB Image Cache",
+                    "slug": "rgb-image-cache"
+                  },
+                  "depth": 2
+                }
+              ]
             }, {
               "type": "file",
               "data": {
@@ -618,6 +720,108 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/add-component.js",
+                "projectPath": "work/game-builder/src/components/add-component.js",
+                "targetPath": "src/components/add-component",
+                "pageTitle": "src/components/add-component",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "add-component.js",
+                    "slug": "add-componentjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Add components to game objects",
+                        "slug": "add-components-to-game-objects"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "add-component.js"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Add components to game objects",
+                    "slug": "add-components-to-game-objects"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/add-game-object.js",
+                "projectPath": "work/game-builder/src/components/add-game-object.js",
+                "targetPath": "src/components/add-game-object",
+                "pageTitle": "src/components/add-game-object",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "add-gameobject.js",
+                    "slug": "add-gameobjectjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Add Game Objects",
+                        "slug": "add-game-objects"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "add-gameobject.js"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Add Game Objects",
+                    "slug": "add-game-objects"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/component.js",
                 "projectPath": "work/game-builder/src/components/component.js",
                 "targetPath": "src/components/component",
@@ -666,6 +870,210 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "depth": 3,
               "children": [
                 {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/rendering/animation-bitmap-renderer.js",
+                    "projectPath": "work/game-builder/src/components/rendering/animation-bitmap-renderer.js",
+                    "targetPath": "src/components/rendering/animation-bitmap-renderer",
+                    "pageTitle": "src/components/rendering/animation-bitmap-renderer",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "animation-bitmap-renderer.js",
+                        "slug": "animation-bitmap-rendererjs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Simple animations with paths",
+                            "slug": "simple-animations-with-paths"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "animation-bitmap-renderer.js"
+                  },
+                  "depth": 4,
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Simple animations with paths",
+                        "slug": "simple-animations-with-paths"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/rendering/animation-path-renderer.js",
+                    "projectPath": "work/game-builder/src/components/rendering/animation-path-renderer.js",
+                    "targetPath": "src/components/rendering/animation-path-renderer",
+                    "pageTitle": "src/components/rendering/animation-path-renderer",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "animation-path-renderer.js",
+                        "slug": "animation-path-rendererjs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Simple animations with paths",
+                            "slug": "simple-animations-with-paths"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "animation-path-renderer.js"
+                  },
+                  "depth": 4,
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Simple animations with paths",
+                        "slug": "simple-animations-with-paths"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/rendering/animations-bitmap-renderer.js",
+                    "projectPath": "work/game-builder/src/components/rendering/animations-bitmap-renderer.js",
+                    "targetPath": "src/components/rendering/animations-bitmap-renderer",
+                    "pageTitle": "src/components/rendering/animations-bitmap-renderer",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "animations-bitmap-renderer.js",
+                        "slug": "animations-bitmap-rendererjs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Simple animations with paths",
+                            "slug": "simple-animations-with-paths"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "animations-bitmap-renderer.js"
+                  },
+                  "depth": 4,
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Simple animations with paths",
+                        "slug": "simple-animations-with-paths"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/rendering/animations-path-renderer.js",
+                    "projectPath": "work/game-builder/src/components/rendering/animations-path-renderer.js",
+                    "targetPath": "src/components/rendering/animations-path-renderer",
+                    "pageTitle": "src/components/rendering/animations-path-renderer",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "animations-path-renderer.js",
+                        "slug": "animations-path-rendererjs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Slightly more complicated animations",
+                            "slug": "slightly-more-complicated-animations"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "animations-path-renderer.js"
+                  },
+                  "depth": 4,
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Slightly more complicated animations",
+                        "slug": "slightly-more-complicated-animations"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                }, {
                   "type": "file",
                   "data": {
                     "language": {
@@ -891,6 +1299,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       ]
                     }
                   ]
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/components/sound-component.js",
+                "projectPath": "work/game-builder/src/components/sound-component.js",
+                "targetPath": "src/components/sound-component",
+                "pageTitle": "src/components/sound-component",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "sound-component.js",
+                    "slug": "sound-componentjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Play sounds on game objects",
+                        "slug": "play-sounds-on-game-objects"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "sound-component.js"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Play sounds on game objects",
+                    "slug": "play-sounds-on-game-objects"
+                  },
+                  "depth": 2
                 }
               ]
             }
@@ -1593,8 +2052,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                           "type": "heading",
                           "data": {
                             "level": 2,
-                            "title": "Pause and Resume all sound channels",
-                            "slug": "pause-and-resume-all-sound-channels"
+                            "title": "Pause and Resume all sound sources",
+                            "slug": "pause-and-resume-all-sound-sources"
                           },
                           "depth": 2
                         }
@@ -1608,8 +2067,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 2,
-                        "title": "Pause and Resume all sound channels",
-                        "slug": "pause-and-resume-all-sound-channels"
+                        "title": "Pause and Resume all sound sources",
+                        "slug": "pause-and-resume-all-sound-sources"
                       },
                       "depth": 2
                     }
@@ -2022,6 +2481,169 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 }
               ]
             }, {
+              "type": "folder",
+              "data": {
+                "path": "src/hierarchy/helpers",
+                "title": "helpers"
+              },
+              "depth": 3,
+              "children": [
+                {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/helpers/child-finder.js",
+                    "projectPath": "work/game-builder/src/hierarchy/helpers/child-finder.js",
+                    "targetPath": "src/hierarchy/helpers/child-finder",
+                    "pageTitle": "src/hierarchy/helpers/child-finder",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "child-finder.js",
+                        "slug": "child-finderjs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Find Children",
+                            "slug": "find-children"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "child-finder.js"
+                  },
+                  "depth": 4,
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Find Children",
+                        "slug": "find-children"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/helpers/component-finder.js",
+                    "projectPath": "work/game-builder/src/hierarchy/helpers/component-finder.js",
+                    "targetPath": "src/hierarchy/helpers/component-finder",
+                    "pageTitle": "src/hierarchy/helpers/component-finder",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "child-finder.js",
+                        "slug": "child-finderjs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Find Components",
+                            "slug": "find-components"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "child-finder.js"
+                  },
+                  "depth": 4,
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Find Components",
+                        "slug": "find-components"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                }, {
+                  "type": "file",
+                  "data": {
+                    "language": {
+                      "nameMatchers": [".js"],
+                      "pygmentsLexer": "javascript",
+                      "multiLineComment": ["/*", "*", "*/"],
+                      "singleLineComment": ["//"],
+                      "ignorePrefix": "}",
+                      "foldPrefix": "^",
+                      "name": "JavaScript"
+                    },
+                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/hierarchy/helpers/visibility-control.js",
+                    "projectPath": "work/game-builder/src/hierarchy/helpers/visibility-control.js",
+                    "targetPath": "src/hierarchy/helpers/visibility-control",
+                    "pageTitle": "src/hierarchy/helpers/visibility-control",
+                    "firstHeader": {
+                      "type": "heading",
+                      "data": {
+                        "level": 1,
+                        "title": "visibility-control.js",
+                        "slug": "visibility-controljs",
+                        "isFileHeader": true
+                      },
+                      "depth": 1,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 2,
+                            "title": "Visibility Control",
+                            "slug": "visibility-control"
+                          },
+                          "depth": 2
+                        }
+                      ]
+                    },
+                    "title": "visibility-control.js"
+                  },
+                  "depth": 4,
+                  "outline": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Visibility Control",
+                        "slug": "visibility-control"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                }
+              ]
+            }, {
               "type": "file",
               "data": {
                 "language": {
@@ -2400,6 +3022,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "foldPrefix": "^",
                   "name": "JavaScript"
                 },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/component-configuration.js",
+                "projectPath": "work/game-builder/src/pools/component-configuration.js",
+                "targetPath": "src/pools/component-configuration",
+                "pageTitle": "src/pools/component-configuration",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "component-configuration.js",
+                    "slug": "component-configurationjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Component Configuration",
+                        "slug": "component-configuration"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "component-configuration.js"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Component Configuration",
+                    "slug": "component-configuration"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
                 "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/component-pool.js",
                 "projectPath": "work/game-builder/src/pools/component-pool.js",
                 "targetPath": "src/pools/component-pool",
@@ -2435,6 +3108,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                     "level": 2,
                     "title": "Pooling",
                     "slug": "pooling"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/game-object-configuration.js",
+                "projectPath": "work/game-builder/src/pools/game-object-configuration.js",
+                "targetPath": "src/pools/game-object-configuration",
+                "pageTitle": "src/pools/game-object-configuration",
+                "firstHeader": {
+                  "type": "heading",
+                  "data": {
+                    "level": 1,
+                    "title": "game-object-configuration.js",
+                    "slug": "game-object-configurationjs",
+                    "isFileHeader": true
+                  },
+                  "depth": 1,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 2,
+                        "title": "Game Object Configuration",
+                        "slug": "game-object-configuration"
+                      },
+                      "depth": 2
+                    }
+                  ]
+                },
+                "title": "game-object-configuration.js"
+              },
+              "depth": 3,
+              "outline": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "Game Object Configuration",
+                    "slug": "game-object-configuration"
                   },
                   "depth": 2
                 }

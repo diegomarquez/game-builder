@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="en"><head><title>src/hierarchy/helpers/visibility-control</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../../"><meta name="groc-document-path" content="src/hierarchy/helpers/visibility-control"><meta name="groc-project-path" content="work/game-builder/src/hierarchy/helpers/visibility-control.js"><link rel="stylesheet" type="text/css" media="all" href="../../../assets/style.css"><script type="text/javascript" src="../../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/hierarchy/helpers/visibility-control.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="visibility-controljs">visibility-control.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from:</p>
+
+<p>Depends of:</p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This module provides finer control when deciding which children of a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>
+should be hidden or shown along with it's parent. The default functionality is all of them, but sometimes you might want something else.</p>
+
+<p>Call the <strong>show</strong> and <strong>hide</strong> methods of a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> with a single boolean parameter with a value of true
+to get a handle of this object.</p>
+
+<p>Ej.</p>
+
+<pre><code class=" javascript">gameObject.hide(true).recurse().not().allWithType('AN_ID'));
+</code></pre>
+
+<p>The previous example would hide the <a href="@@game-object-cotainer@@">game-object-cotainer</a> itself along with any children in all of it's
+heriarchy that did not match the specified type.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="visibility-control">Visibility Control</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">visibility</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">toggle</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">applyOnSelf</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">userVisibilityMethod</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">not</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">recurse</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">VisibilityControl</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>user</strong></p>
+
+<p>Chain this method to set the current <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> that will be affected</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>user must be an Object.</strong></li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(The 'this' pointer)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">VisibilityControl</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">u</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">user</span> <span class="o">=</span> <span class="nx">u</span><span class="p">;</span>
+    <span class="nx">recurse</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="nx">not</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="nx">applyOnSelf</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="nx">visibility</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="nx">toggle</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>ommitSelf</strong></p>
+
+<p>Chain this method to prevent the opeartion from taking place on the user <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a></p>
+
+<p><strong>Returns an Object</strong><br/>(The 'this' pointer)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">VisibilityControl</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">ommitSelf</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">u</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">applyOnSelf</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>hide</strong></p>
+
+<p>Chain this method to hide the user <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> and it's selected children</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>uvm must be a Function.</strong><br/>(The <strong>hide</strong> method of the current user <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> super class)</li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(The 'this' pointer)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">VisibilityControl</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">hide</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">uvm</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">visibility</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="nx">userVisibilityMethod</span> <span class="o">=</span> <span class="nx">uvm</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>show</strong></p>
+
+<p>Chain this method to show the user <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> and it's selected children</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>uvm must be a Function.</strong><br/>(The <strong>show</strong> method of the current user <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> super class)</li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(The 'this' pointer)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">VisibilityControl</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">show</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">uvm</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">visibility</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="nx">userVisibilityMethod</span> <span class="o">=</span> <span class="nx">uvm</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>show</strong></p>
+
+<p>Chain this method to toggle the user visibility and it's selected children</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>uvm must be a Function.</strong><br/>(The <strong>toggleVisibility</strong> method of the current user <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> super class)</li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(The 'this' pointer)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">VisibilityControl</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toggle</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">uvm</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">toggle</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="nx">userVisibilityMethod</span> <span class="o">=</span> <span class="nx">uvm</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>recurse</strong></p>
+
+<p>Chain this method to search for children recursively</p></div></div><div class="code"><div class="wrapper">  <span class="nx">VisibilityControl</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">recurse</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">recurse</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>not</strong></p>
+
+<p>Chain this method to negate the search criteria</p></div></div><div class="code"><div class="wrapper">  <span class="nx">VisibilityControl</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">not</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">not</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>all</strong></p>
+
+<p>Chain this method to select all the children that return true for the given function</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>f must be a Function.</strong><br/>(Test function to decide whether a child should change it's visibility. Receives a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> as argument. Must return true or false.)</li>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nx">VisibilityControl</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">all</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">common</span><span class="p">(</span><span class="nx">all</span><span class="p">,</span> <span class="nx">f</span><span class="p">);</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>allWithProp</strong></p>
+
+<p>Chain this method to search for a matching property name</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>propName must be a String.</strong><br/>(A property name to search for in the user <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> and it's children)</li>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nx">VisibilityControl</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">allWithProp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">propName</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">common</span><span class="p">(</span><span class="nx">withProp</span><span class="p">,</span> <span class="nx">propName</span><span class="p">);</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>allWithType</strong></p>
+
+<p>Chain this method to search for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a> with a matching poolId or typeId</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>type must be a String.</strong></li>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nx">VisibilityControl</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">allWithType</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">common</span><span class="p">(</span><span class="nx">withType</span><span class="p">,</span> <span class="nx">type</span><span class="p">);</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">common</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">pass</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="k">return</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">applyOnSelf</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">userVisibilityMethod</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">user</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nx">pass</span><span class="p">(</span><span class="nx">args</span><span class="p">,</span> <span class="nx">visibility</span><span class="p">,</span> <span class="nx">toggle</span><span class="p">);</span>
+
+    <span class="nx">user</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">find</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">finder</span> <span class="o">=</span> <span class="nx">user</span><span class="p">.</span><span class="nx">findChildren</span><span class="p">();</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">not</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">finder</span> <span class="o">=</span> <span class="nx">finder</span><span class="p">.</span><span class="nx">not</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">recurse</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">finder</span> <span class="o">=</span> <span class="nx">finder</span><span class="p">.</span><span class="nx">recurse</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">finder</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">all</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">iterate</span><span class="p">(</span><span class="nx">find</span><span class="p">()</span>
+      <span class="p">.</span><span class="nx">all</span><span class="p">(</span><span class="nx">f</span><span class="p">),</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">t</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">withProp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">propName</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">iterate</span><span class="p">(</span><span class="nx">find</span><span class="p">()</span>
+      <span class="p">.</span><span class="nx">allWithProp</span><span class="p">(</span><span class="nx">propName</span><span class="p">),</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">t</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">withType</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">iterate</span><span class="p">(</span><span class="nx">find</span><span class="p">()</span>
+      <span class="p">.</span><span class="nx">allWithType</span><span class="p">(</span><span class="nx">type</span><span class="p">),</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">t</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">iterate</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">children</span><span class="p">,</span> <span class="nx">v</span><span class="p">,</span> <span class="nx">t</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">children</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">children</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">t</span> <span class="o">?</span> <span class="nx">children</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">toggleVisibility</span><span class="p">()</span> <span class="o">:</span> <span class="nx">v</span> <span class="o">?</span> <span class="nx">children</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">show</span><span class="p">()</span> <span class="o">:</span> <span class="nx">children</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">hide</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">VisibilityControl</span><span class="p">();</span>
+<span class="p">});</span></div></div></div></div></body></html>

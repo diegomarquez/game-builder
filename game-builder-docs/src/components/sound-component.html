@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="en"><head><title>src/components/sound-component</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/components/sound-component"><meta name="groc-project-path" content="work/game-builder/src/components/sound-component.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/components/sound-component.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="sound-componentjs">sound-component.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from:
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a></p>
+
+<p>Depends of:
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/sound-player.html">sound-player</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>A <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> to encapsulate the logic needed to play a sound when the
+parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> executes a delegate.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="play-sounds-on-game-objects">Play sounds on game objects</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;component&quot;</span><span class="p">,</span> <span class="s2">&quot;sound-player&quot;</span><span class="p">,</span> <span class="s2">&quot;error-printer&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">SoundPlayer</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">SoundComponent</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>init</strong></p>
+
+<p>Constructor</p></div></div><div class="code"><div class="wrapper">    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">soundId</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">parentEvent</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">playMode</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">stopParentEvent</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">executeOnce</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">offScreenPlay</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">offScreenViewport</span> <span class="o">=</span> <span class="s2">&quot;Main&quot;</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">soundPlayer</span> <span class="o">=</span> <span class="nx">SoundPlayer</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">soundUniqueId</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>reset</strong></p>
+
+<p>Reset for re-use</p></div></div><div class="code"><div class="wrapper">    <span class="nx">reset</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">soundId</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">parentEvent</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">playMode</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">stopParentEvent</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">executeOnce</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">soundUniqueId</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">offScreenPlay</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">offScreenViewport</span> <span class="o">=</span> <span class="s2">&quot;Main&quot;</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>start</strong></p>
+
+<p>Called by the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> when
+it is started</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>parent must be an Object.</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> using this component)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">soundId</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">missingArgumentError</span><span class="p">(</span><span class="s2">&quot;SoundComponent&quot;</span><span class="p">,</span> <span class="s2">&quot;soundId&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">parentEvent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">missingArgumentError</span><span class="p">(</span><span class="s2">&quot;SoundComponent&quot;</span><span class="p">,</span> <span class="s2">&quot;parentEvent&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">playMode</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">missingArgumentError</span><span class="p">(</span><span class="s2">&quot;SoundComponent&quot;</span><span class="p">,</span> <span class="s2">&quot;playMode&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">executeOnce</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">parent</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">parentEvent</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+
+          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">offScreenPlay</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">parent</span><span class="p">.</span><span class="nx">getViewportVisibility</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">offScreenViewport</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+          <span class="p">}</span>
+
+          <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">playMode</span> <span class="o">===</span> <span class="s2">&quot;single&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">soundUniqueId</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">soundPlayer</span><span class="p">.</span><span class="nx">playSingle</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">soundId</span><span class="p">);</span>
+          <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">playMode</span> <span class="o">===</span> <span class="s2">&quot;loop&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">soundUniqueId</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">soundPlayer</span><span class="p">.</span><span class="nx">playLoop</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">soundId</span><span class="p">);</span>
+          <span class="p">}</span>
+        <span class="p">},</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s2">&quot;sound-player-delegate&quot;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">stopParentEvent</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">parent</span><span class="p">.</span><span class="nx">once</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">stopParentEvent</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">soundPlayer</span><span class="p">.</span><span class="nx">stop</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">soundUniqueId</span><span class="p">);</span>
+          <span class="p">},</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s2">&quot;sound-player-delegate&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">parent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">parentEvent</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">offScreenPlay</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">parent</span><span class="p">.</span><span class="nx">getViewportVisibility</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">offScreenViewport</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span><span class="p">;</span>
+          <span class="p">}</span>
+
+          <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">playMode</span> <span class="o">===</span> <span class="s2">&quot;single&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">soundUniqueId</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">soundPlayer</span><span class="p">.</span><span class="nx">playSingle</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">soundId</span><span class="p">);</span>
+          <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">playMode</span> <span class="o">===</span> <span class="s2">&quot;loop&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">soundUniqueId</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">soundPlayer</span><span class="p">.</span><span class="nx">playLoop</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">soundId</span><span class="p">);</span>
+          <span class="p">}</span>
+        <span class="p">},</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s2">&quot;sound-player-delegate&quot;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">stopParentEvent</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">parent</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">stopParentEvent</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">soundPlayer</span><span class="p">.</span><span class="nx">stop</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">soundUniqueId</span><span class="p">);</span>
+          <span class="p">},</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s2">&quot;sound-player-delegate&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>recycle</strong></p>
+
+<p>Called by the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>
+when it is sent back to it's pool for reuse.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>parent must be an Object.</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> using this component)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">recycle</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">parent</span><span class="p">.</span><span class="nx">levelCleanUp</span><span class="p">(</span><span class="s2">&quot;sound-player-delegate&quot;</span><span class="p">);</span>
+    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="nx">SoundComponent</span><span class="p">;</span>
+<span class="p">});</span></div></div></div></div></body></html>

@@ -24,9 +24,9 @@
 
 <p>When a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> is added</p>
 
-<p>Registered callbacks get the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> as argument </p>
+<p>Registered callbacks get the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> as argument</p>
 
-<pre><code class=" javascript  ">gb.groups.on(gb.groups.ADD, function(group) {});
+<pre><code class=" javascript">gb.groups.on(gb.groups.ADD, function(group) {});
 </code></pre>
 
 <p></br></p>
@@ -35,9 +35,9 @@
 
 <p>When a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> is removed</p>
 
-<p>Registered callbacks get the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> as argument </p>
+<p>Registered callbacks get the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> as argument</p>
 
-<pre><code class=" javascript  ">gb.groups.on(gb.groups.REMOVE, function(group) {});
+<pre><code class=" javascript">gb.groups.on(gb.groups.REMOVE, function(group) {});
 </code></pre>
 
 <p></br></p>
@@ -46,9 +46,9 @@
 
 <p>When <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> changes position</p>
 
-<p>Registered callbacks get the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> as argument </p>
+<p>Registered callbacks get the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> as argument</p>
 
-<pre><code class=" javascript  ">gb.groups.on(gb.groups.CHANGE, function(group) {});
+<pre><code class=" javascript">gb.groups.on(gb.groups.CHANGE, function(group) {});
 </code></pre>
 
 <p></br></p>
@@ -57,11 +57,11 @@
 
 <p>When all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">groups</a> are removed</p>
 
-<pre><code class=" javascript  ">gb.groups.on(gb.groups.REMOVE_ALL, function() {});
+<pre><code class=" javascript">gb.groups.on(gb.groups.REMOVE_ALL, function() {});
 </code></pre>
 
 <p><strong>Note: The snippets use the reference to <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html>groups</a>
-found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
+found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module.
 The way you get a hold to a reference to <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html>groups</a>
 may vary.</strong></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="group-management">Group management</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;delegate&quot;</span><span class="p">,</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="s2">&quot;group&quot;</span><span class="p">,</span> <span class="s2">&quot;error-printer&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">,</span> <span class="nx">Root</span><span class="p">,</span> <span class="nx">Group</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
 
@@ -72,8 +72,7 @@ may vary.</strong></p></div></div></div><div class="segment"><div class="comment
 
       <span class="k">this</span><span class="p">.</span><span class="nx">groups</span> <span class="o">=</span> <span class="p">{};</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">groupsArray</span> <span class="o">=</span> <span class="p">[];</span>
-    <span class="p">},</span>
-    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>add</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addGroup</strong></p>
 
 <p>Adds a new group. The group is managed in this object, but
 it also is added to <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html">root</a>, which is what will make it update.</p>
@@ -89,17 +88,18 @@ a list of childs of it's own.</p>
 <li><strong>name must be a String.</strong><br/>(Id of the group, used later to refer to the group.)</li>
 </ul>
 
-<p><strong>Returns an Object</strong><br/>(The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> that was just created)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">add</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+<p><strong>Returns an Object</strong><br/>(The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> that was just created)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">addGroup</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">group</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Group</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
 
-      <span class="nx">Root</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">group</span><span class="p">).</span><span class="nx">start</span><span class="p">();</span>
+      <span class="nx">Root</span><span class="p">.</span><span class="nx">addChild</span><span class="p">(</span><span class="nx">group</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">start</span><span class="p">();</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">group</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">groupsArray</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">group</span><span class="p">);</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ADD</span><span class="p">,</span> <span class="nx">group</span><span class="p">);</span>
 
       <span class="k">return</span> <span class="nx">group</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>remove</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removeGroup</strong></p>
 
 <p>Removes a group from the array in this object, and also from the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html">root</a>.
 Prior to removing the group it also clears it from any <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-objects</a></p>
@@ -111,23 +111,22 @@ from a group you might want to use the <strong>clear</strong> method.</p>
 
 <ul>
 <li><strong>name must be a String.</strong><br/>(Id of the group to remove)</li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">remove</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">removeGroup</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">group</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">REMOVE</span><span class="p">,</span> <span class="nx">group</span><span class="p">);</span>
 
       <span class="nx">group</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
 
+      <span class="nx">Root</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">]);</span>
+
       <span class="k">this</span><span class="p">.</span><span class="nx">groupsArray</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">groupsArray</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">group</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
       <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
-      
-      <span class="nx">Root</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">]);</span>
-
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>removeAll</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>removeAll</strong></p>
 
 <p>Removes all <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">groups</a> from the array in this object, and also from the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html">root</a>.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">k</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">removeGroup</span><span class="p">(</span><span class="nx">k</span><span class="p">);</span>
       <span class="p">}</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">REMOVE_ALL</span><span class="p">);</span>
@@ -153,7 +152,7 @@ from a group you might want to use the <strong>clear</strong> method.</p>
       <span class="p">}</span>
 
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>exists</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>exists</strong></p>
 
 <p>Tell whether a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> exists or not</p>
 
@@ -163,7 +162,7 @@ from a group you might want to use the <strong>clear</strong> method.</p>
 <li><strong>name must be a String.</strong><br/>(Id of the group to check existance of.)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">exists</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>change</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>change</strong></p>
 
 <p>Change the position of the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a></p>
 
@@ -188,10 +187,11 @@ of a group.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the group in which to stop all activity)</li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">stop</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">stop_update</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">stop_draw</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+<li><p><strong>name must be a String.</strong><br/>(Id of the group in which to stop all activity)</p></li>
+<li><p><strong>skipEvents is optional, must be a Boolean, and has a default value of false.</strong><br/>(Whether to skip the <strong>HIDE</strong> and <strong>STOP</strong> events of the corresponding <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">stop</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">skipEvents</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">stop_update</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">skipEvents</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">stop_draw</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">skipEvents</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resume</strong></p>
 
 <p>Resumes all activity in the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>.</p>
@@ -199,10 +199,11 @@ of a group.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> to resume activity in)</li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">resume</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">resume_update</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">resume_draw</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span>
+<li><p><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> to resume activity in)</p></li>
+<li><p><strong>skipEvents is optional, must be a Boolean, and has a default value of false.</strong><br/>(Whether to skip the <strong>SHOW</strong> and <strong>RUN</strong> events of the corresponding <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">resume</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">skipEvents</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">resume_update</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">skipEvents</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">resume_draw</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">skipEvents</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>stop_draw</strong></p>
 
 <p>Stops rendering of the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>. Effectively making everything in it invisible.</p>
@@ -210,32 +211,44 @@ of a group.</p>
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> that should stop rendering)</li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">stop_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">hide</span><span class="p">();</span> <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resume_draw</strong></p>
+<li><p><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> that should stop rendering)</p></li>
+<li><p><strong>skipEvents is optional, must be a Boolean, and has a default value of false.</strong><br/>(Whether to skip the <strong>HIDE</strong> event of the corresponding <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">stop_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">skipEvents</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">hide</span><span class="p">(</span><span class="nx">skipEvents</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resume_draw</strong></p>
 
 <p>Resumes rendering of the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> that should resume rendering)</li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">resume_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">show</span><span class="p">();</span> <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>stop_update</strong></p>
+<li><p><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> that should resume rendering)</p></li>
+<li><p><strong>skipEvents is optional, must be a Boolean, and has a default value of false.</strong><br/>(Whether to skip the <strong>SHOW</strong> event of the corresponding <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">resume_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">skipEvents</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">show</span><span class="p">(</span><span class="nx">skipEvents</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>stop_update</strong></p>
 
 <p>Stops updating of the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>. Effectively pausing everything in it.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> that should stop updating)</li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">stop_update</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">canUpdate</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span> <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resume_update</strong></p>
+<li><p><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> that should stop updating)</p></li>
+<li><p><strong>skipEvents is optional, must be a Boolean, and has a default value of false.</strong><br/>(Whether to skip the <strong>STOP</strong> event of the corresponding <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">stop_update</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">skipEvents</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">stop</span><span class="p">(</span><span class="nx">skipEvents</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resume_update</strong></p>
 
 <p>Resumes updating of the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>.</p>
 
 <p>Parameters:</p>
 
 <ul>
-<li><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> that should resume updating)</li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">resume_update</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">canUpdate</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span> <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>allGroupNames</strong></p>
+<li><p><strong>name must be a String.</strong><br/>(Id of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> that should resume updating)</p></li>
+<li><p><strong>skipEvents is optional, must be a Boolean, and has a default value of false.</strong><br/>(Whether to skip the <strong>RUN</strong> event of the corresponding <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a>)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">resume_update</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">skipEvents</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">name</span><span class="p">].</span><span class="nx">run</span><span class="p">(</span><span class="nx">skipEvents</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>allGroupNames</strong></p>
 
 <p>Get an array with all the group names</p>
 
@@ -244,7 +257,7 @@ of a group.</p>
 
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">groupsArray</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">group</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">groupsArray</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-   
+
         <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">)</span> <span class="p">{</span>
           <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">===</span> <span class="nx">group</span><span class="p">)</span> <span class="p">{</span>
             <span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">k</span><span class="p">);</span>
@@ -272,18 +285,42 @@ groups.all('stop', 'update');
 <ul>
 <li><p><strong>action must be a String.</strong><br/>(This can be either 'resume' or 'stop')</p></li>
 <li><p><strong>method must be a String.</strong><br/>(This can be either 'draw' or update.)</p></li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">all</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">action</span><span class="p">,</span> <span class="nx">method</span><span class="p">)</span> <span class="p">{</span>
+<li><p><strong>which must be a Function.</strong><br/>(Groups passing this test will get the action and method applied to them)</p></li>
+<li><p><strong>skipEvents is optional, must be a Boolean, and has a default value of false.</strong><br/>(Whether to skip the events of the corresponding <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">groups</a>)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">all</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">action</span><span class="p">,</span> <span class="nx">method</span><span class="p">,</span> <span class="nx">which</span><span class="p">,</span> <span class="nx">skipEvents</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="nx">method</span><span class="p">)</span> <span class="nx">action</span> <span class="o">=</span> <span class="nx">action</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="nx">method</span><span class="p">;</span>
 
       <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">[</span><span class="nx">action</span><span class="p">](</span><span class="nx">k</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">which</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">[</span><span class="nx">action</span><span class="p">](</span><span class="nx">k</span><span class="p">,</span> <span class="nx">skipEvents</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">which</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">groups</span><span class="p">[</span><span class="nx">k</span><span class="p">]))</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">[</span><span class="nx">action</span><span class="p">](</span><span class="nx">k</span><span class="p">,</span> <span class="nx">skipEvents</span><span class="p">);</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
 
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;ADD&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;add&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REMOVE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;remove&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CHANGE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;change&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REMOVE_ALL&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;removeAll&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;ADD&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;add&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REMOVE&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;remove&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CHANGE&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;change&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GroupContainer</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REMOVE_ALL&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;removeAll&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
 
   <span class="k">return</span> <span class="k">new</span> <span class="nx">GroupContainer</span><span class="p">();</span>
 <span class="p">});</span></div></div></div></div></body></html>

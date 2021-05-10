@@ -6,8 +6,10 @@
  * Inherits from: 
  * [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html)
  *
- * Depends of: [image-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html)
- *
+ * Depends of: 
+ * [image-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html)
+ * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
+ * 
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
  * Mainly this is a wrapper to the [Image Object](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement?redirectlocale=en-US&redirectslug=DOM%2FHTMLImageElement)
@@ -30,11 +32,6 @@
 		//These are optional and default to 0
 		offsetX:0,
 		offsetY:0, 
-		
-		//Use these to override the dimentions of the loaded image.
-		//These are optional
-		scaleX: 1, 
-		scaleY: 1
  *	});
  * ```
  * <strong>Note: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
@@ -51,19 +48,27 @@
 /**
  * --------------------------------
  */
-define(["renderer", "image-cache"], function(Renderer, ImageCache) {
-
-	var image;
+define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCache, ErrorPrinter) {
 
 	var BitmapRenderer = Renderer.extend({
+		init: function() {
+			this._super();
+
+			this.cache = ImageCache;
+		},
+
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
 		 * This is called by the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this renderer.
 		 * It sends the path configured to the [image-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/image-cache.html) module.
 		 */
-		start: function(parent) {	
-			ImageCache.cache(this.path);
+		start: function(parent) {
+			if (!this.path) {
+				ErrorPrinter.missingArgumentError('Bitmap Renderer', 'path');
+			}
+
+			this.cache.cache(this.path);
 		},
 		/**
 		 * --------------------------------
@@ -79,23 +84,43 @@ define(["renderer", "image-cache"], function(Renderer, ImageCache) {
 		 * @param  {Object} viewport     The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) this renderer is being drawn to
 		 */
 		draw: function(context, viewport) {
-			image = ImageCache.get(this.path);
-			context.drawImage(image, this.rendererOffsetX(), this.rendererOffsetY(), this.rendererWidth(), this.rendererHeight());	
+			var image = this.cache.get(this.path);
+
+			if (!image)
+				return;
+
+			if (this.tinted) {
+				var tintedCanvas = this.tintImage(this.path, image);
+
+				context.drawImage(tintedCanvas,
+					Math.floor(this.rendererOffsetX()),
+					Math.floor(this.rendererOffsetY()),
+					Math.floor(this.rendererWidth()),
+					Math.floor(this.rendererHeight())
+				);
+			} else {
+				context.drawImage(image,
+					Math.floor(this.rendererOffsetX()),
+					Math.floor(this.rendererOffsetY()),
+					Math.floor(this.rendererWidth()),
+					Math.floor(this.rendererHeight())
+				);
+			}
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>rendererOffsetX</strong></p>
 		 *
 		 * @return {Number} The offset in the X axis of the renderer
 		 */
-		rendererOffsetX: function() { 
+		rendererOffsetX: function() {
 			if (this.offset == 'center') {
-				return -this.rendererWidth()/2 * this.scaleX;
+				return -this.rendererWidth() / 2 + this.offsetX;
 			} else {
-				return this.offsetX * this.scaleX; 
+				return this.offsetX;
 			}
 		},
 		/**
@@ -107,23 +132,26 @@ define(["renderer", "image-cache"], function(Renderer, ImageCache) {
 		 *
 		 * @return {Number} The offset in the Y axis of the renderer
 		 */
-		rendererOffsetY: function() { 
+		rendererOffsetY: function() {
 			if (this.offset == 'center') {
-				return -this.rendererHeight()/2  * this.scaleY;
+				return -this.rendererHeight() / 2 + this.offsetY;
 			} else {
-				return this.offsetY * this.scaleY;  
+				return this.offsetY;
 			}
 		},
 		/**
 		 * --------------------------------
-		 */ 
+		 */
 
 		/**
 		 * <p style='color:#AD071D'><strong>rendererWidth</strong></p>
 		 *
 		 * @return {Number} The width of the renderer
 		 */
-		rendererWidth: function() { return ImageCache.get(this.path).width * this.scaleX; },
+		rendererWidth: function() {
+			return this.cache.get(this.path)
+				.width;
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -133,7 +161,10 @@ define(["renderer", "image-cache"], function(Renderer, ImageCache) {
 		 *
 		 * @return {Number} The height of the renderer
 		 */
-		rendererHeight: function() { return ImageCache.get(this.path).height * this.scaleY; }
+		rendererHeight: function() {
+			return this.cache.get(this.path)
+				.height;
+		}
 		/**
 		 * --------------------------------
 		 */

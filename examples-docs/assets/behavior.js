@@ -171,6 +171,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/colliders/src/preload-assets.js",
+                "projectPath": "work/examples/colliders/src/preload-assets.js",
+                "targetPath": "colliders/src/preload-assets",
+                "pageTitle": "colliders/src/preload-assets",
+                "title": "preload-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }, {
@@ -908,6 +928,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/empty/src/preload-assets.js",
+                "projectPath": "work/examples/empty/src/preload-assets.js",
+                "targetPath": "empty/src/preload-assets",
+                "pageTitle": "empty/src/preload-assets",
+                "title": "preload-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }, {
@@ -1151,6 +1191,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "targetPath": "extensions/src/font-data",
                 "pageTitle": "extensions/src/font-data",
                 "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/extensions/src/preload-assets.js",
+                "projectPath": "work/examples/extensions/src/preload-assets.js",
+                "targetPath": "extensions/src/preload-assets",
+                "pageTitle": "extensions/src/preload-assets",
+                "title": "preload-assets"
               },
               "depth": 3,
               "outline": []
@@ -1400,6 +1460,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/fixed_state_machine/src/preload-assets.js",
+                "projectPath": "work/examples/fixed_state_machine/src/preload-assets.js",
+                "targetPath": "fixed_state_machine/src/preload-assets",
+                "pageTitle": "fixed_state_machine/src/preload-assets",
+                "title": "preload-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }, {
@@ -1643,6 +1723,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "targetPath": "game_object_creation/src/font-data",
                 "pageTitle": "game_object_creation/src/font-data",
                 "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_creation/src/preload-assets.js",
+                "projectPath": "work/examples/game_object_creation/src/preload-assets.js",
+                "targetPath": "game_object_creation/src/preload-assets",
+                "pageTitle": "game_object_creation/src/preload-assets",
+                "title": "preload-assets"
               },
               "depth": 3,
               "outline": []
@@ -1892,6 +1992,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/game_object_nesting/src/preload-assets.js",
+                "projectPath": "work/examples/game_object_nesting/src/preload-assets.js",
+                "targetPath": "game_object_nesting/src/preload-assets",
+                "pageTitle": "game_object_nesting/src/preload-assets",
+                "title": "preload-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }, {
@@ -2135,6 +2255,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "targetPath": "keyboard/src/font-data",
                 "pageTitle": "keyboard/src/font-data",
                 "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/keyboard/src/preload-assets.js",
+                "projectPath": "work/examples/keyboard/src/preload-assets.js",
+                "targetPath": "keyboard/src/preload-assets",
+                "pageTitle": "keyboard/src/preload-assets",
+                "title": "preload-assets"
               },
               "depth": 3,
               "outline": []
@@ -2384,6 +2524,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/layering/src/preload-assets.js",
+                "projectPath": "work/examples/layering/src/preload-assets.js",
+                "targetPath": "layering/src/preload-assets",
+                "pageTitle": "layering/src/preload-assets",
+                "title": "preload-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }, {
@@ -2627,6 +2787,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "targetPath": "logic_components/src/font-data",
                 "pageTitle": "logic_components/src/font-data",
                 "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/logic_components/src/preload-assets.js",
+                "projectPath": "work/examples/logic_components/src/preload-assets.js",
+                "targetPath": "logic_components/src/preload-assets",
+                "pageTitle": "logic_components/src/preload-assets",
+                "title": "preload-assets"
               },
               "depth": 3,
               "outline": []
@@ -2876,6 +3056,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/loose_state_machine/src/preload-assets.js",
+                "projectPath": "work/examples/loose_state_machine/src/preload-assets.js",
+                "targetPath": "loose_state_machine/src/preload-assets",
+                "pageTitle": "loose_state_machine/src/preload-assets",
+                "title": "preload-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }, {
@@ -3119,6 +3319,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "targetPath": "reclaimer/src/font-data",
                 "pageTitle": "reclaimer/src/font-data",
                 "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/reclaimer/src/preload-assets.js",
+                "projectPath": "work/examples/reclaimer/src/preload-assets.js",
+                "targetPath": "reclaimer/src/preload-assets",
+                "pageTitle": "reclaimer/src/preload-assets",
+                "title": "preload-assets"
               },
               "depth": 3,
               "outline": []
@@ -3368,6 +3588,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/renderers/src/preload-assets.js",
+                "projectPath": "work/examples/renderers/src/preload-assets.js",
+                "targetPath": "renderers/src/preload-assets",
+                "pageTitle": "renderers/src/preload-assets",
+                "title": "preload-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }, {
@@ -3611,6 +3851,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "targetPath": "sound/src/font-data",
                 "pageTitle": "sound/src/font-data",
                 "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/sound/src/preload-assets.js",
+                "projectPath": "work/examples/sound/src/preload-assets.js",
+                "targetPath": "sound/src/preload-assets",
+                "pageTitle": "sound/src/preload-assets",
+                "title": "preload-assets"
               },
               "depth": 3,
               "outline": []
@@ -3860,6 +4120,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               },
               "depth": 3,
               "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/timers/src/preload-assets.js",
+                "projectPath": "work/examples/timers/src/preload-assets.js",
+                "targetPath": "timers/src/preload-assets",
+                "pageTitle": "timers/src/preload-assets",
+                "title": "preload-assets"
+              },
+              "depth": 3,
+              "outline": []
             }
           ]
         }, {
@@ -4103,6 +4383,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                 "targetPath": "viewports/src/font-data",
                 "pageTitle": "viewports/src/font-data",
                 "title": "font-data"
+              },
+              "depth": 3,
+              "outline": []
+            }, {
+              "type": "file",
+              "data": {
+                "language": {
+                  "nameMatchers": [".js"],
+                  "pygmentsLexer": "javascript",
+                  "multiLineComment": ["/*", "*", "*/"],
+                  "singleLineComment": ["//"],
+                  "ignorePrefix": "}",
+                  "foldPrefix": "^",
+                  "name": "JavaScript"
+                },
+                "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/examples/viewports/src/preload-assets.js",
+                "projectPath": "work/examples/viewports/src/preload-assets.js",
+                "targetPath": "viewports/src/preload-assets",
+                "pageTitle": "viewports/src/preload-assets",
+                "title": "preload-assets"
               },
               "depth": 3,
               "outline": []

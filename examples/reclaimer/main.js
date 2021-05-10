@@ -63,7 +63,7 @@ define(function(require){
 		});
 
 		keyboard.onKeyDown(keyboard.P, this, function() {
-			reclaimer.clearAllPools();
+			reclaimer.clearAllPools().now();
 		});
 
 		keyboard.onKeyDown(keyboard.O, this, function() {

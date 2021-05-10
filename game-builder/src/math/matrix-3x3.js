@@ -8,20 +8,20 @@
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
- * Similar to [sat](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html) and [vector-2D](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/vector-2D.html) 
+ *
+ * Similar to [sat](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html) and [vector-2D](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/vector-2D.html)
  * in that I took the code from somewhere else to make a requireJS module with it.
  * In this case the victim was [EaselJS](https://github.com/CreateJS/EaselJS/). Somewhere
  * in there is a javascript file that desribes a 3x3 matrix. So this is largely a copy/paste of that.
  *
  * Anyway, this module is very important for everything that has to do with rendering,
- * because matrix transformations are used in each [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) 
- * to apply a transformation to the context 2D property 
+ * because matrix transformations are used in each [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
+ * to apply a transformation to the context 2D property
  * of the [Canvas](https://developer.mozilla.org/en-US/docs/HTML/Canvas)
  * modifying it's position and that of all sub-sequent rendering commands.
  *
  * If you want to know what all this methods do, you are better off going to the original code,
- * or better yet, reading up on 
+ * or better yet, reading up on
  * [Matrix Transformations](https://www.google.co.uk/search?q=Matrix+Affine+Transformations&oq=Matrix+Affine+Transformations&aqs=chrome..69i57j0l3.6454j0j7&sourceid=chrome&espv=210&es_sm=91&ie=UTF-8)
  */
 
@@ -49,18 +49,14 @@ define(function() {
 	p.alpha = 1;
 
 	p.initialize = function(a, b, c, d, tx, ty, alpha) {
-		if (a != null) {
-			this.a = a;
-		}
+		this.a = a || 1;
 		this.b = b || 0;
 		this.c = c || 0;
-		if (d != null) {
-			this.d = d;
-		}
+		this.d = d || 1;
 		this.tx = tx || 0;
 		this.ty = ty || 0;
 
-		this.ty = alpha || 1;
+		this.alpha = alpha || 1;
 		return this;
 	};
 
@@ -95,10 +91,12 @@ define(function() {
 	};
 
 	p.prependTransform = function(x, y, scaleX, scaleY, rotation, regX, regY, alpha) {
+		var cos, sin;
+
 		if (rotation % 360) {
 			var r = rotation * matrix_3x3.DEG_TO_RAD;
-			var cos = Math.cos(r);
-			var sin = Math.sin(r);
+			cos = Math.cos(r);
+			sin = Math.sin(r);
 		} else {
 			cos = 1;
 			sin = 0;
@@ -177,14 +175,14 @@ define(function() {
 		var c1 = this.c;
 		var d1 = this.d;
 		var tx1 = this.tx;
-		var n = a1*d1-b1*c1;
+		var n = a1 * d1 - b1 * c1;
 
-		this.a = d1/n;
-		this.b = -b1/n;
-		this.c = -c1/n;
-		this.d = a1/n;
-		this.tx = (c1*this.ty-d1*tx1)/n;
-		this.ty = -(a1*this.ty-b1*tx1)/n;
+		this.a = d1 / n;
+		this.b = -b1 / n;
+		this.c = -c1 / n;
+		this.d = a1 / n;
+		this.tx = (c1 * this.ty - d1 * tx1) / n;
+		this.ty = -(a1 * this.ty - b1 * tx1) / n;
 		return this;
 	};
 
@@ -199,10 +197,10 @@ define(function() {
 		if (target == null) {
 			target = {};
 		}
-	
+
 		target.x = this.tx;
 		target.y = this.ty;
-		
+
 		target.scaleX = Math.sqrt(this.a * this.a + this.b * this.b);
 		target.scaleY = Math.sqrt(this.c * this.c + this.d * this.d);
 
@@ -220,9 +218,8 @@ define(function() {
 	};
 
 	p.transformPoint = function(x, y, pt) {
-		pt = pt || {};
-		pt.x = x*this.a+y*this.c+this.tx;
-		pt.y = x*this.b+y*this.d+this.ty;
+		pt.x = x * this.a + y * this.c + this.tx;
+		pt.y = x * this.b + y * this.d + this.ty;
 		return pt;
 	};
 

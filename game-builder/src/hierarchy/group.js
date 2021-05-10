@@ -8,7 +8,7 @@
  * Depends of:
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This module defines a special kind of [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html).
  *
  * It's only purpose it be used by [groups](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html) as a way to organize the updating loop
@@ -25,35 +25,57 @@
 /**
  * --------------------------------
  */
-define(["game-object-container"], function(Container){
+define(["game-object-container", "util"], function(Container, Util) {
 	var Group = Container.extend({
 		/**
 		 * <p style='color:#AD071D'><strong>init</strong></p>
 		 *
 		 * Constructor
-		 * 
-		 * @param  {String} name The name of the group
+		 *
+		 * @param {String} name The name of the group
 		 */
 		init: function(name) {
 			this._super();
 
 			this.groupName = name;
+			this.drawAlreadyStopped = false;
+			this.updateAlreadyStopped = false;
 		},
 		/**
 		 * --------------------------------
 		 */
 
+		start: function() {
+			this._super();
+
+			this.on(this.HIDE, this, function() {
+				this.drawAlreadyStopped = true;
+			});
+
+			this.on(this.SHOW, this, function() {
+				this.drawAlreadyStopped = false;
+			});
+
+			this.on(this.STOP, this, function() {
+				this.updateAlreadyStopped = true;
+			});
+
+			this.on(this.RUN, this, function() {
+				this.updateAlreadyStopped = false;
+			});
+		},
+
 		/**
-		 * <p style='color:#AD071D'><strong>add</strong></p>
+		 * <p style='color:#AD071D'><strong>addChild</strong></p>
 		 *
 		 * Adds the specified child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to this container.
 		 * If the child already is part of another parent, it is removed from it
 		 * and added to this one.
-		 * 
+		 *
 		 * @param {Object} child The child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to add
 		 */
-		add: function(child) {
-			this._super(child);	
+		addChild: function(child) {
+			this._super(child);
 
 			child.updateGroup = this.groupName;
 		},
@@ -64,14 +86,15 @@ define(["game-object-container"], function(Container){
 		/**
 		 * <p style='color:#AD071D'><strong>clear</strong></p>
 		 *
-		 * This is normally called through [groups](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html) to empty a 
+		 * This is normally called through [groups](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html) to empty a
 		 * group, but it could be called manually, assuming you can get a hold
 		 * of a reference.
 		 */
 		clear: function() {
-			if(this.childs) {	
-				while(this.childs.length) {
-					this.childs.pop().clear();
+			if (this.childs) {
+				while (this.childs.length) {
+					this.childs.pop()
+						.clear();
 				}
 
 				this.childs.length = 0;
@@ -88,6 +111,19 @@ define(["game-object-container"], function(Container){
 		 */
 		typeName: function() {
 			return 'Group';
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>isChild</strong></p>
+		 *
+		 *
+		 * @return {Boolean}
+		 */
+		isChild: function() {
+			return false;
 		},
 		/**
 		 * --------------------------------

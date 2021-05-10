@@ -9,7 +9,8 @@
 <p>Depends of:
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/game-object-debug-draw.html">game-object-debug-draw</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html">util</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html">util</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/helpers/component-finder.html">component-finder</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
@@ -27,23 +28,23 @@ object. Why only one renderer? Because I thought it made more sense to have only
 
 <h3 id="start"><strong>START</strong></h3>
 
-<p>When the game object is started </p>
+<p>When the game object is started</p>
 
-<p>Registered callbacks get the game object as argument </p>
+<p>Registered callbacks get the game object as argument</p>
 
-<pre><code class=" javascript  ">gameObject.on(gameObject.START, function(gameObject) {});
+<pre><code class=" javascript">gameObject.on(gameObject.START, function(gameObject) {});
 </code></pre>
 
 <p></br></p>
 
 <h3 id="recycle"><strong>RECYCLE</strong></h3>
 
-<p>When a game object is sent back to the game object pool. 
+<p>When a game object is sent back to the game object pool.
 This happens before destroying properties in the object.</p>
 
 <p>Registered callbacks get the game object as argument</p>
 
-<pre><code class=" javascript  ">gameObject.on(gameObject.RECYCLE, function(gameObject) {});
+<pre><code class=" javascript">gameObject.on(gameObject.RECYCLE, function(gameObject) {});
 </code></pre>
 
 <p></br></p>
@@ -53,27 +54,27 @@ This happens before destroying properties in the object.</p>
 <p>When a game object is sent back to the game object pool.
 This happens after destroying properties in the object.</p>
 
-<pre><code class=" javascript  ">gameObject.on(gameObject.CLEAR, function() {});
+<pre><code class=" javascript">gameObject.on(gameObject.CLEAR, function() {});
 </code></pre>
 
 <p></br></p>
 
 <h3 id="add"><strong>ADD</strong></h3>
 
-<p>When a game object is added to a parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> 
+<p>When a game object is added to a parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>
 The parent is sent to the registered callbacks as argument</p>
 
-<pre><code class=" javascript  ">gameObject.on(gameObject.ADD, function(parent) {});
+<pre><code class=" javascript">gameObject.on(gameObject.ADD, function(parent) {});
 </code></pre>
 
 <p></br></p>
 
 <h3 id="remove"><strong>REMOVE</strong></h3>
 
-<p>When a game object is removed from a parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a> 
+<p>When a game object is removed from a parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>
 The parent is sent to the registered callbacks as argument</p>
 
-<pre><code class=" javascript  ">gameObject.on(gameObject.REMOVE, function(parent) {});
+<pre><code class=" javascript">gameObject.on(gameObject.REMOVE, function(parent) {});
 </code></pre>
 
 <p></br></p>
@@ -85,7 +86,7 @@ The parent is sent to the registered callbacks as argument</p>
 <p>An object that looks like this <code>[{viewport: 'ViewportName', layer:'LayerName'}]</code>
 is sent to all the registered callbacks as an argument</p>
 
-<pre><code class=" javascript  ">gameObject.on(gameObject.ADD_TO_VIEWPORT, function(v) {});
+<pre><code class=" javascript">gameObject.on(gameObject.ADD_TO_VIEWPORT, function(v) {});
 </code></pre>
 
 <p></br></p>
@@ -97,9 +98,52 @@ is sent to all the registered callbacks as an argument</p>
 <p>An object that looks like this <code>[{viewport: 'ViewportName', layer:'LayerName'}]</code>
 is sent to all the registered callbacks as an argument</p>
 
-<pre><code class=" javascript  ">gameObject.on(gameObject.REMOVE_FROM_VIEWPORT, function(v) {});
-</code></pre></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="main-building-block">Main building block</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;delegate&quot;</span><span class="p">,</span> <span class="s2">&quot;matrix-3x3&quot;</span><span class="p">,</span> <span class="s2">&quot;game-object-debug-draw&quot;</span><span class="p">,</span> <span class="s2">&quot;util&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">,</span> <span class="nx">Matrix</span><span class="p">,</span> <span class="nx">DebugDraw</span><span class="p">,</span> <span class="nx">Util</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">go</span><span class="p">,</span> <span class="nx">r</span><span class="p">;</span>
+<pre><code class=" javascript">gameObject.on(gameObject.REMOVE_FROM_VIEWPORT, function(v) {});
+</code></pre>
+
+<p></br></p>
+
+<h3 id="hide"><strong>HIDE</strong></h3>
+
+<p>When a game object calls it's <strong>hide</strong> method</p>
+
+<p>Registered callbacks get the game object as argument</p>
+
+<pre><code class=" javascript">gameObject.on(gameObject.HIDE, function(gameObject) {});
+</code></pre>
+
+<p></br></p>
+
+<h3 id="show"><strong>SHOW</strong></h3>
+
+<p>When a game object calls it's <strong>show</strong> method</p>
+
+<p>Registered callbacks get the game object as argument</p>
+
+<pre><code class=" javascript">gameObject.on(gameObject.SHOW, function(gameObject) {});
+</code></pre>
+
+<p></br></p>
+
+<h3 id="stop"><strong>STOP</strong></h3>
+
+<p>When a game object calls it's <strong>stop</strong> method</p>
+
+<p>Registered callbacks get the game object as argument</p>
+
+<pre><code class=" javascript">gameObject.on(gameObject.STOP, function(gameObject) {});
+</code></pre>
+
+<p></br></p>
+
+<h3 id="run"><strong>RUN</strong></h3>
+
+<p>When a game object calls it's <strong>run</strong> method</p>
+
+<p>Registered callbacks get the game object as argument</p>
+
+<pre><code class=" javascript">gameObject.on(gameObject.RUN, function(gameObject) {});
+</code></pre></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="main-building-block">Main building block</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;delegate&quot;</span><span class="p">,</span> <span class="s2">&quot;matrix-3x3&quot;</span><span class="p">,</span> <span class="s2">&quot;game-object-debug-draw&quot;</span><span class="p">,</span> <span class="s2">&quot;util&quot;</span><span class="p">,</span> <span class="s2">&quot;component-finder&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Delegate</span><span class="p">,</span> <span class="nx">Matrix</span><span class="p">,</span> <span class="nx">DebugDraw</span><span class="p">,</span> <span class="nx">Util</span><span class="p">,</span> <span class="nx">ComponentFinder</span><span class="p">)</span> <span class="p">{</span>
 
   <span class="kd">var</span> <span class="nx">GameObject</span> <span class="o">=</span> <span class="nx">Delegate</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
     <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -108,7 +152,7 @@ is sent to all the registered callbacks as an argument</p>
 
 <pre><code class=" javascript">gb.goPool.createConfiguration("GameObject_1", "GameObject")
     .args({
-        x: 0, 
+        x: 0,
         y: 0
 });
 </code></pre>
@@ -117,7 +161,7 @@ is sent to all the registered callbacks as an argument</p>
 object can also be set in the same way.</p>
 
 <p>You can also choose not to do that, and set the properties after
-requesting a game object to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html">assembler</a> module.</p></div></div><div class="code"><div class="wrapper"> </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>A unique identifier assigned when the game object is built by the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html">assembler</a> module
+requesting a game object to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html">assembler</a> module.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>A unique identifier assigned when the game object is built by the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html">assembler</a> module
 It changes every time the game object is recycled</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">uid</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">parent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p><a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a> used to control affine transformations.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Matrix</span><span class="p">();</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>List of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> attached.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">components</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a> attached.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Pair of local coordinates. This coordinates are relative to the
 parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Registration point. Ussually 0, 0 means top left corner.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">centerX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -133,7 +177,13 @@ Very usefull to identify game objects</p></div></div><div class="code"><div clas
 If this is true the game object will update.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">canUpdate</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>if this is true the game object will render.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">canDraw</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>This object can be queried to tell whether this game-object is visible in a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> or not
 It's values are set in the method <strong>isGameObjectInside</strong> of the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> module.</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">viewportVisibility</span> <span class="o">=</span> <span class="p">{}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>An array with the names of all the viewports this game objects is being renderer in.
 This property is set by the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> objects held by <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewports</a></p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">viewports</span> <span class="o">=</span> <span class="p">[];</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>The current update <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> of this game object. This property is set when the game object is added to a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a></p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">updateGroup</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Color that will be used to draw a little shape to outline the position if the <strong>debug</strong>
-property of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a> is set to true;</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span> <span class="o">=</span> <span class="s2">&quot;#FF00FF&quot;</span><span class="p">;</span>
+property of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a> is set to true;</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span> <span class="o">=</span> <span class="s2">&quot;#FF00FF&quot;</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>This boolean signals that a transformation has taken place and hence the object can be drawn afterwards.
+If an object tries to draw itself before a transformation has occured, the drawing will be skipped to avoid graphical glitches.
+It can also be used when a component is added dynamically, to prevetn executing logic
+in the update loop until the parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> has been transformed for
+the first time</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">isTransformed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">decomposed</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>reset</strong></p>
 
 <p>Not so interesting mehtod, it just resets some properties right
@@ -152,6 +202,7 @@ a game object.</p></div></div><div class="code"><div class="wrapper">    <span c
       <span class="k">this</span><span class="p">.</span><span class="nx">viewports</span> <span class="o">=</span> <span class="p">[];</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">updateGroup</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">isChildInContainer</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">isTransformed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>added</strong></p>
 
 <p>Executed when the game-object is added to a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a></p>
@@ -161,8 +212,9 @@ a game object.</p></div></div><div class="code"><div class="wrapper">    <span c
 <ul>
 <li><strong>parent is optional and must be an Object.</strong><br/>(The new parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">added</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">isTransformed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ADD</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removed</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removed</strong></p>
 
 <p>Executed when the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> is removed from it's <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a></p>
 
@@ -172,14 +224,14 @@ a game object.</p></div></div><div class="code"><div class="wrapper">    <span c
 <li><strong>parent is optional and must be an Object.</strong><br/>(The old parent <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">removed</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">REMOVE</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>start</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>start</strong></p>
 
 <p>This mehtod needs to be called in order for the game object
 to start updating and rendering.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">canUpdate</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">canDraw</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 
-      <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">onStarted</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
       <span class="p">}</span>
 
@@ -205,7 +257,7 @@ All the logic concerning clearing references should go in here.</p></div></div><
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">RECYCLE</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>configure</strong></p>
 
-<p>Sets up the properties that were previously configured 
+<p>Sets up the properties that were previously configured
 in the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a></p>
 
 <p>Parameters:</p>
@@ -229,7 +281,7 @@ in the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src
 
             <span class="k">if</span> <span class="p">(</span><span class="nx">Util</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">setter</span><span class="p">))</span> <span class="p">{</span>
               <span class="nx">Util</span><span class="p">.</span><span class="nx">defineSetter</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">ha</span><span class="p">,</span> <span class="nx">setter</span><span class="p">);</span>
-            <span class="p">}</span> 
+            <span class="p">}</span>
           <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
             <span class="k">this</span><span class="p">[</span><span class="nx">ha</span><span class="p">]</span> <span class="o">=</span> <span class="nx">args</span><span class="p">[</span><span class="nx">ha</span><span class="p">];</span>
           <span class="p">}</span>
@@ -249,7 +301,7 @@ callback.</p>
 <ul>
 <li><strong>renderer must be an Object.</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a> added)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">setRenderer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">renderer</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">renderer</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">renderer</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span> <span class="o">=</span> <span class="nx">renderer</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">onAdded</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
@@ -257,7 +309,7 @@ callback.</p>
 
 <p>Removes the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a>, and notifies it through the <strong>onRemove</strong>
 and <strong>onRecycled</strong> callbacks.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeRenderer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">onRemoved</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">onRecycled</span><span class="p">();</span>
@@ -283,7 +335,7 @@ and <strong>onRecycled</strong> callbacks.</p></div></div><div class="code"><div
       <span class="nx">component</span><span class="p">.</span><span class="nx">onAdded</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removeComponent</strong></p>
 
-<p>Removes a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a>, and notifies it, 
+<p>Removes a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a>, and notifies it,
 it was removed through the <strong>onRemoved</strong> callback.</p>
 
 <p>Parameters:</p>
@@ -297,119 +349,40 @@ it was removed through the <strong>onRemoved</strong> callback.</p>
 
       <span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="nx">component</span><span class="p">.</span><span class="nx">onRemoved</span><span class="p">();</span>
-        <span class="nx">component</span><span class="p">.</span><span class="nx">onRecycled</span><span class="p">();</span>
+        <span class="nx">component</span><span class="p">.</span><span class="nx">onRemoved</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="nx">component</span><span class="p">.</span><span class="nx">onRecycled</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
       <span class="p">}</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>removeComponents</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removeComponents</strong></p>
 
-<p>Removes all components.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">removeComponents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Removes <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a>.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>toRemove is optional, must be an Array, and has a default value of null.</strong><br/>(Optional array of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> to remove, if not specified all <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> are removed)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">removeComponents</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">toRemove</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
-      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="nx">removeComponent</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
-      <span class="p">}</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>findComponents</strong></p>
-
-<p>Get an object to query the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> list of the game object</p>
-
-<p><strong>Returns an Object</strong><br/>(An object to make the query. It has the following methods: </br> <strong>all</strong> returns all <a href="@@components@@">components</a> that return true for the specified function. Pass no argument to get all components </br> <strong>allWithProp</strong> returns all <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> that have the given property </br> <strong>allWithType</strong> returns all <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> that have the given id in the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a> </br> <strong>first</strong> returns the first <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> that returns true for the specified function </br> <strong>firstWithProp</strong> returns the first <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> that has the given property </br> <strong>firstWithType</strong> returns the first <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> that have the given id in the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a> </br>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">findComponents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-
-      <span class="k">return</span> <span class="p">{</span>
-        <span class="nx">all</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-
-          <span class="kd">var</span> <span class="nx">r</span><span class="p">;</span>
-
-          <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-
-            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">f</span> <span class="o">||</span> <span class="nx">f</span><span class="p">(</span><span class="nx">c</span><span class="p">))</span> <span class="p">{</span>
-              <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">r</span><span class="p">)</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">[];</span>
-              
-              <span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
-            <span class="p">}</span>
-          <span class="p">}</span>
-
-          <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
-        <span class="p">},</span> 
-
-        <span class="nx">allWithProp</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">propName</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-
-          <span class="kd">var</span> <span class="nx">r</span><span class="p">;</span>
-
-          <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-
-            <span class="k">if</span> <span class="p">(</span><span class="nb">Boolean</span><span class="p">(</span><span class="nx">c</span><span class="p">[</span><span class="nx">propName</span><span class="p">]))</span> <span class="p">{</span>
-              <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">r</span><span class="p">)</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">[];</span>
-              
-              <span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
-            <span class="p">}</span>
-          <span class="p">}</span>
-
-          <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
-        <span class="p">},</span>
-
-        <span class="nx">allWithType</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-
-          <span class="kd">var</span> <span class="nx">r</span><span class="p">;</span>
-
-          <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-
-            <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">typeId</span> <span class="o">==</span> <span class="nx">id</span> <span class="o">||</span> <span class="nx">c</span><span class="p">.</span><span class="nx">poolId</span> <span class="o">==</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-              <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">r</span><span class="p">)</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">[];</span>
-              
-              <span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
-            <span class="p">}</span>
-          <span class="p">}</span>
-
-          <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
-        <span class="p">},</span>
-
-        <span class="nx">first</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-
-          <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-
-            <span class="k">if</span> <span class="p">(</span><span class="nx">f</span><span class="p">(</span><span class="nx">c</span><span class="p">))</span> <span class="p">{</span>
-              <span class="k">return</span> <span class="nx">c</span><span class="p">;</span>
-            <span class="p">}</span>
-          <span class="p">}</span>   
-        <span class="p">},</span>
-
-        <span class="nx">firstWithProp</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">propName</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-
-          <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-
-            <span class="k">if</span> <span class="p">(</span><span class="nb">Boolean</span><span class="p">(</span><span class="nx">c</span><span class="p">[</span><span class="nx">propName</span><span class="p">]))</span> <span class="p">{</span>
-              <span class="k">return</span> <span class="nx">c</span><span class="p">;</span>
-            <span class="p">}</span>
-          <span class="p">}</span>
-        <span class="p">},</span>
-
-        <span class="nx">firstWithType</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-          
-          <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">components</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
-
-            <span class="k">if</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">typeId</span> <span class="o">==</span> <span class="nx">id</span> <span class="o">||</span> <span class="nx">c</span><span class="p">.</span><span class="nx">poolId</span> <span class="o">==</span> <span class="nx">id</span><span class="p">)</span> <span class="p">{</span>
-              <span class="k">return</span> <span class="nx">c</span><span class="p">;</span>
-            <span class="p">}</span>
-          <span class="p">}</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">toRemove</span> <span class="o">&amp;&amp;</span> <span class="nx">Util</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">toRemove</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">toRemove</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">removeComponent</span><span class="p">(</span><span class="nx">toRemove</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+        <span class="p">}</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">removeComponent</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
         <span class="p">}</span>
       <span class="p">}</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>transform</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>findComponents</strong></p>
+
+<p>Get a reference to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/helpers/component-finder.html">component-finder</a> object, to search for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> in the game object</p>
+
+<p><strong>Returns an Object</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">findComponents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">ComponentFinder</span><span class="p">.</span><span class="nx">user</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>transform</strong></p>
 
 <p>Generates the concatenated <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a> used to draw itself in the proper place</p></div></div><div class="code"><div class="wrapper">    <span class="nx">transform</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">getMatrix</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">concatenateMatrix</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">isTransformed</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>draw</strong></p>
 
 <p>Draws the game-object into the specified Context 2D, using it's <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a></p>
@@ -420,38 +393,108 @@ it was removed through the <strong>onRemoved</strong> callback.</p>
 <li><p><strong>context must be a Context 2D.</strong><br/>(<a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D">CanvasRenderingContext2D</a>)</p></li>
 <li><p><strong>viewport must be an Object.</strong><br/>(The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> this objects is being drawn too)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">isTransformed</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
       <span class="nx">context</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
 
-      <span class="nx">context</span><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">a</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">b</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">c</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">d</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">tx</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">ty</span><span class="p">);</span>
-      
-      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">alpha</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-         <span class="nx">context</span><span class="p">.</span><span class="nx">globalAlpha</span> <span class="o">*=</span> <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">alpha</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getMatrix</span><span class="p">();</span>
+
+      <span class="nx">context</span><span class="p">.</span><span class="nx">transform</span><span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">a</span><span class="p">,</span> <span class="nx">m</span><span class="p">.</span><span class="nx">b</span><span class="p">,</span> <span class="nx">m</span><span class="p">.</span><span class="nx">c</span><span class="p">,</span> <span class="nx">m</span><span class="p">.</span><span class="nx">d</span><span class="p">,</span> <span class="nx">m</span><span class="p">.</span><span class="nx">tx</span><span class="p">,</span> <span class="nx">m</span><span class="p">.</span><span class="nx">ty</span><span class="p">);</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">alpha</span> <span class="o">!==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">context</span><span class="p">.</span><span class="nx">globalAlpha</span> <span class="o">*=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">alpha</span><span class="p">;</span>
       <span class="p">}</span>
 
-      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">alpha</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">m</span><span class="p">.</span><span class="nx">alpha</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">isEnabled</span><span class="p">())</span> <span class="p">{</span>
           <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">.</span><span class="nx">draw</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>
         <span class="p">}</span>
       <span class="p">}</span>
-      
-      <span class="nx">DebugDraw</span><span class="p">.</span><span class="nx">gameObject</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>
+
+      <span class="nx">DebugDraw</span><span class="p">.</span><span class="nx">gameObject</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">);</span>
 
       <span class="nx">context</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>hide</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>hide</strong></p>
 
-<p>Prevents rendering</p></div></div><div class="code"><div class="wrapper">    <span class="nx">hide</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>Prevents rendering</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>skipEvent is optional, must be a Boolean, and has a default value of false.</strong></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">hide</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">skipEvent</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">canDraw</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>show</strong></p>
 
-<p>Enables rendering</p></div></div><div class="code"><div class="wrapper">    <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">skipEvent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">HIDE</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>show</strong></p>
+
+<p>Enables rendering</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>skipEvent is optional, must be a Boolean, and has a default value of false.</strong></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">skipEvent</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">canDraw</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>hasViewport</strong></p>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">skipEvent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">SHOW</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>toggleVisibility</strong></p>
+
+<p>Toggle rendering</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>skipEvent is optional, must be a Boolean, and has a default value of false.</strong></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">toggleVisibility</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">skipEvent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">canDraw</span> <span class="o">=</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">canDraw</span><span class="p">;</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">skipEvent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">canDraw</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">SHOW</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">HIDE</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>stop</strong></p>
+
+<p>Prevents updating</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>skipEvent is optional, must be a Boolean, and has a default value of false.</strong></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">stop</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">skipEvent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">canUpdate</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">skipEvent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">STOP</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>run</strong></p>
+
+<p>Enables updating</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>skipEvent is optional, must be a Boolean, and has a default value of false.</strong></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">run</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">skipEvent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">canUpdate</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">skipEvent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">RUN</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>hasViewport</strong></p>
 
 <p>Wheter or not this game-object is part of any viewport</p>
 
 <p><strong>Returns a Boolean</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">hasViewport</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewports</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> 
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addToViewport</strong></p>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewports</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addToViewport</strong></p>
 
 <p>Adds the specified viewport and layer combo to the ones this game object belongs to</p>
 
@@ -461,10 +504,13 @@ it was removed through the <strong>onRemoved</strong> callback.</p>
 <li><p><strong>viewportName must be a String.</strong><br/>(Name of the new viewport this object belongs to)</p></li>
 <li><p><strong>layerName must be a String.</strong><br/>(Name of the layer in the specified viewport)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">addToViewportList</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">viewportName</span><span class="p">,</span> <span class="nx">layerName</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">viewport</span><span class="o">:</span> <span class="nx">viewportName</span><span class="p">,</span> <span class="nx">layer</span><span class="o">:</span> <span class="nx">layerName</span> <span class="p">}</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">viewports</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span> 
+      <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">viewport</span><span class="o">:</span> <span class="nx">viewportName</span><span class="p">,</span>
+        <span class="nx">layer</span><span class="o">:</span> <span class="nx">layerName</span>
+      <span class="p">}</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">viewports</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">ADD_TO_VIEWPORT</span><span class="p">,</span> <span class="p">[</span><span class="nx">v</span><span class="p">]);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removeFromViewport</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>removeFromViewport</strong></p>
 
 <p>Removes the viewport and layer combo from the ones this game object belongs to</p>
 
@@ -474,7 +520,7 @@ it was removed through the <strong>onRemoved</strong> callback.</p>
 <li><p><strong>viewportName must be a String.</strong><br/>(Name of the viewport to remove from this game objects list)</p></li>
 <li><p><strong>layerName must be a String.</strong><br/>(Name of the layer in the specified viewport)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">removeFromViewportList</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">viewportName</span><span class="p">,</span> <span class="nx">layerName</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewports</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewports</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewports</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">viewport</span> <span class="o">===</span> <span class="nx">viewportName</span> <span class="o">&amp;&amp;</span> <span class="nx">v</span><span class="p">.</span><span class="nx">layer</span> <span class="o">===</span> <span class="nx">layerName</span><span class="p">)</span> <span class="p">{</span>
@@ -482,7 +528,7 @@ it was removed through the <strong>onRemoved</strong> callback.</p>
           <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">REMOVE_FROM_VIEWPORT</span><span class="p">,</span> <span class="p">[</span><span class="nx">v</span><span class="p">]);</span>
         <span class="p">}</span>
       <span class="p">}</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>setViewportVisibility</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>setViewportVisibility</strong></p>
 
 <p>Set the visible state of the game-object in the specified viewport
 This is for checking purposes only, it doesn't actually affect the rendering</p>
@@ -504,7 +550,7 @@ This is for checking purposes only, it doesn't actually affect the rendering</p>
 
 <p><strong>Returns a Boolean</strong><br/>(Wheter the game-object is visible or not in the specified <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getViewportVisibility</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">viewportName</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewportVisibility</span><span class="p">[</span><span class="nx">viewportName</span><span class="p">];</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getViewportList</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getViewportList</strong></p>
 
 <p><strong>Returns an Array</strong><br/>(An array with all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html">viewport</a> and <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html">layer</a> combinations this game object belongs to)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getViewportList</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="kd">var</span> <span class="nx">go</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
@@ -519,10 +565,16 @@ This is for checking purposes only, it doesn't actually affect the rendering</p>
       <span class="p">}</span>
 
       <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewports</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getUpdateGroup</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getUpdateGroup</strong></p>
 
-<p><strong>Returns a String</strong><br/>(The update <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> this game object belongs to)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getUpdateGroup</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">updateGroup</span><span class="p">;</span>
+<p><strong>Returns a String</strong><br/>(The update <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html">group</a> this game object belongs to. If it has no update group, check it's parent recursively until a group is fround)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getUpdateGroup</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">go</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+
+      <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="nx">go</span><span class="p">.</span><span class="nx">updateGroup</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">go</span> <span class="o">=</span> <span class="nx">go</span><span class="p">.</span><span class="nx">parent</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="nx">go</span><span class="p">.</span><span class="nx">updateGroup</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>clear</strong></p>
 
 <p>This is called to send back a game object and all of it's parts to their
@@ -538,6 +590,8 @@ respective pools. This method is used by the <a href="http://diegomarquez.github
       <span class="k">this</span><span class="p">.</span><span class="nx">canUpdate</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">canDraw</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">parent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">typeId</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>resetTransform</strong></p>
 
 <p>Sets all the properties of the game object to the specified values,
@@ -564,7 +618,7 @@ assuming defaults if not specified.</p>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>setTransform</strong></p>
 
 <p>Sets all the properties of the game object to the specified values,
-ommiting unspecified properties </p>
+ommiting unspecified properties</p>
 
 <p>Parameters:</p>
 
@@ -587,7 +641,7 @@ ommiting unspecified properties </p>
 
       <span class="k">if</span> <span class="p">(</span><span class="nx">centerX</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">centerX</span> <span class="o">=</span> <span class="nx">centerX</span><span class="p">;</span>
       <span class="k">if</span> <span class="p">(</span><span class="nx">centerY</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">centerY</span> <span class="o">=</span> <span class="nx">centerY</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getMatrix</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>concatenateMatrix</strong></p>
 
 <p>Get's the complete concatenated <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a> of the game object.</p>
 
@@ -596,24 +650,25 @@ ommiting unspecified properties </p>
 <pre><code class=" javascript">     {
          // Setting this to true will get the concatenated matrix, with out taking into account the viewportOffset variables
         noViewportOffsets: true
-     }     
+     }
 </code></pre>
 
 <p>Parameters:</p>
 
 <ul>
 <li><p><strong>m must be a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>.</strong><br/>(A matrix object into which to put result.)</p></li>
-<li><p><strong>options is optional, must be an Object, and has a default value of null.</strong><br/>(Options to apply when concatenating the matrix. )</p></li>
+<li><p><strong>options is optional, must be an Object, and has a default value of null.</strong><br/>(Options to apply when concatenating the matrix.)</p></li>
 </ul>
 
-<p><strong>Returns an Object</strong><br/>(The concatenated <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getMatrix</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+<p><strong>Returns an Object</strong><br/>(The concatenated <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">concatenateMatrix</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">m</span><span class="p">.</span><span class="nx">identity</span><span class="p">();</span>
       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Matrix</span><span class="p">().</span><span class="nx">identity</span><span class="p">();</span>
+        <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Matrix</span><span class="p">()</span>
+          <span class="p">.</span><span class="nx">identity</span><span class="p">();</span>
       <span class="p">}</span>
 
-      <span class="nx">go</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">go</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
       <span class="k">while</span> <span class="p">(</span><span class="nx">go</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
@@ -621,14 +676,18 @@ ommiting unspecified properties </p>
             <span class="nx">m</span><span class="p">.</span><span class="nx">prependTransform</span><span class="p">(</span><span class="nx">go</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">scaleX</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">scaleY</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">rotation</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">centerX</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">centerY</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">alpha</span><span class="p">);</span>
             <span class="nx">go</span> <span class="o">=</span> <span class="nx">go</span><span class="p">.</span><span class="nx">parent</span><span class="p">;</span>
             <span class="k">continue</span><span class="p">;</span>
-          <span class="p">}</span> 
-        <span class="p">}</span> 
-        
+          <span class="p">}</span>
+        <span class="p">}</span>
+
         <span class="nx">m</span><span class="p">.</span><span class="nx">prependTransform</span><span class="p">(</span><span class="nx">go</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">go</span><span class="p">.</span><span class="nx">viewportOffsetX</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="nx">go</span><span class="p">.</span><span class="nx">viewportOffsetY</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">scaleX</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">scaleY</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">rotation</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">centerX</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">centerY</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">alpha</span><span class="p">);</span>
         <span class="nx">go</span> <span class="o">=</span> <span class="nx">go</span><span class="p">.</span><span class="nx">parent</span><span class="p">;</span>
       <span class="p">}</span>
 
       <span class="k">return</span> <span class="nx">m</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getMatrix</strong></p>
+
+<p><strong>Returns a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a></strong><br/>(The concatenated matrix of this game object)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getMatrix</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getTransform</strong></p>
 
 <p>This will get an object with the properties that the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>
@@ -640,7 +699,7 @@ at any given point.</p>
 <pre><code class=" javascript">     {
          // Setting this to true will get the concatenated matrix, with out taking into account the viewportOffset variables
         noViewportOffsets: true
-     }     
+     }
 </code></pre>
 
 <p>Parameters:</p>
@@ -655,10 +714,11 @@ at any given point.</p>
       <span class="k">if</span> <span class="p">(</span><span class="nx">m</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">m</span><span class="p">.</span><span class="nx">identity</span><span class="p">();</span>
       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Matrix</span><span class="p">().</span><span class="nx">identity</span><span class="p">();</span>
+        <span class="nx">m</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Matrix</span><span class="p">()</span>
+          <span class="p">.</span><span class="nx">identity</span><span class="p">();</span>
       <span class="p">}</span>
 
-      <span class="nx">go</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">go</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 
       <span class="k">while</span> <span class="p">(</span><span class="nx">go</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
@@ -666,30 +726,106 @@ at any given point.</p>
             <span class="nx">m</span><span class="p">.</span><span class="nx">prependTransform</span><span class="p">(</span><span class="nx">go</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">y</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">scaleX</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">scaleY</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">rotation</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">centerX</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">centerY</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">alpha</span><span class="p">);</span>
             <span class="nx">go</span> <span class="o">=</span> <span class="nx">go</span><span class="p">.</span><span class="nx">parent</span><span class="p">;</span>
             <span class="k">continue</span><span class="p">;</span>
-          <span class="p">}</span> 
-        <span class="p">}</span> 
-        
+          <span class="p">}</span>
+        <span class="p">}</span>
+
         <span class="nx">m</span><span class="p">.</span><span class="nx">prependTransform</span><span class="p">(</span><span class="nx">go</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">go</span><span class="p">.</span><span class="nx">viewportOffsetX</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="nx">go</span><span class="p">.</span><span class="nx">viewportOffsetY</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">scaleX</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">scaleY</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">rotation</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">centerX</span><span class="p">,</span> <span class="nx">go</span><span class="p">.</span><span class="nx">centerY</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">alpha</span><span class="p">);</span>
         <span class="nx">go</span> <span class="o">=</span> <span class="nx">go</span><span class="p">.</span><span class="nx">parent</span><span class="p">;</span>
       <span class="p">}</span>
 
       <span class="k">return</span> <span class="nx">m</span><span class="p">.</span><span class="nx">decompose</span><span class="p">(</span><span class="nx">r</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>isContainer</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>localToGlobal</strong></p>
+
+<p>Convert a point from the game object's local coordinate space to the root global coordinate space</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>m must be a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>.</strong><br/>(matrix object to work with.)</p></li>
+<li><p><strong>x must be a NUmber.</strong><br/>(The local x coordinate to transform to global space)</p></li>
+<li><p><strong>y must be a NUmber.</strong><br/>(The local y coordinate to transform to global space)</p></li>
+<li><p><strong>pt must be an Object.</strong><br/>(On object into which to put the result of this operation.)</p></li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(An object with the result of the transformation)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">localToGlobal</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">pt</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">concatenateMatrix</span><span class="p">(</span><span class="nx">m</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">pt</span> <span class="o">||</span> <span class="p">{});</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>globalToLocal</strong></p>
+
+<p>Convert a point from root global coordinate space to the local coordinate space of this game object</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>m must be a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html">matrix-3x3</a>.</strong><br/>(matrix object to work with.)</p></li>
+<li><p><strong>x must be a NUmber.</strong><br/>(The global x coordinate to transform to local space)</p></li>
+<li><p><strong>y must be a NUmber.</strong><br/>(The global y coordinate to transform to local space)</p></li>
+<li><p><strong>pt must be an Object.</strong><br/>(On object into which to put the result of this operation.)</p></li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(An object with the result of the transformation)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">globalToLocal</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">pt</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">concatenateMatrix</span><span class="p">(</span><span class="nx">m</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">invert</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">pt</span> <span class="o">||</span> <span class="p">{});</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>hasRenderer</strong></p>
+
+<p><strong>Returns a Boolean</strong><br/>(Whether there is a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a> or not)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">hasRenderer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="o">!!</span><span class="k">this</span><span class="p">.</span><span class="nx">renderer</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>hasComponents</strong></p>
+
+<p><strong>Returns a Boolean</strong><br/>(Whether there are any <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> or not)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">hasComponents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>getComponents</strong></p>
+
+<p>Gets the array of <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> objects</p>
+
+<p><strong>Returns an Array</strong><br/>([description])</p></div></div><div class="code"><div class="wrapper">    <span class="nx">getComponents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>isContainer</strong></p>
 
 <p><strong>Returns a Boolean</strong><br/>(Wheter it is a container object or not)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">isContainer</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>typeName</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>typeName</strong></p>
 
 <p><strong>Returns a String</strong><br/>(Returns the type name of this object)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">typeName</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">return</span> <span class="s1">&#39;GameObject&#39;</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>isChild</strong></p>
 
 <p><strong>Returns a Boolean</strong><br/>(Wheter this game object is a child of a container or not)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">isChild</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span> 
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="o">!</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">typeName</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Group&#39;</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">typeName</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Root&#39;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">typeName</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;GameObjectContainer&#39;</span><span class="p">;</span>
       <span class="p">}</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>isPooled</strong></p>
+
+<p>If the object has a typeId it means it is active, otherwise it must have been recycled</p>
+
+<p><strong>Returns a Boolean</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">isActive</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="o">!!</span><span class="k">this</span><span class="p">.</span><span class="nx">typeId</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>isRunning</strong></p>
+
+<p>Whether the game object is being updated ot not</p>
+
+<p><strong>Returns a Boolean</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">isRunning</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">canUpdate</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>isRunning</strong></p>
+
+<p>Whether the game object is being drawn</p>
+
+<p><strong>Returns a Boolean</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">isDrawing</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">canDraw</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>transformedOnce</strong></p>
+
+<p>Whether the game object has already gone throw the transformations
+of it heriarchy or not</p>
+
+<p><strong>Returns a Boolean</strong></p></div></div><div class="code"><div class="wrapper">    <span class="nx">transformedOnce</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">isTransformed</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>debug_draw</strong></p>
 
 <p>This method is only executed if the <strong>debug</strong> property in <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a>
@@ -703,25 +839,81 @@ is set to true. It is better to leave the drawing to the <a href="http://diegoma
 <li><p><strong>draw must be an Object.</strong><br/>(A reference to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html">draw</a> module)</p></li>
 <li><p><strong>gb must be an Object.</strong><br/>(A reference to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a> module)</p></li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">debug_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">,</span> <span class="nx">draw</span><span class="p">,</span> <span class="nx">gb</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">gb</span><span class="p">.</span><span class="nx">gameObjectDebug</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">gb</span><span class="p">.</span><span class="nx">gameObjectDebug</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
 
-      <span class="nx">r</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">decompose</span><span class="p">(</span><span class="nx">r</span><span class="p">);</span>
-        </div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Draw the center of the object</p></div></div><div class="code"><div class="wrapper">      <span class="nx">context</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
-      <span class="nx">context</span><span class="p">.</span><span class="nx">translate</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
-      <span class="nx">draw</span><span class="p">.</span><span class="nx">circle</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">decomposed</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">decompose</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">decomposed</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Draw the center of the object</p></div></div><div class="code"><div class="wrapper">      <span class="nx">context</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+      <span class="nx">context</span><span class="p">.</span><span class="nx">translate</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">decomposed</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">decomposed</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
+      <span class="nx">draw</span><span class="p">.</span><span class="nx">circle</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
       <span class="nx">context</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span>
     <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
 
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewportOffsetX</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewportOffsetY</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewportOffsetX</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">viewportOffsetY</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
 
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;START&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;start&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;RECYCLE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;recycle&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CLEAR&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;clear&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;ADD&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;added&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REMOVE&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;removed&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;ADD_TO_VIEWPORT&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;added_to_viewport&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
-  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REMOVE_FROM_VIEWPORT&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="s1">&#39;removed_from_viewport&#39;</span><span class="p">;</span> <span class="p">}</span> <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;START&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;start&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;RECYCLE&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;recycle&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;CLEAR&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;clear&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;ADD&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;added&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REMOVE&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;removed&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;ADD_TO_VIEWPORT&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;added_to_viewport&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;REMOVE_FROM_VIEWPORT&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;removed_from_viewport&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;HIDE&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;hide&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;SHOW&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;show&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;STOP&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;stop&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;RUN&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;run&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
 
   <span class="k">return</span> <span class="nx">GameObject</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

@@ -6,7 +6,7 @@
  * Inherits from:
  * [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
- * Depends of: 
+ * Depends of:
  * [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
  * [util](http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html)
  * [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
@@ -19,7 +19,7 @@
  * [timer-factory](http://diegomarquez.github.io/game-builder/game-builder-docs/src/timers/timer-factory.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This module displays information on everything that is pooled and cached in [Game-Builder](http://diegomarquez.github.io/game-builder)
  */
 
@@ -59,17 +59,17 @@ define(function(require) {
 
 	var createDisplay = function(id, container) {
 		var display = document.createElement('div');
-		display.setAttribute('id', id); 
-		display.style.fontSize = '10px';
-		display.style.fontWeight = 'bold';
+		display.setAttribute('id', id);
+		display.style.fontSize = 'small';
 		display.style.color = '#fff';
 		display.style.margin = '1px';
 		display.style.padding = '1px';
+		display.style.fontVariant = 'small-caps';
 
 		container.appendChild(display);
 	};
 
-	var positionInfoButton = function (element) {
+	var positionInfoButton = function(element) {
 		var x = 5;
 		var y = gb.canvas.clientTop + gb.canvas.clientHeight - element.clientHeight - 5;
 
@@ -117,6 +117,14 @@ define(function(require) {
 		display.innerText = text + numbers.join('/');
 	};
 
+	var scroll = function() {
+		var x = 5 + gb.game.mainContainer.scrollLeft;
+		var y = gb.canvas.clientTop + gb.canvas.clientHeight - displayElement.clientHeight - 5 + gb.game.mainContainer.scrollTop;
+
+		displayElement.style.top = y + 'px';
+		displayElement.style.left = x + 'px';
+	}
+
 	displays.push(getDisplay(gameObjectPool, updatePool('Game Object Pool', gameObjectPool, 'goPoolDisplay'), 'init', ['INIT', 'GET', 'RETURN', 'CLEAR', 'CLEAR_OBJECTS', 'CLEAR_CONFIGURATION', 'CLEAR_CONFIGURATIONS']));
 	displays.push(getDisplay(componentPool, updatePool('Component Pool', componentPool, 'coPoolDisplay'), 'init', ['INIT', 'GET', 'RETURN', 'CLEAR', 'CLEAR_OBJECTS', 'CLEAR_CONFIGURATION', 'CLEAR_CONFIGURATIONS']));
 	displays.push(getDisplay(jsonCache, updateCache('Json Cache', jsonCache, 'jsonCacheDisplay'), 'cache', ['CACHE', 'CLEAR', 'CLEAR_ALL']));
@@ -126,100 +134,107 @@ define(function(require) {
 	displays.push(getDisplay(soundPlayer, updateSoundDisplay, 'play_single', ['ON_LOAD_ALL_COMPLETE', 'ON_LOAD_COMPLETE', 'CHANNELS_ASSIGN', 'CHANNELS_REVOKE', 'SINGLE_COMPLETE', 'PLAY_SINGLE', 'PLAY_LOOP', 'PAUSE', 'RESUME', 'STOP']));
 	displays.push(getDisplay(timerFactory, updateTimerDisplay, 'create', ['CREATE', 'REMOVE', 'COMPLETE', 'REPEATE', 'START', 'PAUSE', 'RESUME', 'RESET', 'STOP']));
 
-	var ActivityDisplay = require('extension').extend({
-		init: function() {},
+	var ActivityDisplay = require('extension')
+		.extend({
+			init: function() {},
 
-		type: function() {
-			return gb.game.CREATE;
-		},
+			type: function() {
+				return gb.game.CREATE;
+			},
 
-		execute: function(args) {
-			var hide = false;
+			execute: function(args) {
+				var hide = false;
 
-			if (args) {
-				hide = args.hide || false;
-			}
-
-			displayElement = document.createElement('div');
-			displayElement.id = 'activity-display';
-
-			var infoContainer = document.createElement('div');
-			infoContainer.id = 'activity-display-info-container';
-
-			var infoButton = document.createElement('button');
-			infoButton.id = 'activity-display-button';
-			infoButton.innerText = 'Show Info';
-			infoButton.style.visibility = hide ? 'hidden' : 'visible';
-
-			infoButton.addEventListener('click', function() {
-				if (this.innerText == 'Show Info') {
-					this.innerText = 'Hide Info';
-					infoContainer.style.display = 'block';
-				} else {
-					this.innerText = 'Show Info';
-					infoContainer.style.display = 'none';
+				if (args) {
+					hide = args.hide || false;
 				}
+
+				displayElement = document.createElement('div');
+				displayElement.id = 'activity-display';
+				displayElement.style.pointerEvents = 'none';
+				displayElement.style.whiteSpace = 'nowrap';
+
+				var infoContainer = document.createElement('div');
+				infoContainer.id = 'activity-display-info-container';
+
+				var infoButton = document.createElement('button');
+				infoButton.id = 'activity-display-button';
+				infoButton.innerText = 'Show Info';
+				displayElement.style.pointerEvents = 'all';
+				infoButton.style.visibility = hide ? 'hidden' : 'visible';
+
+				infoButton.addEventListener('click', function() {
+					if (this.innerText == 'Show Info') {
+						this.innerText = 'Hide Info';
+						infoContainer.style.display = 'block';
+					} else {
+						this.innerText = 'Show Info';
+						infoContainer.style.display = 'none';
+					}
+
+					positionInfoButton(displayElement);
+				});
+
+				createDisplay('goPoolDisplay', infoContainer);
+				createDisplay('coPoolDisplay', infoContainer);
+				createDisplay('jsonCacheDisplay', infoContainer);
+				createDisplay('imageCacheDisplay', infoContainer);
+				createDisplay('pathCacheDisplay', infoContainer);
+				createDisplay('textCacheDisplay', infoContainer);
+				createDisplay('soundPlayerDisplay', infoContainer);
+				createDisplay('timerFactoryDisplay', infoContainer);
+
+				displayElement.appendChild(infoButton);
+				displayElement.appendChild(infoContainer);
+
+				infoContainer.style.display = 'none';
+				displayElement.style.position = 'absolute';
+
+				gb.game.mainContainer.appendChild(displayElement);
 
 				positionInfoButton(displayElement);
-			});
 
-			createDisplay('goPoolDisplay', infoContainer);
-			createDisplay('coPoolDisplay', infoContainer);
-			createDisplay('jsonCacheDisplay', infoContainer);
-			createDisplay('imageCacheDisplay', infoContainer);
-			createDisplay('pathCacheDisplay', infoContainer);
-			createDisplay('textCacheDisplay', infoContainer);
-			createDisplay('soundPlayerDisplay', infoContainer);
-			createDisplay('timerFactoryDisplay', infoContainer);
+				for (var i = 0; i < displays.length; i++) {
+					var p = displays[i];
 
-			displayElement.appendChild(infoButton);
-			displayElement.appendChild(infoContainer);
-			
-			infoContainer.style.display = 'none';
-			displayElement.style.position = 'absolute';
+					var events = p.events;
 
-			gb.game.mainContainer.appendChild(displayElement);
+					for (var j = 0; j < events.length; j++) {
+						p.object.single(p.object[events[j]], this, p.listener, 'activity-display');
+					}
 
-			positionInfoButton(displayElement);
+					p.object.execute(p.trigger);
+				}
+			},
 
-			for(var i = 0; i < displays.length; i++) {
-				var p = displays[i];
+			destroy: function() {
+				gb.game.mainContainer.removeEventListener('scroll', scroll);
+				gb.game.mainContainer.removeChild(displayElement);
 
-				var events = p.events;
+				gameObjectPool.levelCleanUp('activity-display');
+				componentPool.levelCleanUp('activity-display');
+				jsonCache.levelCleanUp('activity-display');
+				imageCache.levelCleanUp('activity-display');
+				pathCache.levelCleanUp('activity-display');
+				textCache.levelCleanUp('activity-display');
+				soundPlayer.levelCleanUp('activity-display');
+				timerFactory.levelCleanUp('activity-display');
+			},
 
-				for(var j = 0; j < events.length; j++) {
-					p.object.single(p.object[events[j]], this, p.listener, 'activity-display');
+			toggle: function() {
+				var infoContainer = document.getElementById('activity-display-info-container');
+
+				if (infoContainer.style.display == 'block') {
+					infoContainer.style.display = 'none';
+					gb.game.mainContainer.removeEventListener('scroll', scroll);
+				} else {
+					infoContainer.style.display = 'block';
+					gb.game.mainContainer.addEventListener('scroll', scroll);
 				}
 
-				p.object.execute(p.trigger);
+				scroll();
 			}
-		},
-
-		destroy: function() {
-			gb.game.mainContainer.removeChild(displayElement);
-
-			gameObjectPool.levelCleanUp('activity-display');
-			componentPool.levelCleanUp('activity-display');
-			jsonCache.levelCleanUp('activity-display');
-			imageCache.levelCleanUp('activity-display');
-			pathCache.levelCleanUp('activity-display');
-			textCache.levelCleanUp('activity-display');
-			soundPlayer.levelCleanUp('activity-display');
-			timerFactory.levelCleanUp('activity-display');
-		},
-
-		toggle: function() {
-			var infoContainer = document.getElementById('activity-display-info-container');
-
-			if (infoContainer.style.display == 'block') {
-				infoContainer.style.display = 'none';
-			} else {
-				infoContainer.style.display = 'block';
-			}
-
-			positionInfoButton(displayElement);
-		}
-	});
+		});
 
 	return ActivityDisplay;
 });

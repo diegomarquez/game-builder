@@ -5,11 +5,11 @@
  *
  * Inherits from: [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
- * Depends of: 
+ * Depends of:
  * [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This module defines an extension that will make the canvas scale to fit in the viewport
  * while maintening the original aspect ratio.
  */
@@ -43,71 +43,82 @@ define(["gb", "extension"], function(Gb, Extension) {
 				scale = scaleX < scaleY ? scaleX + ', ' + scaleX : scaleY + ', ' + scaleY;
 
 				container.style.webkitTransform = 'scale(' + scale + ')';
-				container.style.mozTransform    = 'scale(' + scale + ')';
-				container.style.msTransform     = 'scale(' + scale + ')';
-				container.style.oTransform      = 'scale(' + scale + ')';
+				container.style.mozTransform = 'scale(' + scale + ')';
+				container.style.msTransform = 'scale(' + scale + ')';
+				container.style.oTransform = 'scale(' + scale + ')';
 			};
 
-			var container = Gb.game.mainContainer;
-			var canvas = Gb.game.canvas;
+			this.container = Gb.game.mainContainer;
+			this.canvas = Gb.game.canvas;
 
-			this.initContainerTop = container.style.top;
-			this.initContainerLeft = container.style.left;
-			this.initContainerMarginTop = container.style.marginTop;
-			this.initContainerMarginLeft = container.style.marginLeft;
-			this.initContainerPosition = container.style.position;
+			var containerStyle = window.getComputedStyle(this.container, null);
+			var canvasStyle = window.getComputedStyle(this.canvas, null);
 
-			this.initCanvasPaddingLeft = canvas.style.paddingLeft;
-			this.initCanvasPaddingRight = canvas.style.paddingRight;
-			this.initCanvasMarginLeft = canvas.style.marginLeft;
-			this.initCanvasMarginRight = canvas.style.marginRight;
+			this.initContainerTop = containerStyle.getPropertyValue("top");
+			this.initContainerLeft = containerStyle.getPropertyValue("left");
+			this.initContainerMarginTop = containerStyle.getPropertyValue("margin-top");
+			this.initContainerMarginLeft = containerStyle.getPropertyValue("margin-left");
+			this.initContainerPosition = containerStyle.getPropertyValue("position");
 
-    	container.style.top  		= '50%';
-    	container.style.left 		= '50%';
-			container.style.marginLeft = '-' + Gb.game.canvas.width/2 + 'px';
-			container.style.marginTop  = '-' + Gb.game.canvas.height/2 + 'px';
-			container.style.position   = 'fixed';
+			this.initCanvasPaddingLeft = canvasStyle.getPropertyValue("padding-left");
+			this.initCanvasPaddingRight = canvasStyle.getPropertyValue("padding-right");
+			this.initCanvasMarginLeft = canvasStyle.getPropertyValue("margin-left");
+			this.initCanvasMarginRight = canvasStyle.getPropertyValue("margin-right");
 
-			canvas.style.paddingLeft  = 0;
-    	canvas.style.paddingRight = 0;
-    	canvas.style.marginLeft   = 'auto';
-    	canvas.style.marginRight  = 'auto';
+			this.container.style.top = '50%';
+			this.container.style.left = '50%';
+			this.container.style.marginLeft = '-' + Gb.game.canvas.width / 2 + 'px';
+			this.container.style.marginTop = '-' + Gb.game.canvas.height / 2 + 'px';
+			this.container.style.position = 'fixed';
 
-			resize(container, canvas);
+			this.canvas.style.paddingLeft = 0;
+			this.canvas.style.paddingRight = 0;
+			this.canvas.style.marginLeft = 'auto';
+			this.canvas.style.marginRight = 'auto';
+
+			resize(this.container, this.canvas);
 
 			this.resizeListener = function() {
-				resize(container, canvas);
-			}
+				resize(this.container, this.canvas);
+			}.bind(this)
 
-			window.addEventListener('resize', this.resizeListener, false);			
+			window.addEventListener('resize', this.resizeListener, false);
 		},
 
 		destroy: function() {
-			container.style.top  		   = this.initContainerTop;
-    	container.style.left 		   = this.initContainerLeft;
-			container.style.marginTop  = this.initContainerMarginTop;
-			container.style.marginLeft = this.initContainerMarginLeft;
-			container.style.position   = this.initContainerPosition;
+			this.container.style.top = this.initContainerTop;
+			this.container.style.left = this.initContainerLeft;
+			this.container.style.marginTop = this.initContainerMarginTop;
+			this.container.style.marginLeft = this.initContainerMarginLeft;
+			this.container.style.position = this.initContainerPosition;
 
-			canvas.style.paddingLeft  = this.initCanvasPaddingLeft;
-    	canvas.style.paddingRight = this.initCanvasPaddingRight;
-    	canvas.style.marginLeft   = this.initCanvasMarginLeft;
-    	canvas.style.marginRight  = this.initCanvasMarginRight;
+			this.container.style.webkitTransform = 'scale(1)';
+			this.container.style.mozTransform = 'scale(1)';
+			this.container.style.msTransform = 'scale(1)';
+			this.container.style.oTransform = 'scale(1)';
 
-    	window.removeEventListener('resize', this.resizeListener);
+			this.canvas.style.paddingLeft = this.initCanvasPaddingLeft;
+			this.canvas.style.paddingRight = this.initCanvasPaddingRight;
+			this.canvas.style.marginLeft = this.initCanvasMarginLeft;
+			this.canvas.style.marginRight = this.initCanvasMarginRight;
 
-    	delete this['initContainerTop'];
-    	delete this['initContainerLeft'];
+			window.removeEventListener('resize', this.resizeListener);
+
+			delete this['container'];
+			delete this['canvas'];
+
+			delete this['initContainerTop'];
+			delete this['initContainerLeft'];
 			delete this['initContainerMarginTop'];
 			delete this['initContainerMarginLeft'];
 			delete this['initContainerPosition'];
 
 			delete this['initCanvasPaddingLeft'];
-    	delete this['initCanvasPaddingRight'];
-    	delete this['initCanvasMarginLeft'];
-    	delete this['initCanvasMarginRight'];
+			delete this['initCanvasPaddingRight'];
+			delete this['initCanvasMarginLeft'];
+			delete this['initCanvasMarginRight'];
 
-    	delete this['resizeListener']
+			delete this['resizeListener']
 		}
 	});
 

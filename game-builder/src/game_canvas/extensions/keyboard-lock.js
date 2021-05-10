@@ -3,17 +3,17 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: 
+ * Inherits from:
  * [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
- * Depends of: 
+ * Depends of:
  * [keyboard](http://diegomarquez.github.io/game-builder/game-builder-docs/src/input/keyboard.html)
  * [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This extension blocks keyboard input when the application looses focus, and gives it back when focus is regained.
- * In the event of a manual pause, it blocks every key other than the key defines for pause in the [keyboard](http://diegomarquez.github.io/game-builder/game-builder-docs/src/input/keyboard.html) 
+ * In the event of a manual pause, it blocks every key other than the key defines for pause in the [keyboard](http://diegomarquez.github.io/game-builder/game-builder-docs/src/input/keyboard.html)
  * module.
  */
 

@@ -5,45 +5,45 @@
  *
  * Inherits from: [collision-component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html)
  *
- * Depends of: 
+ * Depends of:
  * [sat](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html)
  * [collision-resolver](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html)
  * [vector-2D](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/vector-2D.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This module defines a component meant to be attached to a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html), to give it
  * the ability to collide against other [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) with collider components.
  *
- * Fixed Polygon colliders are just like a [polygon-collider](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/polygon-collider.html), the 
+ * Fixed Polygon colliders are just like a [polygon-collider](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/polygon-collider.html), the
  * difference is that they do no follow their parents along all the transformations, only translation.
  *
- * This make them considerably less expensive, but also less accurate. 
+ * This make them considerably less expensive, but also less accurate.
  * Often you can do without the precision.
  *
- * During the configuration of the [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html) fixed polygon colliders need to 
+ * During the configuration of the [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html) fixed polygon colliders need to
  * receive an object that looks similar to the following:
  *
  * ``` javascript
  * gb.coPool.createConfiguration("Fixed_Polygon", 'Fixed_Polygon_1')
 	.args({
 		//Id used by the Collision Resolver
-		id:'fixed-polygon-collider_ID', 
-		
+		id:'fixed-polygon-collider_ID',
+
 		//Array of points that define the polygon collider
-		points:[ 
+		points:[
 			{x: 0, y: 0},
- 			{x: 64, y: 0},
- 			{x: 64, y: 64},
- 			{x: 0, y: 64}
+			{x: 64, y: 0},
+			{x: 64, y: 64},
+			{x: 0, y: 64}
 		]
  * });
  * ```
  * If it is not provided it will most likely fail in un-expected ways.
- * 
+ *
  * <strong>Note 1: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
- * found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module. 
- * The way you get a hold to a reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a> 
+ * found in the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html>gb</a> module.
+ * The way you get a hold to a reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
  * may vary.</strong>
  *
  * <strong>Note 2: The points need to be specified in clockwise order.</strong>
@@ -60,22 +60,28 @@
 define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 	function(CollisionComponent, SAT, CollisionResolver, Vector2D) {
 
-		var p = {};
-		var m = null;
-
 		var FixedPolygonCollider = CollisionComponent.extend({
+			init: function() {
+				this._super();
+
+				this.p = new Vector2D();
+
+				this.collider = new SAT.FixedSizePolygon(new Vector2D(0, 0));
+				this.colliderType = CollisionResolver.fixedPolygonCollider;
+			},
+
 			/**
 			 * <p style='color:#AD071D'><strong>configure</strong></p>
 			 *
 			 * Configures properties
 			 * set via the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
-			 * 
-			 * This method is important as it applies all the configuration needed for 
+			 *
+			 * This method is important as it applies all the configuration needed for
 			 * the component to work as expected.
 			 *
 			 * Overriden in this module to handle different types for the **points** argument
-			 * 
-			 * @param  {Object} args An object with all the properties to write into the component
+			 *
+			 * @param {Object} args An object with all the properties to write into the component
 			 */
 			configure: function(args) {
 				this._super(args);
@@ -97,7 +103,7 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 * <p style='color:#AD071D'><strong>start</strong></p>
 			 *
 			 * Set up the collider.
-			 * 
+			 *
 			 * Creates a FixedSizePolygon object defined in the [sat](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/sat.html) module.
 			 * The polygon is said to be fixed of size becuase no more vertexes can be
 			 * added to it after it is created.
@@ -106,7 +112,11 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 				this._super();
 
 				this.pointCount = this.points.length;
-				this.pointsCopy = [];
+
+				if (this.pointsCopy)
+					this.pointsCopy.length = 0;
+				else
+					this.pointsCopy = [];
 
 				var copy = JSON.parse(JSON.stringify(this.points));
 				var points = [];
@@ -116,8 +126,9 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 					points.push(new Vector2D(copy[i].x, copy[i].y));
 				}
 
-				this.collider = new SAT.FixedSizePolygon(new Vector2D(0, 0), points);
-				this.colliderType = CollisionResolver.fixedPolygonCollider;
+				this.collider.pos.x = 0;
+				this.collider.pos.y = 0;
+				this.collider.update(points);
 			},
 			/**
 			 * --------------------------------
@@ -127,11 +138,12 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 * <p style='color:#AD071D'><strong>update</strong></p>
 			 *
 			 * Updates the position of the collider.
-			 * 
+			 *
 			 * The collider follows the position of it's parent.
 			 */
 			update: function() {
-				p = this.parent.matrix.transformPoint(0, 0, p);
+				var p = this.parent.getMatrix()
+					.transformPoint(0, 0, this.p);
 
 				this.collider.pos.x = p.x;
 				this.collider.pos.y = p.y;
@@ -146,26 +158,27 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 			 *
 			 * Draw the fixed polygon collider
-			 * 
+			 *
 			 * This method is only executed if the **debug** property in [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
-		 	 * is set to true. It is better to leave the drawing to the [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) components.
-			 * 
-			 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-			 * @param  {Object} viewport A reference to the current [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
-			 * @param  {Object} draw     A reference to the [draw](http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html) module
-			 * @param  {Object} gb     A reference to the [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html) module
+			 * is set to true. It is better to leave the drawing to the [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) components.
+			 *
+			 * @param {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+			 * @param {Object} viewport A reference to the current [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
+			 * @param {Object} draw A reference to the [draw](http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html) module
+			 * @param {Object} gb A reference to the [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html) module
 			 */
 			debug_draw: function(context, viewport, draw, gb) {
 				if (!gb.colliderDebug) return;
-				
-				p = this.parent.matrix.transformPoint(0, 0, p);
+
+				var p = this.parent.getMatrix()
+					.transformPoint(0, 0, this.p);
 
 				context.save();
 
-				context.setTransform(1, 0, 0, 1, 0, 0);			
+				context.setTransform(1, 0, 0, 1, 0, 0);
 				context.translate(p.x, p.y);
 				draw.polygon(context, 0, 0, this.pointsCopy, null, this.debugColor, 2);
-				
+
 				context.restore();
 
 				this._super();

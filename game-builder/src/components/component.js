@@ -9,7 +9,7 @@
  * [util](http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * Every component extends from the object defined in this module. If you add this
  * to a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) it will do nothing, so it needs to be extended.
  *
@@ -21,43 +21,43 @@
  *
  * The Component object extends [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so it provides a few events to hook into:
  *
- * ### **START** 
- * When it's **start** method is called 
- * 
- * Registered callbacks get the component as argument. 
- * ``` javascript  
+ * ### **START**
+ * When it's **start** method is called
+ *
+ * Registered callbacks get the component as argument.
+ * ``` javascript
  * component.on(component.START, function(component) {});
  * ```
  *
  * </br>
- * 
- * ### **ADD** 
- * When it is added to a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) 
- * 
- * Registered callbacks get the component as argument. 
- * ``` javascript  
- * component.on(component.ADD, function(component) {});
- * ``` 
  *
- * </br>
- * 
- * ### **REMOVE**
- * When it is removed from a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html). 
+ * ### **ADD**
+ * When it is added to a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
  *
  * Registered callbacks get the component as argument.
- * ``` javascript  
+ * ``` javascript
+ * component.on(component.ADD, function(component) {});
+ * ```
+ *
+ * </br>
+ *
+ * ### **REMOVE**
+ * When it is removed from a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html).
+ *
+ * Registered callbacks get the component as argument.
+ * ``` javascript
  * component.on(component.REMOVE, function(component) {});
  * ```
  *
  * </br>
- * 
+ *
  * ### **RECYCLE**
  * When the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) is sent
  * back to the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html) it triggers
  * this event which sends the component back to the [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html)
  *
  * Registered callbacks get the component as argument.
- * ``` javascript  
+ * ``` javascript
  * component.on(component.RECYCLE, function(component) {});
  * ```
  */
@@ -76,10 +76,11 @@ define(["delegate", "util"], function(Delegate, Util) {
 		init: function() {
 			this._super();
 
-			this.uid 		= null;
+			this.uid = null;
 			this.poolId = null;
 			this.typeId = null;
 			this.parent = null;
+			this.enabled = false;
 		},
 
 		/**
@@ -87,11 +88,11 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 *
 		 * Configures properties
 		 * set via the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
-		 * 
-		 * This method is important as it applies all the configuration needed for 
+		 *
+		 * This method is important as it applies all the configuration needed for
 		 * the component to work as expected.
-		 * 
-		 * @param  {Object} args An object with all the properties to write into the component
+		 *
+		 * @param {Object} args An object with all the properties to write into the component
 		 */
 		configure: function(args) {
 			if (!args) return;
@@ -105,7 +106,7 @@ define(["delegate", "util"], function(Delegate, Util) {
 						if (Util.isFunction(getter)) {
 							Util.defineGetter(this, ha, getter);
 						}
-						
+
 						if (Util.isFunction(setter)) {
 							Util.defineSetter(this, ha, setter);
 						}
@@ -122,17 +123,18 @@ define(["delegate", "util"], function(Delegate, Util) {
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>reset</strong></p>
 		 *
-		 * Not so interesting mehtod, it just resets some properties right
+		 * Not so interesting method, it just resets some properties right
 		 * before the [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html) module starts putting together
 		 * a component.
 		 */
 		reset: function() {
 			this.uid = null;
 			this.parent = null;
+			this.enabled = true;
 		},
 		/**
 		 * --------------------------------
@@ -143,9 +145,11 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 *
 		 * This is called once when the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) is started or when the component is added
 		 * dynamically to a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
+		 *
+		 * @param {Object} parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this component
 		 */
-		onStarted: function() {
-			this.start();	
+		onStarted: function(parent) {
+			this.start(parent);
 			this.execute(this.START, this);
 		},
 		/**
@@ -157,8 +161,8 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 *
 		 * This is called by the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) when it
 		 * adds this component to it's list.
-		 * 
-		 * @param  {Object} parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this component
+		 *
+		 * @param {Object} parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this component
 		 */
 		onAdded: function(parent) {
 			this.parent = parent;
@@ -175,7 +179,7 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 * This is called by the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) when it
 		 * removes this component to it's list.
 		 */
-		onRemoved: function() {
+		onRemoved: function(parent) {
 			this.removed(parent);
 			this.execute(this.REMOVE, this);
 			this.parent = null;
@@ -183,15 +187,17 @@ define(["delegate", "util"], function(Delegate, Util) {
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>onRecycled</strong></p>
 		 *
 		 * This is called by the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) when it
 		 * is destroying itself.
 		 */
-		onRecycled: function() {			
-			this.recycle();
+		onRecycled: function(parent) {
+			this.enabled = false;
+
+			this.recycle(parent);
 			this.execute(this.RECYCLE, this);
 
 			this.hardCleanUp();
@@ -205,8 +211,8 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 *
 		 * Much like **onAdded**, but this method is only meant to be overriden
 		 * with out having to remember calling **_super**
-		 * 
-		 * @param  {Object} parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this component
+		 *
+		 * @param {Object} parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this component
 		 */
 		added: function(parent) {},
 		/**
@@ -218,8 +224,8 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 *
 		 * Much like **onRemoved**, but this method is only meant to be overriden
 		 * with out having to remember calling **_super**
-		 * 
-		 * @param  {Object} parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this component
+		 *
+		 * @param {Object} parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this component
 		 */
 		removed: function(parent) {},
 		/**
@@ -232,7 +238,7 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 * Called by the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) when
 		 * it is started
 		 *
-		 * @param  {Object} parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this component 
+		 * @param {Object} parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this component
 		 */
 		start: function(parent) {},
 		/**
@@ -242,10 +248,10 @@ define(["delegate", "util"], function(Delegate, Util) {
 		/**
 		 * <p style='color:#AD071D'><strong>update</strong></p>
 		 *
-		 * Called by the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) 
+		 * Called by the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 		 * after updating itself.
-		 * 
-		 * @param  {Number} delta Time elapsed since last update cycle
+		 *
+		 * @param {Number} delta Time elapsed since last update cycle
 		 */
 		update: function(delta) {},
 		/**
@@ -255,24 +261,60 @@ define(["delegate", "util"], function(Delegate, Util) {
 		/**
 		 * <p style='color:#AD071D'><strong>recycle</strong></p>
 		 *
-		 * Called by the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) 
+		 * Called by the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
 		 * when it is sent back to it's pool for reuse.
-		 * 
+		 *
+		 * @param {Object} parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this component
 		 */
-		recycle: function() {},
+		recycle: function(parent) {},
 		/**
 		 * --------------------------------
 		 */
-		
+
+		/**
+		 * <p style='color:#AD071D'><strong>enable</strong></p>
+		 *
+		 * An enabled component will execute it's update logic
+		 */
+		enable: function() {
+			this.enabled = true;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>disable</strong></p>
+		 *
+		 * A disabled component will not execute it's update logic
+		 */
+		disable: function() {
+			this.enabled = false;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>isEnabled</strong></p>
+		 *
+		 * Whether the components is enabled or not
+		 *
+		 * @return {Boolean}
+		 */
+		isEnabled: function() {
+			return this.enabled;
+		},
+
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 		 *
 		 * This method is only executed if the **debug** property in [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
 		 * is set to true. It is better to leave the drawing to the [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) components.
-		 * 
-		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		 * @param  {Object} viewport A reference to the current [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
-		 * @param  {Object} draw     A reference to the [draw](http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html) module
+		 *
+		 * @param {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+		 * @param {Object} viewport A reference to the current [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
+		 * @param {Object} draw A reference to the [draw](http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html) module
 		 */
 		debug_draw: function(context, viewport, draw) {}
 		/**
@@ -280,10 +322,26 @@ define(["delegate", "util"], function(Delegate, Util) {
 		 */
 	});
 
-	Object.defineProperty(Component.prototype, "START", { get: function() { return 'started'; } });
-	Object.defineProperty(Component.prototype, "ADD", { get: function() { return 'added'; } });
-	Object.defineProperty(Component.prototype, "REMOVE", { get: function() { return 'removed'; } });
-	Object.defineProperty(Component.prototype, "RECYCLE", { get: function() { return 'recycled'; } });
+	Object.defineProperty(Component.prototype, "START", {
+		get: function() {
+			return 'started';
+		}
+	});
+	Object.defineProperty(Component.prototype, "ADD", {
+		get: function() {
+			return 'added';
+		}
+	});
+	Object.defineProperty(Component.prototype, "REMOVE", {
+		get: function() {
+			return 'removed';
+		}
+	});
+	Object.defineProperty(Component.prototype, "RECYCLE", {
+		get: function() {
+			return 'recycled';
+		}
+	});
 
 	return Component;
 });

@@ -19,29 +19,32 @@ module.exports = function(grunt) {
   var assetPaths = p.additionalAssetPaths.split(',');
   assetPaths.push(assetsDir);
 
+  p.framework = p.framework.split(/[/|\\]/).join(path.sep);
+  assetPaths.push(p.framework + "/assets");
+
   assetPaths = assetPaths.filter(function(path) {
-  	return path.trim() != "";
+    return path.trim() != "";
   });
 
   var assetSelectorsProd = assetPaths.map(function(path) {
-  	return { 
-  		expand: true, 
-  		cwd: path, 
-  		src: '**',  
-  		dest: buildProdDir + assetsDir
-  	}
+    return { 
+      expand: true, 
+      cwd: path, 
+      src: '**',  
+      dest: buildProdDir + assetsDir
+    }
   });
 
   assetSelectorsProd.push({ expand: true, src: stylesCssDir + allStylesFilename, dest: buildProdDir });
   assetSelectorsProd.push({ expand: true, cwd: stylesDir, src: assetsDir + '/**', dest: buildProdDir + stylesDir });
   
   var assetSelectorsDev = assetPaths.map(function(path) {
-  	return { 
-  		expand: true, 
-  		cwd: path, 
-  		src: '**', 
-  		dest: buildDevDir + assetsDir
-  	}
+    return { 
+      expand: true, 
+      cwd: path, 
+      src: '**', 
+      dest: buildDevDir + assetsDir
+    }
   });
 
   assetSelectorsDev.push({ expand: true, src: stylesCssDir + allStylesFilename, dest: buildDevDir });
@@ -55,11 +58,11 @@ module.exports = function(grunt) {
 
     'copy': {
       'dev': { 
-      	files: assetSelectorsDev 
+        files: assetSelectorsDev 
       },
 
       'prod': { 
-      	files: assetSelectorsProd 
+        files: assetSelectorsProd 
       }
     },
 
@@ -76,17 +79,17 @@ module.exports = function(grunt) {
     },
 
     'make-dir': {
-    	'build-dev': {
-    		options: {
-	    		dirName: buildDevDir + assetsDir
-	    	}
-    	},
+      'build-dev': {
+        options: {
+          dirName: buildDevDir + assetsDir
+        }
+      },
 
-    	'build-prod': {
-    		options: {
-	    		dirName: buildProdDir + assetsDir
-	    	}
-    	}
+      'build-prod': {
+        options: {
+          dirName: buildProdDir + assetsDir
+        }
+      }
     },
 
     'clean': {
@@ -115,7 +118,7 @@ module.exports = function(grunt) {
     'open': {
       // Open index.html with the default browser
       'index' : { 
-      	path : 'index.html' 
+        path : 'index.html' 
       }
     },
 
@@ -222,22 +225,22 @@ module.exports = function(grunt) {
 
     'local-assets': {
       'options': { 
-      	generatedDir: generatedDir 
+        generatedDir: generatedDir 
       },
       
       'build-dev': { 
-      	src: [assetsDir],
-      	cwd: buildDevDir
+        src: [assetsDir],
+        cwd: buildDevDir
       },
       
       'build-prod': { 
-      	src: [assetsDir],
-      	cwd: buildProdDir
+        src: [assetsDir],
+        cwd: buildProdDir
       },
       
       'dev': { 
-      	src: assetPaths,
-      	cwd: '.'
+        src: assetPaths,
+        cwd: '.'
       }
     },
 
@@ -253,7 +256,8 @@ module.exports = function(grunt) {
       'target': {
         files: [
           { src: [generatedDir + 'asset-map.json'], dest: 'src/' },
-          { src: [configDir + 'font-data.json'], dest: 'src/' }
+          { src: [configDir + 'font-data.json'], dest: 'src/' },
+          { src: [configDir + 'preload-assets.json'], dest: 'src/' }
         ]
       }
     },
@@ -296,44 +300,43 @@ module.exports = function(grunt) {
   grunt.registerTask('asset-map-build-dev', ['local-assets:build-dev', 'merge-json', 'data-modules', 'config']);
   // This task creates the asset map 
   grunt.registerTask('asset-map-build-prod', ['local-assets:build-prod', 'merge-json', 'data-modules', 'config']);
-  
   // This task creates all the requirejs configuration needed
   grunt.registerTask('config', ['create-config']);
   // This task downloads game-builder source code
   grunt.registerTask('framework', ['clean:framework', 'shell:framework']);  
   // This task builds the css stylesheet
   grunt.registerTask('css', ['clean:css', 'less', 'concat:generated_sans_main', 'concat:plain_sans_main', 'concat:append_main']);
+  
   // This task opens index.html
   grunt.registerTask('run', ['open:index']);
   // Refreshes all the data before opening index.html
-  grunt.registerTask('refresh', ['css', 'asset-map-dev', 'open:index']);
-  
+  grunt.registerTask('refresh', ['css', 'asset-map-dev', 'open:index']);  
   // This task sets up the development environment
   grunt.registerTask('setup', ['shell:bower', 'framework', 'css', 'asset-map-dev']);
   
   // Builds a development release, no minification
   grunt.registerTask('build-dev', [
-  	'clean:build-dev', 
-  	'setup',
-  	'make-dir:build-dev',
-  	'copy:dev',
-  	'asset-map-build-dev', 
-  	'requirejs:dev', 
-  	'create-build-index:dev',
-  	'asset-map-dev'
+    'clean:build-dev', 
+    'setup',
+    'make-dir:build-dev',
+    'copy:dev',
+    'asset-map-build-dev', 
+    'requirejs:dev', 
+    'create-build-index:dev',
+    'asset-map-dev'
   ]);
 
   // Builds a production release, js and css minified
   grunt.registerTask('build-prod', [
-  	'clean:build-prod', 
-  	'setup',
-  	'make-dir:build-prod', 
-  	'copy:prod', 
-  	'asset-map-build-prod',  
-  	'requirejs:prod', 
-  	'create-build-index:prod', 
-  	'cssmin',
-  	'asset-map-dev'
+    'clean:build-prod', 
+    'setup',
+    'make-dir:build-prod', 
+    'copy:prod', 
+    'asset-map-build-prod',  
+    'requirejs:prod', 
+    'create-build-index:prod', 
+    'cssmin',
+    'asset-map-dev'
   ]);
 
   // Default task setups for development

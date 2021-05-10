@@ -7,7 +7,9 @@
  * [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html)
  *
  * Depends of:
+ * [vector-2D](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/vector-2D.html)
  * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
+ * [rgb-canvas-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/rgb-canvas-cache.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  * 
@@ -22,8 +24,10 @@
 /**
  * --------------------------------
  */
-define(["component", "error-printer"], function(Component, ErrorPrinter) {
-	var r = {}
+define(["component", "vector-2D", "error-printer", "rgb-canvas-cache"], function(Component, Vector2D, ErrorPrinter, RgbCanvasCache) {
+
+	var canvas = document.createElement("canvas");
+	var context = canvas.getContext("2d");
 
 	var Renderer = Component.extend({
 		/**
@@ -34,12 +38,44 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		init: function() {
 			this._super();
 
+			this.width = 0;
+			this.height = 0;
 			this.offsetX = 0;
 			this.offsetY = 0;
+			this.offset = "";
+			this.tinted = false;
+			this.tintRed = 0;
+			this.tintGreen = 0;
+			this.tintBlue = 0;
+			this.debugColor = "#FFFF00";
 
-			this.scaleX = 1;
-			this.scaleY = 1;
+			this.reset();
 
+			this.workVector = new Vector2D();
+
+			this.tmpCanvas = canvas;
+			this.tmpContext = context;
+			this.rgbCanvasCache = RgbCanvasCache;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>reset</strong></p>
+		 *
+		 * Reset for re-use
+		 */
+		reset: function() {
+			this._super();
+
+			this.offsetX = 0;
+			this.offsetY = 0;
+			this.offset = "";
+			this.tinted = false;
+			this.tintRed = 0;
+			this.tintGreen = 0;
+			this.tintBlue = 0;
 			this.debugColor = "#FFFF00";
 		},
 		/**
@@ -62,18 +98,98 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		/**
 		 * --------------------------------
 		 */
-		
-		 /**
+
+		/**
+		 * <p style='color:#AD071D'><strong>tint</strong></p>
+		 *
+		 * Enable tinting
+		 * 
+		 * @param  {Number} r Red channel amount between 0 and 255
+		 * @param  {Number} g Green channel amount between 0 and 255
+		 * @param  {Number} b Blue channel amount between 0 and 255
+		 */
+		tint: function(r, g, b) {
+			this.tinted = true;
+			this.tintRed = r;
+			this.tintGreen = g;
+			this.tintBlue = b;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>disableTint</strong></p>
+		 *
+		 * Disable tinting
+		 */
+		disableTint: function() {
+			this.tinted = false;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>tintImage</strong></p>
+		 *
+		 * Logic to tint an image and cache it
+		 * 
+		 * @param  {Drawable} source Source image to tint
+		 * @param  {Number} r Red channel amount between 0 and 255
+		 * @param  {Number} g Green channel amount between 0 and 255
+		 * @param  {Number} b Blue channel amount between 0 and 255
+		 *
+		 * @return {Drawable} The tinted image
+		 */
+		tintImage: function(id, source) {
+			this.rgbCanvasCache.cache(id, source);
+
+			var channels = this.rgbCanvasCache.get(id);
+			var canvas = this.tmpCanvas;
+			var context = this.tmpContext;
+
+			canvas.width = source.width;
+			canvas.height = source.height;
+
+			context.globalAlpha = 1;
+			context.globalCompositeOperation = 'copy';
+			context.drawImage(channels[3], 0, 0);
+
+			context.globalCompositeOperation = 'lighter';
+
+			if (this.tintRed > 0) {
+				context.globalAlpha = this.tintRed / 255;
+				context.drawImage(channels[0], 0, 0);
+			}
+
+			if (this.tintGreen > 0) {
+				context.globalAlpha = this.tintGreen / 255;
+				context.drawImage(channels[1], 0, 0);
+			}
+
+			if (this.tintBlue > 0) {
+				context.globalAlpha = this.tintBlue / 255;
+				context.drawImage(channels[2], 0, 0);
+			}
+
+			return canvas;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
 		 * <p style='color:#AD071D'><strong>rendererWidth</strong></p>
 		 *
 		 * @return {Number} The width of the renderer
 		 */
-		rendererWidth: function() { 
+		rendererWidth: function() {
 			if (!this.width) {
 				ErrorPrinter.missingArgumentError('Renderer', 'width');
 			}
 
-			return this.width * this.scaleX; 
+			return this.width;
 		},
 		/**
 		 * --------------------------------
@@ -84,12 +200,12 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 *
 		 * @return {Number} The height of the renderer
 		 */
-		rendererHeight: function() { 
+		rendererHeight: function() {
 			if (!this.height) {
 				ErrorPrinter.missingArgumentError('Renderer', 'height');
 			}
 
-			return this.height * this.scaleY; 
+			return this.height;
 		},
 		/**
 		 * --------------------------------
@@ -100,8 +216,8 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 *
 		 * @return {Number} The offset in the X axis of the renderer
 		 */
-		rendererOffsetX: function() { 
-			return this.offsetX * this.scaleX; 
+		rendererOffsetX: function() {
+			return this.offsetX;
 		},
 		/**
 		 * --------------------------------
@@ -112,13 +228,61 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 *
 		 * @return {Number} The offset in the Y axis of the renderer
 		 */
-		rendererOffsetY: function() { 
-			return this.offsetY * this.scaleY; 
+		rendererOffsetY: function() {
+			return this.offsetY;
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererLeft</strong></p>
+		 *
+		 * @return {Number} The left coordinate of the rectangle enclosing this renderer
+		 */
+		rendererLeft: function() {
+			return this.rendererOffsetX();
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererTop</strong></p>
+		 *
+		 * @return {Number} The top coordinate of the rectangle enclosing this renderer
+		 */
+		rendererTop: function() {
+			return this.rendererOffsetY();
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererRight</strong></p>
+		 *
+		 * @return {Number} The right coordinate of the rectangle enclosing this renderer
+		 */
+		rendererRight: function() {
+			return this.rendererOffsetX() + this.rendererWidth();
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>rendererBottom</strong></p>
+		 *
+		 * @return {Number} The bottom coordinate of the rectangle enclosing this renderer
+		 */
+		rendererBottom: function() {
+			return this.rendererOffsetY() + this.rendererHeight();
+		},
+		/**
+		 * --------------------------------
+		 */
+
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
 		 *
@@ -135,18 +299,29 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 
 			context.save();
 			context.beginPath();
-			
+
 			context.strokeStyle = this.debugColor;
 			context.lineWidth = 1;
 
+			context.translate(-0.5, -0.5);
+
+			var m = this.parent.getMatrix();
+
 			// Top Left 
-			drawLineAndPoint.call(this, context, this.rendererOffsetX(), this.rendererOffsetY(), draw, 'moveTo');
+			this.workVector = m.transformPoint(this.rendererLeft(), this.rendererTop(), this.workVector);
+			context.moveTo(Math.round(this.workVector.x), Math.round(this.workVector.y));
+
 			// Top Right
-			drawLineAndPoint.call(this, context, this.rendererOffsetX() + this.rendererWidth(), this.rendererOffsetY(), draw, 'lineTo');
+			this.workVector = m.transformPoint(this.rendererRight(), this.rendererTop(), this.workVector);
+			context.lineTo(Math.round(this.workVector.x), Math.round(this.workVector.y));
+
 			// Bottom Right
-			drawLineAndPoint.call(this, context, this.rendererOffsetX() + this.rendererWidth(), this.rendererOffsetY() + this.rendererHeight(), draw, 'lineTo');
+			this.workVector = m.transformPoint(this.rendererRight(), this.rendererBottom(), this.workVector);
+			context.lineTo(Math.round(this.workVector.x), Math.round(this.workVector.y));
+
 			// Bottom Left
-			drawLineAndPoint.call(this, context, this.rendererOffsetX(), this.rendererOffsetY() + this.rendererHeight(), draw, 'lineTo');
+			this.workVector = m.transformPoint(this.rendererLeft(), this.rendererBottom(), this.workVector);
+			context.lineTo(Math.round(this.workVector.x), Math.round(this.workVector.y));
 
 			context.closePath();
 
@@ -157,11 +332,6 @@ define(["component", "error-printer"], function(Component, ErrorPrinter) {
 		 * --------------------------------
 		 */
 	});
-
-	var drawLineAndPoint = function(context, offsetX, offsetY, draw, lineMethod) {
-		r = this.parent.matrix.transformPoint(offsetX, offsetY, r); 
-		context[lineMethod](r.x, r.y);
-	}
 
 	return Renderer;
 });

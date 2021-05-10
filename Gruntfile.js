@@ -1,14 +1,17 @@
 var p = require('path');
 
+// NOTE: do 'grunt docs-dictionary=dev' to build documentation for development
+// NOTE: do 'grunt docs-dictionary=prod' to build documentation for production
+
 module.exports = function(grunt) {
   var pkg = grunt.file.readJSON('package.json');
 
-  if(grunt.option('dictionary')) {
-    if(grunt.option('dictionary') != 'prod' && grunt.option('dictionary') != 'dev'){
+  if(grunt.option('docs-dictionary')) {
+    if(grunt.option('docs-dictionary') != 'prod' && grunt.option('docs-dictionary') != 'dev'){
       grunt.fail.fatal('Must specify an enviroment. prod or dev');
     }
 
-    pkg.projectRoot = pkg.projectRoot[grunt.option('dictionary')];
+    pkg.projectRoot = pkg.projectRoot[grunt.option('docs-dictionary')];
   }
 
   var gruntOptions = {}
@@ -63,7 +66,7 @@ module.exports = function(grunt) {
       options: { stdout: true, failOnError: true }
   }
 
-  if(grunt.option('dictionary')) {
+  if(grunt.option('docs-dictionary')) {
     gruntOptions['linkJSON'] = {
       gameBuilder: {
         paths: ["**/*.js"],
@@ -154,7 +157,7 @@ module.exports = function(grunt) {
       grunt.file.write(out, JSON.stringify(dictionary, undefined, 2 ));
   });
 
-  if(grunt.option('dictionary')) {
+  if(grunt.option('docs-dictionary')) {
     grunt.registerTask('default', [
       'clean',
       'shell:clone',
@@ -164,6 +167,7 @@ module.exports = function(grunt) {
   }
   else {
     grunt.registerTask('default', [
+      'clean',
       'docs',
       'shell:push'
     ]);

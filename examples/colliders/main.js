@@ -42,9 +42,7 @@ define(function(require){
 		//All colliders with ID 'Circle_1' will check for overlapping against all colliders with ID 'Fixed_Polygon_1'
 		collision_resolver.addCollisionPair('circle-collider_ID', 'fixed-polygon-collider_ID');
 		//All colliders with ID 'Fixed_Polygon_1' will check for overlapping against all colliders with ID 'Polygon_1'
-		collision_resolver.addCollisionPair('fixed-polygon-collider_ID', 'polygon-collider_ID');		
-
-		debugger;
+		collision_resolver.addCollisionPair('fixed-polygon-collider_ID', 'polygon-collider_ID');
 
 		gb.add('Base_1', 'First', 'MainMiddle');
 		gb.add('Base_2', 'First', 'MainMiddle');

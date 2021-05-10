@@ -37,11 +37,11 @@ define(function(require){
 		sound_player.createChannels(4);
 
 		// Load a sound resources, as soon as they are loaded they can be played.
-		sound_player.load('BIRD_SOUND', assetMap['BIRD.MP3']);
-		sound_player.load('HORSE_SOUND', assetMap['HORSE.MP3']);
-		sound_player.load('SHEEP_SOUND', assetMap['SHEEP.MP3']);
-		sound_player.load('ELEVATOR_MUSIC', assetMap['ELEVATOR.MP3']);
-		sound_player.load('CROW_SOUND', assetMap['CROW.WAV']);
+		sound_player.add('BIRD_SOUND', assetMap['BIRD.MP3']);
+		sound_player.add('HORSE_SOUND', assetMap['HORSE.MP3']);
+		sound_player.add('SHEEP_SOUND', assetMap['SHEEP.MP3']);
+		sound_player.add('ELEVATOR_MUSIC', assetMap['ELEVATOR.MP3']);
+		sound_player.add('CROW_SOUND', assetMap['CROW.WAV']);
 
 		// Out of the channels created, this line sets apart 2 channels to be used by the sound with id BIRD_SOUND
 		// Playing sound like this is slightly faster because the logic of loading a sound is skipped.

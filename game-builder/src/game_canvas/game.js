@@ -8,6 +8,7 @@
  *
  * Depends of:
  * [root](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/root.html)
+ * [reclaimer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/reclaimer.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
  *
@@ -30,7 +31,7 @@
  * ```
  *
  * </br>
- * 
+ *
  * ### **BLUR**
  * When the application looses focus
  *
@@ -39,7 +40,7 @@
  * ```
  *
  * </br>
- * 
+ *
  * ### **FOCUS**
  * When the application gains focus
  *
@@ -48,7 +49,7 @@
  * ```
  *
  * </br>
- * 
+ *
  * ### **UPDATE**
  * On each update cycle
  *
@@ -58,21 +59,21 @@
  * ```
  *
  * </br>
- * 
+ *
  * ### **CHANGE_WIDTH**
  * When the width of the canvas is changes using the setter **game.WIDTH**
  *
- * The new width is sent to all the registered callbacks 
+ * The new width is sent to all the registered callbacks
  * ``` javascript
  * game.on(game.CHANGE_WIDTH, function(newWidth) {});
  * ```
  *
  * </br>
- * 
+ *
  * ### **CHANGE_HEIGHT**
  * When the height of the canvas is changes using the setter **game.HEIGHT**
  *
- * The new height is sent to all the registered callbacks 
+ * The new height is sent to all the registered callbacks
  * ``` javascript
  * game.on(game.CHANGE_HEIGHT, function(newHeight) {});
  * ```
@@ -87,299 +88,398 @@
  * --------------------------------
  */
 define(function(require) {
-  var delegate = require("delegate");
-  var root = require("root");
+	var blur = false;
+	var self = null;
 
-  var Game = delegate.extend({
-    init: function() {
-      this._super();
+	var Game = require("delegate").extend({
+		init: function() {
+			this._super();
 
-      this.focus = true;
-      this.blur = true;
-      this.initialized = false;
-      this.lastUpdate = Date.now();
-      this.delta = null;
+			this.focus = true;
+			this.blur = true;
+			this.initialized = false;
+			this.lastUpdate = null;
+			this.tickTime = 1000 / 60;
+			this.tickTimeTotal = 0;
+			this.lastTickTime = NaN;
+			this.lastAnimationFrameId = null;
+			this.delta = null;
 
-      // A reference to the main div in the corresponding index.html file
-      this.mainContainer = null;
-      // A reference to the canvas
-      this.canvas = null;
-      // A reference to the context of the canvas
-      this.context = null;
-    },
+			// A reference to the main div in the corresponding index.html file
+			this.mainContainer = null;
+			// A reference to the canvas
+			this.canvas = null;
+			// A reference to the context of the canvas
+			this.context = null;
 
-    /**
-     * <p style='color:#AD071D'><strong>execute_extensions</strong></p>
-     *
-     * Executes all the extensions for the given state of the application
-     *
-     * @param  {String} state The state of the application. ej. 'create'
-     */
-    execute_extensions: function(state) {
-      for(var i=0; i<this.extensions[state].length; i++) {
-      	var ex = this.extensions[state][i];
+			self = this;
 
-        ex.extension.execute(ex.args);
-      }
-    },
-    /**
-     * --------------------------------
-     */
+			this.bindedMainLoop = null;
 
-    /**
-     * <p style='color:#AD071D'><strong>add_extension</strong></p>
-     *
-     * Use this to add extensions.
-     *
-     * @param {[extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)} extensionModule A module that extends [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
-     * @param {Object=null} args An object with arguments that will be passed to the extension when it is executed
-     */
-    add_extension: function(extensionModule, args) {
-      var ex = new extensionModule();
-      
-      this.extensions[ex.type()].push({
-      	extension: ex,
-      	args: args
-      });
+			this.root = require("root");
+			this.reclaimer = require("reclaimer");
+		},
 
-      if (this.initialized && ex.type() == this.CREATE) {
-      	ex.execute(args);
-      }
-    },
-    /**
-     * --------------------------------
-     */
-    
-    /**
-     * <p style='color:#AD071D'><strong>get_extension</strong></p>
-     *
-     * Use this to get an instance of a currently active [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html).
-     *
-     * @param {[extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)} extensionModule The constructor for the [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html) to retrieve
-     *
-     * @return {[extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)} The matching [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html) 
-     */
-    get_extension: function(extensionModule) {
-      for (var t in this.extensions) {
-    		var list = this.extensions[t];
-    		
-    		for (var i = list.length-1; i >= 0; i--) {
-	    		if (list[i].extension.constructor === extensionModule) {
-	    			return list[i].extension;
-	    		}
-	    	}	
-    	}
-    },
-    /**
-     * --------------------------------
-     */
-    
-    /**
-     * <p style='color:#AD071D'><strong>remove_extension</strong></p>
-     *
-     * Use this to remove extensions.
-     *
-     * @param {[extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)} extensionModule The [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html) module to remove
-     */
-    remove_extension: function(extensionModule) {     
-    	for (var t in this.extensions) {
-    		var list = this.extensions[t];
+		/**
+		 * <p style='color:#AD071D'><strong>execute_extensions</strong></p>
+		 *
+		 * Executes all the extensions for the given state of the application
+		 *
+		 * @param {String} state The state of the application. ej. 'create'
+		 */
+		execute_extensions: function(state, args) {
+			for(var i=0; i<this.extensions[state].length; i++) {
+				var ex = this.extensions[state][i];
 
-    		for (var i = list.length-1; i >= 0; i--) {
-	    		if (list[i].extension.constructor === extensionModule) {
-	    			list[i].extension.destroy();
-	    			list.splice(i, 1);
-	    		}
-	    	}	
-    	}
-    },
-    /**
-     * --------------------------------
-     */
+				ex.extension.execute(ex.args, args);
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
 
-    /**
-     * <p style='color:#AD071D'><strong>create</strong></p>
-     *
-     * The main method that will kick start everything.
-     *
-     * This method does a bunch of things. The main one being setting up the update loop
-     * using [request animation frame](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/)
-     *
-     * The focus and blur events are also setup here.
-     *
-     * If the application does not have focus as soon as it starts, it waits until it has focus
-     * to setup the update loop.
-     */
-    create: function() {
-      this.mainContainer = document.getElementById('main');
-      this.canvas = document.getElementById('game');
-      this.context = this.canvas.getContext("2d");
+		/**
+		 * <p style='color:#AD071D'><strong>add_extension</strong></p>
+		 *
+		 * Use this to add extensions. If the extension has already been added this method call does nothing.
+		 *
+		 * @param {[extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)} extensionModule A module that extends [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
+		 * @param {Object=null} args An object with arguments that will be passed to the extension when it is executed
+		 */
+		add_extension: function(extensionModule, args) {
+			if (this.get_extension(extensionModule))
+				return;
 
-      var mainLoop;
-      var self = this;
+			var ex = new extensionModule();
 
-      // When this is called the application has trully started.
-      var setupUpdateLoop = function() {
-        self.initialized = true;
-        // Execute all create extensions
-        self.execute_extensions(self.CREATE);
-        // Execute all create events
-        self.execute(self.CREATE);
+			this.extensions[ex.type()].push({
+				extension: ex,
+				args: args
+			});
 
-        var now;
+			if (this.initialized && ex.type() == this.CREATE) {
+				ex.execute(args);
+			}
 
-        mainLoop = function() {
-          now = Date.now();
-          self.delta = (now - self.lastUpdate) / 1000;
-          self.lastUpdate = now;
+			this.execute(this.EXTENSION_ADDED, ex);
+		},
+		/**
+		 * --------------------------------
+		 */
 
-          // Execute all update extensions
-          self.execute_extensions(self.UPDATE);
-          // Update all [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
-          root.update(self.delta);
-          // Execute all update events
-          self.execute(self.UPDATE);
-          // Draw to all the [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
-          root.draw(self.context);
+		/**
+		 * <p style='color:#AD071D'><strong>get_extension</strong></p>
+		 *
+		 * Use this to get an instance of a currently active [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html).
+		 *
+		 * @param {[extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)} extensionModule The constructor for the [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html) to retrieve
+		 *
+		 * @return {[extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)} The matching [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
+		 */
+		get_extension: function(extensionModule) {
+			for (var t in this.extensions) {
+				var list = this.extensions[t];
 
-          window.requestAnimationFrame(mainLoop);
-        }
+				for (var i = list.length - 1; i >= 0; i--) {
+					if (list[i].extension.constructor === extensionModule) {
+						return list[i].extension;
+					}
+				}
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
 
-        var vendors = ['ms', 'moz', 'webkit', 'o'];
+		/**
+		 * <p style='color:#AD071D'><strong>remove_extension</strong></p>
+		 *
+		 * Use this to remove extensions.
+		 *
+		 * @param {[extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)} extensionModule The [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html) module to remove
+		 */
+		remove_extension: function(extensionModule) {
+			for (var t in this.extensions) {
+				var list = this.extensions[t];
 
-        for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-          window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
-          window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
-        }
+				for (var i = list.length - 1; i >= 0; i--) {
+					if (list[i].extension.constructor === extensionModule) {
+						list[i].extension.destroy();
+						list.splice(i, 1);
+					}
+				}
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
 
-        if (!window.requestAnimationFrame) {
-          window.requestAnimationFrame = function(callback) {
-            return window.setTimeout(callback, 1000 / 60);;
-          };
-        }
+		/**
+		 * <p style='color:#AD071D'><strong>create</strong></p>
+		 *
+		 * The main method that will kick start everything.
+		 *
+		 * This method does a bunch of things. The main one being setting up the update loop
+		 * using [request animation frame](http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/)
+		 *
+		 * The focus and blur events are also setup here.
+		 *
+		 * If the application does not have focus as soon as it starts, it waits until it has focus
+		 * to setup the update loop.
+		 */
+		create: function() {
+			this.mainContainer = document.getElementById('main');
+			this.canvas = document.getElementById('game');
+			this.context = this.canvas.getContext("2d");
 
-        if (!window.cancelAnimationFrame) {
-          window.cancelAnimationFrame = function(id) {
-            clearTimeout(id);
-          };
-        }
+			// References to the blur and focus callbacks
+			// The [pause](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/pause.html) and [resume](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/resume.html)
+			// extensions use these.
+			this.blurAction = this.onBlur;
+			this.focusAction = this.onFocus;
 
-        self.lastUpdate = Date.now();
+			// Actually setting up the listener to the events
+			// window dispatches.
+			window.addEventListener("blur", this.onBlur);
+			window.addEventListener("focus", this.onFocus);
 
-        window.requestAnimationFrame(mainLoop);
-      };
+			// Making sure we have focus setting up the update loop.
+			// If there is no focus, wait until it is gained to setup the update loop.
+			if (document.hasFocus()) {
+				this.setupUpdateLoop();
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
 
-      // The blur and focus event callbacks
-      // Plus additional logic so that they don't get executed
-      // more than needed.
-      var blur = false;
+		/**
+		 * <p style='color:#AD071D'><strong>mainLoop</strong></p>
+		 *
+		 * The main game loop
+		 */
+		mainLoop: function(time) {
+			this.lastAnimationFrameId = window.requestAnimationFrame(this.bindedMainLoop);
 
-      var onBlur = function() {
-        var oldBlur = self.blur;
+			if (!this.lastUpdate)
+				this.lastUpdate = time;
 
-        if (self.blur) {
-          self.blur = false;
-          self.focus = true;
+			this.tickTimeTotal += time - this.lastUpdate;
 
-          if (!blur) {
-            // Execute all blur state extensions
-            self.execute_extensions(self.BLUR);
-            // Execute all blur events
-            self.execute(self.BLUR);
+			if (this.tickTimeTotal >= this.tickTime)
+			{
+				if (this.lastTickTime)
+				{
+					this.delta = (time - this.lastTickTime) / 1000;
+				}
+				else
+				{
+					this.delta = 0;
+				}
 
-            blur = true;
-          }
-        }
+				// Execute all update extensions
+				this.execute_extensions('update', this.delta);
+				// Update all [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
+				this.root.update(this.delta);
+				// Execute all update events
+				this.execute('update', this.delta);
 
-        return oldBlur;
-      };
+				this.lastTickTime = time;
 
-      var onFocus = function() {
-        var oldFocus = self.focus;
+				// Draw to all the [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
+				this.root.draw(this.context);
+				// Recycle any [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) marked for removal
+				this.reclaimer.claimMarked();
 
-        // In the case the game is not already created when the document gains focus
-        // for the first time, it is created here.
-        if (!self.initialized) {
-          setupUpdateLoop();
-        } else {
-          if (self.focus) {
-            self.blur = true;
-            self.focus = false;
+				this.tickTimeTotal -= this.tickTime;
+			}
 
-            if (blur) {
-              // Execute all focus state extensions
-              self.execute_extensions(self.FOCUS);
-              // Execute all blur events
-              self.execute(self.FOCUS);
+			this.lastUpdate = time;
+		},
+		/**
+		 * --------------------------------
+		 */
 
-              blur = false;
-            }
-          }
-        }
+		/**
+		 * <p style='color:#AD071D'><strong>setupUpdateLoop</strong></p>
+		 *
+		 * When this is called the application has started
+		 */
+		setupUpdateLoop: function() {
+			this.initialized = true;
+			// Execute all create extensions
+			this.execute_extensions(this.CREATE);
+			// Execute all create events
+			this.execute(this.CREATE);
 
-        return oldFocus;
-      }
+			var vendors = ['ms', 'moz', 'webkit', 'o'];
 
-      // References to the blur and focus callbacks
-      // The [pause](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/pause.html) and [resume](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/resume.html)
-      // extensions use these.
-      this.blurAction = onBlur;
-      this.focusAction = onFocus;
+			for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+				window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+				window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+			}
 
-      // Actually setting up the listener to the events
-      // window dispatches.
-      window.addEventListener("blur", onBlur);
-      window.addEventListener("focus", onFocus);
+			if (!window.requestAnimationFrame) {
+				window.requestAnimationFrame = function(callback) {
+					return window.setTimeout(callback, 1000 / 60);;
+				};
+			}
 
-      // Making sure we have focus setting up the update loop.
-      // If there is no focus, wait until it is gained to setup the update loop.
-      if (document.hasFocus()) {
-        setupUpdateLoop();
-      }
-    }
-    /**
-     * --------------------------------
-     */
-  });
+			if (!window.cancelAnimationFrame) {
+				window.cancelAnimationFrame = function(id) {
+					window.clearTimeout(id);
+				};
+			}
 
-  Object.defineProperty(Game.prototype, "CREATE", { get: function() { return 'create'; } });
-  Object.defineProperty(Game.prototype, "UPDATE", { get: function() { return 'update'; } });
-  Object.defineProperty(Game.prototype, "FOCUS", { get: function() { return 'focus'; } });
-  Object.defineProperty(Game.prototype, "BLUR", { get: function() { return 'blur'; } });
+			this.lastUpdate = NaN;
+			this.tickTimeTotal = 0;
+			this.lastTickTime = NaN;
 
-  Object.defineProperty(Game.prototype, "CHANGE_WIDTH", { get: function() { return 'change_width'; } });
-  Object.defineProperty(Game.prototype, "CHANGE_HEIGHT", { get: function() { return 'change_height'; } });
+			this.bindedMainLoop = this.mainLoop.bind(this);
 
-  Object.defineProperty(Game.prototype, "WIDTH", { 
-  	get: function() {
-  		return this.canvas.width;
-  	},
-  	set: function (value) { 
-	  	this.canvas.width = value;
-	  	this.execute(this.CHANGE_WIDTH, value); 
-	  } 
+			this.lastAnimationFrameId = window.requestAnimationFrame(this.bindedMainLoop);
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>onFocus</strong></p>
+		 */
+		onFocus: function() {
+			var oldFocus = self.focus;
+
+			// In the case the game is not already created when the document gains focus
+			// for the first time, it is created here.
+			if (!self.initialized) {
+				self.setupUpdateLoop();
+			} else {
+				if (self.focus) {
+					self.blur = true;
+					self.focus = false;
+
+					if (blur) {
+						// Execute all focus state extensions
+						self.execute_extensions(self.FOCUS);
+						// Execute all blur events
+						self.execute(self.FOCUS);
+
+						blur = false;
+
+						// Re-start the main game loop
+						self.lastUpdate = NaN;
+						self.tickTimeTotal = 0;
+						self.lastTickTime = NaN;
+						
+						self.lastAnimationFrameId = window.requestAnimationFrame(self.bindedMainLoop);
+					}
+				}
+			}
+
+			return oldFocus;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>onBlur</strong></p>
+		 */
+		onBlur: function() {
+			var oldBlur = self.blur;
+
+			if (self.blur) {
+				self.blur = false;
+				self.focus = true;
+
+				if (!blur) {
+					// Execute all blur state extensions
+					self.execute_extensions(self.BLUR);
+					// Execute all blur events
+					self.execute(self.BLUR);
+
+					blur = true;
+
+					// Cancel the main game loop
+					window.cancelAnimationFrame(self.lastAnimationFrameId);
+				}
+			}
+
+			return oldBlur;
+		}
+		/**
+		 * --------------------------------
+		 */
 	});
 
-  Object.defineProperty(Game.prototype, "HEIGHT", { 
-  	get: function() {
-  		return this.canvas.height;
-  	},
-  	set: function (value) { 
-  		this.canvas.height = value;
-  		this.execute(this.CHANGE_HEIGHT, value); 
-  	} 
-  });
+	Object.defineProperty(Game.prototype, "CREATE", {
+		get: function() {
+			return 'create';
+		}
+	});
+	Object.defineProperty(Game.prototype, "UPDATE", {
+		get: function() {
+			return 'update';
+		}
+	});
+	Object.defineProperty(Game.prototype, "FOCUS", {
+		get: function() {
+			return 'focus';
+		}
+	});
+	Object.defineProperty(Game.prototype, "BLUR", {
+		get: function() {
+			return 'blur';
+		}
+	});
 
-  var game = new Game();
+	Object.defineProperty(Game.prototype, "EXTENSION_ADDED", {
+		get: function() {
+			return 'extension_added';
+		}
+	});
 
-  game.prototype = Game.prototype;
+	Object.defineProperty(Game.prototype, "CHANGE_WIDTH", {
+		get: function() {
+			return 'change_width';
+		}
+	});
+	Object.defineProperty(Game.prototype, "CHANGE_HEIGHT", {
+		get: function() {
+			return 'change_height';
+		}
+	});
 
-  game.extensions = {
-    'create': [],
-    'update': [],
-    'focus': [],
-    'blur': []
-  };
+	Object.defineProperty(Game.prototype, "WIDTH", {
+		get: function() {
+			return this.canvas.width;
+		},
+		set: function(value) {
+			this.canvas.width = value;
+			this.execute(this.CHANGE_WIDTH, value);
+		}
+	});
 
-  return game;
+	Object.defineProperty(Game.prototype, "HEIGHT", {
+		get: function() {
+			return this.canvas.height;
+		},
+		set: function(value) {
+			this.canvas.height = value;
+			this.execute(this.CHANGE_HEIGHT, value);
+		}
+	});
+
+	var game = new Game();
+
+	game.prototype = Game.prototype;
+
+	game.extensions = {
+		'create': [],
+		'update': [],
+		'focus': [],
+		'blur': []
+	};
+
+	return game;
 });

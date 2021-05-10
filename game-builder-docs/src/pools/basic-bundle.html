@@ -7,7 +7,7 @@
 <p>Inherits from:
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/bundle.html">bundle</a></p>
 
-<p>Depends of: 
+<p>Depends of:
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/circle-collider.html">circle-collider</a>
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/polygon-collider.html">polygon-collider</a>
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/fixed-polygon-collider.html">fixed-polygon-collider</a>
@@ -24,14 +24,14 @@ basic <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/
 
 <p>If you need a configuration to use a simple <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> or a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html">game-object-container</a>
 there is no need to setup a pool for them, instead you can <strong>require</strong> this module and use the <strong>getGameObjectPoolId</strong> and <strong>getGameObjectContainerPoolId</strong>
-methods where necessary. </p>
+methods where necessary.</p>
 
-<p>Same goes for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderers</a> if you need ids for a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/bitmap-renderer.html">bitmap-renderer</a>, 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/text-renderer.html">text-renderer</a> or <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/path-renderer.html">path-renderer</a> you can use the 
+<p>Same goes for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderers</a> if you need ids for a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/bitmap-renderer.html">bitmap-renderer</a>,
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/text-renderer.html">text-renderer</a> or <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/path-renderer.html">path-renderer</a> you can use the
 <strong>getBitmapRendererPoolId</strong>, <strong>getTextRendererPoolId</strong> and <strong>getPathRendererPoolId</strong> methods respectively.</p>
 
-<p>Similarly you can get ids for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html">collision-components</a>, either a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/circle-collider.html">circle-collider</a>, 
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/polygon-collider.html">polygon-collider</a> or <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/fixed-polygon-collider.html">fixed-polygon-collider</a> have their corresponding methods. 
+<p>Similarly you can get ids for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-component.html">collision-components</a>, either a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/circle-collider.html">circle-collider</a>,
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/polygon-collider.html">polygon-collider</a> or <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/fixed-polygon-collider.html">fixed-polygon-collider</a> have their corresponding methods.
 <strong>getCircleColliderPoolId</strong>, <strong>getPolygonColliderPoolId</strong> and <strong>getFixedPolygonColliderPoolId</strong>.</p>
 
 <p>Ej.</p>
@@ -47,8 +47,8 @@ basicBundle.getCircleColliderPoolId() // returns 'circle-collider'
 basicBundle.getPolygonColliderPoolId() // returns 'polygon-collider'
 basicBundle.getFixedPolygonColliderPoolId() // returns 'fixed-polygon-collider'
 </code></pre></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">BasicBundle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;bundle&#39;</span><span class="p">).</span><span class="nx">extend</span><span class="p">({</span>
-  </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>create</strong></p>
+  <span class="kd">var</span> <span class="nx">BasicBundle</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;bundle&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>create</strong></p>
 
 <p>This method configures the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a> and the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a>
 with the basic objects so it is not needed to define them repeatedly on other bundles</p>
@@ -57,18 +57,38 @@ with the basic objects so it is not needed to define them repeatedly on other bu
 
 <ul>
 <li><strong>args is optional, must be an Object, and has a default value of null.</strong></li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">createComponentPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;circle-collider&#39;</span><span class="p">)</span> <span class="p">});</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">createComponentPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;polygon-collider&#39;</span><span class="p">)</span> <span class="p">});</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">createComponentPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fixed-polygon-collider&#39;</span><span class="p">)</span> <span class="p">});</span>
+</ul></div></div><div class="code"><div class="wrapper">      <span class="nx">create</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">createComponentPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;circle-collider&#39;</span><span class="p">)</span>
+        <span class="p">});</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">createComponentPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path-renderer&#39;</span><span class="p">)</span> <span class="p">});</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">createComponentPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;bitmap-renderer&#39;</span><span class="p">)</span> <span class="p">});</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">createComponentPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;text-renderer&#39;</span><span class="p">)</span> <span class="p">});</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">createComponentPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;polygon-collider&#39;</span><span class="p">)</span>
+        <span class="p">});</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">createDynamicGameObjectPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;game-object&#39;</span><span class="p">)</span> <span class="p">});</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">createDynamicGameObjectPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;game-object-container&#39;</span><span class="p">)</span> <span class="p">});</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">createComponentPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fixed-polygon-collider&#39;</span><span class="p">)</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">createComponentPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path-renderer&#39;</span><span class="p">)</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">createComponentPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;bitmap-renderer&#39;</span><span class="p">)</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">createComponentPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;text-renderer&#39;</span><span class="p">)</span>
+        <span class="p">});</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">createDynamicGameObjectPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;game-object&#39;</span><span class="p">)</span>
+        <span class="p">});</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">createDynamicGameObjectPool</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;game-object-container&#39;</span><span class="p">)</span>
+        <span class="p">});</span>
+      <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    <span class="p">});</span>
 
   <span class="k">return</span> <span class="nx">BasicBundle</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

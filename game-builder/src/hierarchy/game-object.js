@@ -4,84 +4,85 @@
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
  * Inherits from: [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html)
- * 
+ *
  * Depends of:
  * [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
  * [game-object-debug-draw](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/game-object-debug-draw.html)
  * [util](http://diegomarquez.github.io/game-builder/game-builder-docs/src/util.html)
- * 
+ * [component-finder](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/helpers/component-finder.html)
+ *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This is the main thing in [Game-Builder](http://diegomarquez.github.io/game-builder). Everything
  * that you do will most likely be an extension of this, or something that creates objects like this one.
  *
- * ### Main features are: 
- * 
+ * ### Main features are:
+ *
  * Attaching [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) objects and a [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html)
  * object. Why only one renderer? Because I thought it made more sense to have only one renderer for each type of object.
  *
  * Support for affine transformations thanks to the [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html) module.
- * 
+ *
  * These objects extend [delegate](http://diegomarquez.github.io/game-builder/game-builder-docs/src/delegate.html) so they provide a few events to hook into:
  *
- * ### **START** 
- * When the game object is started 
- * 
- * Registered callbacks get the game object as argument 
- * ``` javascript  
+ * ### **START**
+ * When the game object is started
+ *
+ * Registered callbacks get the game object as argument
+ * ``` javascript
  * gameObject.on(gameObject.START, function(gameObject) {});
- * ``` 
+ * ```
  *
  * </br>
- * 
+ *
  * ### **RECYCLE**
- * When a game object is sent back to the game object pool. 
+ * When a game object is sent back to the game object pool.
  * This happens before destroying properties in the object.
- * 
+ *
  * Registered callbacks get the game object as argument
- * ``` javascript  
+ * ``` javascript
  * gameObject.on(gameObject.RECYCLE, function(gameObject) {});
  * ```
  *
  * </br>
- * 
+ *
  * ### **CLEAR**
  * When a game object is sent back to the game object pool.
  * This happens after destroying properties in the object.
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gameObject.on(gameObject.CLEAR, function() {});
  * ```
  *
  * </br>
- * 
+ *
  * ### **ADD**
- * When a game object is added to a parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html) 
+ * When a game object is added to a parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html)
  * The parent is sent to the registered callbacks as argument
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gameObject.on(gameObject.ADD, function(parent) {});
  * ```
  *
  * </br>
- * 
+ *
  * ### **REMOVE**
- * When a game object is removed from a parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html) 
+ * When a game object is removed from a parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html)
  * The parent is sent to the registered callbacks as argument
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gameObject.on(gameObject.REMOVE, function(parent) {});
  * ```
  *
  * </br>
- * 
+ *
  * ### **ADD_TO_VIEWPORT**
  * When a game object is added to a [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) + [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) pair
  *
  * An object that looks like this ``` [{viewport: 'ViewportName', layer:'LayerName'}] ```
  * is sent to all the registered callbacks as an argument
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gameObject.on(gameObject.ADD_TO_VIEWPORT, function(v) {});
  * ```
  *
@@ -92,9 +93,53 @@
  *
  * An object that looks like this ``` [{viewport: 'ViewportName', layer:'LayerName'}] ```
  * is sent to all the registered callbacks as an argument
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * gameObject.on(gameObject.REMOVE_FROM_VIEWPORT, function(v) {});
+ * ```
+ *
+ * </br>
+ *
+ * ### **HIDE**
+ * When a game object calls it's **hide** method
+ *
+ * Registered callbacks get the game object as argument
+ *
+ * ``` javascript
+ * gameObject.on(gameObject.HIDE, function(gameObject) {});
+ * ```
+ *
+ * </br>
+ *
+ * ### **SHOW**
+ * When a game object calls it's **show** method
+ *
+ * Registered callbacks get the game object as argument
+ *
+ * ``` javascript
+ * gameObject.on(gameObject.SHOW, function(gameObject) {});
+ * ```
+ *
+ * </br>
+ *
+ * ### **STOP**
+ * When a game object calls it's **stop** method
+ *
+ * Registered callbacks get the game object as argument
+ *
+ * ``` javascript
+ * gameObject.on(gameObject.STOP, function(gameObject) {});
+ * ```
+ *
+ * </br>
+ *
+ * ### **RUN**
+ * When a game object calls it's **run** method
+ *
+ * Registered callbacks get the game object as argument
+ *
+ * ``` javascript
+ * gameObject.on(gameObject.RUN, function(gameObject) {});
  * ```
  */
 
@@ -106,8 +151,7 @@
 /**
  * --------------------------------
  */
-define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(Delegate, Matrix, DebugDraw, Util) {
-	var go, r;
+define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-finder"], function(Delegate, Matrix, DebugDraw, Util, ComponentFinder) {
 
 	var GameObject = Delegate.extend({
 		init: function() {
@@ -117,11 +161,11 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			/*
 			 * Any of the following properties can be set when configuring the
 			 * [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html), like so:
-			 * 
+			 *
 			 * ``` javascript
 			 * gb.goPool.createConfiguration("GameObject_1", "GameObject")
 				.args({
-					x: 0, 
+					x: 0,
 					y: 0
 			 *	});
 			 * ```
@@ -131,7 +175,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			 *
 			 * You can also choose not to do that, and set the properties after
 			 * requesting a game object to the [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html) module.
-			 */ 
+			 */
 
 			// A unique identifier assigned when the game object is built by the [assembler](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/assembler.html) module
 			// It changes every time the game object is recycled
@@ -188,6 +232,15 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			// Color that will be used to draw a little shape to outline the position if the **debug**
 			// property of [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html) is set to true;
 			this.debugColor = "#FF00FF";
+
+			// This boolean signals that a transformation has taken place and hence the object can be drawn afterwards.
+			// If an object tries to draw itself before a transformation has occured, the drawing will be skipped to avoid graphical glitches.
+			// It can also be used when a component is added dynamically, to prevetn executing logic
+			// in the update loop until the parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) has been transformed for
+			// the first time
+			this.isTransformed = false;
+
+			this.decomposed = null;
 		},
 		/**
 		 * --------------------------------
@@ -214,6 +267,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			this.viewports = [];
 			this.updateGroup = null;
 			this.isChildInContainer = false;
+			this.isTransformed = false;
 		},
 		/**
 		 * --------------------------------
@@ -227,12 +281,13 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * @param {Object} [parent] The new parent [game-object-container](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object-container.html)
 		 */
 		added: function(parent) {
+			this.isTransformed = false;
 			this.execute(this.ADD, this);
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>removed</strong></p>
 		 *
@@ -246,7 +301,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -257,7 +312,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			this.canUpdate = true;
 			this.canDraw = true;
 
-			if(this.renderer) {
+			if (this.renderer) {
 				this.renderer.onStarted(this);
 			}
 
@@ -277,8 +332,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * <p style='color:#AD071D'><strong>update</strong></p>
 		 *
 		 * Called in each update cycle.
-		 * 
-		 * @param  {Number} delta Time ellapsed since the last update cycle
+		 *
+		 * @param {Number} delta Time ellapsed since the last update cycle
 		 */
 		update: function(delta) {},
 		/**
@@ -301,10 +356,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>configure</strong></p>
 		 *
-		 * Sets up the properties that were previously configured 
+		 * Sets up the properties that were previously configured
 		 * in the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
-		 * 
-		 * @param  {Object} args Object which properties will be used to set values on this game object
+		 *
+		 * @param {Object} args Object which properties will be used to set values on this game object
 		 */
 		configure: function(args) {
 			if (!args) return;
@@ -323,7 +378,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 
 						if (Util.isFunction(setter)) {
 							Util.defineSetter(this, ha, setter);
-						} 
+						}
 					} else {
 						this[ha] = args[ha];
 					}
@@ -347,7 +402,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * @param {Object} renderer [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) added
 		 */
 		setRenderer: function(renderer) {
-			if(!renderer) return;
+			if (!renderer) return;
 
 			this.renderer = renderer;
 			this.renderer.onAdded(this);
@@ -363,7 +418,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * and **onRecycled** callbacks.
 		 */
 		removeRenderer: function() {
-			if(!this.renderer) return;
+			if (!this.renderer) return;
 
 			this.renderer.onRemoved(this);
 			this.renderer.onRecycled();
@@ -377,7 +432,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * <p style='color:#AD071D'><strong>addComponent</strong></p>
 		 *
 		 * Adds a component and notifies it was added through the **onAdded** callback.
-		 * 
+		 *
 		 * @param {Object} component [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) added
 		 */
 		addComponent: function(component) {
@@ -399,10 +454,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>removeComponent</strong></p>
 		 *
-		 * Removes a [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html), and notifies it, 
+		 * Removes a [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html), and notifies it,
 		 * it was removed through the **onRemoved** callback.
-		 * 
-		 * @param  {Object} component [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) to remove
+		 *
+		 * @param {Object} component [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) to remove
 		 */
 		removeComponent: function(component) {
 			if (!this.components) return;
@@ -411,8 +466,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 
 			if (index != -1) {
 				this.components.splice(index, 1);
-				component.onRemoved();
-				component.onRecycled();
+				component.onRemoved(this);
+				component.onRecycled(this);
 			}
 		},
 		/**
@@ -422,145 +477,49 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * <p style='color:#AD071D'><strong>removeComponents</strong></p>
 		 *
-		 * Removes all components.
+		 * Removes [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html).
+		 *
+		 * @param {Array} [toRemove=null] Optional array of [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) to remove, if not specified all [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) are removed
 		 */
-		removeComponents: function() {
+		removeComponents: function(toRemove) {
 			if (!this.components) return;
 
-			for (var i=this.components.length-1; i>=0; i--) {
-				this.removeComponent(this.components[i]);
-			}
-		},
-		/**
-		 * --------------------------------
-		 */
-		
-		/**
-		 * <p style='color:#AD071D'><strong>findComponents</strong></p>
-		 *
-		 * Get an object to query the [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) list of the game object
-		 *
-		 * @return {Object}  An object to make the query. It has the following methods: 
-		 * </br>
-		 * **all** returns all [components](@@components@@) that return true for the specified function. Pass no argument to get all components 
-		 * </br>
-		 * **allWithProp** returns all [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) that have the given property 
-		 * </br>
-		 * **allWithType** returns all [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) that have the given id in the [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html) 
-		 * </br>
-		 * **first** returns the first [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) that returns true for the specified function 
-		 * </br>
-		 * **firstWithProp** returns the first [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) that has the given property 
-		 * </br>
-		 * **firstWithType** returns the first [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) that have the given id in the [component-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html) 
-		 * </br>
-		 */
-		findComponents: function() {
-			var self = this;
-
-			return {
-				all: function(f) {
-					if (!self.components) return;
-
-					var r;
-
-					for (var i = 0; i < self.components.length; i++) {
-						var c = self.components[i];
-
-						if (!f || f(c)) {
-							if (!r) r = [];
-							
-							r.push(c);
-						}
-					}
-
-					return r;
-				}, 
-
-				allWithProp: function(propName) {
-					if (!self.components) return;
-
-					var r;
-
-					for (var i = 0; i < self.components.length; i++) {
-						var c = self.components[i];
-
-						if (Boolean(c[propName])) {
-							if (!r) r = [];
-							
-							r.push(c);
-						}
-					}
-
-					return r;
-				},
-
-				allWithType: function(id) {
-					if (!self.components) return;
-
-					var r;
-
-					for (var i = 0; i < self.components.length; i++) {
-						var c = self.components[i];
-
-						if (c.typeId == id || c.poolId == id) {
-							if (!r) r = [];
-							
-							r.push(c);
-						}
-					}
-
-					return r;
-				},
-
-				first: function(f) {
-					if (!self.components) return;
-
-					for (var i = 0; i < self.components.length; i++) {
-						var c = self.components[i];
-
-						if (f(c)) {
-							return c;
-						}
-					}		
-				},
-
-				firstWithProp: function(propName) {
-					if (!self.components) return;
-
-					for (var i = 0; i < self.components.length; i++) {
-						var c = self.components[i];
-
-						if (Boolean(c[propName])) {
-							return c;
-						}
-					}
-				},
-
-				firstWithType: function(id) {
-					if (!self.components) return;
-					
-					for (var i = 0; i < self.components.length; i++) {
-						var c = self.components[i];
-
-						if (c.typeId == id || c.poolId == id) {
-							return c;
-						}
-					}
+			if (toRemove && Util.isArray(toRemove)) {
+				for (var i = 0; i < toRemove.length; i++) {
+					this.removeComponent(toRemove[i]);
+				}
+			} else {
+				for (var i = this.components.length - 1; i >= 0; i--) {
+					this.removeComponent(this.components[i]);
 				}
 			}
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
+		/**
+		 * <p style='color:#AD071D'><strong>findComponents</strong></p>
+		 *
+		 * Get a reference to the [component-finder](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/helpers/component-finder.html) object, to search for [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) in the game object
+		 *
+		 * @return {Object}
+		 */
+		findComponents: function() {
+			return ComponentFinder.user(this);
+		},
+		/**
+		 * --------------------------------
+		 */
+
 		/**
 		 * <p style='color:#AD071D'><strong>transform</strong></p>
 		 *
 		 * Generates the concatenated [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html) used to draw itself in the proper place
 		 */
 		transform: function(options) {
-			this.getMatrix(this.matrix, options);
+			this.concatenateMatrix(this.matrix, options);
+			this.isTransformed = true;
 		},
 		/**
 		 * --------------------------------
@@ -570,26 +529,30 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * <p style='color:#AD071D'><strong>draw</strong></p>
 		 *
 		 * Draws the game-object into the specified Context 2D, using it's [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
-		 * 
-		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		 * @param  {Object} viewport The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) this objects is being drawn too
+		 *
+		 * @param {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+		 * @param {Object} viewport The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) this objects is being drawn too
 		 */
 		draw: function(context, viewport) {
+			if (!this.isTransformed) return;
+
 			context.save();
 
-			context.transform(this.matrix.a, this.matrix.b, this.matrix.c, this.matrix.d, this.matrix.tx, this.matrix.ty);
-			
-			if (this.matrix.alpha != 1) {
-				 context.globalAlpha *= this.matrix.alpha;
+			var m = this.getMatrix();
+
+			context.transform(m.a, m.b, m.c, m.d, m.tx, m.ty);
+
+			if (m.alpha !== 1) {
+				context.globalAlpha *= m.alpha;
 			}
 
-			if (this.matrix.alpha > 0) {
-				if(this.renderer) {
+			if (m.alpha > 0) {
+				if (this.renderer && this.renderer.isEnabled()) {
 					this.renderer.draw(context, viewport);
 				}
 			}
-			
-			DebugDraw.gameObject.call(this, context, viewport);
+
+			DebugDraw.gameObject(this, context, viewport);
 
 			context.restore();
 		},
@@ -601,9 +564,15 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * <p style='color:#AD071D'><strong>hide</strong></p>
 		 *
 		 * Prevents rendering
+		 *
+		 * @param {Boolean} [skipEvent=false]
 		 */
-		hide: function() {
+		hide: function(skipEvent) {
 			this.canDraw = false;
+
+			if (!skipEvent) {
+				this.execute(this.HIDE, this);
+			}
 		},
 		/**
 		 * --------------------------------
@@ -613,28 +582,92 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * <p style='color:#AD071D'><strong>show</strong></p>
 		 *
 		 * Enables rendering
+		 *
+		 * @param {Boolean} [skipEvent=false]
 		 */
-		show: function() {
+		show: function(skipEvent) {
 			this.canDraw = true;
+
+			if (!skipEvent) {
+				this.execute(this.SHOW, this);
+			}
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
+		/**
+		 * <p style='color:#AD071D'><strong>toggleVisibility</strong></p>
+		 *
+		 * Toggle rendering
+		 *
+		 * @param {Boolean} [skipEvent=false]
+		 */
+		toggleVisibility: function(skipEvent) {
+			this.canDraw = !this.canDraw;
+
+			if (!skipEvent) {
+				if (this.canDraw) {
+					this.execute(this.SHOW, this);
+				} else {
+					this.execute(this.HIDE, this);
+				}
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>stop</strong></p>
+		 *
+		 * Prevents updating
+		 *
+		 * @param {Boolean} [skipEvent=false]
+		 */
+		stop: function(skipEvent) {
+			this.canUpdate = false;
+
+			if (!skipEvent) {
+				this.execute(this.STOP, this);
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>run</strong></p>
+		 *
+		 * Enables updating
+		 *
+		 * @param {Boolean} [skipEvent=false]
+		 */
+		run: function(skipEvent) {
+			this.canUpdate = true;
+
+			if (!skipEvent) {
+				this.execute(this.RUN, this);
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
 		/**
 		 * <p style='color:#AD071D'><strong>hasViewport</strong></p>
 		 *
 		 * Wheter or not this game-object is part of any viewport
-		 * 
+		 *
 		 * @return {Boolean}
 		 */
 		hasViewport: function() {
-			return this.viewports.length > 0; 
+			return this.viewports.length > 0;
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>addToViewport</strong></p>
 		 *
@@ -642,17 +675,20 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 *
 		 * @param {String} viewportName Name of the new viewport this object belongs to
 		 * @param {String} layerName Name of the layer in the specified viewport
-		 * 
+		 *
 		 */
 		addToViewportList: function(viewportName, layerName) {
-			var v = { viewport: viewportName, layer: layerName }
-			this.viewports.push(v);	
-    	this.execute(this.ADD_TO_VIEWPORT, [v]);
+			var v = {
+				viewport: viewportName,
+				layer: layerName
+			}
+			this.viewports.push(v);
+			this.execute(this.ADD_TO_VIEWPORT, [v]);
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>removeFromViewport</strong></p>
 		 *
@@ -660,10 +696,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 *
 		 * @param {String} viewportName Name of the viewport to remove from this game objects list
 		 * @param {String} layerName Name of the layer in the specified viewport
-		 * 
+		 *
 		 */
 		removeFromViewportList: function(viewportName, layerName) {
-			for (var i = this.viewports.length-1; i >= 0; i--) {
+			for (var i = this.viewports.length - 1; i >= 0; i--) {
 				var v = this.viewports[i];
 
 				if (v.viewport === viewportName && v.layer === layerName) {
@@ -675,13 +711,13 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>setViewportVisibility</strong></p>
 		 *
 		 * Set the visible state of the game-object in the specified viewport
 		 * This is for checking purposes only, it doesn't actually affect the rendering
-		 * 
+		 *
 		 * @param {String} viewportName The name of the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to associate visibility with
 		 * @param {Boolean} visible Wheter the game-object is visible or not in the specified [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
 		 */
@@ -705,7 +741,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>getViewportList</strong></p>
 		 *
@@ -728,14 +764,20 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>getUpdateGroup</strong></p>
 		 *
-		 * @return {String} The update [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) this game object belongs to
+		 * @return {String} The update [group](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/group.html) this game object belongs to. If it has no update group, check it's parent recursively until a group is fround
 		 */
 		getUpdateGroup: function() {
-			return this.updateGroup;
+			var go = this;
+
+			while (!go.updateGroup) {
+				go = go.parent;
+			}
+
+			return go.updateGroup;
 		},
 		/**
 		 * --------------------------------
@@ -759,6 +801,8 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			this.canUpdate = false;
 			this.canDraw = false;
 			this.parent = null;
+
+			this.typeId = null;
 		},
 		/**
 		 * --------------------------------
@@ -769,14 +813,14 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 *
 		 * Sets all the properties of the game object to the specified values,
 		 * assuming defaults if not specified.
-		 * 
-		 * @param  {Number} x        Local X coordinate
-		 * @param  {Number} y        Local Y coordinate
-		 * @param  {Number} scaleX   Scale on the X axis
-		 * @param  {Number} scaleY   Scale on the Y axis
-		 * @param  {Number} rotation Rotation in degrees
-		 * @param  {Number} centerX  Registration point X coordinate. This value is added to the x coordinate.
-		 * @param  {Number} centerY  Registration point Y coordinate. This value is added to the x coordinate.
+		 *
+		 * @param {Number} x Local X coordinate
+		 * @param {Number} y Local Y coordinate
+		 * @param {Number} scaleX Scale on the X axis
+		 * @param {Number} scaleY Scale on the Y axis
+		 * @param {Number} rotation Rotation in degrees
+		 * @param {Number} centerX Registration point X coordinate. This value is added to the x coordinate.
+		 * @param {Number} centerY Registration point Y coordinate. This value is added to the x coordinate.
 		 */
 		resetTransform: function(x, y, scaleX, scaleY, rotation, centerX, centerY) {
 			this.x = x || 0;
@@ -795,15 +839,15 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * <p style='color:#AD071D'><strong>setTransform</strong></p>
 		 *
 		 * Sets all the properties of the game object to the specified values,
-		 * ommiting unspecified properties 
-		 * 
-		 * @param  {Number} x        Local X coordinate
-		 * @param  {Number} y        Local Y coordinate
-		 * @param  {Number} scaleX   Scale on the X axis
-		 * @param  {Number} scaleY   Scale on the Y axis
-		 * @param  {Number} rotation Rotation in degrees
-		 * @param  {Number} centerX  Registration point X coordinate. This value is added to the x coordinate.
-		 * @param  {Number} centerY  Registration point Y coordinate. This value is added to the x coordinate.
+		 * ommiting unspecified properties
+		 *
+		 * @param {Number} x Local X coordinate
+		 * @param {Number} y Local Y coordinate
+		 * @param {Number} scaleX Scale on the X axis
+		 * @param {Number} scaleY Scale on the Y axis
+		 * @param {Number} rotation Rotation in degrees
+		 * @param {Number} centerX Registration point X coordinate. This value is added to the x coordinate.
+		 * @param {Number} centerY Registration point Y coordinate. This value is added to the x coordinate.
 		 */
 		setTransform: function(x, y, scaleX, scaleY, rotation, centerX, centerY) {
 			if (x) this.x = x;
@@ -822,7 +866,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>getMatrix</strong></p>
+		 * <p style='color:#AD071D'><strong>concatenateMatrix</strong></p>
 		 *
 		 * Get's the complete concatenated [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html) of the game object.
 		 *
@@ -832,22 +876,23 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 	{
 		 		// Setting this to true will get the concatenated matrix, with out taking into account the viewportOffset variables
 				noViewportOffsets: true
-		 	}	  
+		 	}
 		 * ```
-		 * 
-		 * @param  {[matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)} m A matrix object into which to put result.
-		 * @param  {Object} [options=null] Options to apply when concatenating the matrix. 
+		 *
+		 * @param {[matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)} m A matrix object into which to put result.
+		 * @param {Object} [options=null] Options to apply when concatenating the matrix.
 		 *
 		 * @return {Object} The concatenated [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
 		 */
-		getMatrix: function(m, options) {
+		concatenateMatrix: function(m, options) {
 			if (m) {
 				m.identity();
 			} else {
-				m = new Matrix().identity();
+				m = new Matrix()
+					.identity();
 			}
 
-			go = this;
+			var go = this;
 
 			while (go != null) {
 				if (options) {
@@ -855,14 +900,26 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 						m.prependTransform(go.x, go.y, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
 						go = go.parent;
 						continue;
-					} 
-				} 
-				
+					}
+				}
+
 				m.prependTransform(go.x + go.viewportOffsetX, go.y + go.viewportOffsetY, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
 				go = go.parent;
 			}
 
 			return m;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>getMatrix</strong></p>
+		 *
+		 * @return {[matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)} The concatenated matrix of this game object
+		 */
+		getMatrix: function() {
+			return this.matrix;
 		},
 		/**
 		 * --------------------------------
@@ -881,12 +938,12 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 	{
 		 		// Setting this to true will get the concatenated matrix, with out taking into account the viewportOffset variables
 				noViewportOffsets: true
-		 	}	  
+		 	}
 		 * ```
-		 * 
-		 * @param  {Object} r On object into which to put the result of this operation.
-		 * @param  {[matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)} m matrix object to work with.
-		 * @param  {Object} [options] Options to apply when concatenating the matrix.
+		 *
+		 * @param {Object} r On object into which to put the result of this operation.
+		 * @param {[matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)} m matrix object to work with.
+		 * @param {Object} [options] Options to apply when concatenating the matrix.
 		 *
 		 * @return {Object} Contains the individual properties of a trandformation. ej. x, y, rotation, scale
 		 */
@@ -894,10 +951,11 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 			if (m) {
 				m.identity();
 			} else {
-				m = new Matrix().identity();
+				m = new Matrix()
+					.identity();
 			}
 
-			go = this;
+			var go = this;
 
 			while (go != null) {
 				if (options) {
@@ -905,9 +963,9 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 						m.prependTransform(go.x, go.y, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
 						go = go.parent;
 						continue;
-					} 
-				} 
-				
+					}
+				}
+
 				m.prependTransform(go.x + go.viewportOffsetX, go.y + go.viewportOffsetY, go.scaleX, go.scaleY, go.rotation, go.centerX, go.centerY, this.alpha);
 				go = go.parent;
 			}
@@ -917,7 +975,88 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * --------------------------------
 		 */
-		
+
+		/**
+		 * <p style='color:#AD071D'><strong>localToGlobal</strong></p>
+		 *
+		 * Convert a point from the game object's local coordinate space to the root global coordinate space
+		 *
+		 * @param {[matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)} m matrix object to work with.
+		 * @param {NUmber} x The local x coordinate to transform to global space
+		 * @param {NUmber} y The local y coordinate to transform to global space
+		 * @param {Object} pt On object into which to put the result of this operation.
+		 * @return {Object} An object with the result of the transformation
+		 */
+		localToGlobal: function(m, x, y, pt) {
+			return this.concatenateMatrix(m)
+				.transformPoint(x, y, pt || {});
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>globalToLocal</strong></p>
+		 *
+		 * Convert a point from root global coordinate space to the local coordinate space of this game object
+		 *
+		 * @param {[matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)} m matrix object to work with.
+		 * @param {NUmber} x The global x coordinate to transform to local space
+		 * @param {NUmber} y The global y coordinate to transform to local space
+		 * @param {Object} pt On object into which to put the result of this operation.
+		 * @return {Object} An object with the result of the transformation
+		 */
+		globalToLocal: function(m, x, y, pt) {
+			return this.concatenateMatrix(m)
+				.invert()
+				.transformPoint(x, y, pt || {});
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>hasRenderer</strong></p>
+		 *
+		 * @return {Boolean} Whether there is a [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) or not
+		 */
+		hasRenderer: function() {
+			return !!this.renderer;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>hasComponents</strong></p>
+		 *
+		 * @return {Boolean} Whether there are any [components](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) or not
+		 */
+		hasComponents: function() {
+			if (this.components) {
+				return this.components.length > 0;
+			}
+
+			return false;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>getComponents</strong></p>
+		 *
+		 * Gets the array of [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html) objects
+		 *
+		 * @return {Array} [description]
+		 */
+		getComponents: function() {
+			return this.components;
+		},
+		/**
+		 * --------------------------------
+		 */
+
 		/**
 		 * <p style='color:#AD071D'><strong>isContainer</strong></p>
 		 *
@@ -929,7 +1068,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>typeName</strong></p>
 		 *
@@ -948,11 +1087,68 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 * @return {Boolean} Wheter this game object is a child of a container or not
 		 */
 		isChild: function() {
-			if (!this.parent) { 
+			if (!this.parent) {
 				return false;
 			} else {
-				return !(this.parent.typeName() == 'Group' || this.parent.typeName() == 'Root');
+				return this.parent.typeName() == 'GameObjectContainer';
 			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>isPooled</strong></p>
+		 *
+		 * If the object has a typeId it means it is active, otherwise it must have been recycled
+		 *
+		 * @return {Boolean}
+		 */
+		isActive: function() {
+			return !!this.typeId;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>isRunning</strong></p>
+		 *
+		 * Whether the game object is being updated ot not
+		 *
+		 * @return {Boolean}
+		 */
+		isRunning: function() {
+			return this.canUpdate;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>isRunning</strong></p>
+		 *
+		 * Whether the game object is being drawn
+		 *
+		 * @return {Boolean}
+		 */
+		isDrawing: function() {
+			return this.canDraw;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>transformedOnce</strong></p>
+		 *
+		 * Whether the game object has already gone throw the transformations
+		 * of it heriarchy or not
+		 *
+		 * @return {Boolean}
+		 */
+		transformedOnce: function() {
+			return this.isTransformed;
 		},
 		/**
 		 * --------------------------------
@@ -963,21 +1159,21 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 *
 		 * This method is only executed if the **debug** property in [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
 		 * is set to true. It is better to leave the drawing to the [renderer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html) components.
-		 * 
-		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		 * @param  {Object} viewport A reference to the current [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
-		 * @param  {Object} draw     A reference to the [draw](http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html) module
-		 * @param  {Object} gb     A reference to the [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html) module
+		 *
+		 * @param {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+		 * @param {Object} viewport A reference to the current [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html)
+		 * @param {Object} draw A reference to the [draw](http://diegomarquez.github.io/game-builder/game-builder-docs/src/draw.html) module
+		 * @param {Object} gb A reference to the [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html) module
 		 */
 		debug_draw: function(context, viewport, draw, gb) {
-			if(!gb.gameObjectDebug) return;
+			if (!gb.gameObjectDebug) return;
 
-			r = this.matrix.decompose(r);
-				
+			this.decomposed = this.matrix.decompose(this.decomposed);
+
 			// Draw the center of the object
 			context.save();
-			context.translate(r.x, r.y);
-			draw.circle(context, 0, 0, 1, null, this.debugColor, 2);
+			context.translate(this.decomposed.x, this.decomposed.y);
+			draw.circle(context, 0, 0, 2, this.debugColor, null, 1);
 			context.restore();
 		}
 		/**
@@ -985,16 +1181,73 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util"], function(De
 		 */
 	});
 
-	Object.defineProperty(GameObject.prototype, "X", { get: function() { return this.x + this.viewportOffsetX; } });
-	Object.defineProperty(GameObject.prototype, "Y", { get: function() { return this.y + this.viewportOffsetY; } });
+	Object.defineProperty(GameObject.prototype, "X", {
+		get: function() {
+			return this.x + this.viewportOffsetX;
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "Y", {
+		get: function() {
+			return this.y + this.viewportOffsetY;
+		}
+	});
 
-	Object.defineProperty(GameObject.prototype, "START", { get: function() { return 'start'; } });
-	Object.defineProperty(GameObject.prototype, "RECYCLE", { get: function() { return 'recycle'; } });
-	Object.defineProperty(GameObject.prototype, "CLEAR", { get: function() { return 'clear'; } });
-	Object.defineProperty(GameObject.prototype, "ADD", { get: function() { return 'added'; } });
-	Object.defineProperty(GameObject.prototype, "REMOVE", { get: function() { return 'removed'; } });
-	Object.defineProperty(GameObject.prototype, "ADD_TO_VIEWPORT", { get: function() { return 'added_to_viewport'; } });
-	Object.defineProperty(GameObject.prototype, "REMOVE_FROM_VIEWPORT", { get: function() { return 'removed_from_viewport'; } });
+	Object.defineProperty(GameObject.prototype, "START", {
+		get: function() {
+			return 'start';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "RECYCLE", {
+		get: function() {
+			return 'recycle';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "CLEAR", {
+		get: function() {
+			return 'clear';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "ADD", {
+		get: function() {
+			return 'added';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "REMOVE", {
+		get: function() {
+			return 'removed';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "ADD_TO_VIEWPORT", {
+		get: function() {
+			return 'added_to_viewport';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "REMOVE_FROM_VIEWPORT", {
+		get: function() {
+			return 'removed_from_viewport';
+		}
+	});
+
+	Object.defineProperty(GameObject.prototype, "HIDE", {
+		get: function() {
+			return 'hide';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "SHOW", {
+		get: function() {
+			return 'show';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "STOP", {
+		get: function() {
+			return 'stop';
+		}
+	});
+	Object.defineProperty(GameObject.prototype, "RUN", {
+		get: function() {
+			return 'run';
+		}
+	});
 
 	return GameObject;
 });

@@ -84,7 +84,7 @@ define(function(require){
 		var go = assembler.get('Base_1');
 		// Use the [groups](@@groups@@) module to 
 		// add the [game-object](@@game-object@@) an updating [group](@@group@@)
-		groups.get('First').add(go);
+		groups.get('First').addChild(go);
 		// Use the [viewports](@@viewports@@) module to 
 		// add the [game-object](@@game-object@@) a rendering [layer](@@layer@@)
 		viewports.get('Main').addGameObject('Back', go);

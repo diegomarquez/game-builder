@@ -5,13 +5,14 @@
  *
  * Inherits from:
  * [component](http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html)
- * 
+ *
  * Depends of:
  * [collision-resolver](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html)
  * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
+ * [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * All colliders extend the object defined in this module. It's main responsibility
  * is checking if it is colliding against any of the objects the [collision-resolver](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html)
  * is saying it should collide against.
@@ -30,30 +31,34 @@
 /**
  * --------------------------------
  */
-define(['component', 'collision-resolver', 'error-printer'], function(Component, CollisionResolver, ErrorPrinter) {
-
-	var collisionList = null;
-	var collisionOpponent = null;
+define(['component', 'collision-resolver', 'error-printer', 'game-object'], function(Component, CollisionResolver, ErrorPrinter, GameObject) {
 
 	var CollisionComponent = Component.extend({
+		init: function() {
+			this._super();
+
+			this.collisionResolver = CollisionResolver;
+			this.onCollideArguments = [null, null];
+		},
+
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
 		 * Setup the component.
-		 * 
-		 * The main thing here is that the component 
+		 *
+		 * The main thing here is that the component
 		 * adds itself to the [collision-resolver](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html)
-		 *	
-		 * @throws {Error} If the parent of the component does not define an **onCollide** method 
+		 *
+		 * @throws {Error} If the parent of the component does not define an **onCollide** method
 		 */
 		start: function() {
 			this.debugColor = "#00FF00";
 
 			this.checkingCollisions = true;
 
-			CollisionResolver.addToCollisionList(this);
+			this.collisionResolver.addToCollisionList(this);
 
-			if(!this.parent.onCollide) {
+			if (!this.parent.onCollide) {
 				ErrorPrinter.printError('Collision Component', "GameObject with typeId: " + this.parent.typeId + ", needs to define an onCollide method, yo.");
 			}
 		},
@@ -65,32 +70,64 @@ define(['component', 'collision-resolver', 'error-printer'], function(Component,
 		 * <p style='color:#AD071D'><strong>update</strong></p>
 		 *
 		 * Here is where the magic happens.
-		 * 
+		 *
 		 * The [collision-resolver](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html) will test this collider against
 		 * all other registered colliders that are supposed to collide against it. If there is a collision
 		 * A bunch of callbacks will be executed notifying the objects involved.
 		 */
 		update: function() {
-			collisionList = CollisionResolver.collisionLists[this.id];
+			var collisionList = this.collisionResolver.collisionLists[this.id];
 
 			if (collisionList != null) {
 				for (k = 0; k < collisionList.length; k++) {
-					collisionOpponent = collisionList[k];
+					var collisionOpponent = collisionList[k];
 
-					if (!collisionOpponent.checkingCollisions) break;
+					if (!collisionOpponent.checkingCollisions) continue;
 
-					if (CollisionResolver.areColliding(this, collisionOpponent)) {
-						if (!this.checkingCollisions) break;
-		
-						this.onCollide(collisionOpponent)
-						this.parent.onCollide(collisionOpponent.parent);
-						this.parent.execute('collide', collisionOpponent.parent);
-
+					if (this.collisionResolver.areColliding(this, collisionOpponent)) {
 						if (!this.checkingCollisions) break;
 
-						collisionOpponent.onCollide(this);
-						collisionOpponent.parent.onCollide(this.parent);
-						collisionOpponent.parent.execute('collide', this.parent);
+						var response, invertedResponse;
+
+						if (collisionOpponent.getResponse || this.getResponse) {
+							response = this.collisionResolver.getLastResponse();
+							invertedResponse = this.collisionResolver.getLastInvertedResponse();
+						} else {
+							response = null;
+							invertedResponse = null;
+						}
+
+						if (collisionOpponent.parent && this.parent) {
+							this.onCollide(collisionOpponent, response);
+
+							if (collisionOpponent.parent && this.parent) {
+								this.onCollideArguments[0] = collisionOpponent.parent;
+								this.onCollideArguments[1] = response;
+
+								this.parent.execute('collide', this.onCollideArguments, 'apply');
+							}
+
+							if (collisionOpponent.parent && this.parent) {
+								this.parent.onCollide(collisionOpponent.parent, response);
+							}
+						}
+
+						if (!this.checkingCollisions) break;
+
+						if (collisionOpponent.parent && this.parent) {
+							collisionOpponent.onCollide(this, invertedResponse);
+
+							if (collisionOpponent.parent && this.parent) {
+								this.onCollideArguments[0] = this.parent;
+								this.onCollideArguments[1] = invertedResponse;
+
+								collisionOpponent.parent.execute('collide', this.onCollideArguments, 'apply');
+							}
+
+							if (collisionOpponent.parent && this.parent) {
+								collisionOpponent.parent.onCollide(this.parent, invertedResponse);
+							}
+						}
 					}
 				}
 			}
@@ -103,8 +140,8 @@ define(['component', 'collision-resolver', 'error-printer'], function(Component,
 		 * <p style='color:#AD071D'><strong>onCollide</strong></p>
 		 *
 		 * This will be executed if there is a collision.
-		 * 
-		 * @param  {Object} other The other [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) involved in the collision.
+		 *
+		 * @param {Object} other The other [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) involved in the collision.
 		 */
 		onCollide: function(other) {
 			this.debugColor = "#FF0000";
@@ -112,6 +149,19 @@ define(['component', 'collision-resolver', 'error-printer'], function(Component,
 		/**
 		 * --------------------------------
 		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>remove</strong></p>
+		 *
+		 * Asides from resetting some properties the component removes itself
+		 * from the [collision-resolver](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html)
+		 *
+		 * @param {Object} parent [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this component
+		 */
+		removed: function(parent) {
+			this.checkingCollisions = false;
+			this.collisionResolver.removeFromCollisionList(this);
+		},
 
 		/**
 		 * <p style='color:#AD071D'><strong>debug_draw</strong></p>
@@ -126,23 +176,36 @@ define(['component', 'collision-resolver', 'error-printer'], function(Component,
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>destroy</strong></p>
+		 * <p style='color:#AD071D'><strong>enable</strong></p>
 		 *
-		 * Destroys the component.
-		 * 
-		 * Asides from resetting some properties the component removes itself
-		 * from the [collision-resolver](http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html)
+		 * An enabled component will execute it's update logic
 		 */
-		destroy: function() {
+		enable: function() {
 			this._super();
-
-			this.checkingCollisions = false;
-
-			CollisionResolver.removeFromCollisionList(this);
-		}
+			this.checkingCollisions = true;
+		},
 		/**
 		 * --------------------------------
 		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>disable</strong></p>
+		 *
+		 * A disabled component will not execute it's update logic
+		 */
+		disable: function() {
+			this._super();
+			this.checkingCollisions = false;
+		},
+		/**
+		 * --------------------------------
+		 */
+	});
+
+	Object.defineProperty(GameObject.prototype, "COLLIDE", {
+		get: function() {
+			return 'collide';
+		}
 	});
 
 	return CollisionComponent;

@@ -8,24 +8,52 @@
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a></p>
 
 <p>Depends of:
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/vector-2D.html">vector-2D</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/rgb-canvas-cache.html">rgb-canvas-cache</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
-<p>This module only exists to make the interface for a renderer explicit.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="an-interface-for-renderers">An Interface for renderers</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;component&quot;</span><span class="p">,</span> <span class="s2">&quot;error-printer&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">{}</span>
+<p>This module only exists to make the interface for a renderer explicit.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="an-interface-for-renderers">An Interface for renderers</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s2">&quot;component&quot;</span><span class="p">,</span> <span class="s2">&quot;vector-2D&quot;</span><span class="p">,</span> <span class="s2">&quot;error-printer&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb-canvas-cache&quot;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">Vector2D</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">,</span> <span class="nx">RgbCanvasCache</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;canvas&quot;</span><span class="p">);</span>
+  <span class="kd">var</span> <span class="nx">context</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span>
 
   <span class="kd">var</span> <span class="nx">Renderer</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>init</strong></p>
 
 <p>Constructor</p></div></div><div class="code"><div class="wrapper">    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
 
+      <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">offset</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tinted</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tintRed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tintGreen</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tintBlue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span> <span class="o">=</span> <span class="s2">&quot;#FFFF00&quot;</span><span class="p">;</span>
 
-      <span class="k">this</span><span class="p">.</span><span class="nx">scaleX</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">scaleY</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
 
+      <span class="k">this</span><span class="p">.</span><span class="nx">workVector</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vector2D</span><span class="p">();</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">tmpCanvas</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tmpContext</span> <span class="o">=</span> <span class="nx">context</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">rgbCanvasCache</span> <span class="o">=</span> <span class="nx">RgbCanvasCache</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>reset</strong></p>
+
+<p>Reset for re-use</p></div></div><div class="code"><div class="wrapper">    <span class="nx">reset</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
+
+      <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">offset</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tinted</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tintRed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tintGreen</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tintBlue</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span> <span class="o">=</span> <span class="s2">&quot;#FFFF00&quot;</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>draw</strong></p>
 
@@ -40,31 +68,111 @@
 
 <p><strong>Can throw an Error</strong><br/>(Always)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">viewport</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">mustOverrideError</span><span class="p">(</span><span class="s1">&#39;Renderer&#39;</span><span class="p">);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererWidth</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>tint</strong></p>
 
-<p><strong>Returns a Number</strong><br/>(The width of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererWidth</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+<p>Enable tinting</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>r must be a Number.</strong><br/>(Red channel amount between 0 and 255)</p></li>
+<li><p><strong>g must be a Number.</strong><br/>(Green channel amount between 0 and 255)</p></li>
+<li><p><strong>b must be a Number.</strong><br/>(Blue channel amount between 0 and 255)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">tint</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">g</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tinted</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tintRed</span> <span class="o">=</span> <span class="nx">r</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tintGreen</span> <span class="o">=</span> <span class="nx">g</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tintBlue</span> <span class="o">=</span> <span class="nx">b</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>disableTint</strong></p>
+
+<p>Disable tinting</p></div></div><div class="code"><div class="wrapper">    <span class="nx">disableTint</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">tinted</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>tintImage</strong></p>
+
+<p>Logic to tint an image and cache it</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>source must be a Drawable.</strong><br/>(Source image to tint)</p></li>
+<li><p><strong>r must be a Number.</strong><br/>(Red channel amount between 0 and 255)</p></li>
+<li><p><strong>g must be a Number.</strong><br/>(Green channel amount between 0 and 255)</p></li>
+<li><p><strong>b must be a Number.</strong><br/>(Blue channel amount between 0 and 255)</p></li>
+</ul>
+
+<p><strong>Returns a Drawable</strong><br/>(The tinted image)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">tintImage</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">source</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">rgbCanvasCache</span><span class="p">.</span><span class="nx">cache</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">source</span><span class="p">);</span>
+
+      <span class="kd">var</span> <span class="nx">channels</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">rgbCanvasCache</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">tmpCanvas</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">context</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">tmpContext</span><span class="p">;</span>
+
+      <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">source</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+      <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">source</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+
+      <span class="nx">context</span><span class="p">.</span><span class="nx">globalAlpha</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="nx">context</span><span class="p">.</span><span class="nx">globalCompositeOperation</span> <span class="o">=</span> <span class="s1">&#39;copy&#39;</span><span class="p">;</span>
+      <span class="nx">context</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">channels</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+      <span class="nx">context</span><span class="p">.</span><span class="nx">globalCompositeOperation</span> <span class="o">=</span> <span class="s1">&#39;lighter&#39;</span><span class="p">;</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tintRed</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">context</span><span class="p">.</span><span class="nx">globalAlpha</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">tintRed</span> <span class="o">/</span> <span class="mi">255</span><span class="p">;</span>
+        <span class="nx">context</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">channels</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tintGreen</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">context</span><span class="p">.</span><span class="nx">globalAlpha</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">tintGreen</span> <span class="o">/</span> <span class="mi">255</span><span class="p">;</span>
+        <span class="nx">context</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">channels</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">tintBlue</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">context</span><span class="p">.</span><span class="nx">globalAlpha</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">tintBlue</span> <span class="o">/</span> <span class="mi">255</span><span class="p">;</span>
+        <span class="nx">context</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">channels</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="nx">canvas</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererWidth</strong></p>
+
+<p><strong>Returns a Number</strong><br/>(The width of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererWidth</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">width</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">missingArgumentError</span><span class="p">(</span><span class="s1">&#39;Renderer&#39;</span><span class="p">,</span> <span class="s1">&#39;width&#39;</span><span class="p">);</span>
       <span class="p">}</span>
 
-      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleX</span><span class="p">;</span> 
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererHeight</strong></p>
 
-<p><strong>Returns a Number</strong><br/>(The height of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererHeight</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
+<p><strong>Returns a Number</strong><br/>(The height of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererHeight</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">missingArgumentError</span><span class="p">(</span><span class="s1">&#39;Renderer&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">);</span>
       <span class="p">}</span>
 
-      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleY</span><span class="p">;</span> 
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererOffsetX</strong></p>
 
-<p><strong>Returns a Number</strong><br/>(The offset in the X axis of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererOffsetX</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
-      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleX</span><span class="p">;</span> 
+<p><strong>Returns a Number</strong><br/>(The offset in the X axis of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererOffsetX</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetX</span><span class="p">;</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererOffsetY</strong></p>
 
-<p><strong>Returns a Number</strong><br/>(The offset in the Y axis of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererOffsetY</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span> 
-      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">scaleY</span><span class="p">;</span> 
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>debug_draw</strong></p>
+<p><strong>Returns a Number</strong><br/>(The offset in the Y axis of the renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererOffsetY</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetY</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererLeft</strong></p>
+
+<p><strong>Returns a Number</strong><br/>(The left coordinate of the rectangle enclosing this renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererLeft</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetX</span><span class="p">();</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererTop</strong></p>
+
+<p><strong>Returns a Number</strong><br/>(The top coordinate of the rectangle enclosing this renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererTop</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetY</span><span class="p">();</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererRight</strong></p>
+
+<p><strong>Returns a Number</strong><br/>(The right coordinate of the rectangle enclosing this renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererRight</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetX</span><span class="p">()</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererWidth</span><span class="p">();</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>rendererBottom</strong></p>
+
+<p><strong>Returns a Number</strong><br/>(The bottom coordinate of the rectangle enclosing this renderer)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">rendererBottom</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetY</span><span class="p">()</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererHeight</span><span class="p">();</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>debug_draw</strong></p>
 
 <p>This method is only executed if the <strong>debug</strong> property in <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html">gb</a>
 is set to true. It is better to leave the drawing to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/rendering/renderer.html">renderer</a> components.</p>
@@ -81,20 +189,23 @@ is set to true. It is better to leave the drawing to the <a href="http://diegoma
 
       <span class="nx">context</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
       <span class="nx">context</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
-      
+
       <span class="nx">context</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span><span class="p">;</span>
-      <span class="nx">context</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Top Left </p></div></div><div class="code"><div class="wrapper">      <span class="nx">drawLineAndPoint</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetX</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetY</span><span class="p">(),</span> <span class="nx">draw</span><span class="p">,</span> <span class="s1">&#39;moveTo&#39;</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Top Right</p></div></div><div class="code"><div class="wrapper">      <span class="nx">drawLineAndPoint</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetX</span><span class="p">()</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererWidth</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetY</span><span class="p">(),</span> <span class="nx">draw</span><span class="p">,</span> <span class="s1">&#39;lineTo&#39;</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Bottom Right</p></div></div><div class="code"><div class="wrapper">      <span class="nx">drawLineAndPoint</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetX</span><span class="p">()</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererWidth</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetY</span><span class="p">()</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererHeight</span><span class="p">(),</span> <span class="nx">draw</span><span class="p">,</span> <span class="s1">&#39;lineTo&#39;</span><span class="p">);</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Bottom Left</p></div></div><div class="code"><div class="wrapper">      <span class="nx">drawLineAndPoint</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetX</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererOffsetY</span><span class="p">()</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererHeight</span><span class="p">(),</span> <span class="nx">draw</span><span class="p">,</span> <span class="s1">&#39;lineTo&#39;</span><span class="p">);</span>
+      <span class="nx">context</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+      <span class="nx">context</span><span class="p">.</span><span class="nx">translate</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">);</span>
+
+      <span class="kd">var</span> <span class="nx">m</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">getMatrix</span><span class="p">();</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Top Left </p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">workVector</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererLeft</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererTop</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">workVector</span><span class="p">);</span>
+      <span class="nx">context</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">workVector</span><span class="p">.</span><span class="nx">x</span><span class="p">),</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">workVector</span><span class="p">.</span><span class="nx">y</span><span class="p">));</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Top Right</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">workVector</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererRight</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererTop</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">workVector</span><span class="p">);</span>
+      <span class="nx">context</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">workVector</span><span class="p">.</span><span class="nx">x</span><span class="p">),</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">workVector</span><span class="p">.</span><span class="nx">y</span><span class="p">));</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Bottom Right</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">workVector</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererRight</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererBottom</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">workVector</span><span class="p">);</span>
+      <span class="nx">context</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">workVector</span><span class="p">.</span><span class="nx">x</span><span class="p">),</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">workVector</span><span class="p">.</span><span class="nx">y</span><span class="p">));</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Bottom Left</p></div></div><div class="code"><div class="wrapper">      <span class="k">this</span><span class="p">.</span><span class="nx">workVector</span> <span class="o">=</span> <span class="nx">m</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">rendererLeft</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">rendererBottom</span><span class="p">(),</span> <span class="k">this</span><span class="p">.</span><span class="nx">workVector</span><span class="p">);</span>
+      <span class="nx">context</span><span class="p">.</span><span class="nx">lineTo</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">workVector</span><span class="p">.</span><span class="nx">x</span><span class="p">),</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">workVector</span><span class="p">.</span><span class="nx">y</span><span class="p">));</span>
 
       <span class="nx">context</span><span class="p">.</span><span class="nx">closePath</span><span class="p">();</span>
 
       <span class="nx">context</span><span class="p">.</span><span class="nx">stroke</span><span class="p">();</span>
       <span class="nx">context</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span>
     <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
-
-  <span class="kd">var</span> <span class="nx">drawLineAndPoint</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">offsetX</span><span class="p">,</span> <span class="nx">offsetY</span><span class="p">,</span> <span class="nx">draw</span><span class="p">,</span> <span class="nx">lineMethod</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">r</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">transformPoint</span><span class="p">(</span><span class="nx">offsetX</span><span class="p">,</span> <span class="nx">offsetY</span><span class="p">,</span> <span class="nx">r</span><span class="p">);</span> 
-    <span class="nx">context</span><span class="p">[</span><span class="nx">lineMethod</span><span class="p">](</span><span class="nx">r</span><span class="p">.</span><span class="nx">x</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">y</span><span class="p">);</span>
-  <span class="p">}</span>
 
   <span class="k">return</span> <span class="nx">Renderer</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

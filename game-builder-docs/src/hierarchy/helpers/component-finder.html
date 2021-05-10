@@ -1,0 +1,188 @@
+<!DOCTYPE html><html lang="en"><head><title>src/hierarchy/helpers/component-finder</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../../"><meta name="groc-document-path" content="src/hierarchy/helpers/component-finder"><meta name="groc-project-path" content="work/game-builder/src/hierarchy/helpers/component-finder.js"><link rel="stylesheet" type="text/css" media="all" href="../../../assets/style.css"><script type="text/javascript" src="../../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/hierarchy/helpers/component-finder.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="child-finderjs">child-finder.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from:</p>
+
+<p>Depends of:</p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This module encapsulates the logic to search for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> of a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a></p>
+
+<p>Call the <strong>findComponents</strong> method of a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> to get a handle of this object.</p>
+
+<p>Ej.</p>
+
+<pre><code class=" javascript">gameObject.findComponents().not().allWithType('AN_ID'));
+</code></pre>
+
+<p>The previous example will return an array with all the <a href="@@componet@@">componets</a> that do not have the specified ID.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="find-components">Find Components</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">user</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">not</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+  <span class="kd">var</span> <span class="nx">ComponentFinder</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>user</strong></p>
+
+<p>Chain this method to set the current <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> that will be affected</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>user must be an Object.</strong></li>
+</ul>
+
+<p><strong>Returns an Object</strong><br/>(The 'this' pointer)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">ComponentFinder</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">user</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">u</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">user</span> <span class="o">=</span> <span class="nx">u</span><span class="p">;</span>
+    <span class="nx">not</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>not</strong></p>
+
+<p>Chain this method to negate the search criteria</p>
+
+<p><strong>Returns an Object</strong><br/>(The 'this' pointer)</p></div></div><div class="code"><div class="wrapper">  <span class="nx">ComponentFinder</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">not</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">not</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>all</strong></p>
+
+<p>Chain this method to select all the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> that return true for the given function</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>f must be a Function.</strong><br/>(Test function to decide whether a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> should be returned or not in the result.)</li>
+</ul>
+
+<p><strong>Returns an Array</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">ComponentFinder</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">all</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">common</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">,</span> <span class="s1">&#39;truthyResult&#39;</span><span class="p">,</span> <span class="s1">&#39;collection&#39;</span><span class="p">,</span> <span class="nx">not</span><span class="p">);</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>allWithType</strong></p>
+
+<p>Chain this method to search for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> with a matching poolId or typeId</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>type must be a String.</strong></li>
+</ul>
+
+<p><strong>Returns an Array</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">ComponentFinder</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">allWithType</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">common</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="s1">&#39;allWithType&#39;</span><span class="p">,</span> <span class="s1">&#39;matchingId&#39;</span><span class="p">,</span> <span class="s1">&#39;collection&#39;</span><span class="p">,</span> <span class="nx">not</span><span class="p">);</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>allWithProp</strong></p>
+
+<p>Chain this method to search for <a href="@@components@@">components</a> that have the specified property</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>prop must be a String.</strong></li>
+</ul>
+
+<p><strong>Returns an Array</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">ComponentFinder</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">allWithProp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">prop</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">common</span><span class="p">(</span><span class="nx">prop</span><span class="p">,</span> <span class="s1">&#39;allWithProp&#39;</span><span class="p">,</span> <span class="s1">&#39;matchingProp&#39;</span><span class="p">,</span> <span class="s1">&#39;collection&#39;</span><span class="p">,</span> <span class="nx">not</span><span class="p">);</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>first</strong></p>
+
+<p>Chain this method to select the first <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> that returns true for the given function</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>f must be a Function.</strong><br/>(Test function.)</li>
+</ul>
+
+<p><strong>Returns an Object  or a  null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">ComponentFinder</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">first</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">common</span><span class="p">(</span><span class="nx">f</span><span class="p">,</span> <span class="s1">&#39;first&#39;</span><span class="p">,</span> <span class="s1">&#39;truthyResult&#39;</span><span class="p">,</span> <span class="s1">&#39;single&#39;</span><span class="p">,</span> <span class="nx">not</span><span class="p">);</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>firstWithType</strong></p>
+
+<p>Chain this method to search for the first <a href="@@components@@">components</a> with a matching poolId or typeId</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>type must be a String.</strong></li>
+</ul>
+
+<p><strong>Returns an Object  or a  null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">ComponentFinder</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">firstWithType</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">common</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="s1">&#39;firstWithType&#39;</span><span class="p">,</span> <span class="s1">&#39;matchingId&#39;</span><span class="p">,</span> <span class="s1">&#39;single&#39;</span><span class="p">,</span> <span class="nx">not</span><span class="p">);</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>firstWithType</strong></p>
+
+<p>Chain this method to search for the first <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> with a matching poolId or typeId</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>prop must be a String.</strong></li>
+</ul>
+
+<p><strong>Returns an Object  or a  null</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">ComponentFinder</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">firstWithProp</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">prop</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">common</span><span class="p">(</span><span class="nx">prop</span><span class="p">,</span> <span class="s1">&#39;firstWithType&#39;</span><span class="p">,</span> <span class="s1">&#39;matchingProp&#39;</span><span class="p">,</span> <span class="s1">&#39;single&#39;</span><span class="p">,</span> <span class="nx">not</span><span class="p">);</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="kd">var</span> <span class="nx">common</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">condition</span><span class="p">,</span> <span class="nx">findMethod</span><span class="p">,</span> <span class="nx">conditionChecker</span><span class="p">,</span> <span class="nx">resultType</span><span class="p">,</span> <span class="nx">negate</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">user</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="k">return</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">r</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">resultType</span> <span class="o">==</span> <span class="s1">&#39;collection&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">r</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">resultType</span> <span class="o">==</span> <span class="s1">&#39;single&#39;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">r</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">user</span><span class="p">.</span><span class="nx">components</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">user</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">r</span> <span class="o">=</span> <span class="nx">resultTypes</span><span class="p">[</span><span class="nx">resultType</span><span class="p">](</span><span class="nx">user</span><span class="p">.</span><span class="nx">components</span><span class="p">,</span> <span class="nx">condition</span><span class="p">,</span> <span class="nx">findMethod</span><span class="p">,</span> <span class="nx">conditionChecker</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">negate</span><span class="p">);</span>
+
+    <span class="nx">user</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">conditionCheckers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;matchingId&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">negate</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">(</span><span class="nx">c</span><span class="p">.</span><span class="nx">typeId</span> <span class="o">==</span> <span class="nx">id</span> <span class="o">||</span> <span class="nx">c</span><span class="p">.</span><span class="nx">poolId</span> <span class="o">==</span> <span class="nx">id</span><span class="p">)</span> <span class="o">^</span> <span class="nx">negate</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;matchingProp&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span> <span class="nx">prop</span><span class="p">,</span> <span class="nx">negate</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">(</span><span class="nx">prop</span> <span class="k">in</span> <span class="nx">c</span><span class="p">)</span> <span class="o">^</span> <span class="nx">negate</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;truthyResult&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">c</span><span class="p">,</span> <span class="nx">f</span><span class="p">,</span> <span class="nx">negate</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">(</span><span class="o">!</span><span class="nx">f</span> <span class="o">||</span> <span class="nx">f</span><span class="p">(</span><span class="nx">c</span><span class="p">))</span> <span class="o">^</span> <span class="nx">negate</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">resultTypes</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;collection&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">components</span><span class="p">,</span> <span class="nx">condition</span><span class="p">,</span> <span class="nx">findMethod</span><span class="p">,</span> <span class="nx">conditionChecker</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">negate</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">components</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">components</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">conditionCheckers</span><span class="p">[</span><span class="nx">conditionChecker</span><span class="p">](</span><span class="nx">c</span><span class="p">,</span> <span class="nx">condition</span><span class="p">,</span> <span class="nx">negate</span><span class="p">))</span> <span class="p">{</span>
+          <span class="nx">r</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">c</span><span class="p">);</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+
+      <span class="k">return</span> <span class="nx">r</span><span class="p">;</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;single&#39;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">components</span><span class="p">,</span> <span class="nx">condition</span><span class="p">,</span> <span class="nx">findMethod</span><span class="p">,</span> <span class="nx">conditionChecker</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="nx">negate</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">components</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">components</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nx">conditionCheckers</span><span class="p">[</span><span class="nx">conditionChecker</span><span class="p">](</span><span class="nx">c</span><span class="p">,</span> <span class="nx">condition</span><span class="p">,</span> <span class="nx">negate</span><span class="p">))</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">c</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">ComponentFinder</span><span class="p">();</span>
+<span class="p">});</span></div></div></div></div></body></html>

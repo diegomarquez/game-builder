@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><title>src/cache/rgb-canvas-cache</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/cache/rgb-canvas-cache"><meta name="groc-project-path" content="work/game-builder/src/cache/rgb-canvas-cache.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/cache/rgb-canvas-cache.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="rgb-canvas-cachejs">rgb-canvas-cache.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttptreintipollocom">By <a href="http://treintipollo.com/">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from: <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/cache.html">cache</a></p>
+
+<p>Depends of:</p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This is used to separate an image into it's red, green and blue components. Once the new images are created they are cached
+and can be used to generate a tinted version of the original.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="rgb-image-cache">RGB Image Cache</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">ImageCache</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;cache&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>name</strong></p>
+
+<p><strong>Returns a String</strong><br/>(The name of the cache)</p></div></div><div class="code"><div class="wrapper">      <span class="nx">name</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;Rgb Canvas Cache&#39;</span><span class="p">;</span>
+      <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>cache</strong></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>id must be a String.</strong><br/>(Used to retrive the set of generated images later)</p></li>
+<li><p><strong>source must be a Drawable.</strong><br/>(The source image from which to generate red, green and blue version from)</p></li>
+</ul></div></div><div class="code"><div class="wrapper">      <span class="nx">cache</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">source</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">])</span> <span class="p">{</span>
+          <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">];</span>
+
+        <span class="kd">var</span> <span class="nx">w</span> <span class="o">=</span> <span class="nx">source</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">source</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+
+        <span class="kd">var</span> <span class="nx">sourceCanvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;canvas&quot;</span><span class="p">);</span>
+
+        <span class="nx">sourceCanvas</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">w</span><span class="p">;</span>
+        <span class="nx">sourceCanvas</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">h</span><span class="p">;</span>
+
+        <span class="kd">var</span> <span class="nx">sourceContext</span> <span class="o">=</span> <span class="nx">sourceCanvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span>
+        <span class="nx">sourceContext</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">source</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+        <span class="kd">var</span> <span class="nx">pixels</span> <span class="o">=</span> <span class="nx">sourceContext</span><span class="p">.</span><span class="nx">getImageData</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">)</span>
+          <span class="p">.</span><span class="nx">data</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>4 is used to ask for 3 images: red, green, blue and black in that order.</p></div></div><div class="code"><div class="wrapper">        <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">rgbI</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">rgbI</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="nx">rgbI</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+          <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;canvas&quot;</span><span class="p">);</span>
+
+          <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">w</span><span class="p">;</span>
+          <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">h</span><span class="p">;</span>
+
+          <span class="kd">var</span> <span class="nx">context</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s1">&#39;2d&#39;</span><span class="p">);</span>
+          <span class="nx">context</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">sourceCanvas</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+          <span class="kd">var</span> <span class="nx">to</span> <span class="o">=</span> <span class="nx">context</span><span class="p">.</span><span class="nx">getImageData</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">);</span>
+          <span class="kd">var</span> <span class="nx">toData</span> <span class="o">=</span> <span class="nx">to</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+          <span class="kd">var</span> <span class="nx">len</span> <span class="o">=</span> <span class="nx">pixels</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+          <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">toData</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nx">rgbI</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="nx">pixels</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="nx">toData</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nx">rgbI</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="o">?</span> <span class="nx">pixels</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="nx">toData</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="nx">rgbI</span> <span class="o">===</span> <span class="mi">2</span><span class="p">)</span> <span class="o">?</span> <span class="nx">pixels</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="nx">toData</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="nx">pixels</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">3</span><span class="p">];</span>
+          <span class="p">}</span>
+
+          <span class="nx">context</span><span class="p">.</span><span class="nx">putImageData</span><span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+          <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">][</span><span class="nx">rgbI</span><span class="p">]</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CACHE</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">]);</span>
+      <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    <span class="p">});</span>
+
+  <span class="k">return</span> <span class="k">new</span> <span class="nx">ImageCache</span><span class="p">();</span>
+<span class="p">});</span></div></div></div></div></body></html>

@@ -47,11 +47,6 @@
 		//These are optional and default to 0
 		offsetX:0,
 		offsetY:0, 
-		
-		//Use these to override the dimentions of the cached text.
-		//These are optional
-		scaleX: 1, 
-		scaleY: 1
  *	});
  * ```
  * <strong>Note: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
@@ -70,25 +65,29 @@
  */
 define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 
-	var image;
-
 	var TextRenderer = Renderer.extend({
+		init: function() {
+			this._super();
+
+			this.cache = TextCache;
+		},
+
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
 		 * This is called by the [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) using this renderer.
 		 * It sends the text configured to the [text-cache](http://diegomarquez.github.io/game-builder/game-builder-docs/src/cache/text-cache.html) module.
 		 */
-		start: function() {	
-			this.align      = this.align           || "start";
-			this.lineWidth  = this.lineWidth       || 1;
-			this.fill       = this.fillColor       || "#000000";
-			this.stroke     = this.strokeColor     || "#FFFFFF";	
-			this.size       = this.size            || 10;
-			this.fontFamily = this.font            || 'Arial';
+		start: function() {
+			this.align = this.align || "start";
+			this.lineWidth = this.lineWidth || 1;
+			this.fill = this.fillColor || "#000000";
+			this.stroke = this.strokeColor || "#FFFFFF";
+			this.size = this.size || 10;
+			this.fontFamily = this.font || 'Arial';
 			this.background = this.backgroundColor || 'rgba(100%, 100%, 100%, 0)';
 
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		},
 		/**
 		 * --------------------------------
@@ -104,23 +103,43 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 		 * @param  {Object} viewport     The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) this renderer is being drawn to
 		 */
 		draw: function(context, viewport) {
-			image = TextCache.get(this.name);
-			context.drawImage(image, this.rendererOffsetX(), this.rendererOffsetY(), this.rendererWidth(), this.rendererHeight());	
+			var canvas = this.cache.get(this.name);
+
+			if (!canvas)
+				return;
+
+			if (this.tinted) {
+				var tintedCanvas = this.tintImage(this.name, canvas);
+
+				context.drawImage(tintedCanvas,
+					Math.floor(this.rendererOffsetX()),
+					Math.floor(this.rendererOffsetY()),
+					Math.floor(this.rendererWidth()),
+					Math.floor(this.rendererHeight())
+				);
+			} else {
+				context.drawImage(canvas,
+					Math.floor(this.rendererOffsetX()),
+					Math.floor(this.rendererOffsetY()),
+					Math.floor(this.rendererWidth()),
+					Math.floor(this.rendererHeight())
+				);
+			}
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>rendererOffsetX</strong></p>
 		 *
 		 * @return {Number} The offset in the X axis of the renderer
 		 */
-		rendererOffsetX: function() { 
+		rendererOffsetX: function() {
 			if (this.offset == 'center') {
-				return -this.rendererWidth()/2 * this.scaleX;
+				return -this.rendererWidth() / 2 + this.offsetX;
 			} else {
-				return this.offsetX * this.scaleX; 
+				return this.offsetX;
 			}
 		},
 		/**
@@ -132,11 +151,11 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 		 *
 		 * @return {Number} The offset in the Y axis of the renderer
 		 */
-		rendererOffsetY: function() { 
+		rendererOffsetY: function() {
 			if (this.offset == 'center') {
-				return -this.rendererHeight()/2  * this.scaleY;
+				return -this.rendererHeight() / 2 + this.offsetY;
 			} else {
-				return this.offsetY * this.scaleY;  
+				return this.offsetY;
 			}
 		},
 		/**
@@ -148,7 +167,10 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 		 *
 		 * @return {Number} The width of the renderer
 		 */
-		rendererWidth: function() { return TextCache.get(this.name).width * this.scaleX; },
+		rendererWidth: function() {
+			return this.cache.get(this.name)
+				.width;
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -158,7 +180,10 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 		 *
 		 * @return {Number} The height of the renderer
 		 */
-		rendererHeight: function() { return TextCache.get(this.name).height * this.scaleY; }
+		rendererHeight: function() {
+			return this.cache.get(this.name)
+				.height;
+		}
 		/**
 		 * --------------------------------
 		 */
@@ -166,59 +191,59 @@ define(["renderer", 'text-cache'], function(Renderer, TextCache) {
 
 	// ### Setters that will trigger a re-cache of the text.
 
-	Object.defineProperty(TextRenderer.prototype, "Align", { 
-		set: function(value) { 
+	Object.defineProperty(TextRenderer.prototype, "Align", {
+		set: function(value) {
 			this.align = value;
-			TextCache.cache(this.name, this);
-		} 
+			this.cache.cache(this.name, this);
+		}
 	});
-	
-	Object.defineProperty(TextRenderer.prototype, "LineWidth", { 
-		set: function(value) { 
+
+	Object.defineProperty(TextRenderer.prototype, "LineWidth", {
+		set: function(value) {
 			this.lineWidth = value;
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		}
 	});
-	
-	Object.defineProperty(TextRenderer.prototype, "FillColor", { 
-		set: function(value) { 
+
+	Object.defineProperty(TextRenderer.prototype, "FillColor", {
+		set: function(value) {
 			this.fillColor = value;
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		}
 	});
 
-	Object.defineProperty(TextRenderer.prototype, "StrokeColor", { 
-		set: function(value) { 
+	Object.defineProperty(TextRenderer.prototype, "StrokeColor", {
+		set: function(value) {
 			this.strokeColor = value;
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		}
 	});
-	
-	Object.defineProperty(TextRenderer.prototype, "Font", { 
-		set: function(value) { 
+
+	Object.defineProperty(TextRenderer.prototype, "Font", {
+		set: function(value) {
 			this.fontFamily = value;
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		}
 	});
-	
-	Object.defineProperty(TextRenderer.prototype, "Size", { 
-		set: function(value) { 
+
+	Object.defineProperty(TextRenderer.prototype, "Size", {
+		set: function(value) {
 			this.size = value;
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		}
 	});
 
-	Object.defineProperty(TextRenderer.prototype, "Text", { 
-		set: function(value) { 
+	Object.defineProperty(TextRenderer.prototype, "Text", {
+		set: function(value) {
 			this.text = value;
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		}
 	});
 
-	Object.defineProperty(TextRenderer.prototype, "Background", { 
-		set: function(value) { 
+	Object.defineProperty(TextRenderer.prototype, "Background", {
+		set: function(value) {
 			this.background = value;
-			TextCache.cache(this.name, this);
+			this.cache.cache(this.name, this);
 		}
 	});
 

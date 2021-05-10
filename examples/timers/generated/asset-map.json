@@ -4,5 +4,7 @@
 	"CROW.WAV": "../common_assets/sound/crow.wav",
 	"ELEVATOR.MP3": "../common_assets/sound/elevator.mp3",
 	"HORSE.MP3": "../common_assets/sound/horse.mp3",
-	"SHEEP.MP3": "../common_assets/sound/sheep.mp3"
+	"SHEEP.MP3": "../common_assets/sound/sheep.mp3",
+	"AUDIO-SAMPLE.MP3": "../../game-builder/assets/audio-sample.mp3",
+	"AUDIO-SAMPLE.OGG": "../../game-builder/assets/audio-sample.ogg"
 }

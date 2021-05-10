@@ -13,31 +13,32 @@
 <p>This module takes care of parsing json strings and caching the result so they are easily injectable into other modules.</p>
 
 <p>It can also be used to cache regular objects.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="cache-json-and-other-objects">Cache JSON and other Objects</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">var</span> <span class="nx">JSONCache</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;cache&#39;</span><span class="p">).</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>name</strong></p>
+  <span class="kd">var</span> <span class="nx">JSONCache</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;cache&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>name</strong></p>
 
-<p><strong>Returns a String</strong><br/>(The name of the cache)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">name</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="s1">&#39;JSON Cache&#39;</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>parse</strong></p>
+<p><strong>Returns a String</strong><br/>(The name of the cache)</p></div></div><div class="code"><div class="wrapper">      <span class="nx">name</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;JSON Cache&#39;</span><span class="p">;</span>
+      <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>parse</strong></p>
 
 <p>Parameters:</p>
 
 <ul>
 <li><p><strong>id must be a String.</strong><br/>(Id to retrived the cached object later)</p></li>
 <li><p><strong>string must be a String.</strong><br/>(A JSON string)</p></li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">parse</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">string</span><span class="p">);</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CACHE</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">]);</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    </div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>cache</strong></p>
+</ul></div></div><div class="code"><div class="wrapper">      <span class="nx">parse</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">string</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">string</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CACHE</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">]);</span>
+      <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>cache</strong></p>
 
 <p>Parameters:</p>
 
 <ul>
 <li><p><strong>id must be a String.</strong><br/>(Id to retrived the cached object later)</p></li>
 <li><p><strong>object must be an Object.</strong><br/>(Object to cache)</p></li>
-</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">cache</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">object</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">object</span><span class="p">;</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CACHE</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">]);</span>
-    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
+</ul></div></div><div class="code"><div class="wrapper">      <span class="nx">cache</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">object</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="nx">object</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">CACHE</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">cacheObject</span><span class="p">[</span><span class="nx">id</span><span class="p">]);</span>
+      <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">    <span class="p">});</span>
 
   <span class="k">return</span> <span class="k">new</span> <span class="nx">JSONCache</span><span class="p">();</span>
 <span class="p">});</span></div></div></div></div></body></html>

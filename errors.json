@@ -8,7 +8,7 @@
 					"title": "This method must be overriden",
 					"description": "This one is pretty simple, it means that a method in a parent object was not overriden when extending it."
 				}
-			] 
+			]
 		},
 		{
 			"name": "reclaimer",
@@ -16,11 +16,11 @@
 			"entries": [
 				{
 					"title": "Missing argument: 'go'",
-					"description": "This error is thrown when calling the claim() method is called and the first argument is not provided. Make sure to send in a game-object@@."
+					"description": "This error is thrown when calling the claim() method and the first argument is not provided. Make sure to send in a game-object@@."
 				},
 				{
 					"title": "Missing argument: 'id'",
-					"description": "This error is thrown when calling the claim() method and the second argument is not provided. Make sure to send in either the typeId or the poolId of the game-object@@ you are trying to recycle."
+					"description": "This error is thrown when calling the claim() method and the second argument is not provided. Make sure to send in either the 'typeId' or the 'poolId' of the game-object@@ you are trying to recycle."
 				}
 			]
 		},
@@ -29,7 +29,7 @@
 			"docLink": "game-object-pool@@",
 			"entries": [
 				{
-					"title": "game-object@@ with type: 'X' does not have a value for maxAmount. It can not be requested explicitly",
+					"title": "game-object@@ with type: 'X' does not have a value for 'maxAmount'. It can not be requested explicitly",
 					"description": "When setting up the game-object-pool@@ you need to specify the maximun amount of objects of a given type that will be available. Any object type that does not provide that information is assumed to only be able to exist as a child of another type. Child objects can not be requested explicitly. If you need to do that, you need to specify an amount to use in the game-object-pool@@."
 				},
 				{
@@ -57,7 +57,7 @@
 			"docLink": "assembler@@",
 			"entries": [
 				{
-					"title": "game-object@@ with type: 'X' is not a container, can not add childs to it",
+					"title": "game-object@@ with type: 'X' is not a container, can not add children to it",
 					"description": "If while configuring the game-object-pool@@ a regular game-object@@ was set to have children, this error will be thrown when trying to activate it. Too fix it define, it as a game-object-container@@."
 				}
 			]
@@ -68,11 +68,11 @@
 			"entries": [
 				{
 					"title": "Missing argument: 'width'",
-					"description": "path-renderer@@ objects require that a 'width' property is defined in their configuration"
+					"description": "path-renderer@@ objects require that a 'width' property is defined in their configuration."
 				},
 				{
 					"title": "Missing argument: 'height'",
-					"description": "path-renderer@@ objects require that a 'height' property is defined in their configuration"
+					"description": "path-renderer@@ objects require that a 'height' property is defined in their configuration."
 				}
 			]
 		},
@@ -81,17 +81,17 @@
 			"docLink": "collision-component@@",
 			"entries": [
 				{
-					"title": "GameObject with typeId: 'X', needs to define an onCollide method, yo",
-					"description": "A game-object@@ defined to use a collision-component@@ must define an onCollide(other) method. If you see this error, that is probably what you are missing."
+					"title": "GameObject with typeId: 'X', needs to define an 'onCollide' method",
+					"description": "A game-object@@ defined to use a collision-component@@ must define an 'onCollide(other)' method. If you see this error, that is probably what you are missing."
 				}
 			]
 		},
 		{
-			"name": "timer_factory", 
+			"name": "timer_factory",
 			"docLink": "timer-factory@@",
 			"entries": [
 				{
-					"title": "This owner is already using this property, assigning it again with a timer might cause your program to go ape shit",
+					"title": "This owner is already using this property, assigning it again with a timer might cause your program to behaive strangely",
 					"description": "When creating a timer@@ you have to specify a property name to which that timer@@ will be binded in the owner scope. If that property name is already in use in the owner scope, this error will be thrown to alert about incoming undefined behaviour."
 				},
 				{
@@ -103,7 +103,7 @@
 					"description": "'name' is a required argument to use a timer@@. The is used later to apply commands to a specific timer@@, or to many timer@@s at once."
 				},
 				{
-					"title": "timer must have a propertyName to be refered with from its owners scope",
+					"title": "timer must have a 'propertyName' to be refered with from its owners scope",
 					"description": "'propertyName' is a required argument to use a timer@@. The owner scope gets access to the newly created timer@@ through this name. The timer-factory@@ makes use of this property to clear the timer@@ from the owner scope when needed."
 				}
 			]
@@ -148,7 +148,7 @@
 			"entries": [
 				{
 					"title": "No fonts are available",
-					"description": "For whatever reason no fonts are available, if the resources are remote. There is not much to be done about it."
+					"description": "For whatever reason no fonts are available. If the resources are remote, there is not much to be done about it."
 				},
 				{
 					"title": "Font: 'X' could not be loaded'",
@@ -162,7 +162,7 @@
 			"entries": [
 				{
 					"title": "Group with id: 'X' does not exist",
-					"description": "Tried to access a group@@ which does not exist. Maybe the id is wrong, or maybe the group@@ was deleted un intentionally."
+					"description": "Tried to access a group@@ which does not exist. Maybe the id is wrong, or maybe the group@@ was deleted un-intentionally."
 				}
 			]
 		},
@@ -172,7 +172,7 @@
 			"entries": [
 				{
 					"title": "'Viewport shortcut 'X' does not exist'",
-					"description": "Tried adding a game-object@@ to a viewport@@ that does not exist"
+					"description": "Tried adding a game-object@@ to a viewport@@ that does not exist."
 				}
 			]
 		},
@@ -182,11 +182,11 @@
 			"entries": [
 				{
 					"title": "Missing argument: 'width'",
-					"description": "The renderer@@ needs to define the width property"
+					"description": "The renderer@@ needs to define the 'width' property."
 				},
 				{
 					"title": "Missing argument: 'height'",
-					"description": "The renderer@@ needs to define the height property"
+					"description": "The renderer@@ needs to define the 'height' property."
 				}
 			]
 		}

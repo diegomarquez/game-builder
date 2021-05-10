@@ -5,13 +5,13 @@
  *
  * Inherits from: [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
- * Depends of: 
+ * Depends of:
  * [groups](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html)
  * [viewports](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewports.html)
  * [gb](http://diegomarquez.github.io/game-builder/game-builder-docs/src/gb.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This module defines an extension that uses [groups](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/groups.html) to resume all update activity
  * when the application gains focus.
  *
@@ -22,10 +22,10 @@
  *
  * This Extension adds an event [game](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/game.html) can hook into:
  *
- * ### **RESUME** 
+ * ### **RESUME**
  * When the application is resumed manually
- * 
- * ``` javascript  
+ *
+ * ``` javascript
  * game.on(game.RESUME, function() {});
  * ```
  */
@@ -44,18 +44,17 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 
 	var Resume = Extension.extend({
 		init: function() {
-			Object.defineProperty(game.prototype, "RESUME", { 
-				configurable: true,
-				get: function() { 
-					return 'resume'; 
-				} 
+			Object.defineProperty(game.prototype, "RESUME", {
+				get: function() {
+					return 'resume';
+				}
 			});
 
-			game.resume = function() {
-				if(game.focusAction()) {
+			game.constructor.prototype.resume = function() {
+				if (game.focusAction()) {
 					game.execute(game.RESUME);
 					window.addEventListener("blur", game.blurAction);
-					window.addEventListener("focus", game.focusAction);	
+					window.addEventListener("focus", game.focusAction);
 				}
 			}
 		},
@@ -67,32 +66,9 @@ define(["groups", "viewports", "gb", "extension"], function(Groups, Viewports, G
 		},
 
 		execute: function() {
-			Groups.all('resume');
-
-			for (var k in Groups.groups) { 
-				if (Groups.groups[k].drawAlreadyStopped) {
-					Groups.stop_draw(k);			
-				} 
-
-				if (Groups.groups[k].updateAlreadyStopped) {
-					Groups.stop_update(k);
-				}
-
-				Groups.groups[k].drawAlreadyStopped = false;
-				Groups.groups[k].updateAlreadyStopped = false;
-			}
-
-			var viewports = Viewports.all();
-
-			for (var v in viewports) {
-				for (var l in v.layers) {
-					if (l.alreadyHidden) {
-						l.hide();	
-					}
-
-					l.alreadyHidden = false;					
-				}
-			}
+			Groups.all('resume', 'update', function(group) {
+				return !group.updateAlreadyStopped;
+			});
 		},
 
 		destroy: function() {

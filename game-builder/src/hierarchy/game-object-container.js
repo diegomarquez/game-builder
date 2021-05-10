@@ -3,18 +3,21 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
+ * Inherits from:
+ * [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
  *
  * Depends of:
+ * [visibility-control](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/helpers/visibility-control.html)
+ * [child-finder](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/helpers/child-finder.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This modules defines a container for [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html), which in turn
  * is a [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) itself. Being a parent means that all of it's child
  * [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) will follow it according to it's transformation matrix.
  *
- * It's a pretty usefull behaviour to form more complex displays out of smaller, more manageable 
- * pieces. 
+ * It's a pretty usefull behaviour to form more complex displays out of smaller, more manageable
+ * pieces.
  *
  * A note on drawing: A container will execute it's renderer code, and then the rendering code
  * of it's children. This means that the parent drawing will show up, below it's children's.
@@ -31,11 +34,13 @@
 /**
  * --------------------------------
  */
-define(["game-object"], function(GameObject){
+define(["game-object", "visibility-control", "child-finder"], function(GameObject, VisibilityControl, ChildFinder) {
 
 	var GameObjectContainer = GameObject.extend({
 		init: function() {
 			this._super();
+
+			this.childs = null;
 		},
 
 		/**
@@ -46,9 +51,9 @@ define(["game-object"], function(GameObject){
 		start: function() {
 			this._super();
 
-			if(!this.childs) return;
+			if (!this.childs) return;
 
-			for(var i=0; i<this.childs.length; i++){
+			for (var i = 0; i < this.childs.length; i++) {
 				this.childs[i].start();
 			}
 		},
@@ -57,52 +62,52 @@ define(["game-object"], function(GameObject){
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>add</strong></p>
+		 * <p style='color:#AD071D'><strong>addChild</strong></p>
 		 *
 		 * Adds the specified child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to this container.
 		 * If the child already is part of another parent, it is removed from it
 		 * and added to this one.
-		 * 
+		 *
 		 * @param {Object} child The child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to add
 		 */
-		add: function(child) {
-			if(!child) return;
+		addChild: function(child) {
+			if (!child) return;
 
-			if(!this.childs) this.childs = [];
+			if (!this.childs) this.childs = [];
 
-			if(child.parent) {
-				child.parent.remove(child);
+			if (child.parent) {
+				child.parent.removeChild(child);
 			}
 
 			child.parent = this;
 
 			this.childs.push(child);
 			child.added(this);
-			
-			return child;	
+
+			return child;
 		},
 		/**
 		 * --------------------------------
 		 */
 
 		/**
-		 * <p style='color:#AD071D'><strong>remove</strong></p>
+		 * <p style='color:#AD071D'><strong>removeChild</strong></p>
 		 *
 		 * Removes the specified child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) from this container.
-		 * 
+		 *
 		 * @param {Object} child The child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to remove
 		 */
-		remove: function(child) {
-			if(!child) return;
+		removeChild: function(child) {
+			if (!child) return;
 
 			child.parent = null;
 
-			if(!this.childs) return;
+			if (!this.childs) return;
 
-			this.childs.splice(this.childs.indexOf(child), 1); 
+			this.childs.splice(this.childs.indexOf(child), 1);
 
 			if (this.childrenOptions && this.childrenOptions[child.uid]) {
-				delete this.childrenOptions[child.uid];	
+				delete this.childrenOptions[child.uid];
 			}
 
 			child.removed(this);
@@ -115,40 +120,53 @@ define(["game-object"], function(GameObject){
 		 * <p style='color:#AD071D'><strong>update</strong></p>
 		 *
 		 * Updates all of it's children.
-		 * 
-		 * @param  {Number} delta Time ellapsed since the last update
+		 *
+		 * @param {Number} delta Time ellapsed since the last update
 		 */
 		update: function(delta) {
 			this.transform();
 
-			if(!this.childs) return;
+			if (!this.childs) return;
 
 			var child = null
+			var hasRenderer;
 
-			for(var i=0; i<this.childs.length; i++){
+			for (var i = 0; i < this.childs.length; i++) {
 				child = this.childs[i];
 
-				if(!child.canUpdate) continue;
+				if (!child.canUpdate) continue;
 
 				if (this.childrenOptions && this.childrenOptions[child.uid]) {
-					if(!this.childrenOptions[child.uid].update) continue;	
+					if (!this.childrenOptions[child.uid].update) continue;
 				}
 
 				child.update(delta);
-				
-				if(!child.components) {
+
+				hasRenderer = child.hasRenderer();
+
+				if (!child.hasComponents()) {
+					if (hasRenderer) {
+						child.renderer.update(delta);
+					}
+
 					if (!child.isContainer()) {
-						child.transform();	
+						child.transform();
 					}
 				} else {
-					for(var k=0; k<child.components.length; k++) {
-						if(child.components[k].update) {
-							child.components[k].update(delta);
+					if (child.transformedOnce()) {
+						for (var k = 0; k < child.components.length; k++) {
+							if (child.components[k].update && child.components[k].isEnabled()) {
+								child.components[k].update(delta);
+							}
 						}
-					}	
-					
+					}
+
+					if (hasRenderer) {
+						child.renderer.update(delta);
+					}
+
 					if (!child.isContainer()) {
-						child.transform();	
+						child.transform();
 					}
 				}
 			}
@@ -163,44 +181,43 @@ define(["game-object"], function(GameObject){
 		 * Draws the game-object into the specified Context 2D, using it's [matrix-3x3](http://diegomarquez.github.io/game-builder/game-builder-docs/src/math/matrix-3x3.html)
 		 *
 		 * Then it draws all of it's children
-		 * 
-		 * @param  {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
-		 * @param  {Object} viewport The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) this objects is being drawn too
+		 *
+		 * @param {Context 2D} context [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+		 * @param {Object} viewport The [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) this objects is being drawn too
 		 */
-		draw: function(context, viewport) {	
+		draw: function(context, viewport) {
 			// Draw only if inside the viewport and is allowed to be drawn
-			if (viewport.isGameObjectInside(this, context) && this.canDraw) {
-				this._super(context, viewport);	
+			if (this.canDraw && viewport.isGameObjectInside(this, context)) {
+				this._super(context, viewport);
 			}
 
-			if(!this.childs) return;
-						
+			if (!this.childs) return;
+
 			var child = null;
 
-			for(var i=0; i<this.childs.length; i++){
+			for (var i = 0; i < this.childs.length; i++) {
 				child = this.childs[i];
 
 				if (child.isContainer()) {
-					// If the child is a container game object... 
+					// If the child is a container game object...
 					// Call draw method, it will figure out if it actually needs to be drawn, and do the same for it's children
 					child.draw(context, viewport);
 				} else {
 					// If the child is a regular game object...
 					// Try to skip drawing as soon as possible
-				
-					// Draw only if inside the viewport and is allowed to be drawn
-					if (viewport.isGameObjectInside(child, context) && child.canDraw) {
 
+					// Draw only if inside the viewport and is allowed to be drawn
+					if (child.canDraw && viewport.isGameObjectInside(child, context)) {
 						// If there are options for this child, apply them
 						if (this.childrenOptions && this.childrenOptions[child.uid]) {
-							if(this.childrenOptions[child.uid].draw) {
+							if (this.childrenOptions[child.uid].draw) {
 								child.draw(context, viewport);
 							}
 						} else {
 							// If there are no options, just draw the child
-							child.draw(context, viewport);	
+							child.draw(context, viewport);
 						}
-					}											
+					}
 				}
 			}
 		},
@@ -212,14 +229,21 @@ define(["game-object"], function(GameObject){
 		 * <p style='color:#AD071D'><strong>hide</strong></p>
 		 *
 		 * Prevents rendering of itself and all of it's children
+		 *
+		 * @param {Boolean} [getControl=false] If set to true returns a [visibility-control](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/helpers/visibility-control.html) object for more fine grained control
 		 */
-		hide: function() {
-			this._super();
+		hide: function(getControl) {
+			if (!getControl) {
+				this._super();
 
-			if(!this.childs) return;
-		
-			for(var i=0; i<this.childs.length; i++){
-				this.childs[i].hide();
+				if (!this.childs) return;
+
+				for (var i = 0; i < this.childs.length; i++) {
+					this.childs[i].hide();
+				}
+			} else {
+				return VisibilityControl.user(this)
+					.hide(this._super);
 			}
 		},
 		/**
@@ -230,20 +254,92 @@ define(["game-object"], function(GameObject){
 		 * <p style='color:#AD071D'><strong>show</strong></p>
 		 *
 		 * Enables rendering of itself and all of it's children
+		 *
+		 * @param {Boolean} [getControl=false] If set to true return a [visibility-control](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/helpers/visibility-control.html) object for more fine grained control
 		 */
-		show: function() {
-			this._super();
+		show: function(getControl) {
+			if (!getControl) {
+				this._super();
 
-			if(!this.childs) return;
+				if (!this.childs) return;
 
-			for(var i=0; i<this.childs.length; i++){
-				this.childs[i].show();
+				for (var i = 0; i < this.childs.length; i++) {
+					this.childs[i].show();
+				}
+			} else {
+				return VisibilityControl.user(this)
+					.show(this._super);
 			}
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
+		/**
+		 * <p style='color:#AD071D'><strong>stop</strong></p>
+		 *
+		 * Prevents updating on itself and all of it's children
+		 *
+		 * @param {Boolean} [skipEvent=false]
+		 */
+		stop: function(skipEvent) {
+			this._super(skipEvent);
+
+			if (!this.childs) return;
+
+			for (var i = 0; i < this.childs.length; i++) {
+				this.childs[i].stop(skipEvent);
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>run</strong></p>
+		 *
+		 * Enables updating on itself and all of it's childdren
+		 *
+		 * @param {Boolean} [skipEvent=false]
+		 */
+		run: function(skipEvent) {
+			this._super(skipEvent);
+
+			if (!this.childs) return;
+
+			for (var i = 0; i < this.childs.length; i++) {
+				this.childs[i].run(skipEvent);
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>toggleVisibility</strong></p>
+		 *
+		 * Toggles the rendering of itself and all of it's children
+		 *
+		 * @param {Boolean} [getControl=false] If set to true return a [visibility-control](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/helpers/visibility-control.html) object for more fine grained control
+		 */
+		toggleVisibility: function(getControl) {
+			if (!getControl) {
+				this._super();
+
+				if (!this.childs) return;
+
+				for (var i = 0; i < this.childs.length; i++) {
+					this.childs[i].toggleVisibility();
+				}
+			} else {
+				return VisibilityControl.user(this)
+					.toggle(this._super);
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
 		/**
 		 * <p style='color:#AD071D'><strong>addToViewport</strong></p>
 		 *
@@ -256,16 +352,16 @@ define(["game-object"], function(GameObject){
 		addToViewportList: function(viewportName, layerName) {
 			this._super(viewportName, layerName);
 
-			if(!this.childs) return;
+			if (!this.childs) return;
 
-			for(var i=0; i<this.childs.length; i++){
+			for (var i = 0; i < this.childs.length; i++) {
 				this.childs[i].addToViewportList(viewportName, layerName);
 			}
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>removeFromViewport</strong></p>
 		 *
@@ -274,21 +370,21 @@ define(["game-object"], function(GameObject){
 		 *
 		 * @param {String} viewportName Name of the [viewport](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/viewport.html) to remove from this game objects list
 		 * @param {String} layerName Name of the [layer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/view/layer.html) in the specified viewport
-		 * 
+		 *
 		 */
 		removeFromViewportList: function(viewportName, layerName) {
 			this._super(viewportName, layerName);
 
-			if(!this.childs) return;
+			if (!this.childs) return;
 
-			for(var i=0; i<this.childs.length; i++){
+			for (var i = 0; i < this.childs.length; i++) {
 				this.childs[i].removeFromViewportList(viewportName, layerName);
 			}
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>setChildOptions</strong></p>
 		 *
@@ -298,8 +394,8 @@ define(["game-object"], function(GameObject){
 		 * is drawn or updated on this container. The properties will be evaluated as truthy or falsy.
 		 *
 		 * If the keys are not provided, they are added and set to **true** by default
-		 * 
-		 * @param {Object} child   Child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to set options to
+		 *
+		 * @param {Object} child Child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) to set options to
 		 * @param {Object} options Options that will be applied to the specified child on this container
 		 */
 		setChildOptions: function(child, options) {
@@ -307,27 +403,33 @@ define(["game-object"], function(GameObject){
 
 			options = options || {};
 
-			if (!options.hasOwnProperty('update')) { options.update = true; }
-			if (!options.hasOwnProperty('draw')) { options.draw = true; }
+			if (!options.hasOwnProperty('update')) {
+				options.update = true;
+			}
+			if (!options.hasOwnProperty('draw')) {
+				options.draw = true;
+			}
 
 			this.childrenOptions[child.uid] = options;
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>getChildOptions</strong></p>
 		 *
 		 * Get the options set in the **setChildOptions** method for the specified child [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html)
-		 * 
-		 * @param  {Object} child A child [game-obejct](@@game-obejct@@) of this container
+		 *
+		 * @param {Object} child A child [game-obejct](@@game-obejct@@) of this container
 		 *
 		 * @return {Object} An object like the one set in the **setChildOptions** method
 		 */
 		getChildOptions: function(child) {
+			if (!this.childrenOptions) this.childrenOptions = {};
+
 			if (this.childrenOptions[child.uid]) {
-				return this.childrenOptions[child.uid];	
+				return this.childrenOptions[child.uid];
 			} else {
 				this.setChildOptions(child);
 				return this.childrenOptions[child.uid];
@@ -336,87 +438,16 @@ define(["game-object"], function(GameObject){
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>findChildren</strong></p>
 		 *
-		 * Get an object to query the child [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) list of this container
+		 * Gets a reference to the [child-finder](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/helpers/child-finder.html) object, to search for children of this container
 		 *
-		 * @return {Object}  An object to make the query. It has the following methods:
-		 * </br>
-		 * **all** returns all [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) that return true for the specified function. Pass no argument to get all children 
-		 * </br>
-		 * **allWithType** returns all [game-objects](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) that have the given id in the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
-		 * </br>
-		 * **first** returns the first [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) that returns true for the specified function
-		 * </br>
-		 * **firstWithType** returns the first [game-object](http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html) that has the given id in the [game-object-pool](http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html)
-		 * </br>
+		 * @return {Object}
 		 */
 		findChildren: function() {
-			var self = this;
-
-			return {
-				all: function(f) {
-					if (!self.childs) return;
-
-					var r;
-
-					for (var i = 0; i < self.childs.length; i++) {
-						var c = self.childs[i];
-
-						if (!f || f(c)) {
-							if (!r) r = [];
-							
-							r.push(c);
-						}
-					}
-
-					return r;
-				}, 
-
-				allWithType: function(id) {
-					if (!self.childs) return;
-
-					var r;
-
-					for (var i = 0; i < self.childs.length; i++) {
-						var c = self.childs[i];
-
-						if (c.typeId == id || c.poolId == id) {
-							if (!r) r = [];
-							
-							r.push(c);
-						}
-					}
-
-					return r;
-				},
-
-				first: function(f) {
-					if (!self.childs) return;
-
-					for (var i = 0; i < self.childs.length; i++) {
-						var c = self.childs[i];
-
-						if (f(c)) {
-							return c;
-						}
-					}		
-				},
-
-				firstWithType: function(id) {
-					if (!self.childs) return;
-					
-					for (var i = 0; i < self.childs.length; i++) {
-						var c = self.childs[i];
-
-						if (c.typeId == id || c.poolId == id) {
-							return c;
-						}
-					}
-				}
-			}
+			return ChildFinder.user(this);
 		},
 		/**
 		 * --------------------------------
@@ -429,13 +460,13 @@ define(["game-object"], function(GameObject){
 		 * nulling every reference on it's way.
 		 */
 		recycle: function() {
-			if(this.childs) {
-				for(var i=0; i<this.childs.length; i++){
+			if (this.childs) {
+				for (var i = 0; i < this.childs.length; i++) {
 					this.childs[i].recycle();
 				}
 
 				this.childs.length = 0;
-				this.childs = null;	
+				this.childs = null;
 			}
 
 			this._super();
@@ -451,9 +482,10 @@ define(["game-object"], function(GameObject){
 		 * It also removes all the childs.
 		 */
 		clear: function() {
-			if(this.childs) {				
-				while(this.childs.length) {
-					this.childs.pop().clear();
+			if (this.childs) {
+				while (this.childs.length) {
+					this.childs.pop()
+						.clear();
 				}
 
 				this.childs.length = 0;
@@ -467,7 +499,7 @@ define(["game-object"], function(GameObject){
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>isContainer</strong></p>
 		 *
@@ -477,10 +509,10 @@ define(["game-object"], function(GameObject){
 			return true;
 		},
 		/**
-		 * 
+		 *
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>typeName</strong></p>
 		 *

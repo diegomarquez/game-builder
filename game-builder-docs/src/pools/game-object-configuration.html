@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="en"><head><title>src/pools/game-object-configuration</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/pools/game-object-configuration"><meta name="groc-project-path" content="work/game-builder/src/pools/game-object-configuration.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/pools/game-object-configuration.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="game-object-configurationjs">game-object-configuration.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from:</p>
+
+<p>Depends of:</p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This module describes the kind of objects that are held by the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/game-object-pool.html">game-object-pool</a></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="game-object-configuration">Game Object Configuration</h2></div></div></div><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">getComponentDescription</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">componentId</span><span class="o">:</span> <span class="nx">id</span><span class="p">,</span>
+      <span class="nx">args</span><span class="o">:</span> <span class="nx">args</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">var</span> <span class="nx">GameObjectConfiguration</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">pool</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">alias</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="nx">type</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">alias</span> <span class="o">=</span> <span class="nx">alias</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">hardArguments</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">childs</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">components</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s2">&quot;pool&quot;</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">configurable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nx">enumerable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nx">writable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nx">value</span><span class="o">:</span> <span class="nx">pool</span>
+    <span class="p">});</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>typeId</strong></p>
+
+<p>The id of the pool that objects are going to be taken off when building the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>
+described in this configuration</p>
+
+<p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">GameObjectConfiguration</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">typeId</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>configurationId</strong></p>
+
+<p>The id the built <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> will get</p>
+
+<p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">GameObjectConfiguration</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">configurationId</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">alias</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>args</strong></p>
+
+<p>Set which arguments this configuration will apply to a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a>. This method is chainable</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>args must be an Object.</strong></li>
+</ul>
+
+<p><strong>Returns an Object</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">GameObjectConfiguration</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">args</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">hardArguments</span> <span class="o">=</span> <span class="nx">args</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">pool</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pool</span><span class="p">.</span><span class="nx">UPDATE_CONFIGURATION</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addChild</strong></p>
+
+<p>Add a child, specifying an existing <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> configuration id,
+and arguments the child will take when initialized. This method is chainable</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>childId must be a String.</strong></p></li>
+<li><p><strong>args must be an Object.</strong></p></li>
+</ul>
+
+<p><strong>Returns an Object</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">GameObjectConfiguration</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">addChild</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">childId</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">childs</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+      <span class="nx">childId</span><span class="o">:</span> <span class="nx">childId</span><span class="p">,</span>
+      <span class="nx">args</span><span class="o">:</span> <span class="nx">args</span>
+    <span class="p">});</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">pool</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pool</span><span class="p">.</span><span class="nx">UPDATE_CONFIGURATION</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>addComponent</strong></p>
+
+<p>Add a <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a>, specifying an existing <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> configuration id,
+and arguments the component will take when initialized. This method is chainable</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>componentId must be a String.</strong></p></li>
+<li><p><strong>args must be an Object.</strong></p></li>
+</ul>
+
+<p><strong>Returns an Object</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">GameObjectConfiguration</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">addComponent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">componentId</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">components</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">getComponentDescription</span><span class="p">(</span><span class="nx">componentId</span><span class="p">,</span> <span class="nx">args</span><span class="p">));</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">pool</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pool</span><span class="p">.</span><span class="nx">UPDATE_CONFIGURATION</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>setRenderer</strong></p>
+
+<p>Set a renderer, specifying an existing <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a> configuration id,
+and arguments the renderer will take when initialized. This method is chainable</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><p><strong>rendererId must be a String.</strong></p></li>
+<li><p><strong>args must be an Object.</strong></p></li>
+</ul>
+
+<p><strong>Returns an Object</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">GameObjectConfiguration</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">setRenderer</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">rendererId</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">renderer</span> <span class="o">=</span> <span class="nx">getComponentDescription</span><span class="p">(</span><span class="nx">rendererId</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">pool</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pool</span><span class="p">.</span><span class="nx">UPDATE_CONFIGURATION</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="k">return</span> <span class="nx">GameObjectConfiguration</span><span class="p">;</span>
+<span class="p">});</span></div></div></div></div></body></html>

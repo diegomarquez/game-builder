@@ -3,17 +3,17 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: 
+ * Inherits from:
  * [extension](http://diegomarquez.github.io/game-builder/game-builder-docs/src/game_canvas/extensions/extension.html)
  *
- * Depends of: 
+ * Depends of:
  * [keyboard](http://diegomarquez.github.io/game-builder/game-builder-docs/src/input/keyboard.html)
  *
  * A [requireJS](http://requirejs.org/) module. For use with [Game-Builder](http://diegomarquez.github.io/game-builder)
- * 
+ *
  * This extension prevents the default keyboard behaviour of all the keys defined in the [keyboard](http://diegomarquez.github.io/game-builder/game-builder-docs/src/input/keyboard.html) module.
  *
- * Most of the times you won't want the browser default key behaviour when playing a game, if you do, it is always possible 
+ * Most of the times you won't want the browser default key behaviour when playing a game, if you do, it is always possible
  * to not know this extension, or to make another extension that blocks only some keys.
  */
 
@@ -50,8 +50,8 @@ define(["extension", "gb", "keyboard"], function(Extension, Gb, Keyboard) {
 					Keyboard.NUM_2,
 					Keyboard.NUM_3,
 					Keyboard.NUM_4,
-					Keyboard.NUM_5				
-				]	
+					Keyboard.NUM_5
+				]
 			});
 		},
 
@@ -64,5 +64,3 @@ define(["extension", "gb", "keyboard"], function(Extension, Gb, Keyboard) {
 
 	return PreventKeysDefault;
 });
-
-

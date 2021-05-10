@@ -48,12 +48,7 @@
 		//If offset is not provided this two are used
 		//These are optional and default to 0
 		offsetX:0,
-		offsetY:0, 
-		
-		//Use these to override the dimentions of the path.
-		//These are optional
-		scaleX: 1, 
-		scaleY: 1,
+		offsetY:0
  *	});
  * ```
  * <strong>Note: The snippet uses the reference to the <a href=http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html>component-pool</a>
@@ -72,9 +67,13 @@
  */
 define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache, ErrorPrinter) {
 
-	var canvas;
-
 	var PathRenderer = Renderer.extend({
+		init: function() {
+			this._super();
+
+			this.cache = PathCache;
+		},
+
 		/**
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
@@ -83,7 +82,7 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 		 *
 		 * @throws {Error} If width and height properties are not set
 		 */
-		start: function(parent) {	
+		start: function(parent) {
 			if (this.skipCache) return;
 
 			if (!this.width && !this.height) {
@@ -94,8 +93,8 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 				ErrorPrinter.missingArgumentError('Path Renderer', 'name');
 			}
 
-			PathCache.cache(this.name, this.width, this.height, function(context) {
-				this.drawPath(context);	
+			this.cache.cache(this.name, this.width, this.height, function(context) {
+				this.drawPath(context);
 			}.bind(this));
 		},
 		/**
@@ -132,24 +131,44 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 			if (this.skipCache) {
 				this.drawPath(context, viewport);
 			} else {
-				canvas = PathCache.get(this.name);
-				context.drawImage(canvas, this.rendererOffsetX(), this.rendererOffsetY(), this.rendererWidth(), this.rendererHeight());	
+				var canvas = this.cache.get(this.name);
+
+				if (!canvas)
+					return;
+
+				if (this.tinted) {
+					var tintedCanvas = this.tintImage(this.name, canvas);
+
+					context.drawImage(tintedCanvas,
+						Math.floor(this.rendererOffsetX()),
+						Math.floor(this.rendererOffsetY()),
+						Math.floor(this.rendererWidth()),
+						Math.floor(this.rendererHeight())
+					);
+				} else {
+					context.drawImage(canvas,
+						Math.floor(this.rendererOffsetX()),
+						Math.floor(this.rendererOffsetY()),
+						Math.floor(this.rendererWidth()),
+						Math.floor(this.rendererHeight())
+					);
+				}
 			}
 		},
 		/**
 		 * --------------------------------
 		 */
-		
+
 		/**
 		 * <p style='color:#AD071D'><strong>rendererOffsetX</strong></p>
 		 *
 		 * @return {Number} The offset in the X axis of the renderer
 		 */
-		rendererOffsetX: function() { 
-			if (this.offset == 'center') {
-				return -this.rendererWidth()/2 * this.scaleX;
+		rendererOffsetX: function() {
+			if (this.offset === 'center') {
+				return -this.rendererWidth() / 2 + this.offsetX;
 			} else {
-				return this.offsetX * this.scaleX; 
+				return this.offsetX;
 			}
 		},
 		/**
@@ -161,11 +180,11 @@ define(["renderer", "path-cache", "error-printer"], function(Renderer, PathCache
 		 *
 		 * @return {Number} The offset in the Y axis of the renderer
 		 */
-		rendererOffsetY: function() { 
-			if (this.offset == 'center') {
-				return -this.rendererHeight()/2  * this.scaleY;
+		rendererOffsetY: function() {
+			if (this.offset === 'center') {
+				return -this.rendererHeight() / 2 + this.offsetY;
 			} else {
-				return this.offsetY * this.scaleY;  
+				return this.offsetY;
 			}
 		},
 		/**

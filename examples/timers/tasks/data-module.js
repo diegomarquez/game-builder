@@ -5,7 +5,7 @@ module.exports = function(grunt) {
 		for (var i = 0; i < this.files.length; i++) {
 			var file = this.files[i];
 
-			var src = file.src;
+			var src = file.src[0];
 			var dest = file.dest;
 			
 			// Process the template 

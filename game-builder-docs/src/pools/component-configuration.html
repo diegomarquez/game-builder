@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en"><head><title>src/pools/component-configuration</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../../"><meta name="groc-document-path" content="src/pools/component-configuration"><meta name="groc-project-path" content="work/game-builder/src/pools/component-configuration.js"><link rel="stylesheet" type="text/css" media="all" href="../../assets/style.css"><script type="text/javascript" src="../../assets/behavior.js"></script><body><div id="meta"><div class="file-path">work/game-builder/src/pools/component-configuration.js</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="component-configurationjs">component-configuration.js</h1>
+
+<h3 id="bydiegoenriquemarquezhttpwwwtreintipollocom">By <a href="http://www.treintipollo.com">Diego Enrique Marquez</a></h3>
+
+<h3 id="findmeongithubhttpsgithubcomdiegomarquez"><a href="https://github.com/diegomarquez">Find me on Github</a></h3>
+
+<p>Inherits from:</p>
+
+<p>Depends of:</p>
+
+<p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
+
+<p>This module describes the kind of objects that are held by the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a></p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="component-configuration">Component Configuration</h2></div></div></div><div class="segment"><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">ComponentConfiguration</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">pool</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">alias</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">componentId</span> <span class="o">=</span> <span class="nx">type</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">alias</span> <span class="o">=</span> <span class="nx">alias</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="p">.</span><span class="nx">componentArgs</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s2">&quot;pool&quot;</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">configurable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nx">enumerable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nx">writable</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+      <span class="nx">value</span><span class="o">:</span> <span class="nx">pool</span>
+    <span class="p">});</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>typeId</strong></p>
+
+<p>The id of the pool that this configuration takes <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">components</a> from</p>
+
+<p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">ComponentConfiguration</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">typeId</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>configurationId</strong></p>
+
+<p>The id the activated <a href="@@components@@">components</a> will get</p>
+
+<p><strong>Returns a String</strong></p></div></div><div class="code"><div class="wrapper">  <span class="nx">ComponentConfiguration</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">configurationId</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">alias</span><span class="p">;</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>args</strong></p>
+
+<p>Set which arguments this configuration will apply to a<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/components/component.html">component</a></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>args must be an Object.</strong></li>
+</ul></div></div><div class="code"><div class="wrapper">  <span class="nx">ComponentConfiguration</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">args</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">componentArgs</span> <span class="o">=</span> <span class="nx">args</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">pool</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">pool</span><span class="p">.</span><span class="nx">UPDATE_CONFIGURATION</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+  <span class="p">};</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="k">return</span> <span class="nx">ComponentConfiguration</span><span class="p">;</span>
+<span class="p">});</span></div></div></div></div></body></html>

@@ -8,76 +8,86 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
     {
       "type": "folder",
       "data": {
-        "path": "game-builder",
-        "title": "game-builder"
+        "path": "work",
+        "title": "work"
       },
       "depth": 1,
       "children": [
         {
           "type": "folder",
           "data": {
-            "path": "game-builder/src",
-            "title": "src"
+            "path": "work/game-builder",
+            "title": "game-builder"
           },
           "depth": 2,
           "children": [
             {
               "type": "folder",
               "data": {
-                "path": "game-builder/src/cache",
-                "title": "cache"
+                "path": "work/game-builder/src",
+                "title": "src"
               },
               "depth": 3,
               "children": [
                 {
-                  "type": "file",
+                  "type": "folder",
                   "data": {
-                    "language": {
-                      "nameMatchers": [".js"],
-                      "pygmentsLexer": "javascript",
-                      "multiLineComment": ["/*", "*", "*/"],
-                      "singleLineComment": ["//"],
-                      "ignorePrefix": "}",
-                      "foldPrefix": "^",
-                      "name": "JavaScript"
-                    },
-                    "sourcePath": "/Users/johndoe/game-builder-gh-pages/game-builder/src/cache/cache.js",
-                    "projectPath": "game-builder/src/cache/cache.js",
-                    "targetPath": "game-builder/src/cache/cache",
-                    "pageTitle": "game-builder/src/cache/cache",
-                    "firstHeader": {
-                      "type": "heading",
+                    "path": "work/game-builder/src/pools",
+                    "title": "pools"
+                  },
+                  "depth": 4,
+                  "children": [
+                    {
+                      "type": "file",
                       "data": {
-                        "level": 1,
-                        "title": "cache.js",
-                        "slug": "cachejs",
-                        "isFileHeader": true
+                        "language": {
+                          "nameMatchers": [".js"],
+                          "pygmentsLexer": "javascript",
+                          "multiLineComment": ["/*", "*", "*/"],
+                          "singleLineComment": ["//"],
+                          "ignorePrefix": "}",
+                          "foldPrefix": "^",
+                          "name": "JavaScript"
+                        },
+                        "sourcePath": "/Users/johndoe/game-builder-gh-pages/work/game-builder/src/pools/component-pool.js",
+                        "projectPath": "work/game-builder/src/pools/component-pool.js",
+                        "targetPath": "work/game-builder/src/pools/component-pool",
+                        "pageTitle": "work/game-builder/src/pools/component-pool",
+                        "firstHeader": {
+                          "type": "heading",
+                          "data": {
+                            "level": 1,
+                            "title": "component-pool.js",
+                            "slug": "component-pooljs",
+                            "isFileHeader": true
+                          },
+                          "depth": 1,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 2,
+                                "title": "Pooling",
+                                "slug": "pooling"
+                              },
+                              "depth": 2
+                            }
+                          ]
+                        },
+                        "title": "component-pool.js"
                       },
-                      "depth": 1,
-                      "children": [
+                      "depth": 5,
+                      "outline": [
                         {
                           "type": "heading",
                           "data": {
                             "level": 2,
-                            "title": "Cache Interface",
-                            "slug": "cache-interface"
+                            "title": "Pooling",
+                            "slug": "pooling"
                           },
                           "depth": 2
                         }
                       ]
-                    },
-                    "title": "cache.js"
-                  },
-                  "depth": 4,
-                  "outline": [
-                    {
-                      "type": "heading",
-                      "data": {
-                        "level": 2,
-                        "title": "Cache Interface",
-                        "slug": "cache-interface"
-                      },
-                      "depth": 2
                     }
                   ]
                 }

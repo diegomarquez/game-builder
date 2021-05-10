@@ -9,7 +9,8 @@
 
 <p>Depends of:
 <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a>
-<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a></p>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html">error-printer</a>
+<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a></p>
 
 <p>A <a href="http://requirejs.org/">requireJS</a> module. For use with <a href="http://diegomarquez.github.io/game-builder">Game-Builder</a></p>
 
@@ -20,26 +21,29 @@ is saying it should collide against.</p>
 <p>When setting up the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/pools/component-pool.html">component-pool</a> with collider components, be sure
 to checkout the documentation for <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/circle-collider.html">circle-collider</a>, <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/polygon-collider.html">polygon-collider</a>
 and <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/fixed-polygon-collider.html">fixed-polygon-collider</a> to see what kind of object they expect as an argument
-to be properly configured.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="collisions">Collisions</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;component&#39;</span><span class="p">,</span> <span class="s1">&#39;collision-resolver&#39;</span><span class="p">,</span> <span class="s1">&#39;error-printer&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">CollisionResolver</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">)</span> <span class="p">{</span>
+to be properly configured.</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h2 id="collisions">Collisions</h2></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper"><span class="nx">define</span><span class="p">([</span><span class="s1">&#39;component&#39;</span><span class="p">,</span> <span class="s1">&#39;collision-resolver&#39;</span><span class="p">,</span> <span class="s1">&#39;error-printer&#39;</span><span class="p">,</span> <span class="s1">&#39;game-object&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Component</span><span class="p">,</span> <span class="nx">CollisionResolver</span><span class="p">,</span> <span class="nx">ErrorPrinter</span><span class="p">,</span> <span class="nx">GameObject</span><span class="p">)</span> <span class="p">{</span>
 
-  <span class="kd">var</span> <span class="nx">collisionList</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">collisionOpponent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="kd">var</span> <span class="nx">CollisionComponent</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+    <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
 
-  <span class="kd">var</span> <span class="nx">CollisionComponent</span> <span class="o">=</span> <span class="nx">Component</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>start</strong></p>
+      <span class="k">this</span><span class="p">.</span><span class="nx">collisionResolver</span> <span class="o">=</span> <span class="nx">CollisionResolver</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">onCollideArguments</span> <span class="o">=</span> <span class="p">[</span><span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">];</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>start</strong></p>
 
 <p>Setup the component.</p>
 
-<p>The main thing here is that the component 
+<p>The main thing here is that the component
 adds itself to the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a></p>
 
-<p><strong>Can throw an Error</strong><br/>(If the parent of the component does not define an <strong>onCollide</strong> method )</p></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p><strong>Can throw an Error</strong><br/>(If the parent of the component does not define an <strong>onCollide</strong> method)</p></div></div><div class="code"><div class="wrapper">    <span class="nx">start</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span> <span class="o">=</span> <span class="s2">&quot;#00FF00&quot;</span><span class="p">;</span>
 
       <span class="k">this</span><span class="p">.</span><span class="nx">checkingCollisions</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 
-      <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">addToCollisionList</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">collisionResolver</span><span class="p">.</span><span class="nx">addToCollisionList</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
 
-      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">onCollide</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">onCollide</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">ErrorPrinter</span><span class="p">.</span><span class="nx">printError</span><span class="p">(</span><span class="s1">&#39;Collision Component&#39;</span><span class="p">,</span> <span class="s2">&quot;GameObject with typeId: &quot;</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">typeId</span> <span class="o">+</span> <span class="s2">&quot;, needs to define an onCollide method, yo.&quot;</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>update</strong></p>
@@ -49,26 +53,58 @@ adds itself to the <a href="http://diegomarquez.github.io/game-builder/game-buil
 <p>The <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a> will test this collider against
 all other registered colliders that are supposed to collide against it. If there is a collision
 A bunch of callbacks will be executed notifying the objects involved.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">update</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-      <span class="nx">collisionList</span> <span class="o">=</span> <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">collisionLists</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">];</span>
+      <span class="kd">var</span> <span class="nx">collisionList</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collisionResolver</span><span class="p">.</span><span class="nx">collisionLists</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">id</span><span class="p">];</span>
 
       <span class="k">if</span> <span class="p">(</span><span class="nx">collisionList</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">for</span> <span class="p">(</span><span class="nx">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">k</span> <span class="o">&lt;</span> <span class="nx">collisionList</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">collisionOpponent</span> <span class="o">=</span> <span class="nx">collisionList</span><span class="p">[</span><span class="nx">k</span><span class="p">];</span>
+          <span class="kd">var</span> <span class="nx">collisionOpponent</span> <span class="o">=</span> <span class="nx">collisionList</span><span class="p">[</span><span class="nx">k</span><span class="p">];</span>
 
-          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">checkingCollisions</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">checkingCollisions</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
 
-          <span class="k">if</span> <span class="p">(</span><span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">areColliding</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">collisionOpponent</span><span class="p">))</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">checkingCollisions</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
-    
-            <span class="k">this</span><span class="p">.</span><span class="nx">onCollide</span><span class="p">(</span><span class="nx">collisionOpponent</span><span class="p">)</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">onCollide</span><span class="p">(</span><span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">parent</span><span class="p">);</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;collide&#39;</span><span class="p">,</span> <span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">parent</span><span class="p">);</span>
-
+          <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">collisionResolver</span><span class="p">.</span><span class="nx">areColliding</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">collisionOpponent</span><span class="p">))</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">checkingCollisions</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
 
-            <span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">onCollide</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-            <span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">onCollide</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">);</span>
-            <span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;collide&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">invertedResponse</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">getResponse</span> <span class="o">||</span> <span class="k">this</span><span class="p">.</span><span class="nx">getResponse</span><span class="p">)</span> <span class="p">{</span>
+              <span class="nx">response</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collisionResolver</span><span class="p">.</span><span class="nx">getLastResponse</span><span class="p">();</span>
+              <span class="nx">invertedResponse</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">collisionResolver</span><span class="p">.</span><span class="nx">getLastInvertedResponse</span><span class="p">();</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+              <span class="nx">response</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+              <span class="nx">invertedResponse</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">parent</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">onCollide</span><span class="p">(</span><span class="nx">collisionOpponent</span><span class="p">,</span> <span class="nx">response</span><span class="p">);</span>
+
+              <span class="k">if</span> <span class="p">(</span><span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">parent</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">onCollideArguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">parent</span><span class="p">;</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">onCollideArguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">response</span><span class="p">;</span>
+
+                <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;collide&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onCollideArguments</span><span class="p">,</span> <span class="s1">&#39;apply&#39;</span><span class="p">);</span>
+              <span class="p">}</span>
+
+              <span class="k">if</span> <span class="p">(</span><span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">parent</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">onCollide</span><span class="p">(</span><span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">response</span><span class="p">);</span>
+              <span class="p">}</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">checkingCollisions</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">parent</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+              <span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">onCollide</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">invertedResponse</span><span class="p">);</span>
+
+              <span class="k">if</span> <span class="p">(</span><span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">parent</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">onCollideArguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">;</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">onCollideArguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">invertedResponse</span><span class="p">;</span>
+
+                <span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s1">&#39;collide&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onCollideArguments</span><span class="p">,</span> <span class="s1">&#39;apply&#39;</span><span class="p">);</span>
+              <span class="p">}</span>
+
+              <span class="k">if</span> <span class="p">(</span><span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">parent</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">collisionOpponent</span><span class="p">.</span><span class="nx">parent</span><span class="p">.</span><span class="nx">onCollide</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">invertedResponse</span><span class="p">);</span>
+              <span class="p">}</span>
+            <span class="p">}</span>
           <span class="p">}</span>
         <span class="p">}</span>
       <span class="p">}</span>
@@ -82,22 +118,39 @@ A bunch of callbacks will be executed notifying the objects involved.</p></div><
 <li><strong>other must be an Object.</strong><br/>(The other <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> involved in the collision.)</li>
 </ul></div></div><div class="code"><div class="wrapper">    <span class="nx">onCollide</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">other</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span> <span class="o">=</span> <span class="s2">&quot;#FF0000&quot;</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>debug_draw</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><p style='color:#AD071D'><strong>remove</strong></p>
+
+<p>Asides from resetting some properties the component removes itself
+from the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a></p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>parent must be an Object.</strong><br/>(<a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/hierarchy/game-object.html">game-object</a> using this component)</li>
+</ul></div></div><div class="code"><div class="wrapper">    <span class="nx">removed</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">checkingCollisions</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">collisionResolver</span><span class="p">.</span><span class="nx">removeFromCollisionList</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>debug_draw</strong></p>
 
 <p>This is redifined by objects extending this one.</p></div></div><div class="code"><div class="wrapper">    <span class="nx">debug_draw</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">debugColor</span> <span class="o">=</span> <span class="s2">&quot;#00FF00&quot;</span><span class="p">;</span>
-    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>destroy</strong></p>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>enable</strong></p>
 
-<p>Destroys the component.</p>
-
-<p>Asides from resetting some properties the component removes itself
-from the <a href="http://diegomarquez.github.io/game-builder/game-builder-docs/src/collision/collision-resolver.html">collision-resolver</a></p></div></div><div class="code"><div class="wrapper">    <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<p>An enabled component will execute it's update logic</p></div></div><div class="code"><div class="wrapper">    <span class="nx">enable</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">checkingCollisions</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p style='color:#AD071D'><strong>disable</strong></p>
 
+<p>A disabled component will not execute it's update logic</p></div></div><div class="code"><div class="wrapper">    <span class="nx">disable</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">checkingCollisions</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">},</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
 
-      <span class="nx">CollisionResolver</span><span class="p">.</span><span class="nx">removeFromCollisionList</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-    <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><hr /></div></div><div class="code"><div class="wrapper">  <span class="p">});</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">GameObject</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="s2">&quot;COLLIDE&quot;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="s1">&#39;collide&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
 
   <span class="k">return</span> <span class="nx">CollisionComponent</span><span class="p">;</span>
 <span class="p">});</span></div></div></div></div></body></html>

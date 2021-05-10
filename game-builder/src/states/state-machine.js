@@ -3,10 +3,10 @@
  * ### By [Diego Enrique Marquez](http://www.treintipollo.com)
  * ### [Find me on Github](https://github.com/diegomarquez)
  *
- * Inherits from: 
+ * Inherits from:
  * [class](http://diegomarquez.github.io/game-builder/game-builder-docs/src/class.html)
  *
- * Depends of: 
+ * Depends of:
  * [state](http://diegomarquez.github.io/game-builder/game-builder-docs/src/states/state.html)
  * [error-printer](http://diegomarquez.github.io/game-builder/game-builder-docs/src/debug/error-printer.html)
  *
@@ -15,11 +15,11 @@
  * This module allows you to setup [finite state machines](http://en.wikipedia.org/wiki/Finite-state_machine).
  * It's a pretty useful pattern in game development, as it's a rather easy way to organize and coordinate different
  * pieces of code without abusing _'if'_ statements.
- * 
+ *
  * The module provides 2 types of **state machines**
  *
- * The first **"loose"** type, allows you to just go from state to state, with no restriction. 
- * It's pretty usefull, but states need to know about the other states in order to change control flow to them. 
+ * The first **"loose"** type, allows you to just go from state to state, with no restriction.
+ * It's pretty usefull, but states need to know about the other states in order to change control flow to them.
  * That isn't so good, but it works for small bits of code.
  *
  * The second **"fixed"** type, lets you configure the order of execution of states. In these state machines, a state needs know
@@ -49,15 +49,30 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		 * <p style='color:#AD071D'><strong>start</strong></p>
 		 *
 		 * Start the state machine.
-		 * 
+		 *
 		 * Once the states have been added, call this method to go into
 		 * the first state, optionally sending some arguments.
-		 * 
-		 * @param  {Object} [args=null] Arguments to be sent to the initial state.  
+		 *
+		 * @param {Object} [args=null] Arguments to be sent to the initial state.
+		 * @param {Number} [initState=null] State in which the state machine should start.
 		 */
-		start: function(args) {
+		start: function(args, initState) {
 			this.unblock();
-			executeStateAction.call(this, 0, 'start', args);
+			executeStateAction.call(this, initState ? initState : 0, 'start', args);
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
+		 * <p style='color:#AD071D'><strong>finish</strong></p>
+		 *
+		 * Finishes the execution of the current state.
+		 *
+		 * @param {Object} [args=null] Arguments to be sent to the completion callbacks of the current state.
+		 */
+		finish: function(args) {
+			executeStateAction.call(this, this.currentStateId, 'complete', args);
 		},
 		/**
 		 * --------------------------------
@@ -67,14 +82,14 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		 * <p style='color:#AD071D'><strong>add</strong></p>
 		 *
 		 * Add a state object to the state machine.
-		 * 
+		 *
 		 * This method is redifined by the concrete implementations.
-		 * 
+		 *
 		 * @param {State} state State object to add
 		 */
 		add: function(state) {
 			var stateIndex = this.states.push(state) - 1
-		
+
 			this.stateIds[state.name] = stateIndex;
 			this.stateIds[stateIndex.toString()] = stateIndex;
 		},
@@ -86,12 +101,12 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		 * <p style='color:#AD071D'><strong>get</strong></p>
 		 *
 		 * Get a reference to a state.
-		 * 
-		 * @param  {String|Number} stateIdOrName State id or name
+		 *
+		 * @param {String|Number} stateIdOrName State id or name
 		 * @return {State} The requested state
 		 */
-		get: function(stateIdOrName) { 
-			return this.states[getStateId.call(this, stateIdOrName)]; 
+		get: function(stateIdOrName) {
+			return this.states[getStateId.call(this, stateIdOrName)];
 		},
 		/**
 		 * --------------------------------
@@ -101,11 +116,13 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		 * <p style='color:#AD071D'><strong>block</strong></p>
 		 *
 		 * Blocks the state machine.
-		 * 
-		 * While blocked no actions will be executed, 
+		 *
+		 * While blocked no actions will be executed,
 		 * and state changes can not occur.
 		 */
-		block: function() { this.isBlocked = true; },
+		block: function() {
+			this.isBlocked = true;
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -117,7 +134,9 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		 *
 		 * All behaviour returns to normal after executing this method.
 		 */
-		unblock: function() { this.isBlocked = false; },
+		unblock: function() {
+			this.isBlocked = false;
+		},
 		/**
 		 * --------------------------------
 		 */
@@ -125,10 +144,12 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		/**
 		 * <p style='color:#AD071D'><strong>update</strong></p>
 		 *
-		 * Execute the update actions of the state machine. 
+		 * Execute the update actions of the state machine.
 		 */
 		update: function() {
-			this.states[this.currentStateId].update(arguments);
+			var state = this.states[this.currentStateId];
+
+			state.update.apply(state, arguments);
 		},
 		/**
 		 * --------------------------------
@@ -138,11 +159,11 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		 * <p style='color:#AD071D'><strong>destroy</strong></p>
 		 *
 		 * Calls the destroy method of all the states registered.
-		 * 
+		 *
 		 * Nulls the main references. Sets the object up for garbage collection.
 		 */
 		destroy: function() {
-			for (var i=0; i<this.states.length; i++) {
+			for (var i = 0; i < this.states.length; i++) {
 				this.states[i].destroy();
 			}
 
@@ -166,10 +187,10 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		 * <p style='color:#AD071D'><strong>add</strong></p>
 		 *
 		 * Add a state object to the state machine.
-		 * 
+		 *
 		 * Setup the **change** event of the state, so it is able to pass control flow
 		 * to another state.
-		 * 
+		 *
 		 * When executing the **change** event an argument is required to be passed. ej.
 		 *
 		 * ``` javascript
@@ -181,28 +202,28 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 			// This is optional
 			lastCompleteArgs: {},
 			// This will be passed as arguments to the start actions of the next state
-			// This is optional 
+			// This is optional
 			nextInitArgs: {}
 		 * });
 		 * ```
-		 * 
+		 *
 		 * @param {State} state State object to add
 		 */
 		add: function(state) {
-			state.on(state.CHANGE, this, function(args) { 
-				if (canNotMoveToNewState.call(this, state)) { 
-					return; 
-				} 
+			state.on(state.CHANGE, this, function(args) {
+				if (canNotMoveToNewState.call(this, state)) {
+					return;
+				}
 
 				executeStateAction.call(this, this.currentStateId, 'complete', args.lastCompleteArgs);
 				executeStateAction.call(this, getStateId.call(this, args.next), 'start', args.nextInitArgs);
 			});
 
 			this._super(state);
-		}	
+		}
 		/**
 		 * --------------------------------
-		 */	
+		 */
 	});
 
 	/**
@@ -217,48 +238,56 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		 * <p style='color:#AD071D'><strong>add</strong></p>
 		 *
 		 * Add state object to the state machine.
-		 * 
-		 * Setup the **next** and **previous** events of the state, 
+		 *
+		 * Setup the **next** and **previous** events of the state,
 		 * so it is able to pass control flow to the corresponding states.
-		 * 
+		 *
 		 * When executing the **next** and **previous** events an argument is optional. ej.
 		 *
-		 * ``` javascript  
+		 * ``` javascript
 		 * state.execute('next', {
 			// This will be passed as arguments to the complete actions of the current state
 			// This is optional
 			lastCompleteArgs: {},
 			// This will be passed as arguments to the start actions of the next state
-			// This is optional 
+			// This is optional
 			nextInitArgs: {}
 		 * });
 		 * ```
-		 * 
+		 *
 		 * @param {State} state State object to add
 		 */
 		add: function(state) {
-			state.on(state.NEXT, this, function(args) { 
-				if (canNotMoveToNewState.call(this, state)) { 
-					return; 
+			state.on(state.NEXT, this, function(args) {
+				if (canNotMoveToNewState.call(this, state)) {
+					return;
 				}
 
 				executeStateAction.call(this, this.currentStateId, 'complete', args.lastCompleteArgs);
 
-				if (this.currentStateId < this.states.length) { this.currentStateId++; }			
-				if (this.currentStateId == this.states.length) { this.currentStateId = 0; }
+				if (this.currentStateId < this.states.length) {
+					this.currentStateId++;
+				}
+				if (this.currentStateId == this.states.length) {
+					this.currentStateId = 0;
+				}
 
 				executeStateAction.call(this, this.currentStateId, 'start', args.nextInitArgs);
 			});
 
-			state.on(state.PREVIOUS, this, function(args) { 
-				if (canNotMoveToNewState.call(this, state)) { 
-					return; 
+			state.on(state.PREVIOUS, this, function(args) {
+				if (canNotMoveToNewState.call(this, state)) {
+					return;
 				}
 
 				executeStateAction.call(this, this.currentStateId, 'complete', args.lastCompleteArgs);
 
-				if (this.currentStateId >= 0) { this.currentStateId--; }			
-				if (this.currentStateId < 0) { this.currentStateId = this.states.length-1; }
+				if (this.currentStateId >= 0) {
+					this.currentStateId--;
+				}
+				if (this.currentStateId < 0) {
+					this.currentStateId = this.states.length - 1;
+				}
 
 				executeStateAction.call(this, this.currentStateId, 'start', args.nextInitArgs);
 			});
@@ -267,33 +296,35 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		}
 		/**
 		 * --------------------------------
-		 */		
+		 */
 	});
 
 	/**
-	 * ## **State Machine Factory** 
+	 * ## **State Machine Factory**
 	 */
 	var StateMachineFactory = {
 		// Create a "loose" state machine
-		createLooseStateMachine: function() { return new LooseStateMachine(); },
+		createLooseStateMachine: function() {
+			return new LooseStateMachine();
+		},
 		// Create a "fixed" state machine
-		createFixedStateMachine: function() { return new FixedStateMachine(); },
+		createFixedStateMachine: function() {
+			return new FixedStateMachine();
+		},
 		// Create a state, send in the scope for the state and a name
-		createState: function(scope, name) { return new State(scope, name); }
+		createState: function(scope, name) {
+			return new State(scope, name);
+		}
 	};
 	/**
 	 * --------------------------------
 	 */
-	
+
 	var executeStateAction = function(stateId, action, args) {
-		if (this.isBlocked || this.states == null) { return; }
+		if (this.isBlocked || this.states == null)
+			return;
 
-		try {
-			this.states[stateId][action](args);	
-		} catch(e) {
-			ErrorPrinter.printError('State', 'State with id: ' + stateId + ' caused an un expected error.', e);
-		}
-
+		this.states[stateId][action](args);
 		this.currentStateId = stateId;
 	}
 
@@ -306,9 +337,9 @@ define(["class", "state", "error-printer"], function(Class, State, ErrorPrinter)
 		if (this.currentStateId != changingStateId) {
 			return true;
 		}
-		
-		if (this.isBlocked || this.states == null) { 
-			return true; 
+
+		if (this.isBlocked || this.states == null) {
+			return true;
 		}
 
 		return false;

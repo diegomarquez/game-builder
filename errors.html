@@ -67,7 +67,7 @@
         <script>
             $(function() {
                 var template = $('#template').html();
-                var linkTemplate = $(linkTemplate).html();
+                var linkTemplate = $('#linkTemplate').html();
 
                 Mustache.parse(template);
                 Mustache.parse(linkTemplate); 
@@ -96,7 +96,7 @@
                     var rendered = Mustache.render(template, errorData[0]);
                     
                     for(var k in linksData[0]) {
-                        var htmlLink = Mustache.render(linkTemplate, {url:linksData[0][k], linkText:S(k.replace("@@", "")).humanize().s});    
+                        var htmlLink = Mustache.render(linkTemplate, {url:linksData[0][k], linkText:S(k.replace("@@", "")).humanize().s});
                         rendered = rendered.replace(new RegExp(k, 'g'), htmlLink);
                     }
 
