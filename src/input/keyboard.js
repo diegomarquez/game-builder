@@ -187,6 +187,21 @@ define(function(require) {
 			 * --------------------------------
 			 */
 
+			 /**
+			 * <p style='color:#AD071D'><strong>isAnyDown</strong></p>
+			 *
+			 * This method is meant to be used in an update loop. It returns
+			 * true if any key is pressed, false otherwise.
+			 *
+			 * @return {Boolean} True if any key is pressed, false otherwise.
+			 */
+			 isAnyDown: function() {
+			 	return !!Object.keys(pressed).length;
+			 },
+			 /**
+			 * --------------------------------
+			 */
+
 			/**
 			 * <p style='color:#AD071D'><strong>setBlock</strong></p>
 			 *
@@ -230,8 +245,8 @@ define(function(require) {
 
 		if (preventKeyboardEvent(event.keyCode)) return;
 
-		pressed[event.keyCode] = true;
 		keyboard.execute('keydown' + event.keyCode.toString(), event);
+		pressed[event.keyCode] = true;
 	}, false);
 
 	window.addEventListener('blur', function(event) {
