@@ -127,6 +127,8 @@ define(function(require) {
 				var name = getModuleName(moduleGetter);
 
 				this.componentPool.createPool(name, moduleGetter());
+
+				addPoolIdGetter.call(this, name);
 			},
 			/**
 			 * --------------------------------
