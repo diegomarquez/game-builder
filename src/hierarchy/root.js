@@ -32,6 +32,7 @@
  * --------------------------------
  */
 define(["game-object-container", "viewports"], function(Container, Viewports) {
+
 	var Root = Container.extend({
 
 		init: function() {
@@ -54,6 +55,9 @@ define(["game-object-container", "viewports"], function(Container, Viewports) {
 		draw: function(context) {
 			// Clear the canvas
 			context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+			if (window.gb)
+				context.imageSmoothingEnabled = window.gb.imageSmoothing;
 
 			for (var i = 0; i < this.allViewports.length; i++) {
 				var v = this.allViewports[i];
