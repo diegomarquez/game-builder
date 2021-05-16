@@ -124,6 +124,11 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 			this.labels = null;
 			this.startingLabel = '';
 
+			this.defaultPath = '';
+			this.defaultFrameWidth = 0;
+			this.defaultFrameHeight = 0;
+			this.defaultFrameCount = 0;
+
 			this.isPlaying = false;
 
 			this.cache = ImageCache;
@@ -138,18 +143,6 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		 * @throws {Error} If width, height, name, frameDelay or framePaths properties are not set
 		 */
 		start: function(parent) {
-			if (!this.frameWidth && !this.frameHeight) {
-				ErrorPrinter.missingArgumentError('Animations Bitmap Renderer', 'frameWidth', 'frameHeight');
-			}
-
-			if (!this.frameDelay) {
-				ErrorPrinter.missingArgumentError('Animations Bitmap Renderer', 'frameDelay');
-			}
-
-			if (!this.path) {
-				ErrorPrinter.missingArgumentError('Animations Bitmap Renderer', 'path');
-			}
-
 			if (!this.labels) {
 				ErrorPrinter.missingArgumentError('Animations Bitmap Renderer', 'labels');
 			}
@@ -158,12 +151,50 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 				ErrorPrinter.missingArgumentError('Animations Bitmap Renderer', 'startingLabel');
 			}
 
+			this.defaultPath = this.path;
+			this.defaultFrameWidth = this.frameWidth;
+			this.defaultFrameHeight = this.frameHeight;
+			this.defaultFrameCount = this.frameCount;
+
 			var self = this;
 
-			this.cache.cacheStrip(this.path, this.frameWidth, this.frameHeight, this.frameCount, function(frameCount) {
-				self.finishLoading = true;
-				self.frameCount = frameCount;
-			});
+			var cacheCount = Object.keys(this.labels).length;
+
+			for (const labelName in this.labels)
+			{
+				var label = this.labels[labelName];
+
+				var path = label.path || this.path;
+				var frameWidth = label.frameWidth || this.frameWidth;
+				var frameHeight = label.frameHeight || this.frameHeight;
+				var frameCount = label.frameCount || this.frameCount;
+				var frameDelay = label.frameDelay || this.frameDelay;
+
+				if (!frameWidth && !frameHeight) {
+					ErrorPrinter.missingArgumentError('Animations Bitmap Renderer', 'frameWidth', 'frameHeight');
+				}
+
+				if (!frameDelay) {
+					ErrorPrinter.missingArgumentError('Animations Bitmap Renderer', 'frameDelay');
+				}
+
+				if (!frameCount) {
+					ErrorPrinter.missingArgumentError('Animations Bitmap Renderer', 'frameCount');
+				}
+
+				if (!path) {
+					ErrorPrinter.missingArgumentError('Animations Bitmap Renderer', 'path');
+				}
+
+				this.cache.cacheStrip(path, frameWidth, frameHeight, frameCount, function(frameCount) {
+					cacheCount--;
+
+					if (cacheCount === 0)
+					{
+						self.finishLoading = true;
+					}
+				});
+			}
 
 			this.stop();
 		},
@@ -350,6 +381,11 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 
 			var label = this.labels[selectedLabel];
 
+			this.frameWidth = label.frameWidth || this.defaultFrameWidth;
+			this.frameHeight = label.frameHeight || this.defaultFrameHeight;
+			this.frameCount = label.frameCount || this.defaultFrameCount;
+			this.path = label.path || this.defaultPath;
+
 			this.currentLabel = label;
 			this.currentFrames = label.frames;
 			this.loop = label.loop || false;
@@ -389,6 +425,13 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 		loop: function(selectedLabel) {
 			selectedLabel = selectedLabel || this.startingLabel;
 
+			var label = this.labels[selectedLabel];
+
+			this.frameWidth = label.frameWidth || this.defaultFrameWidth;
+			this.frameHeight = label.frameHeight || this.defaultFrameHeight;
+			this.frameCount = label.frameCount || this.defaultFrameCount;
+			this.path = label.path || this.defaultPath;
+
 			this.currentLabel = label;
 			this.currentFrames = label.frames;
 			this.loop = true;
@@ -415,6 +458,11 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 			selectedLabel = selectedLabel || this.startingLabel;
 
 			var label = this.labels[selectedLabel];
+
+			this.frameWidth = label.frameWidth || this.defaultFrameWidth;
+			this.frameHeight = label.frameHeight || this.defaultFrameHeight;
+			this.frameCount = label.frameCount || this.defaultFrameCount;
+			this.path = label.path || this.defaultPath;
 
 			this.currentLabel = label;
 			this.currentFrames = label.frames;
