@@ -59,6 +59,7 @@ define(function(require) {
 				this.colliderDebug = false;
 				this.rendererDebug = false;
 				this.gameObjectDebug = false;
+				this.imageSmoothing = true;
 
 				this.viewportsAliases = {};
 
@@ -524,7 +525,7 @@ define(function(require) {
 			 *
 			 * Toggle the global debug option which triggers a bunch of debug drawing
 			 *
-			 * @param {Boolean} state=false If specified the debug option is set to that value
+			 * @param {Boolean} state=false set the specified option to that value
 			 */
 			toggleDebug: function(state) {
 				toggle.call(this, state, 'debug');
@@ -538,7 +539,7 @@ define(function(require) {
 			 *
 			 * Toggle the debug drawing of [game-object](@@game-object@@) [collision-components](@@collision-component@@)
 			 *
-			 * @param {Boolean} state=false If specified the debug option is set to that value
+			 * @param {Boolean} state=false set the specified option to that value
 			 */
 			toggleColliderDebug: function(state) {
 				toggle.call(this, state, 'colliderDebug');
@@ -552,7 +553,7 @@ define(function(require) {
 			 *
 			 * Toggle the debug drawing of [game-object](@@game-object@@) [renderers](@@renderer@@)
 			 *
-			 * @param {Boolean} state=false If specified the debug option is set to that value
+			 * @param {Boolean} state=false set the specified option to that value
 			 */
 			toggleRendererDebug: function(state) {
 				toggle.call(this, state, 'rendererDebug');
@@ -564,14 +565,28 @@ define(function(require) {
 			/**
 			 * <p style='color:#AD071D'><strong>toggleGameObjectDebug</strong></p>
 			 *
-			 * Toggle the debug drawinf of [game-object](@@game-object@@) centers
+			 * Toggle the debug draw of [game-object](@@game-object@@) centers
 			 *
-			 * @param {Boolean} state=false If specified the debug option is set to that value
+			 * @param {Boolean} state=false set the specified option to that value
 			 */
 			toggleGameObjectDebug: function(state) {
 				toggle.call(this, state, 'gameObjectDebug');
 			},
 			/**
+			 * --------------------------------
+			 */
+
+			 /**
+			 * <p style='color:#AD071D'><strong>toggleImageSmoothing</strong></p>
+			 *
+			 * Toggle the flag 'imageSmoothingEnabled' of the main [CanvasRenderingContext2D](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D)
+			 *
+			 * @param {Boolean} state=false set the specified option to that value
+			 */
+			 toggleImageSmoothing: function(state) {
+			 	toggle.call(this, state, 'imageSmoothing');
+			 },
+			 /**
 			 * --------------------------------
 			 */
 
@@ -620,5 +635,8 @@ define(function(require) {
 
 	defineProperty("GAME_OBJECT_ADDED", 'game-object-added');
 
-	return new Gb();
+	// Add it to the global namespace for ease of use
+	window.gb = new Gb();
+
+	return window.gb;
 });
