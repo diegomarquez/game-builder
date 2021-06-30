@@ -22,11 +22,13 @@
  * when setting it up in the [component-pool](@@component-pool@@). ej.
  * 
  * ``` javascript
- * gb.coPool.createConfiguration("PathAnimation", 'Path_Animation_Renderer')
+ * gb.coPool.createConfiguration("BitmapAnimation", 'Bitmap_Animation_Renderer')
 	.args({ 
-		
+		// A path to the asset this renderer will use.
+		path: "path/to/graphics/resource",
+
 		//These set the width and height of each frame of the animation
-		//This argument is only required if the renderer does not provide it. 
+		//This argument is only required if the renderer does not provide it.
 		frameWidth: 100,
 		frameHeight: 100,
 		

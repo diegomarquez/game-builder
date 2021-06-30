@@ -22,9 +22,11 @@
  * when setting it up in the [component-pool](@@component-pool@@). ej.
  * 
  * ``` javascript
- * gb.coPool.createConfiguration("PathAnimation", 'Path_Animation_Renderer')
+ * gb.coPool.createConfiguration("BitmapAnimations", 'Bitmap_Animations_Renderer')
 	.args({ 
-		
+		// A path to the asset this renderer will use.
+		path: "path/to/graphics/resource",
+
 		//These set the width and height of each frame of the animation
 		//This argument is only required if the renderer does not provide it. 
 		frameWidth: 100,
@@ -50,17 +52,32 @@
 		//The label with which to start
 		//This is required
 		startingLabel: 'startLabel',
+
+		//If the labels will loop
+		loop: true,
+		
+		//This booelan indicates wheter the animations should play backwards once they reach the end
+		//It is false by default
+		pingPong: false,
 		
 		//This object defines animations using the frames defined previously.
 		//The object can have as many entries as needed and it is required
 		labels: {
 			//Name of the label
 			'startLabel': {
-				//If the label is a looping animation
+				//Overrides the default setting
+				path: "another/path/to/graphics/resource",
+				//Overrides the default setting
+				frameWidth: 200,
+				//Overrides the default setting
+				frameHeight: 200,
+				//Overrides the default setting
+				frameCount: 7,
+				//Overrides the default setting
+				frameDelay: 0.2,
+				//Overrides the default setting
 				loop: true,
-				
-				//This booelan indicates wheter the animation should play backwards once it reaches the end or gets back to the beginning
-				//It is false by default
+				//Overrides the default setting
 				pingPong: false,
 				
 				//Indexes of the frames this animation uses
