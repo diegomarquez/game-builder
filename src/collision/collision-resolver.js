@@ -59,7 +59,11 @@ define(['sat'], function(SAT) {
 
 		if (indexes != null && indexes.length > 0) {
 			for (var i = 0; i < indexes.length; i++) {
-				this.collisionLists[indexes[i]].push(collisionComponent);
+
+				const array = this.collisionLists[indexes[i]];
+
+				if (array.indexOf(collisionComponent) === -1)
+					array.push(collisionComponent);
 			}
 		}
 	};
@@ -145,11 +149,11 @@ define(['sat'], function(SAT) {
 		}
 
 		var collisionMethodKey = first.colliderType + second.colliderType;
-
+		
 		if (first.getResponse || second.getResponse) {
 			this.invertedResponse.clear();
 			this.response.clear();
-
+			
 			return this.collisionMethodPairs[collisionMethodKey](first.collider, second.collider, this.response);
 		} else {
 			return this.collisionMethodPairs[collisionMethodKey](first.collider, second.collider);

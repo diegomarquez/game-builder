@@ -46,9 +46,13 @@ define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, 
 
 			this.imagesToLoad = [];
 			this.audioToLoad = [];
+			this.xmlToLoad = [];
+			this.jsonToLoad = [];
 
 			this.cachedImages = {};
 			this.cachedAudio = {};
+			this.cachedXML = {};
+			this.cachedJSON = {};
 
 			this.supportedAudioFormat = "";
 		},
@@ -81,6 +85,36 @@ define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, 
 		 */
 		getCachedAudio: function(id) {
 			return this.cachedAudio[id];
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		 /**
+		 * <p style='color:#AD071D'><strong>getCachedXml</strong></p>
+		 *
+		 * Get an [XML Document](https://developer.mozilla.org/en-US/docs/Web/API/XMLDocument) that has been previously cached
+		 *
+		 * @param {String} id The path to the resource
+		 * @return {XML Document}
+		 */
+		getCachedXml: function(id) {
+			return this.cachedXML[id];
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		  /**
+		 * <p style='color:#AD071D'><strong>getCachedJSON</strong></p>
+		 *
+		 * Get an JSON objects that has been previously cached
+		 *
+		 * @param {String} id The path to the resource
+		 * @return {JSON}
+		 */
+		getCachedJSON: function(id) {
+			return this.cachedJSON[id];
 		},
 		/**
 		 * --------------------------------
@@ -124,6 +158,28 @@ define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, 
 				return;
 			}
 
+			if (extension === 'xml') {
+				if (this.cachedXML[path])
+					return;
+
+				if (this.XMLToLoad.indexOf(path) === -1) {
+					this.XMLToLoad.push(path);
+				}
+
+				return;
+			}
+
+			if (extension === 'json') {
+				if (this.cachedJSON[path])
+					return;
+
+				if (this.JSONToLoad.indexOf(path) === -1) {
+					this.JSONToLoad.push(path);
+				}
+
+				return;
+			}
+
 			ErrorPrinter.printError('Asset Preloader: file type is not supported');
 		},
 		/**
@@ -154,6 +210,14 @@ define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, 
 				return true;
 			}
 
+			if (extension === 'xml') {
+				return true;
+			}
+
+			if (extension === 'json') {
+				return true;
+			}
+
 			return false;
 		},
 		/**
@@ -171,44 +235,30 @@ define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, 
 		loadAll: function() {
 			var imagesToLoad = this.imagesToLoad.length;
 			var audioToLoad = this.audioToLoad.length;
+			var xmlToLoad = this.xmlToLoad.length;
+			var jsonToLoad = this.jsonToLoad.length;
 
-			if ((imagesToLoad + audioToLoad) === 0) {
-				this.execute(this.ON_LOAD_ALL_COMPLETE);
+			if (this.allLoadComplete(imagesToLoad, audioToLoad, xmlToLoad, jsonToLoad))
 				return;
-			}
+
+			// Load images
 
 			for (var i = 0; i < this.imagesToLoad.length; i++) {
 				var path = this.imagesToLoad[i];
 
 				var image = document.createElement('img');
+				image.crossOrigin = 'Anonymous';
 
-				image.addEventListener('load', function(event) {
+				this.waitForAvailability(path, image, 'load', function(event) {
 					this.cachedImages[event.target.gru()] = event.target;
 
 					imagesToLoad--;
 
-					if (imagesToLoad === 0 && audioToLoad === 0) {
-						this.imagesToLoad.length = 0;
-						this.audioToLoad.length = 0;
-
-						this.execute(this.ON_LOAD_ALL_COMPLETE);
-					}
+					this.allLoadComplete(imagesToLoad, audioToLoad, xmlToLoad, jsonToLoad);
 				}.bind(this));
-
-				image.gru = function(p) {
-					return function() {
-						return p;
-					}
-				}(path);
-
-				image.crossOrigin = 'Anonymous';
-
-				if (window.location.protocol === 'file:') {
-					image.src = 'http://localhost:5000/' + path;
-				} else {
-					image.src = path;
-				}
 			}
+
+			// Load audio
 
 			var audioContext = window.AudioContext || window.webkitAudioContext;
 
@@ -218,67 +268,121 @@ define(['delegate', 'asset-map', 'error-printer'], function(Delegate, AssetMap, 
 				path = this.convertPathToSupportedAudioFormat(path);
 
 				if (audioContext) {
-					var request = new XMLHttpRequest();
-
-					if (window.location.protocol === 'file:') {
-						request.open('GET', 'http://localhost:5000/' + path);
-					} else {
-						request.open('GET', path);
-					}
-
-					request.responseType = 'arraybuffer';
-
-					request.addEventListener('load', function(event) {
+					this.makeXMLHTTPRequest(path, 'arraybuffer', function(event) {
 						this.cachedAudio[event.target.gru()] = event.target.response;
 
 						audioToLoad--;
 
-						if (imagesToLoad === 0 && audioToLoad === 0) {
-							this.imagesToLoad.length = 0;
-							this.audioToLoad.length = 0;
-
-							this.execute(this.ON_LOAD_ALL_COMPLETE);
-						}
+						this.allLoadComplete(imagesToLoad, audioToLoad, xmlToLoad, jsonToLoad);
 					}.bind(this));
-
-					request.gru = function(p) {
-						return function() {
-							return p;
-						}
-					}(path);
-
-					request.send();
 				} else {
 					var audio = document.createElement('audio');
+					audio.preload = 'auto';
 
-					audio.addEventListener('canplaythrough', function(event) {
+					this.waitForAvailability(path, audio, 'canplaythrough', function(event) {
 						this.cachedAudio[event.target.gru()] = event.target;
 
 						audioToLoad--;
 
-						if (imagesToLoad === 0 && audioToLoad === 0) {
-							this.imagesToLoad.length = 0;
-							this.audioToLoad.length = 0;
-
-							this.execute(this.ON_LOAD_ALL_COMPLETE);
-						}
+						this.allLoadComplete(imagesToLoad, audioToLoad, xmlToLoad, jsonToLoad);
 					}.bind(this));
-
-					audio.gru = function(p) {
-						return function() {
-							return p;
-						}
-					}(path);
-
-					audio.preload = 'auto';
-
-					if (window.location.protocol === 'file:') {
-						audio.src = 'http://localhost:5000/' + path;
-					} else {
-						audio.src = path;
-					}
 				}
 			}
+
+			// Load XML
+
+			for (var i = 0; i < this.xmlToLoad.length; i++) {
+				this.makeXMLHTTPRequest(this.xmlToLoad[i], 'document', function(event) {
+					this.cachedXML[event.target.gru()] = event.target.response;
+
+					xmlToLoad--;
+
+					this.allLoadComplete(imagesToLoad, audioToLoad, xmlToLoad, jsonToLoad);
+				}.bind(this));
+			}
+
+			// Load JSON
+
+			for (var i = 0; i < this.jsonToLoad.length; i++) {
+				this.makeXMLHTTPRequest(this.jsonToLoad[i], 'json', function(event) {
+					this.cachedJSON[event.target.gru()] = event.target.response;
+
+					jsonToLoad--;
+
+					this.allLoadComplete(imagesToLoad, audioToLoad, xmlToLoad, jsonToLoad);
+				}.bind(this));
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		makeXMLHTTPRequest: function(path, type, onLoad) {
+			var request = new XMLHttpRequest();
+
+			if (window.location.protocol === 'file:') {
+				request.open('GET', 'http://localhost:5000/' + path);
+			} else {
+				request.open('GET', path);
+			}
+
+			request.responseType = type;
+
+			request.addEventListener('load', onLoad);
+
+			this.setGRU(request, path);
+
+			request.send();
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		waitForAvailability: function(path, object, eventType, onLoad) {
+			object.addEventListener(eventType, onLoad);
+
+			this.setGRU(object, path);
+			this.setSource(object, path);
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		setGRU: function(object, path) {
+			object.gru = function(p) {
+				return function() {
+					return p;
+				}
+			}(path);
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		setSource: function(object, path) {
+			if (window.location.protocol === 'file:') {
+				object.src = 'http://localhost:5000/' + path;
+			} else {
+				object.src = path;
+			}
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		allLoadComplete: function(imagesToLoad, audioToLoad, xmlToLoad, jsonToLoad) {
+			if ((imagesToLoad + audioToLoad + xmlToLoad + jsonToLoad) === 0) {
+				this.imagesToLoad.length = 0;
+				this.audioToLoad.length = 0;
+				this.xmlToLoad.length = 0;
+				this.jsonToLoad.length = 0;
+
+				this.execute(this.ON_LOAD_ALL_COMPLETE);
+				
+				return true;
+			}
+
+			return false;
 		},
 		/**
 		 * --------------------------------

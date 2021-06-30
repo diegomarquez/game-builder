@@ -452,6 +452,30 @@ define(function() {
 	 */
 
 	/**
+	 * <p style='color:#AD071D'><strong>clamp</strong></p>
+	 *
+	 * Clamp a number in the given range
+	 *
+	 * @param {Number} v The value to clamp
+	 * @param {Number} min Minimum value of the range
+	 * @param {Number} max Maximum value of the range
+	 *
+	 * @return {Number}
+	 */
+	Utils.prototype.clamp = function(v, max, min) {
+		if (v > max)
+			v = max;
+
+		if (v < min)
+			v = min;
+
+		return v;
+	};
+	/**
+	 * --------------------------------
+	 */
+
+	/**
 	 * <p style='color:#AD071D'><strong>generateUUID</strong></p>
 	 *
 	 * Generate a sufficiently random string

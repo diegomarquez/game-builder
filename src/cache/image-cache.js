@@ -47,7 +47,7 @@ define(function(require) {
 			/**
 			 * <p style='color:#AD071D'><strong>cache</strong></p>
 			 *
-			 * @param {String} id Path to the image asset to load, can be a local or remote url
+			 * @param {String} path Path to the image asset to load, can be a local or remote url
 			 */
 			cache: function(path) {
 				if (this.cacheObject[path]) {
@@ -83,7 +83,7 @@ define(function(require) {
 			/**
 			 * <p style='color:#AD071D'><strong>cache</strong></p>
 			 *
-			 * @param {String} path Path to the image asset to to create frames from
+			 * @param {String} path Path to the image asset to create frames from
 			 * @param {Number} frameWidth
 			 * @param {Number} frameHeight
 			 * @param {Number|null} frameCount If this is not passed, the method will try to figure out the framecount, assuming frames are squares. If they are not, it will make a wrong guess

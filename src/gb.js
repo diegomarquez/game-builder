@@ -232,7 +232,7 @@ define(function(require) {
 			 * The parent [viewport](@@viewport@@) will be ignored.
 			 *
 			 * @param {Object} go [game-object-container](@@game-object-container@@) to add the child to
-			 * @param {String} chidlGoId Id of [game-object](@@game-object@@) to add. View [game-object-pool](@@game-object-pool@@), for more details
+			 * @param {[game-object](@@game-object@@) | String} childGoOrId Id of or a [game-object](@@game-object@@) instance to add. View [game-object-pool](@@game-object-pool@@), for more details
 			 * @param {Array|String} vports If it is an array it should be a collection of objects looking like this
 			 * ``` { viewport: 'ViewportName', layer: 'LayerName' }
 			 * ```
@@ -243,14 +243,23 @@ define(function(require) {
 			 *
 			 * @return {Object} The child [game-object](@@game-object@@)
 			 */
-			addChildTo: function(parent, chidlGoId, vports, args, method, start) {
+			addChildTo: function(parent, childGoOrId, vports, args, method, start) {
 
 				var child;
 
-				if (method == 'create') {
-					child = this.assembler.get(chidlGoId, args, false, true);
-				} else {
-					child = this.assembler.get(chidlGoId, args, false, false);
+				if (typeof childGoOrId === "string")
+				{
+					if (method == 'create') {
+						child = this.assembler.get(childGoOrId, args, false, true);
+					} else {
+						child = this.assembler.get(childGoOrId, args, false, false);
+					}
+				}
+				else
+				{
+					child = childGoOrId;
+
+					child.configure(args);
 				}
 
 				parent.addChild(child);

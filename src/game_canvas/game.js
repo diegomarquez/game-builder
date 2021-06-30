@@ -276,7 +276,7 @@ define(function(require) {
 				{
 					this.delta = 0;
 				}
-
+				
 				// Execute all update extensions
 				this.execute_extensions('update', this.delta);
 				// Update all [game-objects](@@game-object@@)

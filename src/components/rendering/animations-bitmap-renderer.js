@@ -45,7 +45,7 @@
 		//If offset is not provided this two are used
 		//These are optional and default to 0
 		offsetX:0,
-		offsetY:0, 
+		offsetY:0,
 
 		//The label with which to start
 		//This is required
@@ -57,7 +57,7 @@
 			//Name of the label
 			'startLabel': {
 				//If the label is a looping animation
-				loop: true,	
+				loop: true,
 				
 				//This booelan indicates wheter the animation should play backwards once it reaches the end or gets back to the beginning
 				//It is false by default
@@ -110,6 +110,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 			this.pingPong = false;
 			this.frameWidth = 0;
 			this.frameHeight = 0;
+			this.defaultFrameDelay = 0;
 			this.frameDelay = 0;
 			this.frameCount = 0;
 			this.path = '';
@@ -155,6 +156,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 			this.defaultFrameWidth = this.frameWidth;
 			this.defaultFrameHeight = this.frameHeight;
 			this.defaultFrameCount = this.frameCount;
+			this.defaultFrameDelay = this.frameDelay;
 
 			var self = this;
 
@@ -390,6 +392,7 @@ define(["renderer", "image-cache", "error-printer"], function(Renderer, ImageCac
 			this.currentFrames = label.frames;
 			this.loop = label.loop || false;
 			this.pingPong = label.pingPong || false;
+			this.frameDelay = label.frameDelay || this.defaultFrameDelay;
 			this.delayTotal = 0;
 			this.frameIndex = 0;
 			this.currentFrameName = this.path + '_' + this.currentFrames[0].toString();

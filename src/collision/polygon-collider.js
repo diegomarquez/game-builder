@@ -139,6 +139,20 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 			 * The collider follows it's parent along every matrix transformation.
 			 */
 			update: function() {
+				this.updateCollider();
+
+				this._super();
+			},
+			/**
+			 * --------------------------------
+			 */
+
+			/**
+			 * <p style='color:#AD071D'><strong>updateCollider</strong></p>
+			 *
+			 * Updates the transformation of the collider.
+			 */
+			updateCollider: function() {
 				var m = this.parent.getMatrix();
 
 				for (var i = 0; i < this.pointCount; i++) {
@@ -149,8 +163,6 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 				}
 
 				this.collider.recalc();
-
-				this._super();
 			},
 			/**
 			 * --------------------------------
@@ -184,7 +196,8 @@ define(['collision-component', 'sat', 'collision-resolver', 'vector-2D'],
 
 				context.restore();
 
-				this._super();
+				if (viewport.IsLast)
+					this._super();
 			}
 			/**
 			 * --------------------------------

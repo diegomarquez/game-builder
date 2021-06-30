@@ -67,8 +67,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 		pooledObject.typeId = name;
 
 		// Apply arguments from less spicific to more specific
-		pooledObject.configure(configuration.hardArguments);
-		pooledObject.configure(args);
+		pooledObject.configure(Object.assign({}, configuration.hardArguments, args));
 
 		// Adding all the components configured for this object type
 		for (var i = 0; i < configuration.components.length; i++) {
@@ -129,8 +128,7 @@ define(['game-object-pool', 'component-pool', 'error-printer'], function(GameObj
 		pooledComponent.typeId = componentId;
 
 		// Apply arguments from less spicific to more specific
-		pooledComponent.configure(config.componentArgs);
-		pooledComponent.configure(args);
+		pooledComponent.configure(Object.assign({}, config.componentArgs, args));
 
 		// When a component is 'recycled' it returns to it's respective pool
 		pooledComponent.on(pooledComponent.RECYCLE, this, function(c) {

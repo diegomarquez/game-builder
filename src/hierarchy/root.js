@@ -82,6 +82,9 @@ define(["game-object-container", "viewports"], function(Container, Viewports) {
 					context.closePath();
 				}
 
+				// Set a boolean indicating if this is the last viewport being drawn
+				v.IsLast = i === this.allViewports.length - 1;
+
 				// Make all the drawings relative to the viewport's visible area
 				v.transformContext(context);
 				// Draw all the game objects associated with this viewport

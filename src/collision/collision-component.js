@@ -137,6 +137,48 @@ define(['component', 'collision-resolver', 'error-printer', 'game-object'], func
 		 */
 
 		/**
+		 * <p style='color:#AD071D'><strong>isColliding</strong></p>
+		 *
+		 * Check if the component is colliding against anything.
+		 *
+		 * The [collision-resolver](@@collision-resolver@@) will test this collider against
+		 * all other registered colliders that are supposed to collide against it.
+		 *
+		 * This method allows you to check for collisions outside of normal update loop.
+		 *
+		 * @return {Array} An array with all the responses from collisions. To be interpreted as needed.
+		 */
+		isColliding: function() {
+			var collisionList = this.collisionResolver.collisionLists[this.id];
+
+			var result = [];
+
+			if (collisionList != null) {
+				for (k = 0; k < collisionList.length; k++) {
+					var collisionOpponent = collisionList[k];
+
+					if (!collisionOpponent.checkingCollisions) continue;
+
+					if (this.collisionResolver.areColliding(this, collisionOpponent)) {
+						if (!this.checkingCollisions) break;
+
+						if (this.getResponse) {
+							result.push(this.collisionResolver.getLastResponse().clone());
+						}
+						else {
+							result.push(true);
+						}
+					}
+				}
+			}
+
+			return result;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		/**
 		 * <p style='color:#AD071D'><strong>onCollide</strong></p>
 		 *
 		 * This will be executed if there is a collision.

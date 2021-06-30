@@ -112,6 +112,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 			this.Clipping = true;
 			this.MouseEnabled = true;
 			this.MouseBounded = true;
+			this.IsLast = false;
 
 			this.visible = true;
 
@@ -530,8 +531,8 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 				// Game Objects with no renderers take default dimentions
 				this.rOffsetX = 0;
 				this.rOffsetY = 0;
-				this.rWidth = 1;
-				this.rHeight = 1;
+				this.rWidth = go.width;
+				this.rHeight = go.height;
 			}
 
 			// Get the world coordinates of the game object corners
@@ -606,7 +607,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 					go.setViewportVisibility(this.name, false);
 					return false;
 				} else {
-					// Set the game object as not visible in this viewport
+					// Set the game object as visible in this viewport
 					go.setViewportVisibility(this.name, true);
 					return true;
 				}
@@ -680,13 +681,13 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 				this.right *= this.ScaleX;
 				this.bottom *= this.ScaleY;
 
-				// The game object is surely not visible in th canvas
+				// The game object is surely not visible in the canvas
 				if (this.left > context.canvas.width || 0 > this.right || this.top > context.canvas.height || 0 > this.bottom) {
 					// Set the game object as not visible in this viewport
 					go.setViewportVisibility(this.name, false);
 					return false;
 				} else {
-					// Set the game object as not visible in this viewport
+					// Set the game object as visible in this viewport
 					go.setViewportVisibility(this.name, true);
 					return true;
 				}
@@ -712,6 +713,33 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 			}
 
 			return false;
+		},
+		/**
+		 * --------------------------------
+		 */
+
+		 /**
+		 * <p style='color:#AD071D'><strong>isRectIntersecting</strong></p>
+		 *
+		 * @param {Number} iTop 	Incoming top coordinate
+		 * @param {Number} iLeft 	Incoming left coordinate
+		 * @param {Number} iBottom 	Incoming bottom coordinate
+		 * @param {Number} iRight 	Incoming right coordinate
+		 *
+		 * @return {Boolean} Whether the rectangle given intersects the viewport or not
+		 */
+		isRectIntersecting: function(iTop, iLeft, iBottom, iRight) {
+			iLeft *= this.ScaleX;
+			iTop *= this.ScaleY;
+			iRight *= this.ScaleX;
+			iBottom *= this.ScaleY;
+
+			if (iLeft > -this.X + this.Width || -this.X > iRight || iTop > -this.Y + this.Height || -this.Y > iBottom)
+				return false;
+
+			return true;
+
+			// return this.isPointInside(iLeft, iTop) || this.isPointInside(iRight, iBottom);
 		},
 		/**
 		 * --------------------------------
@@ -882,6 +910,7 @@ define(["delegate", "layer", "reclaimer", "matrix-3x3", "sat", "vector-2D", "err
 	defineBooleanGetterAndSetter('Clipping');
 	defineBooleanGetterAndSetter('MouseEnabled');
 	defineBooleanGetterAndSetter('MouseBounded');
+	defineBooleanGetterAndSetter('IsLast');
 
 	defineNumberGetterAndSetter('X');
 	defineNumberGetterAndSetter('Y');

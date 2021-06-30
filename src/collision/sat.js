@@ -139,6 +139,13 @@ define(['vector-2D'], function(Vector) {
 		this['bInA'] = !this['bInA'];
 	};
 
+	Response.prototype.clone = function() {
+		var clone = new Response();
+		clone.copy(this);
+		
+		return clone;
+	};
+
 	var flattenPointsOn = function(points, normal, result) {
 		var min = Number.MAX_VALUE;
 		var max = -Number.MAX_VALUE;

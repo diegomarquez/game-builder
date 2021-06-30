@@ -207,6 +207,10 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 			this.viewportOffsetX = 0;
 			this.viewportOffsetY = 0;
 
+			// Optional width and height, used only when needed and a renderer is not available
+			this.width = 0;
+			this.height = 0;
+
 			// The type id, is the id of the configuration that was used to put together this game object.
 			// Set in the [game-object-pool](@@game-object-pool@@).
 			// Very usefull to identify game objects
@@ -540,7 +544,7 @@ define(["delegate", "matrix-3x3", "game-object-debug-draw", "util", "component-f
 
 			var m = this.getMatrix();
 
-			context.transform(m.a, m.b, m.c, m.d, Math.floor(m.tx), Math.floor(m.ty));
+			context.transform(m.a, m.b, m.c, m.d, m.tx, m.ty);
 
 			if (m.alpha !== 1) {
 				context.globalAlpha *= m.alpha;
